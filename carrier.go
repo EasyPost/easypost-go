@@ -24,13 +24,13 @@ type CarrierFields struct {
 // CarrierAccount encapsulates credentials and other information related to a
 // carrier account.
 type CarrierAccount struct {
-	ID              string     `json:"id,omitempty"`
-	Object          string     `json:"object,omitempty"`
-	Reference       string     `json:"reference,omitempty"`
-	CreatedAt       *time.Time `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time `json:"updated_at,omitempty"`
-	Type            string     `json:"type,omitempty"`
-	Fields          *CarrierFields
+	ID              string            `json:"id,omitempty"`
+	Object          string            `json:"object,omitempty"`
+	Reference       string            `json:"reference,omitempty"`
+	CreatedAt       *time.Time        `json:"created_at,omitempty"`
+	UpdatedAt       *time.Time        `json:"updated_at,omitempty"`
+	Type            string            `json:"type,omitempty"`
+	Fields          *CarrierFields    `json:"fields,omitempty"`
 	Clone           bool              `json:"clone,omitempty"`
 	Description     string            `json:"description,omitempty"`
 	Readable        string            `json:"readable,omitempty"`
