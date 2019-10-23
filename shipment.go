@@ -156,8 +156,10 @@ type Shipment struct {
 }
 
 type createShipmentRequest struct {
-	Shipment        *Shipment         `json:"shipment,omitempty"`
-	CarrierAccounts []*CarrierAccount `json:"carrier_accounts,omitempty"`
+	Shipment struct {
+		*Shipment
+		CarrierAccountIDs []string `json:"carrier_accounts,omitempty"`
+	} `json:"shipment,omitempty"`
 }
 
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
@@ -190,16 +192,24 @@ type createShipmentRequest struct {
 //		},
 //	)
 func (c *Client) CreateShipment(in *Shipment, accounts ...*CarrierAccount) (out *Shipment, err error) {
-	req := &createShipmentRequest{Shipment: in, CarrierAccounts: accounts}
-	err = c.post(nil, "shipments", req, &out)
+	var req createShipmentRequest
+	req.Shipment.Shipment = in
+	if len(accounts) > 0 {
+		req.Shipment.CarrierAccountIDs = []string{accounts[0].ID}
+	}
+	err = c.post(nil, "shipments", &req, &out)
 	return
 }
 
 // CreateShipmentWithContext performs the same operation as CreateShipment, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreateShipmentWithContext(ctx context.Context, in *Shipment, accounts ...*CarrierAccount) (out *Shipment, err error) {
-	req := &createShipmentRequest{Shipment: in, CarrierAccounts: accounts}
-	err = c.post(ctx, "shipments", req, &out)
+	var req createShipmentRequest
+	req.Shipment.Shipment = in
+	if len(accounts) > 0 {
+		req.Shipment.CarrierAccountIDs = []string{accounts[0].ID}
+	}
+	err = c.post(ctx, "shipments", &req, &out)
 	return
 }
 
