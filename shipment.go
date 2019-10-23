@@ -121,38 +121,39 @@ type ShipmentOptions struct {
 // addresses, the Parcel being shipped, and any customs forms required for
 // international deliveries.
 type Shipment struct {
-	ID            string            `json:"id,omitempty"`
-	Object        string            `json:"object,omitempty"`
-	Reference     string            `json:"reference,omitempty"`
-	Mode          string            `json:"mode,omitempty"`
-	CreatedAt     *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt     *time.Time        `json:"updated_at,omitempty"`
-	ToAddress     *Address          `json:"to_address,omitempty"`
-	FromAddress   *Address          `json:"from_address,omitempty"`
-	ReturnAddress *Address          `json:"return_address,omitempty"`
-	BuyerAddress  *Address          `json:"buyer_address,omitempty"`
-	Parcel        *Parcel           `json:"parcel,omitempty"`
-	Carrier       string            `json:"carrier,omitempty"`
-	Service       string            `json:"service,omitempty"`
-	CustomsInfo   *CustomsInfo      `json:"customs_info,omitempty"`
-	ScanForm      *ScanForm         `json:"scan_form,omitempty"`
-	Forms         []*Form           `json:"forms,omitempty"`
-	Insurance     string            `json:"insurance,omitempty"`
-	Rates         []*Rate           `json:"rates,omitempty"`
-	SelectedRate  *Rate             `json:"selected_rate,omitempty"`
-	PostageLabel  *PostageLabel     `json:"postage_label,omitempty"`
-	Messages      []*CarrierMessage `json:"messages,omitempty"`
-	Options       *ShipmentOptions  `json:"options,omitempty"`
-	IsReturn      bool              `json:"is_return,omitempty"`
-	TrackingCode  string            `json:"tracking_code,omitempty"`
-	USPSZone      int               `json:"usps_zone,omitempty"`
-	Status        string            `json:"status,omitempty"`
-	Tracker       *Tracker          `json:"tracker,omitempty"`
-	Fees          []*Fee            `json:"fees,omitempty"`
-	RefundStatus  string            `json:"refund_status,omitempty"`
-	BatchID       string            `json:"batch_id,omitempty"`
-	BatchStatus   string            `json:"batch_status,omitempty"`
-	BatchMessage  string            `json:"batch_message,omitempty"`
+	ID                string            `json:"id,omitempty"`
+	Object            string            `json:"object,omitempty"`
+	Reference         string            `json:"reference,omitempty"`
+	Mode              string            `json:"mode,omitempty"`
+	CreatedAt         *time.Time        `json:"created_at,omitempty"`
+	UpdatedAt         *time.Time        `json:"updated_at,omitempty"`
+	ToAddress         *Address          `json:"to_address,omitempty"`
+	FromAddress       *Address          `json:"from_address,omitempty"`
+	ReturnAddress     *Address          `json:"return_address,omitempty"`
+	BuyerAddress      *Address          `json:"buyer_address,omitempty"`
+	Parcel            *Parcel           `json:"parcel,omitempty"`
+	Carrier           string            `json:"carrier,omitempty"`
+	Service           string            `json:"service,omitempty"`
+	CarrierAccountIDs []string          `json:"carrier_accounts,omitempty"`
+	CustomsInfo       *CustomsInfo      `json:"customs_info,omitempty"`
+	ScanForm          *ScanForm         `json:"scan_form,omitempty"`
+	Forms             []*Form           `json:"forms,omitempty"`
+	Insurance         string            `json:"insurance,omitempty"`
+	Rates             []*Rate           `json:"rates,omitempty"`
+	SelectedRate      *Rate             `json:"selected_rate,omitempty"`
+	PostageLabel      *PostageLabel     `json:"postage_label,omitempty"`
+	Messages          []*CarrierMessage `json:"messages,omitempty"`
+	Options           *ShipmentOptions  `json:"options,omitempty"`
+	IsReturn          bool              `json:"is_return,omitempty"`
+	TrackingCode      string            `json:"tracking_code,omitempty"`
+	USPSZone          int               `json:"usps_zone,omitempty"`
+	Status            string            `json:"status,omitempty"`
+	Tracker           *Tracker          `json:"tracker,omitempty"`
+	Fees              []*Fee            `json:"fees,omitempty"`
+	RefundStatus      string            `json:"refund_status,omitempty"`
+	BatchID           string            `json:"batch_id,omitempty"`
+	BatchStatus       string            `json:"batch_status,omitempty"`
+	BatchMessage      string            `json:"batch_message,omitempty"`
 }
 
 type createShipmentRequest struct {
@@ -191,24 +192,20 @@ type createShipmentRequest struct {
 //			CustomsInfo: &easypost.CustomsInfo{ID: "cstinfo_1"},
 //		},
 //	)
-func (c *Client) CreateShipment(in *Shipment, accounts ...*CarrierAccount) (out *Shipment, err error) {
-	var req createShipmentRequest
-	req.Shipment.Shipment = in
-	if len(accounts) > 0 {
-		req.Shipment.CarrierAccountIDs = []string{accounts[0].ID}
-	}
+func (c *Client) CreateShipment(in *Shipment) (out *Shipment, err error) {
+	req := struct {
+		Shipment *Shipment `json:"shipment"`
+	}{Shipment: in}
 	err = c.post(nil, "shipments", &req, &out)
 	return
 }
 
 // CreateShipmentWithContext performs the same operation as CreateShipment, but
 // allows specifying a context that can interrupt the request.
-func (c *Client) CreateShipmentWithContext(ctx context.Context, in *Shipment, accounts ...*CarrierAccount) (out *Shipment, err error) {
-	var req createShipmentRequest
-	req.Shipment.Shipment = in
-	if len(accounts) > 0 {
-		req.Shipment.CarrierAccountIDs = []string{accounts[0].ID}
-	}
+func (c *Client) CreateShipmentWithContext(ctx context.Context, in *Shipment) (out *Shipment, err error) {
+	req := struct {
+		Shipment *Shipment `json:"shipment"`
+	}{Shipment: in}
 	err = c.post(ctx, "shipments", &req, &out)
 	return
 }
