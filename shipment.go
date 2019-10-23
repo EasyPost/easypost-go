@@ -156,13 +156,6 @@ type Shipment struct {
 	BatchMessage      string            `json:"batch_message,omitempty"`
 }
 
-type createShipmentRequest struct {
-	Shipment struct {
-		*Shipment
-		CarrierAccountIDs []string `json:"carrier_accounts,omitempty"`
-	} `json:"shipment,omitempty"`
-}
-
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
 // Parcel attributes are required. These objects may be fully-specified to
 // create new ones at the same time as creating the Shipment, or they can refer
