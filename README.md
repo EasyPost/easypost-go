@@ -14,7 +14,7 @@ Installation
 ------------
 
 ```bash
-go get -u https://github.com/EasyPost/easypost-go
+go get -u github.com/EasyPost/easypost-go
 ```
 
 
