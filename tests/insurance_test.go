@@ -46,6 +46,8 @@ func TestInsuranceCreation(t *testing.T) {
 			Amount:       "101.00",
 		},
 	)
+	require.NoError(err)
+
 	assert.NotNil(insurance.ToAddress)
 	assert.NotNil(insurance.FromAddress)
 	assert.NotNil(insurance.Tracker)
