@@ -1,3 +1,15 @@
 === 1.0.0 2019-09-03
 
  * Initial release.
+
+=== 1.0.1 2020-03-17
+
+ * Update URL in installation instructions.
+ * Properly format the carrier_accounts parameter in create shipment requests.
+   Prior to this change, specifying a carrier account would result in a failed
+   request. This removes the undocumented parameter from the CreateShipment and
+   CreateShipmentWithContext methods, and adds a CarrierAccountIDs field to
+   the Shipment struct type.
+ * Add proper struct tag to CarrierAccount.Fields so that it has the proper
+   key name when serialized to JSON. Prior to this change, values in the Fields
+   field were not recognized by the API.
