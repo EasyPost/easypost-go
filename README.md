@@ -1,5 +1,7 @@
 # EasyPost Go Client Library
 
+[![Build Status](https://travis-ci.com/EasyPost/easypost-go.svg?branch=master)](https://travis-ci.com/EasyPost/easypost-go)
+
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
 
 This work is licensed under the ISC License, a copy of which can be found at [LICENSE.txt](LICENSE.txt)
@@ -167,3 +169,11 @@ Development
    1. Update Version constant in version.go.
    1. Update CHANGELOG.
    1. Create a git tag with proper Go version semantics (e.g., `v1.0.0`).
+
+### Tests
+
+Run unit tests by running the following from the `tests` directory:
+
+```bash
+EASYPOST_TEST_API_KEY=<TEST_KEY> EASYPOST_PROD_API_KEY=<PROD_KEY> go test
+```
