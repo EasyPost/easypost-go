@@ -1,0 +1,13 @@
+language: go
+
+go:
+- "1.10"
+- 1.11.x
+- 1.12.x
+- 1.13.x
+- 1.x
+- master
+
+scripts:
+    - cd tests
+    - EASYPOST_TEST_API_KEY=$TEST_API_KEY EASYPOST_PROD_API_KEY=$PROD_API_KEY go test

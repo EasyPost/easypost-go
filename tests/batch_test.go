@@ -90,7 +90,7 @@ func TestBatchCreateAndBuy(t *testing.T) {
 	// Assert on fees.
 	if fees := shipment.Fees; assert.GreaterOrEqual(len(fees), 3) {
 		assert.Equal("0.01000", fees[0].Amount)
-		assert.Equal("8.12000", fees[1].Amount)
+		assert.Equal("7.92000", fees[1].Amount)
 		assert.Equal("1.00000", fees[2].Amount)
 	}
 
