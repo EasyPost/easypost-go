@@ -1,34 +1,10 @@
-# EasyPost Go Client Library
-
-EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
-
-This work is licensed under the ISC License, a copy of which can be found at [LICENSE.txt](LICENSE.txt)
-
-Requirements
-------------
-
-The `easypost` Go package should work with any recent version of Go.
-
-
-Installation
-------------
-
-```bash
-go get -u github.com/EasyPost/easypost-go
-```
-
-
-Example
--------
-
-```go
 package main
 
 import (
+	"encoding/json"
 	"fmt"
-	"os"
-
 	"github.com/EasyPost/easypost-go"
+	"os"
 )
 
 func main() {
@@ -40,14 +16,15 @@ func main() {
 	}
 	client := easypost.New(apiKey)
 
-	// create and verify addresses
-	toAddr, err := client.CreateAddress(
+	// Create and verify addresses
+	toAddress, err := client.CreateAddress(
 		&easypost.Address{
 			Name:    "Bugs Bunny",
 			Street1: "4000 Warner Blvd",
 			City:    "Burbank",
 			State:   "CA",
 			Zip:     "91522",
+			Phone:   "8018982020",
 		},
 		&easypost.CreateAddressOptions{Verify: []string{"delivery"}},
 	)
@@ -75,7 +52,7 @@ func main() {
 		return
 	}
 
-	// create parcel
+	// Create a parcel
 	parcel, err := client.CreateParcel(
 		&easypost.Parcel{
 			Length: 10.2,
@@ -90,7 +67,7 @@ func main() {
 		return
 	}
 
-	// create customs_info form for intl shipping
+	// Create a customs_info form for international shipments
 	customsItem, err := client.CreateCustomsItem(
 		&easypost.CustomsItem{
 			Description:    "EasyPost t-shirts",
@@ -124,12 +101,13 @@ func main() {
 		return
 	}
 
-	// create shipment
+	// Create the shipment
 	shipment, err := client.CreateShipment(
 		&easypost.Shipment{
-			ToAddress:   toAddr,
+			ToAddress:   toAddress,
 			FromAddress: fromAddr,
 			Parcel:      parcel,
+			// CarrierAccountIDs: []string{"ca_123",},
 			CustomsInfo: customsInfo,
 		},
 	)
@@ -139,31 +117,17 @@ func main() {
 		return
 	}
 
-	// buy postage label with one of the rate objects
-	shipment, err = client.BuyShipment(shipment.ID, &easypost.Rate{ID: shipment.Rates[0].ID}, "")
-	if err != nil {
-		fmt.Fprintln(os.Stderr, "error buying shipment:", err)
-		os.Exit(1)
-		return
-	}
+	// Buy a postage label with one of the rate objects and optional insurance
+	// shipment, err = client.BuyShipment(shipment.ID, &easypost.Rate{ID: shipment.Rates[0].ID}, "")
+	// if err != nil {
+	// 	fmt.Fprintln(os.Stderr, "error buying shipment:", err)
+	// 	os.Exit(1)
+	// 	return
+	// }
 
-	fmt.Println("tracking code:", shipment.TrackingCode)
-	fmt.Println("label URL:", shipment.PostageLabel.LabelURL)
-
-	// Insure the shipment for the value
-	shipment, err = client.InsureShipment(shipment.ID, "100")
+	prettyJSON, err := json.MarshalIndent(shipment, "", "    ")
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "error insuring shipment:", err)
-		os.Exit(1)
-		return
+		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
 	}
+	fmt.Printf("%s\n", string(prettyJSON))
 }
-```
-
-Development
------------
-
-### Releasing
-   1. Update Version constant in version.go.
-   1. Update CHANGELOG.
-   1. Create a git tag with proper Go version semantics (e.g., `v1.0.0`).
