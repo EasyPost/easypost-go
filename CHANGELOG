@@ -13,3 +13,8 @@
  * Add proper struct tag to CarrierAccount.Fields so that it has the proper
    key name when serialized to JSON. Prior to this change, values in the Fields
    field were not recognized by the API.
+
+=== 1.0.2 2020-05-08
+
+ * Add shipment options for certified and registered mail.
+ * Changes to unit tests.
