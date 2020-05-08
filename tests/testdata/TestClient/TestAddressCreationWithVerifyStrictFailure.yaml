@@ -1,0 +1,51 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"verify_strict":["delivery"],"address":{"street1":"UNDELIEVRABLE ST","city":"San
+      Francisco","state":"CA","zip":"94105","country":"US","company":"EasyPost","phone":"415-555-1212"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"error":{"code":"ADDRESS.VERIFY.FAILURE","message":"Unable to verify address.","errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null},{"code":"E.HOUSE_NUMBER.MISSING","field":"street1","message":"House
+      number is missing","suggestion":null}]}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e74bfd4b987300008dda
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6sj
+      X-Proxied:
+      - intlb1sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.092069"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 422 Unknown
+    code: 422
+    duration: ""

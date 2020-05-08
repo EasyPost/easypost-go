@@ -1,16 +1,13 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestParcelCreation(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
-	parcel, err := TestClient.CreateParcel(
+func (c *ClientTests) TestParcelCreation() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+	parcel, err := client.CreateParcel(
 		&easypost.Parcel{
 			PredefinedPackage: "RegionalRateBoxA",
 			Length:            10.2,

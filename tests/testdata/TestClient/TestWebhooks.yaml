@@ -1,0 +1,264 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"webhook":{"url":"example.com/2020050722012281"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/webhooks
+    method: POST
+  response:
+    body: '{"id":"hook_19d504c7c90a471ba2dbcb8028c30b57","object":"Webhook","mode":"test","url":"http://example.com/2020050722012281","disabled_at":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e7a2fd4b98730000a91d
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb2sj
+      X-Proxied:
+      - intlb1sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.039324"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/webhooks/hook_19d504c7c90a471ba2dbcb8028c30b57
+    method: GET
+  response:
+    body: '{"id":"hook_19d504c7c90a471ba2dbcb8028c30b57","object":"Webhook","mode":"test","url":"http://example.com/2020050722012281","disabled_at":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e7a2fd4b98730000a920
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb10sj
+      X-Proxied:
+      - intlb2sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.031732"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/webhooks/hook_19d504c7c90a471ba2dbcb8028c30b57
+    method: PUT
+  response:
+    body: '{"id":"hook_19d504c7c90a471ba2dbcb8028c30b57","object":"Webhook","mode":"test","url":"http://example.com/2020050722012281","disabled_at":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e7a3fd4b98730000a924
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb10sj
+      X-Proxied:
+      - intlb2sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.048031"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/webhooks
+    method: GET
+  response:
+    body: '{"webhooks":[{"id":"hook_c701517667154f02a1c4d373a35fea60","object":"Webhook","mode":"test","url":"http://example.com/sample","disabled_at":"2019-11-04T23:04:26Z"},{"id":"hook_37a70fb4eb08494b9432e61aed89f97a","object":"Webhook","mode":"test","url":"http://example.com/sample","disabled_at":"2019-11-04T23:04:27Z"},{"id":"hook_1898f865e1a24fc384141ca1c4c95b2e","object":"Webhook","mode":"test","url":"http://example.com/sample","disabled_at":"2019-11-04T23:04:27Z"},{"id":"hook_19d504c7c90a471ba2dbcb8028c30b57","object":"Webhook","mode":"test","url":"http://example.com/2020050722012281","disabled_at":null}]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e7a3fd4b98730000a926
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9sj
+      X-Proxied:
+      - intlb2sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.031507"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/webhooks/hook_19d504c7c90a471ba2dbcb8028c30b57
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e7a3fd4b98730000a929
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb10sj
+      X-Proxied:
+      - intlb1sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.054442"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/1.0.1
+    url: https://api.easypost.com/v2/webhooks/hook_19d504c7c90a471ba2dbcb8028c30b57
+    method: GET
+  response:
+    body: '{"error":{"code":"NOT_FOUND","message":"The requested resource could not
+      be found.","errors":[]}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store, must-revalidate, private
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Ep-Request-Uuid:
+      - 5c7017075eb4e7a3fd4b98730000a92e
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb10sj
+      X-Proxied:
+      - intlb2sj 5834894b53
+      - extlb2sj 5834894b53
+      X-Runtime:
+      - "0.059339"
+      X-Version-Label:
+      - easypost-202005072340-b8c9db23b3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 404 Not Found
+    code: 404
+    duration: ""

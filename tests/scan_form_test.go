@@ -2,16 +2,14 @@ package easypost_test
 
 import (
 	"strconv"
-	"testing"
 
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestScanFormCreateAndRetrieve(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
-	shipment, err := TestClient.CreateShipment(
+func (c *ClientTests) TestScanFormCreateAndRetrieve() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+	shipment, err := client.CreateShipment(
 		&easypost.Shipment{
 			ToAddress: &easypost.Address{
 				Name:    "Elmer Fudd",
@@ -71,21 +69,21 @@ func TestScanFormCreateAndRetrieve(t *testing.T) {
 			}
 		}
 	}
-	shipment, err = TestClient.BuyShipment(shipment.ID, rate, "100.00")
+	shipment, err = client.BuyShipment(shipment.ID, rate, "100.00")
 	require.NoError(err)
 
-	scanForm, err := TestClient.CreateScanForm(shipment.ID)
+	scanForm, err := client.CreateScanForm(shipment.ID)
 	require.NoError(err)
 	assert.NotEmpty(scanForm.ID)
 	if assert.NotEmpty(scanForm.TrackingCodes) {
 		assert.Equal(shipment.TrackingCode, scanForm.TrackingCodes[0])
 	}
 
-	scanForm2, err := TestClient.GetScanForm(scanForm.ID)
+	scanForm2, err := client.GetScanForm(scanForm.ID)
 	require.NoError(err)
 	assert.Equal(scanForm.ID, scanForm2.ID)
 
-	scanForms, err := TestClient.ListScanForms(
+	scanForms, err := client.ListScanForms(
 		&easypost.ListOptions{PageSize: 2},
 	)
 	require.NoError(err)

@@ -1,12 +1,9 @@
 package easypost_test
 
 import (
-	"testing"
 	"time"
 
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
 func noonOnNextMonday() time.Time {
@@ -21,11 +18,12 @@ func noonOnNextMonday() time.Time {
 	return date.AddDate(0, 0, 7-int(wd-time.Monday))
 }
 
-func TestPickupBatch(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestPickupBatch() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// Create a Batch containing multiple Shipments. Then we try to buy a
 	// Pickup and assert if it was bought.
-	from, err := TestClient.CreateAddress(
+	from, err := client.CreateAddress(
 		&easypost.Address{
 			Name:    "Homer Simpson",
 			Company: "EasyPost",
@@ -39,7 +37,7 @@ func TestPickupBatch(t *testing.T) {
 	)
 	require.NoError(err)
 
-	batch, err := TestClient.CreateAndBuyBatch(
+	batch, err := client.CreateAndBuyBatch(
 		&easypost.Shipment{
 			ToAddress: &easypost.Address{
 				Name:    "Bugs Bunny",
@@ -83,7 +81,7 @@ func TestPickupBatch(t *testing.T) {
 		time.Sleep(time.Second)
 		switch batch.State {
 		case "creating", "queued_for_purchase", "purchasing":
-			batch, err = TestClient.GetBatch(batch.ID)
+			batch, err = client.GetBatch(batch.ID)
 			require.NoError(err)
 		default:
 			done = true
@@ -92,14 +90,14 @@ func TestPickupBatch(t *testing.T) {
 
 	// Insure the shipments after purchase
 	for i := range batch.Shipments {
-		_, err := TestClient.InsureShipment(batch.Shipments[i].ID, "100.00")
+		_, err := client.InsureShipment(batch.Shipments[i].ID, "100.00")
 		assert.NoError(err)
 	}
 
 	minDatetime := noonOnNextMonday()
 	maxDatetime := minDatetime.AddDate(0, 0, 1)
 
-	pickup, err := TestClient.CreatePickup(
+	pickup, err := client.CreatePickup(
 		&easypost.Pickup{
 			Address:          from,
 			Batch:            batch,
@@ -113,14 +111,15 @@ func TestPickupBatch(t *testing.T) {
 	require.NoError(err)
 	require.NotEmpty(pickup.PickupRates)
 
-	pickup, err = TestClient.BuyPickup(pickup.ID, pickup.PickupRates[0])
+	pickup, err = client.BuyPickup(pickup.ID, pickup.PickupRates[0])
 	require.NoError(err)
 }
 
-func TestSinglePickup(t *testing.T) {
-	require := require.New(t)
+func (c *ClientTests) TestSinglePickup() {
+	client := c.TestClient()
+	require := c.Require()
 
-	from, err := TestClient.CreateAddress(
+	from, err := client.CreateAddress(
 		&easypost.Address{
 			Name:    "Homer Simpson",
 			Company: "EasyPost",
@@ -134,7 +133,7 @@ func TestSinglePickup(t *testing.T) {
 	)
 	require.NoError(err)
 
-	shipment, err := TestClient.CreateShipment(
+	shipment, err := client.CreateShipment(
 		&easypost.Shipment{
 			ToAddress: &easypost.Address{
 				Name:    "Bugs Bunny",
@@ -151,7 +150,7 @@ func TestSinglePickup(t *testing.T) {
 	require.NoError(err)
 	require.NotEmpty(shipment.Rates)
 
-	shipment, err = TestClient.BuyShipment(
+	shipment, err = client.BuyShipment(
 		shipment.ID, shipment.Rates[0], "100.00",
 	)
 	require.NoError(err)
@@ -159,7 +158,7 @@ func TestSinglePickup(t *testing.T) {
 	minDatetime := noonOnNextMonday()
 	maxDatetime := minDatetime.AddDate(0, 0, 1)
 
-	pickup, err := TestClient.CreatePickup(
+	pickup, err := client.CreatePickup(
 		&easypost.Pickup{
 			Address:          from,
 			Shipment:         shipment,
@@ -173,7 +172,7 @@ func TestSinglePickup(t *testing.T) {
 	require.NotEmpty(pickup.PickupRates)
 	// This is probably a bug in the API. It always returns a rate, but isn't
 	// always a valid one.
-	pickup, err = TestClient.BuyPickup(pickup.ID, pickup.PickupRates[0])
+	pickup, err = client.BuyPickup(pickup.ID, pickup.PickupRates[0])
 	if err != nil {
 		require.Contains(
 			err.Error(), "schedule and change requests must contain",

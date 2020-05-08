@@ -10,4 +10,4 @@ go:
 
 scripts:
     - cd tests
-    - EASYPOST_TEST_API_KEY=$TEST_API_KEY EASYPOST_PROD_API_KEY=$PROD_API_KEY go test
+    - go test

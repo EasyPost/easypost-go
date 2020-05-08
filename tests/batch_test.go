@@ -1,19 +1,17 @@
 package easypost_test
 
 import (
-	"testing"
 	"time"
 
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestBatchCreateAndBuy(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestBatchCreateAndBuy() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// We create Address and Parcel objects. We then try to create a Batch
 	// containing a shipment. Finally, we assert on saved and returned data.
-	from, err := TestClient.CreateAddress(
+	from, err := client.CreateAddress(
 		&easypost.Address{
 			Company: "EasyPost",
 			Street1: "One Montgomery St",
@@ -27,7 +25,7 @@ func TestBatchCreateAndBuy(t *testing.T) {
 	)
 	require.NoError(err)
 
-	parcel, err := TestClient.CreateParcel(
+	parcel, err := client.CreateParcel(
 		&easypost.Parcel{PredefinedPackage: "RegionalRateBoxA", Weight: 64},
 	)
 	require.NoError(err)
@@ -51,7 +49,7 @@ func TestBatchCreateAndBuy(t *testing.T) {
 	}
 
 	// create batch of shipments.
-	batch, err := TestClient.CreateAndBuyBatch(shipments...)
+	batch, err := client.CreateAndBuyBatch(shipments...)
 	require.NoError(err)
 	assert.Equal(1, batch.NumShipments)
 
@@ -60,7 +58,7 @@ func TestBatchCreateAndBuy(t *testing.T) {
 		time.Sleep(time.Second)
 		switch batch.State {
 		case "creating", "queued_for_purchase", "purchasing":
-			batch, err = TestClient.GetBatch(batch.ID)
+			batch, err = client.GetBatch(batch.ID)
 			require.NoError(err)
 		default:
 			done = true
@@ -69,14 +67,14 @@ func TestBatchCreateAndBuy(t *testing.T) {
 
 	// Insure the shipments after purchase.
 	for i := range batch.Shipments {
-		_, err := TestClient.InsureShipment(batch.Shipments[i].ID, "100.00")
+		_, err := client.InsureShipment(batch.Shipments[i].ID, "100.00")
 		assert.NoError(err)
 	}
 
 	require.Len(batch.Shipments, 1)
 	assert.Equal("postage_purchased", batch.Shipments[0].BatchStatus)
 
-	shipment, err := TestClient.GetShipment(batch.Shipments[0].ID)
+	shipment, err := client.GetShipment(batch.Shipments[0].ID)
 	require.NoError(err)
 
 	if addr := shipment.BuyerAddress; assert.NotNil(addr) {
@@ -89,7 +87,7 @@ func TestBatchCreateAndBuy(t *testing.T) {
 
 	// Assert on fees.
 	if fees := shipment.Fees; assert.GreaterOrEqual(len(fees), 3) {
-		assert.Equal("0.01000", fees[0].Amount)
+		assert.Equal("0.00000", fees[0].Amount)
 		assert.Equal("7.92000", fees[1].Amount)
 		assert.Equal("1.00000", fees[2].Amount)
 	}

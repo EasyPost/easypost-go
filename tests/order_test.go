@@ -1,15 +1,12 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestOrderCreateThenBuy(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestOrderCreateThenBuy() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// We create an Order containing Shipment. Towards the end we assert on
 	// Order and Parcel's values.
 	to := &easypost.Address{
@@ -28,7 +25,7 @@ func TestOrderCreateThenBuy(t *testing.T) {
 		Width:  12,
 		Height: 3,
 	}
-	order, err := TestClient.CreateOrder(
+	order, err := client.CreateOrder(
 		&easypost.Order{
 			ToAddress: to,
 			FromAddress: &easypost.Address{
@@ -62,7 +59,7 @@ func TestOrderCreateThenBuy(t *testing.T) {
 		},
 	)
 	require.NoError(err)
-	order, err = TestClient.GetOrderRates(order.ID)
+	order, err = client.GetOrderRates(order.ID)
 	require.NoError(err)
 
 	assert.Len(order.Shipments, 2)
@@ -91,11 +88,11 @@ func TestOrderCreateThenBuy(t *testing.T) {
 		assert.Equal(float64(16), squareBox.Weight)
 	}
 
-	order, err = TestClient.BuyOrder(order.ID, "USPS", "Priority")
+	order, err = client.BuyOrder(order.ID, "USPS", "Priority")
 	require.NoError(err)
 
 	for i := range order.Shipments {
-		shipment, err := TestClient.InsureShipment(
+		shipment, err := client.InsureShipment(
 			order.Shipments[i].ID, "100.00",
 		)
 		if assert.NoError(err) {
