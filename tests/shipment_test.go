@@ -3,17 +3,15 @@ package easypost_test
 import (
 	"strconv"
 	"strings"
-	"testing"
 
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestShipmentCreation(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestShipmentCreation() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 
-	to, err := TestClient.CreateAddress(
+	to, err := client.CreateAddress(
 		&easypost.Address{
 			Name:    "Elmer Fudd",
 			Street1: "55 Sparks St.",
@@ -27,7 +25,7 @@ func TestShipmentCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	from, err := TestClient.CreateAddress(
+	from, err := client.CreateAddress(
 		&easypost.Address{
 			Company: "EasyPost",
 			Street1: "One Montgomery St",
@@ -41,7 +39,7 @@ func TestShipmentCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	parcel, err := TestClient.CreateParcel(
+	parcel, err := client.CreateParcel(
 		&easypost.Parcel{
 			Length: 10.2,
 			Width:  7.8,
@@ -51,7 +49,7 @@ func TestShipmentCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	customsItem, err := TestClient.CreateCustomsItem(
+	customsItem, err := client.CreateCustomsItem(
 		&easypost.CustomsItem{
 			Description:    "EasyPost t-shirts",
 			HSTariffNumber: "123456",
@@ -63,7 +61,7 @@ func TestShipmentCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	customsInfo, err := TestClient.CreateCustomsInfo(
+	customsInfo, err := client.CreateCustomsInfo(
 		&easypost.CustomsInfo{
 			CustomsCertify:    true,
 			CustomsSigner:     "Wile E. Coyote",
@@ -76,7 +74,7 @@ func TestShipmentCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	shipment, err := TestClient.CreateShipment(
+	shipment, err := client.CreateShipment(
 		&easypost.Shipment{
 			ToAddress:   to,
 			FromAddress: from,
@@ -86,12 +84,6 @@ func TestShipmentCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	rates, err := TestClient.GetShipmentRates(shipment.ID)
-	require.NoError(err)
-
-	if assert.NotEmpty(rates) && assert.NotEmpty(shipment.Rates) {
-		assert.NotEqual(shipment.Rates[0].ID, rates[0].ID)
-	}
 	if assert.NotEmpty(shipment.BuyerAddress) {
 		assert.Equal(to.Country, shipment.BuyerAddress.Country)
 		assert.Equal(to.Phone, shipment.BuyerAddress.Phone)
@@ -125,26 +117,26 @@ func TestShipmentCreation(t *testing.T) {
 
 	require.NotEmpty(shipment.Rates)
 	var rate *easypost.Rate
-	for i := range rates {
-		if !strings.EqualFold(rates[i].Carrier, "USPS") &&
-			!strings.EqualFold(rates[i].Carrier, "ups") {
+	for _, r := range shipment.Rates {
+		if !strings.EqualFold(r.Carrier, "USPS") &&
+			!strings.EqualFold(r.Carrier, "ups") {
 			continue
 		}
-		if !strings.EqualFold(rates[i].Service, "priorityMAILInternational") {
+		if !strings.EqualFold(r.Service, "priorityMAILInternational") {
 			continue
 		}
 		if rate == nil {
-			rate = rates[i]
+			rate = r
 		} else {
-			x, _ := strconv.ParseFloat(rates[i].Rate, 64)
+			x, _ := strconv.ParseFloat(r.Rate, 64)
 			y, _ := strconv.ParseFloat(rate.Rate, 64)
 			if x < y {
-				rate = rates[i]
+				rate = r
 			}
 		}
 	}
 	require.NotNil(rate)
-	shipment, err = TestClient.BuyShipment(shipment.ID, rate, "100.00")
+	shipment, err = client.BuyShipment(shipment.ID, rate, "100.00")
 	require.NoError(err)
 
 	assert.NotEmpty(shipment.TrackingCode)

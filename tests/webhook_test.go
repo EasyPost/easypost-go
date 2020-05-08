@@ -2,32 +2,31 @@ package easypost_test
 
 import (
 	"net/http"
-	"testing"
 
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestWebhooks(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
-	url := "example.com/" + unique()
-	webhook, err := TestClient.CreateWebhook(url)
+func (c *ClientTests) TestWebhooks() {
+	assert, require := c.Assert(), c.Require()
+	client := c.TestClient()
+	// May have to update this if re-recording the casset for this test:
+	url := "example.com/2020050722012281"
+	webhook, err := client.CreateWebhook(url)
 	require.NoError(err)
 	assert.NotEmpty(webhook.ID)
 	assert.Equal("test", webhook.Mode)
 	assert.Equal("http://"+url, webhook.URL)
 	assert.Empty(webhook.DisabledAt)
 
-	webhook2, err := TestClient.GetWebhook(webhook.ID)
+	webhook2, err := client.GetWebhook(webhook.ID)
 	require.NoError(err)
 	assert.Equal(webhook.ID, webhook2.ID)
 
-	webhook3, err := TestClient.EnableWebhook(webhook.ID)
+	webhook3, err := client.EnableWebhook(webhook.ID)
 	require.NoError(err)
 	require.Equal(webhook.ID, webhook3.ID)
 
-	webhooks, err := TestClient.ListWebhooks()
+	webhooks, err := client.ListWebhooks()
 	require.NoError(err)
 	ids := make([]string, len(webhooks))
 	for i := range webhooks {
@@ -35,9 +34,9 @@ func TestWebhooks(t *testing.T) {
 	}
 	assert.Contains(ids, webhook.ID)
 
-	require.NoError(TestClient.DeleteWebhook(webhook.ID))
+	require.NoError(client.DeleteWebhook(webhook.ID))
 
-	_, err = TestClient.GetWebhook(webhook.ID)
+	_, err = client.GetWebhook(webhook.ID)
 	if assert.IsType((*easypost.APIError)(nil), err) {
 		err := err.(*easypost.APIError)
 		assert.Equal(err.StatusCode, http.StatusNotFound)

@@ -1,20 +1,13 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestCarrierTypes(t *testing.T) {
-	if ProdClient.APIKey == "" {
-		t.Skip("no production API key")
-	}
-	assert, require := assert.New(t), require.New(t)
-	carriers, err := ProdClient.GetCarrierTypes()
+func (c *ClientTests) TestCarrierTypes() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+	carriers, err := client.GetCarrierTypes()
 	require.NoError(err)
 
 	var carrier *easypost.CarrierType

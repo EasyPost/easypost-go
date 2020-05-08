@@ -19,6 +19,10 @@ Installation
 go get -u github.com/EasyPost/easypost-go
 ```
 
+Documentation
+-------------
+
+See below example, or [pkg.go.dev](https://pkg.go.dev/github.com/EasyPost/easypost-go).
 
 Example
 -------
@@ -172,8 +176,20 @@ Development
 
 ### Tests
 
-Run unit tests by running the following from the `tests` directory:
+Run unit tests by running `go test` from the `tests` directory:
 
-```bash
-EASYPOST_TEST_API_KEY=<TEST_KEY> EASYPOST_PROD_API_KEY=<PROD_KEY> go test
-```
+#### Updating Recorded Responses
+
+The go-vcr package is used to provide recorded responses to calls to the
+EasyPost HTTP API. If an API endpoint has changed, or a new endpoint is used,
+the recordings will need to be updated. To do this:
+  1. If an existing recording is being changed, remove the corresponding file
+     from the tests/testdata/TestClient directory. Each YAML file in this
+     directory is named after the test it is used for, so it should be easy to
+     identify the relevant file(s).
+  2. Re-run the test with the appropriate production or test API keys specified.
+     Most tests only require a test API key. E.g.,
+     `go test -test-api-key [apikey]`. Note that there is code in the tests that
+     attempts to filter out API keys and Authorization headers, but it is
+     recommended to check the generated files before pushing a branch to a
+     shared repo or opening a pull request.

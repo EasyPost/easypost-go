@@ -1,16 +1,13 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestInsuranceCreation(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
-	to, err := TestClient.CreateAddress(
+func (c *ClientTests) TestInsuranceCreation() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+	to, err := client.CreateAddress(
 		&easypost.Address{
 			Name:    "Bugs Bunny",
 			Street1: "4000 Warner Blvd",
@@ -23,7 +20,7 @@ func TestInsuranceCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	from, err := TestClient.CreateAddress(
+	from, err := client.CreateAddress(
 		&easypost.Address{
 			Company: "EasyPost",
 			Street1: "One Montgomery St",
@@ -37,7 +34,7 @@ func TestInsuranceCreation(t *testing.T) {
 	)
 	require.NoError(err)
 
-	insurance, err := TestClient.CreateInsurance(
+	insurance, err := client.CreateInsurance(
 		&easypost.Insurance{
 			ToAddress:    to,
 			FromAddress:  from,
@@ -52,7 +49,7 @@ func TestInsuranceCreation(t *testing.T) {
 	assert.Equal("EZ2000000002", insurance.TrackingCode)
 	assert.Equal("101.00000", insurance.Amount)
 
-	insurance2, err := TestClient.GetInsurance(insurance.ID)
+	insurance2, err := client.GetInsurance(insurance.ID)
 	require.NoError(err)
 	assert.Equal(insurance.ID, insurance2.ID)
 	assert.NotNil(insurance2.ToAddress)
@@ -61,7 +58,7 @@ func TestInsuranceCreation(t *testing.T) {
 	assert.Equal(insurance.Amount, insurance2.Amount)
 	assert.NotNil(insurance2.Tracker)
 
-	res, err := TestClient.ListInsurances(&easypost.ListOptions{PageSize: 5})
+	res, err := client.ListInsurances(&easypost.ListOptions{PageSize: 5})
 	require.NoError(err)
 	assert.Len(res.Insurances, 5)
 	assert.True(res.HasMore)

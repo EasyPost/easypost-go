@@ -81,6 +81,7 @@ type ShipmentOptions struct {
 	BillThirdPartyPostalCode string     `json:"bill_third_party_postal_code,omitempty"`
 	ByDrone                  bool       `json:"by_drone,omitempty"`
 	CarbonNeutral            bool       `json:"carbon_neutral,omitempty"`
+	CertifiedMail            bool       `json:"certified_mail,omitempty"`
 	CODAmount                float64    `json:"cod_amount,omitempty,string"`
 	CODMethod                string     `json:"cod_method,omitempty"`
 	CODAddressID             string     `json:"cod_address_id,omitempty"`
@@ -110,6 +111,9 @@ type ShipmentOptions struct {
 	PrintCustom1Code         string     `json:"print_custom_1_code,omitempty"`
 	PrintCustom2Code         string     `json:"print_custom_2_code,omitempty"`
 	PrintCustom3Code         string     `json:"print_custom_3_code,omitempty"`
+	RegisteredMail           bool       `json:"registered_mail,omitempty"`
+	RegisteredMailAmount     float64    `json:"registered_mail_amount,omitempty"`
+	ReturnReceipt            bool       `json:"return_receipt,omitempty"`
 	SaturdayDelivery         bool       `json:"saturday_delivery,omitempty"`
 	SpecialRatesEligibility  string     `json:"special_rates_eligibility,omitempty"`
 	SmartpostHub             string     `json:"smartpost_hub,omitempty"`

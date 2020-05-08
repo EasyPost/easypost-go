@@ -1,17 +1,14 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestShipmentReport(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestShipmentReport() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 
-	report, err := TestClient.CreateReport(
+	report, err := client.CreateReport(
 		"shipment",
 		&easypost.Report{
 			StartDate: "2012-12-01",
@@ -20,7 +17,7 @@ func TestShipmentReport(t *testing.T) {
 	)
 
 	if err, ok := err.(*easypost.APIError); ok && err.Code == "REPORT.ALREADY_EXISTS" {
-		reports, err := TestClient.ListReports(
+		reports, err := client.ListReports(
 			"shipment",
 			&easypost.ListReportsOptions{
 				StartDate: "2012-12-01",
@@ -36,11 +33,11 @@ func TestShipmentReport(t *testing.T) {
 
 	assert.True(report.Status == "available" || report.Status == "new")
 
-	report2, err := TestClient.GetReport("shipment", report.ID)
+	report2, err := client.GetReport("shipment", report.ID)
 	require.NoError(err)
 	assert.Equal(report.ID, report2.ID)
 
-	reports, err := TestClient.ListReports("shipment", nil)
+	reports, err := client.ListReports("shipment", nil)
 	require.NoError(err)
 	assert.NotEmpty(reports.Reports)
 	assert.Equal(report.ID, reports.Reports[0].ID)

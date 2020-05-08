@@ -1,18 +1,15 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
-	"github.com/stretchr/testify/require"
 )
 
-func TestAddressCreationVerification(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestAddressCreationVerification() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// Create an address and then verify some fields to test whether it was
 	// created just fine.
-	address, err := TestClient.CreateAddress(
+	address, err := client.CreateAddress(
 		&easypost.Address{
 			Company: "EasyPost",
 			Street1: "One Montgomery St",
@@ -25,10 +22,10 @@ func TestAddressCreationVerification(t *testing.T) {
 		nil,
 	)
 	require.NoError(err)
-	address, err = TestClient.VerifyAddress(address.ID)
+	address, err = client.VerifyAddress(address.ID)
 	require.NoError(err)
 	require.NotNil(address)
-	address, err = TestClient.GetAddress(address.ID)
+	address, err = client.GetAddress(address.ID)
 	require.NoError(err)
 	require.NotNil(address)
 	assert.Equal("US", address.Country)
@@ -38,11 +35,12 @@ func TestAddressCreationVerification(t *testing.T) {
 	assert.Equal("94104-4533", address.Zip)
 }
 
-func TestAddressCreationWithVerify(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestAddressCreationWithVerify() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// reate an address with a verify parameter to test that it verifies
 	// accurately.
-	address, err := TestClient.CreateAddress(
+	address, err := client.CreateAddress(
 		&easypost.Address{
 			Company: "EasyPost",
 			Street1: "One Montgomery St",
@@ -61,11 +59,12 @@ func TestAddressCreationWithVerify(t *testing.T) {
 	assert.Equal("US", address.Country)
 }
 
-func TestAddressCreationWithVerifyFailure(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestAddressCreationWithVerifyFailure() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// Create an address with a verify parameter to test that it fails
 	// elegantly.
-	address, err := TestClient.CreateAddress(
+	address, err := client.CreateAddress(
 		&easypost.Address{
 			Street1: "UNDELIEVRABLE ST",
 			City:    "San Francisco",
@@ -91,11 +90,12 @@ func TestAddressCreationWithVerifyFailure(t *testing.T) {
 	)
 }
 
-func TestAddressCreationWithVerifyStrictFailure(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestAddressCreationWithVerifyStrictFailure() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// Create an address with a verify strict parameter to test that it fails
 	// elegantly.
-	address, err := TestClient.CreateAddress(
+	address, err := client.CreateAddress(
 		&easypost.Address{
 			Street1: "UNDELIEVRABLE ST",
 			City:    "San Francisco",
@@ -119,11 +119,12 @@ func TestAddressCreationWithVerifyStrictFailure(t *testing.T) {
 	}
 }
 
-func TestAddressUnicode(t *testing.T) {
-	assert, require := assert.New(t), require.New(t)
+func (c *ClientTests) TestAddressUnicode() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 	// Create an address with unicode field and assert if it was created
 	// correctly.
-	address, err := TestClient.CreateAddress(
+	address, err := client.CreateAddress(
 		&easypost.Address{State: "DELEGACIóN BENITO JUáREZ"}, nil,
 	)
 	require.NoError(err)

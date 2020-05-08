@@ -1,14 +1,12 @@
 package easypost_test
 
 import (
-	"testing"
-
 	"github.com/EasyPost/easypost-go"
-	"github.com/stretchr/testify/assert"
 )
 
-func TestTrackerValues(t *testing.T) {
-	assert := assert.New(t)
+func (c *ClientTests) TestTrackerValues() {
+	client := c.TestClient()
+	assert := c.Assert()
 	type Value struct{ Code, Status string }
 	values := []Value{
 		Value{Code: "EZ1000000001", Status: "pre_transit"},
@@ -21,7 +19,7 @@ func TestTrackerValues(t *testing.T) {
 	}
 	for i := range values {
 		opts := easypost.CreateTrackerOptions{TrackingCode: values[i].Code}
-		tracker, err := TestClient.CreateTracker(&opts)
+		tracker, err := client.CreateTracker(&opts)
 		if assert.NoError(err) {
 			assert.Equal(values[i].Status, tracker.Status)
 			assert.NotEmpty(tracker.TrackingDetails)

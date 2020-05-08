@@ -3,26 +3,72 @@ package easypost_test
 import (
 	"flag"
 	"fmt"
-	"math/rand"
+	"net/http"
 	"os"
-	"strconv"
+	"path/filepath"
+	"strings"
 	"testing"
-	"time"
 
 	"github.com/EasyPost/easypost-go"
+	"github.com/dnaeon/go-vcr/cassette"
+	"github.com/dnaeon/go-vcr/recorder"
+	"github.com/stretchr/testify/suite"
 )
 
 var (
-	// TestClient is used for most tests.
-	TestClient = new(easypost.Client)
-	// ProdClient is used for tests that require a prod key (like the user API).
-	ProdClient = new(easypost.Client)
+	// TestAPIKey is used for most tests.
+	TestAPIKey string
+	// ProdAPIKey is used for tests that require a prod key (like the user API).
+	ProdAPIKey string
 )
 
-func unique() string {
-	t := time.Now().Format("20060102150405")
-	r := strconv.FormatInt(int64(rand.Intn(100)), 10)
-	return t + r
+type ErrorRoundTripper struct{}
+
+func (ErrorRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
+	return nil, fmt.Errorf("no cassette found for request %s", req.URL)
+}
+
+type ClientTests struct {
+	suite.Suite
+	recorder *recorder.Recorder
+}
+
+func (c *ClientTests) SetupTest() {
+	pathComponents := append(
+		[]string{"testdata"}, strings.Split(c.T().Name(), "/")...,
+	)
+	r, err := recorder.New(filepath.Join(pathComponents...))
+	c.Require().NoError(err)
+	r.AddFilter(func(i *cassette.Interaction) error {
+		delete(i.Request.Headers, "Authorization")
+		return nil
+	})
+	if TestAPIKey == "" {
+		r.SetTransport(ErrorRoundTripper{})
+	}
+	c.recorder = r
+}
+
+func (c *ClientTests) TearDownTest() {
+	c.recorder.Stop()
+}
+
+func (c *ClientTests) TestClient() *easypost.Client {
+	return &easypost.Client{
+		APIKey: TestAPIKey,
+		Client: &http.Client{Transport: c.recorder},
+	}
+}
+
+func (c *ClientTests) ProdClient() *easypost.Client {
+	return &easypost.Client{
+		APIKey: ProdAPIKey,
+		Client: &http.Client{Transport: c.recorder},
+	}
+}
+
+func TestClient(t *testing.T) {
+	suite.Run(t, new(ClientTests))
 }
 
 func TestMain(m *testing.M) {
@@ -30,13 +76,13 @@ func TestMain(m *testing.M) {
 	// flags--don't need to dump help for all of Go's internal test.* flags.
 	fs := flag.NewFlagSet("test", flag.ExitOnError)
 	fs.StringVar(
-		&TestClient.APIKey,
+		&TestAPIKey,
 		"test-api-key",
 		os.Getenv("EASYPOST_TEST_API_KEY"),
 		"test key to use against EasyPost API",
 	)
 	fs.StringVar(
-		&ProdClient.APIKey,
+		&ProdAPIKey,
 		"prod-api-key",
 		os.Getenv("EASYPOST_PROD_API_KEY"),
 		"production key to use against EasyPost API",
@@ -44,17 +90,5 @@ func TestMain(m *testing.M) {
 	// Add flags to CommandLine (default) FlagSet:
 	fs.VisitAll(func(f *flag.Flag) { flag.Var(f.Value, f.Name, f.Usage) })
 	flag.Parse()
-	if TestClient.APIKey == "" {
-		fmt.Fprintln(os.Stderr, "must specify test API key")
-		fs.PrintDefaults()
-		os.Exit(1)
-	}
-	if ProdClient.APIKey == "" {
-		fmt.Fprintln(
-			os.Stderr,
-			"no production API key given--skipping tests requiring a "+
-				"production API key",
-		)
-	}
 	os.Exit(m.Run())
 }
