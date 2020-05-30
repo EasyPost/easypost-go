@@ -4,3 +4,8 @@ package easypost
 func StringPtr(s string) *string {
 	return &s
 }
+
+// StringPtr returns a pointer to a bool with the given value.
+func BoolPtr(b bool) *bool {
+	return &b
+}

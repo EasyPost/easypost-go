@@ -164,13 +164,13 @@ func (c *Client) CreateTrackerListWithContext(ctx context.Context, opts ...*Crea
 // ListTrackersOptions is used to specify query parameters for listing Tracker
 // objects.
 type ListTrackersOptions struct {
-	BeforeID      string     `json:"before_id,omitempty"`
-	AfterID       string     `json:"after_id,omitempty"`
-	StartDateTime *time.Time `json:"start_datetime,omitempty"`
-	EndDateTime   *time.Time `json:"end_datetime,omitempty"`
-	PageSize      int        `json:"page_size,omitempty"`
-	TrackingCodes []string   `json:"tracking_codes,omitempty"`
-	Carrier       string     `json:"carrier,omitempty"`
+	BeforeID      string     `url:"before_id,omitempty"`
+	AfterID       string     `url:"after_id,omitempty"`
+	StartDateTime *time.Time `url:"start_datetime,omitempty"`
+	EndDateTime   *time.Time `url:"end_datetime,omitempty"`
+	PageSize      int        `url:"page_size,omitempty"`
+	TrackingCodes []string   `url:"tracking_codes,omitempty"`
+	Carrier       string     `url:"carrier,omitempty"`
 }
 
 // ListTrackersResult holds the results from the list trackers API.
@@ -185,14 +185,13 @@ type ListTrackersResult struct {
 
 // ListTrackers provides a paginated result of Tracker objects.
 func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
-	err = c.do(nil, http.MethodGet, "trackers", &opts, &out)
-	return
+	return c.ListTrackersWithContext(nil, opts)
 }
 
 // ListTrackersWithContext performs the same operation as ListTrackers, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
-	err = c.do(ctx, http.MethodGet, "trackers", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "trackers", c.convertOptsToURLValues(opts), &out)
 	return
 }
 
@@ -209,15 +208,14 @@ type ListTrackersUpdatedOptions struct {
 
 // ListTrackersUpdated returns trackers with updated data.
 func (c *Client) ListTrackersUpdated(opts *ListTrackersUpdatedOptions) (out *ListTrackersResult, err error) {
-	err = c.do(nil, http.MethodGet, "trackers/all_updated", &opts, &out)
-	return
+	return c.ListTrackersUpdatedWithContext(nil, opts)
 }
 
 // ListTrackersUpdatedWithContext performs the same operation as
 // ListTrackersUpdated, but allows specifying a context that can interrupt the
 // request.
 func (c *Client) ListTrackersUpdatedWithContext(ctx context.Context, opts *ListTrackersUpdatedOptions) (out *ListTrackersResult, err error) {
-	err = c.do(ctx, http.MethodGet, "trackers/all_updated", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "trackers/all_updated", c.convertOptsToURLValues(opts), &out)
 	return
 }
 

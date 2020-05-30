@@ -46,11 +46,11 @@ func (c *Client) CreateReportWithContext(ctx context.Context, typ string, in *Re
 // ListReportsOptions is used to specify query parameters for listing Report
 // objects.
 type ListReportsOptions struct {
-	BeforeID  string `json:"before_id,omitempty"`
-	AfterID   string `json:"after_id,omitempty"`
-	StartDate string `json:"start_datetime,omitempty"`
-	EndDate   string `json:"end_datetime,omitempty"`
-	PageSize  int    `json:"page_size,omitempty"`
+	BeforeID  string `url:"before_id,omitempty"`
+	AfterID   string `url:"after_id,omitempty"`
+	StartDate string `url:"start_datetime,omitempty"`
+	EndDate   string `url:"end_datetime,omitempty"`
+	PageSize  int    `url:"page_size,omitempty"`
 }
 
 // ListReportsResult holds the results from the list reports API.
@@ -65,14 +65,13 @@ type ListReportsResult struct {
 
 // ListReports provides a paginated result of Report objects of the given type.
 func (c *Client) ListReports(typ string, opts *ListReportsOptions) (out *ListReportsResult, err error) {
-	err = c.do(nil, http.MethodGet, "reports/"+typ, &opts, &out)
-	return
+	return c.ListReportsWithContext(nil, typ, opts)
 }
 
 // ListReportsWithContext performs the same operation as ListReports, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *ListReportsOptions) (out *ListReportsResult, err error) {
-	err = c.do(ctx, http.MethodGet, "reports/"+typ, &opts, &out)
+	err = c.do(ctx, http.MethodGet, "reports/"+typ, c.convertOptsToURLValues(opts), &out)
 	return
 }
 
