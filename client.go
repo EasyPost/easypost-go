@@ -63,14 +63,14 @@ func (c *Client) client() *http.Client {
 	return http.DefaultClient
 }
 
-func (c *Client) convertOptsToURLValues(v interface{}) *url.Values {
+func (c *Client) convertOptsToURLValues(v interface{}) url.Values {
 	values, _ := query.Values(v)
-	return &values
+	return values
 }
 
 func (c *Client) setBody(req *http.Request, in interface{}) error {
 	switch in := in.(type) {
-	case *url.Values:
+	case url.Values:
 		buf := []byte(in.Encode())
 		req.Body = ioutil.NopCloser(bytes.NewReader(buf))
 		req.GetBody = func() (io.ReadCloser, error) {
