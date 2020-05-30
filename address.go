@@ -117,14 +117,13 @@ type ListAddressResult struct {
 
 // ListAddresses provides a paginated result of InsuAddressrance objects.
 func (c *Client) ListAddresses(opts *ListOptions) (out *ListAddressResult, err error) {
-	err = c.do(nil, http.MethodGet, "addresses", &opts, &out)
-	return
+	return c.ListAddressesWithContext(nil, opts)
 }
 
 // ListAddressesWithContext performs the same operation as ListAddresses, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListAddressesWithContext(ctx context.Context, opts *ListOptions) (out *ListAddressResult, err error) {
-	err = c.do(ctx, http.MethodGet, "addresses", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "addresses", c.convertOptsToURLValues(opts), &out)
 	return
 }
 

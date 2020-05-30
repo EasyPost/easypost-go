@@ -148,3 +148,16 @@ func (c *ClientTests) TestShipmentCreation() {
 		)
 	}
 }
+
+func (c *ClientTests) TestShipmentList() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	out, err := client.ListShipments(&easypost.ListShipmentsOptions{
+		Purchased:       easypost.BoolPtr(false),
+		IncludeChildren: easypost.BoolPtr(false),
+	})
+	require.NoError(err)
+	require.NotEmpty(out)
+	assert.True(len(out.Shipments) > 0)
+}

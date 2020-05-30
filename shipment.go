@@ -210,13 +210,13 @@ func (c *Client) CreateShipmentWithContext(ctx context.Context, in *Shipment) (o
 // ListShipmentsOptions is used to specify query parameters for listing Shipment
 // objects.
 type ListShipmentsOptions struct {
-	BeforeID        string     `json:"before_id,omitempty"`
-	AfterID         string     `json:"after_id,omitempty"`
-	StartDateTime   *time.Time `json:"start_datetime,omitempty"`
-	EndDateTime     *time.Time `json:"end_datetime,omitempty"`
-	PageSize        int        `json:"page_size,omitempty"`
-	Purchased       bool       `json:"purchased,omitempty"`
-	IncludeChildren bool       `json:"include_children,omitempty"`
+	BeforeID        string     `url:"before_id,omitempty"`
+	AfterID         string     `url:"after_id,omitempty"`
+	StartDateTime   *time.Time `url:"start_datetime,omitempty"`
+	EndDateTime     *time.Time `url:"end_datetime,omitempty"`
+	PageSize        int        `url:"page_size,omitempty"`
+	Purchased       *bool      `url:"purchased,omitempty"`
+	IncludeChildren *bool      `url:"include_children,omitempty"`
 }
 
 // ListShipmentsResult holds the results from the list shipments API.
@@ -231,14 +231,13 @@ type ListShipmentsResult struct {
 
 // ListShipments provides a paginated result of Shipment objects.
 func (c *Client) ListShipments(opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
-	err = c.do(nil, http.MethodGet, "shipments", &opts, &out)
-	return
+	return c.ListShipmentsWithContext(nil, opts)
 }
 
 // ListShipmentsWithContext performs the same operation as ListShipments, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
-	err = c.do(ctx, http.MethodGet, "shipments", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "shipments", c.convertOptsToURLValues(opts), &out)
 	return
 }
 

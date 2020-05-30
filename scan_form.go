@@ -65,14 +65,13 @@ type ListScanFormsResult struct {
 
 // ListScanForms provides a paginated result of ScanForm objects.
 func (c *Client) ListScanForms(opts *ListOptions) (out *ListScanFormsResult, err error) {
-	err = c.do(nil, http.MethodGet, "scan_forms", &opts, &out)
-	return
+	return c.ListScanFormsWithContext(nil, opts)
 }
 
 // ListScanFormsWithContext performs the same operation as ListScanForms, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListScanFormsWithContext(ctx context.Context, opts *ListOptions) (out *ListScanFormsResult, err error) {
-	err = c.do(ctx, http.MethodGet, "scan_forms", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "scan_forms", c.convertOptsToURLValues(opts), &out)
 	return
 }
 

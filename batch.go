@@ -87,14 +87,13 @@ type ListBatchesResult struct {
 
 // ListBatches provides a paginated result of Insurance objects.
 func (c *Client) ListBatches(opts *ListOptions) (out *ListBatchesResult, err error) {
-	err = c.do(nil, http.MethodGet, "batches", &opts, &out)
-	return
+	return c.ListBatchesWithContext(nil, opts)
 }
 
 // ListBatchesWithContext performs the same operation as ListBatches, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) (out *ListBatchesResult, err error) {
-	err = c.do(ctx, http.MethodGet, "batches", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "batches", c.convertOptsToURLValues(opts), &out)
 	return
 }
 

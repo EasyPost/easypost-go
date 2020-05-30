@@ -74,14 +74,13 @@ type ListInsurancesResult struct {
 
 // ListInsurances provides a paginated result of Insurance objects.
 func (c *Client) ListInsurances(opts *ListOptions) (out *ListInsurancesResult, err error) {
-	err = c.do(nil, http.MethodGet, "insurances", &opts, &out)
-	return
+	return c.ListInsurancesWithContext(nil, opts)
 }
 
 // ListInsurancesWithContext performs the same operation as ListInsurances, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListInsurancesWithContext(ctx context.Context, opts *ListOptions) (out *ListInsurancesResult, err error) {
-	err = c.do(ctx, http.MethodGet, "insurances", &opts, &out)
+	err = c.do(ctx, http.MethodGet, "insurances", c.convertOptsToURLValues(opts), &out)
 	return
 }
 

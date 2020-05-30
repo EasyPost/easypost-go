@@ -1,6 +1,11 @@
-=== 1.0.0 2019-09-03
+=== 1.0.3 2020-05-30
 
- * Initial release.
+ * Fix issue in List actions that take query parameters
+
+=== 1.0.2 2020-05-08
+
+ * Add shipment options for certified and registered mail.
+ * Changes to unit tests.
 
 === 1.0.1 2020-03-17
 
@@ -14,7 +19,8 @@
    key name when serialized to JSON. Prior to this change, values in the Fields
    field were not recognized by the API.
 
-=== 1.0.2 2020-05-08
+=== 1.0.0 2019-09-03
 
- * Add shipment options for certified and registered mail.
- * Changes to unit tests.
+ * Initial release.
+
+
