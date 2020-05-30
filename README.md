@@ -1,6 +1,7 @@
 # EasyPost Go Client Library
 
 [![Build Status](https://travis-ci.com/EasyPost/easypost-go.svg?branch=master)](https://travis-ci.com/EasyPost/easypost-go)
+[![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go)
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
 
