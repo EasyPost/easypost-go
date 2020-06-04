@@ -27,6 +27,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(batch, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }

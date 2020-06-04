@@ -16,14 +16,14 @@ func main() {
 	}
 	client := easypost.New(apiKey)
 
-	// Retrieve an batch
+	// Retrieve a list of batches
 	batch, err := client.ListBatches(
 		&easypost.ListOptions{
 			// options here
 		},
 	)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "error retrieving batch:", err)
+		fmt.Fprintln(os.Stderr, "error retrieving batches:", err)
 		os.Exit(1)
 		return
 	}
@@ -31,6 +31,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(batch, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }

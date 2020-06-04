@@ -16,13 +16,13 @@ func main() {
 	}
 	client := easypost.New(apiKey)
 
-	// Create and verify an address
+	// Create a scanform (manifest)
 	toAddress, err := client.CreateScanForm(
 		"shp_100",
 		"shp_101",
 	)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "error creating to address:", err)
+		fmt.Fprintln(os.Stderr, "error creating scanform:", err)
 		os.Exit(1)
 		return
 	}
@@ -30,6 +30,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(toAddress, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }
