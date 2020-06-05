@@ -17,8 +17,8 @@ type Event struct {
 	PreviousAttributes map[string]interface{} `json:"previous_attributes,omitempty"`
 	Result             map[string]interface{} `json:"result,omitempty"`
 	Status             string                 `json:"status,omitempty"`
-	PendingUrls        []string               `json:"pending_urls,omitempty"`
-	CompletedUrls      []string               `json:"completed_urls,omitempty"`
+	PendingURLs        []string               `json:"pending_urls,omitempty"`
+	CompletedURLs      []string               `json:"completed_urls,omitempty"`
 }
 
 // ListEventsResult holds the results from the list events API.
