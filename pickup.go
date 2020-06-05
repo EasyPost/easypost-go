@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"net/http"
 	"net/url"
 	"time"
 )
@@ -71,19 +70,6 @@ func (c *Client) CreatePickup(in *Pickup) (out *Pickup, err error) {
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreatePickupWithContext(ctx context.Context, in *Pickup) (out *Pickup, err error) {
 	err = c.post(ctx, "pickups", &createPickupRequest{Pickup: in}, &out)
-	return
-}
-
-// ListPickups provides a paginated result of Pickup objects.
-func (c *Client) ListPickups() (out []*Pickup, err error) {
-	err = c.do(nil, http.MethodGet, "pickups", nil, &out)
-	return
-}
-
-// ListPickupsWithContext performs the same operation as ListPickups,
-// but allows specifying a context that can interrupt the request.
-func (c *Client) ListPickupsWithContext(ctx context.Context) (out []*Pickup, err error) {
-	err = c.do(ctx, http.MethodGet, "pickups", nil, &out)
 	return
 }
 

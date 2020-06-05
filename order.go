@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"net/http"
 	"net/url"
 	"time"
 )
@@ -72,19 +71,6 @@ func (c *Client) CreateOrderWithContext(ctx context.Context, in *Order, accounts
 	var req createOrderRequest
 	req.Order.Order, req.Order.CarrierAccounts = in, accounts
 	err = c.post(ctx, "orders", &req, &out)
-	return
-}
-
-// ListOrders provides a paginated result of Order objects.
-func (c *Client) ListOrders() (out []*Order, err error) {
-	err = c.do(nil, http.MethodGet, "orders", nil, &out)
-	return
-}
-
-// ListOrdersWithContext performs the same operation as ListOrders,
-// but allows specifying a context that can interrupt the request.
-func (c *Client) ListOrdersWithContext(ctx context.Context) (out []*Order, err error) {
-	err = c.do(ctx, http.MethodGet, "orders", nil, &out)
 	return
 }
 
