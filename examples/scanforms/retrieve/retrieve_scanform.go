@@ -16,7 +16,7 @@ func main() {
 	}
 	client := easypost.New(apiKey)
 
-	// Retrieve an scanform
+	// Retrieve a scanform
 	scanform, err := client.GetScanForm("scanform_123")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error retrieving scanform:", err)
@@ -27,6 +27,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(scanform, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }

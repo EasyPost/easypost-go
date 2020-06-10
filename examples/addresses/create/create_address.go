@@ -28,7 +28,7 @@ func main() {
 		&easypost.CreateAddressOptions{Verify: []string{"delivery"}},
 	)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "error creating to address:", err)
+		fmt.Fprintln(os.Stderr, "error creating address:", err)
 		os.Exit(1)
 		return
 	}
@@ -36,6 +36,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(toAddress, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }

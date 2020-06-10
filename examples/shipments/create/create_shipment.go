@@ -117,6 +117,7 @@ func main() {
 		return
 	}
 
+	// Optionally buy the label at the same time it's created:
 	// Buy a postage label with one of the rate objects and optional insurance
 	// shipment, err = client.BuyShipment(shipment.ID, &easypost.Rate{ID: shipment.Rates[0].ID}, "")
 	// if err != nil {
@@ -128,6 +129,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(shipment, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }

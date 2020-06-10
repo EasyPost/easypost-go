@@ -23,7 +23,7 @@ func main() {
 		},
 	)
 	if err != nil {
-		fmt.Fprintln(os.Stderr, "error retrieving address:", err)
+		fmt.Fprintln(os.Stderr, "error retrieving addresses:", err)
 		os.Exit(1)
 		return
 	}
@@ -31,6 +31,8 @@ func main() {
 	prettyJSON, err := json.MarshalIndent(address, "", "    ")
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating JSON:", err)
+		os.Exit(1)
+		return
 	}
-	fmt.Printf("%s\n", string(prettyJSON))
+	fmt.Println(string(prettyJSON))
 }
