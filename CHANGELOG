@@ -1,3 +1,13 @@
+=== 1.1.0 2020-06-10
+
+ * Update example code.
+ * Add GetRate method and example.
+ * Remove ListCustomsInfos, ListCustomsItems, ListOrders and ListPickups
+   methods.
+ * Add GetEvent, ListEvents and ListEventPayloads methods. Add example code
+   for using these methods as well as using the Event type in a webhook
+   handler.
+
 === 1.0.3 2020-05-30
 
  * Fix issue in List actions that take query parameters
