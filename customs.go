@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"net/http"
 	"time"
 )
 
@@ -80,19 +79,6 @@ func (c *Client) CreateCustomsInfoWithContext(ctx context.Context, in *CustomsIn
 	return
 }
 
-// ListCustomsInfos provides a paginated result of CustomsInfo objects.
-func (c *Client) ListCustomsInfos() (out []*CustomsInfo, err error) {
-	err = c.do(nil, http.MethodGet, "customs_infos", nil, &out)
-	return
-}
-
-// ListCustomsInfosWithContext performs the same operation as ListCustomsInfos,
-// but allows specifying a context that can interrupt the request.
-func (c *Client) ListCustomsInfosWithContext(ctx context.Context) (out []*CustomsInfo, err error) {
-	err = c.do(ctx, http.MethodGet, "customs_infos", nil, &out)
-	return
-}
-
 // GetCustomsInfo returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsInfo(customsInfoID string) (out *CustomsInfo, err error) {
 	err = c.get(nil, "customs_infos/"+customsInfoID, &out)
@@ -134,19 +120,6 @@ func (c *Client) CreateCustomsItem(in *CustomsItem) (out *CustomsItem, err error
 func (c *Client) CreateCustomsItemWithContext(ctx context.Context, in *CustomsItem) (out *CustomsItem, err error) {
 	req := &createCustomsItemRequest{CustomsItem: in}
 	err = c.post(ctx, "customs_items", req, &out)
-	return
-}
-
-// ListCustomsItems provides a paginated result of CustomsItem objects.
-func (c *Client) ListCustomsItems() (out []*CustomsItem, err error) {
-	err = c.do(nil, http.MethodGet, "customs_items", nil, &out)
-	return
-}
-
-// ListCustomsItemsWithContext performs the same operation as ListCustomsItems,
-// but allows specifying a context that can interrupt the request.
-func (c *Client) ListCustomsItemsWithContext(ctx context.Context) (out []*CustomsItem, err error) {
-	err = c.do(ctx, http.MethodGet, "customs_items", nil, &out)
 	return
 }
 
