@@ -21,9 +21,11 @@ type TrackingLocation struct {
 type TrackingDetail struct {
 	Object           string            `json:"object,omitempty"`
 	Message          string            `json:"message,omitempty"`
+	Description      string            `json:"description,omitempty"`
 	Status           string            `json:"status,omitempty"`
 	DateTime         string            `json:"datetime,omitempty"`
 	Source           string            `json:"source,omitempty"`
+	CarrierCode      string            `json:"carrier_code,omitempty"`
 	TrackingLocation *TrackingLocation `json:"tracking_location,omitempty"`
 }
 
@@ -37,6 +39,7 @@ type TrackingCarrierDetail struct {
 	EstDeliveryTimeLocal        string            `json:"est_delivery_time_local,omitempty"`
 	OriginLocation              string            `json:"origin_locaion,omitempty"`
 	OriginTrackingLocation      *TrackingLocation `json:"origin_tracking_location,omitempty"`
+	DestinationLocation         string            `json:"destination_location,omitempty"`
 	DestinationTrackingLocation *TrackingLocation `json:"destination_tracking_location,omitempty"`
 	GuaranteedDeliveryDate      *time.Time        `json:"guaranteed_delivery_date,omitempty"`
 	AlternateIdentifier         string            `json:"alternate_identifier,omitempty"`
@@ -61,6 +64,8 @@ type Tracker struct {
 	CarrierDetail   *TrackingCarrierDetail `json:"carrier_detail,omitempty"`
 	PublicURL       string                 `json:"public_url,omitempty"`
 	Fees            []*Fee                 `json:"fees,omitempty"`
+	Finalized       bool                   `json:"finalized,omitempty"`
+	IsReturn        bool                   `json:"is_return,omitempty"`
 }
 
 // CreateTrackerOptions specifies options for creating a new tracker.
