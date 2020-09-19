@@ -184,18 +184,18 @@ func (c *Client) GetBatchLabelsWithContext(ctx context.Context, batchID, format 
 	return
 }
 
-// GetBatchScanForms generates a scan form for the batch.
-func (c *Client) GetBatchScanForms(batchID, format string) (out *Batch, err error) {
+// CreateBatchScanForms generates a scan form for the batch.
+func (c *Client) CreateBatchScanForms(batchID, format string) (out *Batch, err error) {
 	vals := url.Values{"file_format": []string{format}}
-	err = c.do(nil, http.MethodGet, "batches/"+batchID+"/scan_form", vals, &out)
+	err = c.do(nil, http.MethodPost, "batches/"+batchID+"/scan_form", vals, &out)
 	return
 }
 
-// GetBatchScanFormsWithContext performs the same operation as
-// GetBatchScanForms, but allows specifying a context that can interrupt the
+// CreateBatchScanFormsWithContext performs the same operation as
+// CreateBatchScanForms, but allows specifying a context that can interrupt the
 // request.
-func (c *Client) GetBatchScanFormsWithContext(ctx context.Context, batchID, format string) (out *Batch, err error) {
+func (c *Client) CreateBatchScanFormsWithContext(ctx context.Context, batchID, format string) (out *Batch, err error) {
 	vals := url.Values{"file_format": []string{format}}
-	err = c.do(ctx, http.MethodGet, "batches/"+batchID+"/scan_form", vals, &out)
+	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/scan_form", vals, &out)
 	return
 }
