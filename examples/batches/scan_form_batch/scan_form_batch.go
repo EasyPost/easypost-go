@@ -16,13 +16,13 @@ func main() {
     }
     client := easypost.New(apiKey)
 
-    // ScanForm Batch
+    // Create a ScanForm for a Batch
     batch, err := client.CreateBatchScanForms(
         "batch_12345",
         "string",
     )
     if err != nil {
-        fmt.Fprintln(os.Stderr, "error creating batch:", err)
+        fmt.Fprintln(os.Stderr, "error creating ScanForm for Batch:", err)
         os.Exit(1)
         return
     }
