@@ -3,9 +3,8 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"os"
-
 	"github.com/EasyPost/easypost-go"
+	"os"
 )
 
 func main() {
@@ -20,6 +19,7 @@ func main() {
 	// Create a ScanForm for a Batch
 	batch, err := client.CreateBatchScanForms(
 		"batch_12345",
+		"string",
 	)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating ScanForm for Batch:", err)
