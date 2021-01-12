@@ -1,0 +1,29 @@
+name: CI
+
+on:
+  push:
+    branches: [ master ]
+  pull_request: ~
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        go-version: ["1.12.x", "1.13.x", "1.14.x", "1.15.x"]
+    steps:
+    - uses: actions/checkout@v2
+    - name: use golang ${{ matrix.node-version }}
+      uses: actions/setup-go@v2
+      with:
+        go-version: ${{ matrix.go-version }}
+    - name: install dependencies
+      run: go get -u golang.org/x/lint/golint
+    - name: build
+      run: go build .
+    - name: go vet
+      run: go vet .
+    - name: go lint
+      run: golint .
+    - name: run tests
+      run: cd tests && go test -v
