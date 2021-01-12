@@ -1,6 +1,6 @@
 # EasyPost Go Client Library
 
-[![Build Status](https://travis-ci.com/EasyPost/easypost-go.svg?branch=master)](https://travis-ci.com/EasyPost/easypost-go)
+[![CI](https://github.com/EasyPost/easypost-go/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-go/actions?query=workflow%3ACI)
 [![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go)
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
@@ -10,7 +10,7 @@ This work is licensed under the ISC License, a copy of which can be found at [LI
 Requirements
 ------------
 
-The `easypost` Go package should work with any recent version of Go.
+The `easypost` Go package should work with any recent version of Go that supports modules (typically, 1.12+).
 
 
 Installation
