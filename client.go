@@ -4,18 +4,26 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"fmt"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
+	"runtime"
 
 	"github.com/google/go-querystring/query"
 )
 
-const defaultUserAgent = "EasyPost/v2 GoClient/" + Version
-
 var apiBaseURL = &url.URL{
 	Scheme: "https", Host: "api.easypost.com", Path: "/v2/",
+}
+
+var defaultUserAgent string
+
+func init() {
+	defaultUserAgent = fmt.Sprintf(
+		"EasyPost/v2 GoClient/%s Go/%s OS/%s",
+		Version, runtime.Version(), runtime.GOOS)
 }
 
 // A Client provides an HTTP client for EasyPost API operations.
