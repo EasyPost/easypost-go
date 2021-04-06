@@ -18,8 +18,8 @@ func main() {
 
 	// Create a ScanForm for a Batch
 	batch, err := client.CreateBatchScanForms(
-		"batch_12345",
-		"string",
+		"batch_123",
+		"batch_456",
 	)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error creating ScanForm for Batch:", err)
