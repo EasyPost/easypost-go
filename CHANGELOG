@@ -1,3 +1,8 @@
+=== 1.2.0 2021-04-06
+
+ * Fix batch scan form functionality; replace GetBatchScanForms with
+   CreateBatchScanForms
+
 === 1.1.0 2020-06-10
 
  * Update example code.
