@@ -28,6 +28,11 @@ type Rate struct {
 	EstDeliveryDays        int        `json:"est_delivery_dats,omitempty"`
 }
 
+type Smartrate struct {
+	Rate
+	TimeInTransit map[string]interface{} `json:"time_in_transit,omitempty"`
+}
+
 // GetRate retrieves a previously-created rate by its ID.
 func (c *Client) GetRate(rateID string) (out *Rate, err error) {
 	err = c.get(nil, "rates/"+rateID, &out)
@@ -38,5 +43,24 @@ func (c *Client) GetRate(rateID string) (out *Rate, err error) {
 // specifying a context that can interrupt the request.
 func (c *Client) GetRateWithContext(ctx context.Context, rateID string) (out *Rate, err error) {
 	err = c.get(ctx, "rates/"+rateID, &out)
+	return
+}
+
+type getShipmentSmartratesResponse struct {
+	Smartrate *[]*Smartrate `json:"result,omitempty"`
+}
+
+// GetShipmentSmartrates fetches the available smartrates for a shipment.
+func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*Smartrate, err error) {
+	res := &getShipmentSmartratesResponse{Smartrate: &out}
+	err = c.get(nil, "shipments/"+shipmentID+"/smartrate", &res)
+	return
+}
+
+// GetShipmentSmartratesWithContext performs the same operation as GetShipmentRates,
+// but allows specifying a context that can interrupt the request.
+func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*Smartrate, err error) {
+	res := &getShipmentSmartratesResponse{Smartrate: &out}
+	err = c.get(ctx, "shipments/"+shipmentID+"/smartrate", &res)
 	return
 }

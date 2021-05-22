@@ -161,3 +161,66 @@ func (c *ClientTests) TestShipmentList() {
 	require.NotEmpty(out)
 	assert.True(len(out.Shipments) > 0)
 }
+
+func (c *ClientTests) TestShipmentSmartrates() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	to, err := client.CreateAddress(
+		&easypost.Address{
+			Name:    "Elmer Fudd",
+			Street1: "179 N Harbor Dr",
+			City:    "Redondo Beach",
+			State:   "CA",
+			Zip:     "90277",
+			Country: "US",
+			Phone:   "613-555-1212",
+		},
+		nil,
+	)
+	require.NoError(err)
+
+	from, err := client.CreateAddress(
+		&easypost.Address{
+			Company: "EasyPost",
+			Street1: "One Montgomery St",
+			Street2: "Ste 400",
+			City:    "San Francisco",
+			State:   "CA",
+			Zip:     "94104",
+			Phone:   "415-456-7890",
+		},
+		nil,
+	)
+	require.NoError(err)
+
+	parcel, err := client.CreateParcel(
+		&easypost.Parcel{
+			Length: 10.2,
+			Width:  7.8,
+			Height: 4.3,
+			Weight: 21.2,
+		},
+	)
+	require.NoError(err)
+
+	shipment, err := client.CreateShipment(
+		&easypost.Shipment{
+			ToAddress:   to,
+			FromAddress: from,
+			Parcel:      parcel,
+		},
+	)
+	require.NoError(err)
+	require.NotEmpty(shipment.Rates)
+
+	smartrates, err := client.GetShipmentSmartrates(shipment.ID)
+	assert.Equal(shipment.Rates[0].ID, smartrates[0].ID)
+	assert.Equal(smartrates[0].TimeInTransit["percentile_50"], float64(1))
+	assert.Equal(smartrates[0].TimeInTransit["percentile_75"], float64(2))
+	assert.Equal(smartrates[0].TimeInTransit["percentile_85"], float64(2))
+	assert.Equal(smartrates[0].TimeInTransit["percentile_90"], float64(3))
+	assert.Equal(smartrates[0].TimeInTransit["percentile_95"], float64(3))
+	assert.Equal(smartrates[0].TimeInTransit["percentile_97"], float64(4))
+	assert.Equal(smartrates[0].TimeInTransit["percentile_99"], float64(5))
+}

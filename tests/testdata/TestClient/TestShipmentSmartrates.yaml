@@ -1,0 +1,301 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"address":{"street1":"179 N Harbor Dr","city":"Redondo Beach","state":"CA","zip":"90277","country":"US","name":"Elmer
+      Fudd","phone":"613-555-1212"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.2.0 Go/go1.16.3 OS/darwin
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"id":"adr_6521e48856b844f3b69cbc38d251e207","object":"Address","created_at":"2021-05-21T21:20:38+00:00","updated_at":"2021-05-21T21:20:38+00:00","name":"Elmer
+      Fudd","company":null,"street1":"179 N Harbor Dr","street2":null,"city":"Redondo
+      Beach","state":"CA","zip":"90277","country":"US","phone":"6135551212","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"bfddc8284337a301c8dc171371ddb1ba"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_6521e48856b844f3b69cbc38d251e207
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - c2b10e7960a82426e78755620159f0e8
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 7ba176609e
+      - extlb1nuq 15c8815ace
+      X-Request-Id:
+      - 4ea1176e-c379-4a62-bb3e-3a49645c768a
+      X-Runtime:
+      - "0.030660"
+      X-Version-Label:
+      - easypost-202105212044-9f976cba01-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"address":{"street1":"One Montgomery St","street2":"Ste 400","city":"San
+      Francisco","state":"CA","zip":"94104","company":"EasyPost","phone":"415-456-7890"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.2.0 Go/go1.16.3 OS/darwin
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"id":"adr_8a9ec7ca5277481d892654e1bb26acf7","object":"Address","created_at":"2021-05-21T21:20:38+00:00","updated_at":"2021-05-21T21:20:38+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"79056384a7ee132a831d2479425b13e1"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_8a9ec7ca5277481d892654e1bb26acf7
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - c2b10e7960a82426e78755620159f0f1
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 7ba176609e
+      - extlb1nuq 15c8815ace
+      X-Request-Id:
+      - 1da41bdd-fd63-4bee-bdb9-9230ce1b7dcb
+      X-Runtime:
+      - "0.028210"
+      X-Version-Label:
+      - easypost-202105212044-9f976cba01-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"parcel":{"length":10.2,"width":7.8,"height":4.3,"weight":21.2}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.2.0 Go/go1.16.3 OS/darwin
+    url: https://api.easypost.com/v2/parcels
+    method: POST
+  response:
+    body: '{"id":"prcl_675a7e0da6744ebc825c29f2bce3f0a5","object":"Parcel","created_at":"2021-05-21T21:20:38Z","updated_at":"2021-05-21T21:20:38Z","length":10.2,"width":7.8,"height":4.3,"predefined_package":null,"weight":21.2,"mode":"test"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"cdf0c5893750e8257633c2a73d512bd4"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/parcels.prcl_675a7e0da6744ebc825c29f2bce3f0a5
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - c2b10e7960a82426e78755620159f0fb
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb7nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 7ba176609e
+      - extlb1nuq 15c8815ace
+      X-Request-Id:
+      - 44e04075-2336-46c2-b154-3dd88de00431
+      X-Runtime:
+      - "0.027455"
+      X-Version-Label:
+      - easypost-202105212044-9f976cba01-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"shipment":{"to_address":{"id":"adr_6521e48856b844f3b69cbc38d251e207","object":"Address","mode":"test","created_at":"2021-05-21T21:20:38Z","updated_at":"2021-05-21T21:20:38Z","street1":"179
+      N Harbor Dr","city":"Redondo Beach","state":"CA","zip":"90277","country":"US","name":"Elmer
+      Fudd","phone":"6135551212","verifications":{"zip4":null,"delivery":null}},"from_address":{"id":"adr_8a9ec7ca5277481d892654e1bb26acf7","object":"Address","mode":"test","created_at":"2021-05-21T21:20:38Z","updated_at":"2021-05-21T21:20:38Z","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","company":"EasyPost","phone":"4154567890","verifications":{"zip4":null,"delivery":null}},"parcel":{"id":"prcl_675a7e0da6744ebc825c29f2bce3f0a5","object":"Parcel","mode":"test","created_at":"2021-05-21T21:20:38Z","updated_at":"2021-05-21T21:20:38Z","length":10.2,"width":7.8,"height":4.3,"weight":21.2}}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.2.0 Go/go1.16.3 OS/darwin
+    url: https://api.easypost.com/v2/shipments
+    method: POST
+  response:
+    body: '{"created_at":"2021-05-21T21:20:38Z","is_return":false,"messages":[{"carrier":"Canpar","carrier_account_id":"ca_58451e27b5bc4f6cb419d9be15705847","type":"rate_error","message":"Unable
+      to retrieve Canpar rates for non-CA origin shipments."}],"mode":"test","options":{"currency":"USD","payment":{"type":"SENDER"},"date_advance":0},"reference":null,"status":"unknown","tracking_code":null,"updated_at":"2021-05-21T21:20:40Z","batch_id":null,"batch_status":null,"batch_message":null,"customs_info":null,"from_address":{"id":"adr_8a9ec7ca5277481d892654e1bb26acf7","object":"Address","created_at":"2021-05-21T21:20:38+00:00","updated_at":"2021-05-21T21:20:38+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"insurance":null,"order_id":null,"parcel":{"id":"prcl_675a7e0da6744ebc825c29f2bce3f0a5","object":"Parcel","created_at":"2021-05-21T21:20:38Z","updated_at":"2021-05-21T21:20:38Z","length":10.2,"width":7.8,"height":4.3,"predefined_package":null,"weight":21.2,"mode":"test"},"postage_label":null,"rates":[{"id":"rate_c93998aa4f274a609690375f55448d09","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"Express","carrier":"USPS","rate":"32.10","currency":"USD","retail_rate":"36.90","retail_currency":"USD","list_rate":"32.10","list_currency":"USD","delivery_days":null,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":null,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_qn6QC6fd"},{"id":"rate_c40d303213564cbdb77b63c345a79c11","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"Priority","carrier":"USPS","rate":"8.24","currency":"USD","retail_rate":"10.10","retail_currency":"USD","list_rate":"8.24","list_currency":"USD","delivery_days":2,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":2,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_qn6QC6fd"},{"id":"rate_a7da01a0d09b42d8987740bb8d3da86d","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"ParcelSelect","carrier":"USPS","rate":"8.04","currency":"USD","retail_rate":"8.04","retail_currency":"USD","list_rate":"8.04","list_currency":"USD","delivery_days":5,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":5,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_qn6QC6fd"},{"id":"rate_5aa2e8153f8942e6b6f330d9b404f16a","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"3DaySelect","carrier":"UPS","rate":"17.44","currency":"USD","retail_rate":"17.44","retail_currency":"USD","list_rate":"18.41","list_currency":"USD","delivery_days":3,"delivery_date":"2021-05-26T23:00:00Z","delivery_date_guaranteed":false,"est_delivery_days":3,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"},{"id":"rate_595a1bcabc904e23ab30fe8cefdb45d4","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"NextDayAirEarlyAM","carrier":"UPS","rate":"100.84","currency":"USD","retail_rate":"100.84","retail_currency":"USD","list_rate":"108.81","list_currency":"USD","delivery_days":1,"delivery_date":"2021-05-24T08:00:00Z","delivery_date_guaranteed":false,"est_delivery_days":1,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"},{"id":"rate_0309da9a53e14e3f8244d1df6bae2665","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"2ndDayAirAM","carrier":"UPS","rate":"25.90","currency":"USD","retail_rate":"25.90","retail_currency":"USD","list_rate":"26.73","list_currency":"USD","delivery_days":2,"delivery_date":"2021-05-25T23:00:00Z","delivery_date_guaranteed":false,"est_delivery_days":2,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"},{"id":"rate_dca170fe4f5c44a6a37575728be7d16e","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"Ground","carrier":"UPS","rate":"12.53","currency":"USD","retail_rate":"12.53","retail_currency":"USD","list_rate":"12.05","list_currency":"USD","delivery_days":2,"delivery_date":"2021-05-25T23:00:00Z","delivery_date_guaranteed":false,"est_delivery_days":2,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"},{"id":"rate_9cdae807c79f4a7a9614ecc0520b9952","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"NextDayAirSaver","carrier":"UPS","rate":"64.70","currency":"USD","retail_rate":"64.70","retail_currency":"USD","list_rate":"71.42","list_currency":"USD","delivery_days":1,"delivery_date":"2021-05-24T23:00:00Z","delivery_date_guaranteed":false,"est_delivery_days":1,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"},{"id":"rate_6fdf0b6c5469409dac029928b1ceaba9","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"NextDayAir","carrier":"UPS","rate":"68.74","currency":"USD","retail_rate":"68.74","retail_currency":"USD","list_rate":"76.71","list_currency":"USD","delivery_days":1,"delivery_date":"2021-05-24T10:30:00Z","delivery_date_guaranteed":false,"est_delivery_days":1,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"},{"id":"rate_793f12d8c4e24a2e982ddfea1791c248","object":"Rate","created_at":"2021-05-21T21:20:40Z","updated_at":"2021-05-21T21:20:40Z","mode":"test","service":"2ndDayAir","carrier":"UPS","rate":"22.88","currency":"USD","retail_rate":"22.88","retail_currency":"USD","list_rate":"24.70","list_currency":"USD","delivery_days":2,"delivery_date":"2021-05-25T23:00:00Z","delivery_date_guaranteed":false,"est_delivery_days":2,"shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","carrier_account_id":"ca_r8hLl9jS"}],"refund_status":null,"scan_form":null,"selected_rate":null,"tracker":null,"to_address":{"id":"adr_6521e48856b844f3b69cbc38d251e207","object":"Address","created_at":"2021-05-21T21:20:38+00:00","updated_at":"2021-05-21T21:20:38+00:00","name":"Elmer
+      Fudd","company":null,"street1":"179 N Harbor Dr","street2":null,"city":"Redondo
+      Beach","state":"CA","zip":"90277","country":"US","phone":"6135551212","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"usps_zone":4,"return_address":{"id":"adr_8a9ec7ca5277481d892654e1bb26acf7","object":"Address","created_at":"2021-05-21T21:20:38+00:00","updated_at":"2021-05-21T21:20:38+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"buyer_address":{"id":"adr_6521e48856b844f3b69cbc38d251e207","object":"Address","created_at":"2021-05-21T21:20:38+00:00","updated_at":"2021-05-21T21:20:38+00:00","name":"Elmer
+      Fudd","company":null,"street1":"179 N Harbor Dr","street2":null,"city":"Redondo
+      Beach","state":"CA","zip":"90277","country":"US","phone":"6135551212","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"forms":[],"fees":[],"id":"shp_e9928c6434d54e23ba232afa8c745305","object":"Shipment"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"95fd8bf66179e29333564a9fdf2ee4d2"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/shipments/shp_e9928c6434d54e23ba232afa8c745305
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - c2b10e7960a82426e78755620159f100
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 7ba176609e
+      - extlb1nuq 15c8815ace
+      X-Request-Id:
+      - 0c7cecbb-59ce-4572-a2cc-8bfe2a5de76b
+      X-Runtime:
+      - "1.472116"
+      X-Version-Label:
+      - easypost-202105212044-9f976cba01-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/1.2.0 Go/go1.16.3 OS/darwin
+    url: https://api.easypost.com/v2/shipments/shp_e9928c6434d54e23ba232afa8c745305/smartrate
+    method: GET
+  response:
+    body: '{"result":[{"carrier":"USPS","carrier_account_id":"ca_qn6QC6fd","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_c93998aa4f274a609690375f55448d09","list_currency":"USD","list_rate":32.1,"mode":"test","object":"Rate","rate":32.1,"retail_currency":"USD","retail_rate":36.9,"service":"Express","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":1,"percentile_75":2,"percentile_85":2,"percentile_90":3,"percentile_95":3,"percentile_97":4,"percentile_99":5},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"USPS","carrier_account_id":"ca_qn6QC6fd","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_c40d303213564cbdb77b63c345a79c11","list_currency":"USD","list_rate":8.24,"mode":"test","object":"Rate","rate":8.24,"retail_currency":"USD","retail_rate":10.1,"service":"Priority","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":1,"percentile_75":2,"percentile_85":2,"percentile_90":2,"percentile_95":3,"percentile_97":3,"percentile_99":4},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"USPS","carrier_account_id":"ca_qn6QC6fd","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_a7da01a0d09b42d8987740bb8d3da86d","list_currency":"USD","list_rate":8.04,"mode":"test","object":"Rate","rate":8.04,"retail_currency":"USD","retail_rate":8.04,"service":"ParcelSelect","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":1,"percentile_75":2,"percentile_85":3,"percentile_90":5,"percentile_95":8,"percentile_97":9,"percentile_99":14},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-26T23:00:00Z","delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_5aa2e8153f8942e6b6f330d9b404f16a","list_currency":"USD","list_rate":18.41,"mode":"test","object":"Rate","rate":17.44,"retail_currency":"USD","retail_rate":17.44,"service":"3DaySelect","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":2,"percentile_75":2,"percentile_85":2,"percentile_90":3,"percentile_95":3,"percentile_97":3,"percentile_99":3},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-24T08:00:00Z","delivery_date_guaranteed":false,"delivery_days":1,"est_delivery_days":1,"id":"rate_595a1bcabc904e23ab30fe8cefdb45d4","list_currency":"USD","list_rate":108.81,"mode":"test","object":"Rate","rate":100.84,"retail_currency":"USD","retail_rate":100.84,"service":"NextDayAirEarlyAM","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":null,"percentile_75":null,"percentile_85":null,"percentile_90":null,"percentile_95":null,"percentile_97":null,"percentile_99":null},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-25T23:00:00Z","delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_0309da9a53e14e3f8244d1df6bae2665","list_currency":"USD","list_rate":26.73,"mode":"test","object":"Rate","rate":25.9,"retail_currency":"USD","retail_rate":25.9,"service":"2ndDayAirAM","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":null,"percentile_75":null,"percentile_85":null,"percentile_90":null,"percentile_95":null,"percentile_97":null,"percentile_99":null},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-25T23:00:00Z","delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_dca170fe4f5c44a6a37575728be7d16e","list_currency":"USD","list_rate":12.05,"mode":"test","object":"Rate","rate":12.53,"retail_currency":"USD","retail_rate":12.53,"service":"Ground","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":2,"percentile_75":2,"percentile_85":2,"percentile_90":2,"percentile_95":3,"percentile_97":3,"percentile_99":3},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-24T23:00:00Z","delivery_date_guaranteed":false,"delivery_days":1,"est_delivery_days":1,"id":"rate_9cdae807c79f4a7a9614ecc0520b9952","list_currency":"USD","list_rate":71.42,"mode":"test","object":"Rate","rate":64.7,"retail_currency":"USD","retail_rate":64.7,"service":"NextDayAirSaver","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":1,"percentile_75":1,"percentile_85":1,"percentile_90":1,"percentile_95":1,"percentile_97":1,"percentile_99":2},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-24T10:30:00Z","delivery_date_guaranteed":false,"delivery_days":1,"est_delivery_days":1,"id":"rate_6fdf0b6c5469409dac029928b1ceaba9","list_currency":"USD","list_rate":76.71,"mode":"test","object":"Rate","rate":68.74,"retail_currency":"USD","retail_rate":68.74,"service":"NextDayAir","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":1,"percentile_75":1,"percentile_85":1,"percentile_90":1,"percentile_95":1,"percentile_97":1,"percentile_99":2},"updated_at":"2021-05-21T21:20:40Z"},{"carrier":"UPS","carrier_account_id":"ca_r8hLl9jS","created_at":"2021-05-21T21:20:40Z","currency":"USD","delivery_date":"2021-05-25T23:00:00Z","delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_793f12d8c4e24a2e982ddfea1791c248","list_currency":"USD","list_rate":24.7,"mode":"test","object":"Rate","rate":22.88,"retail_currency":"USD","retail_rate":22.88,"service":"2ndDayAir","shipment_id":"shp_e9928c6434d54e23ba232afa8c745305","time_in_transit":{"percentile_50":2,"percentile_75":2,"percentile_85":2,"percentile_90":2,"percentile_95":2,"percentile_97":2,"percentile_99":3},"updated_at":"2021-05-21T21:20:40Z"}]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"5906be8a58deedfd5cf9fcfdd6180ed1"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=15768000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - c2b10e7960a82428e78755620159f165
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb2nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 7ba176609e
+      - extlb1nuq 15c8815ace
+      X-Request-Id:
+      - a122a7bc-77fb-414b-a18d-77b840189ec8
+      X-Runtime:
+      - "0.096233"
+      X-Version-Label:
+      - easypost-202105212044-9f976cba01-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
