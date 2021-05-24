@@ -216,11 +216,11 @@ func (c *ClientTests) TestShipmentSmartrates() {
 
 	smartrates, err := client.GetShipmentSmartrates(shipment.ID)
 	assert.Equal(shipment.Rates[0].ID, smartrates[0].ID)
-	assert.Equal(smartrates[0].TimeInTransit["percentile_50"], float64(1))
-	assert.Equal(smartrates[0].TimeInTransit["percentile_75"], float64(2))
-	assert.Equal(smartrates[0].TimeInTransit["percentile_85"], float64(2))
-	assert.Equal(smartrates[0].TimeInTransit["percentile_90"], float64(3))
-	assert.Equal(smartrates[0].TimeInTransit["percentile_95"], float64(3))
-	assert.Equal(smartrates[0].TimeInTransit["percentile_97"], float64(4))
-	assert.Equal(smartrates[0].TimeInTransit["percentile_99"], float64(5))
+	assert.Equal(smartrates[0].TimeInTransit.Percentile50, 1)
+	assert.Equal(smartrates[0].TimeInTransit.Percentile75, 2)
+	assert.Equal(smartrates[0].TimeInTransit.Percentile85, 2)
+	assert.Equal(smartrates[0].TimeInTransit.Percentile90, 3)
+	assert.Equal(smartrates[0].TimeInTransit.Percentile95, 3)
+	assert.Equal(smartrates[0].TimeInTransit.Percentile97, 4)
+	assert.Equal(smartrates[0].TimeInTransit.Percentile99, 5)
 }

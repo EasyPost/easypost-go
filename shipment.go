@@ -290,6 +290,25 @@ func (c *Client) GetShipmentRatesWithContext(ctx context.Context, shipmentID str
 	return
 }
 
+type getShipmentSmartratesResponse struct {
+	Smartrates *[]*Rate `json:"result,omitempty"`
+}
+
+// GetShipmentSmartrates fetches the available smartrates for a shipment.
+func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*Rate, err error) {
+	res := &getShipmentSmartratesResponse{Smartrates: &out}
+	err = c.get(nil, "shipments/"+shipmentID+"/smartrate", &res)
+	return
+}
+
+// GetShipmentSmartratesWithContext performs the same operation as GetShipmentRates,
+// but allows specifying a context that can interrupt the request.
+func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
+	res := &getShipmentSmartratesResponse{Smartrates: &out}
+	err = c.get(ctx, "shipments/"+shipmentID+"/smartrate", &res)
+	return
+}
+
 // InsureShipment purchases insurance for the shipment. Insurance should be
 // purchased after purchasing the shipment, but before it has been processed by
 // the carrier. On success, the purchased insurance will be reflected in the
