@@ -1,3 +1,9 @@
+# CHANGELOG
+
+## v1.3.1 2021-06-23
+
+* Corrects `CODAmount` from a `float64` to a `string`
+
 ## v1.3.0 2021-05-27
 
 * Adds `Smartrate` functionality to the `Shipments` object (available by calling `GetShipmentSmartrates()`)
