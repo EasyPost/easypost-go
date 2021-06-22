@@ -59,7 +59,7 @@ type ShipmentOptions struct {
 	ByDrone                  bool       `json:"by_drone,omitempty"`
 	CarbonNeutral            bool       `json:"carbon_neutral,omitempty"`
 	CertifiedMail            bool       `json:"certified_mail,omitempty"`
-	CODAmount                float64    `json:"cod_amount,omitempty,string"`
+	CODAmount                string     `json:"cod_amount,omitempty"`
 	CODMethod                string     `json:"cod_method,omitempty"`
 	CODAddressID             string     `json:"cod_address_id,omitempty"`
 	Currency                 string     `json:"currency,omitempty"`
