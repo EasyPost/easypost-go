@@ -211,19 +211,6 @@ type ListTrackersUpdatedOptions struct {
 	TrackingDetailsEnd   *time.Time `json:"tracking_details_end,omitempty"`
 }
 
-// ListTrackersUpdated returns trackers with updated data.
-func (c *Client) ListTrackersUpdated(opts *ListTrackersUpdatedOptions) (out *ListTrackersResult, err error) {
-	return c.ListTrackersUpdatedWithContext(nil, opts)
-}
-
-// ListTrackersUpdatedWithContext performs the same operation as
-// ListTrackersUpdated, but allows specifying a context that can interrupt the
-// request.
-func (c *Client) ListTrackersUpdatedWithContext(ctx context.Context, opts *ListTrackersUpdatedOptions) (out *ListTrackersResult, err error) {
-	err = c.do(ctx, http.MethodGet, "trackers/all_updated", c.convertOptsToURLValues(opts), &out)
-	return
-}
-
 // GetTracker retrieves a Tracker object by ID.
 func (c *Client) GetTracker(trackerID string) (out *Tracker, err error) {
 	err = c.get(nil, "trackers/"+trackerID, &out)

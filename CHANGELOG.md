@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT
+
+* Remove experimental undocumented methods `ListTrackersUpdated` and `ListTrackersUpdatedWithContext`
+
 ## v1.3.1 2021-06-23
 
 * Corrects `CODAmount` from a `float64` to a `string`
