@@ -135,6 +135,7 @@ type Shipment struct {
 	BatchID           string            `json:"batch_id,omitempty"`
 	BatchStatus       string            `json:"batch_status,omitempty"`
 	BatchMessage      string            `json:"batch_message,omitempty"`
+	TaxIdentifier     []*TaxIdentifier  `json:"tax_identifiers,omitempty"`
 }
 
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
