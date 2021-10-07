@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## NEXT
+## v1.4.0 2021-10-06
 
+* Adds support for `TaxIdentifiers`
 * Remove experimental undocumented methods `ListTrackersUpdated` and `ListTrackersUpdatedWithContext`
 
 ## v1.3.1 2021-06-23

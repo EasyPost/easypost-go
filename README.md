@@ -5,7 +5,7 @@
 
 EasyPost is the simple shipping API. You can sign up for an account at <https://easypost.com>.
 
-This work is licensed under the ISC License, a copy of which can be found at [LICENSE.txt](LICENSE.txt)
+This work is licensed under the ISC License, a copy of which can be found at [LICENSE](LICENSE)
 
 Requirements
 ------------
