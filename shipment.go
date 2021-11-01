@@ -336,3 +336,18 @@ func (c *Client) RefundShipmentWithContext(ctx context.Context, shipmentID strin
 	err = c.post(ctx, "shipments/"+shipmentID+"/refund", nil, &out)
 	return
 }
+
+// RerateShipment fetches the available rates for a shipment with the current rates.
+func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
+	res := &getShipmentRatesResponse{Rates: &out}
+	err = c.post(nil, "shipments/"+shipmentID+"/rerate", nil, &res)
+	return
+}
+
+// RerateShipmentWithContext performs the same operation as RerateShipment,
+// but allows specifying a context that can interrupt the request.
+func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
+	res := &getShipmentRatesResponse{Rates: &out}
+	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", nil, &res)
+	return
+}
