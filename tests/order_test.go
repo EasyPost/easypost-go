@@ -38,13 +38,13 @@ func (c *ClientTests) TestOrderCreateThenBuy() {
 				Phone:   "415-555-1212",
 			},
 			Shipments: []*easypost.Shipment{
-				&easypost.Shipment{
+				{
 					Parcel: parcel,
 					Options: &easypost.ShipmentOptions{
 						LabelFormat: "PDF",
 					},
 				},
-				&easypost.Shipment{
+				{
 					Parcel: &easypost.Parcel{
 						Weight: 16,
 						Length: 8,

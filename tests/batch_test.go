@@ -31,7 +31,7 @@ func (c *ClientTests) TestBatchCreateAndBuy() {
 	require.NoError(err)
 
 	shipments := []*easypost.Shipment{
-		&easypost.Shipment{
+		{
 			ToAddress: &easypost.Address{
 				Name:    "Bugs Bunny",
 				Street1: "4000 Warner Blvd",

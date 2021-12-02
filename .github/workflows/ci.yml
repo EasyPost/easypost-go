@@ -6,6 +6,13 @@ on:
   pull_request: ~
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+      - name: Run Golangci Linter
+        uses: golangci/golangci-lint-action@v2
   build:
     runs-on: ubuntu-latest
     strategy:
