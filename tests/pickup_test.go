@@ -158,7 +158,7 @@ func (c *ClientTests) TestSinglePickup() {
 	minDatetime := noonOnNextMonday()
 	maxDatetime := minDatetime.AddDate(0, 0, 1)
 
-	pickup, _ := client.CreatePickup(
+	pickup, err := client.CreatePickup(
 		&easypost.Pickup{
 			Address:          from,
 			Shipment:         shipment,
@@ -169,6 +169,7 @@ func (c *ClientTests) TestSinglePickup() {
 			Instructions:     "Special pickup instructions",
 		},
 	)
+	require.NoError(err)
 	require.NotEmpty(pickup.PickupRates)
 	// This is probably a bug in the API. It always returns a rate, but isn't
 	// always a valid one.

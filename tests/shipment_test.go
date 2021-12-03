@@ -214,7 +214,8 @@ func (c *ClientTests) TestShipmentSmartrates() {
 	require.NoError(err)
 	require.NotEmpty(shipment.Rates)
 
-	smartrates, _ := client.GetShipmentSmartrates(shipment.ID)
+	smartrates, err := client.GetShipmentSmartrates(shipment.ID)
+	require.NoError(err)
 	assert.Equal(shipment.Rates[0].ID, smartrates[0].ID)
 	assert.Equal(smartrates[0].TimeInTransit.Percentile50, 1)
 	assert.Equal(smartrates[0].TimeInTransit.Percentile75, 2)
