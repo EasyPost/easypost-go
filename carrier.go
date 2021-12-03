@@ -49,7 +49,7 @@ type CarrierType struct {
 // GetCarrierTypes returns a list of supported carrier types for the current
 // user.
 func (c *Client) GetCarrierTypes() (out []*CarrierType, err error) {
-	err = c.get(nil, "carrier_types", &out)
+	err = c.get(context.Background(), "carrier_types", &out)
 	return
 }
 
@@ -81,7 +81,7 @@ type carrierAccountRequest struct {
 //	)
 func (c *Client) CreateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
 	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.post(nil, "carrier_accounts", req, &out)
+	err = c.post(context.Background(), "carrier_accounts", req, &out)
 	return
 }
 
@@ -97,7 +97,7 @@ func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *Carrie
 // ListCarrierAccounts returns a list of all carrier accounts available to the
 // authenticated account.
 func (c *Client) ListCarrierAccounts() (out []*CarrierAccount, err error) {
-	err = c.get(nil, "carrier_accounts", &out)
+	err = c.get(context.Background(), "carrier_accounts", &out)
 	return
 }
 
@@ -111,7 +111,7 @@ func (c *Client) ListCarrierAccountsWithContext(ctx context.Context) (out []*Car
 
 // GetCarrierAccount retrieves a carrier account by its ID or reference.
 func (c *Client) GetCarrierAccount(carrierAccountID string) (out *CarrierAccount, err error) {
-	err = c.get(nil, "carrier_accounts/"+carrierAccountID, &out)
+	err = c.get(context.Background(), "carrier_accounts/"+carrierAccountID, &out)
 	return
 }
 
@@ -137,7 +137,7 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 //	)
 func (c *Client) UpdateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
 	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.put(nil, "carrier_accounts/"+in.ID, req, &out)
+	err = c.put(context.Background(), "carrier_accounts/"+in.ID, req, &out)
 	return
 }
 
@@ -152,7 +152,7 @@ func (c *Client) UpdateCarrierAccountWithContext(ctx context.Context, in *Carrie
 
 // DeleteCarrierAccount removes the carrier account with the given ID.
 func (c *Client) DeleteCarrierAccount(carrierAccountID string) error {
-	return c.del(nil, "carrier_accounts/"+carrierAccountID)
+	return c.del(context.Background(), "carrier_accounts/"+carrierAccountID)
 }
 
 // DeleteCarrierAccountWithContext performs the same operation as

@@ -93,7 +93,7 @@ type createAddressRequest struct {
 //	)
 func (c *Client) CreateAddress(in *Address, opts *CreateAddressOptions) (out *Address, err error) {
 	req := &createAddressRequest{CreateAddressOptions: opts, Address: in}
-	err = c.post(nil, "addresses", req, &out)
+	err = c.post(context.Background(), "addresses", req, &out)
 	return
 }
 
@@ -105,7 +105,7 @@ func (c *Client) CreateAddressWithContext(ctx context.Context, in *Address, opts
 	return
 }
 
-// ListAddressResult holds the results from the list insurances API.
+// ListAddressResult holds the results from the list addresses API.
 type ListAddressResult struct {
 	Addresses []*Address `json:"addresses,omitempty"`
 	// HasMore indicates if there are more responses to be fetched. If True,
@@ -115,9 +115,9 @@ type ListAddressResult struct {
 	HasMore bool `json:"has_more,omitempty"`
 }
 
-// ListAddresses provides a paginated result of InsuAddressrance objects.
+// ListAddresses provides a paginated result of Address objects.
 func (c *Client) ListAddresses(opts *ListOptions) (out *ListAddressResult, err error) {
-	return c.ListAddressesWithContext(nil, opts)
+	return c.ListAddressesWithContext(context.Background(), opts)
 }
 
 // ListAddressesWithContext performs the same operation as ListAddresses, but
@@ -136,7 +136,7 @@ type verifyAddressResponse struct {
 func (c *Client) VerifyAddress(addressID string) (out *Address, err error) {
 	path := "addresses/" + addressID + "/verify"
 	res := &verifyAddressResponse{Address: &out}
-	err = c.get(nil, path, res)
+	err = c.get(context.Background(), path, res)
 	return
 }
 
@@ -151,7 +151,7 @@ func (c *Client) VerifyAddressWithContext(ctx context.Context, addressID string)
 
 // GetAddress retrieves a previously-created address by its ID.
 func (c *Client) GetAddress(addressID string) (out *Address, err error) {
-	err = c.get(nil, "addresses/"+addressID, &out)
+	err = c.get(context.Background(), "addresses/"+addressID, &out)
 	return
 }
 

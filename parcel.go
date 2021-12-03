@@ -34,7 +34,7 @@ type createParcelRequest struct {
 //		},
 //	)
 func (c *Client) CreateParcel(in *Parcel) (out *Parcel, err error) {
-	err = c.post(nil, "parcels", &createParcelRequest{Parcel: in}, &out)
+	err = c.post(context.Background(), "parcels", &createParcelRequest{Parcel: in}, &out)
 	return
 }
 
@@ -47,7 +47,7 @@ func (c *Client) CreateParcelWithContext(ctx context.Context, in *Parcel) (out *
 
 // GetParcel retrieves an existing Parcel object by ID.
 func (c *Client) GetParcel(parcelID string) (out *Parcel, err error) {
-	err = c.get(nil, "parcels/"+parcelID, &out)
+	err = c.get(context.Background(), "parcels/"+parcelID, &out)
 	return
 }
 

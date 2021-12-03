@@ -62,7 +62,7 @@ type createPickupRequest struct {
 //		},
 //	)
 func (c *Client) CreatePickup(in *Pickup) (out *Pickup, err error) {
-	err = c.post(nil, "pickups", &createPickupRequest{Pickup: in}, &out)
+	err = c.post(context.Background(), "pickups", &createPickupRequest{Pickup: in}, &out)
 	return
 }
 
@@ -75,7 +75,7 @@ func (c *Client) CreatePickupWithContext(ctx context.Context, in *Pickup) (out *
 
 // GetPickup retrieves an existing Pickup object by ID.
 func (c *Client) GetPickup(pickupID string) (out *Pickup, err error) {
-	err = c.get(nil, "pickups/"+pickupID, &out)
+	err = c.get(context.Background(), "pickups/"+pickupID, &out)
 	return
 }
 
@@ -94,7 +94,7 @@ func (c *Client) BuyPickup(pickupID string, rate *PickupRate) (out *Pickup, err 
 	vals := url.Values{
 		"carrier": []string{rate.Carrier}, "service": []string{rate.Service},
 	}
-	err = c.post(nil, "pickups/"+pickupID+"/buy", vals, &out)
+	err = c.post(context.Background(), "pickups/"+pickupID+"/buy", vals, &out)
 	return
 }
 
@@ -110,7 +110,7 @@ func (c *Client) BuyPickupWithContext(ctx context.Context, pickupID string, rate
 
 // CancelPickup cancels a scheduled pickup.
 func (c *Client) CancelPickup(pickupID string) (out *Pickup, err error) {
-	err = c.post(nil, "pickups/"+pickupID+"/cancel", nil, &out)
+	err = c.post(context.Background(), "pickups/"+pickupID+"/cancel", nil, &out)
 	return
 }
 

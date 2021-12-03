@@ -50,7 +50,7 @@ type createInsuranceRequest struct {
 //	)
 func (c *Client) CreateInsurance(in *Insurance) (out *Insurance, err error) {
 	req := &createInsuranceRequest{Insurance: in}
-	err = c.post(nil, "insurances", req, &out)
+	err = c.post(context.Background(), "insurances", req, &out)
 	return
 }
 
@@ -74,7 +74,7 @@ type ListInsurancesResult struct {
 
 // ListInsurances provides a paginated result of Insurance objects.
 func (c *Client) ListInsurances(opts *ListOptions) (out *ListInsurancesResult, err error) {
-	return c.ListInsurancesWithContext(nil, opts)
+	return c.ListInsurancesWithContext(context.Background(), opts)
 }
 
 // ListInsurancesWithContext performs the same operation as ListInsurances, but
@@ -86,7 +86,7 @@ func (c *Client) ListInsurancesWithContext(ctx context.Context, opts *ListOption
 
 // GetInsurance returns the Insurance object with the given ID or reference.
 func (c *Client) GetInsurance(insuranceID string) (out *Insurance, err error) {
-	err = c.get(nil, "insurances/"+insuranceID, &out)
+	err = c.get(context.Background(), "insurances/"+insuranceID, &out)
 	return
 }
 

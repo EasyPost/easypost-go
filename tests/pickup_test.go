@@ -111,7 +111,7 @@ func (c *ClientTests) TestPickupBatch() {
 	require.NoError(err)
 	require.NotEmpty(pickup.PickupRates)
 
-	pickup, err = client.BuyPickup(pickup.ID, pickup.PickupRates[0])
+	_, err = client.BuyPickup(pickup.ID, pickup.PickupRates[0])
 	require.NoError(err)
 }
 
@@ -158,7 +158,7 @@ func (c *ClientTests) TestSinglePickup() {
 	minDatetime := noonOnNextMonday()
 	maxDatetime := minDatetime.AddDate(0, 0, 1)
 
-	pickup, err := client.CreatePickup(
+	pickup, _ := client.CreatePickup(
 		&easypost.Pickup{
 			Address:          from,
 			Shipment:         shipment,
@@ -172,7 +172,7 @@ func (c *ClientTests) TestSinglePickup() {
 	require.NotEmpty(pickup.PickupRates)
 	// This is probably a bug in the API. It always returns a rate, but isn't
 	// always a valid one.
-	pickup, err = client.BuyPickup(pickup.ID, pickup.PickupRates[0])
+	_, err = client.BuyPickup(pickup.ID, pickup.PickupRates[0])
 	if err != nil {
 		require.Contains(
 			err.Error(), "schedule and change requests must contain",

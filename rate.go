@@ -26,7 +26,7 @@ type Rate struct {
 	DeliveryDate           *time.Time     `json:"delivery_date,omitempty"`
 	DeliveryDateGuaranteed bool           `json:"delivery_date_guaranteed,omitempty"`
 	EstDeliveryDays        int            `json:"est_delivery_dats,omitempty"`
-	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitemtpy"`
+	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitempty"`
 }
 
 type TimeInTransit struct {
@@ -41,7 +41,7 @@ type TimeInTransit struct {
 
 // GetRate retrieves a previously-created rate by its ID.
 func (c *Client) GetRate(rateID string) (out *Rate, err error) {
-	err = c.get(nil, "rates/"+rateID, &out)
+	err = c.get(context.Background(), "rates/"+rateID, &out)
 	return
 }
 

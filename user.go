@@ -44,7 +44,7 @@ type userRequest struct {
 //  opts := &easypost.UserOptions{Name: easypost.StringPtr("Child User")}
 //	out, err := c.CreateUser(opts)
 func (c *Client) CreateUser(in *UserOptions) (out *User, err error) {
-	err = c.post(nil, "users", &userRequest{UserOptions: in}, &out)
+	err = c.post(context.Background(), "users", &userRequest{UserOptions: in}, &out)
 	return
 }
 
@@ -57,7 +57,7 @@ func (c *Client) CreateUserWithContext(ctx context.Context, in *UserOptions) (ou
 
 // GetUser retrieves a User object by ID.
 func (c *Client) GetUser(userID string) (out *User, err error) {
-	err = c.get(nil, "users/"+userID, &out)
+	err = c.get(context.Background(), "users/"+userID, &out)
 	return
 }
 
@@ -77,7 +77,7 @@ func (c *Client) UpdateUser(in *UserOptions) (out *User, err error) {
 	if in.ID != "" {
 		path += "/" + in.ID
 	}
-	err = c.put(nil, path, req, &out)
+	err = c.put(context.Background(), path, req, &out)
 	return
 }
 
@@ -95,7 +95,7 @@ func (c *Client) UpdateUserWithContext(ctx context.Context, in *UserOptions) (ou
 
 // DeleteUser removes a child user.
 func (c *Client) DeleteUser(userID string) error {
-	return c.del(nil, "users/"+userID)
+	return c.del(context.Background(), "users/"+userID)
 }
 
 // DeleteUserWithContext performs the same operation as DeleteUser, but allows

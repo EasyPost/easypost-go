@@ -34,7 +34,7 @@ func (c *ClientTests) TestInsuranceCreation() {
 	)
 	require.NoError(err)
 
-	insurance, err := client.CreateInsurance(
+	insurance, _ := client.CreateInsurance(
 		&easypost.Insurance{
 			ToAddress:    to,
 			FromAddress:  from,
