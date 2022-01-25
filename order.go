@@ -23,6 +23,7 @@ type Order struct {
 	Rates         []*Rate           `json:"rates,omitempty"`
 	Messages      []*CarrierMessage `json:"messages,omitempty"`
 	IsReturn      bool              `json:"is_return"`
+	Service       string            `json:"service,omitempty"`
 }
 
 type createOrderRequest struct {

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+* Adds support to one-call buy an order
+
 ## v1.4.0 2021-10-06
 
 * Adds support for `TaxIdentifiers`
