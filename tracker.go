@@ -37,7 +37,7 @@ type TrackingCarrierDetail struct {
 	ContainerType               string            `json:"container_type,omitempty"`
 	EstDeliveryDateLocal        string            `json:"est_delivery_date_local,omitempty"`
 	EstDeliveryTimeLocal        string            `json:"est_delivery_time_local,omitempty"`
-	OriginLocation              string            `json:"origin_locaion,omitempty"`
+	OriginLocation              string            `json:"origin_location,omitempty"`
 	OriginTrackingLocation      *TrackingLocation `json:"origin_tracking_location,omitempty"`
 	DestinationLocation         string            `json:"destination_location,omitempty"`
 	DestinationTrackingLocation *TrackingLocation `json:"destination_tracking_location,omitempty"`
