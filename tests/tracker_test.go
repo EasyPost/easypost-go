@@ -1,8 +1,28 @@
 package easypost_test
 
 import (
+	"strconv"
+
 	"github.com/EasyPost/easypost-go"
 )
+
+func (c *ClientTests) TestTrackerCreateList() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	trackingCodeParam := make(map[string]interface{})
+	trackingCodes := []string{"EZ1000000001", "EZ1000000001", "EZ1000000001"}
+
+	for i := range trackingCodes {
+		trackingCodeParam[strconv.Itoa(i)] = map[string]string{
+			"tracking_code": trackingCodes[i],
+			"carrier":       "USPS",
+		}
+	}
+	response, err := client.CreateTrackerList(trackingCodeParam)
+	assert.NoError(err)
+	assert.True(response)
+}
 
 func (c *ClientTests) TestTrackerValues() {
 	client := c.TestClient()

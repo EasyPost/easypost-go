@@ -3,7 +3,6 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"strconv"
 	"time"
 )
 
@@ -127,43 +126,19 @@ func (c *Client) CreateTrackerWithContext(ctx context.Context, opts *CreateTrack
 	return
 }
 
-// CreateTrackerList asynchronously creates multiple trackers. Only
-// TrackingCode, Carrier and IsReturn parameters are supported.
-func (c *Client) CreateTrackerList(opts ...*CreateTrackerOptions) error {
-	// Make a nested map:
-	// {
-	//     "trackers": {
-	//         "0": { "tracking_code": "EZ1000000001", "carrier": "USPS" },
-	//         "1": { "tracking_code": "EZ1000000002", "carrier": "USPS" }
-	//     }
-	// }
-	// The keys inside of the 'trackers' map (0, 1 in the example) get discarded
-	// by the API endpoint, so are not important.
-	trackers := make(map[string]map[string]interface{}, len(opts))
-	for i, key := 0, 0; i < len(opts); i++ {
-		if m := opts[i].toMap(); m != nil {
-			trackers[strconv.Itoa(key)] = opts[i].toMap()
-			key++
-		}
-	}
-	req := map[string]interface{}{"trackers": trackers}
-	return c.post(nil, "trackers/create_list", req, nil)
+// CreateTrackerList asynchronously creates multiple trackers.
+// Input a map of maps that contains multiple trackings code
+func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
+	req := map[string]interface{}{"trackers": param}
+	return true, c.post(nil, "trackers/create_list", req, nil)
 }
 
 // CreateTrackerListWithContext performs the same operation as
 // CreateTrackerList, but allows specifying a context that can interrupt the
 // request.
-func (c *Client) CreateTrackerListWithContext(ctx context.Context, opts ...*CreateTrackerOptions) error {
-	trackers := make(map[string]map[string]interface{}, len(opts))
-	for i, key := 0, 0; i < len(opts); i++ {
-		if m := opts[i].toMap(); m != nil {
-			// This key doesn't seem to matter to the API:
-			trackers[strconv.Itoa(key)] = opts[i].toMap()
-			key++
-		}
-	}
-	req := map[string]interface{}{"trackers": trackers}
-	return c.post(ctx, "trackers/create_list", req, nil)
+func (c *Client) CreateTrackerListWithContext(ctx context.Context, param map[string]interface{}) (bool, error) {
+	req := map[string]interface{}{"trackers": param}
+	return true, c.post(ctx, "trackers/create_list", req, nil)
 }
 
 // ListTrackersOptions is used to specify query parameters for listing Tracker
