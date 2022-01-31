@@ -11,7 +11,7 @@ func (c *ClientTests) TestTrackerCreateList() {
 	assert := c.Assert()
 
 	trackingCodeParam := make(map[string]interface{})
-	trackingCodes := []string{"EZ1000000001", "EZ1000000001", "EZ1000000001"}
+	trackingCodes := []string{"EZ1000000001", "EZ1000000002", "EZ1000000003"}
 
 	for i := range trackingCodes {
 		trackingCodeParam[strconv.Itoa(i)] = map[string]string{

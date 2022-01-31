@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"trackers":{"0":{"carrier":"USPS","tracking_code":"EZ1000000001"},"1":{"carrier":"USPS","tracking_code":"EZ1000000001"},"2":{"carrier":"USPS","tracking_code":"EZ1000000001"}}}'
+    body: '{"trackers":{"0":{"carrier":"USPS","tracking_code":"EZ1000000001"},"1":{"carrier":"USPS","tracking_code":"EZ1000000002"},"2":{"carrier":"USPS","tracking_code":"EZ1000000003"}}}'
     form: {}
     headers:
       Content-Type:
@@ -35,21 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 378fad9361f81e25e79b13ab005ee9bc
+      - bd96933d61f82411e798e15c00641ad7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
+      - intlb1nuq 88c34981dc
+      - extlb2nuq 88c34981dc
       X-Request-Id:
-      - e945859c-f9e1-454b-a3f4-aed6bbf50b67
+      - 8c98e153-894b-46b3-a152-f904a18fdd31
       X-Runtime:
-      - "0.068857"
+      - "0.039717"
       X-Version-Label:
       - easypost-202201300541-b0262c2d5a-master
       X-Xss-Protection:
