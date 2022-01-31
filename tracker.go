@@ -127,8 +127,17 @@ func (c *Client) CreateTrackerWithContext(ctx context.Context, opts *CreateTrack
 }
 
 // CreateTrackerList asynchronously creates multiple trackers.
-// Input a map of maps that contains multiple trackings code
+// Input a map of maps that contains multiple tracking codes
 func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
+	// The data structure must look like the following when calling the API:
+	// {
+	//     "trackers": {
+	//         "0": { "tracking_code": "EZ1000000001", "carrier": "USPS" },
+	//         "1": { "tracking_code": "EZ1000000002", "carrier": "USPS" }
+	//     }
+	// }
+	// The keys inside of the 'trackers' map (0, 1 in the example) get discarded
+	// by the API endpoint, so are not important.
 	req := map[string]interface{}{"trackers": param}
 	return true, c.post(nil, "trackers/create_list", req, nil)
 }
