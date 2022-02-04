@@ -4,6 +4,8 @@ import (
 	"context"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -349,5 +351,50 @@ func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
 func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
 	res := &getShipmentRatesResponse{Rates: &out}
 	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", nil, &res)
+	return
+}
+
+func (c *Client) LowestRate(shipment *Shipment) (out Rate, err error) {
+	return c.LowestRateWithCarrier(shipment, nil)
+}
+
+func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
+	return c.LowestRateWithCarrierAndService(shipment, carriers, nil)
+}
+
+func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
+	carriersMap, servicesMap := make(map[string]int), make(map[string]int)
+
+	if carriers != nil {
+		for index := range carriers {
+			carriersMap[strings.ToLower(carriers[index])] = 1
+		}
+	}
+
+	if services != nil {
+		for index := range services {
+			servicesMap[strings.ToLower(services[index])] = 1
+		}
+	}
+
+	for index := range shipment.Rates {
+
+		if len(carriersMap) > 0 && carriersMap[strings.ToLower(shipment.Rates[index].Carrier)] != 1 ||
+			len(servicesMap) > 0 && servicesMap[strings.ToLower(shipment.Rates[index].Service)] != 1 {
+			continue
+		}
+
+		if out.ID == "" {
+			out = *shipment.Rates[index]
+		}
+		currentRate, currentRateErr := strconv.ParseFloat(out.Rate, 64)
+		newRate, newRateErr := strconv.ParseFloat(shipment.Rates[index].Rate, 64)
+		if currentRateErr != nil || newRateErr != nil {
+			return
+		}
+		if currentRate > newRate {
+			out = *shipment.Rates[index]
+		}
+	}
 	return
 }

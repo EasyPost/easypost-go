@@ -1,0 +1,366 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"address":{"street1":"55 Sparks St.","city":"Ottawa","state":"ON","zip":"k1p5a5","country":"CA","name":"Elmer
+      Fudd","phone":"613-555-1212"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.4.0 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"id":"adr_6453ad50861311ecbb48ac1f6bc7b362","object":"Address","created_at":"2022-02-04T23:37:18+00:00","updated_at":"2022-02-04T23:37:18+00:00","name":"Elmer
+      Fudd","company":null,"street1":"55 Sparks St.","street2":null,"city":"Ottawa","state":"ON","zip":"k1p5a5","country":"CA","phone":"6135551212","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"5d1456e76719882e81490713aee1c107"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_6453ad50861311ecbb48ac1f6bc7b362
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 80dc0e2161fdb8aeff136b43003ccde8
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - extlb2nuq 88c34981dc
+      X-Request-Id:
+      - 60f3c3d3-7ee1-4e14-b96a-f4a22c3b5839
+      X-Runtime:
+      - "0.039894"
+      X-Version-Label:
+      - easypost-202202042220-76f9648007-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"address":{"street1":"One Montgomery St","street2":"Ste 400","city":"San
+      Francisco","state":"CA","zip":"94104","company":"EasyPost","phone":"415-456-7890"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.4.0 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"id":"adr_64652f03861311eca1ccac1f6b0a0d1e","object":"Address","created_at":"2022-02-04T23:37:18+00:00","updated_at":"2022-02-04T23:37:18+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"d7b0d608f28901e0f39f6db599a6c061"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_64652f03861311eca1ccac1f6b0a0d1e
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 80dc0e2161fdb8aeff136b43003ccdef
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - extlb2nuq 88c34981dc
+      X-Request-Id:
+      - 1fa7f8ff-3910-4670-9fdf-3a169afeaa94
+      X-Runtime:
+      - "0.036322"
+      X-Version-Label:
+      - easypost-202202042220-76f9648007-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"parcel":{"length":10.2,"width":7.8,"height":4.3,"weight":21.2}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.4.0 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/parcels
+    method: POST
+  response:
+    body: '{"id":"prcl_26cfd61dc3ff4665a489e7b2cee60758","object":"Parcel","created_at":"2022-02-04T23:37:18Z","updated_at":"2022-02-04T23:37:18Z","length":10.2,"width":7.8,"height":4.3,"predefined_package":null,"weight":21.2,"mode":"test"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"a6620f300f71e5322395dffb5694e192"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/parcels.prcl_26cfd61dc3ff4665a489e7b2cee60758
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 80dc0e2161fdb8aeff136b43003ccdf4
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - extlb2nuq 88c34981dc
+      X-Request-Id:
+      - 407d0c77-3c0c-447c-960b-2fb961378ab5
+      X-Runtime:
+      - "0.029395"
+      X-Version-Label:
+      - easypost-202202042220-76f9648007-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"customs_item":{"description":"EasyPost t-shirts","quantity":2,"value":"96.27","weight":21.1,"hs_tariff_number":"123456","origin_country":"US"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.4.0 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/customs_items
+    method: POST
+  response:
+    body: '{"id":"cstitem_cace473ad9a54faa883bc3e2da1db68f","object":"CustomsItem","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","description":"EasyPost
+      t-shirts","hs_tariff_number":"123456","origin_country":"US","quantity":2,"value":"96.27","weight":21.1,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"c58cf9ffb7e628d8a47230295c2807f7"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/customs_items/cstitem_cace473ad9a54faa883bc3e2da1db68f
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 80dc0e2161fdb8afff136b43003ccdfd
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb3nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - extlb2nuq 88c34981dc
+      X-Request-Id:
+      - d08756e5-d677-4c7c-abf3-75888be6e19e
+      X-Runtime:
+      - "0.030781"
+      X-Version-Label:
+      - easypost-202202042220-76f9648007-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"customs_info":{"eel_pfc":"NOEEI 30.37(a)","contents_type":"gift","customs_certify":true,"customs_signer":"Wile
+      E. Coyote","non_delivery_option":"return","restriction_type":"none","customs_items":[{"id":"cstitem_cace473ad9a54faa883bc3e2da1db68f","object":"CustomsItem","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","description":"EasyPost
+      t-shirts","quantity":2,"value":"96.27","weight":21.1,"hs_tariff_number":"123456","origin_country":"US"}]}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.4.0 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/customs_infos
+    method: POST
+  response:
+    body: '{"id":"cstinfo_74e4d750844645c79165056bbb54f006","object":"CustomsInfo","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","contents_explanation":null,"contents_type":"gift","customs_certify":true,"customs_signer":"Wile
+      E. Coyote","eel_pfc":"NOEEI 30.37(a)","non_delivery_option":"return","restriction_comments":null,"restriction_type":"none","mode":"test","declaration":null,"customs_items":[{"id":"cstitem_cace473ad9a54faa883bc3e2da1db68f","object":"CustomsItem","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","description":"EasyPost
+      t-shirts","hs_tariff_number":"123456","origin_country":"US","quantity":2,"value":"96.27","weight":21.1,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"d514385fc700a4c01a6b1d03272610b9"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/customs_infos/cstinfo_74e4d750844645c79165056bbb54f006
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 80dc0e2161fdb8afff136b43003cce09
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb3nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - extlb2nuq 88c34981dc
+      X-Request-Id:
+      - db23488d-a453-4b1a-a644-523861bfa728
+      X-Runtime:
+      - "0.036642"
+      X-Version-Label:
+      - easypost-202202042220-76f9648007-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"shipment":{"to_address":{"id":"adr_6453ad50861311ecbb48ac1f6bc7b362","object":"Address","mode":"test","created_at":"2022-02-04T23:37:18Z","updated_at":"2022-02-04T23:37:18Z","street1":"55
+      Sparks St.","city":"Ottawa","state":"ON","zip":"k1p5a5","country":"CA","name":"Elmer
+      Fudd","phone":"6135551212","verifications":{"zip4":null,"delivery":null}},"from_address":{"id":"adr_64652f03861311eca1ccac1f6b0a0d1e","object":"Address","mode":"test","created_at":"2022-02-04T23:37:18Z","updated_at":"2022-02-04T23:37:18Z","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","company":"EasyPost","phone":"4154567890","verifications":{"zip4":null,"delivery":null}},"parcel":{"id":"prcl_26cfd61dc3ff4665a489e7b2cee60758","object":"Parcel","mode":"test","created_at":"2022-02-04T23:37:18Z","updated_at":"2022-02-04T23:37:18Z","length":10.2,"width":7.8,"height":4.3,"weight":21.2},"customs_info":{"id":"cstinfo_74e4d750844645c79165056bbb54f006","object":"CustomsInfo","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","eel_pfc":"NOEEI
+      30.37(a)","contents_type":"gift","customs_certify":true,"customs_signer":"Wile
+      E. Coyote","non_delivery_option":"return","restriction_type":"none","customs_items":[{"id":"cstitem_cace473ad9a54faa883bc3e2da1db68f","object":"CustomsItem","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","description":"EasyPost
+      t-shirts","quantity":2,"value":"96.27","weight":21.1,"hs_tariff_number":"123456","origin_country":"US"}]}}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/1.4.0 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/shipments
+    method: POST
+  response:
+    body: '{"created_at":"2022-02-04T23:37:19Z","is_return":false,"messages":[],"mode":"test","options":{"currency":"USD","payment":{"type":"SENDER"},"date_advance":0},"reference":null,"status":"unknown","tracking_code":null,"updated_at":"2022-02-04T23:37:19Z","batch_id":null,"batch_status":null,"batch_message":null,"customs_info":{"id":"cstinfo_74e4d750844645c79165056bbb54f006","object":"CustomsInfo","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","contents_explanation":null,"contents_type":"gift","customs_certify":true,"customs_signer":"Wile
+      E. Coyote","eel_pfc":"NOEEI 30.37(a)","non_delivery_option":"return","restriction_comments":null,"restriction_type":"none","mode":"test","declaration":null,"customs_items":[{"id":"cstitem_cace473ad9a54faa883bc3e2da1db68f","object":"CustomsItem","created_at":"2022-02-04T23:37:19Z","updated_at":"2022-02-04T23:37:19Z","description":"EasyPost
+      t-shirts","hs_tariff_number":"123456","origin_country":"US","quantity":2,"value":"96.27","weight":21.1,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}]},"from_address":{"id":"adr_64652f03861311eca1ccac1f6b0a0d1e","object":"Address","created_at":"2022-02-04T23:37:18+00:00","updated_at":"2022-02-04T23:37:18+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"insurance":null,"order_id":null,"parcel":{"id":"prcl_26cfd61dc3ff4665a489e7b2cee60758","object":"Parcel","created_at":"2022-02-04T23:37:18Z","updated_at":"2022-02-04T23:37:18Z","length":10.2,"width":7.8,"height":4.3,"predefined_package":null,"weight":21.2,"mode":"test"},"postage_label":null,"rates":[{"id":"rate_8604219b976d42eb97818155af4a9669","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"ExpressWorldwide","carrier":"DHLExpress","rate":"20.38","currency":"USD","retail_rate":"20.38","retail_currency":null,"list_rate":"20.38","list_currency":null,"delivery_days":null,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":null,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_71d5ceee9aa14a72a5d1a3183b13e8ba"},{"id":"rate_2b068215873b4a158ad89ec5d8a8a761","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"ExpressWorldwideNonDoc","carrier":"DHLExpress","rate":"33.11","currency":"USD","retail_rate":"33.11","retail_currency":null,"list_rate":"33.11","list_currency":null,"delivery_days":null,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":null,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_71d5ceee9aa14a72a5d1a3183b13e8ba"},{"id":"rate_2cba9732f70545d3b79ac96781c61dfc","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"ExpressMailInternational","carrier":"USPS","rate":"54.14","currency":"USD","retail_rate":"58.05","retail_currency":"USD","list_rate":"54.14","list_currency":"USD","delivery_days":null,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":null,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_342a9e6052f840548691b6c6101e0437"},{"id":"rate_3700792f255d417898b80b496cbed190","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"FirstClassPackageInternationalService","carrier":"USPS","rate":"21.00","currency":"USD","retail_rate":"22.10","retail_currency":"USD","list_rate":"21.00","list_currency":"USD","delivery_days":null,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":null,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_342a9e6052f840548691b6c6101e0437"},{"id":"rate_45d4672e3dad4b40b9c6ead0f8373c4c","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"PriorityMailInternational","carrier":"USPS","rate":"40.46","currency":"USD","retail_rate":"43.70","retail_currency":"USD","list_rate":"40.46","list_currency":"USD","delivery_days":null,"delivery_date":null,"delivery_date_guaranteed":false,"est_delivery_days":null,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_342a9e6052f840548691b6c6101e0437"},{"id":"rate_61976db870374800bbd69d8ab2bab0b5","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"UPSStandard","carrier":"UPSDAP","rate":"18.63","currency":"USD","retail_rate":"28.78","retail_currency":"USD","list_rate":"29.00","list_currency":"USD","delivery_days":6,"delivery_date":"2022-02-14T23:30:00Z","delivery_date_guaranteed":true,"est_delivery_days":6,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_d0ee91fcd53944c7885984dc344de7e3"},{"id":"rate_27c71eb951e941d5b51f63f0fc815829","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"UPSSaver","carrier":"UPSDAP","rate":"34.28","currency":"USD","retail_rate":"124.98","retail_currency":"USD","list_rate":"129.45","list_currency":"USD","delivery_days":1,"delivery_date":"2022-02-07T23:30:00Z","delivery_date_guaranteed":true,"est_delivery_days":1,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_d0ee91fcd53944c7885984dc344de7e3"},{"id":"rate_9598a879880c4b3bb05a58a9284a6016","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"Express","carrier":"UPSDAP","rate":"38.44","currency":"USD","retail_rate":"127.32","retail_currency":"USD","list_rate":"131.42","list_currency":"USD","delivery_days":1,"delivery_date":null,"delivery_date_guaranteed":true,"est_delivery_days":1,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_d0ee91fcd53944c7885984dc344de7e3"},{"id":"rate_3f030be6e96a4dcdbdeb7a15bad13fd8","object":"Rate","created_at":"2022-02-04T23:37:20Z","updated_at":"2022-02-04T23:37:20Z","mode":"test","service":"Expedited","carrier":"UPSDAP","rate":"31.24","currency":"USD","retail_rate":"114.07","retail_currency":"USD","list_rate":"115.41","list_currency":"USD","delivery_days":2,"delivery_date":"2022-02-08T23:30:00Z","delivery_date_guaranteed":true,"est_delivery_days":2,"shipment_id":"shp_7f2446fdc79f488c98463a007a6c9de3","carrier_account_id":"ca_d0ee91fcd53944c7885984dc344de7e3"}],"refund_status":null,"scan_form":null,"selected_rate":null,"tracker":null,"to_address":{"id":"adr_6453ad50861311ecbb48ac1f6bc7b362","object":"Address","created_at":"2022-02-04T23:37:18+00:00","updated_at":"2022-02-04T23:37:18+00:00","name":"Elmer
+      Fudd","company":null,"street1":"55 Sparks St.","street2":null,"city":"Ottawa","state":"ON","zip":"k1p5a5","country":"CA","phone":"6135551212","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"usps_zone":null,"return_address":{"id":"adr_64652f03861311eca1ccac1f6b0a0d1e","object":"Address","created_at":"2022-02-04T23:37:18+00:00","updated_at":"2022-02-04T23:37:18+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"buyer_address":{"id":"adr_6453ad50861311ecbb48ac1f6bc7b362","object":"Address","created_at":"2022-02-04T23:37:18+00:00","updated_at":"2022-02-04T23:37:18+00:00","name":"Elmer
+      Fudd","company":null,"street1":"55 Sparks St.","street2":null,"city":"Ottawa","state":"ON","zip":"k1p5a5","country":"CA","phone":"6135551212","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"forms":[],"fees":[],"id":"shp_7f2446fdc79f488c98463a007a6c9de3","object":"Shipment"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"82200eb08efae1ec1b9185e7df495c77"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/shipments/shp_7f2446fdc79f488c98463a007a6c9de3
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 80dc0e2161fdb8afff136b43003cce13
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - extlb2nuq 88c34981dc
+      X-Request-Id:
+      - ee9b3927-d1cf-4262-a39d-008790313491
+      X-Runtime:
+      - "1.028504"
+      X-Version-Label:
+      - easypost-202202042220-76f9648007-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
