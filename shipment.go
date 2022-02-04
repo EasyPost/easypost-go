@@ -354,14 +354,19 @@ func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID strin
 	return
 }
 
+// LowestRate gets the lowest rate of a shipment
 func (c *Client) LowestRate(shipment *Shipment) (out Rate, err error) {
 	return c.LowestRateWithCarrier(shipment, nil)
 }
 
+// LowestRateWithCarrier performs the same operation as LowestRate,
+// but allows specifying a list of carriers for the lowest rate
 func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
 	return c.LowestRateWithCarrierAndService(shipment, carriers, nil)
 }
 
+// LowestRateWithCarrierAndService performs the same operation as LowestRate,
+// but allows specifying a list of carriers and service for the lowest rate
 func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
 	carriersMap, servicesMap := make(map[string]int), make(map[string]int)
 
