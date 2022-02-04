@@ -25,7 +25,7 @@ func init() {
 	defaultUserAgent = fmt.Sprintf(
 		"EasyPost/v2 GoClient/%s Go/%s OS/%s",
 		Version, runtime.Version(), runtime.GOOS)
-	defaultTimeout = 30
+	defaultTimeout = 60
 }
 
 // A Client provides an HTTP client for EasyPost API operations.
