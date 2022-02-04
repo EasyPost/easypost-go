@@ -100,3 +100,16 @@ func (c *Client) DeleteUser(userID string) error {
 func (c *Client) DeleteUserWithContext(ctx context.Context, userID string) error {
 	return c.del(ctx, "users/"+userID)
 }
+
+// RetrieveMe retrieves the current user profile.
+func (c *Client) RetrieveMe() (out *User, err error) {
+	c.get(nil, "users", &out)
+	return
+}
+
+// RetrieveMeWithContext performs the same operation as RetrieveMe, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err error) {
+	c.get(ctx, "users", &out)
+	return
+}
