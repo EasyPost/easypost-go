@@ -1,6 +1,9 @@
 package easypost
 
-import "context"
+import (
+	"context"
+	"fmt"
+)
 
 // A User contains data about an EasyPost account and child accounts.
 type User struct {
@@ -101,7 +104,7 @@ func (c *Client) DeleteUserWithContext(ctx context.Context, userID string) error
 	return c.del(ctx, "users/"+userID)
 }
 
-// RetrieveMe retrieves the current user profile.
+// RetrieveMe retrieves the current user.
 func (c *Client) RetrieveMe() (out *User, err error) {
 	c.get(nil, "users", &out)
 	return
@@ -111,5 +114,22 @@ func (c *Client) RetrieveMe() (out *User, err error) {
 // specifying a context that can interrupt the request.
 func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err error) {
 	c.get(ctx, "users", &out)
+	return
+}
+
+// UpdateBrand updates the user brand.
+func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
+	newParams := map[string]interface{}{"brand": params}
+	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
+	c.put(nil, updateBrandURL, newParams, &out)
+	return
+}
+
+// UpdateBrandWithContext performs the same operation as UpdateBrand, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
+	newParams := map[string]interface{}{"brand": params}
+	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
+	c.put(ctx, updateBrandURL, newParams, &out)
 	return
 }
