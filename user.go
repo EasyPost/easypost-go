@@ -125,7 +125,7 @@ func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out 
 	return
 }
 
-// UpdateBrand performs the same operation as UpdateBrand, but allows
+// UpdateBrandWithContext performs the same operation as UpdateBrand, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
