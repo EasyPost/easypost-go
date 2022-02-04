@@ -120,8 +120,8 @@ func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err erro
 // UpdateBrand updates the user brand.
 func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
-	updateBrandUrl := fmt.Sprintf("users/%s/brand", userID)
-	c.put(nil, updateBrandUrl, newParams, &out)
+	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
+	c.put(nil, updateBrandURL, newParams, &out)
 	return
 }
 
@@ -129,7 +129,7 @@ func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out 
 // specifying a context that can interrupt the request.
 func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
-	updateBrandUrl := fmt.Sprintf("users/%s/brand", userID)
-	c.put(ctx, updateBrandUrl, newParams, &out)
+	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
+	c.put(ctx, updateBrandURL, newParams, &out)
 	return
 }
