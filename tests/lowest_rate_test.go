@@ -85,4 +85,19 @@ func (c *ClientTests) TestLowestRate() {
 	assert.Equal("18.63", rate.Rate)
 	assert.Equal("UPSDAP", rate.Carrier)
 	assert.Equal("UPSStandard", rate.Service)
+
+	carriers := []string{"DHLExpress", "USPS"}
+	rateWithCarriersFilter, err := client.LowestRateWithCarrier(shipment, carriers)
+
+	require.NoError(err)
+	assert.Equal("20.38", rateWithCarriersFilter.Rate)
+	assert.Equal("DHLExpress", rateWithCarriersFilter.Carrier)
+	assert.Equal("ExpressWorldwide", rateWithCarriersFilter.Service)
+
+	services := []string{"ExpressWorldwideNonDoc", "FirstClassPackageInternationalService"}
+	rateWithCarriersAndServicesFilter, err := client.LowestRateWithCarrierAndService(shipment, carriers, services)
+	require.NoError(err)
+	assert.Equal("21.00", rateWithCarriersAndServicesFilter.Rate)
+	assert.Equal("USPS", rateWithCarriersAndServicesFilter.Carrier)
+	assert.Equal("FirstClassPackageInternationalService", rateWithCarriersAndServicesFilter.Service)
 }
