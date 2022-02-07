@@ -24,7 +24,6 @@ func (c *ClientTests) TestLowestRateWithoutPreference() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 	shipment := *GenerateTestShipment()
-
 	rate, err := client.LowestRate(&shipment)
 
 	require.NoError(err)
