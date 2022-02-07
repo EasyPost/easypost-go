@@ -78,6 +78,7 @@ func main() {
 		return
 	}
 
+	// Get the lowest rate of the shipment
 	rate, err := client.LowestRate(shipment)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error getting lowest rate:", err)
