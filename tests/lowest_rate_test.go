@@ -100,4 +100,8 @@ func (c *ClientTests) TestLowestRate() {
 	assert.Equal("21.00", rateWithCarriersAndServicesFilter.Rate)
 	assert.Equal("USPS", rateWithCarriersAndServicesFilter.Carrier)
 	assert.Equal("FirstClassPackageInternationalService", rateWithCarriersAndServicesFilter.Service)
+
+	noLowestRate, err := client.LowestRateWithCarrier(shipment, []string{"Cainiao"})
+	require.Error(err)
+	assert.Equal(noLowestRate, easypost.Rate{})
 }

@@ -2,6 +2,7 @@ package easypost
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"net/url"
 	"strconv"
@@ -368,38 +369,38 @@ func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (o
 // LowestRateWithCarrierAndService performs the same operation as LowestRate,
 // but allows specifying a list of carriers and service for the lowest rate
 func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
-	carriersMap, servicesMap := make(map[string]int), make(map[string]int)
+	carriersMap, servicesMap := make(map[string]bool), make(map[string]bool)
 
 	if carriers != nil {
 		for _, carrier := range carriers {
-			carriersMap[strings.ToLower(carrier)] = 1
+			carriersMap[strings.ToLower(carrier)] = true
 		}
 	}
 
 	if services != nil {
 		for _, service := range services {
-			servicesMap[strings.ToLower(service)] = 1
+			servicesMap[strings.ToLower(service)] = true
 		}
 	}
 
 	for _, rate := range shipment.Rates {
 
-		if len(carriersMap) > 0 && carriersMap[strings.ToLower(rate.Carrier)] != 1 ||
-			len(servicesMap) > 0 && servicesMap[strings.ToLower(rate.Service)] != 1 {
+		if len(carriersMap) > 0 && !carriersMap[strings.ToLower(rate.Carrier)] ||
+			len(servicesMap) > 0 && !servicesMap[strings.ToLower(rate.Service)] {
 			continue
 		}
 
-		if out.ID == "" {
-			out = *rate
-		}
-		currentRate, currentRateParsingError := strconv.ParseFloat(out.Rate, 64)
-		newRate, newRateParsingError := strconv.ParseFloat(rate.Rate, 64)
-		if currentRateParsingError != nil || newRateParsingError != nil {
-			return
-		}
-		if currentRate > newRate {
+		currentRate, _ := strconv.ParseFloat(out.Rate, 32)
+		newRate, _ := strconv.ParseFloat(rate.Rate, 32)
+
+		if (out == Rate{} || currentRate > newRate) && newRate > 0 {
 			out = *rate
 		}
 	}
+
+	if (out == Rate{}) {
+		return out, errors.New("No rates found.")
+	}
+
 	return
 }
