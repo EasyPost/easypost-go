@@ -25,7 +25,7 @@ func init() {
 	defaultUserAgent = fmt.Sprintf(
 		"EasyPost/v2 GoClient/%s Go/%s OS/%s",
 		Version, runtime.Version(), runtime.GOOS)
-	defaultTimeout = 60
+	defaultTimeout = 60000
 }
 
 // A Client provides an HTTP client for EasyPost API operations.
@@ -45,7 +45,7 @@ type Client struct {
 	// UserAgent is a User-Agent to be sent with API HTTP requests. If empty,
 	// a default will be used.
 	UserAgent string
-	// Timeout specifies the time limit (in seconds) for requests made by this Client. The
+	// Timeout specifies the time limit (in milliseconds) for requests made by this Client. The
 	// timeout includes connection time, any redirects, and reading the
 	// response body.
 	Timeout int
@@ -71,18 +71,21 @@ func (c *Client) userAgent() string {
 }
 
 func (c *Client) timeout() time.Duration {
-	// return timeout in duration in seconds
+	// return timeout duration in milliseconds
+	timeout := c.Timeout
 	if c.Timeout > 0 {
-		return time.Duration(c.Timeout) * time.Second
+		timeout = defaultTimeout
 	}
-	return time.Duration(defaultTimeout) * time.Second
+	return time.Duration(timeout) * time.Millisecond
 }
 
 func (c *Client) client() *http.Client {
-	if c.Client != nil {
-		return c.Client
+	client := c.Client
+	if client != nil {
+		client = http.DefaultClient
 	}
-	return http.DefaultClient
+	client.Timeout = c.timeout()
+	return client
 }
 
 func (c *Client) convertOptsToURLValues(v interface{}) url.Values {
@@ -127,7 +130,6 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		Header: make(http.Header, 2),
 	}
 	req.Header.Set("User-Agent", c.userAgent())
-	c.Client.Timeout = c.timeout()
 	if err := c.setBody(req, in); err != nil {
 		return err
 	}
