@@ -15,9 +15,9 @@ func (c *ClientTests) TestClientTimeout() {
 	}
 	assert := c.Assert()
 	// test that property has been set correctly in the EasyPost.Client instance
-	assert.Equal(client.Timeout, timeout1)
+	assert.Equal(timeout1, client.Timeout)
 	// override the Timeout property after initialization
 	client.Timeout = timeout2
 	// test that property has been changed correctly
-	assert.Equal(client.Timeout, timeout2)
+	assert.Equal(timeout2, client.Timeout)
 }
