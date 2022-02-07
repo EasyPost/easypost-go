@@ -384,7 +384,6 @@ func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []
 	}
 
 	for _, rate := range shipment.Rates {
-
 		if len(carriersMap) > 0 && !carriersMap[strings.ToLower(rate.Carrier)] ||
 			len(servicesMap) > 0 && !servicesMap[strings.ToLower(rate.Service)] {
 			continue
