@@ -73,7 +73,7 @@ func (c *Client) userAgent() string {
 func (c *Client) timeout() time.Duration {
 	// return timeout duration in milliseconds
 	timeout := c.Timeout
-	if c.Timeout > 0 {
+	if c.Timeout <= 0 {
 		timeout = defaultTimeout
 	}
 	return time.Duration(timeout) * time.Millisecond
@@ -81,7 +81,7 @@ func (c *Client) timeout() time.Duration {
 
 func (c *Client) client() *http.Client {
 	client := c.Client
-	if client != nil {
+	if client == nil {
 		client = http.DefaultClient
 	}
 	client.Timeout = c.timeout()
