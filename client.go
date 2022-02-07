@@ -5,13 +5,13 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/google/go-querystring/query"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"runtime"
-
-	"github.com/google/go-querystring/query"
+	"time"
 )
 
 var apiBaseURL = &url.URL{
@@ -19,11 +19,13 @@ var apiBaseURL = &url.URL{
 }
 
 var defaultUserAgent string
+var defaultTimeout int
 
 func init() {
 	defaultUserAgent = fmt.Sprintf(
 		"EasyPost/v2 GoClient/%s Go/%s OS/%s",
 		Version, runtime.Version(), runtime.GOOS)
+	defaultTimeout = 60000
 }
 
 // A Client provides an HTTP client for EasyPost API operations.
@@ -43,6 +45,10 @@ type Client struct {
 	// UserAgent is a User-Agent to be sent with API HTTP requests. If empty,
 	// a default will be used.
 	UserAgent string
+	// Timeout specifies the time limit (in milliseconds) for requests made by this Client. The
+	// timeout includes connection time, any redirects, and reading the
+	// response body.
+	Timeout int
 }
 
 // New returns a new Client with the given API key.
@@ -64,11 +70,22 @@ func (c *Client) userAgent() string {
 	return defaultUserAgent
 }
 
-func (c *Client) client() *http.Client {
-	if c.Client != nil {
-		return c.Client
+func (c *Client) timeout() time.Duration {
+	// return timeout duration in milliseconds
+	timeout := c.Timeout
+	if c.Timeout <= 0 {
+		timeout = defaultTimeout
 	}
-	return http.DefaultClient
+	return time.Duration(timeout) * time.Millisecond
+}
+
+func (c *Client) client() *http.Client {
+	client := c.Client
+	if client == nil {
+		client = http.DefaultClient
+	}
+	client.Timeout = c.timeout()
+	return client
 }
 
 func (c *Client) convertOptsToURLValues(v interface{}) url.Values {
