@@ -2,8 +2,11 @@ package easypost
 
 import (
 	"context"
+	"errors"
 	"net/http"
 	"net/url"
+	"strconv"
+	"strings"
 	"time"
 )
 
@@ -349,5 +352,54 @@ func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
 func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
 	res := &getShipmentRatesResponse{Rates: &out}
 	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", nil, &res)
+	return
+}
+
+// LowestRate gets the lowest rate of a shipment
+func (c *Client) LowestRate(shipment *Shipment) (out Rate, err error) {
+	return c.LowestRateWithCarrier(shipment, nil)
+}
+
+// LowestRateWithCarrier performs the same operation as LowestRate,
+// but allows specifying a list of carriers for the lowest rate
+func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
+	return c.LowestRateWithCarrierAndService(shipment, carriers, nil)
+}
+
+// LowestRateWithCarrierAndService performs the same operation as LowestRate,
+// but allows specifying a list of carriers and service for the lowest rate
+func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
+	carriersMap, servicesMap := make(map[string]bool), make(map[string]bool)
+
+	if carriers != nil {
+		for _, carrier := range carriers {
+			carriersMap[strings.ToLower(carrier)] = true
+		}
+	}
+
+	if services != nil {
+		for _, service := range services {
+			servicesMap[strings.ToLower(service)] = true
+		}
+	}
+
+	for _, rate := range shipment.Rates {
+		if len(carriersMap) > 0 && !carriersMap[strings.ToLower(rate.Carrier)] ||
+			len(servicesMap) > 0 && !servicesMap[strings.ToLower(rate.Service)] {
+			continue
+		}
+
+		currentRate, _ := strconv.ParseFloat(out.Rate, 32)
+		newRate, _ := strconv.ParseFloat(rate.Rate, 32)
+
+		if (out == Rate{} || currentRate > newRate) && newRate > 0 {
+			out = *rate
+		}
+	}
+
+	if (out == Rate{}) {
+		return out, errors.New("no rates found")
+	}
+
 	return
 }

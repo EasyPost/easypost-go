@@ -5,6 +5,7 @@
 * Adds support to one-call buy an order
 * Adds support to update user brand
 * Adds support to create a list of trackers
+* Adds support for getting lowest rate of a shipment
 
 ## v1.4.0 2021-10-06
 
