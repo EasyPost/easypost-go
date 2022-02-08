@@ -174,7 +174,7 @@ func (c *Client) CreateShipment(in *Shipment) (out *Shipment, err error) {
 	req := struct {
 		Shipment *Shipment `json:"shipment"`
 	}{Shipment: in}
-	err = c.post(nil, "shipments", &req, &out)
+	err = c.post(context.Background(), "shipments", &req, &out)
 	return
 }
 
@@ -212,7 +212,7 @@ type ListShipmentsResult struct {
 
 // ListShipments provides a paginated result of Shipment objects.
 func (c *Client) ListShipments(opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
-	return c.ListShipmentsWithContext(nil, opts)
+	return c.ListShipmentsWithContext(context.Background(), opts)
 }
 
 // ListShipmentsWithContext performs the same operation as ListShipments, but
@@ -224,7 +224,7 @@ func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmen
 
 // GetShipment retrieves a Shipment object by ID.
 func (c *Client) GetShipment(shipmentID string) (out *Shipment, err error) {
-	err = c.get(nil, "shipments/"+shipmentID, &out)
+	err = c.get(context.Background(), "shipments/"+shipmentID, &out)
 	return
 }
 
@@ -246,7 +246,7 @@ type buyShipmentRequest struct {
 //	out, err := c.Buy("shp_100", &easypost.Rate{ID: "rate_1001"}, "249.99")
 func (c *Client) BuyShipment(shipmentID string, rate *Rate, insurance string) (out *Shipment, err error) {
 	req := &buyShipmentRequest{Rate: rate, Insurance: insurance}
-	err = c.post(nil, "shipments/"+shipmentID+"/buy", req, &out)
+	err = c.post(context.Background(), "shipments/"+shipmentID+"/buy", req, &out)
 	return
 }
 
@@ -263,7 +263,7 @@ func (c *Client) BuyShipmentWithContext(ctx context.Context, shipmentID string, 
 // the new format.
 func (c *Client) GetShipmentLabel(shipmentID, format string) (out *Shipment, err error) {
 	vals := url.Values{"file_format": []string{format}}
-	err = c.do(nil, http.MethodGet, "shipments/"+shipmentID+"/label", vals, &out)
+	err = c.do(context.Background(), http.MethodGet, "shipments/"+shipmentID+"/label", vals, &out)
 	return
 }
 
@@ -280,15 +280,15 @@ type getShipmentRatesResponse struct {
 }
 
 // GetShipmentSmartrates fetches the available smartrates for a shipment.
-func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*Rate, err error) {
-	return c.GetShipmentSmartratesWithContext(nil, shipmentID)
+func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*SmartRate, err error) {
+	return c.GetShipmentSmartratesWithContext(context.Background(), shipmentID)
 }
 
 // GetShipmentSmartratesWithContext performs the same operation as GetShipmentRates,
 // but allows specifying a context that can interrupt the request.
-func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
+func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*SmartRate, err error) {
 	res := struct {
-		Smartrates *[]*Rate `json:"result,omitempty"`
+		Smartrates *[]*SmartRate `json:"result,omitempty"`
 	}{Smartrates: &out}
 	err = c.get(ctx, "shipments/"+shipmentID+"/smartrate", &res)
 	return
@@ -300,7 +300,7 @@ func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentI
 // returned Shipment object's Insurance field.
 func (c *Client) InsureShipment(shipmentID, amount string) (out *Shipment, err error) {
 	vals := url.Values{"amount": []string{amount}}
-	err = c.post(nil, "shipments/"+shipmentID+"/insure", vals, &out)
+	err = c.post(context.Background(), "shipments/"+shipmentID+"/insure", vals, &out)
 	return
 }
 
@@ -314,7 +314,7 @@ func (c *Client) InsureShipmentWithContext(ctx context.Context, shipmentID, amou
 
 // RefundShipment requests a refund from the carrier.
 func (c *Client) RefundShipment(shipmentID string) (out *Shipment, err error) {
-	err = c.post(nil, "shipments/"+shipmentID+"/refund", nil, &out)
+	err = c.post(context.Background(), "shipments/"+shipmentID+"/refund", nil, &out)
 	return
 }
 
@@ -328,7 +328,7 @@ func (c *Client) RefundShipmentWithContext(ctx context.Context, shipmentID strin
 // RerateShipment fetches the available rates for a shipment with the current rates.
 func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
 	res := &getShipmentRatesResponse{Rates: &out}
-	err = c.post(nil, "shipments/"+shipmentID+"/rerate", nil, &res)
+	err = c.post(context.Background(), "shipments/"+shipmentID+"/rerate", nil, &res)
 	return
 }
 
@@ -356,16 +356,12 @@ func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (o
 func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
 	carriersMap, servicesMap := make(map[string]bool), make(map[string]bool)
 
-	if carriers != nil {
-		for _, carrier := range carriers {
-			carriersMap[strings.ToLower(carrier)] = true
-		}
+	for _, carrier := range carriers {
+		carriersMap[strings.ToLower(carrier)] = true
 	}
 
-	if services != nil {
-		for _, service := range services {
-			servicesMap[strings.ToLower(service)] = true
-		}
+	for _, service := range services {
+		servicesMap[strings.ToLower(service)] = true
 	}
 
 	for _, rate := range shipment.Rates {

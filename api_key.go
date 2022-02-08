@@ -23,7 +23,7 @@ type APIKeys struct {
 
 // GetAPIKeys returns the list of API keys associated with the current user.
 func (c *Client) GetAPIKeys() (out *APIKeys, err error) {
-	err = c.get(nil, "api_keys", &out)
+	err = c.get(context.Background(), "api_keys", &out)
 	return
 }
 

@@ -115,7 +115,7 @@ func (c *CreateTrackerOptions) toMap() map[string]interface{} {
 // Providing a carrier is optional, but helps to avoid ambiguity in detecting
 // the carrier based on the tracking code format.
 func (c *Client) CreateTracker(opts *CreateTrackerOptions) (out *Tracker, err error) {
-	err = c.post(nil, "trackers", opts.toMap(), &out)
+	err = c.post(context.Background(), "trackers", opts.toMap(), &out)
 	return
 }
 
@@ -140,7 +140,7 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	// by the API endpoint, so are not important.
 	req := map[string]interface{}{"trackers": param}
 	// This endpoint does not return a response so we return true here
-	return true, c.post(nil, "trackers/create_list", req, nil)
+	return true, c.post(context.Background(), "trackers/create_list", req, nil)
 }
 
 // CreateTrackerListWithContext performs the same operation as
@@ -176,7 +176,7 @@ type ListTrackersResult struct {
 
 // ListTrackers provides a paginated result of Tracker objects.
 func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
-	return c.ListTrackersWithContext(nil, opts)
+	return c.ListTrackersWithContext(context.Background(), opts)
 }
 
 // ListTrackersWithContext performs the same operation as ListTrackers, but
@@ -199,7 +199,7 @@ type ListTrackersUpdatedOptions struct {
 
 // GetTracker retrieves a Tracker object by ID.
 func (c *Client) GetTracker(trackerID string) (out *Tracker, err error) {
-	err = c.get(nil, "trackers/"+trackerID, &out)
+	err = c.get(context.Background(), "trackers/"+trackerID, &out)
 	return
 }
 

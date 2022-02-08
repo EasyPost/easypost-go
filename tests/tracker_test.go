@@ -11,13 +11,13 @@ func (c *ClientTests) TestTrackerValues() {
 	assert := c.Assert()
 	type Value struct{ Code, Status string }
 	values := []Value{
-		Value{Code: "EZ1000000001", Status: "pre_transit"},
-		Value{Code: "EZ2000000002", Status: "in_transit"},
-		Value{Code: "EZ3000000003", Status: "out_for_delivery"},
-		Value{Code: "EZ4000000004", Status: "delivered"},
-		Value{Code: "EZ5000000005", Status: "return_to_sender"},
-		Value{Code: "EZ6000000006", Status: "failure"},
-		Value{Code: "EZ7000000007", Status: "unknown"},
+		{Code: "EZ1000000001", Status: "pre_transit"},
+		{Code: "EZ2000000002", Status: "in_transit"},
+		{Code: "EZ3000000003", Status: "out_for_delivery"},
+		{Code: "EZ4000000004", Status: "delivered"},
+		{Code: "EZ5000000005", Status: "return_to_sender"},
+		{Code: "EZ6000000006", Status: "failure"},
+		{Code: "EZ7000000007", Status: "unknown"},
 	}
 	for i := range values {
 		opts := easypost.CreateTrackerOptions{TrackingCode: values[i].Code}

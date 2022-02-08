@@ -32,7 +32,7 @@ type Report struct {
 //		&easypost.Report{StartDate: "2016-10-01", EndDate: "2016-10-31"},
 //	)
 func (c *Client) CreateReport(typ string, in *Report) (out *Report, err error) {
-	err = c.post(nil, "reports/"+typ, in, &out)
+	err = c.post(context.Background(), "reports/"+typ, in, &out)
 	return
 }
 
@@ -65,7 +65,7 @@ type ListReportsResult struct {
 
 // ListReports provides a paginated result of Report objects of the given type.
 func (c *Client) ListReports(typ string, opts *ListReportsOptions) (out *ListReportsResult, err error) {
-	return c.ListReportsWithContext(nil, typ, opts)
+	return c.ListReportsWithContext(context.Background(), typ, opts)
 }
 
 // ListReportsWithContext performs the same operation as ListReports, but allows
@@ -77,7 +77,7 @@ func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *L
 
 // GetReport fetches a Report object by report type and ID.
 func (c *Client) GetReport(typ, reportID string) (out *Report, err error) {
-	err = c.get(nil, "reports/"+typ+"/"+reportID, &out)
+	err = c.get(context.Background(), "reports/"+typ+"/"+reportID, &out)
 	return
 }
 

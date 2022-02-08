@@ -47,7 +47,7 @@ type batchRequest struct {
 //	)
 func (c *Client) CreateBatch(in ...*Shipment) (out *Batch, err error) {
 	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(nil, "batches", req, &out)
+	err = c.post(context.Background(), "batches", req, &out)
 	return
 }
 
@@ -62,7 +62,7 @@ func (c *Client) CreateBatchWithContext(ctx context.Context, in ...*Shipment) (o
 // CreateAndBuyBatch creates and buys a new batch of shipments in one request.
 func (c *Client) CreateAndBuyBatch(in ...*Shipment) (out *Batch, err error) {
 	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(nil, "batches/create_and_buy", req, &out)
+	err = c.post(context.Background(), "batches/create_and_buy", req, &out)
 	return
 }
 
@@ -87,7 +87,7 @@ type ListBatchesResult struct {
 
 // ListBatches provides a paginated result of Insurance objects.
 func (c *Client) ListBatches(opts *ListOptions) (out *ListBatchesResult, err error) {
-	return c.ListBatchesWithContext(nil, opts)
+	return c.ListBatchesWithContext(context.Background(), opts)
 }
 
 // ListBatchesWithContext performs the same operation as ListBatches, but
@@ -101,7 +101,7 @@ func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) 
 // updated batch object.
 func (c *Client) AddShipmentsToBatch(batchID string, in ...*Shipment) (out *Batch, err error) {
 	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(nil, "batches/"+batchID+"/add_shipments", req, &out)
+	err = c.post(context.Background(), "batches/"+batchID+"/add_shipments", req, &out)
 	return
 }
 
@@ -123,7 +123,7 @@ func (c *Client) RemoveShipmentsFromBatch(batchID string, shipmentIDs ...string)
 	for i := range shipmentIDs {
 		req.Batch.Shipments[i] = &Shipment{ID: shipmentIDs[i]}
 	}
-	err = c.post(nil, "batches/"+batchID+"/remove_shipments", req, &out)
+	err = c.post(context.Background(), "batches/"+batchID+"/remove_shipments", req, &out)
 	return
 }
 
@@ -144,7 +144,7 @@ func (c *Client) RemoveShipmentsFromBatchWithContext(ctx context.Context, batchI
 // BuyBatch initializes purchases for the shipments in the batch. The updated
 // batch object is returned.
 func (c *Client) BuyBatch(batchID string) (out *Batch, err error) {
-	err = c.post(nil, "batches/"+batchID+"/buy", nil, &out)
+	err = c.post(context.Background(), "batches/"+batchID+"/buy", nil, &out)
 	return
 }
 
@@ -157,7 +157,7 @@ func (c *Client) BuyBatchWithContext(ctx context.Context, batchID string) (out *
 
 // GetBatch retrieves a Batch object by ID.
 func (c *Client) GetBatch(batchID string) (out *Batch, err error) {
-	err = c.get(nil, "batches/"+batchID, &out)
+	err = c.get(context.Background(), "batches/"+batchID, &out)
 	return
 }
 
@@ -172,7 +172,7 @@ func (c *Client) GetBatchWithContext(ctx context.Context, batchID string) (out *
 // per batch, and all shipments must have a "postage_purchased" status.
 func (c *Client) GetBatchLabels(batchID, format string) (out *Batch, err error) {
 	vals := url.Values{"file_format": []string{format}}
-	err = c.do(nil, http.MethodGet, "batches/"+batchID+"/label", vals, &out)
+	err = c.do(context.Background(), http.MethodGet, "batches/"+batchID+"/label", vals, &out)
 	return
 }
 
@@ -187,7 +187,7 @@ func (c *Client) GetBatchLabelsWithContext(ctx context.Context, batchID, format 
 // CreateBatchScanForms generates a scan form for the batch.
 func (c *Client) CreateBatchScanForms(batchID, format string) (out *Batch, err error) {
 	vals := url.Values{"file_format": []string{format}}
-	err = c.do(nil, http.MethodPost, "batches/"+batchID+"/scan_form", vals, &out)
+	err = c.do(context.Background(), http.MethodPost, "batches/"+batchID+"/scan_form", vals, &out)
 	return
 }
 

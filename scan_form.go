@@ -42,7 +42,7 @@ func newscanFormRequest(shipmentIDs ...string) *scanFormRequest {
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateScanForm("shp_1", "shp_2")
 func (c *Client) CreateScanForm(shipmentIDs ...string) (out *ScanForm, err error) {
-	err = c.post(nil, "scan_forms", newscanFormRequest(shipmentIDs...), &out)
+	err = c.post(context.Background(), "scan_forms", newscanFormRequest(shipmentIDs...), &out)
 	return
 }
 
@@ -65,7 +65,7 @@ type ListScanFormsResult struct {
 
 // ListScanForms provides a paginated result of ScanForm objects.
 func (c *Client) ListScanForms(opts *ListOptions) (out *ListScanFormsResult, err error) {
-	return c.ListScanFormsWithContext(nil, opts)
+	return c.ListScanFormsWithContext(context.Background(), opts)
 }
 
 // ListScanFormsWithContext performs the same operation as ListScanForms, but
@@ -77,7 +77,7 @@ func (c *Client) ListScanFormsWithContext(ctx context.Context, opts *ListOptions
 
 // GetScanForm retrieves a ScanForm object by ID.
 func (c *Client) GetScanForm(scanFormID string) (out *ScanForm, err error) {
-	err = c.get(nil, "scan_forms/"+scanFormID, &out)
+	err = c.get(context.Background(), "scan_forms/"+scanFormID, &out)
 	return
 }
 

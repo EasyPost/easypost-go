@@ -7,6 +7,29 @@ import (
 
 // A Rate contains information on shipping cost and delivery time.
 type Rate struct {
+	ID                     string     `json:"id,omitempty"`
+	Object                 string     `json:"object,omitempty"`
+	Mode                   string     `json:"mode,omitempty"`
+	CreatedAt              *time.Time `json:"created_at,omitempty"`
+	UpdatedAt              *time.Time `json:"updated_at,omitempty"`
+	Service                string     `json:"service,omitempty"`
+	Carrier                string     `json:"carrier,omitempty"`
+	CarrierAccountID       string     `json:"carrier_account_id,omitempty"`
+	ShipmentID             string     `json:"shipment_id,omitempty"`
+	Rate                   string     `json:"rate,omitempty"`
+	Currency               string     `json:"currency,omitempty"`
+	RetailRate             string     `json:"retail_rate,omitempty"`
+	RetailCurrency         string     `json:"retail_currency,omitempty"`
+	ListRate               string     `json:"list_rate,omitempty"`
+	ListCurrency           string     `json:"list_currency,omitempty"`
+	DeliveryDays           int        `json:"delivery_days,omitempty"`
+	DeliveryDate           *time.Time `json:"delivery_date,omitempty"`
+	DeliveryDateGuaranteed bool       `json:"delivery_date_guaranteed,omitempty"`
+	EstDeliveryDays        int        `json:"est_delivery_dats,omitempty"`
+}
+
+// A SmartRate contains information on shipping cost and delivery time in addition to time-in-transit details.
+type SmartRate struct {
 	ID                     string         `json:"id,omitempty"`
 	Object                 string         `json:"object,omitempty"`
 	Mode                   string         `json:"mode,omitempty"`
@@ -16,19 +39,20 @@ type Rate struct {
 	Carrier                string         `json:"carrier,omitempty"`
 	CarrierAccountID       string         `json:"carrier_account_id,omitempty"`
 	ShipmentID             string         `json:"shipment_id,omitempty"`
-	Rate                   string         `json:"rate,omitempty"`
+	Rate                   float64        `json:"rate,omitempty"`
 	Currency               string         `json:"currency,omitempty"`
-	RetailRate             string         `json:"retail_rate,omitempty"`
+	RetailRate             float64        `json:"retail_rate,omitempty"`
 	RetailCurrency         string         `json:"retail_currency,omitempty"`
-	ListRate               string         `json:"list_rate,omitempty"`
+	ListRate               float64        `json:"list_rate,omitempty"`
 	ListCurrency           string         `json:"list_currency,omitempty"`
 	DeliveryDays           int            `json:"delivery_days,omitempty"`
 	DeliveryDate           *time.Time     `json:"delivery_date,omitempty"`
 	DeliveryDateGuaranteed bool           `json:"delivery_date_guaranteed,omitempty"`
 	EstDeliveryDays        int            `json:"est_delivery_dats,omitempty"`
-	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitemtpy"`
+	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitempty"`
 }
 
+// TimeInTransit provides details on the probability your package will arrive within a certain number of days
 type TimeInTransit struct {
 	Percentile50 int `json:"percentile_50,omitempty"`
 	Percentile75 int `json:"percentile_75,omitempty"`
@@ -41,7 +65,7 @@ type TimeInTransit struct {
 
 // GetRate retrieves a previously-created rate by its ID.
 func (c *Client) GetRate(rateID string) (out *Rate, err error) {
-	err = c.get(nil, "rates/"+rateID, &out)
+	err = c.get(context.Background(), "rates/"+rateID, &out)
 	return
 }
 

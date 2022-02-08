@@ -44,7 +44,7 @@ type userRequest struct {
 //  opts := &easypost.UserOptions{Name: easypost.StringPtr("Child User")}
 //	out, err := c.CreateUser(opts)
 func (c *Client) CreateUser(in *UserOptions) (out *User, err error) {
-	err = c.post(nil, "users", &userRequest{UserOptions: in}, &out)
+	err = c.post(context.Background(), "users", &userRequest{UserOptions: in}, &out)
 	return
 }
 
@@ -57,7 +57,7 @@ func (c *Client) CreateUserWithContext(ctx context.Context, in *UserOptions) (ou
 
 // GetUser retrieves a User object by ID.
 func (c *Client) GetUser(userID string) (out *User, err error) {
-	err = c.get(nil, "users/"+userID, &out)
+	err = c.get(context.Background(), "users/"+userID, &out)
 	return
 }
 
@@ -77,7 +77,7 @@ func (c *Client) UpdateUser(in *UserOptions) (out *User, err error) {
 	if in.ID != "" {
 		path += "/" + in.ID
 	}
-	err = c.put(nil, path, req, &out)
+	err = c.put(context.Background(), path, req, &out)
 	return
 }
 
@@ -95,7 +95,7 @@ func (c *Client) UpdateUserWithContext(ctx context.Context, in *UserOptions) (ou
 
 // DeleteUser removes a child user.
 func (c *Client) DeleteUser(userID string) error {
-	return c.del(nil, "users/"+userID)
+	return c.del(context.Background(), "users/"+userID)
 }
 
 // DeleteUserWithContext performs the same operation as DeleteUser, but allows
@@ -106,14 +106,14 @@ func (c *Client) DeleteUserWithContext(ctx context.Context, userID string) error
 
 // RetrieveMe retrieves the current user.
 func (c *Client) RetrieveMe() (out *User, err error) {
-	c.get(nil, "users", &out)
+	err = c.get(context.Background(), "users", &out)
 	return
 }
 
 // RetrieveMeWithContext performs the same operation as RetrieveMe, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err error) {
-	c.get(ctx, "users", &out)
+	err = c.get(ctx, "users", &out)
 	return
 }
 
@@ -121,7 +121,7 @@ func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err erro
 func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	c.put(nil, updateBrandURL, newParams, &out)
+	err = c.put(context.Background(), updateBrandURL, newParams, &out)
 	return
 }
 
@@ -130,6 +130,6 @@ func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out 
 func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	c.put(ctx, updateBrandURL, newParams, &out)
+	err = c.put(ctx, updateBrandURL, newParams, &out)
 	return
 }

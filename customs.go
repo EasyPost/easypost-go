@@ -66,7 +66,7 @@ type createCustomsInfoRequest struct {
 //	)
 func (c *Client) CreateCustomsInfo(in *CustomsInfo) (out *CustomsInfo, err error) {
 	req := &createCustomsInfoRequest{CustomsInfo: in}
-	err = c.post(nil, "customs_infos", req, &out)
+	err = c.post(context.Background(), "customs_infos", req, &out)
 	return
 }
 
@@ -81,7 +81,7 @@ func (c *Client) CreateCustomsInfoWithContext(ctx context.Context, in *CustomsIn
 
 // GetCustomsInfo returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsInfo(customsInfoID string) (out *CustomsInfo, err error) {
-	err = c.get(nil, "customs_infos/"+customsInfoID, &out)
+	err = c.get(context.Background(), "customs_infos/"+customsInfoID, &out)
 	return
 }
 
@@ -110,7 +110,7 @@ type createCustomsItemRequest struct {
 //	)
 func (c *Client) CreateCustomsItem(in *CustomsItem) (out *CustomsItem, err error) {
 	req := &createCustomsItemRequest{CustomsItem: in}
-	err = c.post(nil, "customs_items", req, &out)
+	err = c.post(context.Background(), "customs_items", req, &out)
 	return
 }
 
@@ -125,7 +125,7 @@ func (c *Client) CreateCustomsItemWithContext(ctx context.Context, in *CustomsIt
 
 // GetCustomsItem returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsItem(customsItemID string) (out *CustomsItem, err error) {
-	err = c.get(nil, "customs_items/"+customsItemID, &out)
+	err = c.get(context.Background(), "customs_items/"+customsItemID, &out)
 	return
 }
 

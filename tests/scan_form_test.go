@@ -43,7 +43,7 @@ func (c *ClientTests) TestScanFormCreateAndRetrieve() {
 				NonDeliveryOption: "return",
 				RestrictionType:   "none",
 				CustomsItems: []*easypost.CustomsItem{
-					&easypost.CustomsItem{
+					{
 						Description:    "EasyPost t-shirts",
 						HSTariffNumber: "123456",
 						OriginCountry:  "US",
