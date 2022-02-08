@@ -217,13 +217,13 @@ func (c *ClientTests) TestShipmentSmartrates() {
 	smartrates, err := client.GetShipmentSmartrates(shipment.ID)
 	require.NoError(err)
 	assert.Equal(shipment.Rates[0].ID, smartrates[0].ID)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile50, 1)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile75, 2)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile85, 2)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile90, 3)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile95, 3)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile97, 4)
-	assert.Equal(smartrates[0].TimeInTransit.Percentile99, 5)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile50)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile75)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile85)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile90)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile95)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile97)
+	assert.NotNil(smartrates[0].TimeInTransit.Percentile99)
 }
 
 func GenerateTestShipment() *easypost.Shipment {

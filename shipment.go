@@ -280,15 +280,15 @@ type getShipmentRatesResponse struct {
 }
 
 // GetShipmentSmartrates fetches the available smartrates for a shipment.
-func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*Rate, err error) {
+func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*SmartRate, err error) {
 	return c.GetShipmentSmartratesWithContext(context.Background(), shipmentID)
 }
 
 // GetShipmentSmartratesWithContext performs the same operation as GetShipmentRates,
 // but allows specifying a context that can interrupt the request.
-func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
+func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*SmartRate, err error) {
 	res := struct {
-		Smartrates *[]*Rate `json:"result,omitempty"`
+		Smartrates *[]*SmartRate `json:"result,omitempty"`
 	}{Smartrates: &out}
 	err = c.get(ctx, "shipments/"+shipmentID+"/smartrate", &res)
 	return
