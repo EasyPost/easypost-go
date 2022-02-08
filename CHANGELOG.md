@@ -6,7 +6,7 @@
 * Adds support to update user brand
 * Adds support to create a list of trackers
 * Adds support for getting lowest rate of a shipment
-* Removed `GetShipmentRates()` and `GetShipmentRatesWithContext()` methods since the shipment struct already has rates. If you need to get new rates for a shipment, please user `RerateShipment()` method instead
+* Removed `GetShipmentRates()` and `GetShipmentRatesWithContext()` methods since the shipment struct already has rates. If you need to get new rates for a shipment, please use the `RerateShipment()` method instead
 
 ## v1.4.0 2021-10-06
 
