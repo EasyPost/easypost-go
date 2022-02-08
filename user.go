@@ -106,14 +106,14 @@ func (c *Client) DeleteUserWithContext(ctx context.Context, userID string) error
 
 // RetrieveMe retrieves the current user.
 func (c *Client) RetrieveMe() (out *User, err error) {
-	c.get(nil, "users", &out)
+	err = c.get(context.Background(), "users", &out)
 	return
 }
 
 // RetrieveMeWithContext performs the same operation as RetrieveMe, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err error) {
-	c.get(ctx, "users", &out)
+	err = c.get(ctx, "users", &out)
 	return
 }
 
@@ -121,7 +121,7 @@ func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err erro
 func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	c.put(nil, updateBrandURL, newParams, &out)
+	err = c.put(context.Background(), updateBrandURL, newParams, &out)
 	return
 }
 
@@ -130,6 +130,6 @@ func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out 
 func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	c.put(ctx, updateBrandURL, newParams, &out)
+	err = c.put(ctx, updateBrandURL, newParams, &out)
 	return
 }

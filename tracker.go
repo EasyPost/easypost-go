@@ -140,7 +140,7 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	// by the API endpoint, so are not important.
 	req := map[string]interface{}{"trackers": param}
 	// This endpoint does not return a response so we return true here
-	return true, c.post(nil, "trackers/create_list", req, nil)
+	return true, c.post(context.Background(), "trackers/create_list", req, nil)
 }
 
 // CreateTrackerListWithContext performs the same operation as

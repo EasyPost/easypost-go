@@ -356,16 +356,12 @@ func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (o
 func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
 	carriersMap, servicesMap := make(map[string]bool), make(map[string]bool)
 
-	if carriers != nil {
-		for _, carrier := range carriers {
-			carriersMap[strings.ToLower(carrier)] = true
-		}
+	for _, carrier := range carriers {
+		carriersMap[strings.ToLower(carrier)] = true
 	}
 
-	if services != nil {
-		for _, service := range services {
-			servicesMap[strings.ToLower(service)] = true
-		}
+	for _, service := range services {
+		servicesMap[strings.ToLower(service)] = true
 	}
 
 	for _, rate := range shipment.Rates {
