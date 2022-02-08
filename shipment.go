@@ -279,21 +279,6 @@ type getShipmentRatesResponse struct {
 	Rates *[]*Rate `json:"rates,omitempty"`
 }
 
-// GetShipmentRates fetches the available rates for a shipment.
-func (c *Client) GetShipmentRates(shipmentID string) (out []*Rate, err error) {
-	res := &getShipmentRatesResponse{Rates: &out}
-	err = c.get(nil, "shipments/"+shipmentID+"/rates", &res)
-	return
-}
-
-// GetShipmentRatesWithContext performs the same operation as GetShipmentRates,
-// but allows specifying a context that can interrupt the request.
-func (c *Client) GetShipmentRatesWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
-	res := &getShipmentRatesResponse{Rates: &out}
-	err = c.get(ctx, "shipments/"+shipmentID+"/rates", &res)
-	return
-}
-
 // GetShipmentSmartrates fetches the available smartrates for a shipment.
 func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*Rate, err error) {
 	return c.GetShipmentSmartratesWithContext(nil, shipmentID)
