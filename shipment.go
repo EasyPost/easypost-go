@@ -398,7 +398,7 @@ func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []
 	}
 
 	if (out == Rate{}) {
-		return out, errors.New("No rates found.")
+		return out, errors.New("no rates found")
 	}
 
 	return
