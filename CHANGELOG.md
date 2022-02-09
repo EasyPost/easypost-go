@@ -1,34 +1,40 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v2.0.0 (2022-02-09)
 
 * Bumps minimum Go version from `1.12` to `1.15`
 * Bumps dependencies
-* Adds support to one-call buy an order
-* Adds support to update user brand
-* Adds support to create a list of trackers
-* Adds support for getting lowest rate of a shipment
+* Lints the entire project
+* adds a `client.RetrieveMe()` function to retrieve the authenticated user
+* Adds support to one-call buy an order by passing a `Service` and `CarrierAccount`
+* Adds support to update user brand via `client.UpdateBrand()`
+* Adds support to create a list of trackers via `client.CreateTrackerList()`
+* Adds support for getting the lowest rate of a shipment via `client.LowestRate()`
+* Adds support to rerate a shipment via the `client.RerateShipment()` method
+* Adds a default timeout of 60 seconds to requests. This can be overridden by by setting the `Client.Timeout` option in milliseconds
+* Fixed a spelling error for `origin_location` on the Tracker struct
 * Removed `GetShipmentRates()` and `GetShipmentRatesWithContext()` methods since the shipment struct already has rates. If you need to get new rates for a shipment, please use the `RerateShipment()` method instead
+* Adds a `SmartRate` struct since the structure of the `Rate` and `SmartRate` objects are different (previously the SmartRate object borrowed the Rate struct)
 
-## v1.4.0 2021-10-06
+## v1.4.0 (2021-10-06)
 
 * Adds support for `TaxIdentifiers`
 * Remove experimental undocumented methods `ListTrackersUpdated` and `ListTrackersUpdatedWithContext`
 
-## v1.3.1 2021-06-23
+## v1.3.1 (2021-06-23)
 
 * Corrects `CODAmount` from a `float64` to a `string`
 
-## v1.3.0 2021-05-27
+## v1.3.0 (2021-05-27)
 
 * Adds `Smartrate` functionality to the `Shipments` object (available by calling `GetShipmentSmartrates()`)
 
-## 1.2.0 2021-04-06
+## v1.2.0 (2021-04-06)
 
  * Fix batch scan form functionality; replace GetBatchScanForms with
    CreateBatchScanForms
 
-## 1.1.0 2020-06-10
+## v1.1.0 (2020-06-10)
 
  * Update example code.
  * Add GetRate method and example.
@@ -38,16 +44,16 @@
    for using these methods as well as using the Event type in a webhook
    handler.
 
-## 1.0.3 2020-05-30
+## v1.0.3 (2020-05-30)
 
  * Fix issue in List actions that take query parameters
 
-## 1.0.2 2020-05-08
+## v1.0.2 (2020-05-08)
 
  * Add shipment options for certified and registered mail.
  * Changes to unit tests.
 
-## 1.0.1 2020-03-17
+## v1.0.1 (2020-03-17)
 
  * Update URL in installation instructions.
  * Properly format the carrier_accounts parameter in create shipment requests.
@@ -59,6 +65,6 @@
    key name when serialized to JSON. Prior to this change, values in the Fields
    field were not recognized by the API.
 
-## 1.0.0 2019-09-03
+## v1.0.0 (2019-09-03)
 
  * Initial release.
