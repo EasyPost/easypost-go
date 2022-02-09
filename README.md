@@ -7,26 +7,17 @@ EasyPost is the simple shipping API. You can sign up for an account at <https://
 
 This work is licensed under the ISC License, a copy of which can be found at [LICENSE](LICENSE)
 
-Requirements
-------------
-
-The `easypost` Go package should work with any recent version of Go that supports modules (typically, 1.12+).
-
-
-Installation
-------------
+## Installation
 
 ```bash
 go get -u github.com/EasyPost/easypost-go
 ```
 
-Documentation
--------------
+## Documentation
 
 See below example, or [pkg.go.dev](https://pkg.go.dev/github.com/EasyPost/easypost-go).
 
-Example
--------
+## Example
 
 ```go
 package main
@@ -167,13 +158,7 @@ func main() {
 }
 ```
 
-Development
------------
-
-### Releasing
-   1. Update Version constant in version.go.
-   1. Update CHANGELOG.
-   1. Create a git tag with proper Go version semantics (e.g., `v1.0.0`).
+## Development
 
 ### Tests
 
