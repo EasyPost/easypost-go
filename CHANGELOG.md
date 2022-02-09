@@ -2,6 +2,8 @@
 
 ## NEXT RELEASE
 
+* Bumps minimum Go version from `1.12` to `1.15`
+* Bumps dependencies
 * Adds support to one-call buy an order
 * Adds support to update user brand
 * Adds support to create a list of trackers
