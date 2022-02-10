@@ -3,8 +3,9 @@ package main
 import (
 	"encoding/json"
 	"fmt"
-	"github.com/EasyPost/easypost-go"
 	"os"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func main() {
