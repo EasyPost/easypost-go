@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 	"testing"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 	"github.com/stretchr/testify/assert"
 )
 

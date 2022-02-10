@@ -1,6 +1,12 @@
 # CHANGELOG
 
+## v2.0.1 (2022-02-10)
+
+* Corrects namespace for v2 release from `github.com/EasyPost/easypost-go` to `github.com/EasyPost/easypost-go/v2`
+
 ## v2.0.0 (2022-02-09)
+
+**NOTE: Do not use this release, use v2.0.1 or later due to this release being incorrectly packaged.** 
 
 * Bumps minimum Go version from `1.12` to `1.15`
 * Bumps dependencies

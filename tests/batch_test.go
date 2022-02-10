@@ -3,7 +3,7 @@ package easypost_test
 import (
 	"time"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestBatchCreateAndBuy() {

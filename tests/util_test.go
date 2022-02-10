@@ -9,7 +9,7 @@ import (
 	"strings"
 	"testing"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/stretchr/testify/suite"

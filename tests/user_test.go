@@ -3,7 +3,7 @@ package easypost_test
 import (
 	"encoding/json"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 	"github.com/dnaeon/go-vcr/cassette"
 )
 

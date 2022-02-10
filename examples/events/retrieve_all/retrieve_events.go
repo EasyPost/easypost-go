@@ -6,7 +6,7 @@ import (
 	"os"
 	"time"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func main() {

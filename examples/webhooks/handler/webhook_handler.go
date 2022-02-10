@@ -8,7 +8,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 type Handler struct {

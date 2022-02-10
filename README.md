@@ -10,7 +10,7 @@ This work is licensed under the ISC License, a copy of which can be found at [LI
 ## Installation
 
 ```bash
-go get -u github.com/EasyPost/easypost-go
+go get -u github.com/EasyPost/easypost-go/v2
 ```
 
 ## Documentation
@@ -26,7 +26,7 @@ import (
 	"fmt"
 	"os"
 
-	"github.com/EasyPost/easypost-go"
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func main() {
