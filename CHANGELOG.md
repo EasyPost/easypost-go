@@ -17,7 +17,7 @@
 * Adds support to create a list of trackers via `client.CreateTrackerList()`
 * Adds support for getting the lowest rate of a shipment via `client.LowestRate()`
 * Adds support to rerate a shipment via the `client.RerateShipment()` method
-* Adds a default timeout of 60 seconds to requests. This can be overridden by by setting the `Client.Timeout` option in milliseconds
+* Adds a default timeout of 60 seconds to requests. This can be overridden by setting the `Client.Timeout` option in milliseconds
 * Fixed a spelling error for `origin_location` on the Tracker struct
 * Removed `GetShipmentRates()` and `GetShipmentRatesWithContext()` methods since the shipment struct already has rates. If you need to get new rates for a shipment, please use the `RerateShipment()` method instead
 * Adds a `SmartRate` struct since the structure of the `Rate` and `SmartRate` objects are different (previously the SmartRate object borrowed the Rate struct)
