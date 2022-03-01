@@ -1,0 +1,113 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/refunds
+    method: GET
+  response:
+    body: '{"refunds":[{"id":"rfnd_7b3b8b3f32ab44338cd7bc08a34d2fa2","object":"Refund","created_at":"2022-03-01T19:09:16Z","updated_at":"2022-03-01T19:09:16Z","tracking_code":"9400100897846109549866","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_2cc69ae5dde14e7ba0b796bdaf04266a"},{"id":"rfnd_db3b3dfbf38c4105bee552d0de72c618","object":"Refund","created_at":"2022-03-01T16:28:34Z","updated_at":"2022-03-01T16:28:34Z","tracking_code":"9400100897846109519364","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_4fdb053508874a6ab2fbed76d91ba56c"}],"has_more":false}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"e9698a3709e0015a0cced6815ddfdafc"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 7a24fa5b621e6f64ff23d5b800347483
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 010fb843-72a6-4c68-973d-e53443980d22
+      X-Runtime:
+      - "0.051545"
+      X-Version-Label:
+      - easypost-202203011826-45d0115384-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/refunds/rfnd_7b3b8b3f32ab44338cd7bc08a34d2fa2
+    method: GET
+  response:
+    body: '{"id":"rfnd_7b3b8b3f32ab44338cd7bc08a34d2fa2","object":"Refund","created_at":"2022-03-01T19:09:16Z","updated_at":"2022-03-01T19:09:16Z","tracking_code":"9400100897846109549866","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_2cc69ae5dde14e7ba0b796bdaf04266a"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"bef0f606ef5c21b7c88392fbb3f483c1"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 7a24fa5b621e6f64ff23d5b800347491
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - dc610338-9186-4963-87cd-360dc8c69a67
+      X-Runtime:
+      - "0.047051"
+      X-Version-Label:
+      - easypost-202203011826-45d0115384-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
