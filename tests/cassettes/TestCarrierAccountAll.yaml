@@ -1,0 +1,89 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/carrier_accounts
+    method: GET
+  response:
+    body: '[{"id":"ca_e606176ddb314afe896733636dba2f3b","object":"CarrierAccount","type":"UspsAccount","clone":false,"created_at":"2020-05-07T23:43:48Z","updated_at":"2020-05-08T02:33:20Z","description":"USPS
+      Account","reference":null,"readable":"USPS","logo":null,"fields":{"credentials":{"company_name":{"visibility":"visible","label":"Account
+      Holder Name","value":""},"address_street":{"visibility":"visible","label":"Street
+      Address","value":""},"address_city":{"visibility":"visible","label":"City","value":""},"address_state":{"visibility":"visible","label":"State","value":""},"address_zip":{"visibility":"visible","label":"ZIP
+      Code","value":""},"phone":{"visibility":"visible","label":"Phone Number","value":""},"email":{"visibility":"visible","label":"Email
+      Address","value":null},"shipper_id":{"visibility":"visible","label":"Shipper
+      Identifier (Optional)","value":""}}},"credentials":{"company_name":"","address_street":"","address_city":"","address_state":"","address_zip":"","phone":"","email":null,"shipper_id":""},"test_credentials":null},{"id":"ca_e64063166bfe4e92a45c959dc9a720aa","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-02-28T21:43:34Z","updated_at":"2022-02-28T21:43:34Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_e2e30792c1b84bc2b863dbea38b0b80f","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-01T19:59:36Z","updated_at":"2022-03-01T19:59:36Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_895a4c68f893419c8b8449dbb1d91959","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-02T16:41:08Z","updated_at":"2022-03-02T16:41:08Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_ec55f0113bf240448951ee1e7c169ca5","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-02T22:43:50Z","updated_at":"2022-03-02T22:43:50Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_024286b898e346f4b17de43a0677fc7d","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-02T23:57:04Z","updated_at":"2022-03-02T23:57:04Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_3837b40338d24421aa9fa760d426daf6","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-02T23:57:04Z","updated_at":"2022-03-02T23:57:04Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_adda9cf45ed0468eafa9ce36d9186121","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-02T23:57:05Z","updated_at":"2022-03-02T23:57:05Z","description":"My
+      custom description","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_2dbd13dff1f14fdebb42c7a9b5f45b2b","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T02:38:06Z","updated_at":"2022-03-03T02:38:06Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_ee74825f4fb64de6b2d2782df384b4a8","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T02:38:07Z","updated_at":"2022-03-03T02:38:07Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_82e3beda2f6641299205a7d1779fc7ad","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T02:38:07Z","updated_at":"2022-03-03T02:38:08Z","description":"My
+      custom description","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_8bc84350a16c4a6a9344b362aa5b315b","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T02:44:48Z","updated_at":"2022-03-03T02:44:48Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_9bf8286878e8466ba03a563a5f2db15a","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T02:44:49Z","updated_at":"2022-03-03T02:44:49Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null},{"id":"ca_0ff1a988c20442b5aa6246d4356ecb99","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T02:44:49Z","updated_at":"2022-03-03T02:44:50Z","description":"My
+      custom description","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}]'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"2680769074e35159d1e3b7d067148f67"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211239ff135a20001f1f1b
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 2d9ab75d-4b12-4274-9848-d57d18046792
+      X-Runtime:
+      - "0.455312"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

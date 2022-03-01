@@ -1,0 +1,63 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"address":{"street1":"417 montgomery streat","street2":"FL 5","city":"San
+      Francisco","state":"CA","zip":"94104","country":"US","company":"EasyPost","phone":"415-123-4567"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"id":"adr_54b373aa9b2511eca3dbac1f6bc7b362","object":"Address","created_at":"2022-03-03T19:08:37+00:00","updated_at":"2022-03-03T19:08:37+00:00","name":null,"company":"EasyPost","street1":"417
+      montgomery streat","street2":"FL 5","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4151234567","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"bdde9f02ea3f257f2c9231a9bd7a84c9"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_54b373aa9b2511eca3dbac1f6bc7b362
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211235ff135a20001f1e35
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - f7e99f2a-7b5c-47cc-acd9-7c72fe3e5a6a
+      X-Runtime:
+      - "0.031906"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""

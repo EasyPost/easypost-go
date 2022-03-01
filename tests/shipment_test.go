@@ -1,221 +1,135 @@
 package easypost_test
 
 import (
-	"strconv"
-	"strings"
-
 	"github.com/EasyPost/easypost-go/v2"
+	"reflect"
+	"strings"
 )
 
-func (c *ClientTests) TestShipmentCreation() {
+func (c *ClientTests) TestShipmentCreate() {
 	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
+	assert := c.Assert()
 
-	to, err := client.CreateAddress(
-		&easypost.Address{
-			Name:    "Elmer Fudd",
-			Street1: "55 Sparks St.",
-			City:    "Ottawa",
-			State:   "ON",
-			Zip:     "k1p5a5",
-			Country: "CA",
-			Phone:   "613-555-1212",
-		},
-		nil,
-	)
-	require.NoError(err)
+	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
 
-	from, err := client.CreateAddress(
-		&easypost.Address{
-			Company: "EasyPost",
-			Street1: "One Montgomery St",
-			Street2: "Ste 400",
-			City:    "San Francisco",
-			State:   "CA",
-			Zip:     "94104",
-			Phone:   "415-456-7890",
-		},
-		nil,
-	)
-	require.NoError(err)
+	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
+	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
+	assert.NotNil(shipment.Rates)
+	assert.Equal("PNG", shipment.Options.LabelFormat)
+	assert.Equal("123", shipment.Options.InvoiceNumber)
+	assert.Equal("123", shipment.Reference)
+}
 
-	parcel, err := client.CreateParcel(
-		&easypost.Parcel{
-			Length: 10.2,
-			Width:  7.8,
-			Height: 4.3,
-			Weight: 21.2,
+func (c *ClientTests) TestShipmentRetrieve() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
+
+	retrievedShipment, _ := client.GetShipment(shipment.ID)
+
+	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(retrievedShipment))
+	assert.Equal(shipment, retrievedShipment)
+}
+
+func (c *ClientTests) TestShipmentAll() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	shipments, _ := client.ListShipments(
+		&easypost.ListShipmentsOptions{
+			PageSize: c.fixture.pageSize(),
 		},
 	)
-	require.NoError(err)
 
-	customsItem, err := client.CreateCustomsItem(
-		&easypost.CustomsItem{
-			Description:    "EasyPost t-shirts",
-			HSTariffNumber: "123456",
-			OriginCountry:  "US",
-			Quantity:       2,
-			Value:          96.27,
-			Weight:         21.1,
-		},
-	)
-	require.NoError(err)
+	shipmentsList := shipments.Shipments
 
-	customsInfo, err := client.CreateCustomsInfo(
-		&easypost.CustomsInfo{
-			CustomsCertify:    true,
-			CustomsSigner:     "Wile E. Coyote",
-			ContentsType:      "gift",
-			EELPFC:            "NOEEI 30.37(a)",
-			NonDeliveryOption: "return",
-			RestrictionType:   "none",
-			CustomsItems:      []*easypost.CustomsItem{customsItem},
-		},
-	)
-	require.NoError(err)
-
-	shipment, err := client.CreateShipment(
-		&easypost.Shipment{
-			ToAddress:   to,
-			FromAddress: from,
-			Parcel:      parcel,
-			CustomsInfo: customsInfo,
-		},
-	)
-	require.NoError(err)
-
-	if assert.NotEmpty(shipment.BuyerAddress) {
-		assert.Equal(to.Country, shipment.BuyerAddress.Country)
-		assert.Equal(to.Phone, shipment.BuyerAddress.Phone)
-		assert.Equal(to.Street1, shipment.BuyerAddress.Street1)
-		assert.Equal(to.Zip, shipment.BuyerAddress.Zip)
-	}
-	if assert.NotEmpty(shipment.Parcel) {
-		assert.Equal(parcel.Height, shipment.Parcel.Height)
-		assert.Equal(parcel.Weight, shipment.Parcel.Weight)
-		assert.Equal(parcel.Width, shipment.Parcel.Width)
-	}
-	if assert.NotEmpty(shipment.CustomsInfo) {
-		assert.Equal(
-			customsInfo.ContentsExplanation,
-			shipment.CustomsInfo.ContentsExplanation,
-		)
-		if assert.NotEmpty(shipment.CustomsInfo.CustomsItems) {
-			assert.Equal(
-				customsItem.Description,
-				shipment.CustomsInfo.CustomsItems[0].Description,
-			)
-			assert.Equal(
-				customsItem.HSTariffNumber,
-				shipment.CustomsInfo.CustomsItems[0].HSTariffNumber,
-			)
-			assert.Equal(
-				customsItem.Value, shipment.CustomsInfo.CustomsItems[0].Value,
-			)
-		}
-	}
-
-	require.NotEmpty(shipment.Rates)
-	var rate *easypost.Rate
-	for _, r := range shipment.Rates {
-		if !strings.EqualFold(r.Carrier, "USPS") &&
-			!strings.EqualFold(r.Carrier, "ups") {
-			continue
-		}
-		if !strings.EqualFold(r.Service, "priorityMAILInternational") {
-			continue
-		}
-		if rate == nil {
-			rate = r
-		} else {
-			x, _ := strconv.ParseFloat(r.Rate, 64)
-			y, _ := strconv.ParseFloat(rate.Rate, 64)
-			if x < y {
-				rate = r
-			}
-		}
-	}
-	require.NotNil(rate)
-	shipment, err = client.BuyShipment(shipment.ID, rate, "100.00")
-	require.NoError(err)
-
-	assert.NotEmpty(shipment.TrackingCode)
-	assert.Equal("100.00", shipment.Insurance)
-	if assert.NotNil(shipment.PostageLabel) {
-		assert.Contains(
-			shipment.PostageLabel.LabelURL,
-			"https://easypost-files.s3-us-west-2.amazonaws.com",
-		)
+	assert.LessOrEqual(len(shipmentsList), c.fixture.pageSize())
+	assert.NotNil(shipments.HasMore)
+	for _, shipment := range shipmentsList {
+		assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
 	}
 }
 
-func (c *ClientTests) TestShipmentList() {
+func (c *ClientTests) TestShipmentBuy() {
 	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
+	assert := c.Assert()
 
-	out, err := client.ListShipments(&easypost.ListShipmentsOptions{
-		Purchased:       easypost.BoolPtr(false),
-		IncludeChildren: easypost.BoolPtr(false),
-	})
-	require.NoError(err)
-	require.NotEmpty(out)
-	assert.True(len(out.Shipments) > 0)
+	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
+
+	lowestRate, _ := client.LowestRate(shipment)
+
+	boughtShipment, _ := client.BuyShipment(shipment.ID, &lowestRate, "")
+
+	assert.NotNil(boughtShipment.PostageLabel)
 }
 
-func (c *ClientTests) TestShipmentSmartrates() {
+func (c *ClientTests) TestShipmentRegenerateRates() {
 	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
+	assert := c.Assert()
 
-	to, err := client.CreateAddress(
-		&easypost.Address{
-			Name:    "Elmer Fudd",
-			Street1: "179 N Harbor Dr",
-			City:    "Redondo Beach",
-			State:   "CA",
-			Zip:     "90277",
-			Country: "US",
-			Phone:   "613-555-1212",
-		},
-		nil,
-	)
-	require.NoError(err)
+	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
 
-	from, err := client.CreateAddress(
-		&easypost.Address{
-			Company: "EasyPost",
-			Street1: "One Montgomery St",
-			Street2: "Ste 400",
-			City:    "San Francisco",
-			State:   "CA",
-			Zip:     "94104",
-			Phone:   "415-456-7890",
-		},
-		nil,
-	)
-	require.NoError(err)
+	rates, _ := client.RerateShipment(shipment.ID)
 
-	parcel, err := client.CreateParcel(
-		&easypost.Parcel{
-			Length: 10.2,
-			Width:  7.8,
-			Height: 4.3,
-			Weight: 21.2,
-		},
-	)
-	require.NoError(err)
+	assert.Equal(reflect.TypeOf([]*easypost.Rate{}), reflect.TypeOf(rates))
+	for _, rate := range rates {
+		assert.Equal(reflect.TypeOf(&easypost.Rate{}), reflect.TypeOf(rate))
+	}
+}
 
-	shipment, err := client.CreateShipment(
-		&easypost.Shipment{
-			ToAddress:   to,
-			FromAddress: from,
-			Parcel:      parcel,
-		},
-	)
-	require.NoError(err)
-	require.NotEmpty(shipment.Rates)
+func (c *ClientTests) TestShipmentConvertLabel() {
+	client := c.TestClient()
+	assert := c.Assert()
 
-	smartrates, err := client.GetShipmentSmartrates(shipment.ID)
-	require.NoError(err)
+	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
+
+	shipmentWithNewLabel, _ := client.GetShipmentLabel(shipment.ID, "ZPL")
+
+	assert.NotNil(shipmentWithNewLabel.PostageLabel.LabelZPLURL)
+}
+
+// If the shipment was purchased with a USPS rate, it must have had its insurance set to `0` when bought
+// so that USPS doesn't automatically insure it so we could manually insure it here.
+func (c *ClientTests) TestShipmentInsure() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	shipmentData := c.fixture.OneCallBuyShipment()
+	// Set to 0 so USPS doesn't insure this automatically and we can insure the shipment manually
+	shipmentData.Insurance = "0"
+
+	shipment, _ := client.CreateShipment(shipmentData)
+
+	insuredShipment, _ := client.InsureShipment(shipment.ID, "100")
+
+	assert.Equal("100.00", insuredShipment.Insurance)
+}
+
+// Refunding a test shipment must happen within seconds of the shipment being created as test shipments naturally
+// follow a flow of created -> delivered to cycle through tracking events in test mode - as such anything older
+// than a few seconds in test mode may not be refundable.
+func (c *ClientTests) TestShipmentRefund() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
+
+	refundShipment, _ := client.RefundShipment(shipment.ID)
+
+	assert.Equal("submitted", refundShipment.RefundStatus)
+}
+
+func (c *ClientTests) TestShipmentSmartrate() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	shipment, _ := client.CreateShipment(c.fixture.BasicShipment())
+
+	assert.NotNil(shipment.Rates)
+
+	smartrates, _ := client.GetShipmentSmartrates(shipment.ID)
+
 	assert.Equal(shipment.Rates[0].ID, smartrates[0].ID)
 	assert.NotNil(smartrates[0].TimeInTransit.Percentile50)
 	assert.NotNil(smartrates[0].TimeInTransit.Percentile75)
@@ -226,67 +140,34 @@ func (c *ClientTests) TestShipmentSmartrates() {
 	assert.NotNil(smartrates[0].TimeInTransit.Percentile99)
 }
 
-func GenerateTestShipment() *easypost.Shipment {
-	lowestUSPS := &easypost.Rate{Rate: "1.0", Carrier: "USPS", Service: "ParcelSelect"}
-	highestUSPS := &easypost.Rate{Rate: "10.0", Carrier: "USPS", Service: "Priority"}
-	lowestUPS := &easypost.Rate{Rate: "2.0", Carrier: "UPS", Service: "ParcelSelect"}
-	highestUPS := &easypost.Rate{Rate: "20.0", Carrier: "UPS", Service: "Priority"}
-	highestFedex := &easypost.Rate{Rate: "50.0", Carrier: "FedEx", Service: "Overnight"}
+func (c *ClientTests) TestShipmentCreateEmptyObjects() {
+	client := c.TestClient()
+	assert := c.Assert()
 
-	var rates []*easypost.Rate
-	rates = append(rates, lowestUSPS, highestUSPS, lowestUPS, highestUPS, highestFedex)
-	shipment := &easypost.Shipment{
-		Rates: rates,
-	}
-	return shipment
+	shipmentData := c.fixture.BasicShipment()
+	shipmentData.Options = nil
+	shipmentData.TaxIdentifiers = nil
+	shipmentData.Reference = ""
+
+	shipment, _ := client.CreateShipment(shipmentData)
+
+	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
+	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
+	assert.NotNil(shipment.Options) // The EasyPost API populates some default values here
+	assert.Nil(shipment.CustomsInfo)
+	assert.NotNil(shipment.Reference)
 }
 
-func (c *ClientTests) TestLowestRateWithoutPreference() {
+func (c *ClientTests) TestShipmentCreateTaxIdentifier() {
 	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-	shipment := *GenerateTestShipment()
-	rate, err := client.LowestRate(&shipment)
+	assert := c.Assert()
 
-	require.NoError(err)
-	assert.Equal("1.0", rate.Rate)
-	assert.Equal("USPS", rate.Carrier)
-	assert.Equal("ParcelSelect", rate.Service)
-}
+	shipmentData := c.fixture.BasicShipment()
+	shipmentData.TaxIdentifiers = []*easypost.TaxIdentifier{c.fixture.TaxIdentifier()}
 
-func (c *ClientTests) TestLowestRateWithCarrierPreference() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-	shipment := *GenerateTestShipment()
-	carrier := []string{"FedEx", "UPS"}
-	rate, err := client.LowestRateWithCarrier(&shipment, carrier)
+	shipment, _ := client.CreateShipment(shipmentData)
 
-	require.NoError(err)
-	assert.Equal("2.0", rate.Rate)
-	assert.Equal("UPS", rate.Carrier)
-	assert.Equal("ParcelSelect", rate.Service)
-}
-
-func (c *ClientTests) TestLowestRateWithCarrierAndServicePreference() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-	shipment := *GenerateTestShipment()
-	carrier := []string{"FedEx", "UPS"}
-	service := []string{"Overnight"}
-	rate, err := client.LowestRateWithCarrierAndService(&shipment, carrier, service)
-
-	require.NoError(err)
-	assert.Equal("50.0", rate.Rate)
-	assert.Equal("FedEx", rate.Carrier)
-	assert.Equal("Overnight", rate.Service)
-}
-
-func (c *ClientTests) TestNoRateAvailable() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-	shipment := *GenerateTestShipment()
-	carrier := []string{"Cainiao"}
-	rate, err := client.LowestRateWithCarrier(&shipment, carrier)
-
-	require.Error(err)
-	assert.Equal(easypost.Rate{}, rate)
+	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
+	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
+	assert.Equal("IOSS", shipment.TaxIdentifiers[0].TaxIdType)
 }

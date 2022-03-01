@@ -1,44 +1,71 @@
 package easypost_test
 
 import (
-	"net/http"
+	"reflect"
+	"strings"
 
 	"github.com/EasyPost/easypost-go/v2"
 )
 
-func (c *ClientTests) TestWebhooks() {
-	assert, require := c.Assert(), c.Require()
+func (c *ClientTests) TestWebhookCreate() {
 	client := c.TestClient()
-	// May have to update this if re-recording the casset for this test:
-	url := "example.com/2020050722012281"
-	webhook, err := client.CreateWebhook(url)
-	require.NoError(err)
-	assert.NotEmpty(webhook.ID)
-	assert.Equal("test", webhook.Mode)
-	assert.Equal("http://"+url, webhook.URL)
-	assert.Empty(webhook.DisabledAt)
+	assert, require := c.Assert(), c.Require()
 
-	webhook2, err := client.GetWebhook(webhook.ID)
-	require.NoError(err)
-	assert.Equal(webhook.ID, webhook2.ID)
+	webhook, _ := client.CreateWebhook("http://example.com")
 
-	webhook3, err := client.EnableWebhook(webhook.ID)
-	require.NoError(err)
-	require.Equal(webhook.ID, webhook3.ID)
+	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
+	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
+	assert.Equal("http://example.com", webhook.URL)
 
-	webhooks, err := client.ListWebhooks()
+	err := client.DeleteWebhook(webhook.ID) // we are deleting the webhook here so we don't keep sending events to a dead webhook.
+
 	require.NoError(err)
-	ids := make([]string, len(webhooks))
-	for i := range webhooks {
-		ids[i] = webhooks[i].ID
+}
+
+func (c *ClientTests) TestWebhookRetrieve() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	webhook, _ := client.CreateWebhook("http://example.com")
+
+	retrievedWebhook, _ := client.GetWebhook(webhook.ID)
+
+	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(retrievedWebhook))
+	assert.Equal(webhook, retrievedWebhook)
+
+	err := client.DeleteWebhook(retrievedWebhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
+
+	require.NoError(err)
+}
+
+func (c *ClientTests) TestWebhookAll() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	webhooks, _ := client.ListWebhooks()
+
+	assert.LessOrEqual(len(webhooks), c.fixture.pageSize())
+	for _, webhook := range webhooks {
+		assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
 	}
-	assert.Contains(ids, webhook.ID)
+}
 
-	require.NoError(client.DeleteWebhook(webhook.ID))
+func (c *ClientTests) TestWebhookDelete() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
 
-	_, err = client.GetWebhook(webhook.ID)
-	if assert.IsType((*easypost.APIError)(nil), err) {
-		err := err.(*easypost.APIError)
-		assert.Equal(err.StatusCode, http.StatusNotFound)
-	}
+	webhook, _ := client.CreateWebhook("http://example.com")
+
+	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
+	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
+	assert.Equal("http://example.com", webhook.URL)
+
+	err := client.DeleteWebhook(webhook.ID)
+
+	// This endpoint/method does not return anything, just make sure the request doesn't fail
+	require.NoError(err)
+}
+
+func (c *ClientTests) TestWebhookUpdate() {
+	c.T().Skip("Cannot be easily tested - requires a disabled webhook.")
 }

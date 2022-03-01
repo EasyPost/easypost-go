@@ -1,0 +1,61 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"parcel":{"length":10,"width":8,"height":4,"weight":15.4}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/parcels
+    method: POST
+  response:
+    body: '{"id":"prcl_aa654cd256ec4b21a8258fd91ffa251a","object":"Parcel","created_at":"2022-03-03T19:08:59Z","updated_at":"2022-03-03T19:08:59Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"d2be8811fcb97b25b97590f65e5e326f"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/parcels.prcl_aa654cd256ec4b21a8258fd91ffa251a
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e6221124bff135a20001f2307
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb5nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - eed46698-9177-4a2e-b667-3cba9ac56302
+      X-Runtime:
+      - "0.024543"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""

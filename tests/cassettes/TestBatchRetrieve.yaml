@@ -1,0 +1,116 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"batch":{"shipments":[{"to_address":{"street1":"388 Townsend St","street2":"Apt
+      20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"},"from_address":{"street1":"388
+      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
+      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4}},null]}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/batches
+    method: POST
+  response:
+    body: '{"id":"batch_db11f6459f8947f581ee450a0143b4b2","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:41Z","updated_at":"2022-03-03T19:08:41Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"2e1b05dd43b4d8561f66e83dc3aeddcd"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211239ff135a20001f1f05
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb3nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 77921119-96e9-47dc-acb5-4de38306563c
+      X-Runtime:
+      - "0.039038"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/batches/batch_db11f6459f8947f581ee450a0143b4b2
+    method: GET
+  response:
+    body: '{"id":"batch_db11f6459f8947f581ee450a0143b4b2","object":"Batch","mode":"test","state":"created","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:41Z","updated_at":"2022-03-03T19:08:41Z","scan_form":null,"shipments":[{"batch_status":"created","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_bc5bac4d9ea942638c14b9538052f18e"}],"status":{"created":1,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"deb01c28a4648bc180a53898ce24982d"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211239ff135a20001f1f13
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - bae67b48-7c44-4907-99ee-826f1f68c02c
+      X-Runtime:
+      - "0.043107"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

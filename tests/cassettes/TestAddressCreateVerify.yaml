@@ -1,0 +1,65 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"verify":["delivery"],"address":{"street1":"417 montgomery streat","street2":"FL
+      5","city":"San Francisco","state":"CA","zip":"94104","country":"US","company":"EasyPost","phone":"415-123-4567"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"id":"adr_5427b37e9b2511ecba34ac1f6bc7bdc6","object":"Address","created_at":"2022-03-03T19:08:36+00:00","updated_at":"2022-03-03T19:08:36+00:00","name":null,"company":"EASYPOST","street1":"417
+      MONTGOMERY ST STE 500","street2":"","city":"SAN FRANCISCO","state":"CA","zip":"94104-1100","country":"US","phone":"4151234567","email":null,"mode":"test","carrier_facility":null,"residential":false,"federal_tax_id":null,"state_tax_id":null,"verifications":{"delivery":{"success":true,"errors":[],"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"}}}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"129c675b7caea030fd1299b4cda52402"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_5427b37e9b2511ecba34ac1f6bc7bdc6
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211234ff135a20001f1e04
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb7nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 2b11f476-2631-4f55-8e23-c14c5d1037fd
+      X-Runtime:
+      - "0.060558"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""

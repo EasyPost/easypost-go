@@ -2,24 +2,29 @@ package easypost_test
 
 import (
 	"github.com/EasyPost/easypost-go/v2"
+	"reflect"
+	"strings"
 )
 
-func (c *ClientTests) TestParcelCreation() {
+func (c *ClientTests) TestParcelCreate() {
 	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-	parcel, err := client.CreateParcel(
-		&easypost.Parcel{
-			PredefinedPackage: "RegionalRateBoxA",
-			Length:            10.2,
-			Width:             7.8,
-			Height:            4.3,
-			Weight:            21.2,
-		},
-	)
-	require.NoError(err)
-	assert.Equal("RegionalRateBoxA", parcel.PredefinedPackage)
-	assert.Equal(float64(10.2), parcel.Length)
-	assert.Equal(float64(7.8), parcel.Width)
-	assert.Equal(float64(4.3), parcel.Height)
-	assert.Equal(float64(21.2), parcel.Weight)
+	assert := c.Assert()
+
+	parcel, _ := client.CreateParcel(c.fixture.BasicParcel())
+
+	assert.Equal(reflect.TypeOf(&easypost.Parcel{}), reflect.TypeOf(parcel))
+	assert.True(strings.HasPrefix(parcel.ID, "prcl_"))
+	assert.Equal(15.4, parcel.Weight)
+}
+
+func (c *ClientTests) TestParcelRetrieve() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	parcel, _ := client.CreateParcel(c.fixture.BasicParcel())
+
+	retrievedParcel, _ := client.GetParcel(parcel.ID)
+
+	assert.Equal(reflect.TypeOf(&easypost.Parcel{}), reflect.TypeOf(retrievedParcel))
+	assert.Equal(parcel, retrievedParcel)
 }
