@@ -1,0 +1,58 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"shipment":null}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/shipments
+    method: POST
+  response:
+    body: '{"error":{"code":"SHIPMENT.INVALID_PARAMS","message":"Unable to create
+      shipment, one or more parameters were invalid.","errors":[]}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e6221123fff135a20001f2057
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 0595cc38-8f3a-4abd-87a1-44a1c5e6ec7d
+      X-Runtime:
+      - "0.039739"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 422 Unprocessable Entity
+    code: 422
+    duration: ""

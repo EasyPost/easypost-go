@@ -1,0 +1,113 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"webhook":{"url":"http://example.com"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/webhooks
+    method: POST
+  response:
+    body: '{"id":"hook_7aef15b89b2511ec87892d736f459d9f","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-03-03T19:09:42Z","disabled_at":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"ebcdf264efa874b6cd5fce19019a0ef1"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211275ff135a20001f2cf5
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 30ee622a-4f1b-453b-8251-f21eea6d956e
+      X-Runtime:
+      - "0.140653"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/webhooks/hook_7aef15b89b2511ec87892d736f459d9f
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"44136fa355b3678a1146ad16f7e8649e"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211276ff135a20001f2d07
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb5nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 4368cd52-2644-490c-8ee7-de2cc087babf
+      X-Runtime:
+      - "0.299203"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

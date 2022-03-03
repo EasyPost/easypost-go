@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/webhooks
+    method: GET
+  response:
+    body: '{"webhooks":[]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"d03ff1e2df7ad33907b2086ec5f9e0a9"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211274ff135a20001f2c9b
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb4nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - ad261b2c-a2b8-44cf-9bb6-305c60539aaa
+      X-Runtime:
+      - "0.028500"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

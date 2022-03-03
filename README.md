@@ -164,6 +164,8 @@ func main() {
 
 Run unit tests by running `go test` from the `tests` directory:
 
+To generate HTML test coverage report, run `go test ./tests -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile`
+
 #### Updating Recorded Responses
 
 The go-vcr package is used to provide recorded responses to calls to the

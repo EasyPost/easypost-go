@@ -1,0 +1,147 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/insurances
+    method: GET
+  response:
+    body: '{"insurances":[{"id":"ins_3fc3f4cd47d84f25bd8713a80454f726","object":"Insurance","mode":"test","reference":null,"status":"purchased","amount":"100.00000","provider":"easypost","provider_id":null,"to_address":{"id":"adr_fc536bd49a9b11ecbebeac1f6b0a0d1e","object":"Address","created_at":"2022-03-03T02:45:28+00:00","updated_at":"2022-03-03T02:45:28+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"from_address":{"id":"adr_fc5536be9a9b11ec8635ac1f6bc7b362","object":"Address","created_at":"2022-03-03T02:45:28+00:00","updated_at":"2022-03-03T02:45:28+00:00","name":"Jack
+      Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+      Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"shipment_id":"shp_e6e6c559e64a4fd99ccafbd0ca76a77e","tracker":{"id":"trk_4c327d8f3ed14d58a10eea07d544ef8b","object":"Tracker","mode":"test","tracking_code":"9400100109361109730219","status":"delivered","status_detail":"arrived_at_destination","created_at":"2022-03-03T02:45:29Z","updated_at":"2022-03-03T02:48:29Z","signed_by":"John
+      Tester","weight":null,"est_delivery_date":"2022-03-03T02:48:29Z","shipment_id":"shp_e6e6c559e64a4fd99ccafbd0ca76a77e","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T02:48:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T15:25:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Origin Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-04T01:30:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T03:06:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"COLUMBIA","state":"SC","country":null,"zip":"29201"}},{"object":"TrackingDetail","message":"Arrived
+      at Post Office","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T05:57:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Sorting
+      Complete","description":null,"status":"in_transit","status_detail":"status_update","datetime":"2022-02-05T11:37:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Out
+      for Delivery","description":null,"status":"out_for_delivery","status_detail":"out_for_delivery","datetime":"2022-02-05T11:47:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Delivered","description":null,"status":"delivered","status_detail":"arrived_at_destination","datetime":"2022-02-05T16:39:29Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"},"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":"2022-02-05T16:39:29Z"},"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzRjMzI3ZDhmM2VkMTRkNThhMTBlZWEwN2Q1NDRlZjhi","fees":[]},"tracking_code":"9400100109361109730219","fee":{"object":"Fee","type":"InsuranceFee","amount":"1.00000","charged":true,"refunded":false},"messages":[],"created_at":"2022-03-03T02:45:29Z","updated_at":"2022-03-03T02:45:29Z"},{"id":"ins_52349f214217447cbb89a2e2c3fcf53b","object":"Insurance","mode":"test","reference":null,"status":"cancelled","amount":"100.00000","provider":"easypost","provider_id":null,"to_address":{"id":"adr_e811946b9a9b11ecbb8aac1f6bc7bdc6","object":"Address","created_at":"2022-03-03T02:44:54+00:00","updated_at":"2022-03-03T02:44:54+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"from_address":{"id":"adr_e815b1299a9b11ecbb8bac1f6bc7bdc6","object":"Address","created_at":"2022-03-03T02:44:54+00:00","updated_at":"2022-03-03T02:44:54+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"shipment_id":null,"tracker":{"id":"trk_53ffa41755fb49d6933ac36db2fd54e0","object":"Tracker","mode":"test","tracking_code":"9400100109361109730097","status":"delivered","status_detail":"arrived_at_destination","created_at":"2022-03-03T02:44:54Z","updated_at":"2022-03-03T02:47:54Z","signed_by":"John
+      Tester","weight":null,"est_delivery_date":"2022-03-03T02:47:54Z","shipment_id":"shp_e87a09fe55b64b67b7d7fbe125485b7a","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T02:47:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T15:24:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Origin Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-04T01:29:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T03:05:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"COLUMBIA","state":"SC","country":null,"zip":"29201"}},{"object":"TrackingDetail","message":"Arrived
+      at Post Office","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T05:56:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Sorting
+      Complete","description":null,"status":"in_transit","status_detail":"status_update","datetime":"2022-02-05T11:36:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Out
+      for Delivery","description":null,"status":"out_for_delivery","status_detail":"out_for_delivery","datetime":"2022-02-05T11:46:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Delivered","description":null,"status":"delivered","status_detail":"arrived_at_destination","datetime":"2022-02-05T16:38:54Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"},"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":"2022-02-05T16:38:54Z"},"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzUzZmZhNDE3NTVmYjQ5ZDY5MzNhYzM2ZGIyZmQ1NGUw","fees":[]},"tracking_code":"9400100109361109730097","fee":{"object":"Fee","type":"InsuranceFee","amount":"1.00000","charged":true,"refunded":false},"messages":["The
+      tracker entered the mailstream before insurance was purchased."],"created_at":"2022-03-03T02:44:54Z","updated_at":"2022-03-03T02:46:11Z"},{"id":"ins_9957778a62204f20a870e2774a29464b","object":"Insurance","mode":"test","reference":null,"status":"cancelled","amount":"100.00000","provider":"easypost","provider_id":null,"to_address":{"id":"adr_e744c1389a9b11ec8cbdac1f6bc72124","object":"Address","created_at":"2022-03-03T02:44:53+00:00","updated_at":"2022-03-03T02:44:53+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"from_address":{"id":"adr_e748c8259a9b11ec8cbeac1f6bc72124","object":"Address","created_at":"2022-03-03T02:44:53+00:00","updated_at":"2022-03-03T02:44:53+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"shipment_id":null,"tracker":{"id":"trk_150f54aa5c324a40b040c1c0675c2172","object":"Tracker","mode":"test","tracking_code":"9400100109361109730080","status":"delivered","status_detail":"arrived_at_destination","created_at":"2022-03-03T02:44:53Z","updated_at":"2022-03-03T02:47:53Z","signed_by":"John
+      Tester","weight":null,"est_delivery_date":"2022-03-03T02:47:53Z","shipment_id":"shp_22930eae00eb4904880029f7d947f2ef","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T02:47:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T15:24:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Origin Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-04T01:29:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T03:05:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"COLUMBIA","state":"SC","country":null,"zip":"29201"}},{"object":"TrackingDetail","message":"Arrived
+      at Post Office","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T05:56:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Sorting
+      Complete","description":null,"status":"in_transit","status_detail":"status_update","datetime":"2022-02-05T11:36:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Out
+      for Delivery","description":null,"status":"out_for_delivery","status_detail":"out_for_delivery","datetime":"2022-02-05T11:46:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Delivered","description":null,"status":"delivered","status_detail":"arrived_at_destination","datetime":"2022-02-05T16:38:53Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"},"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":"2022-02-05T16:38:53Z"},"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzE1MGY1NGFhNWMzMjRhNDBiMDQwYzFjMDY3NWMyMTcy","fees":[]},"tracking_code":"9400100109361109730080","fee":{"object":"Fee","type":"InsuranceFee","amount":"1.00000","charged":true,"refunded":false},"messages":["The
+      tracker entered the mailstream before insurance was purchased."],"created_at":"2022-03-03T02:44:53Z","updated_at":"2022-03-03T02:46:05Z"},{"id":"ins_91fd8e2ba79f4433977ff99961844178","object":"Insurance","mode":"test","reference":null,"status":"purchased","amount":"100.00000","provider":"easypost","provider_id":null,"to_address":{"id":"adr_0c666cf69a9b11ecb2d7ac1f6bc72124","object":"Address","created_at":"2022-03-03T02:38:46+00:00","updated_at":"2022-03-03T02:38:46+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"from_address":{"id":"adr_0c6828c39a9b11eca929ac1f6bc7b362","object":"Address","created_at":"2022-03-03T02:38:46+00:00","updated_at":"2022-03-03T02:38:46+00:00","name":"Jack
+      Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+      Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"shipment_id":"shp_37b6d8b4af24497fb434fdae3b736c18","tracker":{"id":"trk_201384451e85498b9d1d53a318f0032f","object":"Tracker","mode":"test","tracking_code":"9400100109361109729701","status":"delivered","status_detail":"arrived_at_destination","created_at":"2022-03-03T02:38:47Z","updated_at":"2022-03-03T02:41:47Z","signed_by":"John
+      Tester","weight":null,"est_delivery_date":"2022-03-03T02:41:47Z","shipment_id":"shp_37b6d8b4af24497fb434fdae3b736c18","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T02:41:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T15:18:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Origin Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-04T01:23:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T02:59:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"COLUMBIA","state":"SC","country":null,"zip":"29201"}},{"object":"TrackingDetail","message":"Arrived
+      at Post Office","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T05:50:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Sorting
+      Complete","description":null,"status":"in_transit","status_detail":"status_update","datetime":"2022-02-05T11:30:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Out
+      for Delivery","description":null,"status":"out_for_delivery","status_detail":"out_for_delivery","datetime":"2022-02-05T11:40:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Delivered","description":null,"status":"delivered","status_detail":"arrived_at_destination","datetime":"2022-02-05T16:32:47Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"},"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":"2022-02-05T16:32:47Z"},"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzIwMTM4NDQ1MWU4NTQ5OGI5ZDFkNTNhMzE4ZjAwMzJm","fees":[]},"tracking_code":"9400100109361109729701","fee":{"object":"Fee","type":"InsuranceFee","amount":"1.00000","charged":true,"refunded":false},"messages":[],"created_at":"2022-03-03T02:38:47Z","updated_at":"2022-03-03T02:38:47Z"},{"id":"ins_e330d2d32c97438ba249965bc9b4b4c6","object":"Insurance","mode":"test","reference":null,"status":"cancelled","amount":"100.00000","provider":"easypost","provider_id":null,"to_address":{"id":"adr_f8a9306d9a9a11ecb0a6ac1f6bc72124","object":"Address","created_at":"2022-03-03T02:38:12+00:00","updated_at":"2022-03-03T02:38:12+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"from_address":{"id":"adr_f8ade8d99a9a11eca6f8ac1f6bc7b362","object":"Address","created_at":"2022-03-03T02:38:12+00:00","updated_at":"2022-03-03T02:38:12+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}},"shipment_id":null,"tracker":{"id":"trk_3e83ebe64fba47bda27bf60893e486b7","object":"Tracker","mode":"test","tracking_code":"9400100109361109729572","status":"delivered","status_detail":"arrived_at_destination","created_at":"2022-03-03T02:38:12Z","updated_at":"2022-03-03T02:41:13Z","signed_by":"John
+      Tester","weight":null,"est_delivery_date":"2022-03-03T02:41:13Z","shipment_id":"shp_25f264162c194f2995f34cf6321a084f","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T02:41:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T15:18:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Origin Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-04T01:23:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"}},{"object":"TrackingDetail","message":"Arrived
+      at USPS Facility","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T02:59:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"COLUMBIA","state":"SC","country":null,"zip":"29201"}},{"object":"TrackingDetail","message":"Arrived
+      at Post Office","description":null,"status":"in_transit","status_detail":"arrived_at_facility","datetime":"2022-02-05T05:50:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Sorting
+      Complete","description":null,"status":"in_transit","status_detail":"status_update","datetime":"2022-02-05T11:30:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Out
+      for Delivery","description":null,"status":"out_for_delivery","status_detail":"out_for_delivery","datetime":"2022-02-05T11:40:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}},{"object":"TrackingDetail","message":"Delivered","description":null,"status":"delivered","status_detail":"arrived_at_destination","datetime":"2022-02-05T16:32:13Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"}}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"NORTH
+      HOUSTON","state":"TX","country":null,"zip":"77315"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":{"object":"TrackingLocation","city":"CHARLESTON","state":"SC","country":null,"zip":"29407"},"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":"2022-02-05T16:32:13Z"},"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzNlODNlYmU2NGZiYTQ3YmRhMjdiZjYwODkzZTQ4NmI3","fees":[]},"tracking_code":"9400100109361109729572","fee":{"object":"Fee","type":"InsuranceFee","amount":"1.00000","charged":true,"refunded":false},"messages":["The
+      tracker entered the mailstream before insurance was purchased."],"created_at":"2022-03-03T02:38:12Z","updated_at":"2022-03-03T02:39:45Z"}],"has_more":true}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"9414796d01fc7de7716b85bdcb49983b"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211240ff135a20001f2094
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 7cd8b0fd-406e-4e20-be7d-3a269b9d91e8
+      X-Runtime:
+      - "0.247059"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

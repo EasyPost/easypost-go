@@ -1,0 +1,124 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"tracker":{"tracking_code":"EZ1000000001"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/trackers
+    method: POST
+  response:
+    body: '{"id":"trk_5f6f2aa7909e4abe8584b42db707113d","object":"Tracker","mode":"test","tracking_code":"EZ1000000001","status":"pre_transit","status_detail":"unknown","created_at":"2022-03-03T19:09:38Z","updated_at":"2022-03-03T19:09:38Z","signed_by":null,"weight":17.6,"est_delivery_date":"2022-03-03T19:09:38Z","shipment_id":null,"carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      information received","description":null,"status":"pre_transit","status_detail":null,"datetime":"2022-02-03T19:09:38Z","source":"EasyPost","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      label created","description":null,"status":"pre_transit","status_detail":null,"datetime":"2022-02-04T13:58:38Z","source":"EasyPost","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}}],"carrier_detail":null,"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzVmNmYyYWE3OTA5ZTRhYmU4NTg0YjQyZGI3MDcxMTNk","fees":[{"object":"Fee","type":"TrackerFee","amount":"0.02000","charged":false,"refunded":false}]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"9d9f14e11676f2b3bc51d3c3eb77b948"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/trackers/trk_5f6f2aa7909e4abe8584b42db707113d
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211271ff135a20001f2bec
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb7nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - c278e482-89c7-4fea-8d3d-82e7b1bd37df
+      X-Runtime:
+      - "0.182768"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/trackers/trk_5f6f2aa7909e4abe8584b42db707113d
+    method: GET
+  response:
+    body: '{"id":"trk_5f6f2aa7909e4abe8584b42db707113d","object":"Tracker","mode":"test","tracking_code":"EZ1000000001","status":"pre_transit","status_detail":"status_update","created_at":"2022-03-03T19:09:38Z","updated_at":"2022-03-03T19:09:38Z","signed_by":null,"weight":null,"est_delivery_date":"2022-03-03T19:09:38Z","shipment_id":null,"carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T19:09:38Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-04T07:46:38Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"fees":[{"object":"Fee","type":"TrackerFee","amount":"0.02000","charged":false,"refunded":false}],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"public_url":"https://track.easypost.com/djE6dHJrXzVmNmYyYWE3OTA5ZTRhYmU4NTg0YjQyZGI3MDcxMTNk"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"35710995297fbf55cad5daa66856cc71"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211272ff135a20001f2bff
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 6d2e948b-0231-43ae-be75-ab8817f58d38
+      X-Runtime:
+      - "0.047212"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

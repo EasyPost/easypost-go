@@ -31,11 +31,12 @@ func (ErrorRoundTripper) RoundTrip(req *http.Request) (*http.Response, error) {
 type ClientTests struct {
 	suite.Suite
 	recorder *recorder.Recorder
+	fixture  *Fixture
 }
 
 func (c *ClientTests) SetupTest() {
 	pathComponents := append(
-		[]string{"testdata"}, strings.Split(c.T().Name(), "/")...,
+		[]string{"cassettes/"}, strings.Split(c.T().Name(), "/")[1],
 	)
 	r, err := recorder.New(filepath.Join(pathComponents...))
 	c.Require().NoError(err)

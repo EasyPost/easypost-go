@@ -1,0 +1,116 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"batch":{"shipments":[{"to_address":{"street1":"388 Townsend St","street2":"Apt
+      20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"},"from_address":{"street1":"388
+      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
+      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4},"carrier":"USPS","service":"First","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"]},null]}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/batches
+    method: POST
+  response:
+    body: '{"id":"batch_6518f62e8a33451a82c727a2971faaa6","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:39Z","updated_at":"2022-03-03T19:08:39Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"e98eb53e1b78c0a60adfa89c00c311c6"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211237ff135a20001f1ea5
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 17e1b94c-691d-4fc8-8444-22fb3d3b724e
+      X-Runtime:
+      - "0.040683"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/batches/batch_6518f62e8a33451a82c727a2971faaa6/buy
+    method: POST
+  response:
+    body: '{"id":"batch_6518f62e8a33451a82c727a2971faaa6","object":"Batch","mode":"test","state":"created","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:39Z","updated_at":"2022-03-03T19:08:39Z","scan_form":null,"shipments":[{"batch_status":"queued_for_purchase","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_23f121ed91dd49e087f18ca75f28c3af"}],"status":{"created":1,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"3d9388ef3a38d301e4edc683648ca2eb"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211237ff135a20001f1ead
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - fef89665-a17f-4139-87cd-6958aaa115b5
+      X-Runtime:
+      - "0.059028"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

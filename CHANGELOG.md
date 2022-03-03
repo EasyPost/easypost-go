@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Next Release
+
+* Add comprehensive test coverage
+* Fix the bug for `AddShipmentsToBatch`, `AddShipmentsToBatchWithContext`, change the parameter from `string` to `interface{}` so user can pass in either Shipment IDs or Shipment structs
+* Fix the bug for `RemoveShipmentsFromBatch`, and `RemoveShipmentsFromBatchWithContext`, change the parameter from `*Shipment` to `interface{}` so user can pass in either Shipment IDs or Shipment structs
+
 ## v2.0.1 (2022-02-10)
 
 * Corrects namespace for v2 release from `github.com/EasyPost/easypost-go` to `github.com/EasyPost/easypost-go/v2`

@@ -1,0 +1,127 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/users
+    method: GET
+  response:
+    body: '{"id":"user_a76997d126dd488f8ad22d52301300b0","object":"User","parent_id":null,"name":"EasyPost
+      Go Client Tests","phone_number":"5555555555","verified":true,"created_at":"2020-05-07T23:43:48Z","balance":"0.00000","price_per_shipment":"0.00000","recharge_amount":null,"secondary_recharge_amount":null,"recharge_threshold":null,"has_billing_method":null,"cc_fee_rate":"0.03","default_insurance_amount":null,"insurance_fee_rate":"0.01","insurance_fee_minimum":"1.00","email":"dev+easypost-go@easypost.com","children":[{"id":"user_1d75fce0f97c4c3aa42ea008528a1ef0","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Go
+      Test User","phone_number":"8005550100","verified":true,"created_at":"2022-02-07T20:08:11Z","children":[]},{"id":"user_6bf3fb5f29984af69d11d4b73cfeaf45","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T00:15:31Z","children":[]},{"id":"user_e1c08a41e8cc42a3844cf69c621ceaa4","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T00:17:20Z","children":[]},{"id":"user_3f50745c5e954c8cb5291be5bb865564","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T16:42:00Z","children":[]},{"id":"user_8187177ecada4f4eabbb63efb949fd4b","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T16:42:01Z","children":[]},{"id":"user_e19439099a66487d88e67a7d15fe2674","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T22:44:35Z","children":[]},{"id":"user_7835460ae64943399d7c1e3d044b6297","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T22:44:36Z","children":[]},{"id":"user_62d6974267664be5bf8145e63f276b5b","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T23:57:50Z","children":[]},{"id":"user_cee546d8c66741beb37d868ab55c33d7","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-02T23:57:51Z","children":[]},{"id":"user_c9c49c9dc4914ec1944d75a7c4c8b0f0","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-03T02:38:54Z","children":[]},{"id":"user_9dbf6f15404144c4aa82bb8307f72044","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-03T02:38:55Z","children":[]},{"id":"user_95932f5a5b8c4ab0945194e6c598e4f4","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-03T02:45:36Z","children":[]},{"id":"user_47c4bb6afd6a431ba4eac7e9156cd5f0","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Test
+      User","phone_number":"8005550100","verified":true,"created_at":"2022-03-03T02:45:37Z","children":[]}]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"8a612541ed1f280fbbc10f58e9815949"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211274ff135a20001f2c74
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - c55dac03-383c-4ccb-8349-50336622b53f
+      X-Runtime:
+      - "0.162329"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"brand":{"color":"#123456"}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0/brand
+    method: PUT
+  response:
+    body: '{"id":"brd_3930aba34a0743228c75c1e71c8b0883","color":"#123456","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","ad":null,"ad_href":null,"object":"Brand","user_id":"user_a76997d126dd488f8ad22d52301300b0","background_color":null,"theme":"theme1"}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"3a6bf0943796a2bda2357663c77d41a6"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211274ff135a20001f2c8e
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 46205a18-c483-42ee-93ab-f82b204a8d57
+      X-Runtime:
+      - "0.021974"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

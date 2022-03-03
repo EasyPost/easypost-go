@@ -1,0 +1,66 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"batch":{"shipments":[{"to_address":{"street1":"388 Townsend St","street2":"Apt
+      20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"},"from_address":{"street1":"388
+      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
+      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4},"carrier":"USPS","service":"First","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"]},{"to_address":{"street1":"388
+      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
+      Sparrow","company":"EasyPost","phone":"5555555555"},"from_address":{"street1":"388
+      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
+      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4},"carrier":"USPS","service":"First","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"]}]}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/batches/create_and_buy
+    method: POST
+  response:
+    body: '{"id":"batch_48d0ba4da3974f4aa0028153eeea1aa6","object":"Batch","mode":"test","state":"creating","num_shipments":2,"reference":null,"created_at":"2022-03-03T19:08:40Z","updated_at":"2022-03-03T19:08:40Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"bdb8df9e0029ce7c145533fedcc325be"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211238ff135a20001f1ebc
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb3nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - f4853bdc-39ae-42c5-b18a-82438b048305
+      X-Runtime:
+      - "0.045256"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

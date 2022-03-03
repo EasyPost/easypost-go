@@ -1,0 +1,84 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/trackers
+    method: GET
+  response:
+    body: '{"trackers":[{"id":"trk_e36a5edd7a4d45beb3a190b29f243ef1","object":"Tracker","mode":"test","tracking_code":"9400100109361109822563","status":"pre_transit","status_detail":"status_update","created_at":"2022-03-03T19:09:31Z","updated_at":"2022-03-03T19:09:31Z","signed_by":null,"weight":null,"est_delivery_date":"2022-03-03T19:09:31Z","shipment_id":"shp_b10fd3dbbc734d1dbe4917b1b0ee6a48","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T19:09:31Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-04T07:46:31Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"fees":[],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"public_url":"https://track.easypost.com/djE6dHJrX2UzNmE1ZWRkN2E0ZDQ1YmViM2ExOTBiMjlmMjQzZWYx"},{"id":"trk_f643dcf2598e423c94e86ade8f71808b","object":"Tracker","mode":"test","tracking_code":"9400100109361109822556","status":"pre_transit","status_detail":"status_update","created_at":"2022-03-03T19:09:30Z","updated_at":"2022-03-03T19:09:30Z","signed_by":null,"weight":null,"est_delivery_date":"2022-03-03T19:09:30Z","shipment_id":"shp_ab3d067e6ee54bc39dca6023289a14cc","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T19:09:30Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-04T07:46:30Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"fees":[],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"public_url":"https://track.easypost.com/djE6dHJrX2Y2NDNkY2YyNTk4ZTQyM2M5NGU4NmFkZThmNzE4MDhi"},{"id":"trk_0ed501c6e74942eda0695b1afbf4163a","object":"Tracker","mode":"test","tracking_code":"9400100109361109822457","status":"pre_transit","status_detail":"status_update","created_at":"2022-03-03T19:09:23Z","updated_at":"2022-03-03T19:09:24Z","signed_by":null,"weight":null,"est_delivery_date":"2022-03-03T19:09:24Z","shipment_id":"shp_0f718b9eb5924b6fa69317a62b0c28ca","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T19:09:24Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-04T07:46:24Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"fees":[],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"public_url":"https://track.easypost.com/djE6dHJrXzBlZDUwMWM2ZTc0OTQyZWRhMDY5NWIxYWZiZjQxNjNh"},{"id":"trk_7dee767c0d614394a885e7469ab1e5c4","object":"Tracker","mode":"test","tracking_code":"9400100109361109822433","status":"pre_transit","status_detail":"status_update","created_at":"2022-03-03T19:09:22Z","updated_at":"2022-03-03T19:09:22Z","signed_by":null,"weight":null,"est_delivery_date":"2022-03-03T19:09:22Z","shipment_id":"shp_fe047ca320004663b01f74a85305827c","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T19:09:22Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-04T07:46:22Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"fees":[],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"public_url":"https://track.easypost.com/djE6dHJrXzdkZWU3NjdjMGQ2MTQzOTRhODg1ZTc0NjlhYjFlNWM0"},{"id":"trk_c25fe26c038343e88e4ff2979d139928","object":"Tracker","mode":"test","tracking_code":"9400100109361109822426","status":"pre_transit","status_detail":"status_update","created_at":"2022-03-03T19:09:19Z","updated_at":"2022-03-03T19:09:19Z","signed_by":null,"weight":null,"est_delivery_date":"2022-03-03T19:09:19Z","shipment_id":"shp_c73eee5aef1140198749000c33299503","carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      Info Sent to USPS","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-03T19:09:19Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      Label Created","description":null,"status":"pre_transit","status_detail":"status_update","datetime":"2022-02-04T07:46:19Z","source":"USPS","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"}}],"fees":[],"carrier_detail":{"object":"CarrierDetail","service":"First-Class
+      Package Service","container_type":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"object":"TrackingLocation","city":"HOUSTON","state":"TX","country":null,"zip":"77063"},"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"guaranteed_delivery_date":null,"alternate_identifier":null,"initial_delivery_attempt":null},"public_url":"https://track.easypost.com/djE6dHJrX2MyNWZlMjZjMDM4MzQzZTg4ZTRmZjI5NzlkMTM5OTI4"}],"has_more":true}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"791bd32dac12dde23a1e293b43efcde3"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e62211271ff135a20001f2bc0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - e2888b95-3512-4e59-9697-7114e0d06806
+      X-Runtime:
+      - "0.109335"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

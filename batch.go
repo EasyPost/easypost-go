@@ -99,8 +99,15 @@ func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) 
 
 // AddShipmentsToBatch adds shipments to an existing batch, and returns the
 // updated batch object.
-func (c *Client) AddShipmentsToBatch(batchID string, in ...*Shipment) (out *Batch, err error) {
-	req := batchRequest{Batch: &Batch{Shipments: in}}
+func (c *Client) AddShipmentsToBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
+	params := make(map[int]interface{})
+
+	for i, shipment := range shipments {
+		params[i] = shipment
+	}
+
+	req := map[string]interface{}{"shipments": params}
+
 	err = c.post(context.Background(), "batches/"+batchID+"/add_shipments", req, &out)
 	return
 }
@@ -108,21 +115,30 @@ func (c *Client) AddShipmentsToBatch(batchID string, in ...*Shipment) (out *Batc
 // AddShipmentsToBatchWithContext performs the same operation as
 // AddShipmentsToBatch, but allows specifying a context that can interrupt the
 // request.
-func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID string, in ...*Shipment) (out *Batch, err error) {
-	req := batchRequest{Batch: &Batch{Shipments: in}}
+func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID string, shipments ...interface{}) (out *Batch, err error) {
+	params := make(map[int]interface{})
+
+	for i, shipment := range shipments {
+		params[i] = shipment
+	}
+
+	req := map[string]interface{}{"shipments": params}
+
 	err = c.post(ctx, "batches/"+batchID+"/add_shipments", req, &out)
 	return
 }
 
 // RemoveShipmentsFromBatch removes shipments fro, an existing batch, and
 // returns the updated batch object.
-func (c *Client) RemoveShipmentsFromBatch(batchID string, shipmentIDs ...string) (out *Batch, err error) {
-	req := batchRequest{
-		Batch: &Batch{Shipments: make([]*Shipment, len(shipmentIDs))},
+func (c *Client) RemoveShipmentsFromBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
+	params := make(map[int]interface{})
+
+	for i, shipment := range shipments {
+		params[i] = shipment
 	}
-	for i := range shipmentIDs {
-		req.Batch.Shipments[i] = &Shipment{ID: shipmentIDs[i]}
-	}
+
+	req := map[string]interface{}{"shipments": params}
+
 	err = c.post(context.Background(), "batches/"+batchID+"/remove_shipments", req, &out)
 	return
 }
@@ -130,13 +146,15 @@ func (c *Client) RemoveShipmentsFromBatch(batchID string, shipmentIDs ...string)
 // RemoveShipmentsFromBatchWithContext performs the same operation as
 // RemoveShipmentsFromBatch, but allows specifying a context that can interrupt
 // the request.
-func (c *Client) RemoveShipmentsFromBatchWithContext(ctx context.Context, batchID string, shipmentIDs ...string) (out *Batch, err error) {
-	req := batchRequest{
-		Batch: &Batch{Shipments: make([]*Shipment, len(shipmentIDs))},
+func (c *Client) RemoveShipmentsFromBatchWithContext(ctx context.Context, batchID string, shipments ...interface{}) (out *Batch, err error) {
+	params := make(map[int]interface{})
+
+	for i, shipment := range shipments {
+		params[i] = shipment
 	}
-	for i := range shipmentIDs {
-		req.Batch.Shipments[i] = &Shipment{ID: shipmentIDs[i]}
-	}
+
+	req := map[string]interface{}{"shipments": params}
+
 	err = c.post(ctx, "batches/"+batchID+"/remove_shipments", req, &out)
 	return
 }

@@ -1,0 +1,115 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carrier_account":{"type":"UpsAccount","credentials":{"access_license_number":"ALN","account_number":"A1A1A1","password":"PASSWORD","user_id":"USERID"},"test_credentials":null}}'
+    form: {}
+    headers:
+      Content-Type:
+      - application/json
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/carrier_accounts
+    method: POST
+  response:
+    body: '{"id":"ca_2c044e03eb7e4a2cb43ec394e6b30bf8","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T19:08:43Z","updated_at":"2022-03-03T19:08:43Z","description":"UPS
+      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"53f229894e94d6a76290a5933a8fb8a4"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e6221123bff135a20001f1f67
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - 3abc0dc3-38e9-44db-b70d-5cbd11b35fc5
+      X-Runtime:
+      - "0.130509"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/carrier_accounts/ca_2c044e03eb7e4a2cb43ec394e6b30bf8
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"44136fa355b3678a1146ad16f7e8649e"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 9cb90d0e6221123bff135a20001f1f7a
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb4nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb1wdc 88c34981dc
+      X-Request-Id:
+      - e6f66657-2d9c-4dcb-9b3c-58058db402eb
+      X-Runtime:
+      - "0.129775"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
