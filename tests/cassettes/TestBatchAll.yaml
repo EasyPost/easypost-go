@@ -1,0 +1,65 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/batches
+    method: GET
+  response:
+    body: '{"batches":[{"id":"batch_adc7af670fd447c09f84d87432ef1ddf","object":"Batch","mode":"test","state":"purchased","num_shipments":1,"reference":null,"created_at":"2022-02-07T19:56:21Z","updated_at":"2022-02-07T19:56:22Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":"1234567890","tracking_code":"9405500895232106032855","id":"shp_ea0f113db05945198b5a3f97ba792434"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":null,"label_url":null},{"id":"batch_9647c3f3c4344d7fab9059bd060b7ec1","object":"Batch","mode":"test","state":"purchased","num_shipments":2,"reference":null,"created_at":"2022-02-07T19:56:30Z","updated_at":"2022-02-07T19:56:32Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9405500895232106032916","id":"shp_d7f30e615ac44faeab147f175868768b"},{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9405500895232106032923","id":"shp_1f3f259f56b44732abc045bf14dbd462"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":2,"postage_purchase_failed":0},"pickup":{"id":"pickup_d033331b82d54118822bd863c0a5c634","object":"Pickup","created_at":"2022-02-07T19:56:34Z","updated_at":"2022-02-07T19:56:36Z","mode":"test","status":"scheduled","reference":"internal_id_1234","min_datetime":"2022-02-14T19:00:00Z","max_datetime":"2022-02-15T19:00:00Z","is_account_address":true,"instructions":"Special
+      pickup instructions","messages":[],"confirmation":"WTC61767460","address":{"id":"adr_0abb68b7885011ecba4aac1f6bc7bdc6","object":"Address","created_at":"2022-02-07T19:56:30+00:00","updated_at":"2022-02-07T19:56:30+00:00","name":"HOMER
+      SIMPSON","company":"EASYPOST","street1":"1 MONTGOMERY ST STE 400","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94104-4533","country":"US","phone":"4155551212","email":null,"mode":"test","carrier_facility":null,"residential":false,"federal_tax_id":null,"state_tax_id":null,"verifications":{"delivery":{"success":true,"errors":[],"details":{"latitude":37.7891,"longitude":-122.40199,"time_zone":"America/Los_Angeles"}}}},"carrier_accounts":[],"pickup_rates":[{"mode":"test","service":"NextDay","rate":"0.00","currency":"USD","created_at":"2022-02-07T19:56:34Z","updated_at":"2022-02-07T19:56:34Z","carrier":"USPS","pickup_id":"pickup_d033331b82d54118822bd863c0a5c634","id":"pickuprate_5a07fb2d379f4139a57a2cdc9db81ef3","object":"PickupRate"}]},"label_url":null},{"id":"batch_57e35779f70146f7b37cfa4f4b1dfd1b","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-02-07T19:56:38Z","updated_at":"2022-02-07T19:56:38Z","scan_form":{"id":"sf_ccc414799cf843bbb304fb74a72bd973","object":"ScanForm","created_at":"2022-02-07T19:56:38Z","updated_at":"2022-02-07T19:56:38Z","tracking_codes":["LM985745948US"],"address":{"id":"adr_0e9f4400885011ecbb05ac1f6bc7bdc6","object":"Address","created_at":"2022-02-07T19:56:36+00:00","updated_at":"2022-02-07T19:56:36+00:00","name":null,"company":"EasyPost","street1":"One
+      Montgomery St","street2":"Ste 400","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}},"status":"created","message":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220207/8334c3ae94cb420abea9dfd660deacd5.pdf","form_file_type":null,"batch_id":"batch_57e35779f70146f7b37cfa4f4b1dfd1b","confirmation":null},"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"LM985745948US","id":"shp_e98ac316a0144f6d84315b6bddd22ada"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":null,"label_url":null},{"id":"batch_122bd1d30cab4aed8d63c6b7ec244673","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-02-07T19:56:44Z","updated_at":"2022-02-07T19:56:44Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9461200895232106032966","id":"shp_a1dc2c2c93aa4db39ea8cafeed259473"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":{"id":"pickup_972c7d512f054b2c930bfad50fb8c2ba","object":"Pickup","created_at":"2022-02-07T19:56:44Z","updated_at":"2022-02-07T19:56:46Z","mode":"test","status":"unknown","reference":"internal_id_1234","min_datetime":"2022-02-14T19:00:00Z","max_datetime":"2022-02-15T19:00:00Z","is_account_address":true,"instructions":"Special
+      pickup instructions","messages":[],"confirmation":null,"address":{"id":"adr_129c51ac885011ecbd48ac1f6bc7b362","object":"Address","created_at":"2022-02-07T19:56:43+00:00","updated_at":"2022-02-07T19:56:43+00:00","name":"HOMER
+      SIMPSON","company":"EASYPOST","street1":"1 MONTGOMERY ST STE 400","street2":null,"city":"SAN
+      FRANCISCO","state":"CA","zip":"94104-4533","country":"US","phone":"4154567890","email":null,"mode":"test","carrier_facility":null,"residential":false,"federal_tax_id":null,"state_tax_id":null,"verifications":{"delivery":{"success":true,"errors":[],"details":{"latitude":37.7891,"longitude":-122.40199,"time_zone":"America/Los_Angeles"}}}},"carrier_accounts":[],"pickup_rates":[{"mode":"test","service":"NextDay","rate":"0.00","currency":"USD","created_at":"2022-02-07T19:56:46Z","updated_at":"2022-02-07T19:56:46Z","carrier":"USPS","pickup_id":"pickup_972c7d512f054b2c930bfad50fb8c2ba","id":"pickuprate_d5aa4ede3c014162a8b3e00212d29595","object":"PickupRate"}]},"label_url":null},{"id":"batch_8f13e39bd6d44901b462126189393c0b","object":"Batch","mode":"test","state":"purchased","num_shipments":1,"reference":null,"created_at":"2022-02-07T19:57:11Z","updated_at":"2022-02-07T19:57:12Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":"1234567890","tracking_code":"9405500895232106033067","id":"shp_6e846914f35a4b8f806788c48c82c1b9"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":null,"label_url":null}],"has_more":true}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"f8c81ffdeaf309eb94f6098ddf6c05fe"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 5ec9894262213b50ff13e2de002a7089
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - extlb1nuq 88c34981dc
+      X-Request-Id:
+      - 66e815e5-0d10-4184-ae0f-3366c59cacc8
+      X-Runtime:
+      - "0.121772"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

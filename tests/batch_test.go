@@ -36,10 +36,7 @@ func (c *ClientTests) TestBatchRetrieve() {
 	assert.Equal(batch.ID, retrievedBatch.ID)
 }
 
-// This test is currently skipped because we need to fix the typo of ListBatchesResult from `insurance` to `batch` in next PR
 func (c *ClientTests) TestBatchAll() {
-	c.T().Skip("This test is currently skipped because we need to fix the typo of ListBatchesResult from `insurance` to `batch` in a separate PR")
-
 	client := c.TestClient()
 	assert := c.Assert()
 
@@ -49,7 +46,9 @@ func (c *ClientTests) TestBatchAll() {
 		},
 	)
 
-	for _, batch := range batches.Insurances {
+	assert.LessOrEqual(len(batches.Batch), c.fixture.pageSize())
+	assert.NotNil(batches.HasMore)
+	for _, batch := range batches.Batch {
 		assert.Equal(reflect.TypeOf(&easypost.Batch{}), reflect.TypeOf(batch))
 	}
 }

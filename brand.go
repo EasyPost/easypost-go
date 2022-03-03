@@ -11,4 +11,5 @@ type Brand struct {
 	Name            string `json:"name,omitempty"`
 	UserID          string `json:"user_id,omitempty"`
 	Theme           string `json:"theme,omitempty"`
+	ID              string `json:"id,omitempty"`
 }
