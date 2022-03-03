@@ -84,7 +84,7 @@ func (c *ClientTests) TestUserUpdateBrand() {
 	fmt.Println(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Brand{}), reflect.TypeOf(brand))
-	// assert.True(strings.HasPrefix(brand.ID, "brd_")) Brand does not have ID, this will be fixed when we patch it
+	assert.True(strings.HasPrefix(brand.ID, "brd_"))
 	assert.Equal(color, brand.Color)
 }
 

@@ -2,6 +2,7 @@ package easypost
 
 // Brand contains data for a user brand
 type Brand struct {
+	ID              string `json:"id,omitempty"`
 	BackgroundColor string `json:"background_color,omitempty"`
 	Color           string `json:"color,omitempty"`
 	Logo            string `json:"logo,omitempty"`
