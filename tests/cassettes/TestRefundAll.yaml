@@ -1,0 +1,58 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/refunds
+    method: GET
+  response:
+    body: '{"refunds":[{"id":"rfnd_649ec9199e8e44d69153e393e3835e82","object":"Refund","created_at":"2022-03-03T21:38:42Z","updated_at":"2022-03-03T21:38:42Z","tracking_code":"9400100109361109838373","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_86725b6f3a1341b29d87141b526db5f5"},{"id":"rfnd_62eb097d11e541f78b6066451a6486b1","object":"Refund","created_at":"2022-03-03T21:32:12Z","updated_at":"2022-03-03T21:32:12Z","tracking_code":"9400100109361109837499","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_db61646a9d6f41abb08a1b166effe4cd"},{"id":"rfnd_c4e6114769074715b29f3324b12e5e17","object":"Refund","created_at":"2022-03-03T21:31:54Z","updated_at":"2022-03-03T21:36:21Z","tracking_code":"9400100109361109837390","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_94bbcdcab86746438b95b75b1f32c8bf"},{"id":"rfnd_8ba0ec477f3d47c680333fc41dbdfc17","object":"Refund","created_at":"2022-03-03T19:09:32Z","updated_at":"2022-03-03T19:09:32Z","tracking_code":"9400100109361109822563","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_b10fd3dbbc734d1dbe4917b1b0ee6a48"},{"id":"rfnd_8a0b416e6d084e24b235c9dc5eaf0f82","object":"Refund","created_at":"2022-03-03T02:45:31Z","updated_at":"2022-03-03T02:45:31Z","tracking_code":"9400100109361109730226","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_82bbcf255b1245bd9e4a5ca39870cb30"}],"has_more":true}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"eb12530189c94e3898d82c1c74759e43"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 5ec9893c62213566ff137be20028b833
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - extlb1nuq 88c34981dc
+      X-Request-Id:
+      - 0d727817-f4c1-4a71-9eea-3a47585371b8
+      X-Runtime:
+      - "0.046178"
+      X-Version-Label:
+      - easypost-202203031834-4b65a7cdf4-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

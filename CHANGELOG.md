@@ -2,13 +2,10 @@
 
 ## Next Release
 
-<<<<<<< HEAD
 * Add comprehensive test coverage
 * Fix the bug for `AddShipmentsToBatch`, `AddShipmentsToBatchWithContext`, change the parameter from `string` to `interface{}` so user can pass in either Shipment IDs or Shipment structs
 * Fix the bug for `RemoveShipmentsFromBatch`, and `RemoveShipmentsFromBatchWithContext`, change the parameter from `*Shipment` to `interface{}` so user can pass in either Shipment IDs or Shipment structs
-=======
 * Add `CreateRefund`, `CreateRefundWithContext`, `ListRefunds`, `ListRefundsWithContext`, `GetRefund`, and `GetRefundWithContext` in the Refund file
->>>>>>> 0f3e912 (add missing refund functions.)
 
 ## v2.0.1 (2022-02-10)
 

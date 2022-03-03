@@ -6,11 +6,11 @@ import (
 	"strings"
 )
 
-func (c *ClientTests) TestCreateRefund() {
+func (c *ClientTests) TestRefundCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(OneCallBuyShipment())
+	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
 
 	retrievedShipment, _ := client.GetShipment(shipment.ID) // We need to retrieve the shipment so that the tracking_code has time to populate
 
@@ -25,32 +25,32 @@ func (c *ClientTests) TestCreateRefund() {
 	assert.Equal("submitted", refund[0].Status)
 }
 
-func (c *ClientTests) TestAllRefund() {
+func (c *ClientTests) TestRefundAll() {
 	client := c.TestClient()
 	assert := c.Assert()
 
 	refunds, _ := client.ListRefunds(
 		&easypost.ListOptions{
-			PageSize: 5,
+			PageSize: c.fixture.pageSize(),
 		},
 	)
 
 	refundsList := refunds.Refunds
 
-	assert.LessOrEqual(len(refundsList), 5)
+	assert.LessOrEqual(len(refundsList), c.fixture.pageSize())
 	assert.NotNil(refunds.HasMore)
 	for _, refund := range refundsList {
 		assert.Equal(reflect.TypeOf(&easypost.Refund{}), reflect.TypeOf(refund))
 	}
 }
 
-func (c *ClientTests) TestRetrieveRefund() {
+func (c *ClientTests) TestRefundRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
 	refunds, _ := client.ListRefunds(
 		&easypost.ListOptions{
-			PageSize: 5,
+			PageSize: c.fixture.pageSize(),
 		},
 	)
 
@@ -58,37 +58,4 @@ func (c *ClientTests) TestRetrieveRefund() {
 
 	assert.Equal(reflect.TypeOf(&easypost.Refund{}), reflect.TypeOf(retrievedRefund))
 	assert.Equal(refunds.Refunds[0].ID, retrievedRefund.ID)
-}
-
-func BasicAddress() *easypost.Address {
-	return &easypost.Address{
-		Name:    "Jack Sparrow",
-		Company: "EasyPost",
-		Street1: "388 Townsend St",
-		Street2: "Apt 20",
-		City:    "San Francisco",
-		State:   "CA",
-		Zip:     "94107",
-		Phone:   "5555555555",
-	}
-}
-
-func BasicParcel() *easypost.Parcel {
-	return &easypost.Parcel{
-		Length: 10,
-		Width:  8,
-		Height: 4,
-		Weight: 15.4,
-	}
-}
-
-func OneCallBuyShipment() *easypost.Shipment {
-	return &easypost.Shipment{
-		ToAddress:         BasicAddress(),
-		FromAddress:       BasicAddress(),
-		Parcel:            BasicParcel(),
-		Service:           "First",
-		CarrierAccountIDs: []string{"ca_e606176ddb314afe896733636dba2f3b"},
-		Carrier:           "USPS",
-	}
 }
