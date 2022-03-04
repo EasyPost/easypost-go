@@ -75,6 +75,10 @@ type createAddressRequest struct {
 	Address *Address `json:"address,omitempty"`
 }
 
+type AddressVerifyResponse struct {
+	Address *Address `json:"address,omitempty"`
+}
+
 // CreateAddress submits a request to create a new address, and returns the
 // result.
 //	c := easypost.New(MyEasyPostAPIKey)
@@ -89,7 +93,7 @@ type createAddressRequest struct {
 //			Company: "EasyPost",
 //			Phone:   "415-123-4567",
 //		},
-//		&CreateAddrssOptions{Verify: []string{"delivery"}},
+//		&CreateAddressOptions{Verify: []string{"delivery"}},
 //	)
 func (c *Client) CreateAddress(in *Address, opts *CreateAddressOptions) (out *Address, err error) {
 	req := &createAddressRequest{CreateAddressOptions: opts, Address: in}
@@ -159,5 +163,24 @@ func (c *Client) GetAddress(addressID string) (out *Address, err error) {
 // specifying a context that can interrupt the request.
 func (c *Client) GetAddressWithContext(ctx context.Context, addressID string) (out *Address, err error) {
 	err = c.get(ctx, "addresses/"+addressID, &out)
+	return
+}
+
+// CreateAndVerifyAddress Create Address object and immediately verify it.
+func (c *Client) CreateAndVerifyAddress(in *Address, opts *CreateAddressOptions) (out *Address, err error) {
+	req := &createAddressRequest{CreateAddressOptions: opts, Address: in}
+	response := AddressVerifyResponse{}
+	err = c.post(context.Background(), "addresses/create_and_verify", req, &response)
+	out = response.Address
+	return
+}
+
+// CreateAndVerifyAddressWithContext performs the same operation as CreateAndVerifyAddress, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) CreateAndVerifyAddressWithContext(ctx context.Context, in *Address, opts *CreateAddressOptions) (out *Address, err error) {
+	req := &createAddressRequest{CreateAddressOptions: opts, Address: in}
+	response := AddressVerifyResponse{}
+	err = c.post(ctx, "addresses/create_and_verify", req, &response)
+	out = response.Address
 	return
 }

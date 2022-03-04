@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+* Add missing `CreateAndVerifyAddress` and `CreateAndVerifyAddressWithContext` functions in Address file
+
 ## v2.1.0 (2022-03-07)
 
 - Adds `CreateRefund`, `CreateRefundWithContext`, `ListRefunds`, `ListRefundsWithContext`, `GetRefund`, and `GetRefundWithContext` in the Refund file
