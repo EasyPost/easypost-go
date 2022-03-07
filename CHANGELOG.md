@@ -8,6 +8,7 @@
 * Add `CreateRefund`, `CreateRefundWithContext`, `ListRefunds`, `ListRefundsWithContext`, `GetRefund`, and `GetRefundWithContext` in the Refund file
 * Fix a typo in the `Batch` file, the type of `ListBatchesResult` should be `batch` instead of `insurance`.
 * Add missing `ID` attribute to `Brand`struct
+* Correct HTTP Method from `GET` to `POST` for `GetBatchLabels` and `GetBatchLabelsWithContext` in Batch file
 
 ## v2.0.1 (2022-02-10)
 

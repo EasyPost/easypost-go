@@ -15,14 +15,14 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"id":"batch_9f7f0c7d7145489d99cad75443d85282","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:41Z","updated_at":"2022-03-03T19:08:41Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"id":"batch_0f12281009214aa9a686fae7f176b06f","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-03-07T22:07:31Z","updated_at":"2022-03-07T22:07:31Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"c9a108d21680cdcafb85c8fb555bb8c3"
+      - W/"ba279370cc51fb7d6df6bf97f602ae58"
       Expires:
       - "0"
       Pragma:
@@ -38,23 +38,23 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211238ff135a20001f1ee9
+      - d4a3d8d362268222ff103222003ed4c2
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
+      - intlb2wdc 88c34981dc
+      - extlb3wdc 88c34981dc
       X-Request-Id:
-      - 766336e2-b313-4b84-b1a2-1ac01431cebf
+      - 60260ad8-b9c0-49c7-b0af-5a0967f40ae4
       X-Runtime:
-      - "0.040458"
+      - "0.064162"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202203042109-ebc16e3e74-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -66,17 +66,17 @@ interactions:
     headers:
       User-Agent:
       - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/batches/batch_9f7f0c7d7145489d99cad75443d85282/buy
+    url: https://api.easypost.com/v2/batches/batch_0f12281009214aa9a686fae7f176b06f/buy
     method: POST
   response:
-    body: '{"id":"batch_9f7f0c7d7145489d99cad75443d85282","object":"Batch","mode":"test","state":"created","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:41Z","updated_at":"2022-03-03T19:08:41Z","scan_form":null,"shipments":[{"batch_status":"queued_for_purchase","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_d7f227589f1f4f6792707693bcb313fc"}],"status":{"created":1,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"id":"batch_0f12281009214aa9a686fae7f176b06f","object":"Batch","mode":"test","state":"created","num_shipments":1,"reference":null,"created_at":"2022-03-07T22:07:31Z","updated_at":"2022-03-07T22:07:31Z","scan_form":null,"shipments":[{"batch_status":"queued_for_purchase","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_bac53d82cba74b83b4c731ac43be4f95"}],"status":{"created":1,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"8a98360ab61705d373df9a333c5036dd"
+      - W/"81075ab4ed4b567f838baae2fb17b8e8"
       Expires:
       - "0"
       Pragma:
@@ -92,23 +92,23 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211239ff135a20001f1ef3
+      - d4a3d8d362268223ff103222003ed4f1
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
+      - intlb1nuq 88c34981dc
       - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
+      - extlb3wdc 88c34981dc
       X-Request-Id:
-      - 8211151f-0c1d-42f0-a4a9-37713e95c5ff
+      - 65d2e6ab-61c9-4fd7-a195-62e1fa99f150
       X-Runtime:
-      - "0.050941"
+      - "0.105543"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202203042109-ebc16e3e74-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -116,22 +116,25 @@ interactions:
     duration: ""
 - request:
     body: file_format=ZPL
-    form: {}
+    form:
+      file_format:
+      - ZPL
     headers:
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
       - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/batches/batch_9f7f0c7d7145489d99cad75443d85282/label
-    method: GET
+    url: https://api.easypost.com/v2/batches/batch_0f12281009214aa9a686fae7f176b06f/label
+    method: POST
   response:
-    body: '{"error":{"code":"NOT_FOUND","message":"The requested resource could not
-      be found.","errors":[]}}'
+    body: '{"id":"batch_0f12281009214aa9a686fae7f176b06f","object":"Batch","mode":"test","state":"label_generating","num_shipments":1,"reference":null,"created_at":"2022-03-07T22:07:31Z","updated_at":"2022-03-07T22:07:36Z","scan_form":null,"shipments":[{"batch_status":"postage_purchased","batch_message":null,"reference":null,"tracking_code":"9400100109361110241148","id":"shp_bac53d82cba74b83b4c731ac43be4f95"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":1,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
+      Etag:
+      - W/"5b27ec6f1ae8480f8515ab9508de686c"
       Expires:
       - "0"
       Pragma:
@@ -147,7 +150,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211239ff135a20001f1efc
+      - d4a3d8d362268228ff103222003ed6b2
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -157,15 +160,15 @@ interactions:
       X-Proxied:
       - intlb2nuq 88c34981dc
       - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
+      - extlb3wdc 88c34981dc
       X-Request-Id:
-      - 6995c561-fc55-4cea-948d-0fb5f8fea0d3
+      - 2acac1d5-7607-4850-a545-74877f0b658d
       X-Runtime:
-      - "0.020434"
+      - "0.040596"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202203042109-ebc16e3e74-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 404 Not Found
-    code: 404
+    status: 200 OK
+    code: 200
     duration: ""

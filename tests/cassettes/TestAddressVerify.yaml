@@ -2,8 +2,8 @@
 version: 1
 interactions:
 - request:
-    body: '{"address":{"street1":"417 montgomery streat","street2":"FL 5","city":"San
-      Francisco","state":"CA","zip":"94104","country":"US","company":"EasyPost","phone":"415-123-4567"}}'
+    body: '{"address":{"street1":"388 Townsend St","street2":"Apt 20","city":"San
+      Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"}}'
     form: {}
     headers:
       Content-Type:
@@ -13,19 +13,20 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"id":"adr_54b373aa9b2511eca3dbac1f6bc7b362","object":"Address","created_at":"2022-03-03T19:08:37+00:00","updated_at":"2022-03-03T19:08:37+00:00","name":null,"company":"EasyPost","street1":"417
-      montgomery streat","street2":"FL 5","city":"San Francisco","state":"CA","zip":"94104","country":"US","phone":"4151234567","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
+    body: '{"id":"adr_d8ef711e9e5f11ecb091ac1f6bc7b362","object":"Address","created_at":"2022-03-07T21:45:04+00:00","updated_at":"2022-03-07T21:45:04+00:00","name":"Jack
+      Sparrow","company":"EasyPost","street1":"388 Townsend St","street2":"Apt 20","city":"San
+      Francisco","state":"CA","zip":"94107","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":null,"federal_tax_id":null,"state_tax_id":null,"verifications":{}}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"bdde9f02ea3f257f2c9231a9bd7a84c9"
+      - W/"2fb90c6d7f11c7b3dbd6696bcf897d1d"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_54b373aa9b2511eca3dbac1f6bc7b362
+      - /api/v2/addresses/adr_d8ef711e9e5f11ecb091ac1f6bc7b362
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -39,25 +40,83 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211235ff135a20001f1e35
+      - d4a3d8da62267cdfff102d9e003d3a18
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 88c34981dc
       - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
+      - extlb3wdc 88c34981dc
       X-Request-Id:
-      - f7e99f2a-7b5c-47cc-acd9-7c72fe3e5a6a
+      - 83e6978a-2eaa-4b3c-b683-f617403c4263
       X-Runtime:
-      - "0.031906"
+      - "0.034682"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202203042109-ebc16e3e74-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+    url: https://api.easypost.com/v2/addresses/adr_d8ef711e9e5f11ecb091ac1f6bc7b362/verify
+    method: GET
+  response:
+    body: '{"address":{"id":"adr_d90e43219e5f11ecb0a5ac1f6bc7b362","object":"Address","created_at":"2022-03-07T21:45:04+00:00","updated_at":"2022-03-07T21:45:04+00:00","name":"JACK
+      SPARROW","company":"EASYPOST","street1":"388 TOWNSEND ST APT 20","street2":"","city":"SAN
+      FRANCISCO","state":"CA","zip":"94107-1670","country":"US","phone":"5555555555","email":null,"mode":"test","carrier_facility":null,"residential":true,"federal_tax_id":null,"state_tax_id":null,"verifications":{"zip4":{"success":true,"errors":[],"details":null},"delivery":{"success":true,"errors":[],"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"}}}}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"4822f7e2c3f789819874a4090b9c2f1c"
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_d90e43219e5f11ecb0a5ac1f6bc7b362
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - d4a3d8da62267ce0ff102d9e003d3a32
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb2nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 88c34981dc
+      - intlb1wdc 88c34981dc
+      - extlb3wdc 88c34981dc
+      X-Request-Id:
+      - 5c8d5d17-a23d-4d4c-a030-631f45209505
+      X-Runtime:
+      - "0.054910"
+      X-Version-Label:
+      - easypost-202203042109-ebc16e3e74-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
     duration: ""

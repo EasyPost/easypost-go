@@ -91,11 +91,13 @@ func (c *ClientTests) TestAddressVerify() {
 	assert := c.Assert()
 
 	address, _ := client.CreateAddress(
-		c.fixture.IncorrectAddressToVerify(),
+		c.fixture.BasicAddress(),
 		nil,
 	)
 
-	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
-	assert.True(strings.HasPrefix(address.ID, "adr_"))
-	assert.Equal("417 montgomery streat", address.Street1)
+	verifiedAddress, _ := client.VerifyAddress(address.ID)
+
+	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(verifiedAddress))
+	assert.True(strings.HasPrefix(verifiedAddress.ID, "adr_"))
+	assert.Equal("388 TOWNSEND ST APT 20", verifiedAddress.Street1)
 }

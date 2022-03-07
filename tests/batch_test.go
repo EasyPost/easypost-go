@@ -127,6 +127,9 @@ func (c *ClientTests) TestBatchLabel() {
 
 	boughtBatch, _ := client.BuyBatch(batch.ID)
 
+	// Uncomment the following line if you need to re-record the cassette
+	// time.Sleep(5 * time.Second) // Wait enough time for the batch to process buying the shipment
+
 	batchWithLabel, _ := client.GetBatchLabels(boughtBatch.ID, "ZPL")
 
 	// We can't assert anything meaningful here because the label gets queued for generation and may not be immediately available

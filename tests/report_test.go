@@ -201,26 +201,3 @@ func (c *ClientTests) TestReportAll() {
 		assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
 	}
 }
-
-func (c *ClientTests) TestReportCreateNoType() {
-	client := c.TestClient()
-	require := c.Require()
-
-	_, err := client.CreateReport("", nil)
-
-	require.Error(err)
-}
-
-func (c *ClientTests) TestReportAllNoType() {
-	client := c.TestClient()
-	require := c.Require()
-
-	_, err := client.ListReports(
-		"",
-		&easypost.ListReportsOptions{
-			PageSize: c.fixture.pageSize(),
-		},
-	)
-
-	require.Error(err)
-}
