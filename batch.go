@@ -189,16 +189,16 @@ func (c *Client) GetBatchWithContext(ctx context.Context, batchID string) (out *
 // GetBatchLabels generates a label for the batch. This can only be done once
 // per batch, and all shipments must have a "postage_purchased" status.
 func (c *Client) GetBatchLabels(batchID, format string) (out *Batch, err error) {
-	vals := url.Values{"file_format": []string{format}}
-	err = c.do(context.Background(), http.MethodGet, "batches/"+batchID+"/label", vals, &out)
+	params := url.Values{"file_format": []string{format}}
+	err = c.post(context.Background(), "batches/"+batchID+"/label", params, &out)
 	return
 }
 
 // GetBatchLabelsWithContext performs the same operation as GetBatchLabels, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetBatchLabelsWithContext(ctx context.Context, batchID, format string) (out *Batch, err error) {
-	vals := url.Values{"file_format": []string{format}}
-	err = c.do(ctx, http.MethodGet, "batches/"+batchID+"/label", vals, &out)
+	params := url.Values{"file_format": []string{format}}
+	err = c.post(ctx, "batches/"+batchID+"/label", params, &out)
 	return
 }
 
