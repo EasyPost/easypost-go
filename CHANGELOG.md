@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v2.2.0 (2022-03-08)
 
-* Add missing `CreateAndVerifyAddress` and `CreateAndVerifyAddressWithContext` functions in Address file
+- Adds missing `CreateAndVerifyAddress` and `CreateAndVerifyAddressWithContext` functions
 
 ## v2.1.0 (2022-03-07)
 
