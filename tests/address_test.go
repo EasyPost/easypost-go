@@ -86,6 +86,22 @@ func (c *ClientTests) TestAddressCreateVerify() {
 	assert.Equal("417 MONTGOMERY ST STE 500", address.Street1)
 }
 
+func (c *ClientTests) TestAddressCreateAndVerify() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	address, _ := client.CreateAndVerifyAddress(
+		c.fixture.IncorrectAddressToVerify(),
+		&easypost.CreateAddressOptions{
+			Verify: []string{"delivery"},
+		},
+	)
+
+	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
+	assert.True(strings.HasPrefix(address.ID, "adr_"))
+	assert.Equal("417 MONTGOMERY ST STE 500", address.Street1)
+}
+
 func (c *ClientTests) TestAddressVerify() {
 	client := c.TestClient()
 	assert := c.Assert()
