@@ -5,24 +5,24 @@ interactions:
     body: '{"batch":{"shipments":[{"to_address":{"street1":"388 Townsend St","street2":"Apt
       20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"},"from_address":{"street1":"388
       Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
-      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4}},null]}}'
+      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4},"carrier":"USPS","service":"First","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"]},null]}}'
     form: {}
     headers:
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - EasyPost/v2 GoClient/2.1.0 Go/go1.17.5 OS/darwin
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"id":"batch_51da20b77ad948c49f39e752c6e569d1","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-03-03T19:08:40Z","updated_at":"2022-03-03T19:08:40Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"id":"batch_bbbcc33decdf4c11821871df575ab467","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-03-09T20:03:48Z","updated_at":"2022-03-09T20:03:48Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b9ce3b59b96a92c47c987f2a90716189"
+      - W/"890665f28af6553ce0b324a557a469bd"
       Expires:
       - "0"
       Pragma:
@@ -38,11 +38,11 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211237ff135a20001f1eb4
+      - 1cbfe2bf62290824ff223a240073b1bd
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
@@ -50,11 +50,11 @@ interactions:
       - intlb1wdc 88c34981dc
       - extlb1wdc 88c34981dc
       X-Request-Id:
-      - df51ac1c-4832-4c2b-aa60-dad3aea2c7e1
+      - eda9b89b-27c4-449e-a37e-795f07cfe8d8
       X-Runtime:
-      - "0.040838"
+      - "0.039706"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202203091837-b9ce1b6b0d-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

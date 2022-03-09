@@ -65,7 +65,6 @@ func (fixture *Fixture) IncorrectAddressToVerify() *easypost.Address {
 		Company: "EasyPost",
 		Phone:   "415-123-4567",
 	}
-
 }
 
 func (fixture *Fixture) PickupAddress() *easypost.Pickup {

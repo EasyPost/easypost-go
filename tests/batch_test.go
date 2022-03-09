@@ -12,7 +12,7 @@ func (c *ClientTests) TestBatchCreate() {
 	assert := c.Assert()
 
 	batch, _ := client.CreateBatch(
-		c.fixture.BasicShipment(),
+		c.fixture.OneCallBuyShipment(),
 		nil,
 	)
 
@@ -26,7 +26,7 @@ func (c *ClientTests) TestBatchRetrieve() {
 	assert := c.Assert()
 
 	batch, _ := client.CreateBatch(
-		c.fixture.BasicShipment(),
+		c.fixture.OneCallBuyShipment(),
 		nil,
 	)
 
