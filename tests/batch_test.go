@@ -1,10 +1,10 @@
 package easypost_test
 
 import (
-	"fmt"
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestBatchCreate() {
@@ -105,14 +105,12 @@ func (c *ClientTests) TestBatchAddRemoveShipment() {
 
 	batch, _ := client.CreateBatch()
 
-	batchWithShipment, err := client.AddShipmentsToBatch(batch.ID, shipment.ID, shipment2.ID)
+	batchWithShipment, _ := client.AddShipmentsToBatch(batch.ID, shipment.ID, shipment2.ID)
 
-	fmt.Println(err)
 	assert.Equal(2, batchWithShipment.NumShipments)
 
-	batchWithoutShipment, err := client.RemoveShipmentsFromBatch(batch.ID, shipment.ID, shipment2.ID)
+	batchWithoutShipment, _ := client.RemoveShipmentsFromBatch(batch.ID, shipment.ID, shipment2.ID)
 
-	fmt.Println(err)
 	assert.Equal(0, batchWithoutShipment.NumShipments)
 }
 

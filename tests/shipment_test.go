@@ -1,9 +1,10 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestShipmentCreate() {
@@ -170,4 +171,28 @@ func (c *ClientTests) TestShipmentCreateTaxIdentifier() {
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
 	assert.Equal("IOSS", shipment.TaxIdentifiers[0].TaxIdType)
+}
+
+func (c *ClientTests) TestShipmentCreateWithIds() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	fromAddress, _ := client.CreateAddress(c.fixture.BasicAddress(), nil)
+	toAddress, _ := client.CreateAddress(c.fixture.BasicAddress(), nil)
+	parcel, _ := client.CreateParcel(c.fixture.BasicParcel())
+
+	shipment, _ := client.CreateShipment(
+		&easypost.Shipment{
+			FromAddress: &easypost.Address{ID: fromAddress.ID},
+			ToAddress:   &easypost.Address{ID: toAddress.ID},
+			Parcel:      &easypost.Parcel{ID: parcel.ID},
+		},
+	)
+
+	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
+	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
+	assert.True(strings.HasPrefix(shipment.FromAddress.ID, "adr_"))
+	assert.True(strings.HasPrefix(shipment.ToAddress.ID, "adr_"))
+	assert.True(strings.HasPrefix(shipment.Parcel.ID, "prcl_"))
+	assert.Equal("388 Townsend St", shipment.FromAddress.Street1)
 }
