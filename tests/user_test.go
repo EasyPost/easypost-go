@@ -1,10 +1,10 @@
 package easypost_test
 
 import (
-	"fmt"
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestUserCreate() {
@@ -74,14 +74,12 @@ func (c *ClientTests) TestUserUpdateBrand() {
 
 	user, _ := client.RetrieveMe()
 
-	brand, err := client.UpdateBrand(
+	brand, _ := client.UpdateBrand(
 		map[string]interface{}{
 			"color": color,
 		},
 		user.ID,
 	)
-
-	fmt.Println(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Brand{}), reflect.TypeOf(brand))
 	assert.True(strings.HasPrefix(brand.ID, "brd_"))
