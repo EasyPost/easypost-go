@@ -87,6 +87,38 @@ func (c *ClientTests) TestReportTrackerCreate() {
 	assert.True(strings.HasPrefix(report.ID, "trkrep_"))
 }
 
+func (c *ClientTests) TestReportCustomColumnsCreate() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	report, _ := client.CreateReport(
+		"shipment",
+		&easypost.Report{
+			StartDate: c.fixture.ReportStartDate(),
+			EndDate:   c.fixture.ReportEndDate(),
+			Columns:   []string{"usps_zone"},
+		},
+	)
+
+	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
+}
+
+func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	report, _ := client.CreateReport(
+		"shipment",
+		&easypost.Report{
+			StartDate:         c.fixture.ReportStartDate(),
+			EndDate:           c.fixture.ReportEndDate(),
+			AdditionalColumns: []string{"from_name", "from_company"},
+		},
+	)
+
+	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
+}
+
 func (c *ClientTests) TestReportPaymentLogRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
