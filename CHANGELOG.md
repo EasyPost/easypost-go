@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## NEXT RELEASE
+- Adds custom columns and additional columns to `CreateReport` function
+
 ## v2.2.0 (2022-03-08)
 
 - Adds missing `CreateAndVerifyAddress` and `CreateAndVerifyAddressWithContext` functions
