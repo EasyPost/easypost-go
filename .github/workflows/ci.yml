@@ -10,7 +10,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
-        uses: actions/checkout@v2
+        uses: actions/checkout@v3
       - name: Run Golangci Linter
         uses: golangci/golangci-lint-action@v2
   build:
@@ -19,9 +19,9 @@ jobs:
       matrix:
         go-version: ["1.15", "1.16", "1.17", "1.18"]
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@v3
       - name: use golang ${{ matrix.node-version }}
-        uses: actions/setup-go@v2
+        uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
       - name: install dependencies
