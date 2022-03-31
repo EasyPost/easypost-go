@@ -149,6 +149,8 @@ func (c *ClientTests) TestShipmentCreateEmptyObjects() {
 	shipmentData.Options = nil
 	shipmentData.TaxIdentifiers = nil
 	shipmentData.Reference = ""
+	shipmentData.CustomsInfo = &easypost.CustomsInfo{}
+	shipmentData.CustomsInfo.CustomsItems = []*easypost.CustomsItem{}
 
 	shipment, _ := client.CreateShipment(shipmentData)
 
@@ -156,6 +158,7 @@ func (c *ClientTests) TestShipmentCreateEmptyObjects() {
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
 	assert.NotNil(shipment.Options) // The EasyPost API populates some default values here
 	assert.Nil(shipment.CustomsInfo)
+	assert.Nil(shipment.TaxIdentifiers)
 	assert.NotNil(shipment.Reference)
 }
 
