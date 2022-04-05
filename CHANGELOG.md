@@ -2,6 +2,7 @@
 
 ## NEXT RELEASE
 - Adds custom columns and additional columns to `CreateReport` function
+- Adds `declaration` attribute in Customs Info struct
 
 ## v2.2.0 (2022-03-08)
 

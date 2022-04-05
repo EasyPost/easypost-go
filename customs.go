@@ -20,6 +20,7 @@ type CustomsInfo struct {
 	NonDeliveryOption   string         `json:"non_delivery_option,omitempty"`
 	RestrictionType     string         `json:"restriction_type,omitempty"`
 	CustomsItems        []*CustomsItem `json:"customs_items,omitempty"`
+	Declaration         string         `json:"declaration,omitempty"`
 }
 
 // A CustomsItem object describes goods for international shipment.
