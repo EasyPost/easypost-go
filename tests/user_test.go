@@ -30,7 +30,9 @@ func (c *ClientTests) TestUserRetrieve() {
 	client := c.ProdClient()
 	assert := c.Assert()
 
-	retrievedUser, _ := client.GetUser(c.fixture.ChildUserID())
+	authenticatedUser, _ := client.RetrieveMe()
+
+	retrievedUser, _ := client.GetUser(authenticatedUser.Children[0].ID)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(retrievedUser))
 	assert.True(strings.HasPrefix(retrievedUser.ID, "user_"))

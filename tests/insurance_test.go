@@ -13,15 +13,10 @@ func (c *ClientTests) TestInsuranceCreate() {
 
 	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
 
-	insurance, _ := client.CreateInsurance(
-		&easypost.Insurance{
-			ToAddress:    c.fixture.BasicAddress(),
-			FromAddress:  c.fixture.BasicAddress(),
-			TrackingCode: shipment.TrackingCode,
-			Carrier:      c.fixture.USPS(),
-			Amount:       "100",
-		},
-	)
+	insuranceData := c.fixture.BasicInsurance()
+	insuranceData.TrackingCode = shipment.TrackingCode
+
+	insurance, _ := client.CreateInsurance(insuranceData)
 
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(insurance))
 	assert.True(strings.HasPrefix(insurance.ID, "ins_"))
@@ -34,15 +29,11 @@ func (c *ClientTests) TestInsuranceRetrieve() {
 
 	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
 
-	insurance, _ := client.CreateInsurance(
-		&easypost.Insurance{
-			ToAddress:    c.fixture.BasicAddress(),
-			FromAddress:  c.fixture.BasicAddress(),
-			TrackingCode: shipment.TrackingCode,
-			Carrier:      c.fixture.USPS(),
-			Amount:       "100",
-		},
-	)
+	insuranceData := c.fixture.BasicInsurance()
+	insuranceData.TrackingCode = shipment.TrackingCode
+
+	insurance, _ := client.CreateInsurance(insuranceData)
+
 	retrievedInsurance, _ := client.GetInsurance(insurance.ID)
 
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(retrievedInsurance))

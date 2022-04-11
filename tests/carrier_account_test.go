@@ -10,17 +10,7 @@ import (
 func (c *ClientTests) GenerateCarrierAccount() (*easypost.CarrierAccount, error) {
 	client := c.ProdClient()
 
-	carrierAccount, err := client.CreateCarrierAccount(
-		&easypost.CarrierAccount{
-			Type: "UpsAccount",
-			Credentials: map[string]string{
-				"account_number":        "A1A1A1",
-				"user_id":               "USERID",
-				"password":              "PASSWORD",
-				"access_license_number": "ALN",
-			},
-		},
-	)
+	carrierAccount, err := client.CreateCarrierAccount(c.fixture.BasicCarrierAccount())
 
 	return carrierAccount, err
 }
