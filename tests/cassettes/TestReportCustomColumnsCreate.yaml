@@ -2,24 +2,24 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-02-26","end_date":"2022-02-27","columns":["usps_zone"]}'
+    body: '{"start_date":"2022-04-11","end_date":"2022-04-11","columns":["usps_zone"]}'
     form: {}
     headers:
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.2.0 Go/go1.17.5 OS/darwin
+      - EasyPost/v2 GoClient/2.2.0 Go/go1.18 OS/darwin
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"id":"shprep_73e82932c5d64792b0f19303e325fd89","object":"ShipmentReport","created_at":"2022-03-23T20:19:36Z","updated_at":"2022-03-23T20:19:36Z","start_date":"2022-02-26","end_date":"2022-02-27","mode":"test","status":"new","url":null,"url_expires_at":null,"include_children":false}'
+    body: '{"id":"shprep_b5df6187b2b54e26b131e1bec3414665","object":"ShipmentReport","created_at":"2022-04-11T20:19:32Z","updated_at":"2022-04-11T20:19:32Z","start_date":"2022-04-11","end_date":"2022-04-11","mode":"test","status":"new","url":null,"url_expires_at":null,"include_children":false}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"90977fd794f716f7d602bd7c9ebbef8a"
+      - W/"e5accfaed6c1fa8b059938507c3645be"
       Expires:
       - "0"
       Pragma:
@@ -35,20 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4aee9dd2623b80d8e78a8f090009507a
+      - 0991fb5162548d54e7873c80002ddddc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 3e97db20d4
-      - extlb1nuq 3e97db20d4
+      - intlb1nuq fde591f008
+      - extlb2nuq fde591f008
       X-Runtime:
-      - "0.043252"
+      - "0.044130"
       X-Version-Label:
-      - easypost-202203231943-61a988cd70-master
+      - easypost-202204111913-07b6175514-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

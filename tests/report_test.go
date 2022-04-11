@@ -7,47 +7,15 @@ import (
 	"github.com/EasyPost/easypost-go/v2"
 )
 
-func (c *ClientTests) TestReportPaymentLogCreate() {
+func (c *ClientTests) TestReportCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
 	report, _ := client.CreateReport(
-		"payment_log",
+		c.fixture.ReportType(),
 		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
-	assert.True(strings.HasPrefix(report.ID, "plrep_"))
-}
-
-func (c *ClientTests) TestReportRefundCreate() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"refund",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
-	assert.True(strings.HasPrefix(report.ID, "refrep_"))
-}
-
-func (c *ClientTests) TestReportShipmentLogCreate() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"shipment",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
+			StartDate: c.fixture.ReportDate(),
+			EndDate:   c.fixture.ReportDate(),
 		},
 	)
 
@@ -55,47 +23,15 @@ func (c *ClientTests) TestReportShipmentLogCreate() {
 	assert.True(strings.HasPrefix(report.ID, "shprep_"))
 }
 
-func (c *ClientTests) TestReportShipmentInvoiceCreate() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"shipment_invoice",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
-	assert.True(strings.HasPrefix(report.ID, "shpinvrep_"))
-}
-
-func (c *ClientTests) TestReportTrackerCreate() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"tracker",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
-	assert.True(strings.HasPrefix(report.ID, "trkrep_"))
-}
-
 func (c *ClientTests) TestReportCustomColumnsCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
 	report, _ := client.CreateReport(
-		"shipment",
+		c.fixture.ReportType(),
 		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
+			StartDate: c.fixture.ReportDate(),
+			EndDate:   c.fixture.ReportDate(),
 			Columns:   []string{"usps_zone"},
 		},
 	)
@@ -113,10 +49,10 @@ func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 	assert := c.Assert()
 
 	report, _ := client.CreateReport(
-		"shipment",
+		c.fixture.ReportType(),
 		&easypost.Report{
-			StartDate:         c.fixture.ReportStartDate(),
-			EndDate:           c.fixture.ReportEndDate(),
+			StartDate:         c.fixture.ReportDate(),
+			EndDate:           c.fixture.ReportDate(),
 			AdditionalColumns: []string{"from_name", "from_company"},
 		},
 	)
@@ -129,95 +65,19 @@ func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
 }
 
-func (c *ClientTests) TestReportPaymentLogRetrieve() {
+func (c *ClientTests) TestReportRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
 	report, _ := client.CreateReport(
-		"payment_log",
+		c.fixture.ReportType(),
 		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
+			StartDate: c.fixture.ReportDate(),
+			EndDate:   c.fixture.ReportDate(),
 		},
 	)
 
-	retrievedReport, _ := client.GetReport("payment_log", report.ID)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(retrievedReport))
-	assert.Equal(report.StartDate, retrievedReport.StartDate)
-	assert.Equal(report.EndDate, retrievedReport.EndDate)
-}
-
-func (c *ClientTests) TestReportRefundLogRetrieve() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"refund",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	retrievedReport, _ := client.GetReport("refund", report.ID)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(retrievedReport))
-	assert.Equal(report.StartDate, retrievedReport.StartDate)
-	assert.Equal(report.EndDate, retrievedReport.EndDate)
-}
-
-func (c *ClientTests) TestReportShipmentLogRetrieve() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"shipment",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	retrievedReport, _ := client.GetReport("shipment", report.ID)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(retrievedReport))
-	assert.Equal(report.StartDate, retrievedReport.StartDate)
-	assert.Equal(report.EndDate, retrievedReport.EndDate)
-}
-
-func (c *ClientTests) TestReportShipmentInvoiceLogRetrieve() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"shipment_invoice",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	retrievedReport, _ := client.GetReport("shipment_invoice", report.ID)
-
-	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(retrievedReport))
-	assert.Equal(report.StartDate, retrievedReport.StartDate)
-	assert.Equal(report.EndDate, retrievedReport.EndDate)
-}
-
-func (c *ClientTests) TestReportTrackerLogRetrieve() {
-	client := c.TestClient()
-	assert := c.Assert()
-
-	report, _ := client.CreateReport(
-		"tracker",
-		&easypost.Report{
-			StartDate: c.fixture.ReportStartDate(),
-			EndDate:   c.fixture.ReportEndDate(),
-		},
-	)
-
-	retrievedReport, _ := client.GetReport("tracker", report.ID)
+	retrievedReport, _ := client.GetReport(c.fixture.ReportType(), report.ID)
 
 	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(retrievedReport))
 	assert.Equal(report.StartDate, retrievedReport.StartDate)
@@ -229,7 +89,7 @@ func (c *ClientTests) TestReportAll() {
 	assert := c.Assert()
 
 	reports, _ := client.ListReports(
-		"shipment",
+		c.fixture.ReportType(),
 		&easypost.ListReportsOptions{
 			PageSize: c.fixture.pageSize(),
 		},

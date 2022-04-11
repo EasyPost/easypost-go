@@ -11,11 +11,11 @@ func (c *ClientTests) TestWebhookCreate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, _ := client.CreateWebhook("http://example.com")
+	webhook, _ := client.CreateWebhook(c.fixture.WebhookUrl())
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal("http://example.com", webhook.URL)
+	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
 
 	err := client.DeleteWebhook(webhook.ID) // we are deleting the webhook here so we don't keep sending events to a dead webhook.
 
@@ -26,7 +26,7 @@ func (c *ClientTests) TestWebhookRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, _ := client.CreateWebhook("http://example.com")
+	webhook, _ := client.CreateWebhook(c.fixture.WebhookUrl())
 
 	retrievedWebhook, _ := client.GetWebhook(webhook.ID)
 
@@ -54,11 +54,11 @@ func (c *ClientTests) TestWebhookDelete() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, _ := client.CreateWebhook("http://example.com")
+	webhook, _ := client.CreateWebhook(c.fixture.WebhookUrl())
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal("http://example.com", webhook.URL)
+	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
 
 	err := client.DeleteWebhook(webhook.ID)
 

@@ -1,9 +1,10 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestPickupCreate() {
@@ -54,7 +55,7 @@ func (c *ClientTests) TestPickupBuy() {
 		pickup.ID,
 		&easypost.PickupRate{
 			Carrier: c.fixture.USPS(),
-			Service: "NextDay",
+			Service: c.fixture.PickupService(),
 		},
 	)
 
@@ -79,7 +80,7 @@ func (c *ClientTests) TestPickupCancel() {
 		pickup.ID,
 		&easypost.PickupRate{
 			Carrier: c.fixture.USPS(),
-			Service: "NextDay",
+			Service: c.fixture.PickupService(),
 		},
 	)
 

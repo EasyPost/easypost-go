@@ -6,8 +6,8 @@ interactions:
     form: {}
     headers:
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0
+      - EasyPost/v2 GoClient/2.2.0 Go/go1.18 OS/darwin
+    url: https://api.easypost.com/v2/users
     method: GET
   response:
     body: '{"id":"user_a76997d126dd488f8ad22d52301300b0","object":"User","parent_id":null,"name":"EasyPost
@@ -47,7 +47,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211272ff135a20001f2c0e
+      - df63cd0b62548793e786c501002c7f86
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -55,15 +55,64 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - fc23dabb-e471-4118-a22b-371fd9fd082d
+      - intlb2nuq fde591f008
+      - extlb1nuq fde591f008
       X-Runtime:
-      - "0.245505"
+      - "0.287472"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202204111913-07b6175514-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      User-Agent:
+      - EasyPost/v2 GoClient/2.2.0 Go/go1.18 OS/darwin
+    url: https://api.easypost.com/v2/users/user_1d75fce0f97c4c3aa42ea008528a1ef0
+    method: GET
+  response:
+    body: '{"id":"user_1d75fce0f97c4c3aa42ea008528a1ef0","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","name":"Go
+      Test User","phone_number":"8005550100","verified":true,"created_at":"2022-02-07T20:08:11Z","children":[]}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"8a94142fcee03f6a229ec2cf5f9255f8"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - df63cd0b62548794e786c501002c7f9f
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb5nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq fde591f008
+      - extlb1nuq fde591f008
+      X-Runtime:
+      - "0.032864"
+      X-Version-Label:
+      - easypost-202204111913-07b6175514-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

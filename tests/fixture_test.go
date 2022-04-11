@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"os"
 	"time"
 
 	"github.com/EasyPost/easypost-go/v2"
@@ -14,13 +15,16 @@ func (fixture *Fixture) pageSize() int {
 	return 5
 }
 
-// This is the carrier account ID for the default USPS account that comes by default. All tests should use this carrier account
+// This is the USPS carrier account ID that comes with your EasyPost account by default and should be used for all tests
 func (fixture *Fixture) USPSCarrierAccountID() string {
-	return "ca_e606176ddb314afe896733636dba2f3b"
-}
+	uspsCarrierAccountID := os.Getenv("USPS_CARRIER_ACCOUNT_ID")
 
-func (fixture *Fixture) ChildUserID() string {
-	return "user_a76997d126dd488f8ad22d52301300b0"
+	// Fallback to the EasyPost Go Client Library Test User USPS carrier account ID
+	if len(uspsCarrierAccountID) == 0 {
+		return "ca_e606176ddb314afe896733636dba2f3b"
+	}
+
+	return uspsCarrierAccountID
 }
 
 func (fixture *Fixture) USPS() string {
@@ -31,14 +35,21 @@ func (fixture *Fixture) USPSService() string {
 	return "First"
 }
 
-// If ever these need to change due to re-recording cassettes, simply increment this date by 1 from today
-func (fixture *Fixture) ReportStartDate() string {
-	return "2022-02-26"
+func (fixture *Fixture) PickupService() string {
+	return "NextDay"
 }
 
-// If ever these need to change due to re-recording cassettes, simply increment this date by 2 from today
-func (fixture *Fixture) ReportEndDate() string {
-	return "2022-02-27"
+func (fixture *Fixture) ReportType() string {
+	return "shipment"
+}
+
+// If you need to re-record cassettes, increment this date by 1
+func (fixture *Fixture) ReportDate() string {
+	return "2022-04-11"
+}
+
+func (fixture *Fixture) WebhookUrl() string {
+	return "http://example.com"
 }
 
 func (fixture *Fixture) BasicAddress() *easypost.Address {
@@ -157,15 +168,44 @@ func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 }
 
 // This fixture will require you to add a `shipment` key with a Shipment object from a test.
-// If you need to re-record cassettes, simply iterate the dates below and ensure they're one day in the future,
 // USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 func (fixture *Fixture) BasicPickup() *easypost.Pickup {
-	minDate := time.Now().AddDate(0, 0, 1)
-	maxDate := time.Now().AddDate(0, 0, 2)
+	pickupDate := time.Now().AddDate(0, 0, 1)
+
 	return &easypost.Pickup{
 		Address:      fixture.BasicAddress(),
-		MinDatetime:  &minDate,
-		MaxDatetime:  &maxDate,
+		MinDatetime:  &pickupDate,
+		MaxDatetime:  &pickupDate,
 		Instructions: "Pickup at front door",
+	}
+}
+
+func (fixture *Fixture) BasicCarrierAccount() *easypost.CarrierAccount {
+	return &easypost.CarrierAccount{
+		Type: "UpsAccount",
+		Credentials: map[string]string{
+			"account_number":        "A1A1A1",
+			"user_id":               "USERID",
+			"password":              "PASSWORD",
+			"access_license_number": "ALN",
+		},
+	}
+}
+
+// This fixture will require you to add a `tracking_code` key with a tracking code from a shipment
+func (fixture *Fixture) BasicInsurance() *easypost.Insurance {
+	return &easypost.Insurance{
+		ToAddress:   fixture.BasicAddress(),
+		FromAddress: fixture.BasicAddress(),
+		Carrier:     fixture.USPS(),
+		Amount:      "100",
+	}
+}
+
+func (fixture *Fixture) BasicOrder() *easypost.Order {
+	return &easypost.Order{
+		ToAddress:   fixture.BasicAddress(),
+		FromAddress: fixture.BasicAddress(),
+		Shipments:   []*easypost.Shipment{fixture.BasicShipment()},
 	}
 }

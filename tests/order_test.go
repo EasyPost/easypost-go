@@ -1,24 +1,17 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
-)
 
-func (c *ClientTests) Order() *easypost.Order {
-	return &easypost.Order{
-		ToAddress:   c.fixture.BasicAddress(),
-		FromAddress: c.fixture.BasicAddress(),
-		Shipments:   []*easypost.Shipment{c.fixture.BasicShipment()},
-	}
-}
+	"github.com/EasyPost/easypost-go/v2"
+)
 
 func (c *ClientTests) TestOrderCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.Order())
+	order, _ := client.CreateOrder(c.fixture.BasicOrder())
 
 	assert.Equal(reflect.TypeOf(&easypost.Order{}), reflect.TypeOf(order))
 	assert.True(strings.HasPrefix(order.ID, "order_"))
@@ -29,7 +22,7 @@ func (c *ClientTests) TestOrderRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.Order())
+	order, _ := client.CreateOrder(c.fixture.BasicOrder())
 
 	retrievedOrder, _ := client.GetOrder(order.ID)
 
@@ -41,7 +34,7 @@ func (c *ClientTests) TestOrderGetRates() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.Order())
+	order, _ := client.CreateOrder(c.fixture.BasicOrder())
 
 	rates, _ := client.GetOrderRates(order.ID)
 
@@ -57,7 +50,7 @@ func (c *ClientTests) TestOrderBuyRate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.Order())
+	order, _ := client.CreateOrder(c.fixture.BasicOrder())
 
 	boughtOrder, _ := client.BuyOrder(order.ID, c.fixture.USPS(), c.fixture.USPSService())
 

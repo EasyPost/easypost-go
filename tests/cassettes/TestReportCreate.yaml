@@ -2,24 +2,24 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-02-26","end_date":"2022-02-27"}'
+    body: '{"start_date":"2022-04-11","end_date":"2022-04-11"}'
     form: {}
     headers:
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/reports/payment_log
+      - EasyPost/v2 GoClient/2.2.0 Go/go1.18 OS/darwin
+    url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"id":"plrep_e07300584f424094aba9f380c7841359","object":"PaymentLogReport","created_at":"2022-03-03T19:09:14Z","updated_at":"2022-03-03T19:09:14Z","start_date":"2022-02-26","end_date":"2022-02-27","mode":"test","status":"new","url":null,"url_expires_at":null}'
+    body: '{"id":"shprep_e4820c9528e440f49c0660ee14f0773b","object":"ShipmentReport","created_at":"2022-04-11T20:19:32Z","updated_at":"2022-04-11T20:19:32Z","start_date":"2022-04-11","end_date":"2022-04-11","mode":"test","status":"new","url":null,"url_expires_at":null,"include_children":false}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"13b84105ecb1a0ef738f5ea8c353484d"
+      - W/"d68007b03de2086dd49756be46d94bd8"
       Expires:
       - "0"
       Pragma:
@@ -30,30 +30,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e6221125aff135a20001f2672
+      - 0991fb5162548d54e7873c80002dddc8
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb2wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - dd3d42fc-fe1c-45cf-a955-24710b34f51e
+      - intlb2nuq fde591f008
+      - extlb2nuq fde591f008
       X-Runtime:
-      - "0.035211"
+      - "0.076721"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202204111913-07b6175514-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
