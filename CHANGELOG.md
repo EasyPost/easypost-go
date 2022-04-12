@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## NEXT RELEASE
-- Adds custom columns and additional columns to `CreateReport` function
-- Adds `declaration` attribute in Customs Info struct
+## v2.3.0 (2022-04-13)
+
+- Adds `Columns` and `AdditionalColumns` params to `Report` struct
+- Adds `Declaration` attribute in `CustomsInfo` struct
 
 ## v2.2.0 (2022-03-08)
 
