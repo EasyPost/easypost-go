@@ -111,6 +111,8 @@ func main() {
 
 See the above example, or view the [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go) for more details.
 
+Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
+
 ## Development
 
 ```bash

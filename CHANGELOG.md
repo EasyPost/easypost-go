@@ -27,6 +27,8 @@
 
 **NOTE: Do not use this release, use v2.0.1 or later due to this release being incorrectly packaged.**
 
+Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
+
 - Bumps minimum Go version from `1.12` to `1.15`
 - Bumps dependencies
 - Lints the entire project
