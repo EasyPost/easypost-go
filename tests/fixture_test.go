@@ -168,9 +168,10 @@ func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 }
 
 // This fixture will require you to add a `shipment` key with a Shipment object from a test.
+// If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
 // USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 func (fixture *Fixture) BasicPickup() *easypost.Pickup {
-	pickupDate := time.Now().AddDate(0, 0, 1)
+	pickupDate := time.Date(2022, time.May, 9, 0, 0, 0, 0, time.UTC)
 
 	return &easypost.Pickup{
 		Address:      fixture.BasicAddress(),
