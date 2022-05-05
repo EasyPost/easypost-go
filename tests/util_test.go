@@ -1,8 +1,10 @@
 package easypost_test
 
 import (
+	"bytes"
 	"flag"
 	"fmt"
+	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -40,13 +42,28 @@ func (c *ClientTests) SetupTest() {
 	)
 	r, err := recorder.New(filepath.Join(pathComponents...))
 	c.Require().NoError(err)
+
+	r.SetMatcher(func(r *http.Request, i cassette.Request) bool {
+		if r.Body == nil {
+			return cassette.DefaultMatcher(r, i)
+		}
+		var b bytes.Buffer
+		if _, err := b.ReadFrom(r.Body); err != nil {
+			return false
+		}
+		r.Body = ioutil.NopCloser(&b)
+		return cassette.DefaultMatcher(r, i) && (b.String() == "" || b.String() == i.Body)
+	})
+
 	r.AddFilter(func(i *cassette.Interaction) error {
 		delete(i.Request.Headers, "Authorization")
 		return nil
 	})
+
 	if TestAPIKey == "" {
 		r.SetTransport(ErrorRoundTripper{})
 	}
+
 	c.recorder = r
 }
 

@@ -8,7 +8,7 @@ help:
 
 ## build - Build the project
 build:
-	cd $(PROJECT_NAME) && go build -o ../$(DIST_PATH)/$(PROJECT_NAME)
+	go build -o ../$(DIST_PATH)/$(PROJECT_NAME)
 
 ## clean - Clean the project
 clean:
@@ -21,7 +21,7 @@ coverage:
 
 ## install - Install globally from source
 install:
-	cd $(PROJECT_NAME) && go build -o $(PROJECT_PATH)
+	go build -o $(PROJECT_PATH)
 
 ## lint - Lint the project
 lint:
