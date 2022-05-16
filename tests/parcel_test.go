@@ -1,16 +1,21 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestParcelCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	parcel, _ := client.CreateParcel(c.fixture.BasicParcel())
+	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Parcel{}), reflect.TypeOf(parcel))
 	assert.True(strings.HasPrefix(parcel.ID, "prcl_"))
@@ -21,9 +26,17 @@ func (c *ClientTests) TestParcelRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	parcel, _ := client.CreateParcel(c.fixture.BasicParcel())
+	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedParcel, _ := client.GetParcel(parcel.ID)
+	retrievedParcel, err := client.GetParcel(parcel.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Parcel{}), reflect.TypeOf(retrievedParcel))
 	assert.Equal(parcel, retrievedParcel)

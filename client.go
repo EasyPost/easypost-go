@@ -4,14 +4,16 @@ import (
 	"bytes"
 	"context"
 	"encoding/json"
+	"errors"
 	"fmt"
-	"github.com/google/go-querystring/query"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"runtime"
 	"time"
+
+	"github.com/google/go-querystring/query"
 )
 
 var apiBaseURL = &url.URL{
@@ -124,6 +126,10 @@ func (c *Client) setBody(req *http.Request, in interface{}) error {
 }
 
 func (c *Client) do(ctx context.Context, method, path string, in, out interface{}) error {
+	if c.APIKey == "" {
+		return errors.New("no API key provided")
+	}
+
 	req := &http.Request{
 		Method: method,
 		URL:    c.baseURL().ResolveReference(&url.URL{Path: path}),
@@ -133,10 +139,12 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	if err := c.setBody(req, in); err != nil {
 		return err
 	}
+
 	req.SetBasicAuth(c.APIKey, "")
 	if ctx != nil {
 		req = req.WithContext(ctx)
 	}
+
 	res, err := c.client().Do(req)
 	if err != nil {
 		return err
@@ -154,6 +162,7 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	if json.Unmarshal(buf, &apiErrorResponse{Error: apiErr}) != nil {
 		apiErr.Message = string(buf)
 	}
+
 	return apiErr
 }
 

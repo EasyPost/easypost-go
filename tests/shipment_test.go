@@ -11,7 +11,11 @@ func (c *ClientTests) TestShipmentCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
+	shipment, err := client.CreateShipment(c.fixture.FullShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
@@ -25,9 +29,17 @@ func (c *ClientTests) TestShipmentRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
+	shipment, err := client.CreateShipment(c.fixture.FullShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedShipment, _ := client.GetShipment(shipment.ID)
+	retrievedShipment, err := client.GetShipment(shipment.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(retrievedShipment))
 	assert.Equal(shipment, retrievedShipment)
@@ -37,11 +49,15 @@ func (c *ClientTests) TestShipmentAll() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipments, _ := client.ListShipments(
+	shipments, err := client.ListShipments(
 		&easypost.ListShipmentsOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	shipmentsList := shipments.Shipments
 
@@ -56,11 +72,23 @@ func (c *ClientTests) TestShipmentBuy() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
+	shipment, err := client.CreateShipment(c.fixture.FullShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	lowestRate, _ := client.LowestRate(shipment)
+	lowestRate, err := client.LowestRate(shipment)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	boughtShipment, _ := client.BuyShipment(shipment.ID, &lowestRate, "")
+	boughtShipment, err := client.BuyShipment(shipment.ID, &lowestRate, "")
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.NotNil(boughtShipment.PostageLabel)
 }
@@ -69,9 +97,17 @@ func (c *ClientTests) TestShipmentRegenerateRates() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.FullShipment())
+	shipment, err := client.CreateShipment(c.fixture.FullShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	rates, _ := client.RerateShipment(shipment.ID)
+	rates, err := client.RerateShipment(shipment.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf([]*easypost.Rate{}), reflect.TypeOf(rates))
 	for _, rate := range rates {
@@ -83,9 +119,17 @@ func (c *ClientTests) TestShipmentConvertLabel() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	shipmentWithNewLabel, _ := client.GetShipmentLabel(shipment.ID, "ZPL")
+	shipmentWithNewLabel, err := client.GetShipmentLabel(shipment.ID, "ZPL")
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.NotNil(shipmentWithNewLabel.PostageLabel.LabelZPLURL)
 }
@@ -100,9 +144,17 @@ func (c *ClientTests) TestShipmentInsure() {
 	// Set to 0 so USPS doesn't insure this automatically and we can insure the shipment manually
 	shipmentData.Insurance = "0"
 
-	shipment, _ := client.CreateShipment(shipmentData)
+	shipment, err := client.CreateShipment(shipmentData)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	insuredShipment, _ := client.InsureShipment(shipment.ID, "100")
+	insuredShipment, err := client.InsureShipment(shipment.ID, "100")
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal("100.00", insuredShipment.Insurance)
 }
@@ -114,9 +166,17 @@ func (c *ClientTests) TestShipmentRefund() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	refundShipment, _ := client.RefundShipment(shipment.ID)
+	refundShipment, err := client.RefundShipment(shipment.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal("submitted", refundShipment.RefundStatus)
 }
@@ -125,11 +185,19 @@ func (c *ClientTests) TestShipmentSmartrate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.BasicShipment())
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.NotNil(shipment.Rates)
 
-	smartrates, _ := client.GetShipmentSmartrates(shipment.ID)
+	smartrates, err := client.GetShipmentSmartrates(shipment.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(shipment.Rates[0].ID, smartrates[0].ID)
 	assert.NotNil(smartrates[0].TimeInTransit.Percentile50)
@@ -152,7 +220,11 @@ func (c *ClientTests) TestShipmentCreateEmptyObjects() {
 	shipmentData.CustomsInfo = &easypost.CustomsInfo{}
 	shipmentData.CustomsInfo.CustomsItems = []*easypost.CustomsItem{}
 
-	shipment, _ := client.CreateShipment(shipmentData)
+	shipment, err := client.CreateShipment(shipmentData)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
@@ -169,7 +241,11 @@ func (c *ClientTests) TestShipmentCreateTaxIdentifier() {
 	shipmentData := c.fixture.BasicShipment()
 	shipmentData.TaxIdentifiers = []*easypost.TaxIdentifier{c.fixture.TaxIdentifier()}
 
-	shipment, _ := client.CreateShipment(shipmentData)
+	shipment, err := client.CreateShipment(shipmentData)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
@@ -180,17 +256,33 @@ func (c *ClientTests) TestShipmentCreateWithIds() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	fromAddress, _ := client.CreateAddress(c.fixture.BasicAddress(), nil)
-	toAddress, _ := client.CreateAddress(c.fixture.BasicAddress(), nil)
-	parcel, _ := client.CreateParcel(c.fixture.BasicParcel())
+	fromAddress, err := client.CreateAddress(c.fixture.BasicAddress(), nil)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
+	toAddress, err := client.CreateAddress(c.fixture.BasicAddress(), nil)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
+	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	shipment, _ := client.CreateShipment(
+	shipment, err := client.CreateShipment(
 		&easypost.Shipment{
 			FromAddress: &easypost.Address{ID: fromAddress.ID},
 			ToAddress:   &easypost.Address{ID: toAddress.ID},
 			Parcel:      &easypost.Parcel{ID: parcel.ID},
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))

@@ -1,25 +1,38 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestRefundCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	shipment, _ := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedShipment, _ := client.GetShipment(shipment.ID) // We need to retrieve the shipment so that the tracking_code has time to populate
+	retrievedShipment, err := client.GetShipment(shipment.ID) // We need to retrieve the shipment so that the tracking_code has time to populate
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	refund, _ := client.CreateRefund(
+	refund, err := client.CreateRefund(
 		map[string]interface{}{
 			"carrier":        "USPS",
 			"tracking_codes": retrievedShipment.TrackingCode,
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.True(strings.HasPrefix(refund[0].ID, "rfnd_"))
 	assert.Equal("submitted", refund[0].Status)
@@ -29,11 +42,15 @@ func (c *ClientTests) TestRefundAll() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	refunds, _ := client.ListRefunds(
+	refunds, err := client.ListRefunds(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	refundsList := refunds.Refunds
 
@@ -48,13 +65,21 @@ func (c *ClientTests) TestRefundRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	refunds, _ := client.ListRefunds(
+	refunds, err := client.ListRefunds(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedRefund, _ := client.GetRefund(refunds.Refunds[0].ID)
+	retrievedRefund, err := client.GetRefund(refunds.Refunds[0].ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Refund{}), reflect.TypeOf(retrievedRefund))
 	assert.Equal(refunds.Refunds[0].ID, retrievedRefund.ID)
