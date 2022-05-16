@@ -1,20 +1,25 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestEventAll() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	events, _ := client.ListEvents(
+	events, err := client.ListEvents(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	eventsList := events.Events
 
@@ -29,13 +34,22 @@ func (c *ClientTests) TestEventRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	events, _ := client.ListEvents(
+	events, err := client.ListEvents(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	event, _ := client.GetEvent(events.Events[0].ID)
+	event, err := client.GetEvent(events.Events[0].ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
+
 	assert.Equal(reflect.TypeOf(&easypost.Event{}), reflect.TypeOf(event))
 	assert.True(strings.HasPrefix(event.ID, "evt_"))
 }

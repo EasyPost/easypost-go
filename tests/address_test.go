@@ -11,10 +11,14 @@ func (c *ClientTests) TestAddressCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	address, _ := client.CreateAddress(
+	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		nil,
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -25,12 +29,16 @@ func (c *ClientTests) TestAddressCreateVerifyStrict() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	address, _ := client.CreateAddress(
+	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		&easypost.CreateAddressOptions{
 			VerifyStrict: []string{"true"},
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -41,12 +49,20 @@ func (c *ClientTests) TestAddressRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	address, _ := client.CreateAddress(
+	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		nil,
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedAddress, _ := client.GetAddress(address.ID)
+	retrievedAddress, err := client.GetAddress(address.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(retrievedAddress))
 	assert.Equal(address, retrievedAddress)
@@ -56,11 +72,15 @@ func (c *ClientTests) TestAddressAll() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	addresses, _ := client.ListAddresses(
+	addresses, err := client.ListAddresses(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.LessOrEqual(len(addresses.Addresses), c.fixture.pageSize())
 	assert.NotNil(addresses.HasMore)
@@ -74,12 +94,16 @@ func (c *ClientTests) TestAddressCreateVerify() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	address, _ := client.CreateAddress(
+	address, err := client.CreateAddress(
 		c.fixture.IncorrectAddressToVerify(),
 		&easypost.CreateAddressOptions{
 			Verify: []string{"delivery"},
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -90,12 +114,16 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	address, _ := client.CreateAndVerifyAddress(
+	address, err := client.CreateAndVerifyAddress(
 		c.fixture.IncorrectAddressToVerify(),
 		&easypost.CreateAddressOptions{
 			Verify: []string{"delivery"},
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -106,12 +134,20 @@ func (c *ClientTests) TestAddressVerify() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	address, _ := client.CreateAddress(
+	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		nil,
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	verifiedAddress, _ := client.VerifyAddress(address.ID)
+	verifiedAddress, err := client.VerifyAddress(address.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(verifiedAddress))
 	assert.True(strings.HasPrefix(verifiedAddress.ID, "adr_"))

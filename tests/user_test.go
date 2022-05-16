@@ -15,11 +15,15 @@ func (c *ClientTests) TestUserCreate() {
 
 	userName := "Test User"
 
-	user, _ := client.CreateUser(
+	user, err := client.CreateUser(
 		&easypost.UserOptions{
 			Name: &userName,
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(user))
 	assert.True(strings.HasPrefix(user.ID, "user_"))
@@ -30,9 +34,17 @@ func (c *ClientTests) TestUserRetrieve() {
 	client := c.ProdClient()
 	assert := c.Assert()
 
-	authenticatedUser, _ := client.RetrieveMe()
+	authenticatedUser, err := client.RetrieveMe()
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedUser, _ := client.GetUser(authenticatedUser.Children[0].ID)
+	retrievedUser, err := client.GetUser(authenticatedUser.Children[0].ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(retrievedUser))
 	assert.True(strings.HasPrefix(retrievedUser.ID, "user_"))
@@ -42,7 +54,11 @@ func (c *ClientTests) TestUserRetrieveMe() {
 	client := c.ProdClient()
 	assert := c.Assert()
 
-	user, _ := client.RetrieveMe()
+	user, err := client.RetrieveMe()
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(user))
 	assert.True(strings.HasPrefix(user.ID, "user_"))
@@ -52,16 +68,24 @@ func (c *ClientTests) TestUserUpdate() {
 	client := c.ProdClient()
 	assert := c.Assert()
 
-	user, _ := client.RetrieveMe()
+	user, err := client.RetrieveMe()
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	test_phone := "5555555555"
 
-	updatedUser, _ := client.UpdateUser(
+	updatedUser, err := client.UpdateUser(
 		&easypost.UserOptions{
 			ID:          user.ID,
 			PhoneNumber: &test_phone,
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(updatedUser))
 	assert.True(strings.HasPrefix(updatedUser.ID, "user_"))
@@ -74,14 +98,22 @@ func (c *ClientTests) TestUserUpdateBrand() {
 
 	color := "#123456"
 
-	user, _ := client.RetrieveMe()
+	user, err := client.RetrieveMe()
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	brand, _ := client.UpdateBrand(
+	brand, err := client.UpdateBrand(
 		map[string]interface{}{
 			"color": color,
 		},
 		user.ID,
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Brand{}), reflect.TypeOf(brand))
 	assert.True(strings.HasPrefix(brand.ID, "brd_"))
@@ -95,13 +127,21 @@ func (c *ClientTests) TestUserDelete() {
 
 	userName := "Test User"
 
-	user, _ := client.CreateUser(
+	user, err := client.CreateUser(
 		&easypost.UserOptions{
 			Name: &userName,
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	err := client.DeleteUser(user.ID)
+	err = client.DeleteUser(user.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	require.NoError(err)
 }
@@ -111,7 +151,11 @@ func (c *ClientTests) TestUserApiKeysAll() {
 	client := c.ProdClient()
 	assert := c.Assert()
 
-	apiKeys, _ := client.GetAPIKeys()
+	apiKeys, err := client.GetAPIKeys()
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.NotNil(apiKeys)
 }

@@ -1,21 +1,26 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v2"
 	"reflect"
 	"strconv"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestTrackerCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	tracker, _ := client.CreateTracker(
+	tracker, err := client.CreateTracker(
 		&easypost.CreateTrackerOptions{
 			TrackingCode: "EZ1000000001",
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Tracker{}), reflect.TypeOf(tracker))
 	assert.True(strings.HasPrefix(tracker.ID, "trk_"))
@@ -26,14 +31,22 @@ func (c *ClientTests) TestTrackerRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	tracker, _ := client.CreateTracker(
+	tracker, err := client.CreateTracker(
 		&easypost.CreateTrackerOptions{
 			TrackingCode: "EZ1000000001",
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	// Test trackers cycle through their "dummy" statuses automatically, the created and retrieved objects may differ
-	retrievedTracker, _ := client.GetTracker(tracker.ID)
+	retrievedTracker, err := client.GetTracker(tracker.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Tracker{}), reflect.TypeOf(retrievedTracker))
 	assert.Equal(tracker.ID, retrievedTracker.ID)
@@ -43,11 +56,15 @@ func (c *ClientTests) TestTrackerAll() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	trackers, _ := client.ListTrackers(
+	trackers, err := client.ListTrackers(
 		&easypost.ListTrackersOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	trackersList := trackers.Trackers
 
@@ -72,6 +89,10 @@ func (c *ClientTests) TestTrackerCreateList() {
 	}
 
 	response, err := client.CreateTrackerList(trackingCodeParam)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	// This endpoint returns nothing so we assert the function returns true
 	assert.True(response)

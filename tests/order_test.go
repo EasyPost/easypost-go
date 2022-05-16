@@ -11,7 +11,11 @@ func (c *ClientTests) TestOrderCreate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.fixture.BasicOrder())
+	order, err := client.CreateOrder(c.fixture.BasicOrder())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Order{}), reflect.TypeOf(order))
 	assert.True(strings.HasPrefix(order.ID, "order_"))
@@ -22,9 +26,17 @@ func (c *ClientTests) TestOrderRetrieve() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.fixture.BasicOrder())
+	order, err := client.CreateOrder(c.fixture.BasicOrder())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	retrievedOrder, _ := client.GetOrder(order.ID)
+	retrievedOrder, err := client.GetOrder(order.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	assert.Equal(reflect.TypeOf(&easypost.Order{}), reflect.TypeOf(retrievedOrder))
 	assert.Equal(order.ID, retrievedOrder.ID)
@@ -34,9 +46,17 @@ func (c *ClientTests) TestOrderGetRates() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.fixture.BasicOrder())
+	order, err := client.CreateOrder(c.fixture.BasicOrder())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	rates, _ := client.GetOrderRates(order.ID)
+	rates, err := client.GetOrderRates(order.ID)
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	ratesList := rates.Rates
 
@@ -50,9 +70,17 @@ func (c *ClientTests) TestOrderBuyRate() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	order, _ := client.CreateOrder(c.fixture.BasicOrder())
+	order, err := client.CreateOrder(c.fixture.BasicOrder())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
-	boughtOrder, _ := client.BuyOrder(order.ID, c.fixture.USPS(), c.fixture.USPSService())
+	boughtOrder, err := client.BuyOrder(order.ID, c.fixture.USPS(), c.fixture.USPSService())
+	if err != nil {
+		c.T().Error(err)
+		return
+	}
 
 	shipmentsList := boughtOrder.Shipments
 
