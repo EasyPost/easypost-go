@@ -26,6 +26,16 @@ type scanFormRequest struct {
 	Shipments []*Shipment `json:"shipments,omitempty"`
 }
 
+// ListScanFormsResult holds the results from the list scan forms API.
+type ListScanFormsResult struct {
+	ScanForms []*ScanForm `json:"scan_forms,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListScanFormsOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// ScanForms field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
 func newscanFormRequest(shipmentIDs ...string) *scanFormRequest {
 	l := len(shipmentIDs)
 	if l == 0 {
@@ -51,16 +61,6 @@ func (c *Client) CreateScanForm(shipmentIDs ...string) (out *ScanForm, err error
 func (c *Client) CreateScanFormWithContext(ctx context.Context, shipmentIDs ...string) (out *ScanForm, err error) {
 	err = c.post(ctx, "scan_forms", newscanFormRequest(shipmentIDs...), &out)
 	return
-}
-
-// ListScanFormsResult holds the results from the list scan forms API.
-type ListScanFormsResult struct {
-	ScanForms []*ScanForm `json:"scan_forms,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListScanFormsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// ScanForms field.
-	HasMore bool `json:"has_more,omitempty"`
 }
 
 // ListScanForms provides a paginated result of ScanForm objects.

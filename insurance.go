@@ -34,6 +34,16 @@ type createInsuranceRequest struct {
 	Insurance *Insurance `json:"insurance,omitempty"`
 }
 
+// ListInsurancesResult holds the results from the list insurances API.
+type ListInsurancesResult struct {
+	Insurances []*Insurance `json:"insurances,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListInsurancesOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Insurances field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
 // CreateInsurance creats an insurance object for a shipment purchased outside
 // of EasyPost. ToAddress, FromAddress, TrackingCode and Amount fields must be
 // provided. Providing a value in the Carrier field is optional, but can help
@@ -60,16 +70,6 @@ func (c *Client) CreateInsuranceWithContext(ctx context.Context, in *Insurance) 
 	req := &createInsuranceRequest{Insurance: in}
 	err = c.post(ctx, "insurances", req, &out)
 	return
-}
-
-// ListInsurancesResult holds the results from the list insurances API.
-type ListInsurancesResult struct {
-	Insurances []*Insurance `json:"insurances,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListInsurancesOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Insurances field.
-	HasMore bool `json:"has_more,omitempty"`
 }
 
 // ListInsurances provides a paginated result of Insurance objects.

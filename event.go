@@ -31,22 +31,6 @@ type Event struct {
 	CompletedURLs []string    `json:"completed_urls,omitempty"`
 }
 
-func (e *Event) UnmarshalJSON(data []byte) (err error) {
-	var buf json.RawMessage
-	event := Event{Result: &buf}
-
-	type nonUnmarshaler *Event
-	if err = json.Unmarshal(data, nonUnmarshaler(&event)); err != nil {
-		return err
-	}
-
-	if event.Result, err = UnmarshalJSONObject(buf); err == nil {
-		*e = event
-	}
-
-	return err
-}
-
 // EventPayload represents the result of a webhook call.
 type EventPayload struct {
 	ID             string            `json:"id,omitempty"`
@@ -65,6 +49,36 @@ type EventPayload struct {
 	ResponseBody    string            `json:"response_body,omitempty"`
 	ResponseCode    int               `json:"response_code,omitempty"`
 	TotalTime       int               `json:"total_time,omitempty"`
+}
+
+// ListEventsResult holds the results from the list events API.
+type ListEventsResult struct {
+	Events []*Event `json:"events,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListEventsOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Events field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
+type listEventPayloadsResult struct {
+	Payloads *[]*EventPayload `json:"payloads,omitempty"`
+}
+
+func (e *Event) UnmarshalJSON(data []byte) (err error) {
+	var buf json.RawMessage
+	event := Event{Result: &buf}
+
+	type nonUnmarshaler *Event
+	if err = json.Unmarshal(data, nonUnmarshaler(&event)); err != nil {
+		return err
+	}
+
+	if event.Result, err = UnmarshalJSONObject(buf); err == nil {
+		*e = event
+	}
+
+	return err
 }
 
 func (e *EventPayload) UnmarshalJSON(data []byte) (err error) {
@@ -91,16 +105,6 @@ func (e *EventPayload) UnmarshalJSON(data []byte) (err error) {
 	return nil
 }
 
-// ListEventsResult holds the results from the list events API.
-type ListEventsResult struct {
-	Events []*Event `json:"events,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListEventsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Events field.
-	HasMore bool `json:"has_more,omitempty"`
-}
-
 // ListEvents provides a paginated result of Event objects.
 func (c *Client) ListEvents(opts *ListOptions) (out *ListEventsResult, err error) {
 	return c.ListEventsWithContext(context.Background(), opts)
@@ -124,10 +128,6 @@ func (c *Client) GetEvent(eventID string) (out *Event, err error) {
 func (c *Client) GetEventWithContext(ctx context.Context, eventID string) (out *Event, err error) {
 	err = c.get(ctx, "events/"+eventID, &out)
 	return
-}
-
-type listEventPayloadsResult struct {
-	Payloads *[]*EventPayload `json:"payloads,omitempty"`
 }
 
 // GetEventPayload retrieves the payload results of a previous webhook call.

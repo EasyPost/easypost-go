@@ -46,6 +46,10 @@ type CarrierType struct {
 	Fields *CarrierFields `json:"fields,omitempty"`
 }
 
+type carrierAccountRequest struct {
+	CarrierAccount *CarrierAccount `json:"carrier_account,omitempty"`
+}
+
 // GetCarrierTypes returns a list of supported carrier types for the current
 // user.
 func (c *Client) GetCarrierTypes() (out []*CarrierType, err error) {
@@ -58,10 +62,6 @@ func (c *Client) GetCarrierTypes() (out []*CarrierType, err error) {
 func (c *Client) GetCarrierTypesWithContext(ctx context.Context) (out []*CarrierType, err error) {
 	err = c.get(ctx, "carrier_types", &out)
 	return
-}
-
-type carrierAccountRequest struct {
-	CarrierAccount *CarrierAccount `json:"carrier_account,omitempty"`
 }
 
 // CreateCarrierAccount creates a new carrier account. It can only be used with

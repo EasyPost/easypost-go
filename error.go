@@ -30,6 +30,10 @@ type APIError struct {
 	Errors []*APIError `json:"errors,omitempty"`
 }
 
+type apiErrorResponse struct {
+	Error *APIError `json:"error,omitempty"`
+}
+
 func (e *APIError) Error() string {
 	if e.Message != "" {
 		if e.Code != "" {
@@ -41,8 +45,4 @@ func (e *APIError) Error() string {
 		return e.Code
 	}
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Status)
-}
-
-type apiErrorResponse struct {
-	Error *APIError `json:"error,omitempty"`
 }
