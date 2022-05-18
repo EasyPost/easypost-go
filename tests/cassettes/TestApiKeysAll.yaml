@@ -2,30 +2,26 @@
 version: 1
 interactions:
 - request:
-    body: '{"parcel":{"length":10,"width":8,"height":4,"weight":15.4}}'
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/parcels
-    method: POST
+    url: https://api.easypost.com/v2/api_keys
+    method: GET
   response:
-    body: '{"id":"prcl_96e23a2f5dac426baecca6e6639fced4","object":"Parcel","created_at":"2022-05-26T15:05:16Z","updated_at":"2022-05-26T15:05:16Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
+    body: '{"children":[],"id":"user_a76997d126dd488f8ad22d52301300b0","keys":[]}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"36ca34fbe319701ff31fb31efd94222d"
+      - W/"a8e8090e01ff1477cbd28f01251a1981"
       Expires:
       - "0"
-      Location:
-      - /api/v2/parcels.prcl_96e23a2f5dac426baecca6e6639fced4
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -39,22 +35,22 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f972ce78b9ba7006bbd05
+      - dc458af5628f98a5e78b9f2200709aef
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - extlb2nuq fc4d5d217f
       X-Runtime:
-      - "0.023359"
+      - "0.038576"
       X-Version-Label:
       - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 201 Created
-    code: 201
+    status: 200 OK
+    code: 200
     duration: ""

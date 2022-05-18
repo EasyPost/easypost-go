@@ -5,10 +5,12 @@ interactions:
     body: '{"trackers":{"0":{"tracking_code":"EZ1000000001"},"1":{"tracking_code":"EZ1000000002"},"2":{"tracking_code":"EZ1000000003"}}}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/trackers/create_list
     method: POST
   response:
@@ -35,23 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211271ff135a20001f2be2
+      - 19577bfa628f9748e78b9ba7006bcba2
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - aeb837c6-3a98-4142-8d05-1026904b2a5e
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.045078"
+      - "0.089428"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

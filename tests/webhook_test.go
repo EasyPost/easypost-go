@@ -75,5 +75,17 @@ func (c *ClientTests) TestWebhookDelete() {
 }
 
 func (c *ClientTests) TestWebhookUpdate() {
-	c.T().Skip("Cannot be easily tested - requires a disabled webhook.")
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	require.NoError(err)
+
+	updatedWebhook, err := client.EnableWebhook(webhook.ID)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
+
+	err = client.DeleteWebhook(updatedWebhook.ID)
+	require.NoError(err)
 }

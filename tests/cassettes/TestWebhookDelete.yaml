@@ -5,21 +5,23 @@ interactions:
     body: '{"webhook":{"url":"http://example.com"}}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"id":"hook_7aef15b89b2511ec87892d736f459d9f","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-03-03T19:09:42Z","disabled_at":null}'
+    body: '{"id":"hook_54ce2bf4dd0511ec9edb6febfe807306","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-05-26T15:05:51Z","disabled_at":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"ebcdf264efa874b6cd5fce19019a0ef1"
+      - W/"2129c4d54403ed8f2ec6c5420853e05c"
       Expires:
       - "0"
       Pragma:
@@ -30,28 +32,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211275ff135a20001f2cf5
+      - 19577bfa628f974ee78b9ba7006bceb9
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 88c34981dc
-      - intlb2wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - 30ee622a-4f1b-453b-8251-f21eea6d956e
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.140653"
+      - "0.150224"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -61,9 +62,11 @@ interactions:
     body: ""
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/webhooks/hook_7aef15b89b2511ec87892d736f459d9f
+      - REDACTED
+    url: https://api.easypost.com/v2/webhooks/hook_54ce2bf4dd0511ec9edb6febfe807306
     method: DELETE
   response:
     body: '{}'
@@ -89,23 +92,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211276ff135a20001f2d07
+      - 19577bfa628f974fe78b9ba7006bceda
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - 4368cd52-2644-490c-8ee7-de2cc087babf
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.299203"
+      - "0.445832"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

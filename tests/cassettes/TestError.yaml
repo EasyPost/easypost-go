@@ -5,10 +5,12 @@ interactions:
     body: '{"shipment":null}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/shipments
     method: POST
   response:
@@ -34,7 +36,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e6221123fff135a20001f2057
+      - 19577bfa628f9724e78b9ba7006bb8dd
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -42,15 +44,12 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 88c34981dc
-      - intlb2wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - 0595cc38-8f3a-4abd-87a1-44a1c5e6ec7d
+      - intlb2nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.039739"
+      - "0.032226"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 422 Unprocessable Entity

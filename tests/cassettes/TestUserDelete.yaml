@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"carrier_account":{"type":"UpsAccount","credentials":{"access_license_number":"ALN","account_number":"A1A1A1","password":"PASSWORD","user_id":"USERID"},"test_credentials":null}}'
+    body: '{"user":{"name":"Test User"}}'
     form: {}
     headers:
       Authorization:
@@ -11,71 +11,18 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts
+    url: https://api.easypost.com/v2/users
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-05-26T15:05:04Z","credentials":{},"description":"UPS
-      Account","fields":{"credentials":{"account_number":{"label":"UPS Account Number","value":"A1A1A1","visibility":"readonly"}}},"id":"ca_0b9b4ecf5846472c80a85931ec1a4381","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":{},"type":"UpsAccount","updated_at":"2022-05-26T15:05:04Z"}'
+    body: '{"api_keys":[],"children":[],"created_at":"2022-05-26T15:05:45Z","id":"user_3ddfec9e5d4e45b6b558230685f12b64","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b6871d7ba00efdd2dc649d48964dfe1f"
-      Expires:
-      - "0"
-      Pragma:
-      - no-cache
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Backend:
-      - easypost
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Ep-Request-Uuid:
-      - 19577bfa628f9720e78b9ba7006bb73a
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Node:
-      - bigweb9nuq
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
-      X-Runtime:
-      - "0.125683"
-      X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
-      X-Xss-Protection:
-      - 1; mode=block
-    status: 201 Created
-    code: 201
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Authorization:
-      - REDACTED
-      User-Agent:
-      - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_0b9b4ecf5846472c80a85931ec1a4381
-    method: DELETE
-  response:
-    body: '{}'
-    headers:
-      Cache-Control:
-      - no-cache, no-store
-      Content-Type:
-      - application/json; charset=utf-8
-      Etag:
-      - W/"44136fa355b3678a1146ad16f7e8649e"
+      - W/"6e7bc9eb8c58aaf658e28f30aaaceeb3"
       Expires:
       - "0"
       Pragma:
@@ -93,7 +40,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9721e78b9ba7006bb75d
+      - 19577bfa628f9749e78b9ba7006bcc58
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -101,14 +48,63 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
+      - intlb1nuq 570dfcbc0a
       - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.116545"
+      - "0.616679"
       X-Version-Label:
       - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 200 OK
-    code: 200
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/users/user_3ddfec9e5d4e45b6b558230685f12b64
+    method: DELETE
+  response:
+    body: ""
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 19577bfa628f974ae78b9ba7006bcccc
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
+      X-Runtime:
+      - "0.142616"
+      X-Version-Label:
+      - easypost-202205252316-1f08f7be53-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 204 No Content
+    code: 204
     duration: ""

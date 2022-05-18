@@ -5,21 +5,23 @@ interactions:
     body: page_size=5
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/refunds
     method: GET
   response:
-    body: '{"refunds":[{"id":"rfnd_649ec9199e8e44d69153e393e3835e82","object":"Refund","created_at":"2022-03-03T21:38:42Z","updated_at":"2022-03-03T21:38:42Z","tracking_code":"9400100109361109838373","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_86725b6f3a1341b29d87141b526db5f5"},{"id":"rfnd_62eb097d11e541f78b6066451a6486b1","object":"Refund","created_at":"2022-03-03T21:32:12Z","updated_at":"2022-03-03T21:32:12Z","tracking_code":"9400100109361109837499","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_db61646a9d6f41abb08a1b166effe4cd"},{"id":"rfnd_c4e6114769074715b29f3324b12e5e17","object":"Refund","created_at":"2022-03-03T21:31:54Z","updated_at":"2022-03-03T21:36:21Z","tracking_code":"9400100109361109837390","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_94bbcdcab86746438b95b75b1f32c8bf"},{"id":"rfnd_8ba0ec477f3d47c680333fc41dbdfc17","object":"Refund","created_at":"2022-03-03T19:09:32Z","updated_at":"2022-03-03T19:09:32Z","tracking_code":"9400100109361109822563","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_b10fd3dbbc734d1dbe4917b1b0ee6a48"},{"id":"rfnd_8a0b416e6d084e24b235c9dc5eaf0f82","object":"Refund","created_at":"2022-03-03T02:45:31Z","updated_at":"2022-03-03T02:45:31Z","tracking_code":"9400100109361109730226","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_82bbcf255b1245bd9e4a5ca39870cb30"}],"has_more":true}'
+    body: '{"refunds":[{"id":"rfnd_ed74be879d1c4ff3a9d90539f68af4c5","object":"Refund","created_at":"2022-05-25T19:38:02Z","updated_at":"2022-05-25T19:38:02Z","tracking_code":"9400100109361120757882","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_637c0252e4d749708ff79cd293f45e9a"},{"id":"rfnd_7307f989d43d48abbe6fa4428b4bd001","object":"Refund","created_at":"2022-05-25T19:37:46Z","updated_at":"2022-05-25T19:37:46Z","tracking_code":"9400100109361120757394","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_31063c16e0ec428d80a41bec77f7815e"},{"id":"rfnd_e7796afd38d248a88f1443915c6a21c0","object":"Refund","created_at":"2022-05-25T18:03:32Z","updated_at":"2022-05-25T18:03:32Z","tracking_code":"9400100109361120747531","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_51d8199d7b5a4b3ba20c2c82b2d214de"},{"id":"rfnd_5f5baefd6aa347b780283b2f0f53ada3","object":"Refund","created_at":"2022-05-25T18:03:16Z","updated_at":"2022-05-25T18:03:16Z","tracking_code":"9400100109361120747463","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_3cfdd542e9584a098c6d3567d83e41c3"},{"id":"rfnd_e988af853ed84e5f80ea4da8f3c54eb7","object":"Refund","created_at":"2022-05-24T22:28:52Z","updated_at":"2022-05-25T22:29:56Z","tracking_code":"9400100109361120636828","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_8e9c4a56f80c45a7b8c1ad1e76308b0f"}],"has_more":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"eb12530189c94e3898d82c1c74759e43"
+      - W/"26c166d1301358aaf88d426d7acac314"
       Expires:
       - "0"
       Pragma:
@@ -35,22 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 5ec9893c62213566ff137be20028b833
+      - 19577bfa628f9734e78b9ba7006bc184
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 88c34981dc
-      - extlb1nuq 88c34981dc
-      X-Request-Id:
-      - 0d727817-f4c1-4a71-9eea-3a47585371b8
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.046178"
+      - "0.076991"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

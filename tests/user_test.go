@@ -8,8 +8,6 @@ import (
 )
 
 func (c *ClientTests) TestUserCreate() {
-	c.T().Skip("This endpoint returns the child user keys in plain text, do not run this test.")
-
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
@@ -34,7 +32,7 @@ func (c *ClientTests) TestUserRetrieve() {
 	authenticatedUser, err := client.RetrieveMe()
 	require.NoError(err)
 
-	retrievedUser, err := client.GetUser(authenticatedUser.Children[0].ID)
+	retrievedUser, err := client.GetUser(authenticatedUser.ID)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(retrievedUser))
@@ -97,7 +95,6 @@ func (c *ClientTests) TestUserUpdateBrand() {
 }
 
 func (c *ClientTests) TestUserDelete() {
-	c.T().Skip("Due to our inability to create child users securely, we must also skip deleting them as we cannot replace the deleted ones easily.")
 	client := c.ProdClient()
 	require := c.Require()
 
@@ -114,15 +111,4 @@ func (c *ClientTests) TestUserDelete() {
 	require.NoError(err)
 
 	require.NoError(err)
-}
-
-func (c *ClientTests) TestUserApiKeysAll() {
-	c.T().Skip("API keys are returned as plaintext, do not run this test.")
-	client := c.ProdClient()
-	assert, require := c.Assert(), c.Require()
-
-	apiKeys, err := client.GetAPIKeys()
-	require.NoError(err)
-
-	assert.NotNil(apiKeys)
 }
