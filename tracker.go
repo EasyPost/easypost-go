@@ -77,6 +77,39 @@ type CreateTrackerOptions struct {
 	FullTestTracker bool
 }
 
+// ListTrackersOptions is used to specify query parameters for listing Tracker
+// objects.
+type ListTrackersOptions struct {
+	BeforeID      string     `url:"before_id,omitempty"`
+	AfterID       string     `url:"after_id,omitempty"`
+	StartDateTime *time.Time `url:"start_datetime,omitempty"`
+	EndDateTime   *time.Time `url:"end_datetime,omitempty"`
+	PageSize      int        `url:"page_size,omitempty"`
+	TrackingCodes []string   `url:"tracking_codes,omitempty"`
+	Carrier       string     `url:"carrier,omitempty"`
+}
+
+// ListTrackersResult holds the results from the list trackers API.
+type ListTrackersResult struct {
+	Trackers []*Tracker `json:"trackers,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListTrackersOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Trackers field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
+// ListTrackersUpdatedOptions specifies options for the list trackers updated
+// API.
+type ListTrackersUpdatedOptions struct {
+	Page                 int        `json:"page,omitempty"`
+	PageSize             int        `json:"page_size,omitempty"`
+	StatusStart          *time.Time `json:"status_start,omitempty"`
+	StatusEnd            *time.Time `json:"status_end,omitempty"`
+	TrackingDetailsStart *time.Time `json:"tracking_details_start,omitempty"`
+	TrackingDetailsEnd   *time.Time `json:"tracking_details_end,omitempty"`
+}
+
 func (c *CreateTrackerOptions) toMap() map[string]interface{} {
 	trackerParams := make(map[string]interface{})
 	if c.TrackingCode != "" {
@@ -152,28 +185,6 @@ func (c *Client) CreateTrackerListWithContext(ctx context.Context, param map[str
 	return true, c.post(ctx, "trackers/create_list", req, nil)
 }
 
-// ListTrackersOptions is used to specify query parameters for listing Tracker
-// objects.
-type ListTrackersOptions struct {
-	BeforeID      string     `url:"before_id,omitempty"`
-	AfterID       string     `url:"after_id,omitempty"`
-	StartDateTime *time.Time `url:"start_datetime,omitempty"`
-	EndDateTime   *time.Time `url:"end_datetime,omitempty"`
-	PageSize      int        `url:"page_size,omitempty"`
-	TrackingCodes []string   `url:"tracking_codes,omitempty"`
-	Carrier       string     `url:"carrier,omitempty"`
-}
-
-// ListTrackersResult holds the results from the list trackers API.
-type ListTrackersResult struct {
-	Trackers []*Tracker `json:"trackers,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListTrackersOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Trackers field.
-	HasMore bool `json:"has_more,omitempty"`
-}
-
 // ListTrackers provides a paginated result of Tracker objects.
 func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	return c.ListTrackersWithContext(context.Background(), opts)
@@ -184,17 +195,6 @@ func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResul
 func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	err = c.do(ctx, http.MethodGet, "trackers", c.convertOptsToURLValues(opts), &out)
 	return
-}
-
-// ListTrackersUpdatedOptions specifies options for the list trackers updated
-// API.
-type ListTrackersUpdatedOptions struct {
-	Page                 int        `json:"page,omitempty"`
-	PageSize             int        `json:"page_size,omitempty"`
-	StatusStart          *time.Time `json:"status_start,omitempty"`
-	StatusEnd            *time.Time `json:"status_end,omitempty"`
-	TrackingDetailsStart *time.Time `json:"tracking_details_start,omitempty"`
-	TrackingDetailsEnd   *time.Time `json:"tracking_details_end,omitempty"`
 }
 
 // GetTracker retrieves a Tracker object by ID.

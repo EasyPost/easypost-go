@@ -18,6 +18,10 @@ type createWebhookRequest struct {
 	Webhook *Webhook `json:"webhook,omitempty"`
 }
 
+type listWebhooksResult struct {
+	Webhooks *[]*Webhook `json:"webhooks,omitempty"`
+}
+
 // CreateWebhook creates a new webhook with the given URL.
 func (c *Client) CreateWebhook(u string) (out *Webhook, err error) {
 	req := &createWebhookRequest{Webhook: &Webhook{URL: u}}
@@ -31,10 +35,6 @@ func (c *Client) CreateWebhookWithContext(ctx context.Context, u string) (out *W
 	req := &createWebhookRequest{Webhook: &Webhook{URL: u}}
 	err = c.post(ctx, "webhooks", req, &out)
 	return
-}
-
-type listWebhooksResult struct {
-	Webhooks *[]*Webhook `json:"webhooks,omitempty"`
 }
 
 // ListWebhooks returns all webhooks associated with the EasyPost account.

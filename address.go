@@ -79,6 +79,21 @@ type AddressVerifyResponse struct {
 	Address *Address `json:"address,omitempty"`
 }
 
+// ListAddressResult holds the results from the list addresses API.
+type ListAddressResult struct {
+	Addresses []*Address `json:"addresses,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListAddressOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Addresses field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
+// For some reason, the verify API returns the address in a nested dictionary.
+type verifyAddressResponse struct {
+	Address **Address `json:"address,omitempty"`
+}
+
 // CreateAddress submits a request to create a new address, and returns the
 // result.
 //	c := easypost.New(MyEasyPostAPIKey)
@@ -109,16 +124,6 @@ func (c *Client) CreateAddressWithContext(ctx context.Context, in *Address, opts
 	return
 }
 
-// ListAddressResult holds the results from the list addresses API.
-type ListAddressResult struct {
-	Addresses []*Address `json:"addresses,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListAddressOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Addresses field.
-	HasMore bool `json:"has_more,omitempty"`
-}
-
 // ListAddresses provides a paginated result of Address objects.
 func (c *Client) ListAddresses(opts *ListOptions) (out *ListAddressResult, err error) {
 	return c.ListAddressesWithContext(context.Background(), opts)
@@ -129,11 +134,6 @@ func (c *Client) ListAddresses(opts *ListOptions) (out *ListAddressResult, err e
 func (c *Client) ListAddressesWithContext(ctx context.Context, opts *ListOptions) (out *ListAddressResult, err error) {
 	err = c.do(ctx, http.MethodGet, "addresses", c.convertOptsToURLValues(opts), &out)
 	return
-}
-
-// For some reason, the verify API returns the address in a nested dictionary.
-type verifyAddressResponse struct {
-	Address **Address `json:"address,omitempty"`
 }
 
 // VerifyAddress performs address verification.

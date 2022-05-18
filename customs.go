@@ -43,6 +43,10 @@ type createCustomsInfoRequest struct {
 	CustomsInfo *CustomsInfo `json:"customs_info,omitempty"`
 }
 
+type createCustomsItemRequest struct {
+	CustomsItem *CustomsItem `json:"customs_item,omitempty"`
+}
+
 // CreateCustomsInfo creates a new CustomsInfo object.
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateCustomsInfo(
@@ -91,10 +95,6 @@ func (c *Client) GetCustomsInfo(customsInfoID string) (out *CustomsInfo, err err
 func (c *Client) GetCustomsInfoWithContext(ctx context.Context, customsInfoID string) (out *CustomsInfo, err error) {
 	err = c.get(ctx, "customs_infos/"+customsInfoID, &out)
 	return
-}
-
-type createCustomsItemRequest struct {
-	CustomsItem *CustomsItem `json:"customs_item,omitempty"`
 }
 
 // CreateCustomsItem creates a new CustomsItem object.

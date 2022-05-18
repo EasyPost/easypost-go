@@ -36,6 +36,16 @@ type batchRequest struct {
 	Batch *Batch `json:"batch,omitempty"`
 }
 
+// ListBatchesResult holds the results from the list insurances API.
+type ListBatchesResult struct {
+	Batch []*Batch `json:"batches,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListInsurancesOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Insurances field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
 // CreateBatch creates a new batch of shipments. It optionally accepts one or
 // more shipments to add to the new batch. If successful, a new batch object is
 // returned.
@@ -73,16 +83,6 @@ func (c *Client) CreateAndBuyBatchWithContext(ctx context.Context, in ...*Shipme
 	req := batchRequest{Batch: &Batch{Shipments: in}}
 	err = c.post(ctx, "batches/create_and_buy", req, &out)
 	return
-}
-
-// ListBatchesResult holds the results from the list insurances API.
-type ListBatchesResult struct {
-	Batch []*Batch `json:"batches,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListInsurancesOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Insurances field.
-	HasMore bool `json:"has_more,omitempty"`
 }
 
 // ListBatches provides a paginated result of Insurance objects.

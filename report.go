@@ -25,26 +25,6 @@ type Report struct {
 	AdditionalColumns []string   `json:"additional_columns,omitempty"`
 }
 
-// CreateReport generates a new report. Valid Fields for input are StartDate,
-// EndDate and SendEmail. A new Report object is returned. Once the Status is
-// available, the report can be downloaded from the provided URL for 30 seconds.
-//	c := easypost.New(MyEasyPostAPIKey)
-//	c.CreateReport(
-//		"payment_log",
-//		&easypost.Report{StartDate: "2016-10-01", EndDate: "2016-10-31"},
-//	)
-func (c *Client) CreateReport(typ string, in *Report) (out *Report, err error) {
-	err = c.post(context.Background(), "reports/"+typ, in, &out)
-	return
-}
-
-// CreateReportWithContext performs the same operation as CreateReport, but
-// allows specifying a context that can interrupt the request.
-func (c *Client) CreateReportWithContext(ctx context.Context, typ string, in *Report) (out *Report, err error) {
-	err = c.post(ctx, "reports/"+typ, in, &out)
-	return
-}
-
 // ListReportsOptions is used to specify query parameters for listing Report
 // objects.
 type ListReportsOptions struct {
@@ -63,6 +43,26 @@ type ListReportsResult struct {
 	// parameter's AfterID field with the ID of the last item in this object's
 	// Reports field.
 	HasMore bool `json:"has_more,omitempty"`
+}
+
+// CreateReport generates a new report. Valid Fields for input are StartDate,
+// EndDate and SendEmail. A new Report object is returned. Once the Status is
+// available, the report can be downloaded from the provided URL for 30 seconds.
+//	c := easypost.New(MyEasyPostAPIKey)
+//	c.CreateReport(
+//		"payment_log",
+//		&easypost.Report{StartDate: "2016-10-01", EndDate: "2016-10-31"},
+//	)
+func (c *Client) CreateReport(typ string, in *Report) (out *Report, err error) {
+	err = c.post(context.Background(), "reports/"+typ, in, &out)
+	return
+}
+
+// CreateReportWithContext performs the same operation as CreateReport, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) CreateReportWithContext(ctx context.Context, typ string, in *Report) (out *Report, err error) {
+	err = c.post(ctx, "reports/"+typ, in, &out)
+	return
 }
 
 // ListReports provides a paginated result of Report objects of the given type.

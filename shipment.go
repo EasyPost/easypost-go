@@ -141,6 +141,37 @@ type Shipment struct {
 	TaxIdentifiers    []*TaxIdentifier  `json:"tax_identifiers,omitempty"`
 }
 
+// ListShipmentsOptions is used to specify query parameters for listing Shipment
+// objects.
+type ListShipmentsOptions struct {
+	BeforeID        string     `url:"before_id,omitempty"`
+	AfterID         string     `url:"after_id,omitempty"`
+	StartDateTime   *time.Time `url:"start_datetime,omitempty"`
+	EndDateTime     *time.Time `url:"end_datetime,omitempty"`
+	PageSize        int        `url:"page_size,omitempty"`
+	Purchased       *bool      `url:"purchased,omitempty"`
+	IncludeChildren *bool      `url:"include_children,omitempty"`
+}
+
+// ListShipmentsResult holds the results from the list shipments API.
+type ListShipmentsResult struct {
+	Shipments []*Shipment `json:"shipments,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListShipmentsOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Shipments field.
+	HasMore bool `json:"has_more,omitempty"`
+}
+
+type buyShipmentRequest struct {
+	Rate      *Rate  `json:"rate,omitempty"`
+	Insurance string `json:"insurance,omitempty"`
+}
+
+type getShipmentRatesResponse struct {
+	Rates *[]*Rate `json:"rates,omitempty"`
+}
+
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
 // Parcel attributes are required. These objects may be fully-specified to
 // create new ones at the same time as creating the Shipment, or they can refer
@@ -188,28 +219,6 @@ func (c *Client) CreateShipmentWithContext(ctx context.Context, in *Shipment) (o
 	return
 }
 
-// ListShipmentsOptions is used to specify query parameters for listing Shipment
-// objects.
-type ListShipmentsOptions struct {
-	BeforeID        string     `url:"before_id,omitempty"`
-	AfterID         string     `url:"after_id,omitempty"`
-	StartDateTime   *time.Time `url:"start_datetime,omitempty"`
-	EndDateTime     *time.Time `url:"end_datetime,omitempty"`
-	PageSize        int        `url:"page_size,omitempty"`
-	Purchased       *bool      `url:"purchased,omitempty"`
-	IncludeChildren *bool      `url:"include_children,omitempty"`
-}
-
-// ListShipmentsResult holds the results from the list shipments API.
-type ListShipmentsResult struct {
-	Shipments []*Shipment `json:"shipments,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListShipmentsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Shipments field.
-	HasMore bool `json:"has_more,omitempty"`
-}
-
 // ListShipments provides a paginated result of Shipment objects.
 func (c *Client) ListShipments(opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
 	return c.ListShipmentsWithContext(context.Background(), opts)
@@ -233,11 +242,6 @@ func (c *Client) GetShipment(shipmentID string) (out *Shipment, err error) {
 func (c *Client) GetShipmentWithContext(ctx context.Context, shipmentID string) (out *Shipment, err error) {
 	err = c.get(ctx, "shipments/"+shipmentID, &out)
 	return
-}
-
-type buyShipmentRequest struct {
-	Rate      *Rate  `json:"rate,omitempty"`
-	Insurance string `json:"insurance,omitempty"`
 }
 
 // BuyShipment purchases a shipment. If successful, the returned Shipment will
@@ -273,10 +277,6 @@ func (c *Client) GetShipmentLabelWithContext(ctx context.Context, shipmentID, fo
 	vals := url.Values{"file_format": []string{format}}
 	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/label", vals, &out)
 	return
-}
-
-type getShipmentRatesResponse struct {
-	Rates *[]*Rate `json:"rates,omitempty"`
 }
 
 // GetShipmentSmartrates fetches the available smartrates for a shipment.
