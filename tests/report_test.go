@@ -9,7 +9,7 @@ import (
 
 func (c *ClientTests) TestReportCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
 		c.fixture.ReportType(),
@@ -18,10 +18,7 @@ func (c *ClientTests) TestReportCreate() {
 			EndDate:   c.fixture.ReportDate(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
 	assert.True(strings.HasPrefix(report.ID, "shprep_"))
@@ -29,7 +26,7 @@ func (c *ClientTests) TestReportCreate() {
 
 func (c *ClientTests) TestReportCustomColumnsCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
 		c.fixture.ReportType(),
@@ -39,10 +36,7 @@ func (c *ClientTests) TestReportCustomColumnsCreate() {
 			Columns:   []string{"usps_zone"},
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	// verify parameters by checking VCR cassette for correct URL
 	// Some reports take a long time to generate, so we won't be able to consistently pull the report
@@ -54,7 +48,7 @@ func (c *ClientTests) TestReportCustomColumnsCreate() {
 
 func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
 		c.fixture.ReportType(),
@@ -64,10 +58,7 @@ func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 			AdditionalColumns: []string{"from_name", "from_company"},
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	// verify parameters by checking VCR cassette for correct URL
 	// Some reports take a long time to generate, so we won't be able to consistently pull the report
@@ -79,7 +70,7 @@ func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 
 func (c *ClientTests) TestReportRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
 		c.fixture.ReportType(),
@@ -88,16 +79,10 @@ func (c *ClientTests) TestReportRetrieve() {
 			EndDate:   c.fixture.ReportDate(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedReport, err := client.GetReport(c.fixture.ReportType(), report.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(retrievedReport))
 	assert.Equal(report.StartDate, retrievedReport.StartDate)
@@ -106,7 +91,7 @@ func (c *ClientTests) TestReportRetrieve() {
 
 func (c *ClientTests) TestReportAll() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	reports, err := client.ListReports(
 		c.fixture.ReportType(),
@@ -114,10 +99,7 @@ func (c *ClientTests) TestReportAll() {
 			PageSize: c.fixture.pageSize(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	reportsList := reports.Reports
 

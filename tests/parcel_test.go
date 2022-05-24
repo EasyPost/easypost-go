@@ -9,13 +9,10 @@ import (
 
 func (c *ClientTests) TestParcelCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Parcel{}), reflect.TypeOf(parcel))
 	assert.True(strings.HasPrefix(parcel.ID, "prcl_"))
@@ -24,19 +21,13 @@ func (c *ClientTests) TestParcelCreate() {
 
 func (c *ClientTests) TestParcelRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedParcel, err := client.GetParcel(parcel.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Parcel{}), reflect.TypeOf(retrievedParcel))
 	assert.Equal(parcel, retrievedParcel)

@@ -9,22 +9,16 @@ import (
 
 func (c *ClientTests) TestPickupCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	pickupData := c.fixture.BasicPickup()
 	pickupData.Shipment = shipment
 
 	pickup, err := client.CreatePickup(pickupData)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(pickup))
 	assert.True(strings.HasPrefix(pickup.ID, "pickup_"))
@@ -33,28 +27,19 @@ func (c *ClientTests) TestPickupCreate() {
 
 func (c *ClientTests) TestPickupRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	pickupData := c.fixture.BasicPickup()
 	pickupData.Shipment = shipment
 
 	pickup, err := client.CreatePickup(pickupData)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievePickup, err := client.GetPickup(pickup.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(retrievePickup))
 	assert.Equal(pickup, retrievePickup)
@@ -62,22 +47,16 @@ func (c *ClientTests) TestPickupRetrieve() {
 
 func (c *ClientTests) TestPickupBuy() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	pickupData := c.fixture.BasicPickup()
 	pickupData.Shipment = shipment
 
 	pickup, err := client.CreatePickup(pickupData)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	boughtPickup, err := client.BuyPickup(
 		pickup.ID,
@@ -86,10 +65,7 @@ func (c *ClientTests) TestPickupBuy() {
 			Service: c.fixture.PickupService(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(boughtPickup))
 	assert.True(strings.HasPrefix(boughtPickup.ID, "pickup_"))
@@ -99,22 +75,16 @@ func (c *ClientTests) TestPickupBuy() {
 
 func (c *ClientTests) TestPickupCancel() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	pickupData := c.fixture.BasicPickup()
 	pickupData.Shipment = shipment
 
 	pickup, err := client.CreatePickup(pickupData)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	boughtPickup, err := client.BuyPickup(
 		pickup.ID,
@@ -123,16 +93,10 @@ func (c *ClientTests) TestPickupCancel() {
 			Service: c.fixture.PickupService(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	cancelledPickup, err := client.CancelPickup(boughtPickup.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(cancelledPickup))
 	assert.True(strings.HasPrefix(cancelledPickup.ID, "pickup_"))

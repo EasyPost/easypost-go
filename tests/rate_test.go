@@ -9,19 +9,13 @@ import (
 
 func (c *ClientTests) TestRateRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	rate, err := client.GetRate(shipment.Rates[0].ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Rate{}), reflect.TypeOf(rate))
 	assert.True(strings.HasPrefix(rate.ID, "rate_"))

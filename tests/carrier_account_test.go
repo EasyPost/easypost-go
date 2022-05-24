@@ -20,10 +20,7 @@ func (c *ClientTests) TestCarrierAccountCreate() {
 	assert, require := c.Assert(), c.Require()
 
 	carrierAccount, err := c.GenerateCarrierAccount()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(carrierAccount))
 	assert.True(strings.HasPrefix(carrierAccount.ID, "ca_"))
@@ -39,16 +36,10 @@ func (c *ClientTests) TestCarrierAccountRetrieve() {
 	assert, require := c.Assert(), c.Require()
 
 	carrierAccount, err := c.GenerateCarrierAccount()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedCarrierAccount, err := client.GetCarrierAccount(carrierAccount.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(retrievedCarrierAccount))
 	assert.Equal(carrierAccount, retrievedCarrierAccount)
@@ -60,13 +51,10 @@ func (c *ClientTests) TestCarrierAccountRetrieve() {
 
 func (c *ClientTests) TestCarrierAccountAll() {
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	carrierAccounts, err := client.ListCarrierAccounts()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	for _, carrierAccount := range carrierAccounts {
 		assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(carrierAccount))
@@ -80,18 +68,12 @@ func (c *ClientTests) TestCarrierAccountUpdate() {
 	testDescription := "My custom description"
 
 	carrierAccount, err := c.GenerateCarrierAccount()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	carrierAccount.Description = testDescription
 
 	updatedCarrierAccount, err := client.UpdateCarrierAccount(carrierAccount)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(updatedCarrierAccount))
 	assert.True(strings.HasPrefix(updatedCarrierAccount.ID, "ca_"))
@@ -107,10 +89,7 @@ func (c *ClientTests) TestCarrierAccountDelete() {
 	require := c.Require()
 
 	carrierAccount, err := c.GenerateCarrierAccount()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
 
@@ -119,13 +98,10 @@ func (c *ClientTests) TestCarrierAccountDelete() {
 
 func (c *ClientTests) TestCarrierAccountTypes() {
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	carriersAccountTypes, err := client.GetCarrierTypes()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf([]*easypost.CarrierType{}), reflect.TypeOf(carriersAccountTypes))
 }

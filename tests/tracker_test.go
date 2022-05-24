@@ -10,17 +10,14 @@ import (
 
 func (c *ClientTests) TestTrackerCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	tracker, err := client.CreateTracker(
 		&easypost.CreateTrackerOptions{
 			TrackingCode: "EZ1000000001",
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Tracker{}), reflect.TypeOf(tracker))
 	assert.True(strings.HasPrefix(tracker.ID, "trk_"))
@@ -29,24 +26,18 @@ func (c *ClientTests) TestTrackerCreate() {
 
 func (c *ClientTests) TestTrackerRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	tracker, err := client.CreateTracker(
 		&easypost.CreateTrackerOptions{
 			TrackingCode: "EZ1000000001",
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	// Test trackers cycle through their "dummy" statuses automatically, the created and retrieved objects may differ
 	retrievedTracker, err := client.GetTracker(tracker.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Tracker{}), reflect.TypeOf(retrievedTracker))
 	assert.Equal(tracker.ID, retrievedTracker.ID)
@@ -54,17 +45,14 @@ func (c *ClientTests) TestTrackerRetrieve() {
 
 func (c *ClientTests) TestTrackerAll() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	trackers, err := client.ListTrackers(
 		&easypost.ListTrackersOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	trackersList := trackers.Trackers
 
@@ -89,12 +77,8 @@ func (c *ClientTests) TestTrackerCreateList() {
 	}
 
 	response, err := client.CreateTrackerList(trackingCodeParam)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	// This endpoint returns nothing so we assert the function returns true
 	assert.True(response)
-	require.NoError(err)
 }
