@@ -9,13 +9,10 @@ import (
 
 func (c *ClientTests) TestCustomsInfoCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	customsInfo, err := client.CreateCustomsInfo(c.fixture.BasicCustomsInfo())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CustomsInfo{}), reflect.TypeOf(customsInfo))
 	assert.True(strings.HasPrefix(customsInfo.ID, "cstinfo_"))
@@ -24,19 +21,13 @@ func (c *ClientTests) TestCustomsInfoCreate() {
 
 func (c *ClientTests) TestCustomsInfoRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	customsInfo, err := client.CreateCustomsInfo(c.fixture.BasicCustomsInfo())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedCustomsInfo, err := client.GetCustomsInfo(customsInfo.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CustomsInfo{}), reflect.TypeOf(retrievedCustomsInfo))
 	assert.Equal(customsInfo, retrievedCustomsInfo)

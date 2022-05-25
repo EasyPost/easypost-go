@@ -9,16 +9,13 @@ import (
 
 func (c *ClientTests) TestAddressCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		nil,
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -27,7 +24,7 @@ func (c *ClientTests) TestAddressCreate() {
 
 func (c *ClientTests) TestAddressCreateVerifyStrict() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
@@ -35,10 +32,7 @@ func (c *ClientTests) TestAddressCreateVerifyStrict() {
 			VerifyStrict: []string{"true"},
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -47,22 +41,16 @@ func (c *ClientTests) TestAddressCreateVerifyStrict() {
 
 func (c *ClientTests) TestAddressRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		nil,
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedAddress, err := client.GetAddress(address.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(retrievedAddress))
 	assert.Equal(address, retrievedAddress)
@@ -70,17 +58,14 @@ func (c *ClientTests) TestAddressRetrieve() {
 
 func (c *ClientTests) TestAddressAll() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	addresses, err := client.ListAddresses(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.LessOrEqual(len(addresses.Addresses), c.fixture.pageSize())
 	assert.NotNil(addresses.HasMore)
@@ -92,7 +77,7 @@ func (c *ClientTests) TestAddressAll() {
 // We purposefully pass in slightly incorrect data to get the corrected address back once verified.
 func (c *ClientTests) TestAddressCreateVerify() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
 		c.fixture.IncorrectAddressToVerify(),
@@ -100,10 +85,7 @@ func (c *ClientTests) TestAddressCreateVerify() {
 			Verify: []string{"delivery"},
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -112,7 +94,7 @@ func (c *ClientTests) TestAddressCreateVerify() {
 
 func (c *ClientTests) TestAddressCreateAndVerify() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAndVerifyAddress(
 		c.fixture.IncorrectAddressToVerify(),
@@ -120,10 +102,7 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 			Verify: []string{"delivery"},
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
@@ -132,22 +111,16 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 
 func (c *ClientTests) TestAddressVerify() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
 		c.fixture.BasicAddress(),
 		nil,
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	verifiedAddress, err := client.VerifyAddress(address.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(verifiedAddress))
 	assert.True(strings.HasPrefix(verifiedAddress.ID, "adr_"))

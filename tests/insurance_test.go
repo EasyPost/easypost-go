@@ -9,22 +9,16 @@ import (
 
 func (c *ClientTests) TestInsuranceCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	insuranceData := c.fixture.BasicInsurance()
 	insuranceData.TrackingCode = shipment.TrackingCode
 
 	insurance, err := client.CreateInsurance(insuranceData)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(insurance))
 	assert.True(strings.HasPrefix(insurance.ID, "ins_"))
@@ -33,28 +27,19 @@ func (c *ClientTests) TestInsuranceCreate() {
 
 func (c *ClientTests) TestInsuranceRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	insuranceData := c.fixture.BasicInsurance()
 	insuranceData.TrackingCode = shipment.TrackingCode
 
 	insurance, err := client.CreateInsurance(insuranceData)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedInsurance, err := client.GetInsurance(insurance.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(retrievedInsurance))
 	assert.Equal(insurance, retrievedInsurance)
@@ -62,17 +47,14 @@ func (c *ClientTests) TestInsuranceRetrieve() {
 
 func (c *ClientTests) TestInsuranceAll() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	insurances, err := client.ListInsurances(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	insurancesList := insurances.Insurances
 

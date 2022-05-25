@@ -9,13 +9,10 @@ import (
 
 func (c *ClientTests) TestOrderCreate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Order{}), reflect.TypeOf(order))
 	assert.True(strings.HasPrefix(order.ID, "order_"))
@@ -24,19 +21,13 @@ func (c *ClientTests) TestOrderCreate() {
 
 func (c *ClientTests) TestOrderRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedOrder, err := client.GetOrder(order.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Order{}), reflect.TypeOf(retrievedOrder))
 	assert.Equal(order.ID, retrievedOrder.ID)
@@ -44,19 +35,13 @@ func (c *ClientTests) TestOrderRetrieve() {
 
 func (c *ClientTests) TestOrderGetRates() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	rates, err := client.GetOrderRates(order.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	ratesList := rates.Rates
 
@@ -68,19 +53,13 @@ func (c *ClientTests) TestOrderGetRates() {
 
 func (c *ClientTests) TestOrderBuyRate() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	boughtOrder, err := client.BuyOrder(order.ID, c.fixture.USPS(), c.fixture.USPSService())
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	shipmentsList := boughtOrder.Shipments
 

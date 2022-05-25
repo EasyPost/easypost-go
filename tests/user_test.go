@@ -11,7 +11,7 @@ func (c *ClientTests) TestUserCreate() {
 	c.T().Skip("This endpoint returns the child user keys in plain text, do not run this test.")
 
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	userName := "Test User"
 
@@ -20,10 +20,7 @@ func (c *ClientTests) TestUserCreate() {
 			Name: &userName,
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(user))
 	assert.True(strings.HasPrefix(user.ID, "user_"))
@@ -32,19 +29,13 @@ func (c *ClientTests) TestUserCreate() {
 
 func (c *ClientTests) TestUserRetrieve() {
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	authenticatedUser, err := client.RetrieveMe()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	retrievedUser, err := client.GetUser(authenticatedUser.Children[0].ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(retrievedUser))
 	assert.True(strings.HasPrefix(retrievedUser.ID, "user_"))
@@ -52,13 +43,10 @@ func (c *ClientTests) TestUserRetrieve() {
 
 func (c *ClientTests) TestUserRetrieveMe() {
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	user, err := client.RetrieveMe()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(user))
 	assert.True(strings.HasPrefix(user.ID, "user_"))
@@ -66,13 +54,10 @@ func (c *ClientTests) TestUserRetrieveMe() {
 
 func (c *ClientTests) TestUserUpdate() {
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	user, err := client.RetrieveMe()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	test_phone := "5555555555"
 
@@ -82,10 +67,7 @@ func (c *ClientTests) TestUserUpdate() {
 			PhoneNumber: &test_phone,
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(updatedUser))
 	assert.True(strings.HasPrefix(updatedUser.ID, "user_"))
@@ -94,15 +76,12 @@ func (c *ClientTests) TestUserUpdate() {
 
 func (c *ClientTests) TestUserUpdateBrand() {
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	color := "#123456"
 
 	user, err := client.RetrieveMe()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	brand, err := client.UpdateBrand(
 		map[string]interface{}{
@@ -110,10 +89,7 @@ func (c *ClientTests) TestUserUpdateBrand() {
 		},
 		user.ID,
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Brand{}), reflect.TypeOf(brand))
 	assert.True(strings.HasPrefix(brand.ID, "brd_"))
@@ -132,16 +108,10 @@ func (c *ClientTests) TestUserDelete() {
 			Name: &userName,
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	err = client.DeleteUser(user.ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	require.NoError(err)
 }
@@ -149,13 +119,10 @@ func (c *ClientTests) TestUserDelete() {
 func (c *ClientTests) TestUserApiKeysAll() {
 	c.T().Skip("API keys are returned as plaintext, do not run this test.")
 	client := c.ProdClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	apiKeys, err := client.GetAPIKeys()
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.NotNil(apiKeys)
 }

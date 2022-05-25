@@ -9,17 +9,14 @@ import (
 
 func (c *ClientTests) TestEventAll() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	events, err := client.ListEvents(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	eventsList := events.Events
 
@@ -32,23 +29,17 @@ func (c *ClientTests) TestEventAll() {
 
 func (c *ClientTests) TestEventRetrieve() {
 	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
 	events, err := client.ListEvents(
 		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	event, err := client.GetEvent(events.Events[0].ID)
-	if err != nil {
-		c.T().Error(err)
-		return
-	}
+	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Event{}), reflect.TypeOf(event))
 	assert.True(strings.HasPrefix(event.ID, "evt_"))
