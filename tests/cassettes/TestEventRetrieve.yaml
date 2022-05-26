@@ -5,21 +5,23 @@ interactions:
     body: page_size=5
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/x-www-form-urlencoded
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/events
     method: GET
   response:
-    body: '{"events":[{"description":"batch.updated","id":"evt_578b6ae09b2511ec93b60758133d4dea","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-03-03T19:08:42.649Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_5739d3249b2511eca47607704a2a46ac","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-03-03T19:08:42.114Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_56f748d89b2511ecabc543f81c401b90","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-03-03T19:08:41.678Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_56f545d89b2511ecb5900ff746552a92","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-03-03T19:08:41.665Z","mode":"test","object":"Event"},{"description":"batch.created","id":"evt_56ebdb609b2511ec94216b825356bbf3","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-03-03T19:08:41.603Z","mode":"test","object":"Event"}],"has_more":true}'
+    body: '{"events":[{"description":"batch.updated","id":"evt_39754090dd0511ecab2719221796cfe7","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-05-26T15:05:05.020Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_38a1b8d8dd0511ecbb1d3d810a662a3f","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-05-26T15:05:03.634Z","mode":"test","object":"Event"},{"description":"batch.created","id":"evt_38971af4dd0511ecaf6007134b22fe64","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-05-26T15:05:03.564Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_38826456dd0511ec8ed8670adfb84d3d","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-05-26T15:05:03.428Z","mode":"test","object":"Event"},{"description":"batch.updated","id":"evt_36165268dd0511ecbb052b82914692f2","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-05-26T15:04:59.365Z","mode":"test","object":"Event"}],"has_more":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"68ea6a6666111539a82380433ab70f57"
+      - W/"ca5c89ea76e72e49acc4c1aec40cb71d"
       Expires:
       - "0"
       Pragma:
@@ -35,23 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e6221123fff135a20001f2076
+      - 19577bfa628f9724e78b9ba7006bb912
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - 91ee7fb6-25af-49e9-ae45-829ea194a962
+      - intlb2nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.189308"
+      - "0.176445"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -61,19 +60,21 @@ interactions:
     body: ""
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/events/evt_578b6ae09b2511ec93b60758133d4dea
+      - REDACTED
+    url: https://api.easypost.com/v2/events/evt_39754090dd0511ecab2719221796cfe7
     method: GET
   response:
-    body: '{"description":"batch.updated","mode":"test","previous_attributes":{"state":"purchasing"},"created_at":"2022-03-03T19:08:43.000Z","pending_urls":[],"completed_urls":[],"updated_at":"2022-03-03T19:08:43.000Z","id":"evt_578b6ae09b2511ec93b60758133d4dea","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","object":"Event"}'
+    body: '{"description":"batch.updated","mode":"test","previous_attributes":{"state":"label_generating"},"created_at":"2022-05-26T15:05:05.000Z","pending_urls":[],"completed_urls":[],"updated_at":"2022-05-26T15:05:05.000Z","id":"evt_39754090dd0511ecab2719221796cfe7","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","object":"Event"}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b75a50fbee7c5cca3f63027e29aadf6f"
+      - W/"6db64c3a19761e11c91bc276dafa6b93"
       Expires:
       - "0"
       Pragma:
@@ -89,23 +90,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211240ff135a20001f208a
+      - 19577bfa628f9724e78b9ba7006bb931
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - 219c4495-45ce-4d15-8718-ea4807993308
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.028059"
+      - "0.025881"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

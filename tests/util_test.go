@@ -2,6 +2,7 @@ package easypost_test
 
 import (
 	"bytes"
+	"encoding/json"
 	"flag"
 	"fmt"
 	"io/ioutil"
@@ -43,6 +44,7 @@ func (c *ClientTests) SetupTest() {
 	r, err := recorder.New(filepath.Join(pathComponents...))
 	c.Require().NoError(err)
 
+	// Strictly match the URL, method, and body of the requests
 	r.SetMatcher(func(r *http.Request, i cassette.Request) bool {
 		if r.Body == nil {
 			return cassette.DefaultMatcher(r, i)
@@ -55,8 +57,77 @@ func (c *ClientTests) SetupTest() {
 		return cassette.DefaultMatcher(r, i) && (b.String() == "" || b.String() == i.Body)
 	})
 
-	r.AddFilter(func(i *cassette.Interaction) error {
-		delete(i.Request.Headers, "Authorization")
+	// Filter sensitive data from cassettes
+	// Replace value has to be type specific to its corresponding struct
+	responseBodyScrubbers := map[string]interface{}{
+		"api_keys":         []string{},
+		"children":         []string{},
+		"client_ip":        "REDACTED",
+		"test_credentials": map[string]string{},
+		"credentials":      map[string]string{},
+		"email":            "REDACTED",
+		"keys":             []*easypost.APIKey{},
+		"key":              "REDACTED",
+		"phone_number":     "REDACTED",
+		"phone":            "REDACTED",
+	}
+	r.AddSaveFilter(func(i *cassette.Interaction) error {
+		// Filter headers
+		if i.Request.Headers["Authorization"] != nil {
+			i.Request.Headers["Authorization"] = []string{"REDACTED"}
+		}
+
+		if i.Request.Headers["User-Agent"] != nil {
+			i.Request.Headers["User-Agent"] = []string{"REDACTED"}
+		}
+
+		if i.Request.Headers["X-Client-User-Agent"] != nil {
+			i.Request.Headers["X-Client-User-Agent"] = []string{"REDACTED"}
+		}
+
+		// Filter response bodies
+		var responseBodyBytes []byte
+		var responseBodyString string
+
+		for scrubber, replaceValue := range responseBodyScrubbers {
+			if strings.Contains(i.Response.Body, scrubber) {
+				var responseBody = i.Response.Body
+				var arrayObjects []map[string]interface{}
+
+				if json.Unmarshal([]byte(responseBody), &arrayObjects) == nil {
+					err := json.Unmarshal([]byte(responseBody), &arrayObjects)
+					if err != nil {
+						fmt.Println(err)
+						os.Exit(1)
+					}
+					for index, object := range arrayObjects {
+						for key := range object {
+							if key == scrubber {
+								arrayObjects[index][key] = replaceValue
+							}
+						}
+					}
+
+					responseBodyBytes, _ = json.Marshal(arrayObjects)
+				} else {
+					var responseMap map[string]interface{}
+					err := json.Unmarshal([]byte(responseBody), &responseMap)
+					if err != nil {
+						fmt.Println(err)
+						os.Exit(1)
+					}
+
+					if _, keyExists := responseMap[scrubber]; keyExists {
+						responseMap[scrubber] = replaceValue
+					}
+					responseBodyBytes, _ = json.Marshal(responseMap)
+				}
+
+				responseBodyString = string(responseBodyBytes)
+				i.Response.Body = responseBodyString
+			}
+		}
+
 		return nil
 	})
 

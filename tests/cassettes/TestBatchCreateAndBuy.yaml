@@ -12,21 +12,23 @@ interactions:
       Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4},"carrier":"USPS","service":"First","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"]}]}}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/batches/create_and_buy
     method: POST
   response:
-    body: '{"id":"batch_48d0ba4da3974f4aa0028153eeea1aa6","object":"Batch","mode":"test","state":"creating","num_shipments":2,"reference":null,"created_at":"2022-03-03T19:08:40Z","updated_at":"2022-03-03T19:08:40Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"id":"batch_6f64aa98efcd4f62bc9bbf4bbb19c285","object":"Batch","mode":"test","state":"creating","num_shipments":2,"reference":null,"created_at":"2022-05-26T15:04:52Z","updated_at":"2022-05-26T15:04:52Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"bdb8df9e0029ce7c145533fedcc325be"
+      - W/"1d7ecb5a5447c19d93bb8cf69e67d0a0"
       Expires:
       - "0"
       Pragma:
@@ -42,23 +44,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e62211238ff135a20001f1ebc
+      - 19577bfa628f9714e78b9ba7006bb1aa
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - f4853bdc-39ae-42c5-b18a-82438b048305
+      - intlb1nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.045256"
+      - "0.042137"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

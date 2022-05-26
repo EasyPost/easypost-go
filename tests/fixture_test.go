@@ -67,7 +67,7 @@ func (fixture *Fixture) BasicAddress() *easypost.Address {
 
 func (fixture *Fixture) IncorrectAddressToVerify() *easypost.Address {
 	return &easypost.Address{
-		Street1: "417 montgomery streat",
+		Street1: "417 montgomery street",
 		Street2: "FL 5",
 		City:    "San Francisco",
 		State:   "CA",
@@ -171,7 +171,7 @@ func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 // If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
 // USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 func (fixture *Fixture) BasicPickup() *easypost.Pickup {
-	pickupDate := time.Date(2022, time.May, 9, 0, 0, 0, 0, time.UTC)
+	pickupDate := time.Date(2022, time.May, 27, 0, 0, 0, 0, time.UTC)
 
 	return &easypost.Pickup{
 		Address:      fixture.BasicAddress(),

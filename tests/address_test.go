@@ -89,7 +89,7 @@ func (c *ClientTests) TestAddressCreateVerify() {
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
-	assert.Equal("417 MONTGOMERY ST STE 500", address.Street1)
+	assert.Equal("417 MONTGOMERY ST FL 5", address.Street1)
 }
 
 func (c *ClientTests) TestAddressCreateAndVerify() {
@@ -106,7 +106,7 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
 	assert.True(strings.HasPrefix(address.ID, "adr_"))
-	assert.Equal("417 MONTGOMERY ST STE 500", address.Street1)
+	assert.Equal("417 MONTGOMERY ST FL 5", address.Street1)
 }
 
 func (c *ClientTests) TestAddressVerify() {

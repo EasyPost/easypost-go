@@ -2,30 +2,33 @@
 version: 1
 interactions:
 - request:
-    body: '{"verify":["delivery"],"address":{"street1":"417 montgomery streat","street2":"FL
+    body: '{"verify":["delivery"],"address":{"street1":"417 montgomery street","street2":"FL
       5","city":"San Francisco","state":"CA","zip":"94104","country":"US","company":"EasyPost","phone":"415-123-4567"}}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.1.0 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/addresses/create_and_verify
     method: POST
   response:
-    body: '{"address":{"id":"adr_5a6e12049e6811ecbac9ac1f6bc72124","object":"Address","created_at":"2022-03-07T22:45:57+00:00","updated_at":"2022-03-07T22:45:57+00:00","name":null,"company":"EASYPOST","street1":"417
-      MONTGOMERY ST STE 500","street2":"","city":"SAN FRANCISCO","state":"CA","zip":"94104-1100","country":"US","phone":"4151234567","email":null,"mode":"test","carrier_facility":null,"residential":false,"federal_tax_id":null,"state_tax_id":null,"verifications":{"delivery":{"success":true,"errors":[],"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"}}}}}'
+    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-05-26T15:04:47+00:00","email":null,"federal_tax_id":null,"id":"adr_2f08997add0511eca599ac1f6bc72124","mode":"test","name":null,"object":"Address","phone":"4151234567","residential":false,"state":"CA","state_tax_id":null,"street1":"417
+      MONTGOMERY ST FL 5","street2":"","updated_at":"2022-05-26T15:04:47+00:00","verifications":{"delivery":{"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"},"errors":[{"code":"E.SECONDARY_INFORMATION.INVALID","field":"street2","message":"Invalid
+      secondary information(Apt/Suite#)","suggestion":null}],"success":true}},"zip":"94104-1129"}}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"0c5eba43ee83bf545d155b60787c81ba"
+      - W/"16d2a7faeb4d411f06fb693d0d39fcbe"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_5a6e12049e6811ecbac9ac1f6bc72124
+      - /api/v2/addresses/adr_2f08997add0511eca599ac1f6bc72124
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -34,29 +37,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ea6435fe62268b25ff109c14004b2a92
+      - 19577bfa628f970fe78b9ba7006baf94
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - extlb1nuq 88c34981dc
-      X-Request-Id:
-      - e79d7c0a-f88d-4884-830d-97ed16444430
+      - intlb2nuq 570dfcbc0a
+      - extlb1nuq fc4d5d217f
       X-Runtime:
-      - "0.107753"
+      - "0.045013"
       X-Version-Label:
-      - easypost-202203042109-ebc16e3e74-master
+      - easypost-202205252316-1f08f7be53-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
