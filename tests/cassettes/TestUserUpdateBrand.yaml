@@ -12,15 +12,15 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: GET
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":null,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"EasyPost
-      Go Client Tests","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
+    body: '{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-23T17:43:47Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_2cfd34d1261a4a9b93d56c313a9a824b","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Ryan
+      Nguyen","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"43b5e99ec4f7546926629af34b4932df"
+      - W/"18024e4cde702fde15dcd1444d4c7ab3"
       Expires:
       - "0"
       Pragma:
@@ -36,7 +36,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f974de78b9ba7006bce17
+      - 19be063a62966178f2d49d9f00026073
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -44,12 +44,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 570dfcbc0a
+      - intlb2wdc 570dfcbc0a
+      - extlb1wdc 0910011e7e
       X-Runtime:
-      - "0.257183"
+      - "0.137470"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202205272233-af67cc8d0c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -65,17 +66,17 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0/brand
-    method: PUT
+    url: https://api.easypost.com/v2/users/user_2cfd34d1261a4a9b93d56c313a9a824b/brand
+    method: PATCH
   response:
-    body: '{"id":"brd_3930aba34a0743228c75c1e71c8b0883","color":"#123456","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","ad":null,"ad_href":null,"object":"Brand","user_id":"user_a76997d126dd488f8ad22d52301300b0","background_color":null,"theme":"theme1"}'
+    body: '{"id":"brd_0e606e55ac73483b9ef26ba2e7dcfec5","color":"#123456","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","ad":null,"ad_href":null,"object":"Brand","user_id":"user_2cfd34d1261a4a9b93d56c313a9a824b","background_color":null,"theme":"theme1"}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"3a6bf0943796a2bda2357663c77d41a6"
+      - W/"1db759217d34f1d4558f723082035904"
       Expires:
       - "0"
       Pragma:
@@ -91,20 +92,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f974de78b9ba7006bce43
+      - 19be063a62966178f2d49d9f000260b3
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2wdc 570dfcbc0a
+      - extlb1wdc 0910011e7e
       X-Runtime:
-      - "0.021489"
+      - "0.026404"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202205272233-af67cc8d0c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

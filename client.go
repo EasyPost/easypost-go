@@ -174,8 +174,8 @@ func (c *Client) post(ctx context.Context, path string, in, out interface{}) err
 	return c.do(ctx, http.MethodPost, path, in, out)
 }
 
-func (c *Client) put(ctx context.Context, path string, in, out interface{}) error {
-	return c.do(ctx, http.MethodPut, path, in, out)
+func (c *Client) patch(ctx context.Context, path string, in, out interface{}) error {
+	return c.do(ctx, http.MethodPatch, path, in, out)
 }
 
 func (c *Client) del(ctx context.Context, path string) error {

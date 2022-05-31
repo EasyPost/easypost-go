@@ -137,7 +137,7 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 //	)
 func (c *Client) UpdateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
 	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.put(context.Background(), "carrier_accounts/"+in.ID, req, &out)
+	err = c.patch(context.Background(), "carrier_accounts/"+in.ID, req, &out)
 	return
 }
 
@@ -146,7 +146,7 @@ func (c *Client) UpdateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, 
 // request.
 func (c *Client) UpdateCarrierAccountWithContext(ctx context.Context, in *CarrierAccount) (out *CarrierAccount, err error) {
 	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.put(ctx, "carrier_accounts/"+in.ID, req, &out)
+	err = c.patch(ctx, "carrier_accounts/"+in.ID, req, &out)
 	return
 }
 

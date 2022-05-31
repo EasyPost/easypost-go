@@ -5,23 +5,24 @@ interactions:
     body: '{"carrier_account":{"type":"UpsAccount","credentials":{"access_license_number":"ALN","account_number":"A1A1A1","password":"PASSWORD","user_id":"USERID"},"test_credentials":null}}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
+      - REDACTED
     url: https://api.easypost.com/v2/carrier_accounts
     method: POST
   response:
-    body: '{"id":"ca_de730b1bf841470a833f54587b054213","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T19:08:44Z","updated_at":"2022-03-03T19:08:44Z","description":"UPS
-      Account","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
-      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-05-31T18:41:58Z","credentials":{},"description":"UPS
+      Account","fields":{"credentials":{"account_number":{"label":"UPS Account Number","value":"A1A1A1","visibility":"readonly"}}},"id":"ca_4fa57a126a3e47379b8cb85acea4ff37","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":{},"type":"UpsAccount","updated_at":"2022-05-31T18:41:58Z"}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"a86620f87494b32dee93657d194c8f3b"
+      - W/"cc1c25e9a08bc2ca1e5b2bb3548273ae"
       Expires:
       - "0"
       Pragma:
@@ -37,50 +38,50 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e6221123cff135a20001f1fd0
+      - 19be063a62966176f2d49d9f00025fa0
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb2wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - bd7a70ce-4d5a-43dd-b80c-79a011ecb4a3
+      - intlb1nuq 570dfcbc0a
+      - intlb1wdc 570dfcbc0a
+      - extlb1wdc 0910011e7e
       X-Runtime:
-      - "0.133616"
+      - "0.119310"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205272233-af67cc8d0c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
     duration: ""
 - request:
-    body: '{"carrier_account":{"id":"ca_de730b1bf841470a833f54587b054213","object":"CarrierAccount","created_at":"2022-03-03T19:08:44Z","updated_at":"2022-03-03T19:08:44Z","type":"UpsAccount","fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
+    body: '{"carrier_account":{"id":"ca_4fa57a126a3e47379b8cb85acea4ff37","object":"CarrierAccount","created_at":"2022-05-31T18:41:58Z","updated_at":"2022-05-31T18:41:58Z","type":"UpsAccount","fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
       Account Number","value":"A1A1A1"}}},"description":"My custom description","readable":"UPS","credentials":{"account_number":"A1A1A1"},"test_credentials":null}}'
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       Content-Type:
       - application/json
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/carrier_accounts/ca_de730b1bf841470a833f54587b054213
-    method: PUT
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/ca_4fa57a126a3e47379b8cb85acea4ff37
+    method: PATCH
   response:
-    body: '{"id":"ca_de730b1bf841470a833f54587b054213","object":"CarrierAccount","type":"UpsAccount","clone":false,"created_at":"2022-03-03T19:08:44Z","updated_at":"2022-03-03T19:08:45Z","description":"My
-      custom description","reference":null,"readable":"UPS","logo":null,"fields":{"credentials":{"account_number":{"visibility":"readonly","label":"UPS
-      Account Number","value":"A1A1A1"}}},"credentials":{"account_number":"A1A1A1"},"test_credentials":null}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-05-31T18:41:58Z","credentials":{},"description":"My
+      custom description","fields":{"credentials":{"account_number":{"label":"UPS
+      Account Number","value":"A1A1A1","visibility":"readonly"}}},"id":"ca_4fa57a126a3e47379b8cb85acea4ff37","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":{},"type":"UpsAccount","updated_at":"2022-05-31T18:41:58Z"}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"23580e05dd01613e254cf08dbbedab2b"
+      - W/"d33d7cb58e30cba211d137bb147b1966"
       Expires:
       - "0"
       Pragma:
@@ -91,30 +92,26 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e6221123dff135a20001f1fe4
+      - 19be063a62966176f2d49d9f00025fbc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 88c34981dc
-      - intlb2wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - b08356a6-208a-455a-965f-8a286a346b60
+      - intlb2nuq 570dfcbc0a
+      - intlb2wdc 570dfcbc0a
+      - extlb1wdc 0910011e7e
       X-Runtime:
-      - "0.132773"
+      - "0.188351"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205272233-af67cc8d0c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -124,9 +121,11 @@ interactions:
     body: ""
     form: {}
     headers:
+      Authorization:
+      - REDACTED
       User-Agent:
-      - EasyPost/v2 GoClient/2.0.1 Go/go1.17.5 OS/darwin
-    url: https://api.easypost.com/v2/carrier_accounts/ca_de730b1bf841470a833f54587b054213
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/ca_4fa57a126a3e47379b8cb85acea4ff37
     method: DELETE
   response:
     body: '{}'
@@ -152,23 +151,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9cb90d0e6221123dff135a20001f1ff5
+      - 19be063a62966177f2d49d9f00025fee
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 88c34981dc
-      - intlb1wdc 88c34981dc
-      - extlb1wdc 88c34981dc
-      X-Request-Id:
-      - cb7455d1-d59e-4d66-8763-940bda2822d9
+      - intlb1nuq 570dfcbc0a
+      - intlb2wdc 570dfcbc0a
+      - extlb1wdc 0910011e7e
       X-Runtime:
-      - "0.176859"
+      - "0.123344"
       X-Version-Label:
-      - easypost-202203031834-4b65a7cdf4-master
+      - easypost-202205272233-af67cc8d0c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

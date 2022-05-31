@@ -66,14 +66,14 @@ func (c *Client) GetWebhookWithContext(ctx context.Context, webhookID string) (o
 
 // EnableWebhook re-enables a disabled webhook.
 func (c *Client) EnableWebhook(webhookID string) (out *Webhook, err error) {
-	err = c.put(context.Background(), "webhooks/"+webhookID, nil, &out)
+	err = c.patch(context.Background(), "webhooks/"+webhookID, nil, &out)
 	return
 }
 
 // EnableWebhookWithContext performs the same operation as EnableWebhook, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) EnableWebhookWithContext(ctx context.Context, webhookID string) (out *Webhook, err error) {
-	err = c.put(ctx, "webhooks/"+webhookID, nil, &out)
+	err = c.patch(ctx, "webhooks/"+webhookID, nil, &out)
 	return
 }
 
