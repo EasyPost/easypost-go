@@ -57,19 +57,19 @@ func (c *ClientTests) TestUserUpdate() {
 	user, err := client.RetrieveMe()
 	require.NoError(err)
 
-	test_phone := "5555555555"
+	test_name := "Test User"
 
 	updatedUser, err := client.UpdateUser(
 		&easypost.UserOptions{
-			ID:          user.ID,
-			PhoneNumber: &test_phone,
+			ID:   user.ID,
+			Name: &test_name,
 		},
 	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(updatedUser))
 	assert.True(strings.HasPrefix(updatedUser.ID, "user_"))
-	assert.Equal(test_phone, updatedUser.PhoneNumber)
+	assert.Equal(test_name, updatedUser.Name)
 }
 
 func (c *ClientTests) TestUserUpdateBrand() {

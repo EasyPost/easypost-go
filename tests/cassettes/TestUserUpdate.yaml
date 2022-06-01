@@ -12,15 +12,15 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: GET
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-23T17:43:47Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_2cfd34d1261a4a9b93d56c313a9a824b","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Ryan
-      Nguyen","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":null,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"EasyPost
+      Go Client Tests","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e67cce23fee900986d910af43877bdf2"
+      - W/"43b5e99ec4f7546926629af34b4932df"
       Expires:
       - "0"
       Pragma:
@@ -36,28 +36,27 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19be063a62966177f2d49d9f00026026
+      - 6d86f1b36297a5e2e786af58001ef906
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - intlb2wdc 570dfcbc0a
-      - extlb1wdc 0910011e7e
+      - intlb2nuq 570dfcbc0a
+      - extlb2nuq 0910011e7e
       X-Runtime:
-      - "0.110687"
+      - "0.208543"
       X-Version-Label:
-      - easypost-202205272233-af67cc8d0c-master
+      - easypost-202206010206-f8352cdc94-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"user":{"phone_number":"5555555555"}}'
+    body: '{"user":{"name":"Test User"}}'
     form: {}
     headers:
       Authorization:
@@ -66,18 +65,18 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/users/user_2cfd34d1261a4a9b93d56c313a9a824b
+    url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0
     method: PATCH
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-23T17:43:47Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_2cfd34d1261a4a9b93d56c313a9a824b","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Ryan
-      Nguyen","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":null,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
+      User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"18024e4cde702fde15dcd1444d4c7ab3"
+      - W/"e82ae7b8768d187412ab44d9c79b53aa"
       Expires:
       - "0"
       Pragma:
@@ -93,21 +92,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19be063a62966177f2d49d9f0002604a
+      - 6d86f1b36297a5e2e786af58001ef926
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 570dfcbc0a
-      - intlb1wdc 570dfcbc0a
-      - extlb1wdc 0910011e7e
+      - extlb2nuq 0910011e7e
       X-Runtime:
-      - "0.218772"
+      - "0.524407"
       X-Version-Label:
-      - easypost-202205272233-af67cc8d0c-master
+      - easypost-202206010206-f8352cdc94-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
