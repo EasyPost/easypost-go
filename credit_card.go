@@ -8,7 +8,7 @@ import (
 
 type CreditCard struct {
 	ID              string `json:"id,omitempty"`
-	DisbledAt       string `json:"disabled_at,omitempty"`
+	DisabledAt      string `json:"disabled_at,omitempty"`
 	Object          string `json:"object,omitempty"`
 	Name            string `json:"name,omitempty"`
 	Last4           string `json:"last4,omitempty"`

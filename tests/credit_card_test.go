@@ -12,6 +12,14 @@ func (c *ClientTests) TestCreditCardFund() {
 	assert.True(creditCard != nil)
 }
 
+func (c *ClientTests) TestCreditCardFundWithInvalidInput() {
+	client := c.ProdClient()
+	require := c.Require()
+
+	_, err := client.FundCreditCard("20", "invalid")
+	require.Error(err)
+}
+
 func (c *ClientTests) TestDeleteCreditCard() {
 	c.T().Skip("Skipping due to the lack of an available real credit card in tests")
 
