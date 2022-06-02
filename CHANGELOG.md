@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `PaymentMethod.ListPaymentMethods()`, `CreditCard.FundCreditCard()`, and `CreditCard.DeleteCreditCard()` functions
+
 ## v2.3.0 (2022-04-13)
 
 - Adds `Columns` and `AdditionalColumns` params to `Report` struct
