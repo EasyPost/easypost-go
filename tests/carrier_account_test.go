@@ -27,7 +27,6 @@ func (c *ClientTests) TestCarrierAccountCreate() {
 	assert.Equal("UpsAccount", carrierAccount.Type)
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
-
 	require.NoError(err)
 }
 
@@ -45,7 +44,6 @@ func (c *ClientTests) TestCarrierAccountRetrieve() {
 	assert.Equal(carrierAccount, retrievedCarrierAccount)
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
-
 	require.NoError(err)
 }
 
@@ -62,6 +60,7 @@ func (c *ClientTests) TestCarrierAccountAll() {
 }
 
 func (c *ClientTests) TestCarrierAccountUpdate() {
+	c.T().Skip("VCR can't match this cassette properly")
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
@@ -80,7 +79,6 @@ func (c *ClientTests) TestCarrierAccountUpdate() {
 	assert.Equal(testDescription, updatedCarrierAccount.Description)
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
-
 	require.NoError(err)
 }
 
@@ -92,7 +90,6 @@ func (c *ClientTests) TestCarrierAccountDelete() {
 	require.NoError(err)
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
-
 	require.NoError(err)
 }
 

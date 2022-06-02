@@ -77,7 +77,7 @@ func (c *Client) UpdateUser(in *UserOptions) (out *User, err error) {
 	if in.ID != "" {
 		path += "/" + in.ID
 	}
-	err = c.put(context.Background(), path, req, &out)
+	err = c.patch(context.Background(), path, req, &out)
 	return
 }
 
@@ -89,7 +89,7 @@ func (c *Client) UpdateUserWithContext(ctx context.Context, in *UserOptions) (ou
 	if in.ID != "" {
 		path += "/" + in.ID
 	}
-	err = c.put(ctx, path, req, &out)
+	err = c.patch(ctx, path, req, &out)
 	return
 }
 
@@ -121,7 +121,7 @@ func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err erro
 func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	err = c.put(context.Background(), updateBrandURL, newParams, &out)
+	err = c.patch(context.Background(), updateBrandURL, newParams, &out)
 	return
 }
 
@@ -130,6 +130,6 @@ func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out 
 func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	err = c.put(ctx, updateBrandURL, newParams, &out)
+	err = c.patch(ctx, updateBrandURL, newParams, &out)
 	return
 }
