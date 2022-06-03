@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/payment_methods
+    method: GET
+  response:
+    body: '{"id":"cust_e01cbbbf6bec47b58d019821b95aea84","object":"PaymentMethods","primary_payment_method":{"id":"card_b3a5f5ed02194ac69fb80a7fb709138b","disabled_at":null,"object":"CreditCard","name":null,"last4":"6170","exp_month":5,"exp_year":2028,"brand":"Visa"},"secondary_payment_method":{"id":"card_ab330b742b3c4acca58dceb190274996","disabled_at":null,"object":"CreditCard","name":null,"last4":"6170","exp_month":5,"exp_year":2028,"brand":"Visa"}}'
+    headers:
+      Cache-Control:
+      - no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"202a24762c24e1bdbe8c4ace520c8216"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 63058d0362992414ff22311d00033a7b
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb4nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 570dfcbc0a
+      - intlb2wdc 570dfcbc0a
+      - extlb1wdc 0910011e7e
+      X-Runtime:
+      - "1.300468"
+      X-Version-Label:
+      - easypost-202206021850-56a13db81c-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

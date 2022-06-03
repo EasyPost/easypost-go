@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds PaymentMethod file with `ListPaymentMethods` method
+- Adds CreditCard file with `FundCreditCard`, and `DeleteCreditCard` methods
+
 ## v2.3.0 (2022-04-13)
 
 - Adds `Columns` and `AdditionalColumns` params to `Report` struct
