@@ -79,6 +79,6 @@ func (c *ClientTests) TestTrackerCreateList() {
 	response, err := client.CreateTrackerList(trackingCodeParam)
 	require.NoError(err)
 
-	// This endpoint returns nothing so we assert the function returns true
+	// This endpoint returns nothing, so we assert the function returns true
 	assert.True(response)
 }

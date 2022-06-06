@@ -102,7 +102,7 @@ func (c *ClientTests) TestShipmentConvertLabel() {
 }
 
 // If the shipment was purchased with a USPS rate, it must have had its insurance set to `0` when bought
-// so that USPS doesn't automatically insure it so we could manually insure it here.
+// so that USPS doesn't automatically insure it. So we could manually insure it here.
 func (c *ClientTests) TestShipmentInsure() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()

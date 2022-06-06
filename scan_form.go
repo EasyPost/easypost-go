@@ -36,7 +36,7 @@ type ListScanFormsResult struct {
 	HasMore bool `json:"has_more,omitempty"`
 }
 
-func newscanFormRequest(shipmentIDs ...string) *scanFormRequest {
+func newScanFormRequest(shipmentIDs ...string) *scanFormRequest {
 	l := len(shipmentIDs)
 	if l == 0 {
 		return nil
@@ -52,14 +52,14 @@ func newscanFormRequest(shipmentIDs ...string) *scanFormRequest {
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateScanForm("shp_1", "shp_2")
 func (c *Client) CreateScanForm(shipmentIDs ...string) (out *ScanForm, err error) {
-	err = c.post(context.Background(), "scan_forms", newscanFormRequest(shipmentIDs...), &out)
+	err = c.post(context.Background(), "scan_forms", newScanFormRequest(shipmentIDs...), &out)
 	return
 }
 
 // CreateScanFormWithContext performs the same operation as CreateScanForm, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreateScanFormWithContext(ctx context.Context, shipmentIDs ...string) (out *ScanForm, err error) {
-	err = c.post(ctx, "scan_forms", newscanFormRequest(shipmentIDs...), &out)
+	err = c.post(ctx, "scan_forms", newScanFormRequest(shipmentIDs...), &out)
 	return
 }
 

@@ -18,7 +18,7 @@ func (c *ClientTests) TestWebhookCreate() {
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
 	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
 
-	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here so we don't keep sending events to a dead webhook.
+	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
 	require.NoError(err)
 
 	require.NoError(err)
