@@ -38,9 +38,9 @@ func (c *ClientTests) TestReportCustomColumnsCreate() {
 	)
 	require.NoError(err)
 
-	// verify parameters by checking VCR cassette for correct URL
-	// Some reports take a long time to generate, so we won't be able to consistently pull the report
-	// There's unfortunately no way to check if the columns were included in the final report without parsing the CSV
+	// Verify parameters by checking VCR cassette for correct URL.
+	// Some reports take a long time to generate, so we won't be able to consistently pull the report.
+	// There's unfortunately no way to check if the columns were included in the final report without parsing the CSV,
 	// so we assume, if we haven't gotten an error by this point, we've made the API calls correctly
 	// any failure at this point is a server-side issue
 	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
@@ -60,9 +60,9 @@ func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 	)
 	require.NoError(err)
 
-	// verify parameters by checking VCR cassette for correct URL
-	// Some reports take a long time to generate, so we won't be able to consistently pull the report
-	// There's unfortunately no way to check if the columns were included in the final report without parsing the CSV
+	// Verify parameters by checking VCR cassette for correct URL.
+	// Some reports take a long time to generate, so we won't be able to consistently pull the report.
+	// There's unfortunately no way to check if the columns were included in the final report without parsing the CSV,
 	// so we assume, if we haven't gotten an error by this point, we've made the API calls correctly
 	// any failure at this point is a server-side issue
 	assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))

@@ -27,7 +27,7 @@ Contributing comes in many forms! We are incredibly grateful to anyone who can d
 - If your issue is security related, please follow the [SECURITY guide](https://github.com/easypost/.github/SECURITY.md)
 - Before opening a new issue, check for existing issues that are related, including closed ones
 - Provide as much information as possible about the issue, including how to reproduce the problem and the expected behavior
-- Don't needlessly bump issues (eg: if there hasn’t been progress for more than a few weeks, feel free to reach back out)
+- Don't needlessly bump issues (eg: if there has not been progress for more than a few weeks, feel free to reach back out)
 
 ## Pull Requests
 

@@ -45,7 +45,7 @@ type TrackingCarrierDetail struct {
 	InitialDeliveryAttempt      *time.Time        `json:"initial_delivery_attempt,omitempty"`
 }
 
-// A Tracker object contains all of the tracking information for a package.
+// A Tracker object contains all the tracking information for a package.
 type Tracker struct {
 	ID              string                 `json:"id,omitempty"`
 	Object          string                 `json:"object,omitempty"`
@@ -172,7 +172,7 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	// The keys inside of the 'trackers' map (0, 1 in the example) get discarded
 	// by the API endpoint, so are not important.
 	req := map[string]interface{}{"trackers": param}
-	// This endpoint does not return a response so we return true here
+	// This endpoint does not return a response, so we return true here
 	return true, c.post(context.Background(), "trackers/create_list", req, nil)
 }
 
@@ -181,7 +181,7 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 // request.
 func (c *Client) CreateTrackerListWithContext(ctx context.Context, param map[string]interface{}) (bool, error) {
 	req := map[string]interface{}{"trackers": param}
-	// This endpoint does not return a response so we return true here
+	// This endpoint does not return a response, so we return true here
 	return true, c.post(ctx, "trackers/create_list", req, nil)
 }
 

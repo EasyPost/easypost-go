@@ -110,7 +110,7 @@ func (c *Client) ListEvents(opts *ListOptions) (out *ListEventsResult, err error
 	return c.ListEventsWithContext(context.Background(), opts)
 }
 
-// ListEventsWithContext performs the same operation as ListEventes, but
+// ListEventsWithContext performs the same operation as ListEvents, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListEventsWithContext(ctx context.Context, opts *ListOptions) (out *ListEventsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "events", c.convertOptsToURLValues(opts), &out)
@@ -135,7 +135,7 @@ func (c *Client) ListEventPayloads(eventID string) (out []*EventPayload, err err
 	return c.ListEventPayloadsWithContext(context.Background(), eventID)
 }
 
-// GetEventPayloadWithContext performs the same operation as GetEventPaylod, but
+// GetEventPayloadWithContext performs the same operation as GetEventPayload, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListEventPayloadsWithContext(ctx context.Context, eventID string) (out []*EventPayload, err error) {
 	err = c.get(

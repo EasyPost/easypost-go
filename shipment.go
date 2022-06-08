@@ -73,7 +73,7 @@ type ShipmentOptions struct {
 	DryIceWeight             float64    `json:"dry_ice_weight,omitempty,string"`
 	Endorsement              string     `json:"endorsement,omitempty"`
 	FreightCharge            float64    `json:"freight_charge,omitempty"`
-	HandlingInstructions     string     `json:"handling_insructions,omitempty"`
+	HandlingInstructions     string     `json:"handling_instructions,omitempty"`
 	Hazmat                   string     `json:"hazmat,omitempty"`
 	HoldForPickup            bool       `json:"hold_for_pickup,omitempty"`
 	Incoterm                 string     `json:"incoterm,omitempty"`

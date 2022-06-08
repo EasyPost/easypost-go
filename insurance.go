@@ -7,7 +7,7 @@ import (
 )
 
 // An Insurance object represents insurance for packages purchased both via the
-// EasyPost API as well as shipments purchased through third parties and later
+// EasyPost API and shipments purchased through third parties and later
 // registered with EasyPost.
 type Insurance struct {
 	ID           string     `json:"id,omitempty"`
@@ -44,12 +44,12 @@ type ListInsurancesResult struct {
 	HasMore bool `json:"has_more,omitempty"`
 }
 
-// CreateInsurance creats an insurance object for a shipment purchased outside
-// of EasyPost. ToAddress, FromAddress, TrackingCode and Amount fields must be
+// CreateInsurance creates an insurance object for a shipment purchased outside
+// EasyPost. ToAddress, FromAddress, TrackingCode and Amount fields must be
 // provided. Providing a value in the Carrier field is optional, but can help
 // avoid ambiguity and provide a shorter response time.
 //	c := easypost.New(MyEasyPostAPIKey)
-//	out, err := c.CreateInsurace(
+//	out, err := c.CreateInsurance(
 //		&easypost.Insurance{
 //			ToAddress:    &easypost.Address{ID: "adr_102"},
 //			FromAddress:  &easypost.Address{ID: "adr_101"},

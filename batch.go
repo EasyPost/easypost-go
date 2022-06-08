@@ -128,7 +128,7 @@ func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID str
 	return
 }
 
-// RemoveShipmentsFromBatch removes shipments fro, an existing batch, and
+// RemoveShipmentsFromBatch removes shipments from an existing batch, and
 // returns the updated batch object.
 func (c *Client) RemoveShipmentsFromBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
 	params := make(map[int]interface{})

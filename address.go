@@ -23,7 +23,7 @@ type AddressVerificationDetails struct {
 	TimeZone  string  `json:"time_zone"`
 }
 
-// AddressVerification holds data relating to addres verification status.
+// AddressVerification holds data relating to address verification status.
 type AddressVerification struct {
 	Success bool                             `json:"success"`
 	Errors  []*AddressVerificationFieldError `json:"errors"`

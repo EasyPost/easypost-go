@@ -63,7 +63,7 @@ type createCustomsItemRequest struct {
 //					Quantity:        2,
 //					Value:           23,
 //					Weight:          11,
-//					HSTarriffNumber: "654321",
+//					HSTariffNumber: "654321",
 //					OriginCountry:   "US",
 //				},
 //			},

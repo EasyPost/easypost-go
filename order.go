@@ -33,7 +33,7 @@ type createOrderRequest struct {
 	} `json:"order,omitempty"`
 }
 
-// CreateOrder creates a new order object. If the accounts parameter is given,
+// CreateOrder creates a new order object. If the `accounts` parameter is given,
 // the provided carrier accounts will be used to limit the returned rates to
 // the given carrier(s).
 //	c := easypost.New(MyEasyPostAPIKey)
