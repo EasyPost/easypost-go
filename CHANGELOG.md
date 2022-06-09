@@ -4,6 +4,7 @@
 
 - Adds PaymentMethod file with `ListPaymentMethods` method
 - Adds CreditCard file with `FundCreditCard`, and `DeleteCreditCard` methods
+- Adds `BillingType` in CarrierAccount and Rate structs
 
 ## v2.3.0 (2022-04-13)
 

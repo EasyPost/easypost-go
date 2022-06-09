@@ -36,6 +36,7 @@ type CarrierAccount struct {
 	Readable        string            `json:"readable,omitempty"`
 	Credentials     map[string]string `json:"credentials"`
 	TestCredentials map[string]string `json:"test_credentials"`
+	BillingType     string            `json:"billing_type,omitempty"`
 }
 
 // CarrierType contains information on a supported carrier. It can be used to
