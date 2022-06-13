@@ -25,7 +25,7 @@ type Rate struct {
 	DeliveryDays           int        `json:"delivery_days,omitempty"`
 	DeliveryDate           *time.Time `json:"delivery_date,omitempty"`
 	DeliveryDateGuaranteed bool       `json:"delivery_date_guaranteed,omitempty"`
-	EstDeliveryDays        int        `json:"est_delivery_dats,omitempty"`
+	EstDeliveryDays        int        `json:"est_delivery_days,omitempty"`
 	BillingType            string     `json:"billing_type,omitempty"`
 }
 
