@@ -51,6 +51,7 @@ type SmartRate struct {
 	DeliveryDateGuaranteed bool           `json:"delivery_date_guaranteed,omitempty"`
 	EstDeliveryDays        int            `json:"est_delivery_days,omitempty"`
 	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitempty"`
+	BillingType            string         `json:"billing_type,omitempty"`
 }
 
 // TimeInTransit provides details on the probability your package will arrive within a certain number of days
