@@ -21,14 +21,14 @@ interactions:
     url: https://api.easypost.com/v2/batches/create_and_buy
     method: POST
   response:
-    body: '{"id":"batch_6f64aa98efcd4f62bc9bbf4bbb19c285","object":"Batch","mode":"test","state":"creating","num_shipments":2,"reference":null,"created_at":"2022-05-26T15:04:52Z","updated_at":"2022-05-26T15:04:52Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"id":"batch_9c3ee04d17aa40e79613f5cf299153af","object":"Batch","mode":"test","state":"creating","num_shipments":2,"reference":null,"created_at":"2022-06-14T19:29:18Z","updated_at":"2022-06-14T19:29:18Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"1d7ecb5a5447c19d93bb8cf69e67d0a0"
+      - W/"48949dffd985aa8a8b6f11aea743aec6"
       Expires:
       - "0"
       Pragma:
@@ -44,20 +44,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9714e78b9ba7006bb1aa
+      - 51cd47ee62a8e18ee786afb8004642a9
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 0910011e7e
+      - extlb2nuq 0910011e7e
       X-Runtime:
-      - "0.042137"
+      - "0.040834"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202206132308-7d97d52c17-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
