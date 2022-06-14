@@ -17,7 +17,6 @@ func (c *ClientTests) TestBatchCreate() {
 
 	batch, err := client.CreateBatch(
 		c.fixture.BasicShipment(),
-		nil,
 	)
 	require.NoError(err)
 
@@ -32,7 +31,6 @@ func (c *ClientTests) TestBatchRetrieve() {
 
 	batch, err := client.CreateBatch(
 		c.fixture.BasicShipment(),
-		nil,
 	)
 	require.NoError(err)
 
@@ -79,7 +77,6 @@ func (c *ClientTests) TestBatchBuy() {
 
 	batch, err := client.CreateBatch(
 		c.fixture.OneCallBuyShipment(),
-		nil,
 	)
 	require.NoError(err)
 
@@ -96,7 +93,6 @@ func (c *ClientTests) TestBatchCreateScanForm() {
 
 	batch, err := client.CreateBatch(
 		c.fixture.OneCallBuyShipment(),
-		nil,
 	)
 	require.NoError(err)
 
@@ -145,7 +141,6 @@ func (c *ClientTests) TestBatchLabel() {
 
 	batch, err := client.CreateBatch(
 		c.fixture.OneCallBuyShipment(),
-		nil,
 	)
 	require.NoError(err)
 
