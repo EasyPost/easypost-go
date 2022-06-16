@@ -25,7 +25,7 @@ type ListRefundResult struct {
 
 // CreateRefund submits a refund request and return a list of refunds.
 func (c *Client) CreateRefund(in map[string]interface{}) (out []*Refund, err error) {
-	return c.CreateRefundWithContext(nil, in)
+	return c.CreateRefundWithContext(context.Background(), in)
 }
 
 // CreateRefundWithContext performs the same operation as CreateRefund, but
@@ -38,7 +38,7 @@ func (c *Client) CreateRefundWithContext(ctx context.Context, in map[string]inte
 
 // ListRefunds provides a paginated result of Refund objects.
 func (c *Client) ListRefunds(opts *ListOptions) (out *ListRefundResult, err error) {
-	return c.ListRefundsWithContext(nil, opts)
+	return c.ListRefundsWithContext(context.Background(), opts)
 }
 
 // ListRefundsWithContext performs the same operation as ListRefunds, but
@@ -50,7 +50,7 @@ func (c *Client) ListRefundsWithContext(ctx context.Context, opts *ListOptions) 
 
 // retrieves a previously-created Refund by its ID.
 func (c *Client) GetRefund(refundID string) (out *Refund, err error) {
-	return c.GetRefundWithContext(nil, refundID)
+	return c.GetRefundWithContext(context.Background(), refundID)
 }
 
 // GetRefundWithContext performs the same operation as GetRefund, but

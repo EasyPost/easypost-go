@@ -60,7 +60,7 @@ type createOrderRequest struct {
 //		&easypost.CarrierAccount{ID: "ca_102"},
 //	)
 func (c *Client) CreateOrder(in *Order, accounts ...*CarrierAccount) (out *Order, err error) {
-	return c.CreateOrderWithContext(nil, in, accounts ... )
+	return c.CreateOrderWithContext(context.Background(), in, accounts ... )
 }
 
 // CreateOrderWithContext performs the same operation as CreateOrder, but allows
@@ -74,7 +74,7 @@ func (c *Client) CreateOrderWithContext(ctx context.Context, in *Order, accounts
 
 // GetOrder retrieves an existing Order object by ID.
 func (c *Client) GetOrder(orderID string) (out *Order, err error) {
-	return c.GetOrderWithContext(nil, orderID)
+	return c.GetOrderWithContext(context.Background(), orderID)
 }
 
 // GetOrderWithContext performs the same operation as GetOrder, but allows
@@ -86,7 +86,7 @@ func (c *Client) GetOrderWithContext(ctx context.Context, orderID string) (out *
 
 // GetOrderRates refreshes rates for an Order.
 func (c *Client) GetOrderRates(orderID string) (out *Order, err error) {
-	return c.GetOrderRatesWithContext(nil, orderID)
+	return c.GetOrderRatesWithContext(context.Background(), orderID)
 }
 
 // GetOrderRatesWithContext performs the same operation as GetOrderRates, but
@@ -101,7 +101,7 @@ func (c *Client) GetOrderRatesWithContext(ctx context.Context, orderID string) (
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.Buy("order_1", "FedEx", "FEDEX_GROUND")
 func (c *Client) BuyOrder(orderID, carrier, service string) (out *Order, err error) {
-	return c.BuyOrderWithContext(nil, orderID, carrier, service)
+	return c.BuyOrderWithContext(context.Background(), orderID, carrier, service)
 }
 
 // BuyOrderWithContext performs the same operation as GBuyOrder, but allows

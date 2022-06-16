@@ -202,7 +202,7 @@ type getShipmentRatesResponse struct {
 //		},
 //	)
 func (c *Client) CreateShipment(in *Shipment) (out *Shipment, err error) {
-	return c.CreateShipmentWithContext(nil, in)
+	return c.CreateShipmentWithContext(context.Background(), in)
 }
 
 // CreateShipmentWithContext performs the same operation as CreateShipment, but
@@ -229,7 +229,7 @@ func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmen
 
 // GetShipment retrieves a Shipment object by ID.
 func (c *Client) GetShipment(shipmentID string) (out *Shipment, err error) {
-	return c.GetShipmentWithContext(nil, shipmentID)
+	return c.GetShipmentWithContext(context.Background(), shipmentID)
 }
 
 // GetShipmentWithContext performs the same operation as GetShipment, but allows
@@ -244,7 +244,7 @@ func (c *Client) GetShipmentWithContext(ctx context.Context, shipmentID string) 
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.Buy("shp_100", &easypost.Rate{ID: "rate_1001"}, "249.99")
 func (c *Client) BuyShipment(shipmentID string, rate *Rate, insurance string) (out *Shipment, err error) {
-	return c.BuyShipmentWithContext(nil, shipmentID, rate, insurance)
+	return c.BuyShipmentWithContext(context.Background(), shipmentID, rate, insurance)
 }
 
 // BuyShipmentWithContext performs the same operation as BuyShipment, but allows
@@ -259,7 +259,7 @@ func (c *Client) BuyShipmentWithContext(ctx context.Context, shipmentID string, 
 // format. The PostageLabel field in the returned Shipment object will reflect
 // the new format.
 func (c *Client) GetShipmentLabel(shipmentID, format string) (out *Shipment, err error) {
-	return c.GetShipmentLabelWithContext(nil, shipmentID, format)
+	return c.GetShipmentLabelWithContext(context.Background(), shipmentID, format)
 }
 
 // GetShipmentLabelWithContext performs the same operation as GetShipmentLabel,
@@ -290,7 +290,7 @@ func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentI
 // the carrier. On success, the purchased insurance will be reflected in the
 // returned Shipment object's Insurance field.
 func (c *Client) InsureShipment(shipmentID, amount string) (out *Shipment, err error) {
-	return c.InsureShipmentWithContext(nil, shipmentID, amount)
+	return c.InsureShipmentWithContext(context.Background(), shipmentID, amount)
 }
 
 // InsureShipmentWithContext performs the same operation as InsureShipment, but
@@ -303,7 +303,7 @@ func (c *Client) InsureShipmentWithContext(ctx context.Context, shipmentID, amou
 
 // RefundShipment requests a refund from the carrier.
 func (c *Client) RefundShipment(shipmentID string) (out *Shipment, err error) {
-	return c.RefundShipmentWithContext(nil, shipmentID)
+	return c.RefundShipmentWithContext(context.Background(), shipmentID)
 }
 
 // RefundShipmentWithContext performs the same operation as RefundShipment, but
@@ -315,7 +315,7 @@ func (c *Client) RefundShipmentWithContext(ctx context.Context, shipmentID strin
 
 // RerateShipment fetches the available rates for a shipment with the current rates.
 func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
-	return c.RerateShipmentWithContext(nil, shipmentID)
+	return c.RerateShipmentWithContext(context.Background(), shipmentID)
 }
 
 // RerateShipmentWithContext performs the same operation as RerateShipment,

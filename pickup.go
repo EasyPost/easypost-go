@@ -62,7 +62,7 @@ type createPickupRequest struct {
 //		},
 //	)
 func (c *Client) CreatePickup(in *Pickup) (out *Pickup, err error) {
-	return c.CreatePickupWithContext(nil, in)
+	return c.CreatePickupWithContext(context.Background(), in)
 }
 
 // CreatePickupWithContext performs the same operation as CreatePickup, but
@@ -74,7 +74,7 @@ func (c *Client) CreatePickupWithContext(ctx context.Context, in *Pickup) (out *
 
 // GetPickup retrieves an existing Pickup object by ID.
 func (c *Client) GetPickup(pickupID string) (out *Pickup, err error) {
-	return c.GetPickupWithContext(nil, pickupID)
+	return c.GetPickupWithContext(context.Background(), pickupID)
 }
 
 // GetPickupWithContext performs the same operation as GetPickup, but allows
@@ -89,7 +89,7 @@ func (c *Client) GetPickupWithContext(ctx context.Context, pickupID string) (out
 //  rate := &PickupRate{Carrier: "UPS", Service: "Same-Day Pickup"}
 //	out, err := c.BuyPickup("pck_1", rate)
 func (c *Client) BuyPickup(pickupID string, rate *PickupRate) (out *Pickup, err error) {
-	return c.BuyPickupWithContext(nil, pickupID, rate)
+	return c.BuyPickupWithContext(context.Background(), pickupID, rate)
 }
 
 // BuyPickupWithContext performs the same operation as BuyPickup, but allows
@@ -104,7 +104,7 @@ func (c *Client) BuyPickupWithContext(ctx context.Context, pickupID string, rate
 
 // CancelPickup cancels a scheduled pickup.
 func (c *Client) CancelPickup(pickupID string) (out *Pickup, err error) {
-	return c.CancelPickupWithContext(nil, pickupID)
+	return c.CancelPickupWithContext(context.Background(), pickupID)
 }
 
 // CancelPickupWithContext performs the same operation as CancelPickup, but

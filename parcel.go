@@ -34,7 +34,7 @@ type createParcelRequest struct {
 //		},
 //	)
 func (c *Client) CreateParcel(in *Parcel) (out *Parcel, err error) {
-	return c.CreateParcelWithContext(nil, in)
+	return c.CreateParcelWithContext(context.Background(), in)
 }
 
 // CreateParcelWithContext performs the same operation as CreateParcel, but
@@ -46,7 +46,7 @@ func (c *Client) CreateParcelWithContext(ctx context.Context, in *Parcel) (out *
 
 // GetParcel retrieves an existing Parcel object by ID.
 func (c *Client) GetParcel(parcelID string) (out *Parcel, err error) {
-	return c.GetParcelWithContext(nil, parcelID)
+	return c.GetParcelWithContext(context.Background(), parcelID)
 }
 
 // GetParcelWithContext performs the same operation as GetParcel, but allows

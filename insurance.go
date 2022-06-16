@@ -59,7 +59,7 @@ type ListInsurancesResult struct {
 //			Amount:       100,
 //	)
 func (c *Client) CreateInsurance(in *Insurance) (out *Insurance, err error) {
-	return c.CreateInsuranceWithContext(nil, in)
+	return c.CreateInsuranceWithContext(context.Background(), in)
 }
 
 // CreateInsuranceWithContext performs the same operation as CreateInsurance,
@@ -84,7 +84,7 @@ func (c *Client) ListInsurancesWithContext(ctx context.Context, opts *ListOption
 
 // GetInsurance returns the Insurance object with the given ID or reference.
 func (c *Client) GetInsurance(insuranceID string) (out *Insurance, err error) {
-	return c.GetInsuranceWithContext(nil, insuranceID)
+	return c.GetInsuranceWithContext(context.Background(), insuranceID)
 }
 
 // GetInsuranceWithContext performs the same operation as GetInsurance, but

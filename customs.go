@@ -70,7 +70,7 @@ type createCustomsItemRequest struct {
 //		},
 //	)
 func (c *Client) CreateCustomsInfo(in *CustomsInfo) (out *CustomsInfo, err error) {
-	return c.CreateCustomsInfoWithContext(nil, in)
+	return c.CreateCustomsInfoWithContext(context.Background(), in)
 }
 
 // CreateCustomsInfoWithContext performs the same operation as
@@ -84,7 +84,7 @@ func (c *Client) CreateCustomsInfoWithContext(ctx context.Context, in *CustomsIn
 
 // GetCustomsInfo returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsInfo(customsInfoID string) (out *CustomsInfo, err error) {
-	return c.GetCustomsInfoWithContext(nil, customsInfoID)
+	return c.GetCustomsInfoWithContext(context.Background(), customsInfoID)
 }
 
 // GetCustomsInfoWithContext performs the same operation as GetCustomsInfo, but
@@ -107,7 +107,7 @@ func (c *Client) GetCustomsInfoWithContext(ctx context.Context, customsInfoID st
 //		},
 //	)
 func (c *Client) CreateCustomsItem(in *CustomsItem) (out *CustomsItem, err error) {
-	return c.CreateCustomsItemWithContext(nil, in)
+	return c.CreateCustomsItemWithContext(context.Background(), in)
 }
 
 // CreateCustomsItemWithContext performs the same operation as
@@ -121,7 +121,7 @@ func (c *Client) CreateCustomsItemWithContext(ctx context.Context, in *CustomsIt
 
 // GetCustomsItem returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsItem(customsItemID string) (out *CustomsItem, err error) {
-	return c.GetCustomsItemWithContext(nil, customsItemID)
+	return c.GetCustomsItemWithContext(context.Background(), customsItemID)
 }
 
 // GetCustomsItemWithContext performs the same operation as GetCustomsItem, but

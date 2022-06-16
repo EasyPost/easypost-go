@@ -52,7 +52,7 @@ func newScanFormRequest(shipmentIDs ...string) *scanFormRequest {
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateScanForm("shp_1", "shp_2")
 func (c *Client) CreateScanForm(shipmentIDs ...string) (out *ScanForm, err error) {
-	return c.CreateScanFormWithContext(nil, shipmentIDs ...)
+	return c.CreateScanFormWithContext(context.Background(), shipmentIDs ...)
 }
 
 // CreateScanFormWithContext performs the same operation as CreateScanForm, but
@@ -76,7 +76,7 @@ func (c *Client) ListScanFormsWithContext(ctx context.Context, opts *ListOptions
 
 // GetScanForm retrieves a ScanForm object by ID.
 func (c *Client) GetScanForm(scanFormID string) (out *ScanForm, err error) {
-	return c.GetScanFormWithContext(nil, scanFormID)
+	return c.GetScanFormWithContext(context.Background(), scanFormID)
 }
 
 // GetScanFormWithContext performs the same operation as GetScanForm, but

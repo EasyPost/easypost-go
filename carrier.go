@@ -54,7 +54,7 @@ type carrierAccountRequest struct {
 // GetCarrierTypes returns a list of supported carrier types for the current
 // user.
 func (c *Client) GetCarrierTypes() (out []*CarrierType, err error) {
-	return c.GetCarrierTypesWithContext(nil)
+	return c.GetCarrierTypesWithContext(context.Background())
 }
 
 // GetCarrierTypesWithContext performs the same operation as GetCarrierTypes,
@@ -80,7 +80,7 @@ func (c *Client) GetCarrierTypesWithContext(ctx context.Context) (out []*Carrier
 //		},
 //	)
 func (c *Client) CreateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
-	return c.CreateCarrierAccountWithContext(nil, in)
+	return c.CreateCarrierAccountWithContext(context.Background(), in)
 }
 
 // CreateCarrierAccountWithContext performs the same operation as
@@ -95,7 +95,7 @@ func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *Carrie
 // ListCarrierAccounts returns a list of all carrier accounts available to the
 // authenticated account.
 func (c *Client) ListCarrierAccounts() (out []*CarrierAccount, err error) {
-	return c.ListCarrierAccountsWithContext(nil)
+	return c.ListCarrierAccountsWithContext(context.Background())
 }
 
 // ListCarrierAccountsWithContext performs the same operation as
@@ -108,7 +108,7 @@ func (c *Client) ListCarrierAccountsWithContext(ctx context.Context) (out []*Car
 
 // GetCarrierAccount retrieves a carrier account by its ID or reference.
 func (c *Client) GetCarrierAccount(carrierAccountID string) (out *CarrierAccount, err error) {
-	return c.GetCarrierAccountWithContext(nil, carrierAccountID)
+	return c.GetCarrierAccountWithContext(context.Background(), carrierAccountID)
 }
 
 // GetCarrierAccountWithContext performs the same operation as
@@ -132,7 +132,7 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 //		},
 //	)
 func (c *Client) UpdateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
-	return c.UpdateCarrierAccountWithContext(nil, in)
+	return c.UpdateCarrierAccountWithContext(context.Background(), in)
 }
 
 // UpdateCarrierAccountWithContext performs the same operation as
@@ -146,7 +146,7 @@ func (c *Client) UpdateCarrierAccountWithContext(ctx context.Context, in *Carrie
 
 // DeleteCarrierAccount removes the carrier account with the given ID.
 func (c *Client) DeleteCarrierAccount(carrierAccountID string) error {
-	return c.DeleteCarrierAccountWithContext(nil, carrierAccountID)
+	return c.DeleteCarrierAccountWithContext(context.Background(), carrierAccountID)
 }
 
 // DeleteCarrierAccountWithContext performs the same operation as

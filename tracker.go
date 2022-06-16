@@ -148,7 +148,7 @@ func (c *CreateTrackerOptions) toMap() map[string]interface{} {
 // Providing a carrier is optional, but helps to avoid ambiguity in detecting
 // the carrier based on the tracking code format.
 func (c *Client) CreateTracker(opts *CreateTrackerOptions) (out *Tracker, err error) {
-	return c.CreateTrackerWithContext(nil, opts)
+	return c.CreateTrackerWithContext(context.Background(), opts)
 }
 
 // CreateTrackerWithContext performs the same operation as CreateTracker, but
@@ -171,7 +171,7 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	// The keys inside of the 'trackers' map (0, 1 in the example) get discarded
 	// by the API endpoint, so are not important.
 	// This endpoint does not return a response so we return true here
-	return c.CreateTrackerListWithContext(nil, param)
+	return c.CreateTrackerListWithContext(context.Background(), param)
 }
 
 // CreateTrackerListWithContext performs the same operation as
@@ -197,7 +197,7 @@ func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackers
 
 // GetTracker retrieves a Tracker object by ID.
 func (c *Client) GetTracker(trackerID string) (out *Tracker, err error) {
-	return c.GetTrackerWithContext(nil, trackerID)
+	return c.GetTrackerWithContext(context.Background(), trackerID)
 }
 
 // GetTrackerWithContext performs the same operation as GetTracker, but allows

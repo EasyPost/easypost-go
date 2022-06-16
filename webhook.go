@@ -24,7 +24,7 @@ type listWebhooksResult struct {
 
 // CreateWebhook creates a new webhook with the given URL.
 func (c *Client) CreateWebhook(u string) (out *Webhook, err error) {
-	return c.CreateWebhookWithContext(nil, u)
+	return c.CreateWebhookWithContext(context.Background(), u)
 }
 
 // CreateWebhookWithContext performs the same operation as CreateWebhook, but
@@ -37,7 +37,7 @@ func (c *Client) CreateWebhookWithContext(ctx context.Context, u string) (out *W
 
 // ListWebhooks returns all webhooks associated with the EasyPost account.
 func (c *Client) ListWebhooks() (out []*Webhook, err error) {
-	return c.ListWebhooksWithContext(nil)
+	return c.ListWebhooksWithContext(context.Background())
 }
 
 // ListWebhooksWithContext performs the same operation as
@@ -50,7 +50,7 @@ func (c *Client) ListWebhooksWithContext(ctx context.Context) (out []*Webhook, e
 
 // GetWebhook retrieves a Webhook object with the given ID.
 func (c *Client) GetWebhook(webhookID string) (out *Webhook, err error) {
-	return c.GetWebhookWithContext(nil, webhookID)
+	return c.GetWebhookWithContext(context.Background(), webhookID)
 }
 
 // GetWebhookWithContext performs the same operation as GetWebhook, but allows
@@ -62,7 +62,7 @@ func (c *Client) GetWebhookWithContext(ctx context.Context, webhookID string) (o
 
 // EnableWebhook re-enables a disabled webhook.
 func (c *Client) EnableWebhook(webhookID string) (out *Webhook, err error) {
-	return c.EnableWebhookWithContext(nil, webhookID)
+	return c.EnableWebhookWithContext(context.Background(), webhookID)
 }
 
 // EnableWebhookWithContext performs the same operation as EnableWebhook, but
@@ -74,7 +74,7 @@ func (c *Client) EnableWebhookWithContext(ctx context.Context, webhookID string)
 
 // DeleteWebhook removes a webhook.
 func (c *Client) DeleteWebhook(webhookID string) error {
-	return c.DeleteWebhookWithContext(nil, webhookID)
+	return c.DeleteWebhookWithContext(context.Background(), webhookID)
 }
 
 // DeleteWebhookWithContext performs the same operation as DeleteWebhook, but

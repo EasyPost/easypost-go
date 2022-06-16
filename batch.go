@@ -56,7 +56,7 @@ type ListBatchesResult struct {
 //		&easypost.Shipment{ID: "shp_102"},
 //	)
 func (c *Client) CreateBatch(in ...*Shipment) (out *Batch, err error) {
-	return c.CreateBatchWithContext(nil, in ...)
+	return c.CreateBatchWithContext(context.Background(), in ...)
 }
 
 // CreateBatchWithContext performs the same operation as CreateBatch, but allows
@@ -69,7 +69,7 @@ func (c *Client) CreateBatchWithContext(ctx context.Context, in ...*Shipment) (o
 
 // CreateAndBuyBatch creates and buys a new batch of shipments in one request.
 func (c *Client) CreateAndBuyBatch(in ...*Shipment) (out *Batch, err error) {
-	return c.CreateAndBuyBatchWithContext(nil, in ...)
+	return c.CreateAndBuyBatchWithContext(context.Background(), in ...)
 }
 
 // CreateAndBuyBatchWithContext performs the same operation as
@@ -96,7 +96,7 @@ func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) 
 // AddShipmentsToBatch adds shipments to an existing batch, and returns the
 // updated batch object.
 func (c *Client) AddShipmentsToBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
-	return c.AddShipmentsToBatchWithContext(nil, batchID, shipments ...)
+	return c.AddShipmentsToBatchWithContext(context.Background(), batchID, shipments ...)
 }
 
 // AddShipmentsToBatchWithContext performs the same operation as
@@ -118,7 +118,7 @@ func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID str
 // RemoveShipmentsFromBatch removes shipments from an existing batch, and
 // returns the updated batch object.
 func (c *Client) RemoveShipmentsFromBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
-	return c.RemoveShipmentsFromBatchWithContext(nil, batchID, shipments ...)
+	return c.RemoveShipmentsFromBatchWithContext(context.Background(), batchID, shipments ...)
 }
 
 // RemoveShipmentsFromBatchWithContext performs the same operation as
@@ -140,7 +140,7 @@ func (c *Client) RemoveShipmentsFromBatchWithContext(ctx context.Context, batchI
 // BuyBatch initializes purchases for the shipments in the batch. The updated
 // batch object is returned.
 func (c *Client) BuyBatch(batchID string) (out *Batch, err error) {
-	return c.BuyBatchWithContext(nil, batchID)
+	return c.BuyBatchWithContext(context.Background(), batchID)
 }
 
 // BuyBatchWithContext performs the same operation as BuyBatch, but allows
@@ -152,7 +152,7 @@ func (c *Client) BuyBatchWithContext(ctx context.Context, batchID string) (out *
 
 // GetBatch retrieves a Batch object by ID.
 func (c *Client) GetBatch(batchID string) (out *Batch, err error) {
-	return c.GetBatchWithContext(nil, batchID)
+	return c.GetBatchWithContext(context.Background(), batchID)
 }
 
 // GetBatchWithContext performs the same operation as GetBatch, but allows
@@ -165,7 +165,7 @@ func (c *Client) GetBatchWithContext(ctx context.Context, batchID string) (out *
 // GetBatchLabels generates a label for the batch. This can only be done once
 // per batch, and all shipments must have a "postage_purchased" status.
 func (c *Client) GetBatchLabels(batchID, format string) (out *Batch, err error) {
-	return c.GetBatchLabelsWithContext(nil, batchID, format)
+	return c.GetBatchLabelsWithContext(context.Background(), batchID, format)
 }
 
 // GetBatchLabelsWithContext performs the same operation as GetBatchLabels, but
@@ -178,7 +178,7 @@ func (c *Client) GetBatchLabelsWithContext(ctx context.Context, batchID, format 
 
 // CreateBatchScanForms generates a scan form for the batch.
 func (c *Client) CreateBatchScanForms(batchID, format string) (out *Batch, err error) {
-	return c.CreateBatchScanFormsWithContext(nil, batchID, format)
+	return c.CreateBatchScanFormsWithContext(context.Background(), batchID, format)
 }
 
 // CreateBatchScanFormsWithContext performs the same operation as
