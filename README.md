@@ -109,7 +109,7 @@ func main() {
 
 ## Documentation
 
-See the above example, or view the [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go) for more details.
+API Documentation can be found at: <https://easypost.com/docs/api>. Alternatively, you can view the [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go).
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
