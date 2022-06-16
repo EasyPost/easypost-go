@@ -56,9 +56,7 @@ type ListBatchesResult struct {
 //		&easypost.Shipment{ID: "shp_102"},
 //	)
 func (c *Client) CreateBatch(in ...*Shipment) (out *Batch, err error) {
-	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(context.Background(), "batches", req, &out)
-	return
+	return c.CreateBatchWithContext(nil, in ...)
 }
 
 // CreateBatchWithContext performs the same operation as CreateBatch, but allows
@@ -71,9 +69,7 @@ func (c *Client) CreateBatchWithContext(ctx context.Context, in ...*Shipment) (o
 
 // CreateAndBuyBatch creates and buys a new batch of shipments in one request.
 func (c *Client) CreateAndBuyBatch(in ...*Shipment) (out *Batch, err error) {
-	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(context.Background(), "batches/create_and_buy", req, &out)
-	return
+	return c.CreateAndBuyBatchWithContext(nil, in ...)
 }
 
 // CreateAndBuyBatchWithContext performs the same operation as
@@ -100,16 +96,7 @@ func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) 
 // AddShipmentsToBatch adds shipments to an existing batch, and returns the
 // updated batch object.
 func (c *Client) AddShipmentsToBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
-	params := make(map[int]interface{})
-
-	for i, shipment := range shipments {
-		params[i] = shipment
-	}
-
-	req := map[string]interface{}{"shipments": params}
-
-	err = c.post(context.Background(), "batches/"+batchID+"/add_shipments", req, &out)
-	return
+	return c.AddShipmentsToBatchWithContext(nil, batchID, shipments ...)
 }
 
 // AddShipmentsToBatchWithContext performs the same operation as
@@ -131,16 +118,7 @@ func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID str
 // RemoveShipmentsFromBatch removes shipments from an existing batch, and
 // returns the updated batch object.
 func (c *Client) RemoveShipmentsFromBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
-	params := make(map[int]interface{})
-
-	for i, shipment := range shipments {
-		params[i] = shipment
-	}
-
-	req := map[string]interface{}{"shipments": params}
-
-	err = c.post(context.Background(), "batches/"+batchID+"/remove_shipments", req, &out)
-	return
+	return c.RemoveShipmentsFromBatchWithContext(nil, batchID, shipments ...)
 }
 
 // RemoveShipmentsFromBatchWithContext performs the same operation as
@@ -162,8 +140,7 @@ func (c *Client) RemoveShipmentsFromBatchWithContext(ctx context.Context, batchI
 // BuyBatch initializes purchases for the shipments in the batch. The updated
 // batch object is returned.
 func (c *Client) BuyBatch(batchID string) (out *Batch, err error) {
-	err = c.post(context.Background(), "batches/"+batchID+"/buy", nil, &out)
-	return
+	return c.BuyBatchWithContext(nil, batchID)
 }
 
 // BuyBatchWithContext performs the same operation as BuyBatch, but allows
@@ -175,8 +152,7 @@ func (c *Client) BuyBatchWithContext(ctx context.Context, batchID string) (out *
 
 // GetBatch retrieves a Batch object by ID.
 func (c *Client) GetBatch(batchID string) (out *Batch, err error) {
-	err = c.get(context.Background(), "batches/"+batchID, &out)
-	return
+	return c.GetBatchWithContext(nil, batchID)
 }
 
 // GetBatchWithContext performs the same operation as GetBatch, but allows
@@ -189,9 +165,7 @@ func (c *Client) GetBatchWithContext(ctx context.Context, batchID string) (out *
 // GetBatchLabels generates a label for the batch. This can only be done once
 // per batch, and all shipments must have a "postage_purchased" status.
 func (c *Client) GetBatchLabels(batchID, format string) (out *Batch, err error) {
-	params := url.Values{"file_format": []string{format}}
-	err = c.post(context.Background(), "batches/"+batchID+"/label", params, &out)
-	return
+	return c.GetBatchLabelsWithContext(nil, batchID, format)
 }
 
 // GetBatchLabelsWithContext performs the same operation as GetBatchLabels, but
@@ -204,9 +178,7 @@ func (c *Client) GetBatchLabelsWithContext(ctx context.Context, batchID, format 
 
 // CreateBatchScanForms generates a scan form for the batch.
 func (c *Client) CreateBatchScanForms(batchID, format string) (out *Batch, err error) {
-	vals := url.Values{"file_format": []string{format}}
-	err = c.do(context.Background(), http.MethodPost, "batches/"+batchID+"/scan_form", vals, &out)
-	return
+	return c.CreateBatchScanFormsWithContext(nil, batchID, format)
 }
 
 // CreateBatchScanFormsWithContext performs the same operation as

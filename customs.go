@@ -70,9 +70,7 @@ type createCustomsItemRequest struct {
 //		},
 //	)
 func (c *Client) CreateCustomsInfo(in *CustomsInfo) (out *CustomsInfo, err error) {
-	req := &createCustomsInfoRequest{CustomsInfo: in}
-	err = c.post(context.Background(), "customs_infos", req, &out)
-	return
+	return c.CreateCustomsInfoWithContext(nil, in)
 }
 
 // CreateCustomsInfoWithContext performs the same operation as
@@ -86,8 +84,7 @@ func (c *Client) CreateCustomsInfoWithContext(ctx context.Context, in *CustomsIn
 
 // GetCustomsInfo returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsInfo(customsInfoID string) (out *CustomsInfo, err error) {
-	err = c.get(context.Background(), "customs_infos/"+customsInfoID, &out)
-	return
+	return c.GetCustomsInfoWithContext(nil, customsInfoID)
 }
 
 // GetCustomsInfoWithContext performs the same operation as GetCustomsInfo, but
@@ -110,9 +107,7 @@ func (c *Client) GetCustomsInfoWithContext(ctx context.Context, customsInfoID st
 //		},
 //	)
 func (c *Client) CreateCustomsItem(in *CustomsItem) (out *CustomsItem, err error) {
-	req := &createCustomsItemRequest{CustomsItem: in}
-	err = c.post(context.Background(), "customs_items", req, &out)
-	return
+	return c.CreateCustomsItemWithContext(nil, in)
 }
 
 // CreateCustomsItemWithContext performs the same operation as
@@ -126,8 +121,7 @@ func (c *Client) CreateCustomsItemWithContext(ctx context.Context, in *CustomsIt
 
 // GetCustomsItem returns the CustomsInfo object with the given ID or reference.
 func (c *Client) GetCustomsItem(customsItemID string) (out *CustomsItem, err error) {
-	err = c.get(context.Background(), "customs_items/"+customsItemID, &out)
-	return
+	return c.GetCustomsItemWithContext(nil, customsItemID)
 }
 
 // GetCustomsItemWithContext performs the same operation as GetCustomsItem, but
