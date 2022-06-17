@@ -44,8 +44,7 @@ type userRequest struct {
 //  opts := &easypost.UserOptions{Name: easypost.StringPtr("Child User")}
 //	out, err := c.CreateUser(opts)
 func (c *Client) CreateUser(in *UserOptions) (out *User, err error) {
-	err = c.post(context.Background(), "users", &userRequest{UserOptions: in}, &out)
-	return
+	return c.CreateUserWithContext(context.Background(), in)
 }
 
 // CreateUserWithContext performs the same operation as CreateUser, but allows
@@ -57,8 +56,7 @@ func (c *Client) CreateUserWithContext(ctx context.Context, in *UserOptions) (ou
 
 // GetUser retrieves a User object by ID.
 func (c *Client) GetUser(userID string) (out *User, err error) {
-	err = c.get(context.Background(), "users/"+userID, &out)
-	return
+	return c.GetUserWithContext(context.Background(), userID)
 }
 
 // GetUserWithContext performs the same operation as GetUser, but allows
@@ -72,13 +70,7 @@ func (c *Client) GetUserWithContext(ctx context.Context, userID string) (out *Us
 // parameter. If the ID field of UpdateUserOptions is empty, the operation is
 // done on the current user. All other fields are updated if they are non-nil.
 func (c *Client) UpdateUser(in *UserOptions) (out *User, err error) {
-	req := userRequest{UserOptions: in}
-	path := "users"
-	if in.ID != "" {
-		path += "/" + in.ID
-	}
-	err = c.patch(context.Background(), path, req, &out)
-	return
+	return c.UpdateUserWithContext(context.Background(), in)
 }
 
 // UpdateUserWithContext performs the same operation as UpdateUser, but allows
@@ -95,7 +87,7 @@ func (c *Client) UpdateUserWithContext(ctx context.Context, in *UserOptions) (ou
 
 // DeleteUser removes a child user.
 func (c *Client) DeleteUser(userID string) error {
-	return c.del(context.Background(), "users/"+userID)
+	return c.DeleteUserWithContext(context.Background(), userID)
 }
 
 // DeleteUserWithContext performs the same operation as DeleteUser, but allows
@@ -106,8 +98,7 @@ func (c *Client) DeleteUserWithContext(ctx context.Context, userID string) error
 
 // RetrieveMe retrieves the current user.
 func (c *Client) RetrieveMe() (out *User, err error) {
-	err = c.get(context.Background(), "users", &out)
-	return
+	return c.RetrieveMeWithContext(context.Background())
 }
 
 // RetrieveMeWithContext performs the same operation as RetrieveMe, but allows
@@ -119,10 +110,7 @@ func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err erro
 
 // UpdateBrand updates the user brand.
 func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
-	newParams := map[string]interface{}{"brand": params}
-	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	err = c.patch(context.Background(), updateBrandURL, newParams, &out)
-	return
+	return c.UpdateBrandWithContext(context.Background(), params, userID)
 }
 
 // UpdateBrandWithContext performs the same operation as UpdateBrand, but allows

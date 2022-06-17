@@ -54,8 +54,7 @@ type carrierAccountRequest struct {
 // GetCarrierTypes returns a list of supported carrier types for the current
 // user.
 func (c *Client) GetCarrierTypes() (out []*CarrierType, err error) {
-	err = c.get(context.Background(), "carrier_types", &out)
-	return
+	return c.GetCarrierTypesWithContext(context.Background())
 }
 
 // GetCarrierTypesWithContext performs the same operation as GetCarrierTypes,
@@ -81,9 +80,7 @@ func (c *Client) GetCarrierTypesWithContext(ctx context.Context) (out []*Carrier
 //		},
 //	)
 func (c *Client) CreateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
-	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.post(context.Background(), "carrier_accounts", req, &out)
-	return
+	return c.CreateCarrierAccountWithContext(context.Background(), in)
 }
 
 // CreateCarrierAccountWithContext performs the same operation as
@@ -98,8 +95,7 @@ func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *Carrie
 // ListCarrierAccounts returns a list of all carrier accounts available to the
 // authenticated account.
 func (c *Client) ListCarrierAccounts() (out []*CarrierAccount, err error) {
-	err = c.get(context.Background(), "carrier_accounts", &out)
-	return
+	return c.ListCarrierAccountsWithContext(context.Background())
 }
 
 // ListCarrierAccountsWithContext performs the same operation as
@@ -112,8 +108,7 @@ func (c *Client) ListCarrierAccountsWithContext(ctx context.Context) (out []*Car
 
 // GetCarrierAccount retrieves a carrier account by its ID or reference.
 func (c *Client) GetCarrierAccount(carrierAccountID string) (out *CarrierAccount, err error) {
-	err = c.get(context.Background(), "carrier_accounts/"+carrierAccountID, &out)
-	return
+	return c.GetCarrierAccountWithContext(context.Background(), carrierAccountID)
 }
 
 // GetCarrierAccountWithContext performs the same operation as
@@ -137,9 +132,7 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 //		},
 //	)
 func (c *Client) UpdateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
-	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.patch(context.Background(), "carrier_accounts/"+in.ID, req, &out)
-	return
+	return c.UpdateCarrierAccountWithContext(context.Background(), in)
 }
 
 // UpdateCarrierAccountWithContext performs the same operation as
@@ -153,7 +146,7 @@ func (c *Client) UpdateCarrierAccountWithContext(ctx context.Context, in *Carrie
 
 // DeleteCarrierAccount removes the carrier account with the given ID.
 func (c *Client) DeleteCarrierAccount(carrierAccountID string) error {
-	return c.del(context.Background(), "carrier_accounts/"+carrierAccountID)
+	return c.DeleteCarrierAccountWithContext(context.Background(), carrierAccountID)
 }
 
 // DeleteCarrierAccountWithContext performs the same operation as

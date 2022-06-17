@@ -67,8 +67,7 @@ type TimeInTransit struct {
 
 // GetRate retrieves a previously-created rate by its ID.
 func (c *Client) GetRate(rateID string) (out *Rate, err error) {
-	err = c.get(context.Background(), "rates/"+rateID, &out)
-	return
+	return c.GetRateWithContext(context.Background(), rateID)
 }
 
 // GetRateWithContext performs the same operation as GetRate, but allows

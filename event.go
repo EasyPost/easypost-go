@@ -119,8 +119,7 @@ func (c *Client) ListEventsWithContext(ctx context.Context, opts *ListOptions) (
 
 // GetEvent retrieves a previously-created event by its ID.
 func (c *Client) GetEvent(eventID string) (out *Event, err error) {
-	err = c.get(context.Background(), "events/"+eventID, &out)
-	return
+	return c.GetEventWithContext(context.Background(), eventID)
 }
 
 // GetEventWithContext performs the same operation as GetEvent, but allows

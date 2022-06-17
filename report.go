@@ -54,8 +54,7 @@ type ListReportsResult struct {
 //		&easypost.Report{StartDate: "2016-10-01", EndDate: "2016-10-31"},
 //	)
 func (c *Client) CreateReport(typ string, in *Report) (out *Report, err error) {
-	err = c.post(context.Background(), "reports/"+typ, in, &out)
-	return
+	return c.CreateReportWithContext(context.Background(), typ, in)
 }
 
 // CreateReportWithContext performs the same operation as CreateReport, but
@@ -79,8 +78,7 @@ func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *L
 
 // GetReport fetches a Report object by report type and ID.
 func (c *Client) GetReport(typ, reportID string) (out *Report, err error) {
-	err = c.get(context.Background(), "reports/"+typ+"/"+reportID, &out)
-	return
+	return c.GetReportWithContext(context.Background(), typ, reportID)
 }
 
 // GetReportWithContext performs the same operation as GetReport, but allows

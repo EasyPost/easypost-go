@@ -111,9 +111,7 @@ type verifyAddressResponse struct {
 //		&CreateAddressOptions{Verify: []string{"delivery"}},
 //	)
 func (c *Client) CreateAddress(in *Address, opts *CreateAddressOptions) (out *Address, err error) {
-	req := &createAddressRequest{CreateAddressOptions: opts, Address: in}
-	err = c.post(context.Background(), "addresses", req, &out)
-	return
+	return	c.CreateAddressWithContext(context.Background(), in, opts)
 }
 
 // CreateAddressWithContext performs the same operation as CreateAddress, but
@@ -138,10 +136,7 @@ func (c *Client) ListAddressesWithContext(ctx context.Context, opts *ListOptions
 
 // VerifyAddress performs address verification.
 func (c *Client) VerifyAddress(addressID string) (out *Address, err error) {
-	path := "addresses/" + addressID + "/verify"
-	res := &verifyAddressResponse{Address: &out}
-	err = c.get(context.Background(), path, res)
-	return
+	return c.VerifyAddressWithContext(context.Background(), addressID)
 }
 
 // VerifyAddressWithContext performs the same operation as VerifyAddress, but
@@ -155,8 +150,7 @@ func (c *Client) VerifyAddressWithContext(ctx context.Context, addressID string)
 
 // GetAddress retrieves a previously-created address by its ID.
 func (c *Client) GetAddress(addressID string) (out *Address, err error) {
-	err = c.get(context.Background(), "addresses/"+addressID, &out)
-	return
+	return c.GetAddressWithContext(context.Background(), addressID)
 }
 
 // GetAddressWithContext performs the same operation as GetAddress, but allows
@@ -168,11 +162,7 @@ func (c *Client) GetAddressWithContext(ctx context.Context, addressID string) (o
 
 // CreateAndVerifyAddress Create Address object and immediately verify it.
 func (c *Client) CreateAndVerifyAddress(in *Address, opts *CreateAddressOptions) (out *Address, err error) {
-	req := &createAddressRequest{CreateAddressOptions: opts, Address: in}
-	response := AddressVerifyResponse{}
-	err = c.post(context.Background(), "addresses/create_and_verify", req, &response)
-	out = response.Address
-	return
+	return c.CreateAndVerifyAddressWithContext(context.Background(), in, opts)
 }
 
 // CreateAndVerifyAddressWithContext performs the same operation as CreateAndVerifyAddress, but allows

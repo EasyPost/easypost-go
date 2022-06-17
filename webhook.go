@@ -24,9 +24,7 @@ type listWebhooksResult struct {
 
 // CreateWebhook creates a new webhook with the given URL.
 func (c *Client) CreateWebhook(u string) (out *Webhook, err error) {
-	req := &createWebhookRequest{Webhook: &Webhook{URL: u}}
-	err = c.post(context.Background(), "webhooks", req, &out)
-	return
+	return c.CreateWebhookWithContext(context.Background(), u)
 }
 
 // CreateWebhookWithContext performs the same operation as CreateWebhook, but
@@ -39,8 +37,7 @@ func (c *Client) CreateWebhookWithContext(ctx context.Context, u string) (out *W
 
 // ListWebhooks returns all webhooks associated with the EasyPost account.
 func (c *Client) ListWebhooks() (out []*Webhook, err error) {
-	err = c.get(context.Background(), "webhooks", &listWebhooksResult{Webhooks: &out})
-	return
+	return c.ListWebhooksWithContext(context.Background())
 }
 
 // ListWebhooksWithContext performs the same operation as
@@ -53,8 +50,7 @@ func (c *Client) ListWebhooksWithContext(ctx context.Context) (out []*Webhook, e
 
 // GetWebhook retrieves a Webhook object with the given ID.
 func (c *Client) GetWebhook(webhookID string) (out *Webhook, err error) {
-	err = c.get(context.Background(), "webhooks/"+webhookID, &out)
-	return
+	return c.GetWebhookWithContext(context.Background(), webhookID)
 }
 
 // GetWebhookWithContext performs the same operation as GetWebhook, but allows
@@ -66,8 +62,7 @@ func (c *Client) GetWebhookWithContext(ctx context.Context, webhookID string) (o
 
 // EnableWebhook re-enables a disabled webhook.
 func (c *Client) EnableWebhook(webhookID string) (out *Webhook, err error) {
-	err = c.patch(context.Background(), "webhooks/"+webhookID, nil, &out)
-	return
+	return c.EnableWebhookWithContext(context.Background(), webhookID)
 }
 
 // EnableWebhookWithContext performs the same operation as EnableWebhook, but
@@ -79,7 +74,7 @@ func (c *Client) EnableWebhookWithContext(ctx context.Context, webhookID string)
 
 // DeleteWebhook removes a webhook.
 func (c *Client) DeleteWebhook(webhookID string) error {
-	return c.del(context.Background(), "webhooks/"+webhookID)
+	return c.DeleteWebhookWithContext(context.Background(), webhookID)
 }
 
 // DeleteWebhookWithContext performs the same operation as DeleteWebhook, but

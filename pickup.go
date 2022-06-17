@@ -62,8 +62,7 @@ type createPickupRequest struct {
 //		},
 //	)
 func (c *Client) CreatePickup(in *Pickup) (out *Pickup, err error) {
-	err = c.post(context.Background(), "pickups", &createPickupRequest{Pickup: in}, &out)
-	return
+	return c.CreatePickupWithContext(context.Background(), in)
 }
 
 // CreatePickupWithContext performs the same operation as CreatePickup, but
@@ -75,8 +74,7 @@ func (c *Client) CreatePickupWithContext(ctx context.Context, in *Pickup) (out *
 
 // GetPickup retrieves an existing Pickup object by ID.
 func (c *Client) GetPickup(pickupID string) (out *Pickup, err error) {
-	err = c.get(context.Background(), "pickups/"+pickupID, &out)
-	return
+	return c.GetPickupWithContext(context.Background(), pickupID)
 }
 
 // GetPickupWithContext performs the same operation as GetPickup, but allows
@@ -91,11 +89,7 @@ func (c *Client) GetPickupWithContext(ctx context.Context, pickupID string) (out
 //  rate := &PickupRate{Carrier: "UPS", Service: "Same-Day Pickup"}
 //	out, err := c.BuyPickup("pck_1", rate)
 func (c *Client) BuyPickup(pickupID string, rate *PickupRate) (out *Pickup, err error) {
-	vals := url.Values{
-		"carrier": []string{rate.Carrier}, "service": []string{rate.Service},
-	}
-	err = c.post(context.Background(), "pickups/"+pickupID+"/buy", vals, &out)
-	return
+	return c.BuyPickupWithContext(context.Background(), pickupID, rate)
 }
 
 // BuyPickupWithContext performs the same operation as BuyPickup, but allows
@@ -110,8 +104,7 @@ func (c *Client) BuyPickupWithContext(ctx context.Context, pickupID string, rate
 
 // CancelPickup cancels a scheduled pickup.
 func (c *Client) CancelPickup(pickupID string) (out *Pickup, err error) {
-	err = c.post(context.Background(), "pickups/"+pickupID+"/cancel", nil, &out)
-	return
+	return c.CancelPickupWithContext(context.Background(), pickupID)
 }
 
 // CancelPickupWithContext performs the same operation as CancelPickup, but
