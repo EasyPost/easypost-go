@@ -19,8 +19,13 @@ clean:
 coverage: 
 	go clean -testcache && go test ./tests -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
-## install - Install globally from source
+## gosec - Run gosec to scan for security issues
+gosec:
+	gosec ./...
+
+## install - Install and vendor dependencies
 install:
+	go mod vendor
 	go build -o $(PROJECT_PATH)
 
 ## lint - Lint the project
@@ -31,4 +36,8 @@ lint:
 test:
 	go clean -testcache && go test ./tests
 
-.PHONY: help build clean coverage install lint test
+## tidy - Tidies up the vendor directory
+tidy:
+	go mod tidy
+
+.PHONY: help build clean coverage gosec install lint test tidy
