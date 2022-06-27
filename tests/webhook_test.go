@@ -81,7 +81,7 @@ func (c *ClientTests) TestWebhookUpdate() {
 	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
 	require.NoError(err)
 
-	updatedWebhook, err := client.EnableWebhook(webhook.ID)
+	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.UpdateWebhookOptions{})
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
