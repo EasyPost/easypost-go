@@ -67,3 +67,29 @@ func (c *ClientTests) TestOrderBuyRate() {
 		assert.NotNil(shipment.PostageLabel)
 	}
 }
+
+func (c *ClientTests) TestOrderLowestRate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	order, err := client.CreateOrder(c.fixture.BasicOrder())
+	require.NoError(err)
+
+	// Test lowest rate with no filters
+	lowestRate, err := client.LowestOrderRate(order)
+	require.NoError(err)
+	assert.Equal("First", lowestRate.Service)
+	assert.Equal("5.49", lowestRate.Rate)
+	assert.Equal("USPS", lowestRate.Carrier)
+
+	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
+	lowestRate, err = client.LowestOrderRateWithCarrierAndService(order, nil, []string{"Priority"})
+	require.NoError(err)
+	assert.Equal("Priority", lowestRate.Service)
+	assert.Equal("7.37", lowestRate.Rate)
+	assert.Equal("USPS", lowestRate.Carrier)
+
+	// Test lowest rate with carrier filter (should error due to bad carrier)
+	lowestRate, err = client.LowestOrderRateWithCarrier(order, []string{"BAD_CARRIER"})
+	assert.Error(err)
+}
