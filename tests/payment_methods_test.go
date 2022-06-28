@@ -8,5 +8,5 @@ func (c *ClientTests) TestPaymentMethodsAll() {
 	require.NoError(err)
 
 	assert.True(paymentMethods.PrimaryPaymentMethod != nil)
-	assert.True(paymentMethods.SecondaryPaymentMethod == nil)
+	assert.True(paymentMethods.SecondaryPaymentMethod != nil)
 }
