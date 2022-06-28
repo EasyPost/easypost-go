@@ -7,6 +7,13 @@ import (
 	"strings"
 )
 
+type MinifiedRate struct {
+	ID      string `json:"id,omitempty"`
+	Service string `json:"service,omitempty"`
+	Carrier string `json:"carrier,omitempty"`
+	Rate    string `json:"rate,omitempty"`
+}
+
 // StringPtr returns a pointer to a string with the given value.
 func StringPtr(s string) *string {
 	return &s
@@ -17,8 +24,8 @@ func BoolPtr(b bool) *bool {
 	return &b
 }
 
-// containsString returns true if the given list contains the given element.
-func containsString(strings []string, targetString string) bool {
+// listContainsString returns true if the given list contains the given string.
+func listContainsString(strings []string, targetString string) bool {
 	for _, aString := range strings {
 		if aString == targetString {
 			return true
@@ -27,20 +34,13 @@ func containsString(strings []string, targetString string) bool {
 	return false
 }
 
-type RateFilterRate struct {
-	ID      string `json:"id,omitempty"`
-	Service string `json:"service,omitempty"`
-	Carrier string `json:"carrier,omitempty"`
-	Rate    string `json:"rate,omitempty"`
-}
-
 // lowestSmartRate returns the lowest smartrate from the given list of smartrates.
 func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryAccuracy string) (out SmartRate, err error) {
 	validDeliveryAccuracies := []string{"percentile_50", "percentile_75", "percentile_85", "percentile_90", "percentile_95",
 		"percentile_97", "percentile_99"}
 
 	// if the delivery accuracy is not valid, return an error
-	if !containsString(validDeliveryAccuracies, deliveryAccuracy) {
+	if !listContainsString(validDeliveryAccuracies, deliveryAccuracy) {
 		return out, fmt.Errorf("invalid delivery accuracy: %s", deliveryAccuracy)
 	}
 
@@ -97,7 +97,7 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 }
 
 // lowestRate returns the lowest rate from the given list of rates with carrier and service filters.
-func (c *Client) lowestRate(rates []*RateFilterRate, carriers []string, services []string) (out RateFilterRate, err error) {
+func (c *Client) lowestRate(rates []*MinifiedRate, carriers []string, services []string) (out MinifiedRate, err error) {
 	carriersMap, servicesMap := make(map[string]bool), make(map[string]bool)
 
 	for _, carrier := range carriers {
@@ -119,7 +119,7 @@ func (c *Client) lowestRate(rates []*RateFilterRate, carriers []string, services
 		newRate, _ := strconv.ParseFloat(rate.Rate, 32)
 
 		// if lowest rate is null, set it to this rate
-		if (out == RateFilterRate{}) {
+		if (out == MinifiedRate{}) {
 			out = *rate
 			continue
 		}
@@ -131,7 +131,7 @@ func (c *Client) lowestRate(rates []*RateFilterRate, carriers []string, services
 	}
 
 	// if not rate was ever set (nothing matched the criteria), return an error
-	if (out == RateFilterRate{}) {
+	if (out == MinifiedRate{}) {
 		return out, errors.New("no rates found")
 	}
 
@@ -140,9 +140,9 @@ func (c *Client) lowestRate(rates []*RateFilterRate, carriers []string, services
 
 // lowestObjectRate returns the lowest rate from the given list of rates.
 func (c *Client) lowestObjectRate(rates []*Rate, carriers []string, services []string) (out Rate, err error) {
-	filterRates := make([]*RateFilterRate, 0)
+	filterRates := make([]*MinifiedRate, 0)
 	for _, rate := range rates {
-		filterRates = append(filterRates, &RateFilterRate{
+		filterRates = append(filterRates, &MinifiedRate{
 			ID:      rate.ID,
 			Service: rate.Service,
 			Carrier: rate.Carrier,
@@ -163,9 +163,9 @@ func (c *Client) lowestObjectRate(rates []*Rate, carriers []string, services []s
 
 // lowestPickupRate returns the lowest pickup rate from the given list of pickup rates.
 func (c *Client) lowestPickupRate(rates []*PickupRate, carriers []string, services []string) (out PickupRate, err error) {
-	filterRates := make([]*RateFilterRate, 0)
+	filterRates := make([]*MinifiedRate, 0)
 	for _, rate := range rates {
-		filterRates = append(filterRates, &RateFilterRate{
+		filterRates = append(filterRates, &MinifiedRate{
 			ID:      rate.ID,
 			Service: rate.Service,
 			Carrier: rate.Carrier,
