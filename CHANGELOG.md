@@ -5,6 +5,8 @@
 - Adds PaymentMethod file with `ListPaymentMethods` method
 - Adds CreditCard file with `FundCreditCard`, and `DeleteCreditCard` methods
 - Adds `BillingType` in CarrierAccount and Rate structs
+- Add new lowest rate functions for Shipments, Orders and Pickups
+- Add new lowest smartrate functions for Shipments
 
 ## v2.3.0 (2022-04-13)
 
