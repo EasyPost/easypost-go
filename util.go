@@ -40,7 +40,7 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 		"percentile_97", "percentile_99"}
 
 	// if the delivery accuracy is not valid, return an error
-	if !listContainsString(validDeliveryAccuracies, deliveryAccuracy) {
+	if !listContainsString(validDeliveryAccuracies, strings.ToLower(deliveryAccuracy)) {
 		return out, fmt.Errorf("invalid delivery accuracy: %s", deliveryAccuracy)
 	}
 
