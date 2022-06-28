@@ -78,10 +78,13 @@ func (c *ClientTests) TestWebhookUpdate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		})
 	require.NoError(err)
 
-	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.UpdateWebhookOptions{})
+	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.CreateUpdateWebhookOptions{})
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
@@ -94,7 +97,11 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithSecret(c.fixture.WebhookUrl(), c.fixture.WebhookSecret())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL:           c.fixture.WebhookUrl(),
+			WebhookSecret: c.fixture.WebhookSecret(),
+		})
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -109,10 +116,16 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		})
 	require.NoError(err)
 
-	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.UpdateWebhookOptions{WebhookSecret: c.fixture.WebhookSecret()})
+	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
+		&easypost.CreateUpdateWebhookOptions{
+			WebhookSecret: c.fixture.WebhookSecret(),
+		})
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
