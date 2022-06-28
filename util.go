@@ -47,7 +47,7 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 	for _, rate := range rates {
 		smartrateDeliveryDay := -1
 
-		switch deliveryAccuracy {
+		switch strings.ToLower(deliveryAccuracy) {
 		case "percentile_50":
 			smartrateDeliveryDay = rate.TimeInTransit.Percentile50
 		case "percentile_75":
