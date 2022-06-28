@@ -52,6 +52,10 @@ func (fixture *Fixture) WebhookUrl() string {
 	return "http://example.com"
 }
 
+func (fixture *Fixture) WebhookSecret() string {
+	return "this_is_a_secret"
+}
+
 func (fixture *Fixture) BasicAddress() *easypost.Address {
 	return &easypost.Address{
 		Name:    "Jack Sparrow",
