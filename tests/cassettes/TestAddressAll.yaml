@@ -14,28 +14,28 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: GET
   response:
-    body: '{"addresses":[{"carrier_facility":null,"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2022-05-25T19:38:04+00:00","email":null,"federal_tax_id":null,"id":"adr_31c4d932dc6211eca792ac1f6bc72124","mode":"test","name":"Jack
+    body: '{"addresses":[{"carrier_facility":null,"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2022-06-28T17:35:37+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_b8c15f78f70811ecb857ac1f6b0a0d1e","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-05-25T19:38:04+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
-      Francisco","company":"EasyPost","country":"US","created_at":"2022-05-25T19:38:04+00:00","email":null,"federal_tax_id":null,"id":"adr_31c2cab2dc6211ecbe9eac1f6bc7bdc6","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2022-06-28T17:35:37+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
+      Francisco","company":"EasyPost","country":"US","created_at":"2022-06-28T17:35:37+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_b8bf81aff70811ec8626ac1f6bc72124","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-05-25T19:38:04+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
-      Francisco","company":"EasyPost","country":"US","created_at":"2022-05-25T19:38:03+00:00","email":null,"federal_tax_id":null,"id":"adr_3163c34cdc6211eca76bac1f6bc72124","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2022-06-28T17:35:37+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
+      Francisco","company":"EasyPost","country":"US","created_at":"2022-06-28T17:35:36+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_b8328858f70811eca9d1ac1f6bc7bdc6","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-05-25T19:38:03+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
-      Francisco","company":"EasyPost","country":"US","created_at":"2022-05-25T19:38:03+00:00","email":null,"federal_tax_id":null,"id":"adr_316207a6dc6211eca769ac1f6bc72124","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2022-06-28T17:35:36+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
+      Francisco","company":"EasyPost","country":"US","created_at":"2022-06-28T17:35:36+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_b830e7d3f70811ec8340ac1f6bc7b362","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-05-25T19:38:03+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
-      Francisco","company":"EasyPost","country":"US","created_at":"2022-05-25T19:38:02+00:00","email":null,"federal_tax_id":null,"id":"adr_30ea542edc6211eca743ac1f6bc72124","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2022-06-28T17:35:36+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"San
+      Francisco","company":"EasyPost","country":"US","created_at":"2022-06-28T17:35:35+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_b7940002f70811ecb7c2ac1f6b0a0d1e","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-05-25T19:38:02+00:00","verifications":{},"zip":"94107"}],"has_more":true}'
+      Townsend St","street2":"Apt 20","updated_at":"2022-06-28T17:35:35+00:00","verifications":{},"zip":"94107"}],"has_more":true}'
     headers:
       Cache-Control:
       - no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"f7c979a8eb471b84bc4b2b56188185a0"
+      - W/"0b17e2121b686eef2e5ad08615a0f966"
       Expires:
       - "0"
       Pragma:
@@ -51,20 +51,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f970ee78b9ba7006baf4f
+      - 1e90ffae62bb4327e78748a300357e6b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq a732742a48
+      - extlb1nuq 403f17ff97
       X-Runtime:
-      - "0.050797"
+      - "0.039415"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202206272314-c14e8f7f31-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
