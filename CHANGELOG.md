@@ -7,6 +7,7 @@
 - Adds `BillingType` in CarrierAccount and Rate structs
 - Add new lowest rate functions for Shipments, Orders and Pickups
 - Add new lowest smartrate functions for Shipments
+- Adds OS details to the User-Agent header
 
 ## v2.3.0 (2022-04-13)
 
