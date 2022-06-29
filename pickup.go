@@ -113,3 +113,20 @@ func (c *Client) CancelPickupWithContext(ctx context.Context, pickupID string) (
 	err = c.post(ctx, "pickups/"+pickupID+"/cancel", nil, &out)
 	return
 }
+
+// LowestPickupRate gets the lowest rate of a pickup
+func (c *Client) LowestPickupRate(pickup *Pickup) (out PickupRate, err error) {
+	return c.LowestPickupRateWithCarrier(pickup, nil)
+}
+
+// LowestPickupRateWithCarrier performs the same operation as LowestPickupRate,
+// but allows specifying a list of carriers for the lowest rate
+func (c *Client) LowestPickupRateWithCarrier(pickup *Pickup, carriers []string) (out PickupRate, err error) {
+	return c.LowestPickupRateWithCarrierAndService(pickup, carriers, nil)
+}
+
+// LowestPickupRateWithCarrierAndService performs the same operation as LowestPickupRate,
+// but allows specifying a list of carriers and service for the lowest rate
+func (c *Client) LowestPickupRateWithCarrierAndService(pickup *Pickup, carriers []string, services []string) (out PickupRate, err error) {
+	return c.lowestPickupRate(pickup.PickupRates, carriers, services)
+}

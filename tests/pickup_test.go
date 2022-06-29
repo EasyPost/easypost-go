@@ -102,3 +102,32 @@ func (c *ClientTests) TestPickupCancel() {
 	assert.True(strings.HasPrefix(cancelledPickup.ID, "pickup_"))
 	assert.Equal("canceled", cancelledPickup.Status)
 }
+
+func (c *ClientTests) TestPickupLowestRate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	require.NoError(err)
+
+	pickupData := c.fixture.BasicPickup()
+	pickupData.Shipment = shipment
+
+	pickup, err := client.CreatePickup(pickupData)
+	require.NoError(err)
+
+	// Test lowest rate with no filters
+	lowestRate, err := client.LowestPickupRate(pickup)
+	require.NoError(err)
+	assert.Equal("NextDay", lowestRate.Service)
+	assert.Equal("0.00", lowestRate.Rate)
+	assert.Equal("USPS", lowestRate.Carrier)
+
+	// Test lowest rate with service filter (should error due to bad service)
+	lowestRate, err = client.LowestPickupRateWithCarrierAndService(pickup, nil, []string{"BAD_SERVICE"})
+	assert.Error(err)
+
+	// Test lowest rate with carrier filter (should error due to bad carrier)
+	lowestRate, err = client.LowestPickupRateWithCarrier(pickup, []string{"BAD_CARRIER"})
+	assert.Error(err)
+}

@@ -2,11 +2,8 @@ package easypost
 
 import (
 	"context"
-	"errors"
 	"net/http"
 	"net/url"
-	"strconv"
-	"strings"
 	"time"
 )
 
@@ -326,47 +323,45 @@ func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID strin
 	return
 }
 
+// Deprecated: Use LowestShipmentRate instead.
 // LowestRate gets the lowest rate of a shipment
 func (c *Client) LowestRate(shipment *Shipment) (out Rate, err error) {
-	return c.LowestRateWithCarrier(shipment, nil)
+	return c.LowestShipmentRate(shipment)
 }
 
+// LowestShipmentRate gets the lowest rate of a shipment
+func (c *Client) LowestShipmentRate(shipment *Shipment) (out Rate, err error) {
+	return c.LowestShipmentRateWithCarrier(shipment, nil)
+}
+
+// Deprecated: Use LowestShipmentRateWithCarrier instead.
 // LowestRateWithCarrier performs the same operation as LowestRate,
 // but allows specifying a list of carriers for the lowest rate
 func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
-	return c.LowestRateWithCarrierAndService(shipment, carriers, nil)
+	return c.LowestShipmentRateWithCarrier(shipment, carriers)
 }
 
+// LowestShipmentRateWithCarrier performs the same operation as LowestShipmentRate,
+// but allows specifying a list of carriers for the lowest rate
+func (c *Client) LowestShipmentRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
+	return c.LowestShipmentRateWithCarrierAndService(shipment, carriers, nil)
+}
+
+// Deprecated: Use LowestShipmentRateWithCarrierAndService instead.
 // LowestRateWithCarrierAndService performs the same operation as LowestRate,
 // but allows specifying a list of carriers and service for the lowest rate
 func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
-	carriersMap, servicesMap := make(map[string]bool), make(map[string]bool)
+	return c.LowestShipmentRateWithCarrierAndService(shipment, carriers, services)
+}
 
-	for _, carrier := range carriers {
-		carriersMap[strings.ToLower(carrier)] = true
-	}
+// LowestShipmentRateWithCarrierAndService performs the same operation as LowestShipmentRate,
+// but allows specifying a list of carriers and service for the lowest rate
+func (c *Client) LowestShipmentRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
+	return c.lowestObjectRate(shipment.Rates, carriers, services)
+}
 
-	for _, service := range services {
-		servicesMap[strings.ToLower(service)] = true
-	}
-
-	for _, rate := range shipment.Rates {
-		if len(carriersMap) > 0 && !carriersMap[strings.ToLower(rate.Carrier)] ||
-			len(servicesMap) > 0 && !servicesMap[strings.ToLower(rate.Service)] {
-			continue
-		}
-
-		currentRate, _ := strconv.ParseFloat(out.Rate, 32)
-		newRate, _ := strconv.ParseFloat(rate.Rate, 32)
-
-		if (out == Rate{} || currentRate > newRate) && newRate > 0 {
-			out = *rate
-		}
-	}
-
-	if (out == Rate{}) {
-		return out, errors.New("no rates found")
-	}
-
-	return
+// LowestSmartrate gets the lowest smartrate of a shipment with the specified delivery days and accuracy
+func (c *Client) LowestSmartrate(shipment *Shipment, deliveryDays int, deliveryAccuracy string) (out SmartRate, err error) {
+	smartrates, _ := c.GetShipmentSmartrates(shipment.ID)
+	return c.lowestSmartRate(smartrates, deliveryDays, deliveryAccuracy)
 }

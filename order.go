@@ -60,7 +60,7 @@ type createOrderRequest struct {
 //		&easypost.CarrierAccount{ID: "ca_102"},
 //	)
 func (c *Client) CreateOrder(in *Order, accounts ...*CarrierAccount) (out *Order, err error) {
-	return c.CreateOrderWithContext(context.Background(), in, accounts ... )
+	return c.CreateOrderWithContext(context.Background(), in, accounts...)
 }
 
 // CreateOrderWithContext performs the same operation as CreateOrder, but allows
@@ -113,4 +113,21 @@ func (c *Client) BuyOrderWithContext(ctx context.Context, orderID, carrier, serv
 	}
 	err = c.post(ctx, "orders/"+orderID+"/buy", vals, &out)
 	return
+}
+
+// LowestOrderRate gets the lowest rate of an order
+func (c *Client) LowestOrderRate(order *Order) (out Rate, err error) {
+	return c.LowestOrderRateWithCarrier(order, nil)
+}
+
+// LowestOrderRateWithCarrier performs the same operation as LowestOrderRate,
+// but allows specifying a list of carriers for the lowest rate
+func (c *Client) LowestOrderRateWithCarrier(order *Order, carriers []string) (out Rate, err error) {
+	return c.LowestOrderRateWithCarrierAndService(order, carriers, nil)
+}
+
+// LowestOrderRateWithCarrierAndService performs the same operation as LowestOrderRate,
+// but allows specifying a list of carriers and service for the lowest rate
+func (c *Client) LowestOrderRateWithCarrierAndService(order *Order, carriers []string, services []string) (out Rate, err error) {
+	return c.lowestObjectRate(order.Rates, carriers, services)
 }

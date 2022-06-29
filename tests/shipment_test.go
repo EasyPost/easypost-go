@@ -63,7 +63,7 @@ func (c *ClientTests) TestShipmentBuy() {
 	shipment, err := client.CreateShipment(c.fixture.FullShipment())
 	require.NoError(err)
 
-	lowestRate, err := client.LowestRate(shipment)
+	lowestRate, err := client.LowestShipmentRate(shipment)
 	require.NoError(err)
 
 	boughtShipment, err := client.BuyShipment(shipment.ID, &lowestRate, "")
@@ -221,4 +221,53 @@ func (c *ClientTests) TestShipmentCreateWithIds() {
 	assert.True(strings.HasPrefix(shipment.ToAddress.ID, "adr_"))
 	assert.True(strings.HasPrefix(shipment.Parcel.ID, "prcl_"))
 	assert.Equal("388 Townsend St", shipment.FromAddress.Street1)
+}
+
+func (c *ClientTests) TestShipmentInstanceLowestSmartRate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
+	require.NoError(err)
+	smartrate, err := client.LowestSmartrate(shipment, 2, "percentile_90")
+	require.NoError(err)
+
+	// Test lowest smartrate with valid filters
+	assert.Equal("First", smartrate.Service)
+	assert.Equal(5.49, smartrate.Rate)
+	assert.Equal("USPS", smartrate.Carrier)
+
+	// Test lowest smartrate with invalid filters (should error due to strict delivery days)
+	smartrate, err = client.LowestSmartrate(shipment, 0, "percentile_90")
+	assert.Error(err)
+
+	// Test lowest smartrate with invalid filters (should error due to invalid delivery accuracy)
+	smartrate, err = client.LowestSmartrate(shipment, 1, "BAD_ACCURACY")
+	assert.Error(err)
+}
+
+func (c *ClientTests) TestShipmentLowestRate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.FullShipment())
+	require.NoError(err)
+
+	// Test lowest rate with no filters
+	lowestRate, err := client.LowestShipmentRate(shipment)
+	require.NoError(err)
+	assert.Equal("First", lowestRate.Service)
+	assert.Equal("5.49", lowestRate.Rate)
+	assert.Equal("USPS", lowestRate.Carrier)
+
+	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
+	lowestRate, err = client.LowestShipmentRateWithCarrierAndService(shipment, nil, []string{"Priority"})
+	require.NoError(err)
+	assert.Equal("Priority", lowestRate.Service)
+	assert.Equal("7.37", lowestRate.Rate)
+	assert.Equal("USPS", lowestRate.Carrier)
+
+	// Test lowest rate with carrier filter (should error due to bad carrier)
+	lowestRate, err = client.LowestShipmentRateWithCarrier(shipment, []string{"BAD_CARRIER"})
+	assert.Error(err)
 }
