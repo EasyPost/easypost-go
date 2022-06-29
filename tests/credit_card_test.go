@@ -6,7 +6,7 @@ func (c *ClientTests) TestCreditCardFund() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
-	creditCard, err := client.FundCreditCard("20", "primary")
+	creditCard, err := client.FundCreditCard("2000", "primary")
 	require.NoError(err)
 
 	assert.True(creditCard != nil)
@@ -16,7 +16,7 @@ func (c *ClientTests) TestCreditCardFundWithInvalidInput() {
 	client := c.ProdClient()
 	assert := c.Assert()
 
-	_, err := client.FundCreditCard("20", "invalid")
+	_, err := client.FundCreditCard("2000", "invalid")
 	assert.EqualError(err, "payment method must be either primary or secondary")
 }
 
