@@ -24,9 +24,10 @@ var defaultUserAgent string
 var defaultTimeout int
 
 func init() {
+	// We skip grabbing the OS version (for now) as there is not a reliable way to do so across OS's
 	defaultUserAgent = fmt.Sprintf(
-		"EasyPost/v2 GoClient/%s Go/%s OS/%s",
-		Version, runtime.Version(), runtime.GOOS)
+		"EasyPost/v2 GoClient/%s Go/%s OS/%s OSVersion/%s OSArch/%s",
+		Version, runtime.Version(), runtime.GOOS, "NA", runtime.GOARCH)
 	defaultTimeout = 60000
 }
 
