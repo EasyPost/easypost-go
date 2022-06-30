@@ -30,27 +30,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f974de78b9ba7006bce4d
+      - 1e90ffad62bb3867ec860bbf003136d0
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq a732742a48
+      - extlb1nuq 403f17ff97
       X-Runtime:
-      - "0.023586"
+      - "0.021115"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202206272314-c14e8f7f31-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
