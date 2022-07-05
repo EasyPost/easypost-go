@@ -15,10 +15,9 @@ type APIError struct {
 	Status string
 	// StatusCode is the HTTP numerical status code of the response.
 	StatusCode int
-	// Code is an error code returned by the API. It may be empty.
+	// Code is a machine-readable error code returned by the API. It may be empty.
 	Code string `json:"code,omitempty"`
-	// Message is a human-readable error code returned by the API. It may be
-	// empty.
+	// Message is a human-readable error code returned by the API. It may be empty.
 	Message string `json:"message,omitempty"`
 	// Field may be provided when the error relates to a specific field.
 	Field string `json:"field,omitempty"`
@@ -34,6 +33,7 @@ type apiErrorResponse struct {
 	Error *APIError `json:"error,omitempty"`
 }
 
+// Error provides a pretty printed string of an error object based on present data.
 func (e *APIError) Error() string {
 	if e.Message != "" {
 		if e.Code != "" {

@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"shipment":null}'
+    body: '{"shipment":{}}'
     form: {}
     headers:
       Authorization:
@@ -15,7 +15,8 @@ interactions:
     method: POST
   response:
     body: '{"error":{"code":"SHIPMENT.INVALID_PARAMS","message":"Unable to create
-      shipment, one or more parameters were invalid.","errors":[]}}'
+      shipment, one or more parameters were invalid.","errors":[{"to_address":"Required
+      and missing."},{"from_address":"Required and missing."}]}}'
     headers:
       Cache-Control:
       - no-cache, no-store
@@ -36,20 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9724e78b9ba7006bb8dd
+      - 0cdd6ee962c49f8defb3f9ef000c8f61
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 403f17ff97
+      - extlb2nuq 403f17ff97
       X-Runtime:
-      - "0.032226"
+      - "0.024513"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202207051744-6385ac2987-master
       X-Xss-Protection:
       - 1; mode=block
     status: 422 Unprocessable Entity
