@@ -2,8 +2,8 @@
 
 ## Next Release
 
-- Adds PaymentMethod file with `ListPaymentMethods` method
-- Adds CreditCard file with `FundCreditCard`, and `DeleteCreditCard` methods
+- Adds Billing file with `RetrievePaymentMethods`, `FundWallet` and `DeletePaymentMethod` methods
+- Adds PaymentMethodObject file with `PaymentMethodType` and `PaymentMethodPriority` enums
 - Adds `BillingType` in CarrierAccount and Rate structs
 - Add new lowest rate functions for Shipments, Orders and Pickups
 - Add new lowest smartrate functions for Shipments
