@@ -14,7 +14,8 @@ func (c *ClientTests) TestWebhookCreate() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -34,7 +35,8 @@ func (c *ClientTests) TestWebhookRetrieve() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	retrievedWebhook, err := client.GetWebhook(webhook.ID)
@@ -69,7 +71,8 @@ func (c *ClientTests) TestWebhookDelete() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -90,7 +93,8 @@ func (c *ClientTests) TestWebhookUpdate() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.CreateUpdateWebhookOptions{})
@@ -110,7 +114,8 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 		&easypost.CreateUpdateWebhookOptions{
 			URL:           c.fixture.WebhookUrl(),
 			WebhookSecret: c.fixture.WebhookSecret(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -128,13 +133,15 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
 		&easypost.CreateUpdateWebhookOptions{
 			WebhookSecret: c.fixture.WebhookSecret(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
