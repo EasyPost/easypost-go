@@ -54,24 +54,3 @@ func (c *Client) RetrievePaymentMethodsWithContext(ctx context.Context) (out *Pa
 
 	return
 }
-
-// getPaymentMethodByPriority returns the PaymentMethodObject associated with the given PaymentMethodPriority.
-func (c *Client) getPaymentMethodByPriority(priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	paymentMethods, err := c.RetrievePaymentMethods()
-	if err != nil {
-		return out, err
-	}
-
-	switch priority {
-	case PrimaryPaymentMethodPriority:
-		out = paymentMethods.PrimaryPaymentMethod
-	case SecondaryPaymentMethodPriority:
-		out = paymentMethods.SecondaryPaymentMethod
-	}
-
-	if out == nil {
-		return out, errors.New("the chosen payment method is not set up yet")
-	}
-
-	return out, nil
-}
