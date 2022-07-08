@@ -27,17 +27,17 @@ type PaymentMethod struct {
 }
 
 type PaymentMethodObject struct {
-	BankName        string `json:"bank_name,omitempty"`        // bank account
-	Brand           string `json:"brand,omitempty"`            // credit card
-	Country         string `json:"country,omitempty"`          // bank account
-	DisabledAt      string `json:"disabled_at,omitempty"`      // both
-	ExpirationMonth string `json:"expiration_month,omitempty"` // credit card
-	ExpirationYear  string `json:"expiration_year,omitempty"`  // credit card
-	ID              string `json:"id,omitempty"`               // both
-	Last4           string `json:"last4,omitempty"`            // both
-	Name            string `json:"name,omitempty"`             // credit card
-	Object          string `json:"object,omitempty"`           // both
-	Verified        bool   `json:"verified,omitempty"`         // bank account
+	BankName        string `json:"bank_name,omitempty"`   // bank account
+	Brand           string `json:"brand,omitempty"`       // credit card
+	Country         string `json:"country,omitempty"`     // bank account
+	DisabledAt      string `json:"disabled_at,omitempty"` // both
+	ExpirationMonth int    `json:"exp_month,omitempty"`   // credit card
+	ExpirationYear  int    `json:"exp_year,omitempty"`    // credit card
+	ID              string `json:"id,omitempty"`          // both
+	Last4           string `json:"last4,omitempty"`       // both
+	Name            string `json:"name,omitempty"`        // credit card
+	Object          string `json:"object,omitempty"`      // both
+	Verified        bool   `json:"verified,omitempty"`    // bank account
 }
 
 // getPaymentMethodObjectType returns the PaymentMethodType enum of a PaymentMethodObject.
