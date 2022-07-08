@@ -11,7 +11,10 @@ func (c *ClientTests) TestWebhookCreate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		})
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -28,7 +31,10 @@ func (c *ClientTests) TestWebhookRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		})
 	require.NoError(err)
 
 	retrievedWebhook, err := client.GetWebhook(webhook.ID)
@@ -60,7 +66,10 @@ func (c *ClientTests) TestWebhookDelete() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		})
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
