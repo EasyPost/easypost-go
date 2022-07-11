@@ -1,14 +1,15 @@
 # CHANGELOG
 
-## Next Release
+## v2.4.0 (2022-07-11)
 
-- Adds Billing file with `RetrievePaymentMethods`, `FundWallet` and `DeletePaymentMethod` methods
-- Adds PaymentMethodObject file with `PaymentMethodType` and `PaymentMethodPriority` enums
+- Adds `RetrievePaymentMethods`, `FundWallet` and `DeletePaymentMethod` functions
 - Adds `BillingType` in CarrierAccount and Rate structs
-- Add new lowest rate functions for Shipments, Orders and Pickups
-- Add new lowest smartrate functions for Shipments
+- Adds new lowest rate functions for Shipments, Orders and Pickups
+- Adds new lowest smartrate functions for Shipments
 - Adds OS details to the User-Agent header
-- Add support for webhook secrets
+- Adds support for webhook secrets
+- Update methods now use `patch` instead of `put` behind the scenes to better match the API expectation and documentation. Update functions should still behave the same as before
+- Enforces passing an API key on each request (the library will now fail fast instead of sending an impossible-to-service HTTP request)
 
 ## v2.3.0 (2022-04-13)
 
