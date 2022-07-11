@@ -11,7 +11,11 @@ func (c *ClientTests) TestWebhookCreate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -28,7 +32,11 @@ func (c *ClientTests) TestWebhookRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		},
+	)
 	require.NoError(err)
 
 	retrievedWebhook, err := client.GetWebhook(webhook.ID)
@@ -60,7 +68,11 @@ func (c *ClientTests) TestWebhookDelete() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
+	webhook, err := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -81,7 +93,8 @@ func (c *ClientTests) TestWebhookUpdate() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.CreateUpdateWebhookOptions{})
@@ -101,7 +114,8 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 		&easypost.CreateUpdateWebhookOptions{
 			URL:           c.fixture.WebhookUrl(),
 			WebhookSecret: c.fixture.WebhookSecret(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
@@ -119,13 +133,15 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
 		&easypost.CreateUpdateWebhookOptions{
 			WebhookSecret: c.fixture.WebhookSecret(),
-		})
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
