@@ -285,13 +285,15 @@ func (c *ClientTests) TestShipmentForm() {
 	shipmentWithForm, err := client.GenerateShipmentForm(shipment.ID, formType)
 	require.NoError(err)
 	assert.Len(shipmentWithForm.Forms, 1)
-	assert.Equal(formType, shipmentWithForm.Forms[0].FormType)
-	assert.NotNil(formType, shipmentWithForm.Forms[0].FormURL)
+	form := shipmentWithForm.Forms[0]
+	assert.Equal(formType, form.FormType)
+	assert.NotNil(form.FormURL)
 
 	// Test shipment form with additional options
 	shipmentWithForm, err = client.GenerateShipmentFormWithOptions(shipment.ID, formType, c.fixture.RmaFormOptions())
 	require.NoError(err)
 	assert.Len(shipmentWithForm.Forms, 1)
-	assert.Equal(formType, shipmentWithForm.Forms[0].FormType)
-	assert.NotNil(formType, shipmentWithForm.Forms[0].FormURL)
+	form = shipmentWithForm.Forms[0]
+	assert.Equal(formType, form.FormType)
+	assert.NotNil(form.FormURL)
 }
