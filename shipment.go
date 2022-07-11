@@ -169,6 +169,10 @@ type getShipmentRatesResponse struct {
 	Rates *[]*Rate `json:"rates,omitempty"`
 }
 
+type generateFormRequest struct {
+	Form map[string]interface{} `json:"form,omitempty"`
+}
+
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
 // Parcel attributes are required. These objects may be fully-specified to
 // create new ones at the same time as creating the Shipment, or they can refer
@@ -364,4 +368,29 @@ func (c *Client) LowestShipmentRateWithCarrierAndService(shipment *Shipment, car
 func (c *Client) LowestSmartrate(shipment *Shipment, deliveryDays int, deliveryAccuracy string) (out SmartRate, err error) {
 	smartrates, _ := c.GetShipmentSmartrates(shipment.ID)
 	return c.lowestSmartRate(smartrates, deliveryDays, deliveryAccuracy)
+}
+
+// GenerateShipmentForm generates a form of a given type for a shipment
+func (c *Client) GenerateShipmentForm(shipmentID string, formType string) (out *Shipment, err error) {
+	return c.GenerateShipmentFormWithOptions(shipmentID, formType, make(map[string]interface{}))
+}
+
+// GenerateShipmentFormWithContext performs the same operation as GenerateShipmentForm,
+// but allows specifying a context that can interrupt the request.
+func (c *Client) GenerateShipmentFormWithContext(ctx context.Context, shipmentID string, formType string) (out *Shipment, err error) {
+	return c.GenerateShipmentFormWithOptionsWithContext(ctx, shipmentID, formType, make(map[string]interface{}))
+}
+
+// GenerateShipmentFormWithOptions generates a form of a given type for a shipment, using provided options
+func (c *Client) GenerateShipmentFormWithOptions(shipmentID string, formType string, formOptions map[string]interface{}) (out *Shipment, err error) {
+	return c.GenerateShipmentFormWithOptionsWithContext(context.Background(), shipmentID, formType, formOptions)
+}
+
+// GenerateShipmentFormWithOptionsWithContext performs the same operation as GenerateShipmentFormWithOptions,
+// but allows specifying a context that can interrupt the request.
+func (c *Client) GenerateShipmentFormWithOptionsWithContext(ctx context.Context, shipmentID string, formType string, formOptions map[string]interface{}) (out *Shipment, err error) {
+	formOptions["type"] = formType
+	req := &generateFormRequest{Form: formOptions}
+	err = c.post(ctx, "shipments/"+shipmentID+"/forms", &req, &out)
+	return
 }
