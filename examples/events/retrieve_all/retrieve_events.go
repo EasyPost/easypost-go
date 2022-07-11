@@ -29,14 +29,14 @@ func main() {
 	for results.HasMore && err == nil {
 		if results, err = client.ListEvents(opts); err == nil {
 			for i := range results.Events {
-				enc.Encode(results.Events[i])
+				_ = enc.Encode(results.Events[i])
 				// If a webhook is registered, payloads can be examined to
 				// obtain the event result.
 				payloads, _ := client.ListEventPayloads(results.Events[i].ID)
 				if len(payloads) != 0 {
 					event, _ := payloads[0].RequestBody.(*easypost.Event)
 					if event != nil {
-						enc.Encode(event.Result)
+						_ = enc.Encode(event.Result)
 					}
 				}
 			}

@@ -25,7 +25,11 @@ jobs:
         uses: actions/setup-go@v3
         with:
           go-version: ${{ matrix.go-version }}
-      - name: build
-        run: make build
+      - name: install
+        run: make install
       - name: run tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make test
+      - name: Run Gosec
+        uses: securego/gosec@master
+        with:
+          args: ./...

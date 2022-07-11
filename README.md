@@ -122,8 +122,11 @@ EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
 # Generate test coverage
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
 
-# Lint project (requires golangci-lint to be installed)
+# Lint project (requires `golangci-lint` to be installed - not included)
 make lint
+
+# Run security analysis on the project (requires `gosec` to be installed - not included)
+make gosec
 ```
 
 ### Testing
