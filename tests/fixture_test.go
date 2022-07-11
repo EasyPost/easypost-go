@@ -217,7 +217,7 @@ func (fixture *Fixture) BasicOrder() *easypost.Order {
 
 func (fixture *Fixture) RmaFormOptions() map[string]interface{} {
 	return map[string]interface{}{
-		"carrier": "RMA12345678900",
+		"barcode": "RMA12345678900",
 		"line_items": []map[string]interface{}{
 			{
 				"product": map[string]interface{}{
