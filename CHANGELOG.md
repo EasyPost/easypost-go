@@ -9,6 +9,7 @@
 - Add new lowest smartrate functions for Shipments
 - Adds OS details to the User-Agent header
 - Add support for webhook secrets
+- Add support for generating shipment forms via `GenerateShipmentForm` function
 
 ## v2.3.0 (2022-04-13)
 
