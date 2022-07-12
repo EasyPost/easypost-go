@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## Next Release
+- Add support for generating shipment forms via `GenerateShipmentForm` function
+
 ## v2.4.0 (2022-07-11)
 
 - Adds `RetrievePaymentMethods`, `FundWallet` and `DeletePaymentMethod` functions

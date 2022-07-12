@@ -214,3 +214,18 @@ func (fixture *Fixture) BasicOrder() *easypost.Order {
 		Shipments:   []*easypost.Shipment{fixture.BasicShipment()},
 	}
 }
+
+func (fixture *Fixture) RmaFormOptions() map[string]interface{} {
+	return map[string]interface{}{
+		"barcode": "RMA12345678900",
+		"line_items": []map[string]interface{}{
+			{
+				"product": map[string]interface{}{
+					"title":   "Square Reader",
+					"barcode": 855658003251,
+				},
+				"units": 8,
+			},
+		},
+	}
+}

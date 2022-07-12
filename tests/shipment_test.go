@@ -271,3 +271,29 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	lowestRate, err = client.LowestShipmentRateWithCarrier(shipment, []string{"BAD_CARRIER"})
 	assert.Error(err)
 }
+
+func (c *ClientTests) TestShipmentGenerateForm() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	require.NoError(err)
+
+	formType := "return_packing_slip"
+
+	// Test shipment form with no additional options
+	shipmentWithForm, err := client.GenerateShipmentForm(shipment.ID, formType)
+	require.NoError(err)
+	assert.Len(shipmentWithForm.Forms, 1)
+	form := shipmentWithForm.Forms[0]
+	assert.Equal(formType, form.FormType)
+	assert.NotNil(form.FormURL)
+
+	// Test shipment form with additional options
+	shipmentWithForm, err = client.GenerateShipmentFormWithOptions(shipment.ID, formType, c.fixture.RmaFormOptions())
+	require.NoError(err)
+	assert.Len(shipmentWithForm.Forms, 1)
+	form = shipmentWithForm.Forms[0]
+	assert.Equal(formType, form.FormType)
+	assert.NotNil(form.FormURL)
+}
