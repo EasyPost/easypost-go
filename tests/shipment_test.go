@@ -272,7 +272,7 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	assert.Error(err)
 }
 
-func (c *ClientTests) TestShipmentForm() {
+func (c *ClientTests) TestShipmentGenerateForm() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
