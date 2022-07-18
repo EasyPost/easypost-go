@@ -1,6 +1,7 @@
 # CHANGELOG
 
-## Next Release
+## v2.5.0 (2022-07-18)
+
 - Add support for generating shipment forms via `GenerateShipmentForm` function
 
 ## v2.4.0 (2022-07-11)
