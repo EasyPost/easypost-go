@@ -69,6 +69,18 @@ func (fixture *Fixture) BasicAddress() *easypost.Address {
 	}
 }
 
+func (fixture *Fixture) CarbonOffsetToAddress() *easypost.Address {
+	return &easypost.Address{
+		Name:    "Dr. Steve Brule",
+		Street1: "179 N Harbor Dr",
+		City:    "Redondo Beach",
+		State:   "CA",
+		Zip:     "90277",
+		Country: "US",
+		Phone:   "3331114444",
+	}
+}
+
 func (fixture *Fixture) IncorrectAddressToVerify() *easypost.Address {
 	return &easypost.Address{
 		Street1: "417 montgomery street",
@@ -163,6 +175,39 @@ func (fixture *Fixture) FullShipment() *easypost.Shipment {
 func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 	return &easypost.Shipment{
 		ToAddress:         fixture.BasicAddress(),
+		FromAddress:       fixture.BasicAddress(),
+		Parcel:            fixture.BasicParcel(),
+		Service:           fixture.USPSService(),
+		CarrierAccountIDs: []string{fixture.USPSCarrierAccountID()},
+		Carrier:           fixture.USPS(),
+	}
+}
+
+func (fixture *Fixture) BasicCarbonOffsetShipment() *easypost.Shipment {
+	return &easypost.Shipment{
+		ToAddress:   fixture.CarbonOffsetToAddress(),
+		FromAddress: fixture.BasicAddress(),
+		Parcel:      fixture.BasicParcel(),
+	}
+}
+
+func (fixture *Fixture) FullCarbonOffsetShipment() *easypost.Shipment {
+	return &easypost.Shipment{
+		ToAddress:   fixture.CarbonOffsetToAddress(),
+		FromAddress: fixture.BasicAddress(),
+		Parcel:      fixture.BasicParcel(),
+		CustomsInfo: fixture.BasicCustomsInfo(),
+		Options: &easypost.ShipmentOptions{
+			LabelFormat:   "PNG", // Must be PNG so we can convert to ZPL later
+			InvoiceNumber: "123",
+		},
+		Reference: "123",
+	}
+}
+
+func (fixture *Fixture) OneCallBuyCarbonOffsetShipment() *easypost.Shipment {
+	return &easypost.Shipment{
+		ToAddress:         fixture.CarbonOffsetToAddress(),
 		FromAddress:       fixture.BasicAddress(),
 		Parcel:            fixture.BasicParcel(),
 		Service:           fixture.USPSService(),
