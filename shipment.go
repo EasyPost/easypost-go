@@ -171,6 +171,10 @@ type createShipmentRequest struct {
 	CarbonOffset bool      `json:"carbon_offset,omitempty"`
 }
 
+type getShipmentRatesRequest struct {
+	CarbonOffset bool `json:"carbon_offset,omitempty"`
+}
+
 type getShipmentRatesResponse struct {
 	Rates *[]*Rate `json:"rates,omitempty"`
 }
@@ -352,8 +356,23 @@ func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
 // RerateShipmentWithContext performs the same operation as RerateShipment,
 // but allows specifying a context that can interrupt the request.
 func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
+	req := &getShipmentRatesRequest{CarbonOffset: false}
 	res := &getShipmentRatesResponse{Rates: &out}
-	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", nil, &res)
+	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", &req, &res)
+	return
+}
+
+// RerateShipmentWithCarbonOffset performs the same operation as RerateShipment, but includes a carbon offset.
+func (c *Client) RerateShipmentWithCarbonOffset(shipmentID string) (out []*Rate, err error) {
+	return c.RerateShipmentWithCarbonOffsetWithContext(context.Background(), shipmentID)
+}
+
+// RerateShipmentWithCarbonOffsetWithContext performs the same operation as RerateShipmentWithCarbonOffset, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) RerateShipmentWithCarbonOffsetWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
+	req := &getShipmentRatesRequest{CarbonOffset: true}
+	res := &getShipmentRatesResponse{Rates: &out}
+	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", &req, &res)
 	return
 }
 
