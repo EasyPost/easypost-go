@@ -48,16 +48,19 @@ func (c *ClientTests) TestShipmentOneCallBuyWithCarbonOffset() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipment(c.fixture.OneCallBuyCarbonOffsetShipment())
+	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.OneCallBuyCarbonOffsetShipment())
 	require.NoError(err)
 
-	rates, err := client.RerateShipment(shipment.ID)
-	require.NoError(err)
+	assert.NotNil(shipment.PostageLabel)
 
-	assert.Equal(reflect.TypeOf([]*easypost.Rate{}), reflect.TypeOf(rates))
-	for _, rate := range rates {
-		assert.Equal(reflect.TypeOf(&easypost.Rate{}), reflect.TypeOf(rate))
+	assert.NotNil(shipment.Fees)
+	carbonOffsetExists := false
+	for _, fee := range shipment.Fees {
+		if fee.Type == "CarbonOffsetFee" {
+			carbonOffsetExists = true
+		}
 	}
+	assert.True(carbonOffsetExists)
 }
 
 func (c *ClientTests) TestShipmentReRateWithCarbonOffset() {
