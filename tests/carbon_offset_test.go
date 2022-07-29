@@ -75,14 +75,9 @@ func (c *ClientTests) TestShipmentReRateWithCarbonOffset() {
 	newRatesWithCarbon, err := client.RerateShipmentWithCarbonOffset(shipment.ID)
 	require.NoError(err)
 
-	newRatesWithoutCarbon, err := client.RerateShipment(shipment.ID)
-	require.NoError(err)
-
 	baseRate := baseRates[0]
 	newRateWithCarbon := newRatesWithCarbon[0]
-	newRateWithoutCarbon := newRatesWithoutCarbon[0]
 
 	assert.Nil(baseRate.CarbonOffset)
 	assert.NotNil(newRateWithCarbon.CarbonOffset)
-	assert.Nil(newRateWithoutCarbon.CarbonOffset)
 }
