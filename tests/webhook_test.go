@@ -149,3 +149,45 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 	err = client.DeleteWebhook(updatedWebhook.ID)
 	require.NoError(err)
 }
+
+func (c *ClientTests) TestValidateWebhook() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	webhookSecret := "sécret"
+	expectedHmacSignature := "hmac-sha256-hex=e93977c8ccb20363d51a62b3fe1fc402b7829be1152da9e88cf9e8d07115a46b"
+	headers := map[string]interface{}{
+		"X-Hmac-Signature": expectedHmacSignature,
+	}
+
+	webhookBody, err := client.ValidateWebhook(c.fixture.EventBody(), headers, webhookSecret)
+	require.NoError(err)
+
+	assert.Equal(webhookBody.Description, "batch.created")
+}
+
+func (c *ClientTests) TestValidateWebhookInvalidSecret() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	webhookSecret := "invalid_secret"
+	headers := map[string]interface{}{
+		"X-Hmac-Signature": "some-signature",
+	}
+
+	_, err := client.ValidateWebhook(c.fixture.EventBody(), headers, webhookSecret)
+	assert.Error(err)
+}
+
+func (c *ClientTests) TestValidateWebhookMissingSecret() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	webhookSecret := "123"
+	headers := map[string]interface{}{
+		"some-header": "some-value",
+	}
+
+	_, err := client.ValidateWebhook(c.fixture.EventBody(), headers, webhookSecret)
+	assert.Error(err)
+}
