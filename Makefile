@@ -28,6 +28,11 @@ install:
 lint:
 	golangci-lint run
 
+## release - Cuts a release for the project on GitHub (requires GitHub CLI)
+# tag = The associated tag title of the release
+release:
+	gh release create ${tag}
+
 ## gosec - Run gosec to scan for security issues
 scan:
 	gosec ./...
