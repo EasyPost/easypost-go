@@ -2,7 +2,14 @@ package easypost
 
 import (
 	"context"
+	"crypto/hmac"
+	"crypto/sha256"
+	"encoding/hex"
+	"encoding/json"
+	"errors"
 	"time"
+
+	"golang.org/x/text/unicode/norm"
 )
 
 // A Webhook represents an EasyPost webhook callback URL.
@@ -128,4 +135,40 @@ func (c *Client) DeleteWebhook(webhookID string) error {
 // allows specifying a context that can interrupt the request.
 func (c *Client) DeleteWebhookWithContext(ctx context.Context, webhookID string) error {
 	return c.del(ctx, "webhooks/"+webhookID)
+}
+
+// ValidateWebhook validates a webhook by comparing the HMAC signature header sent from EasyPost to your shared secret.
+// If the signatures do not match, an error will be raised signifying the webhook either did not originate
+// from EasyPost or the secrets do not match. If the signatures do match, the `event_body` will be returned as JSON.
+func (c *Client) ValidateWebhook(eventBody []byte, headers map[string]interface{}, webhookSecret string) (out *Event, err error) {
+	return c.ValidateWebhookWithContext(context.Background(), eventBody, headers, webhookSecret)
+}
+
+// ValidateWebhookWithContext performs the same operation as ValidateWebhook, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) ValidateWebhookWithContext(ctx context.Context, eventBody []byte, headers map[string]interface{}, webhookSecret string) (out *Event, err error) {
+	easypostHmacSignature, signaturePresent := headers["X-Hmac-Signature"].(string)
+
+	if signaturePresent {
+		normalizedSecret := norm.NFKD.String(webhookSecret)
+		encodedSecret := []byte(normalizedSecret)
+
+		expectedSignature := hmac.New(sha256.New, encodedSecret)
+		expectedSignature.Write(eventBody)
+
+		digest := "hmac-sha256-hex=" + hex.EncodeToString(expectedSignature.Sum(nil))
+
+		if hmac.Equal([]byte(digest), []byte(easypostHmacSignature)) {
+			var webhookBody Event
+			if err = json.Unmarshal(eventBody, &webhookBody); err != nil {
+				return nil, err
+			} else {
+				return &webhookBody, nil
+			}
+		} else {
+			return nil, errors.New("weebhook received did not originate from EasyPost or had a webhook secret mismatch")
+		}
+	} else {
+		return nil, errors.New("webhook received does not contain an HMAC signature")
+	}
 }
