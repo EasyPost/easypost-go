@@ -19,10 +19,6 @@ clean:
 coverage: 
 	go clean -testcache && go test ./tests -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
-## gosec - Run gosec to scan for security issues
-gosec:
-	gosec ./...
-
 ## install - Install and vendor dependencies
 install:
 	go mod vendor
@@ -32,6 +28,15 @@ install:
 lint:
 	golangci-lint run
 
+## release - Cuts a release for the project on GitHub (requires GitHub CLI)
+# tag = The associated tag title of the release
+release:
+	gh release create ${tag}
+
+## gosec - Run gosec to scan for security issues
+scan:
+	gosec ./...
+
 ## test - Test the project
 test:
 	go clean -testcache && go test ./tests
@@ -40,4 +45,4 @@ test:
 tidy:
 	go mod tidy
 
-.PHONY: help build clean coverage gosec install lint test tidy
+.PHONY: help build clean coverage install lint scan test tidy

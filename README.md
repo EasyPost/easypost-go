@@ -116,17 +116,20 @@ Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_G
 ## Development
 
 ```bash
+# Install dependencies
+make install
+
+# Lint project (requires `golangci-lint` to be installed - not included)
+make lint
+
 # Run tests
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
 
 # Generate test coverage
 EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
 
-# Lint project (requires `golangci-lint` to be installed - not included)
-make lint
-
 # Run security analysis on the project (requires `gosec` to be installed - not included)
-make gosec
+make scan
 ```
 
 ### Testing
