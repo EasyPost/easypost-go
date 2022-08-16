@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"carrier_account":{"type":"UpsAccount","credentials":{"access_license_number":"ALN","account_number":"A1A1A1","password":"PASSWORD","user_id":"USERID"},"test_credentials":null}}'
+    body: '{"carrier_account":{"type":"DhlEcsAccount","credentials":{"client_id":"123456","client_secret":"123abc","distribution_center":"USLAX1","pickup_id":"123456"},"test_credentials":{"client_id":"123456","client_secret":"123abc","distribution_center":"USLAX1","pickup_id":"123456"}}}'
     form: {}
     headers:
       Authorization:
@@ -14,15 +14,24 @@ interactions:
     url: https://api.easypost.com/v2/carrier_accounts
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-05-26T15:05:03Z","credentials":{},"description":"UPS
-      Account","fields":{"credentials":{"account_number":{"label":"UPS Account Number","value":"A1A1A1","visibility":"readonly"}}},"id":"ca_a4efb7c57fd74b41bb6ef505d016bf16","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":{},"type":"UpsAccount","updated_at":"2022-05-26T15:05:03Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-08-16T20:24:23Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{"credentials":{"client_id":{"label":"DHL
+      eCommerce Solutions client ID","value":"123456","visibility":"visible"},"client_secret":{"label":"DHL
+      eCommerce Solutions client secret","value":"********","visibility":"password"},"distribution_center":{"label":"DHL
+      eCommerce Solutions distribution center","value":"USLAX1","visibility":"visible"},"pickup_id":{"label":"DHL
+      eCommerce Solutions pickup ID","value":"123456","visibility":"visible"}},"test_credentials":{"client_id":{"label":"Test
+      DHL eCommerce Solutions client ID","value":"123456","visibility":"visible"},"client_secret":{"label":"Test
+      DHL eCommerce Solutions client secret","value":"********","visibility":"password"},"distribution_center":{"label":"Test
+      DHL eCommerce Solutions distribution center","value":"USLAX1","visibility":"visible"},"pickup_id":{"label":"Test
+      DHL eCommerce Solutions pickup ID","value":"123456","visibility":"visible"}}},"id":"ca_6eb1db993bf1432395df9a51823e6a38","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-08-16T20:24:23Z"}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"0c4c612d0e1ec8b24e20147d94524d60"
+      - W/"a2c0129edc114d15ddd9c76d35cb8089"
       Expires:
       - "0"
       Pragma:
@@ -38,20 +47,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f971fe78b9ba7006bb6d1
+      - 3eb5807562fbfcf7e78a92e70001a937
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.119987"
+      - "0.247766"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -65,13 +74,13 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_a4efb7c57fd74b41bb6ef505d016bf16
+    url: https://api.easypost.com/v2/carrier_accounts/ca_6eb1db993bf1432395df9a51823e6a38
     method: DELETE
   response:
     body: '{}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
@@ -91,20 +100,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9720e78b9ba7006bb6fb
+      - 3eb5807562fbfcf7e78a92e70001a94d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.114531"
+      - "0.116846"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -113,7 +113,7 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL:           c.fixture.WebhookUrl(),
-			WebhookSecret: c.fixture.WebhookSecret(),
+			WebhookSecret: "123",
 		},
 	)
 	require.NoError(err)
@@ -139,7 +139,7 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
 		&easypost.CreateUpdateWebhookOptions{
-			WebhookSecret: c.fixture.WebhookSecret(),
+			WebhookSecret: "123",
 		},
 	)
 	require.NoError(err)

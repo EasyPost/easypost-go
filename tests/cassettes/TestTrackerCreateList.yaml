@@ -17,7 +17,7 @@ interactions:
     body: '{}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
@@ -37,7 +37,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9748e78b9ba7006bcba2
+      - 3eb5807562fbfd07e78a92e70001aea4
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -45,12 +45,12 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.089428"
+      - "0.043261"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -12,15 +12,15 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: GET
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-23T17:43:47Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_2cfd34d1261a4a9b93d56c313a9a824b","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Ryan
-      Nguyen","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
+      User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"18024e4cde702fde15dcd1444d4c7ab3"
+      - W/"4171cdd8e7fe69820858cb34e4162fe5"
       Expires:
       - "0"
       Pragma:
@@ -36,21 +36,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19be063a62966178f2d49d9f00026073
+      - 3eb5807562fbfd0be78a92e70001aff9
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - intlb2wdc 570dfcbc0a
-      - extlb1wdc 0910011e7e
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.137470"
+      - "0.261204"
       X-Version-Label:
-      - easypost-202205272233-af67cc8d0c-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -66,17 +65,17 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/users/user_2cfd34d1261a4a9b93d56c313a9a824b/brand
+    url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0/brand
     method: PATCH
   response:
-    body: '{"id":"brd_0e606e55ac73483b9ef26ba2e7dcfec5","color":"#123456","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","ad":null,"ad_href":null,"object":"Brand","user_id":"user_2cfd34d1261a4a9b93d56c313a9a824b","background_color":null,"theme":"theme1"}'
+    body: '{"id":"brd_3930aba34a0743228c75c1e71c8b0883","color":"#123456","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","ad":null,"ad_href":null,"object":"Brand","user_id":"user_a76997d126dd488f8ad22d52301300b0","background_color":null,"theme":"theme1"}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"1db759217d34f1d4558f723082035904"
+      - W/"3a6bf0943796a2bda2357663c77d41a6"
       Expires:
       - "0"
       Pragma:
@@ -92,21 +91,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19be063a62966178f2d49d9f000260b3
+      - 3eb5807562fbfd0ce78a92e70001b00f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - intlb2wdc 570dfcbc0a
-      - extlb1wdc 0910011e7e
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.026404"
+      - "0.020616"
       X-Version-Label:
-      - easypost-202205272233-af67cc8d0c-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

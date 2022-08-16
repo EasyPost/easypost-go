@@ -11,17 +11,16 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/reports/shipment
+    url: https://api.easypost.com/v2/reports/
     method: POST
   response:
-    body: '{"created_at":"2022-05-26T15:05:27Z","end_date":"2022-04-11","id":"shprep_07944ef33f3c4382844ff1ced09c18df","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-05-26T15:05:27Z","url":null,"url_expires_at":null}'
+    body: '{"error":{"code":"NOT_FOUND","message":"The requested resource could not
+      be found.","errors":[]}}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"133d1b7e59f8e063fa34286ae8e53641"
       Expires:
       - "0"
       Pragma:
@@ -32,29 +31,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9737e78b9ba7006bc33d
+      - 3eb5807562fbfcffe78a92e70001ac21
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.036020"
+      - "0.017626"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 201 Created
-    code: 201
+    status: 404 Not Found
+    code: 404
     duration: ""

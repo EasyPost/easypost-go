@@ -11,17 +11,16 @@ interactions:
       - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/reports/shipment
+    url: https://api.easypost.com/v2/reports/
     method: GET
   response:
-    body: '{"has_more":true,"reports":[{"created_at":"2022-05-25T19:37:48Z","end_date":"2022-04-11","id":"shprep_aec743e692264754b4dc3702738aab28","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-05-25T19:37:48Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220525/6fb9da3abba54bd193454d9d665d378d.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220526%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220526T150526Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=c710720226f03f21073ece1bc028e56c6997a4e757143bf943d486047a9ad5c2","url_expires_at":"2022-05-26T15:05:56Z"},{"created_at":"2022-05-25T19:37:48Z","end_date":"2022-04-11","id":"shprep_152c5a4191e24a6ab997a51fd6caa5b4","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-05-25T19:37:48Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220525/2bf0d4246d1040b4b7d07d8de9929d56.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220526%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220526T150526Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=80398e6519938bedeb6d3a7a582315e3fc0e01831ea4208db7c850a6fee43347","url_expires_at":"2022-05-26T15:05:56Z"},{"created_at":"2022-05-25T19:37:47Z","end_date":"2022-04-11","id":"shprep_a5704379a6254e05a8f38d4ed9e7963e","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-05-25T19:37:48Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220525/e98fbcaabe1b4312b510febe58293996.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220526%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220526T150526Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=b1236886f42644b3b9ba06e8e7f4a9de8f56fa5b22cb18ba11cb6f76d1b0caa7","url_expires_at":"2022-05-26T15:05:56Z"},{"created_at":"2022-05-25T19:37:47Z","end_date":"2022-04-11","id":"shprep_43f11f1b2d7f48118eddafafa9039d57","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-05-25T19:37:48Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220525/17294cb0c8914500808a3289ad294e9e.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220526%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220526T150526Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=b83a04428cc73c3f575e5d8301356f11dbe21f7967de24a18a2dec2ae37861ff","url_expires_at":"2022-05-26T15:05:56Z"},{"created_at":"2022-05-25T18:03:17Z","end_date":"2022-04-11","id":"shprep_b7420b7180014acea2b00f92bcd3d853","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-05-25T18:03:17Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220525/c15123941a0749aa945d5c060890ac29.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220526%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220526T150526Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=4283783b681d770d51f2780731e7973936c93a09f2fac3997815e98d7554b7e9","url_expires_at":"2022-05-26T15:05:56Z"}]}'
+    body: '{"error":{"code":"NOT_FOUND","message":"The requested resource could not
+      be found.","errors":[]}}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"5212753ad0326477070d20f6ca9b2fa7"
       Expires:
       - "0"
       Pragma:
@@ -37,22 +36,22 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9736e78b9ba7006bc326
+      - 3eb5807562fbfcffe78a92e70001ac17
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.037532"
+      - "0.018040"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 200 OK
-    code: 200
+    status: 404 Not Found
+    code: 404
     duration: ""

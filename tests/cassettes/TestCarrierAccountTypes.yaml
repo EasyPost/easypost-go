@@ -48,7 +48,13 @@ interactions:
       API Key","visibility":"masked"},"contract_id":{"label":"CanadaPost Contract
       ID (contract customers only)","visibility":"visible"},"customer_number":{"label":"CanadaPost
       Customer Number","visibility":"visible"},"has_credit_card":{"label":"CanadaPost
-      account has credit card?","visibility":"checkbox"}},"custom_workflow":true},"logo":null,"object":"CarrierType","readable":"Canada
+      account has credit card?","visibility":"checkbox"},"not_platform":{"label":"CanadaPost
+      account not registered through platform?","visibility":"invisible"}},"custom_workflow":true,"test_credentials":{"api_key":{"label":"CanadaPost
+      Test API Key","visibility":"masked"},"contract_id":{"label":"CanadaPost Test
+      Contract ID (contract customers only)","visibility":"visible"},"customer_number":{"label":"CanadaPost
+      Test Customer Number","visibility":"visible"},"has_credit_card":{"label":"CanadaPost
+      Test account has credit card?","visibility":"checkbox"},"not_platform":{"label":"CanadaPost
+      Test account not registered through platform?","visibility":"invisible"}}},"logo":null,"object":"CarrierType","readable":"Canada
       Post","type":"CanadaPostAccount"},{"fields":{"credentials":{"account_number":{"label":"Canpar
       Account Number","visibility":"visible"},"password":{"label":"Canpar Password","visibility":"password"},"username":{"label":"Canpar
       Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"Test
@@ -303,11 +309,11 @@ interactions:
       Test API Key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"Veho","type":"VehoAccount"}]'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"c7ee5fa37a38af5baf810b18aeb363f9"
+      - W/"f9f7c974c65e710285fe3c38fe492e01"
       Expires:
       - "0"
       Pragma:
@@ -323,20 +329,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9722e78b9ba7006bb800
+      - 3eb5807562fbfcf9e78a92e70001a9aa
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.102742"
+      - "0.025980"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

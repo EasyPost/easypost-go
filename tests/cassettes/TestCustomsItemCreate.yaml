@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"customs_item":{"description":"Sweet shirts","quantity":2,"value":"23","weight":11,"hs_tariff_number":"654321","origin_country":"US"}}'
+    body: '{"customs_item":{"description":"Sweet shirts","quantity":2,"weight":11,"hs_tariff_number":"654321","origin_country":"US"}}'
     form: {}
     headers:
       Authorization:
@@ -14,19 +14,19 @@ interactions:
     url: https://api.easypost.com/v2/customs_items
     method: POST
   response:
-    body: '{"id":"cstitem_3d5c73450512444ea6520c7c4c984cd5","object":"CustomsItem","created_at":"2022-05-26T15:05:07Z","updated_at":"2022-05-26T15:05:07Z","description":"Sweet
-      shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.0","weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
+    body: '{"id":"cstitem_1fb52c1b40b340f88e4667ea9a420d14","object":"CustomsItem","created_at":"2022-08-16T20:24:25Z","updated_at":"2022-08-16T20:24:25Z","description":"Sweet
+      shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":null,"weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"0d7ffa90eb0c206ce04b3488faeca8cc"
+      - W/"8e5f4ce5fcddd625928dd22852b2382b"
       Expires:
       - "0"
       Location:
-      - /api/v2/customs_items/cstitem_3d5c73450512444ea6520c7c4c984cd5
+      - /api/v2/customs_items/cstitem_1fb52c1b40b340f88e4667ea9a420d14
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -40,7 +40,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9723e78b9ba7006bb8b7
+      - 3eb5807562fbfcf9e78a92e70001a9d3
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -48,12 +48,12 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.024463"
+      - "0.024104"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

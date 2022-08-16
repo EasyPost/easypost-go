@@ -14,15 +14,15 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: POST
   response:
-    body: '{"api_keys":[],"children":[],"created_at":"2022-05-26T15:05:45Z","id":"user_3ddfec9e5d4e45b6b558230685f12b64","name":"Test
+    body: '{"api_keys":[],"children":[],"created_at":"2022-08-16T20:24:40Z","id":"user_5542684885074881acbac49b4ec74377","name":"Test
       User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"6e7bc9eb8c58aaf658e28f30aaaceeb3"
+      - W/"34d06a37f437c65f129735cf658ccc71"
       Expires:
       - "0"
       Pragma:
@@ -33,27 +33,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9749e78b9ba7006bcc58
+      - 3eb5807562fbfd08e78a92e70001af18
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.616679"
+      - "0.780230"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -67,13 +65,13 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/users/user_3ddfec9e5d4e45b6b558230685f12b64
+    url: https://api.easypost.com/v2/users/user_5542684885074881acbac49b4ec74377
     method: DELETE
   response:
     body: ""
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Expires:
       - "0"
       Pragma:
@@ -89,20 +87,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f974ae78b9ba7006bcccc
+      - 3eb5807562fbfd09e78a92e70001af52
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.142616"
+      - "0.127856"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 204 No Content

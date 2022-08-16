@@ -2,10 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"batch":{"shipments":[{"to_address":{"street1":"388 Townsend St","street2":"Apt
-      20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"},"from_address":{"street1":"388
-      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack
-      Sparrow","company":"EasyPost","phone":"5555555555"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4}}]}}'
+    body: '{"batch":{"shipments":[null]}}'
     form: {}
     headers:
       Authorization:
@@ -17,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"id":"batch_ae3543bc3cd34da8a035c44fcb5a2488","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-06-14T19:29:18Z","updated_at":"2022-06-14T19:29:18Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"id":"batch_5a471b58218842e3a7dade0a4328dd1c","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"fb87523b1ac97ca455a2d483e0361cc9"
+      - W/"1409b4d7201021658f43295463bb9f9a"
       Expires:
       - "0"
       Pragma:
@@ -40,20 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 51cd47ee62a8e18ee786afb800464298
+      - 3eb5807562fbfcece78a92e70001a610
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 0910011e7e
-      - extlb2nuq 0910011e7e
+      - intlb1nuq 6aa9972c1e
+      - extlb1nuq 9ce216bfac
       X-Runtime:
-      - "0.051187"
+      - "0.030615"
       X-Version-Label:
-      - easypost-202206132308-7d97d52c17-master
+      - easypost-202208152354-15cac62d1c-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
