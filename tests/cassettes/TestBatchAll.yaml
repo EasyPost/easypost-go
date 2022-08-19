@@ -14,14 +14,16 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: GET
   response:
-    body: '{"batches":[{"id":"batch_2dffde0589804fbe87169c522fe89c7e","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-08-16T20:24:11Z","updated_at":"2022-08-16T20:24:11Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}],"has_more":false}'
+    body: '{"batches":[{"id":"batch_2dffde0589804fbe87169c522fe89c7e","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-08-16T20:24:11Z","updated_at":"2022-08-16T20:24:11Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null},{"id":"batch_435adfe37d784ff79c5eb810c94f58fc","object":"Batch","mode":"test","state":"purchase_failed","num_shipments":1,"reference":null,"created_at":"2022-08-16T20:24:11Z","updated_at":"2022-08-16T20:24:11Z","scan_form":null,"shipments":[{"batch_status":"postage_purchase_failed","batch_message":"A
+      carrier and service must be provided to purchase through a Batch.","reference":null,"tracking_code":null,"id":"shp_5cff2c499ace470baf25b5642a307772"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":1},"pickup":null,"label_url":null},{"id":"batch_5a471b58218842e3a7dade0a4328dd1c","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null},{"id":"batch_9feab5db1d2d4e698c63c6b9cad41be4","object":"Batch","mode":"test","state":"purchase_failed","num_shipments":2,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[{"batch_status":"postage_purchase_failed","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_d52c892f8edb404993aaddc082d4bd29"},{"batch_status":"postage_purchase_failed","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_38b06d9d12c542658e74d620a2ebc415"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":2},"pickup":null,"label_url":null},{"id":"batch_12a549db561141d1be99309a2a55aa39","object":"Batch","mode":"test","state":"purchase_failed","num_shipments":1,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[{"batch_status":"postage_purchase_failed","batch_message":"A
+      carrier and service must be provided to purchase through a Batch.","reference":null,"tracking_code":null,"id":"shp_1bfb182e845845a4b782db18c99e3c40"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":1},"pickup":null,"label_url":null}],"has_more":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"7ec597e5f527dbc24ade3582212123e3"
+      - W/"4a2a2447da20581294aaa7742550bb97"
       Expires:
       - "0"
       Pragma:
@@ -37,7 +39,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfcebe78a92e70001a5fb
+      - 2196158562ffccb1ff246ba100700a0b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -45,12 +47,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.042170"
+      - "0.074979"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

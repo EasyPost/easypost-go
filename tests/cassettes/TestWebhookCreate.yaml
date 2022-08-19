@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"webhook":{}}'
+    body: '{"webhook":{"url":"http://example.com"}}'
     form: {}
     headers:
       Authorization:
@@ -14,13 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"error":{"code":"PARAMETER.REQUIRED","message":"Missing required parameter.","errors":[{"field":"webhook","message":"cannot
-      be blank"}]}}'
+    body: '{"id":"hook_2de9fbb01fe711ed92a2397eb46ad48a","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-08-19T17:48:49Z","disabled_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
+      Etag:
+      - W/"fa018d10eef72640248e81d6c60eb627"
       Expires:
       - "0"
       Pragma:
@@ -36,7 +37,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfd0ce78a92e70001b01c
+      - 2196158562ffcd00ff246ba100702c7e
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -44,14 +45,71 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.034437"
+      - "0.177221"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 422 Unprocessable Entity
-    code: 422
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/webhooks/hook_2de9fbb01fe711ed92a2397eb46ad48a
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"44136fa355b3678a1146ad16f7e8649e"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 2196158562ffcd00ff246ba100702c9a
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb7nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
+      X-Runtime:
+      - "0.477725"
+      X-Version-Label:
+      - easypost-202208182050-2b41e8e3e0-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
     duration: ""

@@ -16,20 +16,20 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-08-16T20:24:09+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_627e54441da111ed9a27ac1f6bc7b362","mode":"test","name":"JACK
+    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:47:24+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_fb8de7f31fe611ed9815ac1f6b0a0d1e","mode":"test","name":"JACK
       SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-08-16T20:24:09+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-08-19T17:47:24+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"7e3e3f49dd91a57bfdc7ca7319095784"
+      - W/"b18886f61aaeee07c9ca4181fe267bb8"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_627e54441da111ed9a27ac1f6bc7b362
+      - /api/v2/addresses/adr_fb8de7f31fe611ed9815ac1f6b0a0d1e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -43,20 +43,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfce9e78a92e70001a55c
+      - 2196158562ffccacff246ba10070079f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.043173"
+      - "0.045934"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

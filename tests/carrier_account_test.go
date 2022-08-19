@@ -24,7 +24,7 @@ func (c *ClientTests) TestCarrierAccountCreate() {
 
 	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(carrierAccount))
 	assert.True(strings.HasPrefix(carrierAccount.ID, "ca_"))
-	assert.Equal("UpsAccount", carrierAccount.Type)
+	assert.Equal("DhlEcsAccount", carrierAccount.Type)
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
 	require.NoError(err)

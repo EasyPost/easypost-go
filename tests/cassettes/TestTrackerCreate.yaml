@@ -14,20 +14,20 @@ interactions:
     url: https://api.easypost.com/v2/trackers
     method: POST
   response:
-    body: '{"id":"trk_bb14670c7e7e4d5e8ca1b755368c6478","object":"Tracker","mode":"test","tracking_code":"EZ1000000001","status":"pre_transit","status_detail":"unknown","created_at":"2022-08-16T20:24:39Z","updated_at":"2022-08-16T20:24:39Z","signed_by":null,"weight":17.6,"est_delivery_date":"2022-08-16T20:24:39Z","shipment_id":null,"carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
-      information received","description":null,"status":"pre_transit","status_detail":null,"datetime":"2022-07-16T20:24:39Z","source":"EasyPost","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
-      label created","description":null,"status":"pre_transit","status_detail":null,"datetime":"2022-07-17T15:13:39Z","source":"EasyPost","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}}],"carrier_detail":null,"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrX2JiMTQ2NzBjN2U3ZTRkNWU4Y2ExYjc1NTM2OGM2NDc4","fees":[{"object":"Fee","type":"TrackerFee","amount":"0.02000","charged":false,"refunded":false}]}'
+    body: '{"id":"trk_67b1f4e7d5c84796ada2945a8fcea9be","object":"Tracker","mode":"test","tracking_code":"EZ1000000001","status":"pre_transit","status_detail":"unknown","created_at":"2022-08-19T17:48:41Z","updated_at":"2022-08-19T17:48:41Z","signed_by":null,"weight":17.6,"est_delivery_date":"2022-08-19T17:48:41Z","shipment_id":null,"carrier":"USPS","tracking_details":[{"object":"TrackingDetail","message":"Pre-Shipment
+      information received","description":null,"status":"pre_transit","status_detail":null,"datetime":"2022-07-19T17:48:41Z","source":"EasyPost","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}},{"object":"TrackingDetail","message":"Shipping
+      label created","description":null,"status":"pre_transit","status_detail":null,"datetime":"2022-07-20T12:37:41Z","source":"EasyPost","carrier_code":null,"tracking_location":{"object":"TrackingLocation","city":null,"state":null,"country":null,"zip":null}}],"carrier_detail":null,"finalized":true,"is_return":false,"public_url":"https://track.easypost.com/djE6dHJrXzY3YjFmNGU3ZDVjODQ3OTZhZGEyOTQ1YThmY2VhOWJl","fees":[{"object":"Fee","type":"TrackerFee","amount":"0.02000","charged":false,"refunded":false}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"2ed4ef6d3b043a912522975ba75f7c26"
+      - W/"6ce02cb14940991c7567c74dc9e819ae"
       Expires:
       - "0"
       Location:
-      - /api/v2/trackers/trk_bb14670c7e7e4d5e8ca1b755368c6478
+      - /api/v2/trackers/trk_67b1f4e7d5c84796ada2945a8fcea9be
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -41,7 +41,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfd06e78a92e70001ae96
+      - 2196158562ffccf9ff246ba100702a9d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -49,12 +49,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.103522"
+      - "0.105602"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

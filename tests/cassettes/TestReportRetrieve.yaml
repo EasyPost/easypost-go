@@ -11,16 +11,17 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/reports/
+    url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"error":{"code":"NOT_FOUND","message":"The requested resource could not
-      be found.","errors":[]}}'
+    body: '{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_f3f348e2615e4b8d88a081b1f5479e5c","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-08-19T17:48:12Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
+      Etag:
+      - W/"4abc4adc3e8683c284ca002322b413f4"
       Expires:
       - "0"
       Pragma:
@@ -36,22 +37,77 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfcffe78a92e70001ac54
+      - 2196158562ffccdcff246ba100701dc3
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
+      X-Runtime:
+      - "0.036482"
+      X-Version-Label:
+      - easypost-202208182050-2b41e8e3e0-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/reports/shipment/shprep_f3f348e2615e4b8d88a081b1f5479e5c
+    method: GET
+  response:
+    body: '{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_f3f348e2615e4b8d88a081b1f5479e5c","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-08-19T17:48:12Z","url":null,"url_expires_at":null}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"4abc4adc3e8683c284ca002322b413f4"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 2196158562ffccdcff246ba100701deb
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.015887"
+      - "0.029589"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 404 Not Found
-    code: 404
+    status: 200 OK
+    code: 200
     duration: ""

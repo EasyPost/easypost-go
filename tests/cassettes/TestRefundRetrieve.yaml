@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/refunds
     method: GET
   response:
-    body: '{"refunds":[],"has_more":false}'
+    body: '{"refunds":[{"id":"rfnd_5b5b9dc4eeee4f2ab224919d9259c775","object":"Refund","created_at":"2022-08-19T17:48:10Z","updated_at":"2022-08-19T17:48:10Z","tracking_code":"9400100109361133883950","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_1ab35a6b832e4cda885ec5804ebf1697"}],"has_more":false}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b7f27d1ea29478c50d2e1a7ab8bcb58a"
+      - W/"e9ece2cdb4f95eac7717cfce410087fd"
       Expires:
       - "0"
       Pragma:
@@ -37,7 +37,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfcffe78a92e70001ac07
+      - 2196158562ffccdaff246ba100701d19
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -46,11 +46,66 @@ interactions:
       - none
       X-Proxied:
       - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.027869"
+      - "0.050481"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/refunds/rfnd_5b5b9dc4eeee4f2ab224919d9259c775
+    method: GET
+  response:
+    body: '{"id":"rfnd_5b5b9dc4eeee4f2ab224919d9259c775","object":"Refund","created_at":"2022-08-19T17:48:10Z","updated_at":"2022-08-19T17:48:10Z","tracking_code":"9400100109361133883950","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_1ab35a6b832e4cda885ec5804ebf1697"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"7169277af5015c81694346da62a9db3f"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 2196158562ffccdbff246ba100701d3d
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
+      X-Runtime:
+      - "0.042565"
+      X-Version-Label:
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -14,14 +14,19 @@ interactions:
     url: https://api.easypost.com/v2/scan_forms
     method: GET
   response:
-    body: '{"scan_forms":[],"has_more":false}'
+    body: '{"has_more":false,"scan_forms":[{"address":null,"batch_id":"batch_6be2fe1344e54c138bb3b76998651596","confirmation":null,"created_at":"2022-08-16T20:24:32Z","form_file_type":null,"form_url":null,"id":"sf_5258ae2b14804925868b1720eb8efa37","message":"Unable
+      to create a ScanForm from shipments bought from this carrier.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-08-16T20:24:32Z"},{"address":null,"batch_id":"batch_a989658b70e54a89b3a68f34ba171b95","confirmation":null,"created_at":"2022-08-16T20:24:32Z","form_file_type":null,"form_url":null,"id":"sf_407587897e3e466dbe1358869f63f186","message":"Unable
+      to create a ScanForm from shipments bought from this carrier.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-08-16T20:24:33Z"},{"address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2022-08-19T17:47:30+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_ff87cc2e1fe611ed9d47ac1f6bc72124","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2022-08-19T17:47:30+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_13cc297d60e7438db6ac3c129e58ca7f","confirmation":null,"created_at":"2022-08-19T17:47:36Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20220819/ede0c42bd545438582d9e2df22457c38.pdf","id":"sf_19a9f92a2a0e46da8316132399b4a4b2","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100109361133883592"],"updated_at":"2022-08-19T17:47:36Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e5b421a2eb037ffc0fc3c953e8894b9d"
+      - W/"87ef0c404ae9bab811c13eb3c1d04e39"
       Expires:
       - "0"
       Pragma:
@@ -37,20 +42,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfcffe78a92e70001ac5f
+      - 2196158562ffccdcff246ba100701df7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb1nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.027900"
+      - "0.035514"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

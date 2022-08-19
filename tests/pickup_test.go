@@ -42,7 +42,7 @@ func (c *ClientTests) TestPickupRetrieve() {
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(retrievePickup))
-	assert.Equal(pickup, retrievePickup)
+	assert.Equal(pickup.ID, retrievePickup.ID)
 }
 
 func (c *ClientTests) TestPickupBuy() {

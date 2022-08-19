@@ -30,11 +30,28 @@ type Fixture struct {
 	WebhookURL      string                              `json:"webhook_url,omitempty"`
 }
 
+// Replace the min_datetime and max_datetime to RFC3339 format
+func replaceJsonFileDate(jsonFile string) error {
+	byteValue, _ := ioutil.ReadFile(jsonFile)
+
+	var result map[string]interface{}
+	_ = json.Unmarshal(byteValue, &result)
+
+	result["pickups"].(map[string]interface{})["basic"].(map[string]interface{})["min_datetime"] = "2022-08-01T00:00:00.00Z"
+	result["pickups"].(map[string]interface{})["basic"].(map[string]interface{})["max_datetime"] = "2022-08-02T00:00:00.00Z"
+
+	byteValue, _ = json.Marshal(result)
+
+	return ioutil.WriteFile(jsonFile, byteValue, 0644)
+}
+
 // Reads fixture data from the fixtures JSON file
 func readFixtureData() Fixture {
 	currentDir, _ := os.Getwd()
 	parentDir := filepath.Dir(currentDir)
-	data, err := os.Open(fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/client-library-fixtures.json"))
+	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/client-library-fixtures.json")
+	_ = replaceJsonFileDate(filePath)
+	data, err := os.Open(filePath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error opening fixture file:", err)
 		os.Exit(1)
@@ -44,8 +61,8 @@ func readFixtureData() Fixture {
 
 	byteData, _ := ioutil.ReadAll(data)
 
-	var fixtures = Fixture{}
-	json.Unmarshal([]byte(byteData), &fixtures)
+	var fixtures Fixture
+	_ = json.Unmarshal([]byte(byteData), &fixtures)
 
 	return fixtures
 }
@@ -88,6 +105,8 @@ func (fixture *Fixture) ReportDate() string {
 }
 
 func (fixture *Fixture) WebhookUrl() string {
+	fixtureData := readFixtureData()
+	fmt.Println(fixtureData)
 	return readFixtureData().WebhookURL
 }
 
@@ -142,7 +161,7 @@ func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 // If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
 // USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 func (fixture *Fixture) BasicPickup() *easypost.Pickup {
-	pickupDate := time.Date(2022, time.August, 18, 0, 0, 0, 0, time.UTC)
+	pickupDate := time.Date(2022, time.August, 22, 0, 0, 0, 0, time.UTC)
 
 	pickupData := readFixtureData().Pickups["basic"]
 	pickupData.MinDatetime = &pickupDate

@@ -15,8 +15,8 @@ interactions:
     url: https://api.easypost.com/v2/addresses/create_and_verify
     method: POST
   response:
-    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-08-16T20:24:09+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_6259d34e1da111ed94d7ac1f6bc72124","mode":"test","name":null,"object":"Address","phone":"5555555555","residential":false,"state":"CA","state_tax_id":null,"street1":"417
-      MONTGOMERY ST FL 5","street2":"","updated_at":"2022-08-16T20:24:09+00:00","verifications":{"delivery":{"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"},"errors":[{"code":"E.SECONDARY_INFORMATION.INVALID","field":"street2","message":"Invalid
+    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-08-19T17:47:23+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_fb11cfe01fe611edaf5aac1f6bc7b362","mode":"test","name":null,"object":"Address","phone":"5555555555","residential":false,"state":"CA","state_tax_id":null,"street1":"417
+      MONTGOMERY ST FL 5","street2":"","updated_at":"2022-08-19T17:47:23+00:00","verifications":{"delivery":{"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"},"errors":[{"code":"E.SECONDARY_INFORMATION.INVALID","field":"street2","message":"Invalid
       secondary information(Apt/Suite#)","suggestion":null}],"success":true}},"zip":"94104-1129"}}'
     headers:
       Cache-Control:
@@ -24,11 +24,11 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"00ff01267247b8b110c75096fac304d9"
+      - W/"12a5e135df1b010153e6d97e478a5a30"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_6259d34e1da111ed94d7ac1f6bc72124
+      - /api/v2/addresses/adr_fb11cfe01fe611edaf5aac1f6bc7b362
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -42,20 +42,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 3eb5807562fbfce9e78a92e70001a54a
+      - 2196158562ffccabff246ba10070074b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.046166"
+      - "0.048570"
       X-Version-Label:
-      - easypost-202208152354-15cac62d1c-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

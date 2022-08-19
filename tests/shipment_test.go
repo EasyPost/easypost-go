@@ -234,7 +234,7 @@ func (c *ClientTests) TestShipmentInstanceLowestSmartRate() {
 
 	// Test lowest smartrate with valid filters
 	assert.Equal("First", smartrate.Service)
-	assert.Equal(5.49, smartrate.Rate)
+	assert.Equal(5.57, smartrate.Rate)
 	assert.Equal("USPS", smartrate.Carrier)
 
 	// Test lowest smartrate with invalid filters (should error due to strict delivery days)
@@ -257,14 +257,14 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	lowestRate, err := client.LowestShipmentRate(shipment)
 	require.NoError(err)
 	assert.Equal("First", lowestRate.Service)
-	assert.Equal("5.49", lowestRate.Rate)
+	assert.Equal("5.57", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
 	lowestRate, err = client.LowestShipmentRateWithCarrierAndService(shipment, nil, []string{"Priority"})
 	require.NoError(err)
 	assert.Equal("Priority", lowestRate.Service)
-	assert.Equal("7.37", lowestRate.Rate)
+	assert.Equal("7.90", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with carrier filter (should error due to bad carrier)
