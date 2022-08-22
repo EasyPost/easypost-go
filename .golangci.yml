@@ -1,5 +1,0 @@
-issues:
-  exclude-rules:
-    - path: examples/
-      linters:
-        - gosec
