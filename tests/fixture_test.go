@@ -31,27 +31,12 @@ type Fixture struct {
 	WebhookURL      string                              `json:"webhook_url,omitempty"`
 }
 
-// Replace the min_datetime and max_datetime to RFC3339 format
-func replaceJsonFileDate(jsonFile string) {
-	byteValue, _ := ioutil.ReadFile(jsonFile)
-
-	var result map[string]interface{}
-	json.Unmarshal(byteValue, &result)
-
-	result["pickups"].(map[string]interface{})["basic"].(map[string]interface{})["min_datetime"] = "2022-08-01T00:00:00.00Z"
-	result["pickups"].(map[string]interface{})["basic"].(map[string]interface{})["max_datetime"] = "2022-08-02T00:00:00.00Z"
-
-	byteValue, _ = json.Marshal(result)
-
-	ioutil.WriteFile(jsonFile, byteValue, 0644)
-}
-
 // Reads fixture data from the fixtures JSON file
 func readFixtureData() Fixture {
 	currentDir, _ := os.Getwd()
 	parentDir := filepath.Dir(currentDir)
 	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/client-library-fixtures.json")
-	replaceJsonFileDate(filePath)
+
 	data, err := os.Open(filePath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error opening fixture file:", err)
