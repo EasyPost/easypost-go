@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/refunds
     method: GET
   response:
-    body: '{"refunds":[{"id":"rfnd_ed74be879d1c4ff3a9d90539f68af4c5","object":"Refund","created_at":"2022-05-25T19:38:02Z","updated_at":"2022-05-25T19:38:02Z","tracking_code":"9400100109361120757882","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_637c0252e4d749708ff79cd293f45e9a"},{"id":"rfnd_7307f989d43d48abbe6fa4428b4bd001","object":"Refund","created_at":"2022-05-25T19:37:46Z","updated_at":"2022-05-25T19:37:46Z","tracking_code":"9400100109361120757394","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_31063c16e0ec428d80a41bec77f7815e"},{"id":"rfnd_e7796afd38d248a88f1443915c6a21c0","object":"Refund","created_at":"2022-05-25T18:03:32Z","updated_at":"2022-05-25T18:03:32Z","tracking_code":"9400100109361120747531","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_51d8199d7b5a4b3ba20c2c82b2d214de"},{"id":"rfnd_5f5baefd6aa347b780283b2f0f53ada3","object":"Refund","created_at":"2022-05-25T18:03:16Z","updated_at":"2022-05-25T18:03:16Z","tracking_code":"9400100109361120747463","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_3cfdd542e9584a098c6d3567d83e41c3"},{"id":"rfnd_e988af853ed84e5f80ea4da8f3c54eb7","object":"Refund","created_at":"2022-05-24T22:28:52Z","updated_at":"2022-05-25T22:29:56Z","tracking_code":"9400100109361120636828","confirmation_number":null,"status":"rejected","carrier":"USPS","shipment_id":"shp_8e9c4a56f80c45a7b8c1ad1e76308b0f"}],"has_more":true}'
+    body: '{"refunds":[],"has_more":false}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"26c166d1301358aaf88d426d7acac314"
+      - W/"b7f27d1ea29478c50d2e1a7ab8bcb58a"
       Expires:
       - "0"
       Pragma:
@@ -37,20 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f9734e78b9ba7006bc184
+      - 2196158562ffccd8ff246ba100701c24
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.076991"
+      - "0.032141"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

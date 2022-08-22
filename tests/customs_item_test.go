@@ -16,7 +16,7 @@ func (c *ClientTests) TestCustomsItemCreate() {
 
 	assert.Equal(reflect.TypeOf(&easypost.CustomsItem{}), reflect.TypeOf(customsItem))
 	assert.True(strings.HasPrefix(customsItem.ID, "cstitem_"))
-	assert.Equal(23.0, customsItem.Value)
+	assert.Equal(23.25, customsItem.Value)
 }
 
 func (c *ClientTests) TestCustomsItemRetrieve() {

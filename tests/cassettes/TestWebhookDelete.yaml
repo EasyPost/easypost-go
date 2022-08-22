@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"id":"hook_a287d60ef70611ecbb3a2b68eb595361","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-06-28T17:20:41Z","disabled_at":null}'
+    body: '{"id":"hook_2f5d6de21fe711ed9c5b191ee0f64f8b","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-08-19T17:48:51Z","disabled_at":null}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"5e91e3034c147626cfe52b0eb1571392"
+      - W/"6e269ab3615fd09ad68aa75909d0a3f7"
       Expires:
       - "0"
       Pragma:
@@ -37,20 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 1e90ffad62bb3868ec860bbf0031375d
+      - 2196158562ffcd02ff246ba100702d1f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq a732742a48
-      - extlb1nuq 403f17ff97
+      - intlb2nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.106082"
+      - "0.147586"
       X-Version-Label:
-      - easypost-202206272314-c14e8f7f31-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -64,13 +65,13 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_a287d60ef70611ecbb3a2b68eb595361
+    url: https://api.easypost.com/v2/webhooks/hook_2f5d6de21fe711ed9c5b191ee0f64f8b
     method: DELETE
   response:
     body: '{}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
@@ -90,20 +91,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 1e90ffad62bb3869ec860bbf0031376e
+      - 2196158562ffcd03ff246ba100702d3c
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq a732742a48
-      - extlb1nuq 403f17ff97
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.264819"
+      - "0.417218"
       X-Version-Label:
-      - easypost-202206272314-c14e8f7f31-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

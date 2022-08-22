@@ -12,15 +12,15 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: GET
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":null,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"EasyPost
-      Go Client Tests","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
+      User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"43b5e99ec4f7546926629af34b4932df"
+      - W/"2df8181df5821fe33fe629675ab709b0"
       Expires:
       - "0"
       Pragma:
@@ -36,20 +36,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f974be78b9ba7006bccf2
+      - 2196158562ffccfcff246ba100702b7b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.264408"
+      - "0.370450"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -66,15 +67,15 @@ interactions:
     url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0
     method: GET
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":null,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"EasyPost
-      Go Client Tests","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
+      User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"43b5e99ec4f7546926629af34b4932df"
+      - W/"2df8181df5821fe33fe629675ab709b0"
       Expires:
       - "0"
       Pragma:
@@ -90,20 +91,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f974be78b9ba7006bcd27
+      - 2196158562ffccfdff246ba100702b9d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.394311"
+      - "0.367627"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

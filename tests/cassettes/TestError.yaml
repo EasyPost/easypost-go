@@ -14,12 +14,11 @@ interactions:
     url: https://api.easypost.com/v2/shipments
     method: POST
   response:
-    body: '{"error":{"code":"SHIPMENT.INVALID_PARAMS","message":"Unable to create
-      shipment, one or more parameters were invalid.","errors":[{"to_address":"Required
-      and missing."},{"from_address":"Required and missing."}]}}'
+    body: '{"error":{"code":"PARAMETER.REQUIRED","message":"Missing required parameter.","errors":[{"field":"shipment","message":"cannot
+      be blank"}]}}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Expires:
@@ -37,20 +36,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 0cdd6ee962c49f8defb3f9ef000c8f61
+      - 2196158562ffccc2ff246ba100701157
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 403f17ff97
-      - extlb2nuq 403f17ff97
+      - intlb2nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.024513"
+      - "0.035851"
       X-Version-Label:
-      - easypost-202207051744-6385ac2987-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 422 Unprocessable Entity

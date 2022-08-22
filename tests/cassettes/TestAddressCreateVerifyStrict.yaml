@@ -3,7 +3,8 @@ version: 1
 interactions:
 - request:
     body: '{"verify_strict":["true"],"address":{"street1":"388 Townsend St","street2":"Apt
-      20","city":"San Francisco","state":"CA","zip":"94107","name":"Jack Sparrow","company":"EasyPost","phone":"5555555555"}}'
+      20","city":"San Francisco","state":"CA","zip":"94107","country":"US","name":"Jack
+      Sparrow","phone":"5555555555","email":"test@example.com"}}'
     form: {}
     headers:
       Authorization:
@@ -15,20 +16,20 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-05-26T15:04:47+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_2f34896cdd0511ecb892ac1f6bc7bdc6","mode":"test","name":"JACK
+    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:47:24+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_fb8de7f31fe611ed9815ac1f6b0a0d1e","mode":"test","name":"JACK
       SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-05-26T15:04:47+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-08-19T17:47:24+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"ad138913b475fae2f371528174ac7fd8"
+      - W/"b18886f61aaeee07c9ca4181fe267bb8"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_2f34896cdd0511ecb892ac1f6bc7bdc6
+      - /api/v2/addresses/adr_fb8de7f31fe611ed9815ac1f6b0a0d1e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -42,20 +43,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f970fe78b9ba7006bafb3
+      - 2196158562ffccacff246ba10070079f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.050308"
+      - "0.045934"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

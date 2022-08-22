@@ -21,6 +21,8 @@ coverage:
 
 ## install - Install and vendor dependencies
 install:
+	git submodule init
+	git submodule update
 	go mod vendor
 	go build -o $(PROJECT_PATH)
 

@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"id":"hook_a36a6410f70611ec963819d87a8c2384","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-06-28T17:20:43Z","disabled_at":null}'
+    body: '{"id":"hook_30b5ae2a1fe711edaec9358c3ac5d4cb","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-08-19T17:48:53Z","disabled_at":null}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"2142675ec0280d4efbb04e04f84ab2e6"
+      - W/"2eed0284b31e9deb65f30e451d07bfaa"
       Expires:
       - "0"
       Pragma:
@@ -32,25 +32,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 1e90ffad62bb386aec860bbf003137be
+      - 2196158562ffcd05ff246ba100702da1
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq a732742a48
-      - extlb1nuq 403f17ff97
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.150995"
+      - "0.164990"
       X-Version-Label:
-      - easypost-202206272314-c14e8f7f31-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -66,17 +69,17 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_a36a6410f70611ec963819d87a8c2384
+    url: https://api.easypost.com/v2/webhooks/hook_30b5ae2a1fe711edaec9358c3ac5d4cb
     method: PATCH
   response:
-    body: '{"id":"hook_a36a6410f70611ec963819d87a8c2384","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-06-28T17:20:43Z","disabled_at":null}'
+    body: '{"id":"hook_30b5ae2a1fe711edaec9358c3ac5d4cb","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-08-19T17:48:53Z","disabled_at":null}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"2142675ec0280d4efbb04e04f84ab2e6"
+      - W/"2eed0284b31e9deb65f30e451d07bfaa"
       Expires:
       - "0"
       Pragma:
@@ -92,20 +95,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 1e90ffad62bb386aec860bbf003137ce
+      - 2196158562ffcd05ff246ba100702dbd
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq a732742a48
-      - extlb1nuq 403f17ff97
+      - intlb2nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.455305"
+      - "0.524521"
       X-Version-Label:
-      - easypost-202206272314-c14e8f7f31-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -119,13 +123,13 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_a36a6410f70611ec963819d87a8c2384
+    url: https://api.easypost.com/v2/webhooks/hook_30b5ae2a1fe711edaec9358c3ac5d4cb
     method: DELETE
   response:
     body: '{}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
@@ -145,20 +149,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 1e90ffad62bb386bec860bbf003137ee
+      - 2196158562ffcd06ff246ba100702de8
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq a732742a48
-      - extlb1nuq 403f17ff97
+      - intlb1nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.371396"
+      - "0.342731"
       X-Version-Label:
-      - easypost-202206272314-c14e8f7f31-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

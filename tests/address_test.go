@@ -12,7 +12,7 @@ func (c *ClientTests) TestAddressCreate() {
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
-		c.fixture.BasicAddress(),
+		c.fixture.CaAddress1(),
 		nil,
 	)
 	require.NoError(err)
@@ -27,7 +27,7 @@ func (c *ClientTests) TestAddressCreateVerifyStrict() {
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
-		c.fixture.BasicAddress(),
+		c.fixture.CaAddress1(),
 		&easypost.CreateAddressOptions{
 			VerifyStrict: []string{"true"},
 		},
@@ -44,7 +44,7 @@ func (c *ClientTests) TestAddressRetrieve() {
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
-		c.fixture.BasicAddress(),
+		c.fixture.CaAddress1(),
 		nil,
 	)
 	require.NoError(err)
@@ -80,7 +80,7 @@ func (c *ClientTests) TestAddressCreateVerify() {
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
-		c.fixture.IncorrectAddressToVerify(),
+		c.fixture.IncorrectAddress(),
 		&easypost.CreateAddressOptions{
 			Verify: []string{"delivery"},
 		},
@@ -97,7 +97,7 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAndVerifyAddress(
-		c.fixture.IncorrectAddressToVerify(),
+		c.fixture.IncorrectAddress(),
 		&easypost.CreateAddressOptions{
 			Verify: []string{"delivery"},
 		},
@@ -114,7 +114,7 @@ func (c *ClientTests) TestAddressVerify() {
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
-		c.fixture.BasicAddress(),
+		c.fixture.CaAddress1(),
 		nil,
 	)
 	require.NoError(err)

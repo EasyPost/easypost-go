@@ -20,7 +20,7 @@ interactions:
       (Optional)","value":"","visibility":"visible"}}},"id":"ca_e606176ddb314afe896733636dba2f3b","logo":null,"object":"CarrierAccount","readable":"USPS","reference":null,"test_credentials":{},"type":"UspsAccount","updated_at":"2020-05-08T02:33:20Z"}]'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
@@ -40,20 +40,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f971fe78b9ba7006bb6bc
+      - 2196158562ffccbeff246ba100700fbe
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb2nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.053051"
+      - "0.102642"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -14,18 +14,18 @@ interactions:
     url: https://api.easypost.com/v2/parcels
     method: POST
   response:
-    body: '{"id":"prcl_96e23a2f5dac426baecca6e6639fced4","object":"Parcel","created_at":"2022-05-26T15:05:16Z","updated_at":"2022-05-26T15:05:16Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
+    body: '{"id":"prcl_80a6de22abf74e3587fb0c765541b966","object":"Parcel","created_at":"2022-08-19T17:47:56Z","updated_at":"2022-08-19T17:47:56Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"36ca34fbe319701ff31fb31efd94222d"
+      - W/"1e70895284b772d962676767ea0afd1c"
       Expires:
       - "0"
       Location:
-      - /api/v2/parcels.prcl_96e23a2f5dac426baecca6e6639fced4
+      - /api/v2/parcels.prcl_80a6de22abf74e3587fb0c765541b966
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -39,7 +39,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 19577bfa628f972ce78b9ba7006bbd05
+      - 2196158562ffccccff246ba1007015ac
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -47,12 +47,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 570dfcbc0a
-      - extlb1nuq fc4d5d217f
+      - intlb1nuq 6aa9972c1e
+      - intlb1wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.023359"
+      - "0.022643"
       X-Version-Label:
-      - easypost-202205252316-1f08f7be53-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

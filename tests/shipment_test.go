@@ -199,9 +199,9 @@ func (c *ClientTests) TestShipmentCreateWithIds() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	fromAddress, err := client.CreateAddress(c.fixture.BasicAddress(), nil)
+	fromAddress, err := client.CreateAddress(c.fixture.CaAddress1(), nil)
 	require.NoError(err)
-	toAddress, err := client.CreateAddress(c.fixture.BasicAddress(), nil)
+	toAddress, err := client.CreateAddress(c.fixture.CaAddress2(), nil)
 	require.NoError(err)
 	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
 	require.NoError(err)
@@ -234,7 +234,7 @@ func (c *ClientTests) TestShipmentInstanceLowestSmartRate() {
 
 	// Test lowest smartrate with valid filters
 	assert.Equal("First", smartrate.Service)
-	assert.Equal(5.49, smartrate.Rate)
+	assert.Equal(5.57, smartrate.Rate)
 	assert.Equal("USPS", smartrate.Carrier)
 
 	// Test lowest smartrate with invalid filters (should error due to strict delivery days)
@@ -257,14 +257,14 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	lowestRate, err := client.LowestShipmentRate(shipment)
 	require.NoError(err)
 	assert.Equal("First", lowestRate.Service)
-	assert.Equal("5.49", lowestRate.Rate)
+	assert.Equal("5.57", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
 	lowestRate, err = client.LowestShipmentRateWithCarrierAndService(shipment, nil, []string{"Priority"})
 	require.NoError(err)
 	assert.Equal("Priority", lowestRate.Service)
-	assert.Equal("7.37", lowestRate.Rate)
+	assert.Equal("7.90", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with carrier filter (should error due to bad carrier)
@@ -302,7 +302,7 @@ func (c *ClientTests) TestShipmentCreateWithCarbonOffset() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.BasicCarbonOffsetShipment())
+	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.BasicShipment())
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
@@ -316,7 +316,7 @@ func (c *ClientTests) TestShipmentBuyWithCarbonOffset() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipment(c.fixture.FullCarbonOffsetShipment())
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
 	lowestRate, err := client.LowestShipmentRate(shipment)
@@ -341,7 +341,7 @@ func (c *ClientTests) TestShipmentOneCallBuyWithCarbonOffset() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.OneCallBuyCarbonOffsetShipment())
+	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.OneCallBuyShipment())
 	require.NoError(err)
 
 	assert.NotNil(shipment.PostageLabel)
@@ -360,7 +360,7 @@ func (c *ClientTests) TestShipmentReRateWithCarbonOffset() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipment(c.fixture.OneCallBuyCarbonOffsetShipment())
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
 	require.NoError(err)
 
 	baseRates := shipment.Rates

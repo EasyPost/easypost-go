@@ -15,7 +15,7 @@ interactions:
     body: '{"webhooks":[]}'
     headers:
       Cache-Control:
-      - no-cache, no-store
+      - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
@@ -35,20 +35,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 1e90ffad62bb3867ec860bbf003136d0
+      - 2196158562ffcd00ff246ba100702c75
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq a732742a48
-      - extlb1nuq 403f17ff97
+      - intlb1nuq 6aa9972c1e
+      - intlb2wdc 6aa9972c1e
+      - extlb4wdc 9ce216bfac
       X-Runtime:
-      - "0.021115"
+      - "0.021875"
       X-Version-Label:
-      - easypost-202206272314-c14e8f7f31-master
+      - easypost-202208182050-2b41e8e3e0-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
