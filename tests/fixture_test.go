@@ -48,7 +48,7 @@ func readFixtureData() Fixture {
 	byteData, _ := ioutil.ReadAll(data)
 
 	var fixtures Fixture
-	json.Unmarshal([]byte(byteData), &fixtures)
+	_ = json.Unmarshal([]byte(byteData), &fixtures)
 
 	return fixtures
 }
