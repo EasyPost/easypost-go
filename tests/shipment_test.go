@@ -201,7 +201,7 @@ func (c *ClientTests) TestShipmentCreateWithIds() {
 
 	fromAddress, err := client.CreateAddress(c.fixture.CaAddress1(), nil)
 	require.NoError(err)
-	toAddress, err := client.CreateAddress(c.fixture.CaAddress1(), nil)
+	toAddress, err := client.CreateAddress(c.fixture.CaAddress2(), nil)
 	require.NoError(err)
 	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
 	require.NoError(err)

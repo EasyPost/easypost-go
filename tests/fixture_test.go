@@ -48,7 +48,7 @@ func readFixtureData() Fixture {
 	byteData, _ := ioutil.ReadAll(data)
 
 	var fixtures Fixture
-	_ = json.Unmarshal([]byte(byteData), &fixtures)
+	json.Unmarshal([]byte(byteData), &fixtures)
 
 	return fixtures
 }
@@ -91,8 +91,6 @@ func (fixture *Fixture) ReportDate() string {
 }
 
 func (fixture *Fixture) WebhookUrl() string {
-	fixtureData := readFixtureData()
-	fmt.Println(fixtureData)
 	return readFixtureData().WebhookURL
 }
 
