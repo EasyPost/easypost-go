@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"bufio"
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
@@ -31,18 +32,18 @@ type Fixture struct {
 }
 
 // Replace the min_datetime and max_datetime to RFC3339 format
-func replaceJsonFileDate(jsonFile string) error {
+func replaceJsonFileDate(jsonFile string) {
 	byteValue, _ := ioutil.ReadFile(jsonFile)
 
 	var result map[string]interface{}
-	_ = json.Unmarshal(byteValue, &result)
+	json.Unmarshal(byteValue, &result)
 
 	result["pickups"].(map[string]interface{})["basic"].(map[string]interface{})["min_datetime"] = "2022-08-01T00:00:00.00Z"
 	result["pickups"].(map[string]interface{})["basic"].(map[string]interface{})["max_datetime"] = "2022-08-02T00:00:00.00Z"
 
 	byteValue, _ = json.Marshal(result)
 
-	return ioutil.WriteFile(jsonFile, byteValue, 0644)
+	ioutil.WriteFile(jsonFile, byteValue, 0644)
 }
 
 // Reads fixture data from the fixtures JSON file
@@ -50,7 +51,7 @@ func readFixtureData() Fixture {
 	currentDir, _ := os.Getwd()
 	parentDir := filepath.Dir(currentDir)
 	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/client-library-fixtures.json")
-	_ = replaceJsonFileDate(filePath)
+	replaceJsonFileDate(filePath)
 	data, err := os.Open(filePath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error opening fixture file:", err)
@@ -183,12 +184,27 @@ func (fixture *Fixture) BasicOrder() *easypost.Order {
 	return readFixtureData().Orders["basic"]
 }
 
-// TODO: FIX THIS
 func (fixture *Fixture) EventBody() []byte {
-	// Test data MUST be a minified string to work correctly
-	data := `{"result":{"id":"batch_123...","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-07-26T17:22:32Z","updated_at":"2022-07-26T17:22:32Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null},"description":"batch.created","mode":"test","previous_attributes":null,"completed_urls":null,"user_id":"user_123...","status":"pending","object":"Event","id":"evt_123..."}`
+	currentDir, _ := os.Getwd()
+	parentDir := filepath.Dir(currentDir)
+	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/event-body.json")
 
-	return []byte(data)
+	data, err := os.Open(filePath)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, "error opening fixture file:", err)
+		os.Exit(1)
+	}
+
+	defer data.Close()
+
+	scanner := bufio.NewScanner(data)
+	var eventBody []byte
+
+	for scanner.Scan() {
+		eventBody = []byte(scanner.Text())
+	}
+
+	return eventBody
 }
 
 func (fixture *Fixture) RmaFormOptions() map[string]interface{} {
