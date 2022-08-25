@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Next Release
+## v2.7.0 (2022-08-25)
 
-- Add EndShipper class with `CreateEndShipper()`, `GetEndShipper()`, `ListEndShippers()`, and `UpdateEndShippers()`
+- Adds `CreateEndShipper()`, `GetEndShipper()`, `ListEndShippers()`, and `UpdateEndShippers()` functions
+- Adds `duty_payment` and `duty_payment_account` to Shipment options
 
 ## v2.6.0 (2022-08-02)
 
