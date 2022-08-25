@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Add EndShipper class with `CreateEndShipper()`, `GetEndShipper()`, `ListEndShippers()`, and `UpdateEndShippers()`
+
 ## v2.6.0 (2022-08-02)
 
 - Adds Carbon Offset support
