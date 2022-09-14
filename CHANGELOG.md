@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## NEXT RELEASE
+
+- Adds `EndShipperID` shipment option
+
 ## v2.7.0 (2022-08-25)
 
 - Adds `CreateEndShipper()`, `GetEndShipper()`, `ListEndShippers()`, and `UpdateEndShippers()` functions
