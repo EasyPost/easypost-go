@@ -28,6 +28,7 @@ type ShipmentOptions struct {
 	DryIceMedical            bool       `json:"dry_ice_medical,omitempty,string"`
 	DryIceWeight             float64    `json:"dry_ice_weight,omitempty,string"`
 	Endorsement              string     `json:"endorsement,omitempty"`
+	EndShipperID             string     `json:"end_shipper_id,omitempty"`
 	FreightCharge            float64    `json:"freight_charge,omitempty"`
 	HandlingInstructions     string     `json:"handling_instructions,omitempty"`
 	Hazmat                   string     `json:"hazmat,omitempty"`
