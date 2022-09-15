@@ -381,13 +381,13 @@ func (c *ClientTests) TestBuyShipmentWithEndShipper() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
 	lowestRate, err := client.LowestShipmentRate(shipment)
 	require.NoError(err)
 
-	boughtShipment, err := client.BuyShipmentWithEndShipper(shipment.ID, &lowestRate, "", "fake_end_shipper_id")
+	boughtShipment, err := client.BuyShipmentWithEndShipper(shipment.ID, &lowestRate, "", "es_123")
 	require.NoError(err)
 
 	assert.NotNil(boughtShipment.PostageLabel)
