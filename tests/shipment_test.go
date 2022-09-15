@@ -374,3 +374,21 @@ func (c *ClientTests) TestShipmentReRateWithCarbonOffset() {
 	assert.Nil(baseRate.CarbonOffset)
 	assert.NotNil(newRateWithCarbon.CarbonOffset)
 }
+
+func (c *ClientTests) TestBuyShipmentWithEndShipper() {
+	c.T().Skip("Skipping because this requires production credentials and would spend real money")
+
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	require.NoError(err)
+
+	lowestRate, err := client.LowestShipmentRate(shipment)
+	require.NoError(err)
+
+	boughtShipment, err := client.BuyShipmentWithEndShipper(shipment.ID, &lowestRate, "", "fake_end_shipper_id")
+	require.NoError(err)
+
+	assert.NotNil(boughtShipment.PostageLabel)
+}
