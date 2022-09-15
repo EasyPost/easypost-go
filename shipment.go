@@ -103,6 +103,7 @@ type buyShipmentRequest struct {
 	Rate         *Rate  `json:"rate,omitempty"`
 	Insurance    string `json:"insurance,omitempty"`
 	CarbonOffset bool   `json:"carbon_offset,omitempty"`
+	EndShipperID string `json:"end_shipper_id,omitempty"`
 }
 
 type createShipmentRequest struct {
@@ -128,6 +129,7 @@ type generateFormRequest struct {
 // to existing objects via their ID attribute. Passing in one or more carrier
 // accounts to CreateShipment limits the returned rates to the specified
 // carriers.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateShipment(
 //		&easypost.Shipment{
@@ -200,8 +202,14 @@ func (c *Client) GetShipmentWithContext(ctx context.Context, shipmentID string) 
 	return
 }
 
+func (c *Client) buyShipment(ctx context.Context, shipmentID string, in *buyShipmentRequest) (out *Shipment, err error) {
+	err = c.post(ctx, "shipments/"+shipmentID+"/buy", &in, &out)
+	return
+}
+
 // BuyShipment purchases a shipment. If successful, the returned Shipment will
 // have the PostageLabel attribute populated.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.Buy("shp_100", &easypost.Rate{ID: "rate_1001"}, "249.99")
 func (c *Client) BuyShipment(shipmentID string, rate *Rate, insurance string) (out *Shipment, err error) {
@@ -212,8 +220,7 @@ func (c *Client) BuyShipment(shipmentID string, rate *Rate, insurance string) (o
 // specifying a context that can interrupt the request.
 func (c *Client) BuyShipmentWithContext(ctx context.Context, shipmentID string, rate *Rate, insurance string) (out *Shipment, err error) {
 	req := &buyShipmentRequest{Rate: rate, Insurance: insurance}
-	err = c.post(ctx, "shipments/"+shipmentID+"/buy", &req, &out)
-	return
+	return c.buyShipment(ctx, shipmentID, req)
 }
 
 // BuyShipmentWithCarbonOffset performs the same operation as BuyShipment, but includes a carbon offset.
@@ -225,8 +232,31 @@ func (c *Client) BuyShipmentWithCarbonOffset(shipmentID string, rate *Rate, insu
 // specifying a context that can interrupt the request.
 func (c *Client) BuyShipmentWithCarbonOffsetWithContext(ctx context.Context, shipmentID string, rate *Rate, insurance string) (out *Shipment, err error) {
 	req := &buyShipmentRequest{Rate: rate, Insurance: insurance, CarbonOffset: true}
-	err = c.post(ctx, "shipments/"+shipmentID+"/buy", &req, &out)
-	return
+	return c.buyShipment(ctx, shipmentID, req)
+}
+
+// BuyShipmentWithEndShipper performs the same operation as BuyShipment, but includes an EndShipper ID.
+func (c *Client) BuyShipmentWithEndShipper(shipmentID string, rate *Rate, insurance string, endShipperID string) (out *Shipment, err error) {
+	return c.BuyShipmentWithEndShipperWithContext(context.Background(), shipmentID, rate, insurance, endShipperID)
+}
+
+// BuyShipmentWithEndShipperWithContext performs the same operation as BuyShipmentWithEndShipper, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BuyShipmentWithEndShipperWithContext(ctx context.Context, shipmentID string, rate *Rate, insurance string, endShipperID string) (out *Shipment, err error) {
+	req := &buyShipmentRequest{Rate: rate, Insurance: insurance, EndShipperID: endShipperID}
+	return c.buyShipment(ctx, shipmentID, req)
+}
+
+// BuyShipmentWithCarbonOffsetAndEndShipper performs the same operation as BuyShipment, but includes a carbon offset and an EndShipper ID.
+func (c *Client) BuyShipmentWithCarbonOffsetAndEndShipper(shipmentID string, rate *Rate, insurance string, endShipperID string) (out *Shipment, err error) {
+	return c.BuyShipmentWithCarbonOffsetAndEndShipperWithContext(context.Background(), shipmentID, rate, insurance, endShipperID)
+}
+
+// BuyShipmentWithCarbonOffsetAndEndShipperWithContext performs the same operation as BuyShipmentWithCarbonOffsetAndEndShipper, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BuyShipmentWithCarbonOffsetAndEndShipperWithContext(ctx context.Context, shipmentID string, rate *Rate, insurance string, endShipperID string) (out *Shipment, err error) {
+	req := &buyShipmentRequest{Rate: rate, Insurance: insurance, CarbonOffset: true, EndShipperID: endShipperID}
+	return c.buyShipment(ctx, shipmentID, req)
 }
 
 // GetShipmentLabel enables retrieving the label for a shipment in a different
