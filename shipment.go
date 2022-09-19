@@ -390,7 +390,7 @@ func (c *Client) LowestSmartrate(shipment *Shipment, deliveryDays int, deliveryA
 
 // GenerateShipmentForm generates a form of a given type for a shipment
 func (c *Client) GenerateShipmentForm(shipmentID string, formType string) (out *Shipment, err error) {
-	return c.GenerateShipmentFormWithOptions(shipmentID, formType, make(map[string]interface{}))
+	return c.GenerateShipmentFormWithContext(context.Background(), shipmentID, formType)
 }
 
 // GenerateShipmentFormWithContext performs the same operation as GenerateShipmentForm,

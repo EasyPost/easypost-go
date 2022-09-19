@@ -1,0 +1,166 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"webhook":{"url":"http://example.com"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/webhooks
+    method: POST
+  response:
+    body: '{"id":"hook_b1f99aba385f11ed944e1b054a34e6a1","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-09-19T21:11:58Z","disabled_at":null}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"9e2efed4cbe3f15152953d6e6e1d0d34"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - e6062e8a6328db1de7886e69000ae833
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.174113"
+      X-Version-Label:
+      - easypost-202209191945-2356362378-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"webhook":{}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/webhooks/hook_b1f99aba385f11ed944e1b054a34e6a1
+    method: PATCH
+  response:
+    body: '{"id":"hook_b1f99aba385f11ed944e1b054a34e6a1","object":"Webhook","mode":"test","url":"http://example.com","created_at":"2022-09-19T21:11:58Z","disabled_at":null}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"9e2efed4cbe3f15152953d6e6e1d0d34"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - e6062e8a6328db1de7886e69000ae856
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb5nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.615774"
+      X-Version-Label:
+      - easypost-202209191945-2356362378-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/webhooks/hook_b1f99aba385f11ed944e1b054a34e6a1
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"44136fa355b3678a1146ad16f7e8649e"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - e6062e8a6328db1ee7886e69000ae89c
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb9nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.393928"
+      X-Version-Label:
+      - easypost-202209191945-2356362378-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

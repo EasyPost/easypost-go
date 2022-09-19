@@ -37,12 +37,10 @@ type ListScanFormsResult struct {
 }
 
 func newScanFormRequest(shipmentIDs ...string) *scanFormRequest {
-	l := len(shipmentIDs)
-	if l == 0 {
-		return nil
-	}
-	req := &scanFormRequest{Shipments: make([]*Shipment, l)}
-	for i := 0; i < l; i++ {
+	length := len(shipmentIDs)
+
+	req := &scanFormRequest{Shipments: make([]*Shipment, length)}
+	for i := 0; i < length; i++ {
 		req.Shipments[i] = &Shipment{ID: shipmentIDs[i]}
 	}
 	return req

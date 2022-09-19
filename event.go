@@ -65,6 +65,8 @@ type listEventPayloadsResult struct {
 	Payloads *[]*EventPayload `json:"payloads,omitempty"`
 }
 
+// UnmarshalJSON will attempt to convert an event response to an *Event type,
+// but it may be set to a default type if decoding to an object fails.
 func (e *Event) UnmarshalJSON(data []byte) (err error) {
 	var buf json.RawMessage
 	event := Event{Result: &buf}
@@ -81,6 +83,8 @@ func (e *Event) UnmarshalJSON(data []byte) (err error) {
 	return err
 }
 
+// UnmarshalJSON will attempt to convert an event payload response to an *EventPayload type,
+// but it may be set to a default type if decoding to an object fails.
 func (e *EventPayload) UnmarshalJSON(data []byte) (err error) {
 	var s string
 	payload := EventPayload{RequestBody: &s}

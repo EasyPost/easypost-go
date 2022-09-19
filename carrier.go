@@ -123,8 +123,8 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 // Reference, Credentials and TestCredentials attributes can be updated.
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.UpdateCarrierAccount(
-//		"ca_1001",
 //		&easypost.CarrierAccount{
+//			ID: "ca_1001",
 //			Description: "FL Location UPS Account",
 //			Credentials: map[string]string{
 //				"account_number": "B2B2B2",
