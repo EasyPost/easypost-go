@@ -133,8 +133,9 @@ func (c *ClientTests) TestWebhookEnableDeprecated() {
 			WebhookSecret: "123",
 		},
 	)
+	require.NoError(err)
 
-	updatedWebhook, err := client.EnableWebhook(webhook.ID)
+	updatedWebhook, err := client.EnableWebhook(webhook.ID) // nolint:staticcheck
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))

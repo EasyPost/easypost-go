@@ -180,19 +180,19 @@ func TestMain(m *testing.M) {
 	// Add flags to CommandLine (default) FlagSet:
 	fs.VisitAll(func(f *flag.Flag) { flag.Var(f.Value, f.Name, f.Usage) })
 	flag.Parse()
-	rc := m.Run()
+	testSuite := m.Run()
 
 	// Fail test suite below desired coverage
-	// `rc = 0` means we've passed, CoverMode will be non empty if run with -cover
+	// `testSuite = 0` means it passed, CoverMode will be non empty if run with -cover
 	coverageMinPercentage := 0.75 // TODO: This number for whatever reason is about ~5% lower than what the CLI reports which is the real value
-    if rc == 0 && testing.CoverMode() != "" {
-        c := testing.Coverage()
-        if c < coverageMinPercentage {
-            fmt.Println("Tests passed but coverage failed with coverage: ", c)
-            rc = -1
+    if testSuite == 0 && testing.CoverMode() != "" {
+        coverage := testing.Coverage()
+        if coverage < coverageMinPercentage {
+            fmt.Println("Tests passed but coverage failed with coverage: ", coverage)
+            testSuite = -1
         }
     }
 	
 	// Exit once tests complete
-	os.Exit(rc)
+	os.Exit(testSuite)
 }
