@@ -62,6 +62,7 @@ func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCenso
 			continue
 		}
 
+		// nolint:gosimple
 		switch value.(type) {
 		case map[string]interface{}:
 			// value is a dictionary
@@ -100,6 +101,7 @@ func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interfa
 			dictionary[key] = elementsToCensor[key]
 		} else {
 			// element doesn't need to be censored
+			// nolint:gosimple
 			switch value.(type) {
 			case map[string]interface{}:
 				// value is a dictionary
