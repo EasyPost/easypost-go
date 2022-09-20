@@ -3,6 +3,7 @@ package easypost
 import (
 	"context"
 	"encoding/json"
+	"errors"
 	"io"
 	"net/http"
 	"net/url"
@@ -24,6 +25,7 @@ type ListReferralCustomersResult struct {
 	HasMore bool `json:"has_more,omitempty"`
 }
 
+// CreditCardOptions specifies options for creating or updating a credit card.
 type CreditCardOptions struct {
 	Number   string `json:"number,omitempty"`
 	ExpMonth string `json:"expiration_month,omitempty"`
@@ -93,19 +95,22 @@ func (c *Client) UpdateReferralCustomerEmailWithContext(ctx context.Context, use
 	return
 }
 
+// AddReferralCustomerCreditCard adds a credit card to a referral customer's account.
 func (c *Client) AddReferralCustomerCreditCard(referralCustomerApiKey string, creditCardOptions *CreditCardOptions, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	return c.AddReferralCustomerCreditCardWithContext(context.Background(), referralCustomerApiKey, creditCardOptions, priority)
 }
 
+// AddReferralCustomerCreditCardWithContext performs the same operation as AddReferralCustomerCreditCard, but allows
+// specifying a context that can interrupt the request.
 func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, referralCustomerApiKey string, creditCardOptions *CreditCardOptions, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	stripeApiKeyResponse, err := c.retrieveEasypostStripeApiKey(ctx)
 	if err != nil || stripeApiKeyResponse == nil || stripeApiKeyResponse.PublicKey == "" {
-		return nil, err
+		return nil, errors.New("could not create Stripe token, please try again later")
 	}
 
 	stripeTokenResponse, err := c.createStripeToken(ctx, stripeApiKeyResponse.PublicKey, creditCardOptions)
 	if err != nil || stripeTokenResponse == nil || stripeTokenResponse.Id == "" {
-		return nil, err
+		return nil, errors.New("could not send card details to Stripe, please try again later")
 	}
 
 	return c.createEasypostCreditCard(ctx, referralCustomerApiKey, stripeTokenResponse.Id, priority)
@@ -164,10 +169,13 @@ func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerA
 	}
 
 	priorityString := ""
-	if priority == PrimaryPaymentMethodPriority {
+	switch priority {
+	case PrimaryPaymentMethodPriority:
 		priorityString = "primary"
-	} else {
+	case SecondaryPaymentMethodPriority:
 		priorityString = "secondary"
+	default:
+		return nil, errors.New("invalid priority")
 	}
 
 	creditCardOptions := &easypostCreditCardCreateOptions{
