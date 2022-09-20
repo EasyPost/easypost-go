@@ -66,11 +66,6 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 			break
 		}
 
-		// if we could not find the correct delivery date variable for the given delivery accuracy, skip it
-		if smartrateDeliveryDay == -1 {
-			return out, fmt.Errorf("invalid delivery accuracy: %s", deliveryAccuracy)
-		}
-
 		// if this rate's delivery days is greater than the requested delivery days, skip it
 		if smartrateDeliveryDay > deliveryDays {
 			continue

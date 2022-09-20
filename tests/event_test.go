@@ -44,3 +44,20 @@ func (c *ClientTests) TestEventRetrieve() {
 	assert.Equal(reflect.TypeOf(&easypost.Event{}), reflect.TypeOf(event))
 	assert.True(strings.HasPrefix(event.ID, "evt_"))
 }
+
+func (c *ClientTests) TestEventRetrievePayload() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	events, err := client.ListEvents(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	eventPayload, err := client.ListEventPayloads(events.Events[0].ID)
+	require.NoError(err)
+
+	assert.NotNil(eventPayload)
+}

@@ -60,7 +60,6 @@ func (c *ClientTests) TestCarrierAccountAll() {
 }
 
 func (c *ClientTests) TestCarrierAccountUpdate() {
-	c.T().Skip("VCR can't match this cassette properly")
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
@@ -71,7 +70,12 @@ func (c *ClientTests) TestCarrierAccountUpdate() {
 
 	carrierAccount.Description = testDescription
 
-	updatedCarrierAccount, err := client.UpdateCarrierAccount(carrierAccount)
+	updatedCarrierAccount, err := client.UpdateCarrierAccount(
+		&easypost.CarrierAccount{
+			ID: carrierAccount.ID,
+			Description: testDescription,
+		},
+	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(updatedCarrierAccount))
