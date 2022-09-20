@@ -41,6 +41,107 @@ type ClientTests struct {
 	fixture  *Fixture
 }
 
+func contains(elements []string, target string) bool {
+	for _, element := range elements {
+		if target == element {
+			return true
+		}
+	}
+	return false
+}
+
+func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCensor map[string]interface{}) []interface{} {
+	if len(list) == 0 {
+		// short circuit and return the list if it is empty
+		return list
+	}
+
+	for index, value := range list {
+		if value == nil {
+			// don't need to worry about censoring nil values
+			continue
+		}
+
+		switch value.(type) {
+		case map[string]interface{}:
+			// value is a dictionary
+			list[index] = c.applyCensorsToJsonDictionary(value.(map[string]interface{}), elementsToCensor)
+		case []map[string]interface{}:
+			// value is a list of dictionaries
+			list[index] = c.applyCensorsToJsonList(value.([]interface{}), elementsToCensor)
+		default:
+			// value is a single value or a normal list, nothing to censor
+		}
+	}
+
+	return list
+}
+
+func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interface{}, elementsToCensor map[string]interface{}) map[string]interface{} {
+	if len(dictionary) == 0 {
+		// short circuit and return the dictionary if it is empty
+		return dictionary
+	}
+
+	for key, value := range dictionary {
+		if value == nil {
+			// don't need to worry about censoring nil values
+			continue
+		}
+
+		var censorKeys []string
+		for k := range elementsToCensor {
+			censorKeys = append(censorKeys, k)
+		}
+
+		if contains(censorKeys, key) {
+			// element should be censored
+			// replace value with corresponding censor value
+			dictionary[key] = elementsToCensor[key]
+		} else {
+			// element doesn't need to be censored
+			switch value.(type) {
+			case map[string]interface{}:
+				// value is a dictionary
+				dictionary[key] = c.applyCensorsToJsonDictionary(value.(map[string]interface{}), elementsToCensor)
+			case []interface{}:
+				// value is a list
+				dictionary[key] = c.applyCensorsToJsonList(value.([]interface{}), elementsToCensor)
+			default:
+				// value is a single value, nothing to censor
+			}
+		}
+	}
+
+	return dictionary
+}
+
+func (c *ClientTests) censorJsonData(data string, elementsToCensor map[string]interface{}) string {
+	var jsonMap map[string]interface{}
+	mapErr := json.Unmarshal([]byte(data), &jsonMap)
+	if mapErr != nil {
+		// data is not a JSON dictionary
+		var jsonList []interface{}
+		listErr := json.Unmarshal([]byte(data), &jsonList)
+
+		if listErr != nil {
+			// data is not a JSON list either
+			// short circuit and return the data
+			return data
+		}
+
+		// data is a JSON list
+		censoredList := c.applyCensorsToJsonList(jsonList, elementsToCensor)
+		censoredListBytes, _ := json.Marshal(censoredList)
+		return string(censoredListBytes)
+	}
+
+	// data is a JSON dictionary
+	censoredDictionary := c.applyCensorsToJsonDictionary(jsonMap, elementsToCensor)
+	censoredDictionaryBytes, _ := json.Marshal(censoredDictionary)
+	return string(censoredDictionaryBytes)
+}
+
 func (c *ClientTests) SetupTest() {
 	pathComponents := append(
 		[]string{"cassettes/"}, strings.Split(c.T().Name(), "/")[1],
@@ -63,7 +164,7 @@ func (c *ClientTests) SetupTest() {
 
 	// Filter sensitive data from cassettes
 	// Replace value has to be type specific to its corresponding struct
-	responseBodyScrubbers := map[string]interface{}{
+	responseBodyElementsToCensor := map[string]interface{}{
 		"api_keys":         []string{},
 		"children":         []string{},
 		"client_ip":        "REDACTED",
@@ -75,6 +176,7 @@ func (c *ClientTests) SetupTest() {
 		"phone_number":     "REDACTED",
 		"phone":            "REDACTED",
 	}
+
 	r.AddSaveFilter(func(i *cassette.Interaction) error {
 		// Filter headers
 		if i.Request.Headers["Authorization"] != nil {
@@ -89,48 +191,9 @@ func (c *ClientTests) SetupTest() {
 			i.Request.Headers["X-Client-User-Agent"] = []string{"REDACTED"}
 		}
 
-		// Filter response bodies
-		var responseBodyBytes []byte
-		var responseBodyString string
-
-		for scrubber, replaceValue := range responseBodyScrubbers {
-			if strings.Contains(i.Response.Body, scrubber) {
-				var responseBody = i.Response.Body
-				var arrayObjects []map[string]interface{}
-
-				if json.Unmarshal([]byte(responseBody), &arrayObjects) == nil {
-					err := json.Unmarshal([]byte(responseBody), &arrayObjects)
-					if err != nil {
-						fmt.Println(err)
-						os.Exit(1)
-					}
-					for index, object := range arrayObjects {
-						for key := range object {
-							if key == scrubber {
-								arrayObjects[index][key] = replaceValue
-							}
-						}
-					}
-
-					responseBodyBytes, _ = json.Marshal(arrayObjects)
-				} else {
-					var responseMap map[string]interface{}
-					err := json.Unmarshal([]byte(responseBody), &responseMap)
-					if err != nil {
-						fmt.Println(err)
-						os.Exit(1)
-					}
-
-					if _, keyExists := responseMap[scrubber]; keyExists {
-						responseMap[scrubber] = replaceValue
-					}
-					responseBodyBytes, _ = json.Marshal(responseMap)
-				}
-
-				responseBodyString = string(responseBodyBytes)
-				i.Response.Body = responseBodyString
-			}
-		}
+		var responseBody = i.Response.Body
+		var censoredResponseBody = c.censorJsonData(responseBody, responseBodyElementsToCensor)
+		i.Response.Body = censoredResponseBody
 
 		return nil
 	})
