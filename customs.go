@@ -2,6 +2,9 @@ package easypost
 
 import (
 	"context"
+	"encoding/json"
+	"fmt"
+	"strconv"
 	"time"
 )
 
@@ -31,7 +34,7 @@ type CustomsItem struct {
 	UpdatedAt      *time.Time `json:"updated_at,omitempty"`
 	Description    string     `json:"description,omitempty"`
 	Quantity       float64    `json:"quantity,omitempty"`
-	Value          float64    `json:"value,omitempty,string"`
+	Value          float64    `json:"value,omitempty"`
 	Weight         float64    `json:"weight,omitempty"`
 	HSTariffNumber string     `json:"hs_tariff_number,omitempty"`
 	Code           string     `json:"code,omitempty"`
@@ -45,6 +48,70 @@ type createCustomsInfoRequest struct {
 
 type createCustomsItemRequest struct {
 	CustomsItem *CustomsItem `json:"customs_item,omitempty"`
+}
+
+func (ci *CustomsItem) MarshalJSON() ([]byte, error) {
+	// convert a CustomsItem to JSON data byte array
+
+	// needed later to avoid infinite recursion
+	type Alias CustomsItem
+
+	return json.Marshal(&struct {
+		Value string `json:"value,omitempty"`
+		*Alias
+	}{
+		// always convert the Value into a string when serializing to JSON
+		Value: fmt.Sprintf("%f", ci.Value),
+		Alias: (*Alias)(ci),
+	})
+}
+
+func (ci *CustomsItem) UnmarshalJSON(b []byte) (err error) {
+	// convert a JSON data byte array to CustomsItem
+
+	// needed later to avoid infinite recursion
+	type Alias CustomsItem
+
+	// make a raw copy of the data
+	var rawData map[string]interface{}
+	if err = json.Unmarshal(b, &rawData); err != nil {
+		return
+	}
+
+	// tweak values
+	for k, v := range rawData {
+		switch k {
+		case "value":
+			// convert Value to a float64 if it is a string (via API response)
+			if s, ok := v.(string); ok {
+				if f, err := strconv.ParseFloat(s, 64); err == nil {
+					rawData[k] = f
+				}
+			} else {
+				// keep Value a float64 if it is already one (via Fixture data)
+				rawData[k] = v.(float64)
+			}
+		default:
+			// no tweak needed, keep the value as is
+			rawData[k] = v
+		}
+	}
+
+	// convert the tweaked data back into a byte array
+	rawDataCorrectTypesBytes, err := json.Marshal(rawData)
+	if err != nil {
+		return
+	}
+
+	// now convert the tweaked byte array into a CustomsItem via an Alias
+	tmp := &struct {
+		*Alias
+	}{
+		Alias: (*Alias)(ci),
+	}
+	err = json.Unmarshal(rawDataCorrectTypesBytes, &tmp)
+
+	return
 }
 
 // CreateCustomsInfo creates a new CustomsInfo object.

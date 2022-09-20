@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"customs_item":{"description":"Sweet shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.25","weight":11}}'
+    body: '{"customs_item":{"description":"Sweet shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.250000","weight":11}}'
     form: {}
     headers:
       Authorization:
@@ -14,19 +14,19 @@ interactions:
     url: https://api.easypost.com/v2/customs_items
     method: POST
   response:
-    body: '{"code":null,"created_at":"2022-09-21T18:22:11Z","currency":null,"description":"Sweet
-      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_ee14481102e24df8a9fdf2b442f222c4","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T18:22:11Z","value":"23.25","weight":11}'
+    body: '{"code":null,"created_at":"2022-09-21T20:43:00Z","currency":null,"description":"Sweet
+      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_69246eafc28f4a1b83ad75f43e0f1845","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T20:43:00Z","value":"23.25","weight":11}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"d98637f3e4ee7e8c6e4a9ff104e80c5f"
+      - W/"457fc4a592ba6d93fb21098504a1c224"
       Expires:
       - "0"
       Location:
-      - /api/v2/customs_items/cstitem_ee14481102e24df8a9fdf2b442f222c4
+      - /api/v2/customs_items/cstitem_69246eafc28f4a1b83ad75f43e0f1845
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -40,21 +40,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5653ec7d9989000d9994
+      - ece79f35632b7754ecc3c2270002f458
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.029216"
+      - "0.033056"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202209212025-b1bc460ca8-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

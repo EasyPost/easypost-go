@@ -113,22 +113,11 @@ func (fixture *Fixture) BasicParcel() *easypost.Parcel {
 }
 
 func (fixture *Fixture) BasicCustomsItem() *easypost.CustomsItem {
-	customsItem := readFixtureData().CustomsItems["basic"]
-
-	// Json unmarshalling doesn't handle float64 well, need to manually set the value
-	customsItem.Value = 23.25
-
-	return customsItem
+	return readFixtureData().CustomsItems["basic"]
 }
 
 func (fixture *Fixture) BasicCustomsInfo() *easypost.CustomsInfo {
-	customsInfo := readFixtureData().CustomsInfos["basic"]
-
-	// Json unmarshalling doesn't handle float64 well, need to manually set the value
-	for _, customsItem := range customsInfo.CustomsItems {
-		customsItem.Value = 23.25
-	}
-	return customsInfo
+	return readFixtureData().CustomsInfos["basic"]
 }
 
 func (fixture *Fixture) TaxIdentifier() *easypost.TaxIdentifier {
