@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/referral_customers
     method: POST
   response:
-    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-20T18:12:57Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_4939519a6ac541f3b3a089a24093edcd","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
+    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-20T23:28:48Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_90859e9369a0456db0b0268ed03ed473","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
       Referral","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
@@ -22,7 +22,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e230db0dc91f25072edc9df01b680a5a"
+      - W/"ff9a5efd2846800c7dab820df920613d"
       Expires:
       - "0"
       Pragma:
@@ -33,25 +33,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - de45db68632a02a9ecc7a5160039da4e
+      - 924e0c20632a4cb0ec8cdb4300108ad7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - extlb2nuq 29913d444b
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "1.014334"
+      - "1.155325"
       X-Version-Label:
-      - easypost-202209201701-65cee99e9d-master
+      - easypost-202209201945-4c5c97ab34-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

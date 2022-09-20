@@ -15,20 +15,20 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-08-19T17:47:24+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_fbec519f1fe611edb0c1ac1f6bc7b362","mode":"test","name":"Jack
+    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-09-20T23:27:57+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_dbcbc837393b11edb1c7ac1f6bc7bdc6","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-08-19T17:47:24+00:00","verifications":{},"zip":"94107"}'
+      Townsend St","street2":"Apt 20","updated_at":"2022-09-20T23:27:57+00:00","verifications":{},"zip":"94107"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"ead968f42f9c8425fa197ea58270b89c"
+      - W/"0b6df6a19df900708c1d098225fa9b03"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_fbec519f1fe611edb0c1ac1f6bc7b362
+      - /api/v2/addresses/adr_dbcbc837393b11edb1c7ac1f6bc7bdc6
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -37,28 +37,26 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccacff246ba1007007d4
+      - 924e0c20632a4c7dec8cdb4300107cca
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.034961"
+      - "0.072217"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -72,23 +70,23 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/addresses/adr_fbec519f1fe611edb0c1ac1f6bc7b362/verify
+    url: https://api.easypost.com/v2/addresses/adr_dbcbc837393b11edb1c7ac1f6bc7bdc6/verify
     method: GET
   response:
-    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:47:24+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_fc0c8c0f1fe611ed98baac1f6bc72124","mode":"test","name":"JACK
-      SPARROW","object":"Address","phone":"5555555555","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-08-19T17:47:24+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}}'
+    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-20T23:27:57+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_dbfa6c71393b11edb7faac1f6b0a0d1e","mode":"test","name":"JACK
+      SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-20T23:27:57+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"7af0e03d4ffe43d0e8bb07f808550f58"
+      - W/"fd1bdec374bd737c00c7c7f79a2972e2"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_fc0c8c0f1fe611ed98baac1f6bc72124
+      - /api/v2/addresses/adr_dbfa6c71393b11edb7faac1f6b0a0d1e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -102,21 +100,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccacff246ba1007007e3
+      - 924e0c20632a4c7dec8cdb4300107cd9
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.047957"
+      - "0.063897"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

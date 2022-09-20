@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: GET
   response:
-    body: '{"has_more":true,"reports":[{"created_at":"2022-06-27T21:06:20Z","end_date":"2022-04-11","id":"shprep_fa779aa90d8144558bde22be68f28ab6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-06-27T21:06:20Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220627/a9032bbb2c4b499ebc5ee5c7fd79e663.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220819%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220819T174811Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=811731a7812b10488cc44b6e0eefa79c9b99ac38751df7c4255e68e3150a1423","url_expires_at":"2022-08-19T17:48:41Z"},{"created_at":"2022-06-27T21:06:20Z","end_date":"2022-04-11","id":"shprep_94a94ff66eb94be18ab368b9c0bf2c40","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-06-27T21:06:20Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220627/7ceaf6fd7b024dea97819c2a792a7bd2.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220819%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220819T174811Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=49ab626e111f77ae4d74b7cf73060ec1fedbcd65d71077e56365c0fcc2754de7","url_expires_at":"2022-08-19T17:48:41Z"},{"created_at":"2022-06-27T21:06:20Z","end_date":"2022-04-11","id":"shprep_86ec157e51904eeebf5a874f163612d5","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-06-27T21:06:20Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220627/2a5b2b87ac4747a99e5b149127dc5a6d.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220819%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220819T174811Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=f1463c2141b93adf1b0cbfe6c54b1afca8ce5c042341d080107d5a2d56c3b3a6","url_expires_at":"2022-08-19T17:48:41Z"},{"created_at":"2022-06-27T21:06:19Z","end_date":"2022-04-11","id":"shprep_3b75938429664ec1a095090c5152d9af","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-06-27T21:06:20Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220627/3edec4290e374eeb82f1e90a30150954.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220819%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220819T174811Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=27c9124e5a7b50211109d2e65305d7a716851e3e6777554f5d1f4ec682150dfe","url_expires_at":"2022-08-19T17:48:41Z"},{"created_at":"2022-05-26T15:05:27Z","end_date":"2022-04-11","id":"shprep_1ea1320a732149fba6cd5fef494a8c77","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-05-26T15:05:27Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220526/66fab3b8882047668b9c98dde930d76b.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220819%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220819T174811Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=2d676751283acdb31ff111ef1af9cd91046aa947be6bda57c72ccb20ded3534c","url_expires_at":"2022-08-19T17:48:41Z"}]}'
+    body: '{"has_more":true,"reports":[{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_f3f348e2615e4b8d88a081b1f5479e5c","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-08-19T17:48:12Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220819/3bdcae5cf3354adf9ad5216ec13ae9b3.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220920%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220920T232853Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=81011e38b586a8901b8d36efa51b8f7fa1dbd385bf8c33949f77f7aadda489f8","url_expires_at":"2022-09-20T23:29:23Z"},{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_4989b0087f9f4e1791a76452462c1f5d","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-08-19T17:48:12Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220819/d053ab3e1c134c0fa442d9d2430474b1.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220920%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220920T232853Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=744b031c3866bf73739a75dac48400d6add5529b6e165c8c1b4c1899f8285946","url_expires_at":"2022-09-20T23:29:23Z"},{"created_at":"2022-08-19T17:48:11Z","end_date":"2022-04-11","id":"shprep_ed79ae8a48ab47d682c629d06e3439a6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-08-19T17:48:12Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220819/978258c993c44d2e93cb9624d4b26d8a.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220920%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220920T232853Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=81eca2b6458e3a5e95f038790b6607682e195b90ac0cad0f6bdb88277c2cfb6b","url_expires_at":"2022-09-20T23:29:23Z"},{"created_at":"2022-08-19T17:48:11Z","end_date":"2022-04-11","id":"shprep_a877fe0fe7b64995b9e5383f9d9243a2","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-08-19T17:48:12Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220819/f207ada499de47f0ad73c888dab245b4.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220920%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220920T232853Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=f07c4dd1bcf8c29d5edbcce9415268eb879abce1874f353483ca83e11a57af26","url_expires_at":"2022-09-20T23:29:23Z"},{"created_at":"2022-06-27T21:06:20Z","end_date":"2022-04-11","id":"shprep_fa779aa90d8144558bde22be68f28ab6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-06-27T21:06:20Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220627/a9032bbb2c4b499ebc5ee5c7fd79e663.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220920%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220920T232853Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=f9becab4a7ee9bfe2720aa803dc33f49fcc97dca21ea77cb78949aeb3a3a339b","url_expires_at":"2022-09-20T23:29:23Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"3669d1619ddbd7c57edc49825abe66f0"
+      - W/"018fc7cd857e17fdfa6aa9c2dcb659f4"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdbff246ba100701d4e
+      - 924e0c20632a4cb5ec8cdb4300108c02
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.045566"
+      - "0.035239"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -14,24 +14,16 @@ interactions:
     url: https://api.easypost.com/v2/carrier_accounts
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-08-19T17:47:44Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{"credentials":{"client_id":{"label":"DHL
-      eCommerce Solutions client ID","value":"123456","visibility":"visible"},"client_secret":{"label":"DHL
-      eCommerce Solutions client secret","value":"********","visibility":"password"},"distribution_center":{"label":"DHL
-      eCommerce Solutions distribution center","value":"USLAX1","visibility":"visible"},"pickup_id":{"label":"DHL
-      eCommerce Solutions pickup ID","value":"123456","visibility":"visible"}},"test_credentials":{"client_id":{"label":"Test
-      DHL eCommerce Solutions client ID","value":"123456","visibility":"visible"},"client_secret":{"label":"Test
-      DHL eCommerce Solutions client secret","value":"********","visibility":"password"},"distribution_center":{"label":"Test
-      DHL eCommerce Solutions distribution center","value":"USLAX1","visibility":"visible"},"pickup_id":{"label":"Test
-      DHL eCommerce Solutions pickup ID","value":"123456","visibility":"visible"}}},"id":"ca_ace079f57d784bf8a3012bc8b4af1fc6","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-08-19T17:47:44Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-09-20T23:28:16Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{"credentials":{},"test_credentials":{}},"id":"ca_4a8c7d0e1b3843b098263653fbdd9e47","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-20T23:28:16Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"bf0071ccca932b77edbb9a0d4bcd6a31"
+      - W/"b8d4a1d09e547bd707bfc9452cbfb650"
       Expires:
       - "0"
       Pragma:
@@ -42,28 +34,26 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccc0ff246ba100701051
+      - 924e0c20632a4c90ec8cdb430010824b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.116050"
+      - "0.125969"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -77,27 +67,19 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_ace079f57d784bf8a3012bc8b4af1fc6
+    url: https://api.easypost.com/v2/carrier_accounts/ca_4a8c7d0e1b3843b098263653fbdd9e47
     method: GET
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-08-19T17:47:44Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{"credentials":{"client_id":{"label":"DHL
-      eCommerce Solutions client ID","value":"123456","visibility":"visible"},"client_secret":{"label":"DHL
-      eCommerce Solutions client secret","value":"********","visibility":"password"},"distribution_center":{"label":"DHL
-      eCommerce Solutions distribution center","value":"USLAX1","visibility":"visible"},"pickup_id":{"label":"DHL
-      eCommerce Solutions pickup ID","value":"123456","visibility":"visible"}},"test_credentials":{"client_id":{"label":"Test
-      DHL eCommerce Solutions client ID","value":"123456","visibility":"visible"},"client_secret":{"label":"Test
-      DHL eCommerce Solutions client secret","value":"********","visibility":"password"},"distribution_center":{"label":"Test
-      DHL eCommerce Solutions distribution center","value":"USLAX1","visibility":"visible"},"pickup_id":{"label":"Test
-      DHL eCommerce Solutions pickup ID","value":"123456","visibility":"visible"}}},"id":"ca_ace079f57d784bf8a3012bc8b4af1fc6","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-08-19T17:47:44Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-09-20T23:28:16Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{"credentials":{},"test_credentials":{}},"id":"ca_4a8c7d0e1b3843b098263653fbdd9e47","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-20T23:28:16Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"bf0071ccca932b77edbb9a0d4bcd6a31"
+      - W/"b8d4a1d09e547bd707bfc9452cbfb650"
       Expires:
       - "0"
       Pragma:
@@ -113,21 +95,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccc0ff246ba100701072
+      - 924e0c20632a4c90ec8cdb4300108269
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.031599"
+      - "0.026286"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -141,7 +123,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_ace079f57d784bf8a3012bc8b4af1fc6
+    url: https://api.easypost.com/v2/carrier_accounts/ca_4a8c7d0e1b3843b098263653fbdd9e47
     method: DELETE
   response:
     body: '{}'
@@ -167,21 +149,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccc0ff246ba10070109c
+      - 924e0c20632a4c90ec8cdb430010827c
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.177166"
+      - "0.119561"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -15,20 +15,20 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-08-19T17:47:22+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_fac3f0fc1fe611ed96cdac1f6bc72124","mode":"test","name":"Jack
+    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-09-20T23:27:55+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_dab4f6a6393b11edb1a0ac1f6bc7bdc6","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-08-19T17:47:22+00:00","verifications":{},"zip":"94107"}'
+      Townsend St","street2":"Apt 20","updated_at":"2022-09-20T23:27:55+00:00","verifications":{},"zip":"94107"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"628606126d8e29f5b749ad857ee98409"
+      - W/"75f21d84113f909aaa94b3b6894567e6"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_fac3f0fc1fe611ed96cdac1f6bc72124
+      - /api/v2/addresses/adr_dab4f6a6393b11edb1a0ac1f6bc7bdc6
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -42,21 +42,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccaaff246ba100700720
+      - 924e0c20632a4c7bec8cdb4300107c54
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.033966"
+      - "0.039615"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

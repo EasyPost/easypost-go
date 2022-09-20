@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/insurances
     method: GET
   response:
-    body: '{"insurances":[],"has_more":false}'
+    body: '{"has_more":false,"insurances":[]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -37,21 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccc3ff246ba1007011c9
+      - 924e0c20632a4c98ec8cdb43001084ca
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.026419"
+      - "0.022612"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

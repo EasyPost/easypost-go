@@ -20,7 +20,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"2df8181df5821fe33fe629675ab709b0"
+      - W/"c90d6624e55f8b7ce879d6c3da4f46c4"
       Expires:
       - "0"
       Pragma:
@@ -31,26 +31,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccffff246ba100702c4c
+      - 924e0c20632a4cdeec8cdb430010960c
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.233305"
+      - "0.361145"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201945-4c5c97ab34-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -69,7 +71,7 @@ interactions:
     url: https://api.easypost.com/v2/users/user_a76997d126dd488f8ad22d52301300b0/brand
     method: PATCH
   response:
-    body: '{"id":"brd_3930aba34a0743228c75c1e71c8b0883","color":"#123456","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","ad":null,"ad_href":null,"object":"Brand","user_id":"user_a76997d126dd488f8ad22d52301300b0","background_color":null,"theme":"theme1"}'
+    body: '{"ad":null,"ad_href":null,"background_color":null,"color":"#123456","id":"brd_3930aba34a0743228c75c1e71c8b0883","logo":"https://assets.easypost.com/assets/images/branding/easypost-primary-logo-7a2cf535f2.svg","logo_href":"https://www.easypost.com","name":"EasyPost","object":"Brand","theme":"theme1","user_id":"user_a76997d126dd488f8ad22d52301300b0"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -92,21 +94,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffcd00ff246ba100702c64
+      - 924e0c20632a4cdeec8cdb430010962c
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.021292"
+      - "0.020121"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

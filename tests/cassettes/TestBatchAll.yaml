@@ -14,16 +14,16 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: GET
   response:
-    body: '{"batches":[{"id":"batch_2dffde0589804fbe87169c522fe89c7e","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-08-16T20:24:11Z","updated_at":"2022-08-16T20:24:11Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null},{"id":"batch_435adfe37d784ff79c5eb810c94f58fc","object":"Batch","mode":"test","state":"purchase_failed","num_shipments":1,"reference":null,"created_at":"2022-08-16T20:24:11Z","updated_at":"2022-08-16T20:24:11Z","scan_form":null,"shipments":[{"batch_status":"postage_purchase_failed","batch_message":"A
-      carrier and service must be provided to purchase through a Batch.","reference":null,"tracking_code":null,"id":"shp_5cff2c499ace470baf25b5642a307772"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":1},"pickup":null,"label_url":null},{"id":"batch_5a471b58218842e3a7dade0a4328dd1c","object":"Batch","mode":"test","state":"created","num_shipments":0,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null},{"id":"batch_9feab5db1d2d4e698c63c6b9cad41be4","object":"Batch","mode":"test","state":"purchase_failed","num_shipments":2,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[{"batch_status":"postage_purchase_failed","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_d52c892f8edb404993aaddc082d4bd29"},{"batch_status":"postage_purchase_failed","batch_message":null,"reference":null,"tracking_code":null,"id":"shp_38b06d9d12c542658e74d620a2ebc415"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":2},"pickup":null,"label_url":null},{"id":"batch_12a549db561141d1be99309a2a55aa39","object":"Batch","mode":"test","state":"purchase_failed","num_shipments":1,"reference":null,"created_at":"2022-08-16T20:24:12Z","updated_at":"2022-08-16T20:24:12Z","scan_form":null,"shipments":[{"batch_status":"postage_purchase_failed","batch_message":"A
-      carrier and service must be provided to purchase through a Batch.","reference":null,"tracking_code":null,"id":"shp_1bfb182e845845a4b782db18c99e3c40"}],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":1},"pickup":null,"label_url":null}],"has_more":true}'
+    body: '{"batches":[{"created_at":"2022-08-22T18:42:33Z","id":"batch_aac730f823f44c9b9ad71c8fcb29d405","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-08-22T18:42:33Z"},{"created_at":"2022-09-19T20:12:08Z","id":"batch_61d855ec55354e82accf9bb049731b14","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":{"address":null,"batch_id":"batch_61d855ec55354e82accf9bb049731b14","confirmation":null,"created_at":"2022-09-19T20:12:08Z","form_file_type":null,"form_url":null,"id":"sf_632316f858164c4aab6f5e50282c0b90","message":"Please
+      provide a valid list of shipments.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-09-19T20:12:08Z"},"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-19T20:12:08Z"},{"created_at":"2022-09-19T20:22:23Z","id":"batch_3d5e339ae4a243be8ece39b774c34bf1","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":{"address":null,"batch_id":"batch_3d5e339ae4a243be8ece39b774c34bf1","confirmation":null,"created_at":"2022-09-19T20:22:23Z","form_file_type":null,"form_url":null,"id":"sf_8e8ee5cabc3a4ff6bfdea19a9f060caa","message":"Please
+      provide a valid list of shipments.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-09-19T20:22:23Z"},"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-19T20:22:23Z"},{"created_at":"2022-09-20T23:28:00Z","id":"batch_7d095c7f36ba451b858b78758c240da9","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-20T23:28:01Z"}],"has_more":false}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"4a2a2447da20581294aaa7742550bb97"
+      - W/"b99b28dbc55fcaefc241b3c77975c65f"
       Expires:
       - "0"
       Pragma:
@@ -39,21 +39,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccb1ff246ba100700a0b
+      - 924e0c20632a4c81ec8cdb4300107dc6
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.074979"
+      - "0.079458"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

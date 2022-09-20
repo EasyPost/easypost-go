@@ -12,124 +12,22 @@ interactions:
     url: https://api.easypost.com/v2/carrier_types
     method: GET
   response:
-    body: '[{"fields":{"credentials":{"access_key_id":{"label":"AWS Access Key ID","visibility":"visible"},"merchant_id":{"label":"Seller
-      ID","visibility":"visible"},"secret_key":{"label":"Secret Key","visibility":"password"}}},"logo":null,"object":"CarrierType","readable":"Amazon
-      MWS","type":"AmazonMwsAccount"},{"fields":{"credentials":{"facility":{"label":"APC
-      Facility (e.g., NJ, LA)","visibility":"visible"},"password":{"label":"APC Password","visibility":"password"},"shipper_id":{"label":"APC
-      Shipper ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"APC","type":"ApcAccount"},{"fields":{"credentials":{"account_number":{"label":"Asendia
-      Account Number","visibility":"visible"},"company_name":{"label":"Company Name","visibility":"visible"},"epacket":{"label":"ePacket","visibility":"checkbox"},"ftp_password":{"label":"FTP
-      Password","visibility":"password"},"ftp_username":{"label":"FTP Username","visibility":"visible"},"internationalexpress":{"label":"International
-      Express","visibility":"checkbox"},"ipa":{"label":"IPA","visibility":"checkbox"},"isal":{"label":"ISAL","visibility":"checkbox"},"other":{"label":"Other","visibility":"checkbox"},"pmei":{"label":"PMEI","visibility":"checkbox"},"pmi":{"label":"PMI","visibility":"checkbox"},"prioritytracked":{"label":"Priority
-      Tracked","visibility":"checkbox"}}},"logo":null,"object":"CarrierType","readable":"Asendia
-      USA (Legacy)","type":"AsendiaAccount"},{"fields":{"credentials":{"account_number":{"label":"AsendiaUsa
-      Account Number","visibility":"visible"},"api_key":{"label":"AsendiaUsa API key","visibility":"masked"},"carrier_facility":{"label":"AsendiaUsa
-      Carrier Facility / Processing Location (Optional)","visibility":"select"},"password":{"label":"AsendiaUsa
-      Password","visibility":"password"},"sub_account_number":{"label":"AsendiaUsa
-      Sub Account Number","visibility":"visible"},"username":{"label":"AsendiaUsa
-      Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"Test
-      AsendiaUsa Account Number","visibility":"visible"},"api_key":{"label":"Test
-      AsendiaUsa API key","visibility":"masked"},"carrier_facility":{"label":"Test
-      AsendiaUsa Carrier Facility / Processing Location (Optional)","visibility":"select"},"password":{"label":"Test
-      AsendiaUsa Password","visibility":"password"},"sub_account_number":{"label":"Test
-      AsendiaUsa Sub Account Number","visibility":"visible"},"username":{"label":"Test
-      AsendiaUsa Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Asendia
-      USA","type":"AsendiaUsaAccount"},{"fields":{"credentials":{"account_number":{"label":"Australia
-      Post Account Number","visibility":"visible"},"api_key":{"label":"Australia Post
-      API Key","visibility":"masked"},"api_secret":{"label":"Australia Post Secret
-      Key","visibility":"password"},"print_as_you_go":{"label":"Print as you go","visibility":"checkbox"}}},"logo":null,"object":"CarrierType","readable":"Australia
-      Post","type":"AustraliaPostAccount"},{"fields":{"credentials":{"api_key":{"label":"Client
-      Secret","visibility":"masked"}},"test_credentials":{"api_key":{"label":"Client
-      Secret","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"AxlehireV3","type":"AxlehireV3Account"},{"fields":{"credentials":{"api_key":{"label":"Better
-      Trucks API key","visibility":"masked"}},"test_credentials":{"api_key":{"label":"Test
-      Better Trucks API key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"Better
-      Trucks","type":"BetterTrucksAccount"},{"fields":{"credentials":{"api_key":{"label":"Bond
-      API key","visibility":"masked"}},"test_credentials":{"api_key":{"label":"Test
-      Bond API key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"Bond","type":"BondAccount"},{"fields":{"credentials":{"api_key":{"label":"CanadaPost
-      API Key","visibility":"masked"},"contract_id":{"label":"CanadaPost Contract
-      ID (contract customers only)","visibility":"visible"},"customer_number":{"label":"CanadaPost
-      Customer Number","visibility":"visible"},"has_credit_card":{"label":"CanadaPost
-      account has credit card?","visibility":"checkbox"},"not_platform":{"label":"CanadaPost
-      account not registered through platform?","visibility":"invisible"}},"custom_workflow":true,"test_credentials":{"api_key":{"label":"CanadaPost
-      Test API Key","visibility":"masked"},"contract_id":{"label":"CanadaPost Test
-      Contract ID (contract customers only)","visibility":"visible"},"customer_number":{"label":"CanadaPost
-      Test Customer Number","visibility":"visible"},"has_credit_card":{"label":"CanadaPost
-      Test account has credit card?","visibility":"checkbox"},"not_platform":{"label":"CanadaPost
-      Test account not registered through platform?","visibility":"invisible"}}},"logo":null,"object":"CarrierType","readable":"Canada
-      Post","type":"CanadaPostAccount"},{"fields":{"credentials":{"account_number":{"label":"Canpar
-      Account Number","visibility":"visible"},"password":{"label":"Canpar Password","visibility":"password"},"username":{"label":"Canpar
-      Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"Test
-      Canpar Account Number","visibility":"visible"},"password":{"label":"Test Canpar
-      Password","visibility":"password"},"username":{"label":"Test Canpar Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Canpar","type":"CanparAccount"},{"fields":{"credentials":{"password":{"label":"CDL
-      Last Mile Solutions customer password","visibility":"password"},"tracking_code_prefix":{"label":"CDL
-      Last Mile Solutions tracking code prefix","visibility":"visible"},"username":{"label":"CDL
-      Last Mile Solutions customer username","visibility":"visible"}},"test_credentials":{"password":{"label":"CDL
-      Last Mile Solutions customer test password","visibility":"password"},"tracking_code_prefix":{"label":"CDL
-      Last Mile Solutions tracking code prefix","visibility":"visible"},"username":{"label":"CDL
-      Last Mile Solutions customer test username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"CDL
-      Last Mile Solutions","type":"ColumbusLastMileAccount"},{"fields":{"credentials":{"api_key":{"label":"Courier
-      Express API key","visibility":"masked"},"shipper_id":{"label":"Courier Express
-      shipper ID","visibility":"visible"}},"test_credentials":{"api_key":{"label":"Test
-      Courier Express API key","visibility":"masked"},"shipper_id":{"label":"Test
-      Courier Express shipper ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Courier
-      Express","type":"CourierExpressAccount"},{"fields":{"credentials":{"password":{"label":"Password","visibility":"password"},"username":{"label":"Account
-      Number","visibility":"visible"}},"test_credentials":{"password":{"label":"Password","visibility":"password"},"username":{"label":"Account
-      Number","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"CouriersPlease","type":"CouriersPleaseAccount"},{"fields":{"credentials":{"account_code":{"label":"
-      3-letter account code for customers with multiple accounts","visibility":"visible"},"origin_terminal":{"label":"
-      Dai Post default origin terminal","visibility":"visible"},"password":{"label":"
-      Dai Post client secret","visibility":"password"},"username":{"label":" Dai Post
-      customer username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Dai
-      Post","type":"DaiPostAccount"},{"fields":{"credentials":{"account_number":{"label":"Deutsche
-      Post UK Account Number","visibility":"visible"},"client_id":{"label":"Deutsche
-      Post UK Client ID","visibility":"visible"},"client_secret":{"label":"Deutsche
-      Post UK Secret","visibility":"password"}},"test_credentials":{"account_number":{"label":"Test
-      Deutsche Post UK Account Number","visibility":"visible"},"client_id":{"label":"Test
-      Deutsche Post UK Client ID","visibility":"visible"},"client_secret":{"label":"Test
-      Deutsche Post UK Secret","visibility":"password"}}},"logo":null,"object":"CarrierType","readable":"Deutsche
-      Post UK","type":"DeutschePostUKAccount"},{"fields":{"credentials":{"account_number":{"label":"DHL
-      Ecommerce Asia Account Number","visibility":"visible"},"barcode_prefix":{"label":"DHL
-      Ecommerce Asia Customer ID","visibility":"visible"},"client_id":{"label":"DHL
-      Ecommerce Asia Contract Number","visibility":"visible"},"password":{"label":"DHL
-      Ecommerce Asia Password","visibility":"password"}},"test_credentials":{"account_number":{"label":"Test
-      DHL Ecommerce Asia Account Number","visibility":"visible"},"barcode_prefix":{"label":"Test
-      DHL Ecommerce Asia Customer ID","visibility":"visible"},"client_id":{"label":"Test
-      DHL Ecommerce Asia Contract Number","visibility":"visible"},"password":{"label":"Test
-      DHL Ecommerce Asia Password","visibility":"password"}}},"logo":null,"object":"CarrierType","readable":"DHL
-      Ecommerce Asia","type":"DhlEcommerceAsiaAccount"},{"fields":{"credentials":{"client_id":{"label":"DHL
-      eCommerce Solutions client ID","visibility":"visible"},"client_secret":{"label":"DHL
-      eCommerce Solutions client secret","visibility":"password"},"distribution_center":{"label":"DHL
-      eCommerce Solutions distribution center","visibility":"visible"},"pickup_id":{"label":"DHL
-      eCommerce Solutions pickup ID","visibility":"visible"}},"test_credentials":{"client_id":{"label":"Test
-      DHL eCommerce Solutions client ID","visibility":"visible"},"client_secret":{"label":"Test
-      DHL eCommerce Solutions client secret","visibility":"password"},"distribution_center":{"label":"Test
-      DHL eCommerce Solutions distribution center","visibility":"visible"},"pickup_id":{"label":"Test
-      DHL eCommerce Solutions pickup ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"DHL
-      eCommerce Solutions","type":"DhlEcsAccount"},{"fields":{"credentials":{"account_number":{"label":"DHL
-      Account Number","visibility":"visible"},"country":{"label":"Account Country
-      Code (2 Letter)","visibility":"visible"},"is_reseller":{"label":"Reseller Account?
-      (check if yes)","visibility":"checkbox"},"password":{"label":"Password (Optional)","visibility":"password"},"site_id":{"label":"Site
-      ID (Optional)","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"DHL
-      Express","type":"DhlExpressAccount"},{"fields":{"credentials":{"account_number":{"label":"DHL
-      Parcel Account Number","visibility":"visible"},"api_key":{"label":"DHL Parcel
-      API Key","visibility":"masked"},"user_id":{"label":"DHL Parcel User ID","visibility":"visible"}},"test_credentials":{"account_number":{"label":"DHL
-      Parcel Account Number","visibility":"visible"},"api_key":{"label":"DHL Parcel
-      API Key","visibility":"masked"},"user_id":{"label":"DHL Parcel User ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"DHL
-      Parcel","type":"DhlParcelAccount"},{"fields":{"credentials":{"customer_number":{"label":"DPD
-      Customer Number","visibility":"visible"},"password":{"label":"WebConnect Password","visibility":"password"},"username":{"label":"WebConnect
-      Username","visibility":"visible"}},"test_credentials":{"customer_number":{"label":"DPD
-      Customer Number","visibility":"visible"},"password":{"label":"Test WebConnect
-      Password","visibility":"password"},"username":{"label":"Test WebConnect Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"DPD","type":"DpdAccount"},{"fields":{"credentials":{"account_number":{"label":"DPD
-      UK Account Number","visibility":"visible"},"password":{"label":"DPD UK Password","visibility":"password"},"username":{"label":"DPD
-      UK Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"DPD
-      UK","type":"DpdUkAccount"},{"fields":{"credentials":{"client_id":{"label":"Tracking
-      Subscriber ID","visibility":"visible"},"customer_id":{"label":"Subscriber ID","visibility":"visible"},"customer_number":{"label":"Customer
-      Number","visibility":"visible"},"hub_id":{"label":"Office Number","visibility":"visible"},"password":{"label":"Password","visibility":"password"},"secret_key":{"label":"Tracking
-      Password","visibility":"password"},"user_id":{"label":"Tracking Login","visibility":"visible"},"username":{"label":"Login","visibility":"visible"}},"test_credentials":{"client_id":{"label":"Test
-      Tracking Subscriber ID","visibility":"visible"},"customer_id":{"label":"Test
-      Subscriber ID","visibility":"visible"},"customer_number":{"label":"Test Customer
-      Number","visibility":"visible"},"hub_id":{"label":"Test Office Number","visibility":"visible"},"password":{"label":"Test
-      Password","visibility":"password"},"secret_key":{"label":"Test Tracking Password","visibility":"password"},"user_id":{"label":"Test
-      Tracking Login","visibility":"visible"},"username":{"label":"Test Login","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Estafeta","type":"EstafetaAccount"},{"fields":{"credentials":{"api_key":{"label":"API
-      Key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"Fastway","type":"FastwayAccount"},{"fields":{"creation_fields":{"address_information":{"shipping_city":{"label":"Shipping
+    body: '[{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Amazon
+      MWS","type":"AmazonMwsAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"APC","type":"ApcAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Asendia
+      USA (Legacy)","type":"AsendiaAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Asendia
+      USA","type":"AsendiaUsaAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Australia
+      Post","type":"AustraliaPostAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"AxlehireV3","type":"AxlehireV3Account"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Better
+      Trucks","type":"BetterTrucksAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Bond","type":"BondAccount"},{"fields":{"credentials":{},"custom_workflow":true,"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Canada
+      Post","type":"CanadaPostAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Canpar","type":"CanparAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"CDL
+      Last Mile Solutions","type":"ColumbusLastMileAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Courier
+      Express","type":"CourierExpressAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"CouriersPlease","type":"CouriersPleaseAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Dai
+      Post","type":"DaiPostAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Deutsche
+      Post UK","type":"DeutschePostUKAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"DHL
+      Ecommerce Asia","type":"DhlEcommerceAsiaAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"DHL
+      eCommerce Solutions","type":"DhlEcsAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"DHL
+      Express","type":"DhlExpressAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"DHL
+      Parcel","type":"DhlParcelAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"DPD","type":"DpdAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"DPD
+      UK","type":"DpdUkAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Estafeta","type":"EstafetaAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Fastway","type":"FastwayAccount"},{"fields":{"creation_fields":{"address_information":{"shipping_city":{"label":"Shipping
       City","visibility":"visible"},"shipping_country_code":{"label":"Shipping Country
       Code","visibility":"visible"},"shipping_postal_code":{"label":"Shipping Postal
       Code ","visibility":"visible"},"shipping_state":{"label":"Shipping State","visibility":"visible"},"shipping_streets":{"label":"Shipping
@@ -143,25 +41,9 @@ interactions:
       Phone","visibility":"visible"},"corporate_postal_code":{"label":"Company Postal
       Code","visibility":"visible"},"corporate_state":{"label":"Company State","visibility":"visible"},"corporate_streets":{"label":"Company
       Street","visibility":"visible"}},"credential_information":{"account_number":{"label":"FedEx
-      Account #","visibility":"visible"}}},"credentials":{"account_number":{"label":"FedEx
-      Account Number","visibility":"readonly"},"key":{"label":"FedEx Production Authentication
-      Key","visibility":"invisible"},"meter_number":{"label":"FedEx Production Meter
-      Number","visibility":"invisible"},"password":{"label":"FedEx Production Password","visibility":"invisible"}},"custom_workflow":true,"test_credentials":{"account_number":{"label":"FedEx
-      Account Number","visibility":"readonly"},"key":{"label":"FedEx Developer Test
-      Key","visibility":"invisible"},"meter_number":{"label":"FedEx Test Meter Number","visibility":"invisible"},"password":{"label":"FedEx
-      Test Password","visibility":"invisible"}}},"logo":null,"object":"CarrierType","readable":"FedEx","type":"FedexAccount"},{"fields":{"credentials":{"api_key":{"label":"FedEx
-      Cross Border API key","visibility":"masked"},"origin_hub":{"label":"FedEx Cross
-      Border Origin Hub","visibility":"select"}},"test_credentials":{"api_key":{"label":"Test
-      FedEx Cross Border API key","visibility":"masked"},"origin_hub":{"label":"Test
-      FedEx Cross Border Origin Hub","visibility":"select"}}},"logo":null,"object":"CarrierType","readable":"FedEx
-      Cross Border","type":"FedexCrossBorderAccount"},{"fields":{"credentials":{"customer_id":{"label":"Customer
-      Code","visibility":"visible"},"fimspremium":{"label":"FIMS Premium","visibility":"checkbox"},"fimsstandard":{"label":"FIMS
-      Standard","visibility":"checkbox"},"mailviewlight":{"label":"MailView Light","visibility":"checkbox"},"mailviewpremium":{"label":"MailView
-      Premium","visibility":"checkbox"},"service_id":{"label":"Service ID","visibility":"password"}}},"logo":null,"object":"CarrierType","readable":"FedEx
-      MailView","type":"FedexMailviewAccount"},{"fields":{"credentials":{"account_number":{"label":"FedEx
-      SameDay City Account Number","visibility":"visible"},"api_key":{"label":"FedEx
-      SameDay City Shipment API Key","visibility":"masked"},"tracking_api_key":{"label":"FedEx
-      SameDay City Tracking API Key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"FedEx
+      Account #","visibility":"visible"}}},"credentials":{},"custom_workflow":true,"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"FedEx","type":"FedexAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"FedEx
+      Cross Border","type":"FedexCrossBorderAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"FedEx
+      MailView","type":"FedexMailviewAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"FedEx
       SameDay City","type":"FedexSamedayCityAccount"},{"fields":{"creation_fields":{"address_information":{"shipping_city":{"label":"Shipping
       City","visibility":"visible"},"shipping_country_code":{"label":"Shipping Country
       Code","visibility":"visible"},"shipping_postal_code":{"label":"Shipping Postal
@@ -177,143 +59,25 @@ interactions:
       Code","visibility":"visible"},"corporate_state":{"label":"Company State","visibility":"visible"},"corporate_streets":{"label":"Company
       Street","visibility":"visible"}},"credential_information":{"account_number":{"label":"FedEx
       SmartPost Account #","visibility":"visible"},"hub_id":{"label":"FedEx SmartPost
-      Hub ID","visibility":"visible"}}},"credentials":{"account_number":{"label":"FedEx
-      SmartPost Account Number","visibility":"visible"},"hub_id":{"label":"FedEx SmartPost
-      HubID","visibility":"visible"},"key":{"label":"FedEx SmartPost Access Key","visibility":"masked"},"meter_number":{"label":"Fedex
-      SmartPost Meter Number","visibility":"visible"},"password":{"label":"SmartPost
-      Access Key Password","visibility":"password"}},"custom_workflow":true},"logo":null,"object":"CarrierType","readable":"FedEx
-      SmartPost","type":"FedexSmartpostAccount"},{"fields":{"credentials":{"account_number":{"label":"Globegistics
-      Account Number","visibility":"visible"},"facility":{"label":"Globegistics Facility","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Globegistics","type":"GlobegisticsAccount"},{"fields":{"credentials":{"account_number":{"label":"GSO
-      Account Number","visibility":"visible"},"password":{"label":"Password","visibility":"password"},"username":{"label":"Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"GSO","type":"GsoAccount"},{"fields":{"credentials":{"client_id":{"label":"Evri
-      Client ID","visibility":"visible"},"client_licence":{"label":"Evri Client License","visibility":"masked"},"client_name":{"label":"Evri
-      Client name","visibility":"visible"},"group_id":{"label":"Evri Group ID","visibility":"visible"},"password":{"label":"Evri
-      Password","visibility":"password"},"username":{"label":"Evri Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Evri","type":"HermesAccount"},{"fields":{"credentials":{"account_number":{"label":"Interlink
-      Express Account Number","visibility":"visible"},"password":{"label":"Interlink
-      Express Password","visibility":"password"},"username":{"label":"Interlink Express
-      Username","visibility":"visible"},"vat_number":{"label":"VAT Number","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Interlink
-      Express","type":"InterlinkExpressAccount"},{"fields":{"credentials":{"api_id":{"label":"LaserShipV2
-      API ID","visibility":"visible"},"api_key":{"label":"LaserShipV2 API Key","visibility":"masked"},"cargo_claim_value":{"label":"LaserShipV2
-      Cargo Insurance Claim Value (USD)","visibility":"visible"},"facility":{"label":"LaserShipV2
-      Customer Branch","visibility":"visible"},"injection_city":{"label":"Injection
-      Address City","visibility":"visible"},"injection_contact":{"label":"Injection
-      Address Contact","visibility":"visible"},"injection_country":{"label":"Injection
-      Address Country Code","visibility":"visible"},"injection_email":{"label":"Injection
-      Address Email","visibility":"visible"},"injection_instruction":{"label":"Injection
-      Address Instruction","visibility":"visible"},"injection_location_type":{"label":"Injection
-      Address Location Type (\"Business\" or \"Residence\")","visibility":"visible"},"injection_note":{"label":"Injection
-      Address Note","visibility":"visible"},"injection_organization":{"label":"Injection
-      Address Organization","visibility":"visible"},"injection_phone":{"label":"Injection
-      Address Phone","visibility":"visible"},"injection_phone_ext":{"label":"Injection
-      Address Phone Extension","visibility":"visible"},"injection_state":{"label":"Injection
-      Address State","visibility":"visible"},"injection_street1":{"label":"Injection
-      Address Street1","visibility":"visible"},"injection_street2":{"label":"Injection
-      Address Street2","visibility":"visible"},"injection_zip":{"label":"Injection
-      Address Postal Code","visibility":"visible"},"is_reseller":{"label":"3PL Account?
-      (check if yes)","visibility":"checkbox"}}},"logo":null,"object":"CarrierType","readable":"LaserShipV2","type":"LasershipV2Account"},{"fields":{"credentials":{"account_number":{"label":"Loomis
-      Express Account Number","visibility":"visible"},"password":{"label":"Loomis
-      Express Password","visibility":"password"},"username":{"label":"Loomis Express
-      Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"Test
-      Loomis Express Account Number","visibility":"visible"},"password":{"label":"Test
-      Loomis Express Password","visibility":"password"},"username":{"label":"Test
-      Loomis Express Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Loomis
-      Express","type":"LoomisExpressAccount"},{"fields":{"credentials":{"account_number":{"label":"LSO
-      Production Account Number","visibility":"visible"},"password":{"label":"LSO
-      Production Password","visibility":"password"},"username":{"label":"LSO Production
-      Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"LSO
-      Test Account Number","visibility":"visible"},"password":{"label":"LSO Test Password","visibility":"password"},"username":{"label":"LSO
-      Test Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"LSO","type":"LsoAccount"},{"fields":{"credentials":{"client_facility_id":{"label":"Client
-      Facility ID","visibility":"visible"},"client_id":{"label":"Client ID","visibility":"visible"},"client_secret":{"label":"Client
-      Secret","visibility":"password"},"fulfiller_facility_id":{"label":"Newgistics
-      Facility ID","visibility":"visible"},"merchant_id":{"label":"Merchant ID","visibility":"visible"},"tracking_api_key":{"label":"Tracking
-      API Key","visibility":"masked"}},"test_credentials":{"client_facility_id":{"label":"Client
-      Facility ID","visibility":"visible"},"client_id":{"label":"Client ID","visibility":"visible"},"client_secret":{"label":"Client
-      Secret","visibility":"password"},"fulfiller_facility_id":{"label":"Newgistics
-      Facility ID","visibility":"visible"},"merchant_id":{"label":"Merchant ID","visibility":"visible"},"tracking_api_key":{"label":"Tracking
-      API Key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"Newgistics","type":"NewgisticsAccount"},{"fields":{"credentials":{"api_access_key":{"label":"API
-      Access Key","visibility":"masked"},"return_api_access_key":{"label":"Return
-      API Access Key","visibility":"masked"}},"test_credentials":{"api_access_key":{"label":"Test
-      API Access Key","visibility":"masked"},"return_api_access_key":{"label":"Test
-      Return API Access Key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"OmniParcel","type":"OmniParcelAccount"},{"fields":{"credentials":{"account_number":{"label":"OnTrac
-      Account Number","visibility":"visible"},"password":{"label":"OnTrac API Password","visibility":"password"}},"test_credentials":{"account_number":{"label":"OnTrac
-      Test Account Number","visibility":"visible"},"password":{"label":"OnTrac Test
-      API Password","visibility":"password"}}},"logo":null,"object":"CarrierType","readable":"OnTrac","type":"OntracAccount"},{"fields":{"credentials":{"account_number":{"label":"Account
-      Number","visibility":"visible"},"aws_sftp_username":{"label":"SFTP Username","visibility":"visible"},"company_name":{"label":"Company
-      Name","visibility":"visible"},"facility_code":{"label":"Facility Code/Cost Center
-      ID for manifesting (optional)","visibility":"visible"},"mailer_id":{"label":"Mailer
-      ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"OSM
-      Worldwide","type":"OsmWorldwideAccount"},{"fields":{"credentials":{"account_number":{"label":"Parcelforce
-      Contract Number","visibility":"visible"},"department_id":{"label":"Department
-      ID - not required","visibility":"visible"},"password":{"label":"expressLink
-      API Password","visibility":"password"},"username":{"label":"expressLink API
-      Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"Parcelforce
-      Test Contract Number","visibility":"visible"},"department_id":{"label":"Test
-      Department ID - not required","visibility":"visible"},"password":{"label":"Test
-      expressLink API Password","visibility":"password"},"username":{"label":"Test
-      expressLink API Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Parcel
-      Force","type":"ParcelForceAccount"},{"fields":{"credentials":{"api_key":{"label":"Parcll
-      API key","visibility":"masked"},"origin_hub":{"label":"Parcll Origin Hub","visibility":"select"},"user_id":{"label":"Parcll
-      User Id","visibility":"visible"}},"test_credentials":{"api_key":{"label":"Test
-      Parcll API key","visibility":"masked"},"origin_hub":{"label":"Test Parcll Origin
-      Hub","visibility":"select"},"user_id":{"label":"Test Parcll User Id","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Parcll","type":"ParcllAccount"},{"fields":{"credentials":{"api_key":{"label":"Passport
-      Global API key","visibility":"masked"},"company_name":{"label":"Customer company
-      name registered with Passport Global","visibility":"visible"},"email":{"label":"Customer
-      email address registered with Passport Global","visibility":"visible"},"name":{"label":"Customer
-      name registered with Passport Global","visibility":"visible"},"phone":{"label":"Customer
-      phone number registered with Passport Global (optional)","visibility":"visible"}},"test_credentials":{"api_key":{"label":"Passport
-      Global Test API key","visibility":"masked"},"company_name":{"label":"Customer
-      company name registered with Passport Global","visibility":"visible"},"email":{"label":"Customer
-      email address registered with Passport Global","visibility":"visible"},"name":{"label":"Customer
-      name registered with Passport Global","visibility":"visible"},"phone":{"label":"Customer
-      phone number registered with Passport Global (optional)","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Passport
-      Global","type":"PassportGlobalAccount"},{"fields":{"credentials":{"account_number":{"label":"Purolator
-      Account Number","visibility":"visible"},"api_key":{"label":"Production API Key","visibility":"masked"},"password":{"label":"Production
-      API Key Password","visibility":"password"}}},"logo":null,"object":"CarrierType","readable":"Purolator","type":"PurolatorAccount"},{"fields":{"credentials":{"account_number":{"label":"Royal
-      Mail Account Number","visibility":"visible"},"posting_location_number":{"label":"Posting
-      Location Number","visibility":"visible"},"username":{"label":"OBA Email Address","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Royal
-      Mail","type":"RoyalMailAccount"},{"fields":{"credentials":{"account_number":{"label":"ePostGlobal
-      Account Number","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"ePost
-      Global","type":"RRDonnelleyAccount"},{"fields":{"credentials":{"api_key":{"label":"Sendle
-      API Key","visibility":"masked"},"user_id":{"label":"Sendle ID","visibility":"visible"}},"test_credentials":{"api_key":{"label":"Sendle
-      Sandbox API Key","visibility":"masked"},"user_id":{"label":"Sendle Sandbox ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Sendle","type":"SendleAccount"},{"fields":{"credentials":{"checkword":{"label":"SF
-      Express checkword","visibility":"visible"},"customer_code":{"label":"SF Express
-      customer code","visibility":"visible"},"customer_id":{"label":"SF Express customer
-      id","visibility":"visible"}},"test_credentials":{"checkword":{"label":"Test
-      SF Express checkword","visibility":"visible"},"customer_code":{"label":"Test
-      SF Express customer code","visibility":"visible"},"customer_id":{"label":"Test
-      SF Express customer id","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"SF
-      Express","type":"SfExpressAccount"},{"fields":{"credentials":{"account_number":{"label":"Spee-Dee
-      Account Number","visibility":"visible"},"ftp_password":{"label":"Spee-Dee FTP
-      Password","visibility":"password"},"ftp_username":{"label":"Spee-Dee FTP Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"Spee-Dee","type":"SpeedeeAccount"},{"fields":{"credentials":{"account_number":{"label":"StarTrack
-      Account Number","visibility":"visible"},"api_key":{"label":"StarTrack API Key","visibility":"masked"},"api_secret":{"label":"StarTrack
-      Secret Key","visibility":"password"},"print_as_you_go":{"label":"Print as you
-      go","visibility":"checkbox"}}},"logo":null,"object":"CarrierType","readable":"StarTrack","type":"StarTrackAccount"},{"fields":{"credentials":{"account_number":{"label":"TForce
-      Account Number","visibility":"visible"},"password":{"label":"TForce Password","visibility":"password"},"username":{"label":"TForce
-      Username","visibility":"visible"}},"test_credentials":{"account_number":{"label":"Test
-      TForce Account Number","visibility":"visible"},"password":{"label":"Test TForce
-      Password","visibility":"password"},"username":{"label":"Test TForce Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"TForce","type":"TforceConciseAccount"},{"fields":{"credentials":{"ftp_password":{"label":"FTP
-      Password","visibility":"password"},"ftp_username":{"label":"FTP Username","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"UDS","type":"UdsAccount"},{"fields":{"credentials":{"access_license_number":{"label":"UPS
-      Access License Number","visibility":"invisible"},"account_number":{"label":"UPS
-      Account Number","visibility":"readonly"},"password":{"label":"UPS.com Password","visibility":"invisible"},"user_id":{"label":"UPS.com
-      User ID","visibility":"invisible"}},"custom_workflow":true},"logo":null,"object":"CarrierType","readable":"UPS","type":"UpsAccount"},{"fields":{"credentials":{"api_key":{"label":"i-Parcel
-      API key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"UPS
-      i-Parcel","type":"UpsIparcelAccount"},{"fields":{"credentials":{"account_number":{"label":"UPS
-      Shipper Number","visibility":"visible"},"customer_guid":{"label":"UPS customer
-      GUID (optional)","visibility":"visible"},"customer_id":{"label":"UPS customer
-      id (optional)","visibility":"visible"},"password":{"label":"UPS.com Password","visibility":"password"},"user_id":{"label":"UPS.com
-      User ID","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"UPS
-      Mail Innovations","type":"UpsMailInnovationsAccount"},{"fields":{"credentials":{"address_city":{"label":"City","visibility":"visible"},"address_state":{"label":"State","visibility":"visible"},"address_street":{"label":"Street
-      Address","visibility":"visible"},"address_zip":{"label":"ZIP Code","visibility":"visible"},"company_name":{"label":"Account
-      Holder Name","visibility":"visible"},"email":{"label":"Email Address","visibility":"visible"},"phone":{"label":"Phone
-      Number","visibility":"visible"},"shipper_id":{"label":"Shipper Identifier (Optional)","visibility":"visible"}}},"logo":null,"object":"CarrierType","readable":"USPS","type":"UspsAccount"},{"fields":{"credentials":{"api_key":{"label":"Veho
-      Production API Key","visibility":"masked"}},"test_credentials":{"api_key":{"label":"Veho
-      Test API Key","visibility":"masked"}}},"logo":null,"object":"CarrierType","readable":"Veho","type":"VehoAccount"}]'
+      Hub ID","visibility":"visible"}}},"credentials":{},"custom_workflow":true},"logo":null,"object":"CarrierType","readable":"FedEx
+      SmartPost","type":"FedexSmartpostAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Globegistics","type":"GlobegisticsAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"GSO","type":"GsoAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Evri","type":"HermesAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Interlink
+      Express","type":"InterlinkExpressAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"LaserShipV2","type":"LasershipV2Account"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Loomis
+      Express","type":"LoomisExpressAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"LSO","type":"LsoAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Newgistics","type":"NewgisticsAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"OmniParcel","type":"OmniParcelAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"OnTrac","type":"OntracAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"OSM
+      Worldwide","type":"OsmWorldwideAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Parcel
+      Force","type":"ParcelForceAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Parcll","type":"ParcllAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Passport
+      Global","type":"PassportGlobalAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Purolator","type":"PurolatorAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Royal
+      Mail","type":"RoyalMailAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"ePost
+      Global","type":"RRDonnelleyAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Sendle","type":"SendleAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"SF
+      Express","type":"SfExpressAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"Spee-Dee","type":"SpeedeeAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"StarTrack","type":"StarTrackAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Swyft","type":"SwyftAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"TForce","type":"TforceConciseAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"UDS","type":"UdsAccount"},{"fields":{"credentials":{},"custom_workflow":true},"logo":null,"object":"CarrierType","readable":"UPS","type":"UpsAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"UPS
+      i-Parcel","type":"UpsIparcelAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"UPS
+      Mail Innovations","type":"UpsMailInnovationsAccount"},{"fields":{"credentials":{}},"logo":null,"object":"CarrierType","readable":"USPS","type":"UspsAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"Veho","type":"VehoAccount"},{"fields":{"credentials":{},"test_credentials":{}},"logo":null,"object":"CarrierType","readable":"XDelivery","type":"XDeliveryAccount"}]'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"f9f7c974c65e710285fe3c38fe492e01"
+      - W/"ab9b21e41223013b1cefac95928e4073"
       Expires:
       - "0"
       Pragma:
@@ -329,21 +93,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccc1ff246ba1007010b1
+      - 924e0c20632a4c91ec8cdb430010829f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.025027"
+      - "0.029789"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

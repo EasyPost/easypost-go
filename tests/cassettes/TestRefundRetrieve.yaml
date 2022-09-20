@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/refunds
     method: GET
   response:
-    body: '{"refunds":[{"id":"rfnd_5b5b9dc4eeee4f2ab224919d9259c775","object":"Refund","created_at":"2022-08-19T17:48:10Z","updated_at":"2022-08-19T17:48:10Z","tracking_code":"9400100109361133883950","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_1ab35a6b832e4cda885ec5804ebf1697"}],"has_more":false}'
+    body: '{"has_more":false,"refunds":[{"carrier":"USPS","confirmation_number":null,"created_at":"2022-09-20T23:28:52Z","id":"rfnd_160ef5323ed6480db2d2857a9d33f1aa","object":"Refund","shipment_id":"shp_994110a9fef54ab986f713a4bbbe1a0f","status":"submitted","tracking_code":"9400100109361138553537","updated_at":"2022-09-20T23:28:52Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e9ece2cdb4f95eac7717cfce410087fd"
+      - W/"d047675be86a19b6b946361c76733968"
       Expires:
       - "0"
       Pragma:
@@ -32,26 +32,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdaff246ba100701d19
+      - 924e0c20632a4cb5ec8cdb4300108bdc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.050481"
+      - "0.035643"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201945-4c5c97ab34-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -65,17 +67,17 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/refunds/rfnd_5b5b9dc4eeee4f2ab224919d9259c775
+    url: https://api.easypost.com/v2/refunds/rfnd_160ef5323ed6480db2d2857a9d33f1aa
     method: GET
   response:
-    body: '{"id":"rfnd_5b5b9dc4eeee4f2ab224919d9259c775","object":"Refund","created_at":"2022-08-19T17:48:10Z","updated_at":"2022-08-19T17:48:10Z","tracking_code":"9400100109361133883950","confirmation_number":null,"status":"submitted","carrier":"USPS","shipment_id":"shp_1ab35a6b832e4cda885ec5804ebf1697"}'
+    body: '{"carrier":"USPS","confirmation_number":null,"created_at":"2022-09-20T23:28:52Z","id":"rfnd_160ef5323ed6480db2d2857a9d33f1aa","object":"Refund","shipment_id":"shp_994110a9fef54ab986f713a4bbbe1a0f","status":"submitted","tracking_code":"9400100109361138553537","updated_at":"2022-09-20T23:28:52Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"7169277af5015c81694346da62a9db3f"
+      - W/"a90135ae5fc247d531c631c0a78ed842"
       Expires:
       - "0"
       Pragma:
@@ -86,26 +88,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdbff246ba100701d3d
+      - 924e0c20632a4cb5ec8cdb4300108bed
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.042565"
+      - "0.030844"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201945-4c5c97ab34-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/refunds
     method: GET
   response:
-    body: '{"refunds":[],"has_more":false}'
+    body: '{"has_more":false,"refunds":[]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -37,21 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccd8ff246ba100701c24
+      - 924e0c20632a4cb2ec8cdb4300108b63
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.032141"
+      - "0.021654"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209201859-4397aee39f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
