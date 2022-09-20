@@ -29,6 +29,7 @@ type UserOptions struct {
 	PasswordConfirmation    *string `json:"password_confirmation,omitempty"`
 	CurrentPassword         *string `json:"current_password,omitempty"`
 	Name                    *string `json:"name,omitempty"`
+	Phone                   *string `json:"phone,omitempty"`
 	PhoneNumber             *string `json:"phone_number,omitempty"`
 	RechargeAmount          *string `json:"recharge_amount,omitempty"`
 	SecondaryRechargeAmount *string `json:"secondary_recharge_amount,omitempty"`
@@ -40,9 +41,10 @@ type userRequest struct {
 }
 
 // CreateUser creates a new child user.
-//  c := easypost.New(MyEasyPostAPIKey)
-//  opts := &easypost.UserOptions{Name: easypost.StringPtr("Child User")}
-//	out, err := c.CreateUser(opts)
+//
+//	 c := easypost.New(MyEasyPostAPIKey)
+//	 opts := &easypost.UserOptions{Name: easypost.StringPtr("Child User")}
+//		out, err := c.CreateUser(opts)
 func (c *Client) CreateUser(in *UserOptions) (out *User, err error) {
 	return c.CreateUserWithContext(context.Background(), in)
 }
