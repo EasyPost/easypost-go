@@ -5,6 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
+	"log"
 	"net/http"
 	"net/url"
 	"strings"
@@ -146,7 +147,7 @@ func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, cre
 	defer func(Body io.ReadCloser) {
 		err := Body.Close()
 		if err != nil {
-
+			log.Println(err) // we should never get here
 		}
 	}(resp.Body)
 
