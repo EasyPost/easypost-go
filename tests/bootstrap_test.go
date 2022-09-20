@@ -23,6 +23,10 @@ var (
 	TestAPIKey string
 	// ProdAPIKey is used for tests that require a prod key (like the user API).
 	ProdAPIKey string
+	// PartnerAPIKey is used for tests that require a partner key (like the white label API).
+	PartnerAPIKey string
+	// ReferralAPIKey is used for tests that require a referral key (like the white label API).
+	ReferralAPIKey string
 )
 
 type ErrorRoundTripper struct{}
@@ -156,6 +160,13 @@ func (c *ClientTests) ProdClient() *easypost.Client {
 	}
 }
 
+func (c *ClientTests) PartnerClient() *easypost.Client {
+	return &easypost.Client{
+		APIKey: PartnerAPIKey,
+		Client: &http.Client{Transport: c.recorder},
+	}
+}
+
 func TestClient(t *testing.T) {
 	suite.Run(t, new(ClientTests))
 }
@@ -176,7 +187,19 @@ func TestMain(m *testing.M) {
 		os.Getenv("EASYPOST_PROD_API_KEY"),
 		"production key to use against EasyPost API",
 	)
-	
+	fs.StringVar(
+		&PartnerAPIKey,
+		"partner-api-key",
+		os.Getenv("PARTNER_USER_PROD_API_KEY"),
+		"production key for partner account to use against EasyPost API",
+	)
+	fs.StringVar(
+		&ReferralAPIKey,
+		"referral-api-key",
+		os.Getenv("REFERRAL_USER_PROD_API_KEY"),
+		"production key for referral account to use against EasyPost API",
+	)
+
 	// Add flags to CommandLine (default) FlagSet:
 	fs.VisitAll(func(f *flag.Flag) { flag.Var(f.Value, f.Name, f.Usage) })
 	flag.Parse()
@@ -185,14 +208,14 @@ func TestMain(m *testing.M) {
 	// Fail test suite below desired coverage
 	// `testSuite = 0` means it passed, CoverMode will be non empty if run with -cover
 	coverageMinPercentage := 0.75 // TODO: This number for whatever reason is about ~5% lower than what the CLI reports which is the real value
-    if testSuite == 0 && testing.CoverMode() != "" {
-        coverage := testing.Coverage()
-        if coverage < coverageMinPercentage {
-            fmt.Println("Tests passed but coverage failed with coverage: ", coverage)
-            testSuite = -1
-        }
-    }
-	
+	if testSuite == 0 && testing.CoverMode() != "" {
+		coverage := testing.Coverage()
+		if coverage < coverageMinPercentage {
+			fmt.Println("Tests passed but coverage failed with coverage: ", coverage)
+			testSuite = -1
+		}
+	}
+
 	// Exit once tests complete
 	os.Exit(testSuite)
 }

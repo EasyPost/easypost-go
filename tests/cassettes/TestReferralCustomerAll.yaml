@@ -1,0 +1,128 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/referral_customers
+    method: GET
+  response:
+    body: '{"has_more":true,"referral_customers":[{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-26T15:50:28Z","default_insurance_amount":"50.00","email":"me2@email.com","has_billing_method":null,"id":"user_634b6daa05744bfaa205058f06864363","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-27T20:20:52Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":true,"id":"user_35cb81fb8af1454dabf1f6afa7330634","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-28T22:34:38Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":null,"id":"user_fa93cc16bcc24c078ee057ce82f38eed","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-29T19:35:33Z","default_insurance_amount":"50.00","email":"test@test.com","has_billing_method":null,"id":"user_4a22730cdc844ce1bc2efbed999c869f","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-02T18:48:22Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":true,"id":"user_488e391395f4416196a31965fecac409","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}]}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"5b291a65ba7838e42637470e6420bc5f"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - de45db686329ffdbec7d9a300038a519
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb3nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.231577"
+      X-Version-Label:
+      - easypost-202209201701-65cee99e9d-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/referral_customers
+    method: GET
+  response:
+    body: '{"has_more":true,"referral_customers":[{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-26T15:50:28Z","default_insurance_amount":"50.00","email":"me2@email.com","has_billing_method":null,"id":"user_634b6daa05744bfaa205058f06864363","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-27T20:20:52Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":true,"id":"user_35cb81fb8af1454dabf1f6afa7330634","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-28T22:34:38Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":null,"id":"user_fa93cc16bcc24c078ee057ce82f38eed","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-04-29T19:35:33Z","default_insurance_amount":"50.00","email":"test@test.com","has_billing_method":null,"id":"user_4a22730cdc844ce1bc2efbed999c869f","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-02T18:48:22Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":true,"id":"user_488e391395f4416196a31965fecac409","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-02T19:04:10Z","default_insurance_amount":"50.00","email":"test@test.com","has_billing_method":null,"id":"user_91b120087ff843349b9a3f0675572bb1","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-02T23:08:40Z","default_insurance_amount":"50.00","email":"test@test.com","has_billing_method":true,"id":"user_4ae0d572fbe542deb7efa51935a5b826","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-04T22:05:27Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":null,"id":"user_71189529eba747ce83aa69303e22c7df","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Firstname
+      Lastname","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-05T16:54:58Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":null,"id":"user_c13290f1f6a442d79657b8bfe5daeeba","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true},{"balance":"0.00000","cc_fee_rate":"0.0325","children":[],"created_at":"2022-05-05T16:55:59Z","default_insurance_amount":"50.00","email":"email@example.com","has_billing_method":true,"id":"user_b73fdc6c6a58421ea884a82ad14520a5","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"test
+      test","object":"User","parent_id":null,"phone_number":"8888888888","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}]}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"7da17f5d4a4be113634e5bc4136e66d6"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - de45db686329ffdcec7d9a300038a544
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.415319"
+      X-Version-Label:
+      - easypost-202209201701-65cee99e9d-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

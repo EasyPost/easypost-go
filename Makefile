@@ -21,6 +21,7 @@ coverage:
 
 ## install - Install and vendor dependencies
 install:
+	brew install golangci-lint || exit 0
 	git submodule init
 	git submodule update
 	go mod vendor
