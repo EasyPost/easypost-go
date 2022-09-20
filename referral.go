@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"errors"
 	"io"
-	"log"
+	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -145,13 +145,10 @@ func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, cre
 	}
 
 	defer func(Body io.ReadCloser) {
-		err := Body.Close()
-		if err != nil {
-			log.Println(err) // we should never get here
-		}
+		_ = Body.Close()
 	}(resp.Body)
 
-	body, err := io.ReadAll(resp.Body)
+	body, err := ioutil.ReadAll(resp.Body) // deprecated, but we have to keep it for legacy compatibility
 	if err != nil {
 		return nil, err
 	}
