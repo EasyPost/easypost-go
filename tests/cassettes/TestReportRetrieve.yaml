@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-04-11","end_date":"2022-04-11"}'
+    body: '{"end_date":"2022-04-11","start_date":"2022-04-11"}'
     form: {}
     headers:
       Authorization:
@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_f3f348e2615e4b8d88a081b1f5479e5c","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-08-19T17:48:12Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_787f9f83014f49a4a1da9a5fa5cf33d6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T18:22:52Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"4abc4adc3e8683c284ca002322b413f4"
+      - W/"cadb49925379f6bfbdf0f1cd502e16a9"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdcff246ba100701dc3
+      - 8f5eb2cf632b567cec7d9989000db09f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.036482"
+      - "0.046801"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -65,17 +65,17 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/reports/shipment/shprep_f3f348e2615e4b8d88a081b1f5479e5c
+    url: https://api.easypost.com/v2/reports/shipment/shprep_787f9f83014f49a4a1da9a5fa5cf33d6
     method: GET
   response:
-    body: '{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_f3f348e2615e4b8d88a081b1f5479e5c","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-08-19T17:48:12Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_787f9f83014f49a4a1da9a5fa5cf33d6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-09-21T18:22:52Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220921/3ba93fbc34734e65bc812167205801b6.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220921%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220921T182252Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=452d8b682ff93114c40be062f3f53bcda490e1aabe8d3e9d9e59fed680fa31f9","url_expires_at":"2022-09-21T18:23:22Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"4abc4adc3e8683c284ca002322b413f4"
+      - W/"a29cbd5100c2ce7ed1d521728b3709ac"
       Expires:
       - "0"
       Pragma:
@@ -86,26 +86,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdcff246ba100701deb
+      - 8f5eb2cf632b567cec7d9989000db0b6
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb2wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.029589"
+      - "0.034856"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

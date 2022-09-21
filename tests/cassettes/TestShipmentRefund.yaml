@@ -2,10 +2,11 @@
 version: 1
 interactions:
 - request:
-    body: '{"shipment":{"to_address":{"street1":"388 Townsend St","street2":"Apt 20","city":"San
-      Francisco","state":"CA","zip":"94107","country":"US","name":"Jack Sparrow","phone":"5555555555","email":"test@example.com"},"from_address":{"street1":"179
-      N Harbor Dr","city":"Redondo Beach","state":"CA","zip":"90277","country":"US","name":"Elizabeth
-      Swan","phone":"5555555555","email":"test@example.com"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4},"carrier":"USPS","service":"First","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"]}}'
+    body: '{"shipment":{"carrier":"USPS","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"],"from_address":{"city":"Redondo
+      Beach","country":"US","email":"REDACTED","name":"Elizabeth Swan","phone":"REDACTED","state":"CA","street1":"179
+      N Harbor Dr","zip":"90277"},"parcel":{"height":4,"length":10,"weight":15.4,"width":8},"service":"First","to_address":{"city":"San
+      Francisco","country":"US","email":"REDACTED","name":"Jack Sparrow","phone":"REDACTED","state":"CA","street1":"388
+      Townsend St","street2":"Apt 20","zip":"94107"}}}'
     form: {}
     headers:
       Authorization:
@@ -18,29 +19,29 @@ interactions:
     method: POST
   response:
     body: '{"batch_id":null,"batch_message":null,"batch_status":null,"buyer_address":{"carrier_facility":null,"city":"SAN
-      FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_2645ba741fe711ed8cc4ac1f6b0a0d1e","mode":"test","name":"JACK
-      SPARROW","object":"Address","phone":"5555555555","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-08-19T17:48:36+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"created_at":"2022-08-19T17:48:35Z","customs_info":null,"fees":[{"amount":"0.00000","charged":true,"object":"Fee","refunded":false,"type":"LabelFee"},{"amount":"5.57000","charged":true,"object":"Fee","refunded":false,"type":"PostageFee"}],"forms":[],"from_address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_264771601fe711ed8c6fac1f6bc72124","mode":"test","name":"Elizabeth
-      Swan","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2022-08-19T17:48:35+00:00","verifications":{},"zip":"90277"},"id":"shp_43ac04a00edb4ff1bd477fab9b380df1","insurance":null,"is_return":false,"messages":[],"mode":"test","object":"Shipment","options":{"currency":"USD","date_advance":0,"payment":{"type":"SENDER"}},"order_id":null,"parcel":{"created_at":"2022-08-19T17:48:35Z","height":4,"id":"prcl_3f7fa72cec0e4dcc9c05b681857ec96a","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2022-08-19T17:48:35Z","weight":15.4,"width":8},"postage_label":{"created_at":"2022-08-19T17:48:36Z","date_advance":0,"id":"pl_6dd2b62b1eeb4f93a9873f9802fd3e5d","integrated_form":"none","label_date":"2022-08-19T17:48:36Z","label_epl2_url":null,"label_file":null,"label_file_type":"image/png","label_pdf_url":null,"label_resolution":300,"label_size":"4x6","label_type":"default","label_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/postage_label/20220819/d64bf79f7eec4fd38d48403d2eac06de.png","label_zpl_url":null,"object":"PostageLabel","updated_at":"2022-08-19T17:48:36Z"},"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_aaa9d5510d0344c8b4be1528822713b0","list_currency":"USD","list_rate":"29.50","mode":"test","object":"Rate","rate":"29.50","retail_currency":"USD","retail_rate":"33.55","service":"Express","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_2e18f82d322e491e81994fac558c397c","list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_a4be8a811c9e4f7db83be42fee631707","list_currency":"USD","list_rate":"7.90","mode":"test","object":"Rate","rate":"7.90","retail_currency":"USD","retail_rate":"9.45","service":"Priority","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_0e1d22eb2d51489dac0a6f09e70ab542","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"}],"reference":null,"refund_status":null,"return_address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_264771601fe711ed8c6fac1f6bc72124","mode":"test","name":"Elizabeth
-      Swan","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2022-08-19T17:48:35+00:00","verifications":{},"zip":"90277"},"scan_form":null,"selected_rate":{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:36Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_0e1d22eb2d51489dac0a6f09e70ab542","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:36Z"},"status":"unknown","to_address":{"carrier_facility":null,"city":"SAN
-      FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_2645ba741fe711ed8cc4ac1f6b0a0d1e","mode":"test","name":"JACK
-      SPARROW","object":"Address","phone":"5555555555","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-08-19T17:48:36+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"tracker":{"carrier":"USPS","carrier_detail":null,"created_at":"2022-08-19T17:48:36Z","est_delivery_date":null,"fees":[],"id":"trk_b9e47f4a62fd41ea817cf08441de8e3e","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2I5ZTQ3ZjRhNjJmZDQxZWE4MTdjZjA4NDQxZGU4ZTNl","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","signed_by":null,"status":"unknown","status_detail":"unknown","tracking_code":"9400100109361133884131","tracking_details":[],"updated_at":"2022-08-19T17:48:36Z","weight":null},"tracking_code":"9400100109361133884131","updated_at":"2022-08-19T17:48:36Z","usps_zone":4}'
+      FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7864961239da11edb151ac1f6bc7bdc6","mode":"test","name":"JACK
+      SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"created_at":"2022-09-21T18:23:20Z","customs_info":null,"fees":[{"amount":"0.00000","charged":true,"object":"Fee","refunded":false,"type":"LabelFee"},{"amount":"5.57000","charged":true,"object":"Fee","refunded":false,"type":"PostageFee"}],"forms":[],"from_address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_786724d139da11ed82abac1f6bc7b362","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{},"zip":"90277"},"id":"shp_57a3d40336a3410796aac029e0b35675","insurance":null,"is_return":false,"messages":[],"mode":"test","object":"Shipment","options":{"currency":"USD","date_advance":0,"payment":{"type":"SENDER"}},"order_id":null,"parcel":{"created_at":"2022-09-21T18:23:20Z","height":4,"id":"prcl_97815b59771e428c974ddb8003a1627a","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2022-09-21T18:23:20Z","weight":15.4,"width":8},"postage_label":{"created_at":"2022-09-21T18:23:20Z","date_advance":0,"id":"pl_d103f2c50bf84fcfac22d04a16cab77f","integrated_form":"none","label_date":"2022-09-21T18:23:20Z","label_epl2_url":null,"label_file":null,"label_file_type":"image/png","label_pdf_url":null,"label_resolution":300,"label_size":"4x6","label_type":"default","label_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/postage_label/20220921/dbd9964edb214b1fb5a641ce54ec9761.png","label_zpl_url":null,"object":"PostageLabel","updated_at":"2022-09-21T18:23:21Z"},"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_929dae5f893f4acfb057ee2718e60d97","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_aa39066c44944eecb0cf259459f5433f","list_currency":"USD","list_rate":"29.50","mode":"test","object":"Rate","rate":"29.50","retail_currency":"USD","retail_rate":"33.55","service":"Express","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_0bea98f55e574f0e9e8632ab2c6baa8a","list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_aacc2c91d3244556aec06b7e92bd5d69","list_currency":"USD","list_rate":"7.90","mode":"test","object":"Rate","rate":"7.90","retail_currency":"USD","retail_rate":"9.45","service":"Priority","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"}],"reference":null,"refund_status":null,"return_address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_786724d139da11ed82abac1f6bc7b362","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{},"zip":"90277"},"scan_form":null,"selected_rate":{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_929dae5f893f4acfb057ee2718e60d97","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},"status":"unknown","to_address":{"carrier_facility":null,"city":"SAN
+      FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7864961239da11edb151ac1f6bc7bdc6","mode":"test","name":"JACK
+      SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"tracker":{"carrier":"USPS","carrier_detail":null,"created_at":"2022-09-21T18:23:21Z","est_delivery_date":null,"fees":[],"id":"trk_22ad0691b0f44dfe9a060a56e496c9af","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrXzIyYWQwNjkxYjBmNDRkZmU5YTA2MGE1NmU0OTZjOWFm","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","signed_by":null,"status":"unknown","status_detail":"unknown","tracking_code":"9400100109361138710404","tracking_details":[],"updated_at":"2022-09-21T18:23:21Z","weight":null},"tracking_code":"9400100109361138710404","updated_at":"2022-09-21T18:23:21Z","usps_zone":4}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"28bc3f0373305b1209ee9df0334574a1"
+      - W/"c6aadc16b24d7d3af9fdfb2360176b77"
       Expires:
       - "0"
       Location:
-      - /api/v2/shipments/shp_43ac04a00edb4ff1bd477fab9b380df1
+      - /api/v2/shipments/shp_57a3d40336a3410796aac029e0b35675
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -54,21 +55,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccf3ff246ba10070288b
+      - 8f5eb2cf632b5698ec7d9989000dbbdb
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.903264"
+      - "0.989224"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -82,34 +83,34 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/shipments/shp_43ac04a00edb4ff1bd477fab9b380df1/refund
+    url: https://api.easypost.com/v2/shipments/shp_57a3d40336a3410796aac029e0b35675/refund
     method: POST
   response:
     body: '{"batch_id":null,"batch_message":null,"batch_status":null,"buyer_address":{"carrier_facility":null,"city":"SAN
-      FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_2645ba741fe711ed8cc4ac1f6b0a0d1e","mode":"test","name":"JACK
-      SPARROW","object":"Address","phone":"5555555555","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-08-19T17:48:36+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"created_at":"2022-08-19T17:48:35Z","customs_info":null,"fees":[{"amount":"0.00000","charged":true,"object":"Fee","refunded":false,"type":"LabelFee"},{"amount":"5.57000","charged":true,"object":"Fee","refunded":false,"type":"PostageFee"}],"forms":[],"from_address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_264771601fe711ed8c6fac1f6bc72124","mode":"test","name":"Elizabeth
-      Swan","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2022-08-19T17:48:35+00:00","verifications":{},"zip":"90277"},"id":"shp_43ac04a00edb4ff1bd477fab9b380df1","insurance":null,"is_return":false,"messages":[],"mode":"test","object":"Shipment","options":{"currency":"USD","date_advance":0,"payment":{"type":"SENDER"}},"order_id":null,"parcel":{"created_at":"2022-08-19T17:48:35Z","height":4,"id":"prcl_3f7fa72cec0e4dcc9c05b681857ec96a","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2022-08-19T17:48:35Z","weight":15.4,"width":8},"postage_label":{"created_at":"2022-08-19T17:48:36Z","date_advance":0,"id":"pl_6dd2b62b1eeb4f93a9873f9802fd3e5d","integrated_form":"none","label_date":"2022-08-19T17:48:36Z","label_epl2_url":null,"label_file":null,"label_file_type":"image/png","label_pdf_url":null,"label_resolution":300,"label_size":"4x6","label_type":"default","label_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/postage_label/20220819/d64bf79f7eec4fd38d48403d2eac06de.png","label_zpl_url":null,"object":"PostageLabel","updated_at":"2022-08-19T17:48:36Z"},"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_aaa9d5510d0344c8b4be1528822713b0","list_currency":"USD","list_rate":"29.50","mode":"test","object":"Rate","rate":"29.50","retail_currency":"USD","retail_rate":"33.55","service":"Express","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_2e18f82d322e491e81994fac558c397c","list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_a4be8a811c9e4f7db83be42fee631707","list_currency":"USD","list_rate":"7.90","mode":"test","object":"Rate","rate":"7.90","retail_currency":"USD","retail_rate":"9.45","service":"Priority","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:35Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_0e1d22eb2d51489dac0a6f09e70ab542","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:35Z"}],"reference":null,"refund_status":"submitted","return_address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"test@example.com","federal_tax_id":null,"id":"adr_264771601fe711ed8c6fac1f6bc72124","mode":"test","name":"Elizabeth
-      Swan","object":"Address","phone":"5555555555","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2022-08-19T17:48:35+00:00","verifications":{},"zip":"90277"},"scan_form":null,"selected_rate":{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-08-19T17:48:36Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_0e1d22eb2d51489dac0a6f09e70ab542","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","updated_at":"2022-08-19T17:48:36Z"},"status":"unknown","to_address":{"carrier_facility":null,"city":"SAN
-      FRANCISCO","company":null,"country":"US","created_at":"2022-08-19T17:48:35+00:00","email":"TEST@EXAMPLE.COM","federal_tax_id":null,"id":"adr_2645ba741fe711ed8cc4ac1f6b0a0d1e","mode":"test","name":"JACK
-      SPARROW","object":"Address","phone":"5555555555","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-08-19T17:48:36+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"tracker":{"carrier":"USPS","carrier_detail":{"alternate_identifier":null,"container_type":null,"destination_location":"CHARLESTON
+      FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7864961239da11edb151ac1f6bc7bdc6","mode":"test","name":"JACK
+      SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"created_at":"2022-09-21T18:23:20Z","customs_info":null,"fees":[{"amount":"0.00000","charged":true,"object":"Fee","refunded":false,"type":"LabelFee"},{"amount":"5.57000","charged":true,"object":"Fee","refunded":false,"type":"PostageFee"}],"forms":[],"from_address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_786724d139da11ed82abac1f6bc7b362","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{},"zip":"90277"},"id":"shp_57a3d40336a3410796aac029e0b35675","insurance":null,"is_return":false,"messages":[],"mode":"test","object":"Shipment","options":{"currency":"USD","date_advance":0,"payment":{"type":"SENDER"}},"order_id":null,"parcel":{"created_at":"2022-09-21T18:23:20Z","height":4,"id":"prcl_97815b59771e428c974ddb8003a1627a","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2022-09-21T18:23:20Z","weight":15.4,"width":8},"postage_label":{"created_at":"2022-09-21T18:23:20Z","date_advance":0,"id":"pl_d103f2c50bf84fcfac22d04a16cab77f","integrated_form":"none","label_date":"2022-09-21T18:23:20Z","label_epl2_url":null,"label_file":null,"label_file_type":"image/png","label_pdf_url":null,"label_resolution":300,"label_size":"4x6","label_type":"default","label_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/postage_label/20220921/dbd9964edb214b1fb5a641ce54ec9761.png","label_zpl_url":null,"object":"PostageLabel","updated_at":"2022-09-21T18:23:21Z"},"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_929dae5f893f4acfb057ee2718e60d97","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_aa39066c44944eecb0cf259459f5433f","list_currency":"USD","list_rate":"29.50","mode":"test","object":"Rate","rate":"29.50","retail_currency":"USD","retail_rate":"33.55","service":"Express","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_0bea98f55e574f0e9e8632ab2c6baa8a","list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_aacc2c91d3244556aec06b7e92bd5d69","list_currency":"USD","list_rate":"7.90","mode":"test","object":"Rate","rate":"7.90","retail_currency":"USD","retail_rate":"9.45","service":"Priority","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"}],"reference":null,"refund_status":"submitted","return_address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_786724d139da11ed82abac1f6bc7b362","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{},"zip":"90277"},"scan_form":null,"selected_rate":{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:20Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_929dae5f893f4acfb057ee2718e60d97","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","updated_at":"2022-09-21T18:23:20Z"},"status":"unknown","to_address":{"carrier_facility":null,"city":"SAN
+      FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:23:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7864961239da11edb151ac1f6bc7bdc6","mode":"test","name":"JACK
+      SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-09-21T18:23:20+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"tracker":{"carrier":"USPS","carrier_detail":{"alternate_identifier":null,"container_type":null,"destination_location":"CHARLESTON
       SC, 29401","destination_tracking_location":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"guaranteed_delivery_date":null,"initial_delivery_attempt":null,"object":"CarrierDetail","origin_location":"HOUSTON
       TX, 77001","origin_tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"},"service":"First-Class
-      Package Service"},"created_at":"2022-08-19T17:48:36Z","est_delivery_date":"2022-08-19T17:48:36Z","fees":[],"id":"trk_b9e47f4a62fd41ea817cf08441de8e3e","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2I5ZTQ3ZjRhNjJmZDQxZWE4MTdjZjA4NDQxZGU4ZTNl","shipment_id":"shp_43ac04a00edb4ff1bd477fab9b380df1","signed_by":null,"status":"pre_transit","status_detail":"status_update","tracking_code":"9400100109361133884131","tracking_details":[{"carrier_code":null,"datetime":"2022-07-19T17:48:36Z","description":null,"message":"Pre-Shipment
-      Info Sent to USPS","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-07-20T06:25:36Z","description":null,"message":"Shipping
-      Label Created","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"}}],"updated_at":"2022-08-19T17:48:36Z","weight":null},"tracking_code":"9400100109361133884131","updated_at":"2022-08-19T17:48:37Z","usps_zone":4}'
+      Package Service"},"created_at":"2022-09-21T18:23:21Z","est_delivery_date":"2022-09-21T18:23:21Z","fees":[],"id":"trk_22ad0691b0f44dfe9a060a56e496c9af","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrXzIyYWQwNjkxYjBmNDRkZmU5YTA2MGE1NmU0OTZjOWFm","shipment_id":"shp_57a3d40336a3410796aac029e0b35675","signed_by":null,"status":"pre_transit","status_detail":"status_update","tracking_code":"9400100109361138710404","tracking_details":[{"carrier_code":null,"datetime":"2022-08-21T18:23:21Z","description":null,"message":"Pre-Shipment
+      Info Sent to USPS","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-22T07:00:21Z","description":null,"message":"Shipping
+      Label Created","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"}}],"updated_at":"2022-09-21T18:23:21Z","weight":null},"tracking_code":"9400100109361138710404","updated_at":"2022-09-21T18:23:21Z","usps_zone":4}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"44a379ba8d6dadfa86a0a12aae6598f2"
+      - W/"c2648f0510d8d044708c940d7e737e3f"
       Expires:
       - "0"
       Pragma:
@@ -125,21 +126,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccf4ff246ba1007028f3
+      - 8f5eb2cf632b5699ec7d9989000dbc52
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.155209"
+      - "0.170789"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

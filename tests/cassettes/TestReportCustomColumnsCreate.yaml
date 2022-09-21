@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-04-11","end_date":"2022-04-11","columns":["usps_zone"]}'
+    body: '{"columns":["usps_zone"],"end_date":"2022-04-11","start_date":"2022-04-11"}'
     form: {}
     headers:
       Authorization:
@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-08-19T17:48:12Z","end_date":"2022-04-11","id":"shprep_4989b0087f9f4e1791a76452462c1f5d","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-08-19T17:48:12Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_34dd218b297743c68d5feda88d46018e","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T18:22:52Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"3c14e8e64e7efe12a7e9db911aee10d5"
+      - W/"714f5b2ca81f778cfe84c853babcc16b"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdcff246ba100701db0
+      - 8f5eb2cf632b567cec7d9989000db06f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.051534"
+      - "0.036007"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

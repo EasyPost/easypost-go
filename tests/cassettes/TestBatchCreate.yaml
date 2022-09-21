@@ -2,10 +2,11 @@
 version: 1
 interactions:
 - request:
-    body: '{"batch":{"shipments":[{"to_address":{"street1":"179 N Harbor Dr","city":"Redondo
-      Beach","state":"CA","zip":"90277","country":"US","name":"Elizabeth Swan","phone":"5555555555","email":"test@example.com"},"from_address":{"street1":"388
-      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","country":"US","name":"Jack
-      Sparrow","phone":"5555555555","email":"test@example.com"},"parcel":{"length":10,"width":8,"height":4,"weight":15.4}}]}}'
+    body: '{"batch":{"shipments":[{"from_address":{"city":"San Francisco","country":"US","email":"REDACTED","name":"Jack
+      Sparrow","phone":"REDACTED","state":"CA","street1":"388 Townsend St","street2":"Apt
+      20","zip":"94107"},"parcel":{"height":4,"length":10,"weight":15.4,"width":8},"to_address":{"city":"Redondo
+      Beach","country":"US","email":"REDACTED","name":"Elizabeth Swan","phone":"REDACTED","state":"CA","street1":"179
+      N Harbor Dr","zip":"90277"}}]}}'
     form: {}
     headers:
       Authorization:
@@ -17,14 +18,14 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"id":"batch_580bd7aa863042caa210d0d2b7d509b7","object":"Batch","mode":"test","state":"creating","num_shipments":1,"reference":null,"created_at":"2022-08-19T17:47:30Z","updated_at":"2022-08-19T17:47:30Z","scan_form":null,"shipments":[],"status":{"created":0,"queued_for_purchase":0,"creation_failed":0,"postage_purchased":0,"postage_purchase_failed":0},"pickup":null,"label_url":null}'
+    body: '{"created_at":"2022-09-21T18:21:53Z","id":"batch_4c690f63ad3b4169ae56fead89bef8df","label_url":null,"mode":"test","num_shipments":1,"object":"EasyPost::Entity::Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T18:21:53Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"81ecb192269d69badafc4ac9732f4980"
+      - W/"e98fbeb85b7b71f68b71f904aad6d238"
       Expires:
       - "0"
       Pragma:
@@ -40,21 +41,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccb2ff246ba100700a69
+      - 8f5eb2cf632b5641ec7d9989000d8f3f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.040082"
+      - "0.038355"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

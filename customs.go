@@ -48,6 +48,7 @@ type createCustomsItemRequest struct {
 }
 
 // CreateCustomsInfo creates a new CustomsInfo object.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateCustomsInfo(
 //		&easypost.CustomsInfo{
@@ -95,6 +96,7 @@ func (c *Client) GetCustomsInfoWithContext(ctx context.Context, customsInfoID st
 }
 
 // CreateCustomsItem creates a new CustomsItem object.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateCustomsItem(
 //		&easypost.CustomsItem{

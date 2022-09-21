@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/events
     method: GET
   response:
-    body: '{"events":[{"description":"tracker.updated","id":"evt_2f0ff912353711edb1414b058f79ece1","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-09-15T20:44:24.740Z","mode":"test","object":"Event"},{"description":"tracker.updated","id":"evt_0b3fd340353711edb6b90118615e3ebd","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-09-15T20:43:24.655Z","mode":"test","object":"Event"},{"description":"tracker.updated","id":"evt_e7737390353611ed8f6b6f8b91f724e6","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-09-15T20:42:24.596Z","mode":"test","object":"Event"},{"description":"tracker.updated","id":"evt_c3a1e8e8353611edbf5117a095b5ccdc","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-09-15T20:41:24.502Z","mode":"test","object":"Event"},{"description":"tracker.created","id":"evt_b1c07234353611ed90604f7d07c14a3a","user_id":"user_a76997d126dd488f8ad22d52301300b0","status":"pending","created_at":"2022-09-15T20:40:54.503Z","mode":"test","object":"Event"}],"has_more":false}'
+    body: '{"events":[{"created_at":"2022-09-21T18:22:06.561Z","description":"batch.updated","id":"evt_4c63c6b839da11ed8d685d48e2c697ba","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:05.563Z","description":"batch.updated","id":"evt_4bcb6cec39da11eda0947fe3e4b3e967","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:05.462Z","description":"batch.created","id":"evt_4bbc1e2239da11ed97c50bd3489501b3","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:05.240Z","description":"batch.updated","id":"evt_4b9a473439da11edb64a1fdc09b9363a","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:00.920Z","description":"batch.updated","id":"evt_49070b3839da11edaef8653a6b54a761","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"}],"has_more":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"ff9685eb2e90c8955a379520f17f5f09"
+      - W/"3bbe2343c6d080ba7e41030e598c16eb"
       Expires:
       - "0"
       Pragma:
@@ -37,20 +37,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - dcb58cf26328c9bbe2b9726f00042c6a
+      - 8f5eb2cf632b5657ec7d9989000d9bde
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 29913d444b
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.450236"
+      - "0.193640"
       X-Version-Label:
-      - easypost-202209191945-2356362378-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -64,7 +65,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/events/evt_2f0ff912353711edb1414b058f79ece1/payloads
+    url: https://api.easypost.com/v2/events/evt_4c63c6b839da11ed8d685d48e2c697ba/payloads
     method: GET
   response:
     body: '{"payloads":[]}'
@@ -85,25 +86,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - dcb58cf26328c9bce2b9726f00042c9c
+      - 8f5eb2cf632b5657ec7d9989000d9c1f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - extlb1nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.033525"
+      - "0.032034"
       X-Version-Label:
-      - easypost-202209191945-2356362378-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

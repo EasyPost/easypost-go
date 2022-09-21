@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"parcel":{"length":10,"width":8,"height":4,"weight":15.4}}'
+    body: '{"parcel":{"height":4,"length":10,"weight":15.4,"width":8}}'
     form: {}
     headers:
       Authorization:
@@ -14,18 +14,18 @@ interactions:
     url: https://api.easypost.com/v2/parcels
     method: POST
   response:
-    body: '{"id":"prcl_80a6de22abf74e3587fb0c765541b966","object":"Parcel","created_at":"2022-08-19T17:47:56Z","updated_at":"2022-08-19T17:47:56Z","length":10.0,"width":8.0,"height":4.0,"predefined_package":null,"weight":15.4,"mode":"test"}'
+    body: '{"created_at":"2022-09-21T18:22:26Z","height":4,"id":"prcl_cb2a8b167df74a6daaa6810b8e091091","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2022-09-21T18:22:26Z","weight":15.4,"width":8}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"1e70895284b772d962676767ea0afd1c"
+      - W/"230b0afe3efe3fef54521d366341f22f"
       Expires:
       - "0"
       Location:
-      - /api/v2/parcels.prcl_80a6de22abf74e3587fb0c765541b966
+      - /api/v2/parcels.prcl_cb2a8b167df74a6daaa6810b8e091091
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -39,21 +39,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccccff246ba1007015ac
+      - 8f5eb2cf632b5662ec7d9989000da1ec
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.022643"
+      - "0.037520"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

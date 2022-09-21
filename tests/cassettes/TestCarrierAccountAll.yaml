@@ -13,18 +13,16 @@ interactions:
     method: GET
   response:
     body: '[{"billing_type":"easypost","clone":false,"created_at":"2020-05-07T23:43:48Z","credentials":{},"description":"USPS
-      Account","fields":{"credentials":{"address_city":{"label":"City","value":"","visibility":"visible"},"address_state":{"label":"State","value":"","visibility":"visible"},"address_street":{"label":"Street
-      Address","value":"","visibility":"visible"},"address_zip":{"label":"ZIP Code","value":"","visibility":"visible"},"company_name":{"label":"Account
-      Holder Name","value":"","visibility":"visible"},"email":{"label":"Email Address","value":null,"visibility":"visible"},"phone":{"label":"Phone
-      Number","value":"","visibility":"visible"},"shipper_id":{"label":"Shipper Identifier
-      (Optional)","value":"","visibility":"visible"}}},"id":"ca_e606176ddb314afe896733636dba2f3b","logo":null,"object":"CarrierAccount","readable":"USPS","reference":null,"test_credentials":{},"type":"UspsAccount","updated_at":"2020-05-08T02:33:20Z"}]'
+      Account","fields":{},"id":"ca_e606176ddb314afe896733636dba2f3b","logo":null,"object":"CarrierAccount","readable":"USPS","reference":null,"test_credentials":null,"type":"UspsAccount","updated_at":"2020-05-08T02:33:20Z"},{"billing_type":"carrier","clone":false,"created_at":"2022-09-19T21:06:35Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{},"id":"ca_1fefcb0d0a9f4e5db5e5a1c360958484","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-19T21:06:35Z"}]'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"00b9f4caf48afe55b116350f299f1588"
+      - W/"7b9d9f80969372ab1a33e10ed7f8fd50"
       Expires:
       - "0"
       Pragma:
@@ -40,21 +38,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccbeff246ba100700fbe
+      - 8f5eb2cf632b564dec7d9989000d9622
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.102642"
+      - "0.116523"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

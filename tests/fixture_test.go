@@ -113,11 +113,22 @@ func (fixture *Fixture) BasicParcel() *easypost.Parcel {
 }
 
 func (fixture *Fixture) BasicCustomsItem() *easypost.CustomsItem {
-	return readFixtureData().CustomsItems["basic"]
+	customsItem := readFixtureData().CustomsItems["basic"]
+
+	// Json unmarshalling doesn't handle float64 well, need to manually set the value
+	customsItem.Value = 23.25
+
+	return customsItem
 }
 
 func (fixture *Fixture) BasicCustomsInfo() *easypost.CustomsInfo {
-	return readFixtureData().CustomsInfos["basic"]
+	customsInfo := readFixtureData().CustomsInfos["basic"]
+
+	// Json unmarshalling doesn't handle float64 well, need to manually set the value
+	for _, customsItem := range customsInfo.CustomsItems {
+		customsItem.Value = 23.25
+	}
+	return customsInfo
 }
 
 func (fixture *Fixture) TaxIdentifier() *easypost.TaxIdentifier {
@@ -147,7 +158,7 @@ func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 // If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
 // USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 func (fixture *Fixture) BasicPickup() *easypost.Pickup {
-	pickupDate := time.Date(2022, time.August, 22, 0, 0, 0, 0, time.UTC)
+	pickupDate := time.Date(2022, time.September, 22, 0, 0, 0, 0, time.UTC)
 
 	pickupData := readFixtureData().Pickups["basic"]
 	pickupData.MinDatetime = &pickupDate

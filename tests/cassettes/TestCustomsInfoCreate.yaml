@@ -2,9 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: '{"customs_info":{"eel_pfc":"NOEEI 30.37(a)","contents_type":"merchandise","customs_certify":true,"customs_signer":"Steve
-      Brule","non_delivery_option":"return","restriction_type":"none","customs_items":[{"description":"Sweet
-      shirts","quantity":2,"weight":11,"hs_tariff_number":"654321","origin_country":"US"}]}}'
+    body: '{"customs_info":{"contents_type":"merchandise","customs_certify":true,"customs_items":[{"description":"Sweet
+      shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.25","weight":11}],"customs_signer":"Steve
+      Brule","eel_pfc":"NOEEI 30.37(a)","non_delivery_option":"return","restriction_type":"none"}}'
     form: {}
     headers:
       Authorization:
@@ -16,20 +16,20 @@ interactions:
     url: https://api.easypost.com/v2/customs_infos
     method: POST
   response:
-    body: '{"id":"cstinfo_1a95e3744bbe46a3a460e1390c720406","object":"CustomsInfo","created_at":"2022-08-19T19:56:53Z","updated_at":"2022-08-19T19:56:53Z","contents_explanation":null,"contents_type":"merchandise","customs_certify":true,"customs_signer":"Steve
-      Brule","eel_pfc":"NOEEI 30.37(a)","non_delivery_option":"return","restriction_comments":null,"restriction_type":"none","mode":"test","declaration":null,"customs_items":[{"id":"cstitem_259dae1328f14556b35609d0148817df","object":"CustomsItem","created_at":"2022-08-19T19:56:53Z","updated_at":"2022-08-19T19:56:53Z","description":"Sweet
-      shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":null,"weight":11.0,"code":null,"mode":"test","manufacturer":null,"currency":null,"eccn":null,"printed_commodity_identifier":null}]}'
+    body: '{"contents_explanation":null,"contents_type":"merchandise","created_at":"2022-09-21T18:22:10Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2022-09-21T18:22:10Z","currency":null,"description":"Sweet
+      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_8dc89b0fe8f54dd7be93e2bad6c6fd86","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T18:22:10Z","value":"23.25","weight":11}],"customs_signer":"Steve
+      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_1b4029fe9bfb4278bbd1569b487d82f2","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2022-09-21T18:22:10Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"be3b3a919eb3af163dde0c7b2153408e"
+      - W/"49323460285491b7c61d72fc364f8b1d"
       Expires:
       - "0"
       Location:
-      - /api/v2/customs_infos/cstinfo_1a95e3744bbe46a3a460e1390c720406
+      - /api/v2/customs_infos/cstinfo_1b4029fe9bfb4278bbd1569b487d82f2
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -43,20 +43,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 9c287c3762ffeb05ff24e19c00087ea0
+      - 8f5eb2cf632b5652ec7d9989000d9938
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - extlb1nuq 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.031956"
+      - "0.036246"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

@@ -12,7 +12,36 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: GET
   response:
-    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[{"children":[],"created_at":"2022-02-07T20:08:11Z","id":"user_1d75fce0f97c4c3aa42ea008528a1ef0","name":"Go
+      Test User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T00:15:31Z","id":"user_6bf3fb5f29984af69d11d4b73cfeaf45","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T00:17:20Z","id":"user_e1c08a41e8cc42a3844cf69c621ceaa4","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T16:42:00Z","id":"user_3f50745c5e954c8cb5291be5bb865564","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T16:42:01Z","id":"user_8187177ecada4f4eabbb63efb949fd4b","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T22:44:35Z","id":"user_e19439099a66487d88e67a7d15fe2674","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T22:44:36Z","id":"user_7835460ae64943399d7c1e3d044b6297","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T23:57:50Z","id":"user_62d6974267664be5bf8145e63f276b5b","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-02T23:57:51Z","id":"user_cee546d8c66741beb37d868ab55c33d7","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-03T02:38:54Z","id":"user_c9c49c9dc4914ec1944d75a7c4c8b0f0","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-03T02:38:55Z","id":"user_9dbf6f15404144c4aa82bb8307f72044","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-03T02:45:36Z","id":"user_95932f5a5b8c4ab0945194e6c598e4f4","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-03-03T02:45:37Z","id":"user_47c4bb6afd6a431ba4eac7e9156cd5f0","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-05-23T21:14:37Z","id":"user_7659605a245a417184471cd1d0158afa","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-05-24T03:16:02Z","id":"user_250ebf668e894efa80954c9b83b1ab09","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-05-24T22:28:55Z","id":"user_27fcc563b8284e5f8397e5ef9dff575d","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-05-25T18:03:36Z","id":"user_05a6a09963c24498ab9dd1a4fea1ece0","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-05-25T19:38:06Z","id":"user_d8f15f6501704f208d09c06515914ac6","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-05-26T15:05:45Z","id":"user_f78d0b7b091d4b7cbdc930c417f1fcdb","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-06-27T21:06:41Z","id":"user_1dd9b4bb7b39431587f21ad0a597646d","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-08-16T20:24:40Z","id":"user_f717cf4d121f45eebefd75067d6f863d","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-08-19T17:48:42Z","id":"user_be3064cfc1da4a118c1b10df28a56b7e","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-20T23:08:28Z","id":"user_7fdb66f7e8b04471983619b81adf7bc1","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-20T23:11:53Z","id":"user_010f0b8deb0444a68115fb0279ad9be6","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-20T23:14:00Z","id":"user_20b3b0634f4f42e6b8ffa2dae194dc8d","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-20T23:26:33Z","id":"user_85f45115de214f7f8d6f399f11765e8d","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-20T23:29:29Z","id":"user_cb22d053980d4f9e882f54fe7237a00c","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-21T16:20:08Z","id":"user_b15ac22820c64e0d8214b05e4cc9d432","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2022-09-21T18:23:27Z","id":"user_947c09183ad54a0fb2b8e1c9158adb05","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true}],"created_at":"2020-05-07T23:43:48Z","default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
       User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}'
     headers:
       Cache-Control:
@@ -20,7 +49,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"2df8181df5821fe33fe629675ab709b0"
+      - W/"8d0e937d99a090ac3c29c2dc5f57047f"
       Expires:
       - "0"
       Pragma:
@@ -36,21 +65,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccfeff246ba100702bd3
+      - 8f5eb2cf632b56a2ec7d9989000dc016
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.375337"
+      - "0.349914"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

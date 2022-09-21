@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-04-11","end_date":"2022-04-11","additional_columns":["from_name","from_company"]}'
+    body: '{"additional_columns":["from_name","from_company"],"end_date":"2022-04-11","start_date":"2022-04-11"}'
     form: {}
     headers:
       Authorization:
@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-08-19T17:48:11Z","end_date":"2022-04-11","id":"shprep_ed79ae8a48ab47d682c629d06e3439a6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-08-19T17:48:11Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_c09cbb46f23a446cb5eb35258ae1da83","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T18:22:52Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e7a4d7edf0fc2b79a8fd66df0faddfbb"
+      - W/"4f0f1f36c7872cfc634532bd3981522f"
       Expires:
       - "0"
       Pragma:
@@ -37,7 +37,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 2196158562ffccdbff246ba100701d7f
+      - 8f5eb2cf632b567bec7d9989000db057
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -45,13 +45,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 6aa9972c1e
-      - intlb1wdc 6aa9972c1e
-      - extlb4wdc 9ce216bfac
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.119888"
+      - "0.038719"
       X-Version-Label:
-      - easypost-202208182050-2b41e8e3e0-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
