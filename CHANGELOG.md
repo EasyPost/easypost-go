@@ -1,10 +1,10 @@
 # CHANGELOG
 
-## NEXT RELEASE
+## v2.8.0 (2022-09-21)
 
 - Adds `EndShipperID` shipment option
-- Add `EndShipperID` as parameter when buying a shipment
-- Add White Label features:
+- Adds support to pass an `EndShipperID` when buying a shipment
+- Add White Label support:
   - Create a referral customer
   - Update a referral customer's email address
   - List all referral customers
