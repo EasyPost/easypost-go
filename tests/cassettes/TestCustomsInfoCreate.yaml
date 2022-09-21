@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: '{"customs_info":{"contents_type":"merchandise","customs_certify":true,"customs_items":[{"description":"Sweet
-      shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"weight":11}],"customs_signer":"Steve
+      shirts","hs_tariff_number":"654321","origin_country":"US","quantity":2,"value":"23.25","weight":11}],"customs_signer":"Steve
       Brule","eel_pfc":"NOEEI 30.37(a)","non_delivery_option":"return","restriction_type":"none"}}'
     form: {}
     headers:
@@ -16,20 +16,20 @@ interactions:
     url: https://api.easypost.com/v2/customs_infos
     method: POST
   response:
-    body: '{"contents_explanation":null,"contents_type":"merchandise","created_at":"2022-09-21T16:19:10Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2022-09-21T16:19:10Z","currency":null,"description":"Sweet
-      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_957dd592096f4986acbdf525ea595ff3","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T16:19:10Z","value":null,"weight":11}],"customs_signer":"Steve
-      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_1423a545f6c44af7a43a8b9dcc0be2c9","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2022-09-21T16:19:10Z"}'
+    body: '{"contents_explanation":null,"contents_type":"merchandise","created_at":"2022-09-21T17:53:32Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2022-09-21T17:53:32Z","currency":null,"description":"Sweet
+      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_657c87506e6a4996b541b4cc95cc8807","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T17:53:32Z","value":"23.25","weight":11}],"customs_signer":"Steve
+      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_15afc4fb6edc4fb19172a48bbe7f479b","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2022-09-21T17:53:32Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"4ae65b2fbbd2a9aaf6429b99dfe16edd"
+      - W/"d25f6f29c0b739a6bb6d40d6cda91666"
       Expires:
       - "0"
       Location:
-      - /api/v2/customs_infos/cstinfo_1423a545f6c44af7a43a8b9dcc0be2c9
+      - /api/v2/customs_infos/cstinfo_15afc4fb6edc4fb19172a48bbe7f479b
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -43,20 +43,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397eec8e8d29000135df
+      - 2c330af6632b4f9cecc688950009a516
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
       X-Runtime:
-      - "0.033134"
+      - "0.030044"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
