@@ -5,17 +5,16 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
+	"github.com/EasyPost/easypost-go/v2"
+	"github.com/dnaeon/go-vcr/cassette"
+	"github.com/dnaeon/go-vcr/recorder"
+	"github.com/stretchr/testify/suite"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
-
-	"github.com/EasyPost/easypost-go/v2"
-	"github.com/dnaeon/go-vcr/cassette"
-	"github.com/dnaeon/go-vcr/recorder"
-	"github.com/stretchr/testify/suite"
 )
 
 var (
@@ -151,19 +150,6 @@ func (c *ClientTests) SetupTest() {
 	r, err := recorder.New(filepath.Join(pathComponents...))
 	c.Require().NoError(err)
 
-	// Strictly match the URL, method, and body of the requests
-	r.SetMatcher(func(r *http.Request, i cassette.Request) bool {
-		if r.Body == nil {
-			return cassette.DefaultMatcher(r, i)
-		}
-		var b bytes.Buffer
-		if _, err := b.ReadFrom(r.Body); err != nil {
-			return false
-		}
-		r.Body = ioutil.NopCloser(&b)
-		return cassette.DefaultMatcher(r, i) && (b.String() == "" || b.String() == i.Body)
-	})
-
 	// Filter sensitive data from cassettes
 	// Replace value has to be type specific to its corresponding struct
 	responseBodyElementsToCensor := map[string]interface{}{
@@ -179,6 +165,26 @@ func (c *ClientTests) SetupTest() {
 		"phone":            "REDACTED",
 	}
 
+	// Strictly match the URL, method, and body of the requests
+	r.SetMatcher(func(r *http.Request, i cassette.Request) bool {
+		if r.Body == nil {
+			return cassette.DefaultMatcher(r, i)
+		}
+		var b bytes.Buffer
+		if _, err := b.ReadFrom(r.Body); err != nil {
+			return false
+		}
+		r.Body = ioutil.NopCloser(&b)
+		bString := b.String()
+		if bString == "" && i.Body == "" {
+			// short circuit and return true if the body is empty as it should be
+			return true
+		}
+		// run the request body through the same censors before comparing to the recording
+		bStringCensored := c.censorJsonData(bString, responseBodyElementsToCensor)
+		return cassette.DefaultMatcher(r, i) && (bStringCensored == i.Body)
+	})
+
 	r.AddSaveFilter(func(i *cassette.Interaction) error {
 		// Filter headers
 		if i.Request.Headers["Authorization"] != nil {
@@ -193,6 +199,12 @@ func (c *ClientTests) SetupTest() {
 			i.Request.Headers["X-Client-User-Agent"] = []string{"REDACTED"}
 		}
 
+		// Censor request data
+		var requestBody = i.Request.Body
+		var censoredRequestBody = c.censorJsonData(requestBody, responseBodyElementsToCensor)
+		i.Request.Body = censoredRequestBody
+
+		// Censor response data
 		var responseBody = i.Response.Body
 		var censoredResponseBody = c.censorJsonData(responseBody, responseBodyElementsToCensor)
 		i.Response.Body = censoredResponseBody

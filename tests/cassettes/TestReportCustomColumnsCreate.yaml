@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-04-11","end_date":"2022-04-11","columns":["usps_zone"]}'
+    body: '{"columns":["usps_zone"],"end_date":"2022-04-11","start_date":"2022-04-11"}'
     form: {}
     headers:
       Authorization:
@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-09-20T23:28:54Z","end_date":"2022-04-11","id":"shprep_8f0d8ad8005f43e2bca7f4a74a976b4a","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-20T23:28:54Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T16:19:41Z","end_date":"2022-04-11","id":"shprep_e41685f2a1fb41a89798c5bfc3fdab23","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T16:19:41Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"8e99c8ace11d1193fceacaed5b0cefde"
+      - W/"9a433065bb032219902d43269cc8a9bf"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cb6ec8cdb4300108c41
+      - ad82a8bc632b399dec8e8d290001469c
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.037547"
+      - "0.042224"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

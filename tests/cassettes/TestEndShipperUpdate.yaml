@@ -2,8 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: '{"address":{"street1":"388 Townsend St","street2":"Apt 20","city":"San
-      Francisco","state":"CA","zip":"94107","country":"US","name":"Jack Sparrow","phone":"5555555555","email":"test@example.com"}}'
+    body: '{"address":{"city":"San Francisco","country":"US","email":"REDACTED","name":"Jack
+      Sparrow","phone":"REDACTED","state":"CA","street1":"388 Townsend St","street2":"Apt
+      20","zip":"94107"}}'
     form: {}
     headers:
       Authorization:
@@ -15,16 +16,16 @@ interactions:
     url: https://api.easypost.com/v2/end_shippers
     method: POST
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-20T23:28:21+00:00","email":"REDACTED","id":"es_64941a2621bf472b910bf6caa2260765","mode":"production","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T16:19:11+00:00","email":"REDACTED","id":"es_4f3423a7368247fe9ca8a87f0e1d6de9","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-20T23:28:21+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T16:19:11+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"cdd1f42dbe436fb11320cbeb2ce89693"
+      - W/"02827e7aa0c82afceaef9ba554c13e65"
       Expires:
       - "0"
       Pragma:
@@ -40,30 +41,29 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4c95ec8cdb43001083c0
+      - ad82a8bc632b397fec8e8d2900013685
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.122521"
+      - "0.046126"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
     duration: ""
 - request:
-    body: '{"address":{"id":"es_64941a2621bf472b910bf6caa2260765","object":"EndShipper","mode":"production","created_at":"2022-09-20T23:28:21Z","updated_at":"2022-09-20T23:28:21Z","street1":"388
-      Townsend St","street2":"Apt 20","city":"San Francisco","state":"CA","zip":"94107","country":"US","name":"Captain
-      Sparrow","company":"EasyPost","phone":"9999999999","email":"test@example.com"}}'
+    body: '{"address":{"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2022-09-21T16:19:11Z","email":"REDACTED","id":"es_4f3423a7368247fe9ca8a87f0e1d6de9","mode":"test","name":"Captain
+      Sparrow","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
+      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T16:19:11Z","zip":"94107"}}'
     form: {}
     headers:
       Authorization:
@@ -72,19 +72,19 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/end_shippers/es_64941a2621bf472b910bf6caa2260765
+    url: https://api.easypost.com/v2/end_shippers/es_4f3423a7368247fe9ca8a87f0e1d6de9
     method: PUT
   response:
-    body: '{"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-09-20T23:28:21+00:00","email":"REDACTED","id":"es_64941a2621bf472b910bf6caa2260765","mode":"production","name":"CAPTAIN
+    body: '{"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-09-21T16:19:11+00:00","email":"REDACTED","id":"es_4f3423a7368247fe9ca8a87f0e1d6de9","mode":"test","name":"CAPTAIN
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-20T23:28:21+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T16:19:11+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e44c85de4437f5b695f19dc5613ae5ed"
+      - W/"450a4cb48088ec47bd87009784c9a47e"
       Expires:
       - "0"
       Pragma:
@@ -100,21 +100,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4c95ec8cdb43001083da
+      - ad82a8bc632b397fec8e8d29000136a8
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.058093"
+      - "0.065423"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

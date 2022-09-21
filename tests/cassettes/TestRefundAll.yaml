@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/refunds
     method: GET
   response:
-    body: '{"has_more":false,"refunds":[]}'
+    body: '{"has_more":false,"refunds":[{"carrier":"USPS","confirmation_number":null,"created_at":"2022-09-20T23:29:24Z","id":"rfnd_cbdf38c206704e82ba257804b9b309e8","object":"Refund","shipment_id":"shp_ada67f5bfc584eb4b402fe9880368493","status":"submitted","tracking_code":"9400100109361138553643","updated_at":"2022-09-20T23:29:24Z"},{"carrier":"USPS","confirmation_number":null,"created_at":"2022-09-20T23:28:52Z","id":"rfnd_160ef5323ed6480db2d2857a9d33f1aa","object":"Refund","shipment_id":"shp_994110a9fef54ab986f713a4bbbe1a0f","status":"submitted","tracking_code":"9400100109361138553537","updated_at":"2022-09-20T23:28:52Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b7f27d1ea29478c50d2e1a7ab8bcb58a"
+      - W/"3cb18351f1019c82f4ca682eeb657629"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cb2ec8cdb4300108b63
+      - ad82a8bc632b399bec8e8d2900014586
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.021654"
+      - "0.059307"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

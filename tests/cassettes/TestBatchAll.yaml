@@ -16,14 +16,14 @@ interactions:
   response:
     body: '{"batches":[{"created_at":"2022-08-22T18:42:33Z","id":"batch_aac730f823f44c9b9ad71c8fcb29d405","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-08-22T18:42:33Z"},{"created_at":"2022-09-19T20:12:08Z","id":"batch_61d855ec55354e82accf9bb049731b14","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":{"address":null,"batch_id":"batch_61d855ec55354e82accf9bb049731b14","confirmation":null,"created_at":"2022-09-19T20:12:08Z","form_file_type":null,"form_url":null,"id":"sf_632316f858164c4aab6f5e50282c0b90","message":"Please
       provide a valid list of shipments.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-09-19T20:12:08Z"},"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-19T20:12:08Z"},{"created_at":"2022-09-19T20:22:23Z","id":"batch_3d5e339ae4a243be8ece39b774c34bf1","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":{"address":null,"batch_id":"batch_3d5e339ae4a243be8ece39b774c34bf1","confirmation":null,"created_at":"2022-09-19T20:22:23Z","form_file_type":null,"form_url":null,"id":"sf_8e8ee5cabc3a4ff6bfdea19a9f060caa","message":"Please
-      provide a valid list of shipments.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-09-19T20:22:23Z"},"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-19T20:22:23Z"},{"created_at":"2022-09-20T23:28:00Z","id":"batch_7d095c7f36ba451b858b78758c240da9","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-20T23:28:01Z"}],"has_more":false}'
+      provide a valid list of shipments.","object":"ScanForm","status":"failed","tracking_codes":[],"updated_at":"2022-09-19T20:22:23Z"},"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-19T20:22:23Z"},{"created_at":"2022-09-20T23:28:00Z","id":"batch_7d095c7f36ba451b858b78758c240da9","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-20T23:28:01Z"},{"created_at":"2022-09-20T23:28:01Z","id":"batch_bc95dad72d8a4405b945797f73c99cc1","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"postage_purchased","id":"shp_aebd79d812274875ba4834e20e75e332","reference":null,"tracking_code":"9400100109361138553360"}],"state":"purchased","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":1,"queued_for_purchase":0},"updated_at":"2022-09-20T23:28:03Z"}],"has_more":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b99b28dbc55fcaefc241b3c77975c65f"
+      - W/"0ffd20448c977b8ab8f38164b8e25574"
       Expires:
       - "0"
       Pragma:
@@ -39,21 +39,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4c81ec8cdb4300107dc6
+      - ad82a8bc632b3976ec8e8d29000130ce
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.079458"
+      - "0.064646"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

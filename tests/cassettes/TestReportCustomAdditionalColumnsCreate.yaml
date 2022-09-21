@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"start_date":"2022-04-11","end_date":"2022-04-11","additional_columns":["from_name","from_company"]}'
+    body: '{"additional_columns":["from_name","from_company"],"end_date":"2022-04-11","start_date":"2022-04-11"}'
     form: {}
     headers:
       Authorization:
@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-09-20T23:28:54Z","end_date":"2022-04-11","id":"shprep_55626ce0019c4ae2b9c84ded295900e5","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-20T23:28:54Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T16:19:41Z","end_date":"2022-04-11","id":"shprep_7141d635aceb4d4db2153687b166ca54","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T16:19:41Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"b506c62e0aca94de7a369e72d32bfcba"
+      - W/"6e7f544359ff5949c5e8612a1fb5179f"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cb5ec8cdb4300108c29
+      - ad82a8bc632b399dec8e8d2900014696
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.040894"
+      - "0.038273"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

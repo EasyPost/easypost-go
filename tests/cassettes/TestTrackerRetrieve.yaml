@@ -14,20 +14,20 @@ interactions:
     url: https://api.easypost.com/v2/trackers
     method: POST
   response:
-    body: '{"carrier":"USPS","carrier_detail":null,"created_at":"2022-09-20T23:29:28Z","est_delivery_date":"2022-09-20T23:29:28Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"finalized":true,"id":"trk_e8efc010b535483b9618d34d1c8db128","is_return":false,"mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2U4ZWZjMDEwYjUzNTQ4M2I5NjE4ZDM0ZDFjOGRiMTI4","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"unknown","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2022-08-20T23:29:28Z","description":null,"message":"Pre-Shipment
-      information received","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-21T18:18:28Z","description":null,"message":"Shipping
-      label created","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}}],"updated_at":"2022-09-20T23:29:28Z","weight":17.6}'
+    body: '{"carrier":"USPS","carrier_detail":null,"created_at":"2022-09-21T16:20:08Z","est_delivery_date":"2022-09-21T16:20:08Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"finalized":true,"id":"trk_d82e245176814642b6657ea71610d9be","is_return":false,"mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2Q4MmUyNDUxNzY4MTQ2NDJiNjY1N2VhNzE2MTBkOWJl","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"unknown","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2022-08-21T16:20:08Z","description":null,"message":"Pre-Shipment
+      information received","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-22T11:09:08Z","description":null,"message":"Shipping
+      label created","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}}],"updated_at":"2022-09-21T16:20:08Z","weight":17.6}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"83c2259fa85042faf03e518abe5924f7"
+      - W/"c881751fa86f78a42ac72a69f954bc92"
       Expires:
       - "0"
       Location:
-      - /api/v2/trackers/trk_e8efc010b535483b9618d34d1c8db128
+      - /api/v2/trackers/trk_d82e245176814642b6657ea71610d9be
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -41,21 +41,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cd8ec8cdb43001094cc
+      - ad82a8bc632b39b8ec8e8d290001557d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.111938"
+      - "0.123021"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -69,22 +68,22 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/trackers/trk_e8efc010b535483b9618d34d1c8db128
+    url: https://api.easypost.com/v2/trackers/trk_d82e245176814642b6657ea71610d9be
     method: GET
   response:
     body: '{"carrier":"USPS","carrier_detail":{"alternate_identifier":null,"container_type":null,"destination_location":"CHARLESTON
       SC, 29401","destination_tracking_location":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"guaranteed_delivery_date":null,"initial_delivery_attempt":null,"object":"CarrierDetail","origin_location":"HOUSTON
       TX, 77001","origin_tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"},"service":"First-Class
-      Package Service"},"created_at":"2022-09-20T23:29:28Z","est_delivery_date":"2022-09-20T23:29:28Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"id":"trk_e8efc010b535483b9618d34d1c8db128","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2U4ZWZjMDEwYjUzNTQ4M2I5NjE4ZDM0ZDFjOGRiMTI4","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"status_update","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2022-08-20T23:29:28Z","description":null,"message":"Pre-Shipment
-      Info Sent to USPS","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-21T12:06:28Z","description":null,"message":"Shipping
-      Label Created","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"}}],"updated_at":"2022-09-20T23:29:28Z","weight":null}'
+      Package Service"},"created_at":"2022-09-21T16:20:08Z","est_delivery_date":"2022-09-21T16:20:08Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"id":"trk_d82e245176814642b6657ea71610d9be","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2Q4MmUyNDUxNzY4MTQ2NDJiNjY1N2VhNzE2MTBkOWJl","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"status_update","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2022-08-21T16:20:08Z","description":null,"message":"Pre-Shipment
+      Info Sent to USPS","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-22T04:57:08Z","description":null,"message":"Shipping
+      Label Created","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"}}],"updated_at":"2022-09-21T16:20:08Z","weight":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"ee678a9bbe54d4ea8db94f5c479797bd"
+      - W/"8256ae5731c979a408ba44f2ea485574"
       Expires:
       - "0"
       Pragma:
@@ -100,21 +99,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cd8ec8cdb43001094e4
+      - ad82a8bc632b39b8ec8e8d2900015599
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb2nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.044430"
+      - "0.050543"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"user":{"email":"test@example.com","name":"Test Referral","phone":"5555555555"}}'
+    body: '{"user":{"email":"REDACTED","name":"Test Referral","phone":"REDACTED"}}'
     form: {}
     headers:
       Authorization:
@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/referral_customers
     method: POST
   response:
-    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-20T23:28:49Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_6c1c10c09e30461292373ffe5dd06899","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
+    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-21T16:19:38Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_a0146f6c0f954dfdb0a3f463d587d05b","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
       Referral","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
@@ -22,7 +22,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"54f1d7848e361390346d249a508c3d2d"
+      - W/"e27464a44fc451d9189790cc8d5770d1"
       Expires:
       - "0"
       Pragma:
@@ -38,7 +38,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cb1ec8cdb4300108b27
+      - ad82a8bc632b399aec8e8d29000144e0
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -46,20 +46,19 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.957815"
+      - "1.107641"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
     duration: ""
 - request:
-    body: '{"user":{"email":"email@example.com"}}'
+    body: '{"user":{"email":"REDACTED"}}'
     form: {}
     headers:
       Authorization:
@@ -68,7 +67,7 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/referral_customers/user_6c1c10c09e30461292373ffe5dd06899
+    url: https://api.easypost.com/v2/referral_customers/user_a0146f6c0f954dfdb0a3f463d587d05b
     method: PUT
   response:
     body: '{"message":"Referral Customer email updated successfully"}'
@@ -94,21 +93,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4cb2ec8cdb4300108b54
+      - ad82a8bc632b399bec8e8d290001456d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb5nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.117162"
+      - "0.119591"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

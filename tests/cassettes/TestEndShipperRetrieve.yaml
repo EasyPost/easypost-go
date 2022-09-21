@@ -2,8 +2,9 @@
 version: 1
 interactions:
 - request:
-    body: '{"address":{"street1":"388 Townsend St","street2":"Apt 20","city":"San
-      Francisco","state":"CA","zip":"94107","country":"US","name":"Jack Sparrow","phone":"5555555555","email":"test@example.com"}}'
+    body: '{"address":{"city":"San Francisco","country":"US","email":"REDACTED","name":"Jack
+      Sparrow","phone":"REDACTED","state":"CA","street1":"388 Townsend St","street2":"Apt
+      20","zip":"94107"}}'
     form: {}
     headers:
       Authorization:
@@ -15,16 +16,16 @@ interactions:
     url: https://api.easypost.com/v2/end_shippers
     method: POST
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-20T23:28:20+00:00","email":"REDACTED","id":"es_6adec2f0691d4e5eba878ddd48c979fb","mode":"production","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T16:19:10+00:00","email":"REDACTED","id":"es_5842c25848874425b2fbe1f7f892326c","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-20T23:28:20+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T16:19:10+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"eec3a5e08a3f7cc99c041fc1f383e17c"
+      - W/"6ef09fd3a77d8a0a75dc4a2a1470b99a"
       Expires:
       - "0"
       Pragma:
@@ -40,7 +41,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4c94ec8cdb4300108396
+      - ad82a8bc632b397eec8e8d2900013646
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -48,13 +49,12 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.049060"
+      - "0.041474"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -68,19 +68,19 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/end_shippers/es_6adec2f0691d4e5eba878ddd48c979fb
+    url: https://api.easypost.com/v2/end_shippers/es_5842c25848874425b2fbe1f7f892326c
     method: GET
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-20T23:28:20+00:00","email":"REDACTED","id":"es_6adec2f0691d4e5eba878ddd48c979fb","mode":"production","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T16:19:10+00:00","email":"REDACTED","id":"es_5842c25848874425b2fbe1f7f892326c","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-09-20T23:28:20+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2022-09-21T16:19:10+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e7e6782322c5875f8ccd3bf28bce10b6"
+      - W/"aa2250a737ba757f9da3d7b749bbe056"
       Expires:
       - "0"
       Pragma:
@@ -96,21 +96,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 924e0c20632a4c95ec8cdb43001083b0
+      - ad82a8bc632b397eec8e8d2900013651
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb1nuq 29913d444b
       X-Runtime:
-      - "0.035421"
+      - "0.194699"
       X-Version-Label:
-      - easypost-202209201859-4397aee39f-master
+      - easypost-202209210008-610ad55e3f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
