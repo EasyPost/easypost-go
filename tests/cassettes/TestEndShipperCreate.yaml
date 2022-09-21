@@ -16,16 +16,16 @@ interactions:
     url: https://api.easypost.com/v2/end_shippers
     method: POST
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T16:19:10+00:00","email":"REDACTED","id":"es_1b855ed6515c44e991af489b6e3ee785","mode":"test","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:22:12+00:00","email":"REDACTED","id":"es_175c05d61f8c48a396665886d336d257","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T16:19:10+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T18:22:12+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"050b5140e420cad0135d047c09477fe1"
+      - W/"57cc5cf12f61e596758c20c9c4424835"
       Expires:
       - "0"
       Pragma:
@@ -36,25 +36,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397eec8e8d2900013637
+      - 8f5eb2cf632b5654ec7d9989000d9a69
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb4nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.038221"
+      - "0.039007"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

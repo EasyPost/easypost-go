@@ -18,14 +18,14 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T16:19:08Z","id":"batch_8a2c6d4338f84a66863dbd641964d36e","label_url":null,"mode":"test","num_shipments":1,"object":"EasyPost::Entity::Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T16:19:08Z"}'
+    body: '{"created_at":"2022-09-21T18:22:05Z","id":"batch_d0b153e1ddd3423bb1a51a8c6257c3e7","label_url":null,"mode":"test","num_shipments":1,"object":"EasyPost::Entity::Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T18:22:05Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"2c2463fe261aa23a0268b4b88532e979"
+      - W/"795de0729be5cb14bca51f4adb4ca361"
       Expires:
       - "0"
       Pragma:
@@ -41,20 +41,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397cec8e8d290001349a
+      - 8f5eb2cf632b564dec7d9989000d95d7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.035915"
+      - "0.041663"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -68,17 +69,17 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/batches/batch_8a2c6d4338f84a66863dbd641964d36e
+    url: https://api.easypost.com/v2/batches/batch_d0b153e1ddd3423bb1a51a8c6257c3e7
     method: GET
   response:
-    body: '{"created_at":"2022-09-21T16:19:08Z","id":"batch_8a2c6d4338f84a66863dbd641964d36e","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T16:19:08Z"}'
+    body: '{"created_at":"2022-09-21T18:22:05Z","id":"batch_d0b153e1ddd3423bb1a51a8c6257c3e7","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"created","id":"shp_15d0b3c5a508488198866aea6520ccab","reference":null,"tracking_code":null}],"state":"created","status":{"created":1,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T18:22:05Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e01afec8801cc038d204952546d0e808"
+      - W/"b10ce000ab2784a38c15bc2b67aae837"
       Expires:
       - "0"
       Pragma:
@@ -96,7 +97,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397cec8e8d29000134a1
+      - 8f5eb2cf632b564dec7d9989000d95fb
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -104,12 +105,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.022568"
+      - "0.024286"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

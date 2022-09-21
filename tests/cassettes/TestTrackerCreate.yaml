@@ -14,20 +14,20 @@ interactions:
     url: https://api.easypost.com/v2/trackers
     method: POST
   response:
-    body: '{"carrier":"USPS","carrier_detail":null,"created_at":"2022-09-21T16:20:07Z","est_delivery_date":"2022-09-21T16:20:07Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"finalized":true,"id":"trk_2b98e5e634dd422bb9b2d18c8a2e4e01","is_return":false,"mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrXzJiOThlNWU2MzRkZDQyMmJiOWIyZDE4YzhhMmU0ZTAx","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"unknown","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2022-08-21T16:20:07Z","description":null,"message":"Pre-Shipment
-      information received","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-22T11:09:07Z","description":null,"message":"Shipping
-      label created","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}}],"updated_at":"2022-09-21T16:20:07Z","weight":17.6}'
+    body: '{"carrier":"USPS","carrier_detail":null,"created_at":"2022-09-21T18:23:25Z","est_delivery_date":"2022-09-21T18:23:25Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"finalized":true,"id":"trk_c6c2b14e38214df3aab4d05390b9f188","is_return":false,"mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2M2YzJiMTRlMzgyMTRkZjNhYWI0ZDA1MzkwYjlmMTg4","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"unknown","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2022-08-21T18:23:25Z","description":null,"message":"Pre-Shipment
+      information received","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2022-08-22T13:12:25Z","description":null,"message":"Shipping
+      label created","object":"TrackingDetail","source":"EasyPost","status":"pre_transit","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}}],"updated_at":"2022-09-21T18:23:25Z","weight":17.6}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"0ba50ca9756bde1a465e25c55561a60f"
+      - W/"913df1a79fa27d17ea70b7d30e753a00"
       Expires:
       - "0"
       Location:
-      - /api/v2/trackers/trk_2b98e5e634dd422bb9b2d18c8a2e4e01
+      - /api/v2/trackers/trk_c6c2b14e38214df3aab4d05390b9f188
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -41,7 +41,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b39b7ec8e8d2900015530
+      - 8f5eb2cf632b569dec7d9989000dbe19
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -49,12 +49,13 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.099219"
+      - "0.116578"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

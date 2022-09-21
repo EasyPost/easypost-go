@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/referral_customers
     method: POST
   response:
-    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-21T16:19:38Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_a0146f6c0f954dfdb0a3f463d587d05b","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
+    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-21T18:22:47Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_65c4ae5391b24fb5b970d8d29ef4a3d0","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
       Referral","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
@@ -22,7 +22,7 @@ interactions:
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"e27464a44fc451d9189790cc8d5770d1"
+      - W/"9e487791b244b3e5121dc93942ce874c"
       Expires:
       - "0"
       Pragma:
@@ -38,7 +38,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b399aec8e8d29000144e0
+      - 8f5eb2cf632b5676ec7d9989000dae2b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -47,11 +47,12 @@ interactions:
       - none
       X-Proxied:
       - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "1.107641"
+      - "1.003051"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -67,7 +68,7 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/referral_customers/user_a0146f6c0f954dfdb0a3f463d587d05b
+    url: https://api.easypost.com/v2/referral_customers/user_65c4ae5391b24fb5b970d8d29ef4a3d0
     method: PUT
   response:
     body: '{"message":"Referral Customer email updated successfully"}'
@@ -93,20 +94,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b399bec8e8d290001456d
+      - 8f5eb2cf632b5678ec7d9989000daebd
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.119591"
+      - "0.189223"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

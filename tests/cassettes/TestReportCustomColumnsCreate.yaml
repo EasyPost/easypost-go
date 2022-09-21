@@ -14,14 +14,14 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T16:19:41Z","end_date":"2022-04-11","id":"shprep_e41685f2a1fb41a89798c5bfc3fdab23","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T16:19:41Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_34dd218b297743c68d5feda88d46018e","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T18:22:52Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"9a433065bb032219902d43269cc8a9bf"
+      - W/"714f5b2ca81f778cfe84c853babcc16b"
       Expires:
       - "0"
       Pragma:
@@ -37,7 +37,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b399dec8e8d290001469c
+      - 8f5eb2cf632b567cec7d9989000db06f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -46,11 +46,12 @@ interactions:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.042224"
+      - "0.036007"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

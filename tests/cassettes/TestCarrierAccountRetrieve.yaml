@@ -14,16 +14,16 @@ interactions:
     url: https://api.easypost.com/v2/carrier_accounts
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-09-21T16:19:09Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{"credentials":{},"test_credentials":{}},"id":"ca_c3de22a2860641ab86226667b07c6b30","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-21T16:19:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-09-21T18:22:08Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{},"id":"ca_399a61d5f4d14333849fb3b6b2c17a8e","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-21T18:22:08Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"7f47a19475a55116f5853ef30db93aa6"
+      - W/"262d19850609170c1f81a77ef34ef300"
       Expires:
       - "0"
       Pragma:
@@ -34,27 +34,26 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397dec8e8d2900013537
+      - 8f5eb2cf632b5650ec7d9989000d9817
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb1nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.120660"
+      - "0.138437"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -68,19 +67,19 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_c3de22a2860641ab86226667b07c6b30
+    url: https://api.easypost.com/v2/carrier_accounts/ca_399a61d5f4d14333849fb3b6b2c17a8e
     method: GET
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-09-21T16:19:09Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{"credentials":{},"test_credentials":{}},"id":"ca_c3de22a2860641ab86226667b07c6b30","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-21T16:19:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2022-09-21T18:22:08Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{},"id":"ca_399a61d5f4d14333849fb3b6b2c17a8e","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2022-09-21T18:22:08Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"7f47a19475a55116f5853ef30db93aa6"
+      - W/"262d19850609170c1f81a77ef34ef300"
       Expires:
       - "0"
       Pragma:
@@ -96,20 +95,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397dec8e8d2900013562
+      - 8f5eb2cf632b5650ec7d9989000d984a
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb8nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.027838"
+      - "0.027932"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -123,7 +123,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_c3de22a2860641ab86226667b07c6b30
+    url: https://api.easypost.com/v2/carrier_accounts/ca_399a61d5f4d14333849fb3b6b2c17a8e
     method: DELETE
   response:
     body: '{}'
@@ -149,20 +149,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397dec8e8d2900013568
+      - 8f5eb2cf632b5650ec7d9989000d9881
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb3nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.128853"
+      - "0.133790"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

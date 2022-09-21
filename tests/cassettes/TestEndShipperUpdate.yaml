@@ -16,16 +16,16 @@ interactions:
     url: https://api.easypost.com/v2/end_shippers
     method: POST
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T16:19:11+00:00","email":"REDACTED","id":"es_4f3423a7368247fe9ca8a87f0e1d6de9","mode":"test","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:22:13+00:00","email":"REDACTED","id":"es_6ecdc5a7690c41a99db4bc8956d858a0","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T16:19:11+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T18:22:13+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"02827e7aa0c82afceaef9ba554c13e65"
+      - W/"4a455eb7c89c6123787b0cd857d92859"
       Expires:
       - "0"
       Pragma:
@@ -41,29 +41,30 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397fec8e8d2900013685
+      - 8f5eb2cf632b5655ec7d9989000d9ad7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.046126"
+      - "0.039581"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
     duration: ""
 - request:
-    body: '{"address":{"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2022-09-21T16:19:11Z","email":"REDACTED","id":"es_4f3423a7368247fe9ca8a87f0e1d6de9","mode":"test","name":"Captain
+    body: '{"address":{"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2022-09-21T18:22:13Z","email":"REDACTED","id":"es_6ecdc5a7690c41a99db4bc8956d858a0","mode":"test","name":"Captain
       Sparrow","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T16:19:11Z","zip":"94107"}}'
+      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T18:22:13Z","zip":"94107"}}'
     form: {}
     headers:
       Authorization:
@@ -72,19 +73,19 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/end_shippers/es_4f3423a7368247fe9ca8a87f0e1d6de9
+    url: https://api.easypost.com/v2/end_shippers/es_6ecdc5a7690c41a99db4bc8956d858a0
     method: PUT
   response:
-    body: '{"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-09-21T16:19:11+00:00","email":"REDACTED","id":"es_4f3423a7368247fe9ca8a87f0e1d6de9","mode":"test","name":"CAPTAIN
+    body: '{"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-09-21T18:22:13+00:00","email":"REDACTED","id":"es_6ecdc5a7690c41a99db4bc8956d858a0","mode":"test","name":"CAPTAIN
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T16:19:11+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T18:22:13+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"450a4cb48088ec47bd87009784c9a47e"
+      - W/"3f9d435e402462bbb70106609fbb122e"
       Expires:
       - "0"
       Pragma:
@@ -100,20 +101,21 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b397fec8e8d29000136a8
+      - 8f5eb2cf632b5655ec7d9989000d9b06
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb9nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.065423"
+      - "0.059590"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

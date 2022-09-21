@@ -16,20 +16,20 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-09-21T16:18:58+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_18f8b9bd39c911ed8f5eac1f6bc72124","mode":"test","name":"Jack
+    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-09-21T18:21:46+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_407842ad39da11eda2c9ac1f6b0a0d1e","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T16:18:58+00:00","verifications":{},"zip":"94107"}'
+      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T18:21:46+00:00","verifications":{},"zip":"94107"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"ec1a95d9377e7bd65a9c9241600776de"
+      - W/"830a773acf113453f62f75fef411ff37"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_18f8b9bd39c911ed8f5eac1f6bc72124
+      - /api/v2/addresses/adr_407842ad39da11eda2c9ac1f6b0a0d1e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -38,25 +38,28 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - ad82a8bc632b3972ec8e8d2900012ef5
+      - 8f5eb2cf632b563aec7d9989000d8c40
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb7nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - extlb1nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb4wdc 29913d444b
       X-Runtime:
-      - "0.035208"
+      - "0.034110"
       X-Version-Label:
-      - easypost-202209210008-610ad55e3f-master
+      - easypost-202209211654-799b9c9ff9-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

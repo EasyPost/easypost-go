@@ -5,16 +5,17 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"github.com/EasyPost/easypost-go/v2"
-	"github.com/dnaeon/go-vcr/cassette"
-	"github.com/dnaeon/go-vcr/recorder"
-	"github.com/stretchr/testify/suite"
 	"io/ioutil"
 	"net/http"
 	"os"
 	"path/filepath"
 	"strings"
 	"testing"
+
+	"github.com/EasyPost/easypost-go/v2"
+	"github.com/dnaeon/go-vcr/cassette"
+	"github.com/dnaeon/go-vcr/recorder"
+	"github.com/stretchr/testify/suite"
 )
 
 var (
@@ -40,6 +41,7 @@ type ClientTests struct {
 	fixture  *Fixture
 }
 
+// contains returns true if the string is in the list.
 func contains(elements []string, target string) bool {
 	for _, element := range elements {
 		if target == element {
@@ -49,6 +51,7 @@ func contains(elements []string, target string) bool {
 	return false
 }
 
+// applyCensorsToJsonList applies the censors to a JSON list.
 func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCensor map[string]interface{}) []interface{} {
 	if len(list) == 0 {
 		// short circuit and return the list if it is empty
@@ -77,6 +80,7 @@ func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCenso
 	return list
 }
 
+// applyCensorsToJsonDictionary applies the censors to a JSON dictionary.
 func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interface{}, elementsToCensor map[string]interface{}) map[string]interface{} {
 	if len(dictionary) == 0 {
 		// short circuit and return the dictionary if it is empty
@@ -154,7 +158,6 @@ func (c *ClientTests) SetupTest() {
 	// Replace value has to be type specific to its corresponding struct
 	responseBodyElementsToCensor := map[string]interface{}{
 		"api_keys":         []string{},
-		"children":         []string{},
 		"client_ip":        "REDACTED",
 		"test_credentials": map[string]string{},
 		"credentials":      map[string]string{},
@@ -163,6 +166,7 @@ func (c *ClientTests) SetupTest() {
 		"key":              "REDACTED",
 		"phone_number":     "REDACTED",
 		"phone":            "REDACTED",
+		"fields":           map[string]string{},
 	}
 
 	// Strictly match the URL, method, and body of the requests
