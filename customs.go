@@ -79,21 +79,22 @@ func (ci *CustomsItem) UnmarshalJSON(b []byte) (err error) {
 	}
 
 	// tweak values
-	for k, v := range rawData {
-		switch k {
+	for key, value := range rawData {
+		switch key {
 		case "value":
-			// convert Value to a float64 if it is a string (via API response)
-			if s, ok := v.(string); ok {
-				if f, err := strconv.ParseFloat(s, 64); err == nil {
-					rawData[k] = f
+			// convert Value property to a float64 if it is a string (via API response)
+			if valueString, noErr := value.(string); noErr {
+				if valueFloat, err := strconv.ParseFloat(valueString, 64); err == nil {
+					rawData[key] = valueFloat
 				}
+				return
 			} else {
-				// keep Value a float64 if it is already one (via Fixture data)
-				rawData[k] = v.(float64)
+				// keep Value property a float64 if it is already one (via Fixture data)
+				rawData[key] = value.(float64)
 			}
 		default:
 			// no tweak needed, keep the value as is
-			rawData[k] = v
+			rawData[key] = value
 		}
 	}
 
