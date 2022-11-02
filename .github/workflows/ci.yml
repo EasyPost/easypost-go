@@ -38,6 +38,16 @@ jobs:
         run: make install
       - name: run tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 PARTNER_USER_PROD_API_KEY=123 REFERRAL_USER_PROD_API_KEY=123 make coverage
+      - name: Install goveralls
+        if: github.ref == 'refs/heads/master'
+        env:
+          GO111MODULE: off
+        run: go get github.com/mattn/goveralls
+      - name: Coveralls
+        if: github.ref == 'refs/heads/master'
+        env:
+          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: goveralls -coverprofile=covprofile -service=github
       - name: Run Gosec
         uses: securego/gosec@master
         with:

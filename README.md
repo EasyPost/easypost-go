@@ -1,6 +1,7 @@
 # EasyPost Go Client Library
 
 [![CI](https://github.com/EasyPost/easypost-go/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-go/actions?query=workflow%3ACI)
+[![Coverage Status](https://coveralls.io/repos/github/EasyPost/easypost-go/badge.svg?branch=master)](https://coveralls.io/github/EasyPost/easypost-go?branch=master)
 [![GitHub version](https://badge.fury.io/gh/EasyPost%2Feasypost-go.svg)](https://badge.fury.io/gh/EasyPost%2Feasypost-go)
 [![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go)
 
