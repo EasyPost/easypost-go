@@ -106,7 +106,7 @@ func main() {
 
 ## Documentation
 
-API Documentation can be found at: <https://easypost.com/docs/api>. Alternatively, you can view the [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go).
+API Documentation can be found at: <https://easypost.com/docs/api>. Alternatively, you can view the [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v2).
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
