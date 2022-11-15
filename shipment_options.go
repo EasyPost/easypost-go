@@ -8,6 +8,7 @@ type ShipmentOptions struct {
 	AdditionalHandling       bool       `json:"additional_handling,omitempty"`
 	AddressValidationLevel   string     `json:"address_validation_level,omitempty"`
 	Alcohol                  bool       `json:"alcohol,omitempty"`
+	BillingRef               string     `json:"billing_ref,omitempty"`
 	BillReceiverAccount      string     `json:"bill_receiver_account,omitempty"`
 	BillReceiverPostalCode   string     `json:"bill_receiver_postal_code,omitempty"`
 	BillThirdPartyAccount    string     `json:"bill_third_party_account,omitempty"`
@@ -37,6 +38,7 @@ type ShipmentOptions struct {
 	InvoiceNumber            string     `json:"invoice_number,omitempty"`
 	LabelDate                *time.Time `json:"label_date,omitempty"`
 	LabelFormat              string     `json:"label_format,omitempty"`
+	LabelSize                string     `json:"label_size,omitempty"`
 	Machinable               bool       `json:"machinable,omitempty"`
 	Payment                  *Payment   `json:"payment,omitempty"`
 	PrintCustom1             string     `json:"print_custom_1,omitempty"`
@@ -55,7 +57,6 @@ type ShipmentOptions struct {
 	SpecialRatesEligibility  string     `json:"special_rates_eligibility,omitempty"`
 	SmartpostHub             string     `json:"smartpost_hub,omitempty"`
 	SmartpostManifest        string     `json:"smartpost_manifest,omitempty"`
-	BillingRef               string     `json:"billing_ref,omitempty"`
 }
 
 // Payment provides information on how a shipment is billed.
