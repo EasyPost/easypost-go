@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.9.0 (2022-11-15)
+
+- Adds `LabelSize` shipment option
+
 ## v2.8.0 (2022-09-21)
 
 - Adds `EndShipperID` shipment option
