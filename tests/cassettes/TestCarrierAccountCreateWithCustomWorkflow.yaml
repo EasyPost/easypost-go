@@ -1,0 +1,70 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carrier_account":{"credentials":{},"registration_data":{"some":"data"},"test_credentials":{},"type":"FedexAccount"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/register
+    method: POST
+  response:
+    body: '{"error":{"code":"UNPROCESSABLE_ENTITY","errors":[{"field":"shipping_streets","message":"must
+      be present and a string"},{"field":"shipping_city","message":"must be present
+      and a string"},{"field":"shipping_state","message":"must be present and a string"},{"field":"shipping_postal_code","message":"must
+      be present and a string"},{"field":"shipping_country_code","message":"must be
+      present and a string"},{"field":"corporate_first_name","message":"must be present
+      and a string"},{"field":"corporate_last_name","message":"must be present and
+      a string"},{"field":"corporate_job_title","message":"must be present and a string"},{"field":"corporate_company_name","message":"must
+      be present and a string"},{"field":"corporate_phone_number","message":"must
+      be present and a string"},{"field":"corporate_email_address","message":"must
+      be present and a string"},{"field":"corporate_streets","message":"must be present
+      and a string"},{"field":"corporate_city","message":"must be present and a string"},{"field":"corporate_state","message":"must
+      be present and a string"},{"field":"corporate_postal_code","message":"must be
+      present and a string"},{"field":"corporate_country_code","message":"must be
+      present and a string"},{"field":"account_number","message":"must be present
+      and a string"}],"message":"The request was understood, but cannot be processed."}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - fa9a2bd8637e84edecc6666b000f4b68
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb5nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 29913d444b
+      - extlb1nuq 29913d444b
+      X-Runtime:
+      - "0.116941"
+      X-Version-Label:
+      - easypost-202211231902-b75422a88e-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 422 Unprocessable Entity
+    code: 422
+    duration: ""

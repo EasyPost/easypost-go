@@ -24,19 +24,20 @@ type CarrierFields struct {
 // CarrierAccount encapsulates credentials and other information related to a
 // carrier account.
 type CarrierAccount struct {
-	ID              string            `json:"id,omitempty"`
-	Object          string            `json:"object,omitempty"`
-	Reference       string            `json:"reference,omitempty"`
-	CreatedAt       *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time        `json:"updated_at,omitempty"`
-	Type            string            `json:"type,omitempty"`
-	Fields          *CarrierFields    `json:"fields,omitempty"`
-	Clone           bool              `json:"clone,omitempty"`
-	Description     string            `json:"description,omitempty"`
-	Readable        string            `json:"readable,omitempty"`
-	Credentials     map[string]string `json:"credentials"`
-	TestCredentials map[string]string `json:"test_credentials"`
-	BillingType     string            `json:"billing_type,omitempty"`
+	ID               string                 `json:"id,omitempty"`
+	Object           string                 `json:"object,omitempty"`
+	Reference        string                 `json:"reference,omitempty"`
+	CreatedAt        *time.Time             `json:"created_at,omitempty"`
+	UpdatedAt        *time.Time             `json:"updated_at,omitempty"`
+	Type             string                 `json:"type,omitempty"`
+	Fields           *CarrierFields         `json:"fields,omitempty"`
+	Clone            bool                   `json:"clone,omitempty"`
+	Description      string                 `json:"description,omitempty"`
+	Readable         string                 `json:"readable,omitempty"`
+	Credentials      map[string]string      `json:"credentials,omitempty"`
+	TestCredentials  map[string]string      `json:"test_credentials,omitempty"`
+	RegistrationData map[string]interface{} `json:"registration_data,omitempty"`
+	BillingType      string                 `json:"billing_type,omitempty"`
 }
 
 // CarrierType contains information on a supported carrier. It can be used to
@@ -49,6 +50,16 @@ type CarrierType struct {
 
 type carrierAccountRequest struct {
 	CarrierAccount *CarrierAccount `json:"carrier_account,omitempty"`
+}
+
+func (c *Client) selectCarrierAccountCreationEndpoint(account CarrierAccount) string {
+	for _, carrier := range getCarrierAccountTypesWithCustomWorkflows() {
+		if account.Type == carrier {
+			return "carrier_accounts/register"
+		}
+	}
+
+	return "carrier_accounts"
 }
 
 // GetCarrierTypes returns a list of supported carrier types for the current
@@ -66,6 +77,7 @@ func (c *Client) GetCarrierTypesWithContext(ctx context.Context) (out []*Carrier
 
 // CreateCarrierAccount creates a new carrier account. It can only be used with
 // a production API key.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateCarrierAccount(
 //		&easypost.CarrierAccount{
@@ -88,7 +100,8 @@ func (c *Client) CreateCarrierAccount(in *CarrierAccount) (out *CarrierAccount, 
 // request.
 func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *CarrierAccount) (out *CarrierAccount, err error) {
 	req := &carrierAccountRequest{CarrierAccount: in}
-	err = c.post(ctx, "carrier_accounts", req, &out)
+	endpoint := c.selectCarrierAccountCreationEndpoint(*in)
+	err = c.post(ctx, endpoint, req, &out)
 	return
 }
 
@@ -121,6 +134,7 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 
 // UpdateCarrierAccount updates the carrier account. Only the Description,
 // Reference, Credentials and TestCredentials attributes can be updated.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.UpdateCarrierAccount(
 //		&easypost.CarrierAccount{
