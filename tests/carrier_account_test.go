@@ -15,18 +15,6 @@ func (c *ClientTests) GenerateCarrierAccount() (*easypost.CarrierAccount, error)
 	return carrierAccount, err
 }
 
-func (c *ClientTests) GenerateCarrierAccountWithCustomWorkflow() (*easypost.CarrierAccount, error) {
-	client := c.ProdClient()
-
-	carrierAccount := c.fixture.BasicCarrierAccount()
-	carrierAccount.Type = "FedexAccount"
-	carrierAccount.RegistrationData = map[string]interface{}{}
-
-	carrierAccount, err := client.CreateCarrierAccount(carrierAccount)
-
-	return carrierAccount, err
-}
-
 func (c *ClientTests) TestCarrierAccountCreate() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
@@ -45,20 +33,22 @@ func (c *ClientTests) TestCarrierAccountCreate() {
 func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() {
 	assert, require := c.Assert(), c.Require()
 
-	_, err := c.GenerateCarrierAccountWithCustomWorkflow()
+	client := c.ProdClient()
+
+	carrierAccount := c.fixture.BasicCarrierAccount()
+	carrierAccount.Type = "FedexAccount"
+	// we need to include data in this interface, otherwise it will be omitted during the API call
+	carrierAccount.RegistrationData = map[string]interface{}{
+		"some": "data",
+	}
+
+	_, err := client.CreateCarrierAccount(carrierAccount)
 
 	// We're sending bad data to the API, so we expect an error
 	require.Error(err)
-
-	// We expect the error to be an API error
 	assert.Equal(reflect.TypeOf(&easypost.APIError{}), reflect.TypeOf(err))
-
-	// We expect the error to be a 422
 	assert.Equal(422, err.(*easypost.APIError).StatusCode)
-
-	// We expect the error to have sub-errors
 	assert.NotEmpty(err.(*easypost.APIError).Errors)
-
 	// We expect one of the sub-errors to be regarding a missing field
 	errorFound := false
 	for _, err := range err.(*easypost.APIError).Errors {
@@ -69,7 +59,6 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() {
 	}
 
 	assert.True(errorFound)
-
 }
 
 func (c *ClientTests) TestCarrierAccountRetrieve() {

@@ -34,9 +34,9 @@ type CarrierAccount struct {
 	Clone            bool                   `json:"clone,omitempty"`
 	Description      string                 `json:"description,omitempty"`
 	Readable         string                 `json:"readable,omitempty"`
-	Credentials      map[string]string      `json:"credentials"`
-	TestCredentials  map[string]string      `json:"test_credentials"`
-	RegistrationData map[string]interface{} `json:"registration_data"`
+	Credentials      map[string]string      `json:"credentials,omitempty"`
+	TestCredentials  map[string]string      `json:"test_credentials,omitempty"`
+	RegistrationData map[string]interface{} `json:"registration_data,omitempty"`
 	BillingType      string                 `json:"billing_type,omitempty"`
 }
 
