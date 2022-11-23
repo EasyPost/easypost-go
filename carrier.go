@@ -53,7 +53,7 @@ type carrierAccountRequest struct {
 }
 
 func (c *Client) selectCarrierAccountCreationEndpoint(account CarrierAccount) string {
-	for _, carrier := range getCustomWorkflowCarrierAccountTypes() {
+	for _, carrier := range getCarrierAccountTypesWithCustomWorkflows() {
 		if account.Type == carrier {
 			return "carrier_accounts/register"
 		}

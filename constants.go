@@ -1,5 +1,5 @@
 package easypost
 
-func getCustomWorkflowCarrierAccountTypes() []string {
+func getCarrierAccountTypesWithCustomWorkflows() []string {
 	return []string{"FedexAccount", "UpsAccount"}
 }
