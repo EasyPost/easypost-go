@@ -17,7 +17,7 @@ clean:
 
 ## coverage - Get test coverage and open it in a browser
 coverage: 
-	go clean -testcache && go test ./tests -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
+	go clean -testcache && go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
 ## install - Install and vendor dependencies
 install:
@@ -42,7 +42,7 @@ scan:
 
 ## test - Test the project
 test:
-	go clean -testcache && go test ./tests
+	go clean -testcache && go test ./tests -v
 
 ## tidy - Tidies up the vendor directory
 tidy:
