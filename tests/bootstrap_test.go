@@ -11,6 +11,7 @@ import (
 	"path/filepath"
 	"strings"
 	"testing"
+	"time"
 
 	"github.com/EasyPost/easypost-go/v2"
 	"github.com/dnaeon/go-vcr/cassette"
@@ -121,6 +122,7 @@ func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interfa
 	return dictionary
 }
 
+// censorJsonData censors data in cassette files before they persist to disk
 func (c *ClientTests) censorJsonData(data string, elementsToCensor map[string]interface{}) string {
 	var jsonMap map[string]interface{}
 	mapErr := json.Unmarshal([]byte(data), &jsonMap)
@@ -147,6 +149,7 @@ func (c *ClientTests) censorJsonData(data string, elementsToCensor map[string]in
 	return string(censoredDictionaryBytes)
 }
 
+// SetupTest runs all the logic required for a test to run
 func (c *ClientTests) SetupTest() {
 	pathComponents := append(
 		[]string{"cassettes/"}, strings.Split(c.T().Name(), "/")[1],
@@ -154,19 +157,21 @@ func (c *ClientTests) SetupTest() {
 	r, err := recorder.New(filepath.Join(pathComponents...))
 	c.Require().NoError(err)
 
+	c.checkExpiredCassette()
+
 	// Filter sensitive data from cassettes
 	// Replace value has to be type specific to its corresponding struct
+	redactedString := "REDACTED"
+	redactedStringMap := map[string]string{}
 	responseBodyElementsToCensor := map[string]interface{}{
-		"api_keys":         []string{},
-		"client_ip":        "REDACTED",
-		"test_credentials": map[string]string{},
-		"credentials":      map[string]string{},
-		"email":            "REDACTED",
-		"keys":             []*easypost.APIKey{},
-		"key":              "REDACTED",
-		"phone_number":     "REDACTED",
-		"phone":            "REDACTED",
-		"fields":           map[string]string{},
+		"client_ip":        redactedString,
+		"credentials":      redactedStringMap,
+		"email":            redactedString,
+		"fields":           redactedStringMap,
+		"key":              redactedString,
+		"phone_number":     redactedString,
+		"phone":            redactedString,
+		"test_credentials": redactedStringMap,
 	}
 
 	// Strictly match the URL, method, and body of the requests
@@ -191,16 +196,15 @@ func (c *ClientTests) SetupTest() {
 
 	r.AddSaveFilter(func(i *cassette.Interaction) error {
 		// Filter headers
+		redactedStringList := []string{"REDACTED"}
 		if i.Request.Headers["Authorization"] != nil {
-			i.Request.Headers["Authorization"] = []string{"REDACTED"}
+			i.Request.Headers["Authorization"] = redactedStringList
 		}
-
 		if i.Request.Headers["User-Agent"] != nil {
-			i.Request.Headers["User-Agent"] = []string{"REDACTED"}
+			i.Request.Headers["User-Agent"] = redactedStringList
 		}
-
 		if i.Request.Headers["X-Client-User-Agent"] != nil {
-			i.Request.Headers["X-Client-User-Agent"] = []string{"REDACTED"}
+			i.Request.Headers["X-Client-User-Agent"] = redactedStringList
 		}
 
 		// Censor request data
@@ -223,10 +227,30 @@ func (c *ClientTests) SetupTest() {
 	c.recorder = r
 }
 
+// checkExpiredCassette checks for an expired cassette and warns if it is too old and must be re-recorded
+func (c *ClientTests) checkExpiredCassette() {
+	fullCassettePath := "cassettes/" + strings.Split(c.T().Name(), "/")[1] + ".yaml"
+	const expirationDays = 180
+	expirationHours := expirationDays * 24 * time.Hour
+
+	if _, err := os.Stat(fullCassettePath); err == nil {
+		cassette, _ := os.Stat(fullCassettePath)
+		cassetteTimestamp := cassette.ModTime()
+		expirationTimestamp := cassetteTimestamp.Add(expirationHours)
+		currentTimestamp := time.Now()
+
+		if currentTimestamp.After(expirationTimestamp) {
+			c.T().Logf(fmt.Sprintf("%s is older than %d days and has expired. Please re-record the cassette", fullCassettePath, expirationDays))
+		}
+	}
+}
+
+// TearDownTest runs all the logic required to teardown a test
 func (c *ClientTests) TearDownTest() {
 	_ = c.recorder.Stop()
 }
 
+// TestClient sets up the test mode client object to be used in the test
 func (c *ClientTests) TestClient() *easypost.Client {
 	return &easypost.Client{
 		APIKey: TestAPIKey,
@@ -234,6 +258,7 @@ func (c *ClientTests) TestClient() *easypost.Client {
 	}
 }
 
+// ProdClient sets up the prod mode client object to be used in the test
 func (c *ClientTests) ProdClient() *easypost.Client {
 	return &easypost.Client{
 		APIKey: ProdAPIKey,
@@ -241,17 +266,23 @@ func (c *ClientTests) ProdClient() *easypost.Client {
 	}
 }
 
+// PartnerClient sets up the partner user client object to be used in the test
 func (c *ClientTests) PartnerClient() *easypost.Client {
+	if len(PartnerAPIKey) == 0 {
+		PartnerAPIKey = "123"
+	}
 	return &easypost.Client{
 		APIKey: PartnerAPIKey,
 		Client: &http.Client{Transport: c.recorder},
 	}
 }
 
+// TestClient runs the entire test suite
 func TestClient(t *testing.T) {
 	suite.Run(t, new(ClientTests))
 }
 
+// TestMain is the entrypoint when running tests via the CLI
 func TestMain(m *testing.M) {
 	// Create a separate FlagSet just so we can print help specific to our
 	// flags--don't need to dump help for all of Go's internal test.* flags.
