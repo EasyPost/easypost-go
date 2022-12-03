@@ -277,6 +277,15 @@ func (c *ClientTests) PartnerClient() *easypost.Client {
 	}
 }
 
+// MockClient sets up the mock client object to be used in the test
+func (c *ClientTests) MockClient(requests []easypost.MockRequest) *easypost.Client {
+	return &easypost.Client{
+		APIKey:       "cannot_be_blank",
+		Client:       &http.Client{Transport: c.recorder},
+		MockRequests: requests,
+	}
+}
+
 // TestClient runs the entire test suite
 func TestClient(t *testing.T) {
 	suite.Run(t, new(ClientTests))
