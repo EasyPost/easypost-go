@@ -155,3 +155,51 @@ Some tests may require an EasyPost user with a particular set of enabled feature
 - `USPS_CARRIER_ACCOUNT_ID` (eg: one-call buying a shipment for non-EasyPost employees)
 - `PARTNER_USER_PROD_API_KEY` (eg: creating a referral user)
 - `REFERRAL_USER_PROD_API_KEY` (eg: adding a credit card to a referral user)
+
+#### Mocking
+
+Some ouf our unit tests requiring HTTP calls that cannot be easily tested with live/recorded calls (e.g. HTTP calls that
+trigger payments or interact with external APIs).
+
+We have implemented a custom, lightweight HTTP mocking functionality in this library that allows us to mock HTTP calls
+and responses.
+
+The mock client is the same as a normal client, with a set of mock request-response pairs stored as a property.
+
+At the time to make a real HTTP request, the mock client will instead check which mock request entry matches the queued
+request (matching by HTTP method and a regex pattern for the URL), and will return the corresponding mock response (HTTP
+status code and body).
+
+**NOTE**: If a client is configured with any mock request entries, it will ONLY make mock requests. If it attempts to
+make a request that does not match any of the configured mock requests, the request will fail and trigger an exception.
+
+To use the mock client:
+
+```go
+import "github.com/EasyPost/easypost-go/v2"
+
+// create  a list of mock request-response pairs
+mockRequests := []easypost.MockRequest{
+	{
+        MatchRule: easypost.MockRequestMatchRule{
+			// HTTP method and regex pattern for the URL must both pass for the request to match
+            Method:          "POST",
+            UrlRegexPattern: "v2\\/bank_accounts\\/\\S*\\/charges$",
+        },
+        ResponseInfo: easypost.MockRequestResponseInfo{
+			// HTTP status code and body to return when this request is matched
+            StatusCode: 200,
+            Body:       `{}`,
+        },
+    }
+}
+
+// create a new client with the mock requests
+client := easypost.Client{
+    APIKey:       "some_key",
+    Client:       &http.Client{Transport: c.recorder},
+    MockRequests: mockRequests,
+}
+
+// use the client as normal
+```
