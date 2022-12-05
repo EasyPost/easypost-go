@@ -52,6 +52,8 @@ type Client struct {
 	// timeout includes connection time, any redirects, and reading the
 	// response body.
 	Timeout int
+	// MockRequests is a list of requests that will be mocked by the client.
+	MockRequests []MockRequest
 }
 
 // New returns a new Client with the given API key.
@@ -146,7 +148,20 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		req = req.WithContext(ctx)
 	}
 
-	res, err := c.client().Do(req)
+	var res *http.Response
+	var err error
+
+	if len(c.MockRequests) > 0 {
+		// If there are mock requests set, this client will ONLY make mock requests
+		res = c.findMatchingMockRequest(req)
+		if res == nil {
+			return errors.New("no matching mock request found")
+		}
+	} else {
+		// Otherwise, make a real request
+		res, err = c.client().Do(req)
+	}
+
 	if err != nil {
 		return err
 	}
