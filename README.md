@@ -158,7 +158,7 @@ Some tests may require an EasyPost user with a particular set of enabled feature
 
 #### Mocking
 
-Some ouf our unit tests requiring HTTP calls that cannot be easily tested with live/recorded calls (e.g. HTTP calls that
+Some of our unit tests require HTTP calls that cannot be easily tested with live/recorded calls (e.g. HTTP calls that
 trigger payments or interact with external APIs).
 
 We have implemented a custom, lightweight HTTP mocking functionality in this library that allows us to mock HTTP calls
