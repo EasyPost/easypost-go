@@ -58,8 +58,6 @@ func GetMockRequests() []easypost.MockRequest {
 }
 
 func (c *ClientTests) TestDeletePaymentMethod() {
-	// c.T().Skip("Skipping due to the lack of an available real payment method in tests")
-
 	mockRequests := GetMockRequests()
 
 	client := c.MockClient(mockRequests)
@@ -70,8 +68,6 @@ func (c *ClientTests) TestDeletePaymentMethod() {
 }
 
 func (c *ClientTests) TestFundWallet() {
-	// c.T().Skip("Skipping due to the lack of an available real payment method in tests")
-
 	mockRequests := GetMockRequests()
 
 	client := c.MockClient(mockRequests)
@@ -82,8 +78,6 @@ func (c *ClientTests) TestFundWallet() {
 }
 
 func (c *ClientTests) TestRetrievePaymentMethods() {
-	// c.T().Skip("Skipping due to having to manually add and remove a payment method from the account")
-
 	mockRequests := GetMockRequests()
 
 	client := c.MockClient(mockRequests)
