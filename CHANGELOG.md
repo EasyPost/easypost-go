@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.10.0 (2022-12-05)
+
+- Routes requests for creating a carrier account with a custom workflow (eg: FedEx, UPS) to the correct endpoint when using the `CreateCarrierAccount` function
+
 ## v2.9.0 (2022-11-15)
 
 - Adds `LabelSize` shipment option
@@ -8,7 +12,7 @@
 
 - Adds `EndShipperID` shipment option
 - Adds support to pass an `EndShipperID` when buying a shipment
-- Add White Label support:
+- Adds White Label support:
   - Create a referral customer
   - Update a referral customer's email address
   - List all referral customers
