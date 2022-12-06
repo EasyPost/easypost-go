@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## v2.10.0 (2022-12-05)
+## v2.10.0 (2022-12-07)
 
 - Routes requests for creating a carrier account with a custom workflow (eg: FedEx, UPS) to the correct endpoint when using the `CreateCarrierAccount` function
 
