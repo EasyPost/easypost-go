@@ -60,8 +60,6 @@ func (c *ClientTests) TestReferralCustomerUpdate() {
 }
 
 func (c *ClientTests) TestReferralCustomerAddCreditCard() {
-	c.T().Skip("Because the client changes, this test cannot be recorded completely.")
-
 	client := c.PartnerClient()
 	assert, require := c.Assert(), c.Require()
 

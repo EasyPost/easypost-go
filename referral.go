@@ -123,8 +123,6 @@ func (c *Client) retrieveEasypostStripeApiKey(ctx context.Context) (out *stripeA
 }
 
 func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, creditCardOptions *CreditCardOptions) (out *stripeTokenResponse, err error) {
-	client := http.Client{}
-
 	data := url.Values{}
 	data.Set("card[number]", creditCardOptions.Number)
 	data.Set("card[exp_month]", creditCardOptions.ExpMonth)
@@ -139,7 +137,7 @@ func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, cre
 	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
 	req.Header.Add("Authorization", "Bearer "+stripeApiKey)
 
-	resp, err := client.Do(req)
+	resp, err := c.client().Do(req) // use the current client's inner http.Client (configured to record) for the one-off request
 	if err != nil {
 		return nil, err
 	}
@@ -164,6 +162,7 @@ func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, cre
 func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerApiKey string, stripeToken string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	client := &Client{
 		APIKey: referralCustomerApiKey,
+		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
 	}
 
 	priorityString := ""
