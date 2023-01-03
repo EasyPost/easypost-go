@@ -63,7 +63,9 @@ func (c *ClientTests) TestReferralCustomerAddCreditCard() {
 	client := c.PartnerClient()
 	assert, require := c.Assert(), c.Require()
 
-	creditCard, err := client.AddReferralCustomerCreditCard(ReferralAPIKey, c.fixture.TestCreditCard(), easypost.PrimaryPaymentMethodPriority)
+	referralAPIKey := c.ReferralAPIKey()
+
+	creditCard, err := client.AddReferralCustomerCreditCard(referralAPIKey, c.fixture.TestCreditCard(), easypost.PrimaryPaymentMethodPriority)
 	require.NoError(err)
 
 	require.Equal(reflect.TypeOf(&easypost.PaymentMethodObject{}), reflect.TypeOf(creditCard))
