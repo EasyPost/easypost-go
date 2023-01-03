@@ -26,7 +26,7 @@ var (
 	ProdAPIKey string
 	// PartnerAPIKey is used for tests that require a partner key (like the white label API).
 	PartnerAPIKey string
-	// ReferralAPIKey is used for tests that require a referral key (like the white label API).
+	// ReferralAPIKey is used for tests that require a referral key (like the white label API) (internal, access via ReferralAPIKey()).
 	ReferralAPIKey string
 )
 
@@ -277,6 +277,14 @@ func (c *ClientTests) PartnerClient() *easypost.Client {
 	}
 }
 
+// ReferralAPIKey returns the referral api key or a fallback if the environment variable is not set
+func (c *ClientTests) ReferralAPIKey() string {
+	if len(ReferralAPIKey) == 0 {
+		ReferralAPIKey = "123"
+	}
+	return ReferralAPIKey
+}
+
 // MockClient sets up the mock client object to be used in the test
 func (c *ClientTests) MockClient(requests []easypost.MockRequest) *easypost.Client {
 	return &easypost.Client{
@@ -327,7 +335,7 @@ func TestMain(m *testing.M) {
 	testSuite := m.Run()
 
 	// Fail test suite below desired coverage
-	// `testSuite = 0` means it passed, CoverMode will be non empty if run with -cover
+	// `testSuite = 0` means it passed, CoverMode will be non-empty if run with -cover
 	coverageMinPercentage := 0.72 // TODO: This number for whatever reason is about ~5% lower than what the CLI reports which is the real value
 	if testSuite == 0 && testing.CoverMode() != "" {
 		coverage := testing.Coverage()

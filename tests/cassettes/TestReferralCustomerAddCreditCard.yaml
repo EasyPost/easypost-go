@@ -1,0 +1,169 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/partners/stripe_public_key
+    method: GET
+  response:
+    body: '{"public_key":"pk_x3JSr5eOVWNTLRej8cZDde9VQ0AT5"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"86cc970265a111486b443bf66ef85e91"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 5548df1763a39855ecd5d9a1001be379
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb5nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 29913d444b
+      - intlb1wdc 29913d444b
+      - extlb3wdc 29913d444b
+      X-Runtime:
+      - "0.015790"
+      X-Version-Label:
+      - easypost-202212212300-00650f57d8-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: card%5Bcvc%5D=778&card%5Bexp_month%5D=05&card%5Bexp_year%5D=2028&card%5Bnumber%5D=4536410136126170
+    form:
+      card[cvc]:
+      - "778"
+      card[exp_month]:
+      - "05"
+      card[exp_year]:
+      - "2028"
+      card[number]:
+      - "4536410136126170"
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/x-www-form-urlencoded
+    url: https://api.stripe.com/v1/tokens
+    method: POST
+  response:
+    body: '{"card":{"address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","cvc_check":"unchecked","dynamic_last4":null,"exp_month":5,"exp_year":2028,"funding":"credit","id":"card_0MHbpCDqT4huGUvdqU4Inrj0","last4":"6170","name":null,"object":"card","tokenization_method":null},"client_ip":"REDACTED","created":1671665750,"id":"tok_0MHbpCDqT4huGUvd41R1qx19","livemode":true,"object":"token","type":"card","used":false}'
+    headers:
+      Access-Control-Allow-Credentials:
+      - "true"
+      Access-Control-Allow-Methods:
+      - GET, POST, HEAD, OPTIONS, DELETE
+      Access-Control-Allow-Origin:
+      - '*'
+      Access-Control-Expose-Headers:
+      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      Access-Control-Max-Age:
+      - "300"
+      Cache-Control:
+      - no-cache, no-store
+      Content-Length:
+      - "720"
+      Content-Type:
+      - application/json
+      Date:
+      - Wed, 21 Dec 2022 23:35:50 GMT
+      Idempotency-Key:
+      - 0781885f-11fc-41c7-9084-f469b9325193
+      Original-Request:
+      - req_9rUsLPc1cnkL35
+      Request-Id:
+      - req_9rUsLPc1cnkL35
+      Server:
+      - nginx
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains; preload
+      Stripe-Should-Retry:
+      - "false"
+      Stripe-Version:
+      - "2020-08-27"
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: '{"credit_card":{"priority":"primary","stripe_object_id":"tok_0MHbpCDqT4huGUvd41R1qx19"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/credit_cards
+    method: POST
+  response:
+    body: '{"brand":"Visa","disabled_at":null,"exp_month":5,"exp_year":2028,"id":"card_510da7c1d5ba4ec28f8e49a91fdc0ff3","last4":"6170","name":null,"object":"CreditCard"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"f411fab263472c0d42e0f12b67445e27"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 5548df1763a39856ecd5d9a1001be3bd
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb11nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 29913d444b
+      - intlb2wdc 29913d444b
+      - extlb3wdc 29913d444b
+      X-Runtime:
+      - "4.274109"
+      X-Version-Label:
+      - easypost-202212212300-00650f57d8-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""

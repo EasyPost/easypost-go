@@ -2,7 +2,7 @@ package easypost_test
 
 import "github.com/EasyPost/easypost-go/v2"
 
-func GetMockRequests() []easypost.MockRequest {
+func GetBillingMockRequests() []easypost.MockRequest {
 	return []easypost.MockRequest{
 		{
 			MatchRule: easypost.MockRequestMatchRule{
@@ -58,7 +58,7 @@ func GetMockRequests() []easypost.MockRequest {
 }
 
 func (c *ClientTests) TestDeletePaymentMethod() {
-	mockRequests := GetMockRequests()
+	mockRequests := GetBillingMockRequests()
 
 	client := c.MockClient(mockRequests)
 	require := c.Require()
@@ -68,7 +68,7 @@ func (c *ClientTests) TestDeletePaymentMethod() {
 }
 
 func (c *ClientTests) TestFundWallet() {
-	mockRequests := GetMockRequests()
+	mockRequests := GetBillingMockRequests()
 
 	client := c.MockClient(mockRequests)
 	require := c.Require()
@@ -78,7 +78,7 @@ func (c *ClientTests) TestFundWallet() {
 }
 
 func (c *ClientTests) TestRetrievePaymentMethods() {
-	mockRequests := GetMockRequests()
+	mockRequests := GetBillingMockRequests()
 
 	client := c.MockClient(mockRequests)
 	assert, require := c.Assert(), c.Require()
