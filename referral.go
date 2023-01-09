@@ -11,6 +11,15 @@ import (
 	"strings"
 )
 
+// A PaymentRefund that has the refund details for the refund request.
+type BetaPaymentRefund struct {
+	RefundedAmount          int        `json:"refundedamount,omitempty"`
+	RefundedPaymentLogs     []string   `json:"refundedpaymentlog,omitempty"`
+	PaymentLogId            string     `json:"paymentlogid,omitempty"`
+	RefundedAmountCurrencys string     `json:"refundedamountcurrencys,omitempty"`
+	Errors                  []APIError `json:"errors,omitempty"`
+}
+
 // A ReferralCustomer contains data about an EasyPost referral customer.
 type ReferralCustomer struct {
 	User
@@ -185,5 +194,80 @@ func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerA
 	}
 
 	err = client.post(ctx, "credit_cards", creditCardRequest, &out)
+	return
+}
+
+// BetaAddPaymentMethod adds Stripe payment method to referral customer.
+func (c *Client) BetaAddPaymentMethod(stripeCustomerId string, paymentMethodReference string) (out *PaymentMethodObject, err error) {
+	return c.BetaAddPaymentMethodWithContext(context.Background(), stripeCustomerId, paymentMethodReference)
+}
+
+// BetaAddPaymentMethodWithContext performs the same operation as BetaAddPaymentMethod, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string) (out *PaymentMethodObject, err error) {
+	return c.BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(ctx, stripeCustomerId, paymentMethodReference, PrimaryPaymentMethodPriority)
+}
+
+// BetaAddPaymentMethodWithPrimaryOrSecondary adds Stripe payment method to referral customer with
+// PaymentMethodPriority parameter.
+func (c *Client) BetaAddPaymentMethodWithPrimaryOrSecondary(stripeCustomerId string, paymentMethodReference string, primaryOrSecondary PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(context.Background(), stripeCustomerId, paymentMethodReference, primaryOrSecondary)
+}
+
+// BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext performs the same operation as BetaAddPaymentMethodWithPrimaryOrSecondary, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string, primaryOrSecondary PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	primaryOrSecondaryEndpoint := ""
+
+	switch primaryOrSecondary {
+	case PrimaryPaymentMethodPriority:
+		primaryOrSecondaryEndpoint = "primary"
+	case SecondaryPaymentMethodPriority:
+		primaryOrSecondaryEndpoint = "secondary"
+	}
+
+	params := map[string]interface{}{
+		"stripe_customer_id":       stripeCustomerId,
+		"payment_method_reference": paymentMethodReference,
+		"priority":                 primaryOrSecondaryEndpoint,
+	}
+
+	wrappedParams := map[string]interface{}{
+		"payment_method": params,
+	}
+
+	err = c.post(ctx, "/beta/referral_customers/payment_method", wrappedParams, out)
+	return
+}
+
+// BetaRefundByAmount refunds a recent payment by amount in cents.
+func (c *Client) BetaRefundByAmount(refundAmount int) (out *BetaPaymentRefund, err error) {
+	return c.BetaRefundByAmountWithContext(context.Background(), refundAmount)
+}
+
+// BetaRefundByAmountWithContext performs the same operation as BetaRefundByAmount, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaRefundByAmountWithContext(ctx context.Context, refundAmount int) (out *BetaPaymentRefund, err error) {
+	params := map[string]interface{}{
+		"refund_amount": refundAmount,
+	}
+
+	err = c.post(ctx, "/beta/referral_customers/refunds", params, out)
+	return
+}
+
+// BetaRefundByAmount refunds a payment by paymenbt log ID.
+func (c *Client) BetaRefundByPaymentLog(paymentLogId string) (out *BetaPaymentRefund, err error) {
+	return c.BetaRefundByPaymentLogWithContext(context.Background(), paymentLogId)
+}
+
+// BetaRefundByPaymentLogWithContext performs the same operation as BetaRefundByPaymentLog, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaRefundByPaymentLogWithContext(ctx context.Context, paymentLogId string) (out *BetaPaymentRefund, err error) {
+	params := map[string]interface{}{
+		"payment_log_id": paymentLogId,
+	}
+
+	err = c.post(ctx, "/beta/referral_customers/refunds", params, out)
 	return
 }

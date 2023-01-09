@@ -7,6 +7,45 @@ import (
 	"github.com/EasyPost/easypost-go/v2"
 )
 
+func (c *ClientTests) TestBetaReferralAddPayment() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	_, err := client.BetaAddPaymentMethod("cus_123", "ba_123")
+	require.Error(err)
+	if err, ok := err.(*easypost.APIError); ok {
+		assert.Equal(422, err.StatusCode)
+		assert.Equal("BILLING.INVALID_PAYMENT_GATEWAY_REFERENCE", err.Code)
+		assert.Equal("Invalid Payment Gateway Reference.", err.Message)
+	}
+}
+
+func (c *ClientTests) TestBetaReferralRefundByAmount() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	_, err := client.BetaRefundByAmount(2000)
+	require.Error(err)
+	if err, ok := err.(*easypost.APIError); ok {
+		assert.Equal(422, err.StatusCode)
+		assert.Equal("TRANSACTION.AMOUNT_INVALID", err.Code)
+		assert.Equal("Refund amount is invalid. Please use a valid amount or escalate to finance.", err.Message)
+	}
+}
+
+func (c *ClientTests) TestBetaReferralRefundByPaymentLogId() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	_, err := client.BetaRefundByPaymentLog("paylog_...")
+	require.Error(err)
+	if err, ok := err.(*easypost.APIError); ok {
+		assert.Equal(422, err.StatusCode)
+		assert.Equal("TRANSACTION.DOES_NOT_EXIST", err.Code)
+		assert.Equal("We could not find a transaction with that id.", err.Message)
+	}
+}
+
 func (c *ClientTests) TestReferralCustomerCreate() {
 	client := c.PartnerClient()
 	assert, require := c.Assert(), c.Require()
