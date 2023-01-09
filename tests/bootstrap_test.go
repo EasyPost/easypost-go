@@ -277,6 +277,17 @@ func (c *ClientTests) PartnerClient() *easypost.Client {
 	}
 }
 
+// ReferralClient sets up the referral customer client object to be used in the test
+func (c *ClientTests) ReferralClient() *easypost.Client {
+	if len(ReferralAPIKey) == 0 {
+		ReferralAPIKey = "123"
+	}
+	return &easypost.Client{
+		APIKey: ReferralAPIKey,
+		Client: &http.Client{Transport: c.recorder},
+	}
+}
+
 // ReferralAPIKey returns the referral api key or a fallback if the environment variable is not set
 func (c *ClientTests) ReferralAPIKey() string {
 	if len(ReferralAPIKey) == 0 {
@@ -325,7 +336,7 @@ func TestMain(m *testing.M) {
 	fs.StringVar(
 		&ReferralAPIKey,
 		"referral-api-key",
-		os.Getenv("REFERRAL_USER_PROD_API_KEY"),
+		os.Getenv("REFERRAL_CUSTOMER_PROD_API_KEY"),
 		"production key for referral account to use against EasyPost API",
 	)
 

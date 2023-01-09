@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"payment_log_id":"paylog_..."}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/beta/referral_customers/refunds
+    method: POST
+  response:
+    body: '{"error":{"code":"TRANSACTION.DOES_NOT_EXIST","errors":[],"message":"We
+      could not find a transaction with that id."}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 994e51ba63bc4d3de79a8767001bd8da
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 29913d444b
+      - extlb1nuq 29913d444b
+      X-Runtime:
+      - "0.052788"
+      X-Version-Label:
+      - easypost-202301070110-985e8fd384-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 422 Unprocessable Entity
+    code: 422
+    duration: ""
