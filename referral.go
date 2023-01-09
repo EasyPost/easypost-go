@@ -13,11 +13,10 @@ import (
 
 // A PaymentRefund that has the refund details for the refund request.
 type BetaPaymentRefund struct {
-	RefundedAmount          int        `json:"refundedamount,omitempty"`
-	RefundedPaymentLogs     []string   `json:"refundedpaymentlog,omitempty"`
-	PaymentLogId            string     `json:"paymentlogid,omitempty"`
-	RefundedAmountCurrencys string     `json:"refundedamountcurrencys,omitempty"`
-	Errors                  []APIError `json:"errors,omitempty"`
+	RefundedAmount      int        `json:"refunded_amount,omitempty"`
+	RefundedPaymentLogs []string   `json:"refunded_payment_log,omitempty"`
+	PaymentLogId        string     `json:"payment_log_id,omitempty"`
+	Errors              []APIError `json:"errors,omitempty"`
 }
 
 // A ReferralCustomer contains data about an EasyPost referral customer.
@@ -174,19 +173,9 @@ func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerA
 		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
 	}
 
-	priorityString := ""
-	switch priority {
-	case PrimaryPaymentMethodPriority:
-		priorityString = "primary"
-	case SecondaryPaymentMethodPriority:
-		priorityString = "secondary"
-	default:
-		return nil, errors.New("invalid priority")
-	}
-
 	creditCardOptions := &easypostCreditCardCreateOptions{
 		StripeToken: stripeToken,
-		Priority:    priorityString,
+		Priority:    c.GetPaymentEndpointByPrimaryOrSecondary(priority),
 	}
 
 	creditCardRequest := &creditCardCreateRequest{
@@ -217,23 +206,12 @@ func (c *Client) BetaAddPaymentMethodWithPrimaryOrSecondary(stripeCustomerId str
 // BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext performs the same operation as BetaAddPaymentMethodWithPrimaryOrSecondary, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string, primaryOrSecondary PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	primaryOrSecondaryEndpoint := ""
-
-	switch primaryOrSecondary {
-	case PrimaryPaymentMethodPriority:
-		primaryOrSecondaryEndpoint = "primary"
-	case SecondaryPaymentMethodPriority:
-		primaryOrSecondaryEndpoint = "secondary"
-	}
-
-	params := map[string]interface{}{
-		"stripe_customer_id":       stripeCustomerId,
-		"payment_method_reference": paymentMethodReference,
-		"priority":                 primaryOrSecondaryEndpoint,
-	}
-
 	wrappedParams := map[string]interface{}{
-		"payment_method": params,
+		"payment_method": map[string]interface{}{
+			"stripe_customer_id":       stripeCustomerId,
+			"payment_method_reference": paymentMethodReference,
+			"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(primaryOrSecondary),
+		},
 	}
 
 	err = c.post(ctx, "/beta/referral_customers/payment_method", wrappedParams, out)

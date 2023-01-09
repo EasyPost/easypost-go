@@ -86,3 +86,15 @@ func (c *Client) getPaymentMethodByPriority(priority PaymentMethodPriority) (out
 
 	return out, nil
 }
+
+// GetPaymentEndpointByPrimaryOrSecondary gets the payment priority based on primaryOrSecondary parameter.
+func (c *Client) GetPaymentEndpointByPrimaryOrSecondary(primaryOrSecondary PaymentMethodPriority) (out string) {
+	switch primaryOrSecondary {
+	case PrimaryPaymentMethodPriority:
+		out = "primary"
+	case SecondaryPaymentMethodPriority:
+		out = "secondary"
+	}
+
+	return
+}
