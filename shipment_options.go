@@ -22,6 +22,7 @@ type ShipmentOptions struct {
 	CODAddressID             string     `json:"cod_address_id,omitempty"`
 	Currency                 string     `json:"currency,omitempty"`
 	DeliveryConfirmation     string     `json:"delivery_confirmation,omitempty"`
+	DeliveryMaxDatetime 	 *time.Time `json:"delivery_max_datetime,omitempty"`
 	DutyPayment              *Payment   `json:"duty_payment,omitempty"`
 	DutyPaymentAccount       string     `json:"duty_payment_account,omitempty"`
 	DropoffType              string     `json:"dropoff_type,omitempty"`
@@ -41,6 +42,7 @@ type ShipmentOptions struct {
 	LabelSize                string     `json:"label_size,omitempty"`
 	Machinable               bool       `json:"machinable,omitempty"`
 	Payment                  *Payment   `json:"payment,omitempty"`
+	PickupMinDatetime 		 *time.Time `json:"pickup_min_datetime,omitempty"`
 	PrintCustom1             string     `json:"print_custom_1,omitempty"`
 	PrintCustom2             string     `json:"print_custom_2,omitempty"`
 	PrintCustom3             string     `json:"print_custom_3,omitempty"`
