@@ -7,11 +7,11 @@ import (
 	"github.com/EasyPost/easypost-go/v2"
 )
 
-func (c *ClientTests) TestBetaReferralAddPayment() {
+func (c *ClientTests) TestBetaReferralAddPaymentMethod() {
 	client := c.ReferralClient()
 	assert, require := c.Assert(), c.Require()
 
-	_, err := client.BetaAddPaymentMethod("cus_123", "ba_123")
+	_, err := client.BetaAddPaymentMethod("cus_123", "ba_123", easypost.PrimaryPaymentMethodPriority)
 	require.Error(err)
 	if err, ok := err.(*easypost.APIError); ok {
 		assert.Equal(422, err.StatusCode)
