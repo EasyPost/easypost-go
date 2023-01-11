@@ -187,30 +187,18 @@ func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerA
 }
 
 // BetaAddPaymentMethod adds Stripe payment method to referral customer.
-func (c *Client) BetaAddPaymentMethod(stripeCustomerId string, paymentMethodReference string) (out *PaymentMethodObject, err error) {
-	return c.BetaAddPaymentMethodWithContext(context.Background(), stripeCustomerId, paymentMethodReference)
+func (c *Client) BetaAddPaymentMethod(stripeCustomerId string, paymentMethodReference string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.BetaAddPaymentMethodWithContext(context.Background(), stripeCustomerId, paymentMethodReference, priority)
 }
 
 // BetaAddPaymentMethodWithContext performs the same operation as BetaAddPaymentMethod, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string) (out *PaymentMethodObject, err error) {
-	return c.BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(ctx, stripeCustomerId, paymentMethodReference, PrimaryPaymentMethodPriority)
-}
-
-// BetaAddPaymentMethodWithPrimaryOrSecondary adds Stripe payment method to referral customer with
-// PaymentMethodPriority parameter.
-func (c *Client) BetaAddPaymentMethodWithPrimaryOrSecondary(stripeCustomerId string, paymentMethodReference string, primaryOrSecondary PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	return c.BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(context.Background(), stripeCustomerId, paymentMethodReference, primaryOrSecondary)
-}
-
-// BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext performs the same operation as BetaAddPaymentMethodWithPrimaryOrSecondary, but allows
-// specifying a context that can interrupt the request.
-func (c *Client) BetaAddPaymentMethodWithPrimaryOrSecondaryAndContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string, primaryOrSecondary PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	wrappedParams := map[string]interface{}{
 		"payment_method": map[string]interface{}{
 			"stripe_customer_id":       stripeCustomerId,
 			"payment_method_reference": paymentMethodReference,
-			"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(primaryOrSecondary),
+			"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(priority),
 		},
 	}
 

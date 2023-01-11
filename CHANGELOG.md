@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.11.1 (2023-01-11)
+
+- Removes `BetaAddPaymentMethodWithPrimaryOrSecondary` and adds the `primaryOrSecondary` parameter from that function to the `BetaAddPaymentMethod` function which was the initial intention
+
 ## v2.11.0 (2023-01-11)
 
 - Adds new beta billing functionality for ReferralCustomer users
