@@ -294,7 +294,7 @@ func (c *ClientTests) TestShipmentLowestRateDeprecated() {
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with carrier filter (should error due to bad carrier)
-	lowestRate, err = client.LowestRateWithCarrier(shipment, []string{"BAD_CARRIER"})  // nolint:staticcheck
+	lowestRate, err = client.LowestRateWithCarrier(shipment, []string{"BAD_CARRIER"}) // nolint:staticcheck
 	assert.Error(err)
 }
 
@@ -402,10 +402,11 @@ func (c *ClientTests) TestShipmentReRateWithCarbonOffset() {
 }
 
 func (c *ClientTests) TestBuyShipmentWithEndShipper() {
-	c.T().Skip("Skipping because this requires production credentials and would spend real money")
-
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
+
+	endShipper, err := client.CreateEndShipper(c.fixture.CaAddress1())
+	require.NoError(err)
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
@@ -413,7 +414,7 @@ func (c *ClientTests) TestBuyShipmentWithEndShipper() {
 	lowestRate, err := client.LowestShipmentRate(shipment)
 	require.NoError(err)
 
-	boughtShipment, err := client.BuyShipmentWithEndShipper(shipment.ID, &lowestRate, "", "es_123")
+	boughtShipment, err := client.BuyShipmentWithEndShipper(shipment.ID, &lowestRate, "", endShipper.ID)
 	require.NoError(err)
 
 	assert.NotNil(boughtShipment.PostageLabel)
