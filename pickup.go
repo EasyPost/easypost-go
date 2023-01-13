@@ -2,6 +2,7 @@ package easypost
 
 import (
 	"context"
+	"net/http"
 	"net/url"
 	"time"
 )
@@ -41,6 +42,16 @@ type Pickup struct {
 	Batch            *Batch            `json:"batch,omitempty"`
 	CarrierAccounts  []*CarrierAccount `json:"carrier_accounts,omitempty"`
 	PickupRates      []*PickupRate     `json:"pickup_rates,omitempty"`
+}
+
+// ListPickupResult holds the results from the list Pickup API.
+type ListPickupResult struct {
+	Pickups []*Pickup `json:"pickup,omitempty"`
+	// HasMore indicates if there are more responses to be fetched. If True,
+	// additional responses can be fetched by updating the ListOptions
+	// parameter's AfterID field with the ID of the last item in this object's
+	// Pickups field.
+	HasMore bool `json:"has_more,omitempty"`
 }
 
 type createPickupRequest struct {
@@ -129,4 +140,16 @@ func (c *Client) LowestPickupRateWithCarrier(pickup *Pickup, carriers []string) 
 // but allows specifying a list of carriers and service for the lowest rate
 func (c *Client) LowestPickupRateWithCarrierAndService(pickup *Pickup, carriers []string, services []string) (out PickupRate, err error) {
 	return c.lowestPickupRate(pickup.PickupRates, carriers, services)
+}
+
+// ListPickups provides a paginated result of Pickup objects.
+func (c *Client) ListPickups(opts *ListOptions) (out *ListPickupResult, err error) {
+	return c.ListPickupsWithContext(context.Background(), opts)
+}
+
+// ListPickupsWithContext performs the same operation as ListPickups, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) ListPickupsWithContext(ctx context.Context, opts *ListOptions) (out *ListPickupResult, err error) {
+	err = c.do(ctx, http.MethodGet, "pickups", c.convertOptsToURLValues(opts), &out)
+	return
 }
