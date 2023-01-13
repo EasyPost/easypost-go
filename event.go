@@ -133,12 +133,12 @@ func (c *Client) GetEventWithContext(ctx context.Context, eventID string) (out *
 	return
 }
 
-// GetEventPayload retrieves the payload results of a previous webhook call.
+// ListEventPayloads retrieves the payload results of a previous webhook call.
 func (c *Client) ListEventPayloads(eventID string) (out []*EventPayload, err error) {
 	return c.ListEventPayloadsWithContext(context.Background(), eventID)
 }
 
-// GetEventPayloadWithContext performs the same operation as GetEventPayload, but
+// ListEventPayloadsWithContext performs the same operation as GetEventPayload, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListEventPayloadsWithContext(ctx context.Context, eventID string) (out []*EventPayload, err error) {
 	err = c.get(
@@ -146,5 +146,17 @@ func (c *Client) ListEventPayloadsWithContext(ctx context.Context, eventID strin
 		"events/"+eventID+"/payloads",
 		&listEventPayloadsResult{Payloads: &out},
 	)
+	return
+}
+
+// GetEventPayload retrieves a specific payload result of a previous webhook call.
+func (c *Client) GetEventPayload(eventID, payloadID string) (out *EventPayload, err error) {
+	return c.GetEventPayloadWithContext(context.Background(), eventID, payloadID)
+}
+
+// GetEventPayloadWithContext performs the same operation as GetEventPayload, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetEventPayloadWithContext(ctx context.Context, eventID, payloadID string) (out *EventPayload, err error) {
+	err = c.get(ctx, "events/"+eventID+"/payloads/"+payloadID, &out)
 	return
 }

@@ -2,26 +2,26 @@
 version: 1
 interactions:
 - request:
-    body: page_size=5
+    body: '{"webhook":{"url":"http://example.com"}}'
     form: {}
     headers:
       Authorization:
       - REDACTED
       Content-Type:
-      - application/x-www-form-urlencoded
+      - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/events
-    method: GET
+    url: https://api.easypost.com/v2/webhooks
+    method: POST
   response:
-    body: '{"events":[{"created_at":"2022-09-21T18:22:06.561Z","description":"batch.updated","id":"evt_4c63c6b839da11ed8d685d48e2c697ba","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:05.563Z","description":"batch.updated","id":"evt_4bcb6cec39da11eda0947fe3e4b3e967","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:05.462Z","description":"batch.created","id":"evt_4bbc1e2239da11ed97c50bd3489501b3","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:05.240Z","description":"batch.updated","id":"evt_4b9a473439da11edb64a1fdc09b9363a","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2022-09-21T18:22:00.920Z","description":"batch.updated","id":"evt_49070b3839da11edaef8653a6b54a761","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"}],"has_more":true}'
+    body: '{"created_at":"2023-01-13T21:47:11Z","disabled_at":null,"id":"hook_d55a0242938b11ed9f5f656d95eadcc6","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
       Etag:
-      - W/"3bbe2343c6d080ba7e41030e598c16eb"
+      - W/"682269c73cc6bc9e5b6813a83241454f"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +37,134 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5657ec7d9989000d9bde
+      - 3ac9ec2c63c1d15ee799e1640011aa85
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb4nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb2nuq 29913d444b
       X-Runtime:
-      - "0.193640"
+      - "0.153447"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202301131832-957dabd382-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"batch":{"shipments":[{"carrier":"USPS","carrier_accounts":["ca_e606176ddb314afe896733636dba2f3b"],"from_address":{"city":"Redondo
+      Beach","country":"US","email":"REDACTED","name":"Elizabeth Swan","phone":"REDACTED","state":"CA","street1":"179
+      N Harbor Dr","zip":"90277"},"parcel":{"height":4,"length":10,"weight":15.4,"width":8},"service":"First","to_address":{"city":"San
+      Francisco","country":"US","email":"REDACTED","name":"Jack Sparrow","phone":"REDACTED","state":"CA","street1":"388
+      Townsend St","street2":"Apt 20","zip":"94107"}}]}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/batches
+    method: POST
+  response:
+    body: '{"created_at":"2023-01-13T21:47:10Z","id":"batch_1c4d4f90447d4edf89fea2050f596cab","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2023-01-13T21:47:10Z"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"2d81e927f66ee950c237aac508044704"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 3ac9ec2c63c1d15ee799e1640011aa99
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb12nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.041372"
+      X-Version-Label:
+      - easypost-202301131832-957dabd382-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/events
+    method: GET
+  response:
+    body: '{"events":[{"created_at":"2023-01-13T21:47:11.177Z","description":"batch.updated","id":"evt_d59ab5c6938b11edbc3f7958893f780d","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-01-13T21:47:11.030Z","description":"batch.created","id":"evt_d5844b74938b11edaaa97d2870ef7518","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-01-12T18:04:28.947Z","description":"tracker.updated","id":"evt_8eae81ee92a311ed818017b95da2676e","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-01-12T18:03:28.881Z","description":"tracker.updated","id":"evt_6ae10dea92a311edb0f34734d3a8ecc4","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-01-12T18:02:28.756Z","description":"tracker.updated","id":"evt_470aaf2a92a311edba6101d1d5701441","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"}],"has_more":true}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"efec63240d04472ae4c8230d0af5c07e"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 3ac9ec2c63c1d164e799e1640011ac46
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb1nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.183823"
+      X-Version-Label:
+      - easypost-202301131832-957dabd382-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -65,17 +178,16 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/events/evt_4c63c6b839da11ed8d685d48e2c697ba/payloads
+    url: https://api.easypost.com/v2/events/evt_d59ab5c6938b11edbc3f7958893f780d/payloads/payload_11111111111111111111111111111111
     method: GET
   response:
-    body: '{"payloads":[]}'
+    body: '{"error":{"code":"PAYLOAD.NOT_FOUND","errors":[],"message":"The payload(s)
+      could not be found."}}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"b5e6dd0a7b95afc23c69e9e95aa4ce47"
       Expires:
       - "0"
       Pragma:
@@ -86,30 +198,79 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5657ec7d9989000d9c1f
+      - 3ac9ec2c63c1d164e799e1640011ac5f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb8nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq 29913d444b
+      - extlb2nuq 29913d444b
+      X-Runtime:
+      - "0.028445"
+      X-Version-Label:
+      - easypost-202301131832-957dabd382-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 404 Not Found
+    code: 404
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/events/evt_d59ab5c6938b11edbc3f7958893f780d/payloads/payload_123
+    method: GET
+  response:
+    body: '{"error":{"code":"INTERNAL_SERVER_ERROR","errors":[],"message":"We''re
+      sorry, something went wrong. If the problem persists please contact Support."}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 3ac9ec2c63c1d164e799e1640011ac66
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb6nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - extlb2nuq 29913d444b
       X-Runtime:
-      - "0.032034"
+      - "0.251562"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202301131832-957dabd382-master
       X-Xss-Protection:
       - 1; mode=block
-    status: 200 OK
-    code: 200
+    status: 500 Internal Server Error
+    code: 500
     duration: ""

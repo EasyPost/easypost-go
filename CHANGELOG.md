@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## [Unreleased]
+
+- Add function to retrieve a specific payload for a specific event, `GetEventPayload`
+
 ## v2.11.1 (2023-01-11)
 
 - Removes `BetaAddPaymentMethodWithPrimaryOrSecondary` and adds the `primaryOrSecondary` parameter from that function to the `BetaAddPaymentMethod` function which was the initial intention

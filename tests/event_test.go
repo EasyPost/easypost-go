@@ -1,8 +1,12 @@
 package easypost_test
 
 import (
+	"errors"
+	"os"
+	"path/filepath"
 	"reflect"
 	"strings"
+	"time"
 
 	"github.com/EasyPost/easypost-go/v2"
 )
@@ -45,9 +49,72 @@ func (c *ClientTests) TestEventRetrieve() {
 	assert.True(strings.HasPrefix(event.ID, "evt_"))
 }
 
-func (c *ClientTests) TestEventRetrievePayload() {
+func (c *ClientTests) TestEventRetrieveAllPayloads() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
+
+	// Create a webhook to receive the event
+	webhook, webhookErr := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		},
+	)
+	require.NoError(webhookErr)
+
+	// Create a batch to trigger an event
+	_, batchErr := client.CreateBatch(
+		c.fixture.OneCallBuyShipment(),
+	)
+	require.NoError(batchErr)
+
+	currentDir, _ := os.Getwd()
+	cassettePath := filepath.Join(currentDir, "cassettes", "TestEventRetrieveAllPayloads.yaml")
+	if _, err := os.Stat(cassettePath); errors.Is(err, os.ErrNotExist) {
+		time.Sleep(5 * time.Second) // Wait enough time for the event to be created
+	}
+
+	// Retrieve all events and extract the newest one
+	events, err := client.ListEvents(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+	event := events.Events[0]
+
+	// Retrieve all payloads for the event
+	eventPayloads, err := client.ListEventPayloads(event.ID)
+	require.NoError(err)
+
+	assert.NotNil(eventPayloads)
+
+	// Delete the webhook
+	_ = client.DeleteWebhook(webhook.ID)
+}
+
+func (c *ClientTests) TestEventRetrievePayload() {
+	client := c.TestClient()
+	require := c.Require()
+
+	// Create a webhook to receive the event
+	webhook, webhookErr := client.CreateWebhookWithDetails(
+		&easypost.CreateUpdateWebhookOptions{
+			URL: c.fixture.WebhookUrl(),
+		},
+	)
+	require.NoError(webhookErr)
+
+	// Create a batch to trigger an event
+	_, batchErr := client.CreateBatch(
+		c.fixture.OneCallBuyShipment(),
+	)
+	require.NoError(batchErr)
+
+	currentDir, _ := os.Getwd()
+	cassettePath := filepath.Join(currentDir, "cassettes", "TestEventRetrieveAllPayloads.yaml")
+	if _, err := os.Stat(cassettePath); errors.Is(err, os.ErrNotExist) {
+		time.Sleep(5 * time.Second) // Wait enough time for the event to be created
+	}
 
 	events, err := client.ListEvents(
 		&easypost.ListOptions{
@@ -55,9 +122,11 @@ func (c *ClientTests) TestEventRetrievePayload() {
 		},
 	)
 	require.NoError(err)
+	event := events.Events[0]
 
-	eventPayload, err := client.ListEventPayloads(events.Events[0].ID)
-	require.NoError(err)
+	// Payload does not exist due to queueing, so this will throw an error
+	_, err = client.GetEventPayload(event.ID, "payload_11111111111111111111111111111111")
+	require.Error(err)
 
-	assert.NotNil(eventPayload)
+	_ = client.DeleteWebhook(webhook.ID)
 }
