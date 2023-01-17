@@ -131,3 +131,21 @@ func (c *ClientTests) TestPickupLowestRate() {
 	lowestRate, err = client.LowestPickupRateWithCarrier(pickup, []string{"BAD_CARRIER"})
 	assert.Error(err)
 }
+
+func (c *ClientTests) TestPickupAll() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	pickups, err := client.ListPickups(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	assert.LessOrEqual(len(pickups.Pickups), c.fixture.pageSize())
+	assert.NotNil(pickups.HasMore)
+	for _, pickup := range pickups.Pickups {
+		assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(pickup))
+	}
+}

@@ -1,8 +1,8 @@
 # CHANGELOG
 
 ## [Unreleased]
-
 - Add function to retrieve a specific payload for a specific event, `GetEventPayload`
+- Adds `ListPickups` function to `Pickup` to retrieve all pickups
 
 ## v2.11.1 (2023-01-11)
 
