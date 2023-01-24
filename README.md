@@ -106,7 +106,9 @@ func main() {
 
 ## Documentation
 
-API Documentation can be found at: <https://easypost.com/docs/api>. Alternatively, you can view the [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v2).
+API documentation can be found at: <https://easypost.com/docs/api>.
+
+Library documentation can be found on the web at [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v2).
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
@@ -175,19 +177,19 @@ make a request that does not match any of the configured mock requests, the requ
 
 To use the mock client:
 
-```go
+```golang
 import "github.com/EasyPost/easypost-go/v2"
 
 // create  a list of mock request-response pairs
 mockRequests := []easypost.MockRequest{
-	{
+    {
         MatchRule: easypost.MockRequestMatchRule{
-			// HTTP method and regex pattern for the URL must both pass for the request to match
+            // HTTP method and regex pattern for the URL must both pass for the request to match
             Method:          "POST",
             UrlRegexPattern: "v2\\/bank_accounts\\/\\S*\\/charges$",
         },
         ResponseInfo: easypost.MockRequestResponseInfo{
-			// HTTP status code and body to return when this request is matched
+            // HTTP status code and body to return when this request is matched
             StatusCode: 200,
             Body:       `{}`,
         },
