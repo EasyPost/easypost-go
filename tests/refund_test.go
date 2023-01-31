@@ -20,7 +20,7 @@ func (c *ClientTests) TestRefundCreate() {
 	refund, err := client.CreateRefund(
 		map[string]interface{}{
 			"carrier":        "USPS",
-			"tracking_codes": retrievedShipment.TrackingCode,
+			"tracking_codes": [1]string {retrievedShipment.TrackingCode},
 		},
 	)
 	require.NoError(err)
