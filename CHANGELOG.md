@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## [Unreleased]
+
+- Adds `StatelessRate` object struct, `BetaGetStatelessRatesForShipment` function to get ephemeral rates for a proposed shipment, without creating the shipment first.
+- Adds `LowestStatelessRate`, `LowestStatelessRateWithCarrier` and `LowestStatelessRateWithCarrierAndService` functions to get the lowest stateless rate from a list of stateless rates.
+
 ## v2.12.0 (2023-01-18)
 
 - Adds function to retrieve a specific payload for a specific event, `GetEventPayload`

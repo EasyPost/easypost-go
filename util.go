@@ -156,6 +156,30 @@ func (c *Client) lowestObjectRate(rates []*Rate, carriers []string, services []s
 	return
 }
 
+// lowestStatelessRate returns the lowest stateless rate from the given list of stateless rates.
+func (c *Client) lowestStatelessRate(rates []*StatelessRate, carriers []string, services []string) (out StatelessRate, err error) {
+	filterRates := make([]*MinifiedRate, 0)
+	for _, rate := range rates {
+		filterRates = append(filterRates, &MinifiedRate{
+			ID:      "",
+			Service: rate.Service,
+			Carrier: rate.Carrier,
+			Rate:    rate.Rate,
+		})
+	}
+
+	lowestRate, err := c.lowestRate(filterRates, carriers, services)
+	if err == nil {
+		for _, rate := range rates {
+			// no ID to compare, so compare carrier and service
+			if rate.Carrier == lowestRate.Carrier && rate.Service == lowestRate.Service {
+				return *rate, nil
+			}
+		}
+	}
+	return
+}
+
 // lowestPickupRate returns the lowest pickup rate from the given list of pickup rates.
 func (c *Client) lowestPickupRate(rates []*PickupRate, carriers []string, services []string) (out PickupRate, err error) {
 	filterRates := make([]*MinifiedRate, 0)
