@@ -25,7 +25,7 @@ func (c *ClientTests) TestBetaStatelessRateRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	rates, err := client.BetaGetStatelessRatesForShipment(c.fixture.BasicShipment())
+	rates, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf([]*easypost.StatelessRate{}), reflect.TypeOf(rates))
@@ -35,7 +35,7 @@ func (c *ClientTests) TestBetaStatelessRateGetLowest() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	rates, err := client.BetaGetStatelessRatesForShipment(c.fixture.BasicShipment())
+	rates, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
 	require.NoError(err)
 
 	lowestRate, err := client.LowestStatelessRate(rates)

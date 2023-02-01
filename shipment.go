@@ -349,14 +349,14 @@ func (c *Client) RerateShipmentWithCarbonOffsetWithContext(ctx context.Context, 
 	return
 }
 
-// BetaGetStatelessRatesForShipment fetches a list of stateless rates for a proposed shipment, without creating a shipment object.
-func (c *Client) BetaGetStatelessRatesForShipment(in *Shipment) (out []*StatelessRate, err error) {
-	return c.BetaGetStatelessRatesForShipmentWithContext(context.Background(), in)
+// BetaGetStatelessRates fetches a list of stateless rates for a proposed shipment, without creating a shipment object.
+func (c *Client) BetaGetStatelessRates(in *Shipment) (out []*StatelessRate, err error) {
+	return c.BetaGetStatelessRatesWithContext(context.Background(), in)
 }
 
-// BetaGetStatelessRatesForShipmentWithContext performs the same operation as BetaGetStatelessRatesForShipment,
+// BetaGetStatelessRatesWithContext performs the same operation as BetaGetStatelessRates,
 // but allows specifying a context that can interrupt the request.
-func (c *Client) BetaGetStatelessRatesForShipmentWithContext(ctx context.Context, in *Shipment) (out []*StatelessRate, err error) {
+func (c *Client) BetaGetStatelessRatesWithContext(ctx context.Context, in *Shipment) (out []*StatelessRate, err error) {
 	req := &createShipmentRequest{Shipment: in}
 	res := &getShipmentStatelessRatesResponse{Rates: &out}
 	err = c.post(ctx, "/beta/rates", &req, &res)
