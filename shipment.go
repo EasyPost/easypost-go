@@ -119,10 +119,6 @@ type getShipmentRatesResponse struct {
 	Rates *[]*Rate `json:"rates,omitempty"`
 }
 
-type getShipmentStatelessRatesResponse struct {
-	Rates *[]*StatelessRate `json:"rates,omitempty"`
-}
-
 type generateFormRequest struct {
 	Form map[string]interface{} `json:"form,omitempty"`
 }
@@ -349,24 +345,9 @@ func (c *Client) RerateShipmentWithCarbonOffsetWithContext(ctx context.Context, 
 	return
 }
 
-// BetaGetStatelessRates fetches a list of stateless rates for a proposed shipment, without creating a shipment object.
-func (c *Client) BetaGetStatelessRates(in *Shipment) (out []*StatelessRate, err error) {
-	return c.BetaGetStatelessRatesWithContext(context.Background(), in)
-}
-
-// BetaGetStatelessRatesWithContext performs the same operation as BetaGetStatelessRates,
-// but allows specifying a context that can interrupt the request.
-func (c *Client) BetaGetStatelessRatesWithContext(ctx context.Context, in *Shipment) (out []*StatelessRate, err error) {
-	req := &createShipmentRequest{Shipment: in}
-	res := &getShipmentStatelessRatesResponse{Rates: &out}
-	err = c.post(ctx, "/beta/rates", &req, &res)
-	return
-}
-
 // Deprecated: Use LowestShipmentRate instead.
 // LowestRate gets the lowest rate of a shipment
 func (c *Client) LowestRate(shipment *Shipment) (out Rate, err error) {
-	// TODO: Why did we deprecate this and replace it with an arguably worse name?
 	return c.LowestShipmentRate(shipment)
 }
 
@@ -375,16 +356,10 @@ func (c *Client) LowestShipmentRate(shipment *Shipment) (out Rate, err error) {
 	return c.LowestShipmentRateWithCarrier(shipment, nil)
 }
 
-// LowestStatelessRate gets the lowest stateless rate from a list of stateless rates
-func (c *Client) LowestStatelessRate(rates []*StatelessRate) (out StatelessRate, err error) {
-	return c.LowestStatelessRateWithCarrier(rates, nil)
-}
-
 // Deprecated: Use LowestShipmentRateWithCarrier instead.
 // LowestRateWithCarrier performs the same operation as LowestRate,
 // but allows specifying a list of carriers for the lowest rate
 func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
-	// TODO: Why did we deprecate this and replace it with an arguably worse name?
 	return c.LowestShipmentRateWithCarrier(shipment, carriers)
 }
 
@@ -394,17 +369,10 @@ func (c *Client) LowestShipmentRateWithCarrier(shipment *Shipment, carriers []st
 	return c.LowestShipmentRateWithCarrierAndService(shipment, carriers, nil)
 }
 
-// LowestStatelessRateWithCarrier performs the same operation as LowestStatelessRate,
-// but allows specifying a list of carriers for the lowest rate
-func (c *Client) LowestStatelessRateWithCarrier(rates []*StatelessRate, carriers []string) (out StatelessRate, err error) {
-	return c.LowestStatelessRateWithCarrierAndService(rates, carriers, nil)
-}
-
 // Deprecated: Use LowestShipmentRateWithCarrierAndService instead.
 // LowestRateWithCarrierAndService performs the same operation as LowestRate,
 // but allows specifying a list of carriers and service for the lowest rate
 func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
-	// TODO: Why did we deprecate this and replace it with an arguably worse name?
 	return c.LowestShipmentRateWithCarrierAndService(shipment, carriers, services)
 }
 
@@ -412,12 +380,6 @@ func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []
 // but allows specifying a list of carriers and service for the lowest rate
 func (c *Client) LowestShipmentRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
 	return c.lowestObjectRate(shipment.Rates, carriers, services)
-}
-
-// LowestStatelessRateWithCarrierAndService performs the same operation as LowestStatelessRate,
-// but allows specifying a list of carriers and service for the lowest rate
-func (c *Client) LowestStatelessRateWithCarrierAndService(rates []*StatelessRate, carriers []string, services []string) (out StatelessRate, err error) {
-	return c.lowestStatelessRate(rates, carriers, services)
 }
 
 // LowestSmartrate gets the lowest smartrate of a shipment with the specified delivery days and accuracy

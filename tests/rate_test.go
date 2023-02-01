@@ -44,3 +44,19 @@ func (c *ClientTests) TestBetaStatelessRateGetLowest() {
 	assert.Equal(reflect.TypeOf(easypost.StatelessRate{}), reflect.TypeOf(lowestRate))
 	assert.Equal("First", lowestRate.Service)
 }
+
+func (c *ClientTests) TestBetaStatelessRateGetLowestError() {
+	client := c.TestClient()
+	require := c.Require()
+
+	rates, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
+	require.NoError(err)
+
+	// Bad carrier
+	_, err = client.LowestStatelessRateWithCarrier(rates, []string{"BadCarrier"})
+	require.Error(err)
+
+	// Bad service
+	_, err = client.LowestStatelessRateWithCarrierAndService(rates, []string{"USPS"}, []string{"BadService"})
+	require.Error(err)
+}
