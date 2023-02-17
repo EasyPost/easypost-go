@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## [Unreleased]
+## v2.13.0 (2023-02-17)
 
 - Adds `StatelessRate` object struct, `BetaGetStatelessRates` function to get ephemeral rates.
 - Adds `LowestStatelessRate`, `LowestStatelessRateWithCarrier` and `LowestStatelessRateWithCarrierAndService` functions to get the lowest stateless rate from a list of stateless rates.
