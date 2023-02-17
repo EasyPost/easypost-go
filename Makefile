@@ -38,7 +38,7 @@ release:
 
 ## gosec - Run gosec to scan for security issues
 scan:
-	gosec ./...
+	gosec -tests --exclude-dir=examples ./...
 
 ## test - Test the project
 test:
