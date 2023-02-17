@@ -46,10 +46,7 @@ func readFixtureData() Fixture {
 		os.Exit(1)
 	}
 
-	if err := data.Close(); err != nil {
-		fmt.Fprintln(os.Stderr, "error closing fixture file:", err)
-		os.Exit(1)
-	}
+	defer func() { _ = data.Close() }()
 
 	byteData, _ := ioutil.ReadAll(data)
 
@@ -196,10 +193,7 @@ func (fixture *Fixture) EventBody() []byte {
 		os.Exit(1)
 	}
 
-	if err := data.Close(); err != nil {
-		fmt.Fprintln(os.Stderr, "error closing fixture file:", err)
-		os.Exit(1)
-	}
+	defer func() { _ = data.Close() }()
 
 	scanner := bufio.NewScanner(data)
 	var eventBody []byte

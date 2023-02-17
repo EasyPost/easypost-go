@@ -165,9 +165,7 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	if err != nil {
 		return err
 	}
-	if err := res.Body.Close(); err != nil {
-		return err
-	}
+	defer func() { _ = res.Body.Close() }()
 	if res.StatusCode >= 200 && res.StatusCode <= 299 {
 		if out != nil {
 			return json.NewDecoder(res.Body).Decode(out)
