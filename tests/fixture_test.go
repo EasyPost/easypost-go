@@ -39,13 +39,14 @@ func readFixtureData() Fixture {
 	parentDir := filepath.Dir(currentDir)
 	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/client-library-fixtures.json")
 
+	/* #nosec */
 	data, err := os.Open(filePath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error opening fixture file:", err)
 		os.Exit(1)
 	}
 
-	defer data.Close()
+	defer func() { _ = data.Close() }()
 
 	byteData, _ := ioutil.ReadAll(data)
 
@@ -185,13 +186,14 @@ func (fixture *Fixture) EventBody() []byte {
 	parentDir := filepath.Dir(currentDir)
 	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/event-body.json")
 
+	/* #nosec */
 	data, err := os.Open(filePath)
 	if err != nil {
 		fmt.Fprintln(os.Stderr, "error opening fixture file:", err)
 		os.Exit(1)
 	}
 
-	defer data.Close()
+	defer func() { _ = data.Close() }()
 
 	scanner := bufio.NewScanner(data)
 	var eventBody []byte
