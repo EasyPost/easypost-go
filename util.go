@@ -71,14 +71,23 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 			continue
 		}
 
+		// if current rate object does not have a valid rate, skip it
+		if _, ok := rate.ParseRate(); !ok {
+			continue
+		}
+
 		// if lowest rate is null, set it to this rate
 		if (out == SmartRate{}) {
 			out = *rate
 			continue
 		}
 
+		// current and out rates should be always parsable by this point as we skip all unparsable rates
+		currentRate, _ := rate.ParseRate()
+		outRate, _ := out.ParseRate()
+
 		// if this rate is lower than the lowest rate, set it to this rate
-		if 0 < rate.Rate && rate.Rate < out.Rate {
+		if 0 < currentRate && currentRate < outRate {
 			out = *rate
 		}
 	}

@@ -2,6 +2,7 @@ package easypost
 
 import (
 	"context"
+	"strconv"
 	"time"
 )
 
@@ -41,11 +42,11 @@ type SmartRate struct {
 	Carrier                string         `json:"carrier,omitempty"`
 	CarrierAccountID       string         `json:"carrier_account_id,omitempty"`
 	ShipmentID             string         `json:"shipment_id,omitempty"`
-	Rate                   float64        `json:"rate,omitempty"`
+	Rate                   interface{}    `json:"rate,omitempty"`
 	Currency               string         `json:"currency,omitempty"`
-	RetailRate             float64        `json:"retail_rate,omitempty"`
+	RetailRate             interface{}    `json:"retail_rate,omitempty"`
 	RetailCurrency         string         `json:"retail_currency,omitempty"`
-	ListRate               float64        `json:"list_rate,omitempty"`
+	ListRate               interface{}    `json:"list_rate,omitempty"`
 	ListCurrency           string         `json:"list_currency,omitempty"`
 	DeliveryDays           int            `json:"delivery_days,omitempty"`
 	DeliveryDate           *time.Time     `json:"delivery_date,omitempty"`
@@ -53,6 +54,60 @@ type SmartRate struct {
 	EstDeliveryDays        int            `json:"est_delivery_days,omitempty"`
 	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitempty"`
 	BillingType            string         `json:"billing_type,omitempty"`
+}
+
+func (r SmartRate) ParseRate() (float64, bool) {
+	if r.Rate == nil {
+		return 0, true
+	}
+
+	if rate, ok := r.Rate.(float64); ok {
+		return rate, true
+	}
+
+	if rateStr, ok := r.Rate.(string); ok {
+		if rate, err := strconv.ParseFloat(rateStr, 64); err == nil {
+			return rate, ok
+		}
+	}
+
+	return 0, false
+}
+
+func (r SmartRate) ParseRetailRate() (float64, bool) {
+	if r.RetailRate == nil {
+		return 0, true
+	}
+
+	if rate, ok := r.RetailRate.(float64); ok {
+		return rate, true
+	}
+
+	if rateStr, ok := r.RetailRate.(string); ok {
+		if rate, err := strconv.ParseFloat(rateStr, 64); err == nil {
+			return rate, ok
+		}
+	}
+
+	return 0, false
+}
+
+func (r SmartRate) ParseListRate() (float64, bool) {
+	if r.ListRate == nil {
+		return 0, true
+	}
+
+	if rate, ok := r.ListRate.(float64); ok {
+		return rate, true
+	}
+
+	if rateStr, ok := r.ListRate.(string); ok {
+		if rate, err := strconv.ParseFloat(rateStr, 64); err == nil {
+			return rate, ok
+		}
+	}
+
+	return 0, false
 }
 
 // A StatelessRate contains information on shipping cost and delivery time, but does not have an ID (is ephemeral).
