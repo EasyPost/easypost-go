@@ -22,6 +22,7 @@ type TrackingDetail struct {
 	Message          string            `json:"message,omitempty"`
 	Description      string            `json:"description,omitempty"`
 	Status           string            `json:"status,omitempty"`
+	StatusDetail     string            `json:"status_detail,omitempty"`
 	DateTime         string            `json:"datetime,omitempty"`
 	Source           string            `json:"source,omitempty"`
 	CarrierCode      string            `json:"carrier_code,omitempty"`
@@ -54,6 +55,7 @@ type Tracker struct {
 	UpdatedAt       *time.Time             `json:"updated_at,omitempty"`
 	TrackingCode    string                 `json:"tracking_code,omitempty"`
 	Status          string                 `json:"status,omitempty"`
+	StatusDetail    string                 `json:"status_detail,omitempty"`
 	SignedBy        string                 `json:"signed_by,omitempty"`
 	Weight          float64                `json:"weight,omitempty"`
 	EstDeliveryDate *time.Time             `json:"est_delivery_date,omitempty"`
