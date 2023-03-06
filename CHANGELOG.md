@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds missing `StatusDetail` property to `Tracker` and `TrackingDetail` structs
+
 ## v2.13.0 (2023-02-17)
 
 - Adds `StatelessRate` object struct, `BetaGetStatelessRates` function to get ephemeral rates.
