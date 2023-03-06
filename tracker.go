@@ -71,12 +71,11 @@ type Tracker struct {
 
 // CreateTrackerOptions specifies options for creating a new tracker.
 type CreateTrackerOptions struct {
-	TrackingCode    string
-	Carrier         string
-	Amount          string
-	CarrierAccount  string
-	IsReturn        bool
-	FullTestTracker bool
+	TrackingCode   string
+	Carrier        string
+	Amount         string
+	CarrierAccount string
+	IsReturn       bool
 }
 
 // ListTrackersOptions is used to specify query parameters for listing Tracker
@@ -129,9 +128,6 @@ func (c *CreateTrackerOptions) toMap() map[string]interface{} {
 	}
 	if c.IsReturn {
 		optionsParams["is_return"] = true
-	}
-	if c.FullTestTracker {
-		optionsParams["full_test_tracker"] = true
 	}
 	m := make(map[string]interface{})
 	if len(trackerParams) != 0 {
