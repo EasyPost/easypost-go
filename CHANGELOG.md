@@ -1,8 +1,9 @@
 # CHANGELOG
 
-## Next Release
+## v2.13.1 (2023-03-22)
 
 - Adds missing `StatusDetail` property to `Tracker` and `TrackingDetail` structs
+- Removes unusable `FullTestTracker` field from `CreateTrackerOptions`
 
 ## v2.13.0 (2023-02-17)
 
