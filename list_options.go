@@ -17,7 +17,7 @@ func nextPageParameters(hasMore bool, lastId string) (out *ListOptions, err erro
 		return
 	}
 	return &ListOptions{
-		AfterID: lastId,
+		BeforeID: lastId,
 	}, nil
 }
 
