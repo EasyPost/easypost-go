@@ -10,3 +10,21 @@ type ListOptions struct {
 	EndDateTime   *time.Time `url:"end_datetime,omitempty"`
 	PageSize      int        `url:"page_size,omitempty"`
 }
+
+func nextPageParameters(hasMore bool, lastId string) (out *ListOptions, err error) {
+	if !hasMore {
+		err = raiseEndOfPaginationError()
+		return
+	}
+	return &ListOptions{
+		AfterID: lastId,
+	}, nil
+}
+
+func nextPageParametersWithPageSize(hasMore bool, lastId string, pageSize int) (out *ListOptions, err error) {
+	params, err := nextPageParameters(hasMore, lastId)
+	if pageSize > 0 {
+		params.PageSize = pageSize
+	}
+	return params, err
+}

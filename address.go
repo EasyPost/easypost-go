@@ -86,7 +86,7 @@ type ListAddressResult struct {
 	// additional responses can be fetched by updating the ListAddressOptions
 	// parameter's AfterID field with the ID of the last item in this object's
 	// Addresses field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 // For some reason, the verify API returns the address in a nested dictionary.
@@ -96,6 +96,7 @@ type verifyAddressResponse struct {
 
 // CreateAddress submits a request to create a new address, and returns the
 // result.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateAddress(
 //		&easypost.Address{
@@ -111,7 +112,7 @@ type verifyAddressResponse struct {
 //		&CreateAddressOptions{Verify: []string{"delivery"}},
 //	)
 func (c *Client) CreateAddress(in *Address, opts *CreateAddressOptions) (out *Address, err error) {
-	return	c.CreateAddressWithContext(context.Background(), in, opts)
+	return c.CreateAddressWithContext(context.Background(), in, opts)
 }
 
 // CreateAddressWithContext performs the same operation as CreateAddress, but
@@ -132,6 +133,40 @@ func (c *Client) ListAddresses(opts *ListOptions) (out *ListAddressResult, err e
 func (c *Client) ListAddressesWithContext(ctx context.Context, opts *ListOptions) (out *ListAddressResult, err error) {
 	err = c.do(ctx, http.MethodGet, "addresses", c.convertOptsToURLValues(opts), &out)
 	return
+}
+
+// GetNextAddressPage returns the next page of addresses
+func (c *Client) GetNextAddressPage(collection *ListAddressResult) (out *ListAddressResult, err error) {
+	return c.GetNextPageWithContext(context.Background(), collection)
+}
+
+// GetNextAddressPageWithPageSize returns the next page of addresses with a specific page size
+func (c *Client) GetNextAddressPageWithPageSize(collection *ListAddressResult, pageSize int) (out *ListAddressResult, err error) {
+	return c.GetNextPageWithContextWithPageSize(context.Background(), collection, pageSize)
+}
+
+// GetNextPageWithContext performs the same operation as GetNextAddressPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextPageWithContext(ctx context.Context, collection *ListAddressResult) (out *ListAddressResult, err error) {
+	if collection.Addresses == nil || len(collection.Addresses) == 0 {
+		err = raiseEndOfPaginationError()
+		return
+	}
+	lastId := collection.Addresses[len(collection.Addresses)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastId)
+	return c.ListAddressesWithContext(ctx, params)
+}
+
+// GetNextPageWithContextWithPageSize performs the same operation as GetNextAddressPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextPageWithContextWithPageSize(ctx context.Context, collection *ListAddressResult, pageSize int) (out *ListAddressResult, err error) {
+	if collection.Addresses == nil || len(collection.Addresses) == 0 {
+		err = raiseEndOfPaginationError()
+		return
+	}
+	lastId := collection.Addresses[len(collection.Addresses)-1].ID
+	params, err := nextPageParametersWithPageSize(collection.HasMore, lastId, pageSize)
+	return c.ListAddressesWithContext(ctx, params)
 }
 
 // VerifyAddress performs address verification.

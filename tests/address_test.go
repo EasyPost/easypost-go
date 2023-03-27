@@ -74,6 +74,60 @@ func (c *ClientTests) TestAddressAll() {
 	}
 }
 
+func (c *ClientTests) TestAddressGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	addresses, err := client.ListAddresses(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextAddressPage(addresses)
+	defer func() {
+		if err == nil {
+			lastIdOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
+			firstIdOfSecondPage := nextPage.Addresses[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), "There are no more pages to retrieve")
+		return
+	}
+}
+
+func (c *ClientTests) TestAddressGetNextPageWithPageSize() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	addresses, err := client.ListAddresses(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextAddressPageWithPageSize(addresses, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Addresses) <= c.fixture.pageSize())
+
+			lastIdOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
+			firstIdOfSecondPage := nextPage.Addresses[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), "There are no more pages to retrieve")
+		return
+	}
+}
+
 // We purposefully pass in slightly incorrect data to get the corrected address back once verified.
 func (c *ClientTests) TestAddressCreateVerify() {
 	client := c.TestClient()
