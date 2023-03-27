@@ -23,7 +23,7 @@ coverage:
 install:
 	brew install golangci-lint || exit 0
 	git submodule init
-	git submodule update
+	git submodule update --remote
 	go mod vendor
 	go build -o $(PROJECT_PATH)
 
