@@ -82,10 +82,6 @@ type AddressVerifyResponse struct {
 // ListAddressResult holds the results from the list addresses API.
 type ListAddressResult struct {
 	Addresses []*Address `json:"addresses,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListAddressOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Addresses field.
 	PaginatedCollection
 }
 
