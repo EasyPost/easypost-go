@@ -48,12 +48,12 @@ func (c *Client) ListRefundsWithContext(ctx context.Context, opts *ListOptions) 
 	return
 }
 
-// GetNextRefundPage returns the next page of addresses
+// GetNextRefundPage returns the next page of refunds
 func (c *Client) GetNextRefundPage(collection *ListRefundResult) (out *ListRefundResult, err error) {
 	return c.GetNextRefundPageWithContext(context.Background(), collection)
 }
 
-// GetNextRefundPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextRefundPageWithPageSize returns the next page of refunds with a specific page size
 func (c *Client) GetNextRefundPageWithPageSize(collection *ListRefundResult, pageSize int) (out *ListRefundResult, err error) {
 	return c.GetNextRefundPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

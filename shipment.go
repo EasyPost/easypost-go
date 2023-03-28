@@ -191,12 +191,12 @@ func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmen
 	return
 }
 
-// GetNextShipmentPage returns the next page of addresses
+// GetNextShipmentPage returns the next page of shipments
 func (c *Client) GetNextShipmentPage(collection *ListShipmentsResult) (out *ListShipmentsResult, err error) {
 	return c.GetNextShipmentPageWithContext(context.Background(), collection)
 }
 
-// GetNextShipmentPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextShipmentPageWithPageSize returns the next page of shipments with a specific page size
 func (c *Client) GetNextShipmentPageWithPageSize(collection *ListShipmentsResult, pageSize int) (out *ListShipmentsResult, err error) {
 	return c.GetNextShipmentPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

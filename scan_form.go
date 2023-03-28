@@ -69,12 +69,12 @@ func (c *Client) ListScanFormsWithContext(ctx context.Context, opts *ListOptions
 	return
 }
 
-// GetNextScanFormPage returns the next page of addresses
+// GetNextScanFormPage returns the next page of scan forms
 func (c *Client) GetNextScanFormPage(collection *ListScanFormsResult) (out *ListScanFormsResult, err error) {
 	return c.GetNextScanFormPageWithContext(context.Background(), collection)
 }
 
-// GetNextScanFormPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextScanFormPageWithPageSize returns the next page of scan forms with a specific page size
 func (c *Client) GetNextScanFormPageWithPageSize(collection *ListScanFormsResult, pageSize int) (out *ListScanFormsResult, err error) {
 	return c.GetNextScanFormPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

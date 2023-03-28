@@ -194,12 +194,12 @@ func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackers
 	return
 }
 
-// GetNextTrackerPage returns the next page of addresses
+// GetNextTrackerPage returns the next page of trackers
 func (c *Client) GetNextTrackerPage(collection *ListTrackersResult) (out *ListTrackersResult, err error) {
 	return c.GetNextTrackerPageWithContext(context.Background(), collection)
 }
 
-// GetNextTrackerPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextTrackerPageWithPageSize returns the next page of trackers with a specific page size
 func (c *Client) GetNextTrackerPageWithPageSize(collection *ListTrackersResult, pageSize int) (out *ListTrackersResult, err error) {
 	return c.GetNextTrackerPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

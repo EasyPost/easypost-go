@@ -79,12 +79,12 @@ func (c *Client) ListInsurancesWithContext(ctx context.Context, opts *ListOption
 	return
 }
 
-// GetNextInsurancePage returns the next page of addresses
+// GetNextInsurancePage returns the next page of insurance records
 func (c *Client) GetNextInsurancePage(collection *ListInsurancesResult) (out *ListInsurancesResult, err error) {
 	return c.GetNextInsurancePageWithContext(context.Background(), collection)
 }
 
-// GetNextInsurancePageWithPageSize returns the next page of addresses with a specific page size
+// GetNextInsurancePageWithPageSize returns the next page of insurance records with a specific page size
 func (c *Client) GetNextInsurancePageWithPageSize(collection *ListInsurancesResult, pageSize int) (out *ListInsurancesResult, err error) {
 	return c.GetNextInsurancePageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

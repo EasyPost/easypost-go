@@ -117,12 +117,12 @@ func (c *Client) ListEventsWithContext(ctx context.Context, opts *ListOptions) (
 	return
 }
 
-// GetNextEventPage returns the next page of addresses
+// GetNextEventPage returns the next page of events
 func (c *Client) GetNextEventPage(collection *ListEventsResult) (out *ListEventsResult, err error) {
 	return c.GetNextEventPageWithContext(context.Background(), collection)
 }
 
-// GetNextEventPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextEventPageWithPageSize returns the next page of events with a specific page size
 func (c *Client) GetNextEventPageWithPageSize(collection *ListEventsResult, pageSize int) (out *ListEventsResult, err error) {
 	return c.GetNextEventPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

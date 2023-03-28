@@ -83,12 +83,12 @@ func (c *Client) ListReferralCustomersWithContext(ctx context.Context, opts *Lis
 	return
 }
 
-// GetNextReferralCustomerPage returns the next page of addresses
+// GetNextReferralCustomerPage returns the next page of referral customers
 func (c *Client) GetNextReferralCustomerPage(collection *ListReferralCustomersResult) (out *ListReferralCustomersResult, err error) {
 	return c.GetNextReferralCustomerPageWithContext(context.Background(), collection)
 }
 
-// GetNextReferralCustomerPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextReferralCustomerPageWithPageSize returns the next page of referral customers with a specific page size
 func (c *Client) GetNextReferralCustomerPageWithPageSize(collection *ListReferralCustomersResult, pageSize int) (out *ListReferralCustomersResult, err error) {
 	return c.GetNextReferralCustomerPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

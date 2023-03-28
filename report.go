@@ -77,12 +77,12 @@ func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *L
 	return
 }
 
-// GetNextReportPage returns the next page of addresses
+// GetNextReportPage returns the next page of reports
 func (c *Client) GetNextReportPage(collection *ListReportsResult) (out *ListReportsResult, err error) {
 	return c.GetNextReportPageWithContext(context.Background(), collection)
 }
 
-// GetNextReportPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextReportPageWithPageSize returns the next page of reports with a specific page size
 func (c *Client) GetNextReportPageWithPageSize(collection *ListReportsResult, pageSize int) (out *ListReportsResult, err error) {
 	return c.GetNextReportPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }

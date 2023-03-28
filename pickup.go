@@ -152,12 +152,12 @@ func (c *Client) ListPickupsWithContext(ctx context.Context, opts *ListOptions) 
 	return
 }
 
-// GetNextPickupPage returns the next page of addresses
+// GetNextPickupPage returns the next page of pickups
 func (c *Client) GetNextPickupPage(collection *ListPickupResult) (out *ListPickupResult, err error) {
 	return c.GetNextPickupPageWithContext(context.Background(), collection)
 }
 
-// GetNextPickupPageWithPageSize returns the next page of addresses with a specific page size
+// GetNextPickupPageWithPageSize returns the next page of pickups with a specific page size
 func (c *Client) GetNextPickupPageWithPageSize(collection *ListPickupResult, pageSize int) (out *ListPickupResult, err error) {
 	return c.GetNextPickupPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }
