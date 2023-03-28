@@ -29,11 +29,7 @@ type scanFormRequest struct {
 // ListScanFormsResult holds the results from the list scan forms API.
 type ListScanFormsResult struct {
 	ScanForms []*ScanForm `json:"scan_forms,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListScanFormsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// ScanForms field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 func newScanFormRequest(shipmentIDs ...string) *scanFormRequest {
@@ -47,10 +43,11 @@ func newScanFormRequest(shipmentIDs ...string) *scanFormRequest {
 }
 
 // CreateScanForm creates a scan form for the given Shipments.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateScanForm("shp_1", "shp_2")
 func (c *Client) CreateScanForm(shipmentIDs ...string) (out *ScanForm, err error) {
-	return c.CreateScanFormWithContext(context.Background(), shipmentIDs ...)
+	return c.CreateScanFormWithContext(context.Background(), shipmentIDs...)
 }
 
 // CreateScanFormWithContext performs the same operation as CreateScanForm, but
@@ -70,6 +67,37 @@ func (c *Client) ListScanForms(opts *ListOptions) (out *ListScanFormsResult, err
 func (c *Client) ListScanFormsWithContext(ctx context.Context, opts *ListOptions) (out *ListScanFormsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "scan_forms", c.convertOptsToURLValues(opts), &out)
 	return
+}
+
+// GetNextScanFormPage returns the next page of addresses
+func (c *Client) GetNextScanFormPage(collection *ListScanFormsResult) (out *ListScanFormsResult, err error) {
+	return c.GetNextScanFormPageWithContext(context.Background(), collection)
+}
+
+// GetNextScanFormPageWithPageSize returns the next page of addresses with a specific page size
+func (c *Client) GetNextScanFormPageWithPageSize(collection *ListScanFormsResult, pageSize int) (out *ListScanFormsResult, err error) {
+	return c.GetNextScanFormPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextScanFormPageWithContext performs the same operation as GetNextScanFormPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextScanFormPageWithContext(ctx context.Context, collection *ListScanFormsResult) (out *ListScanFormsResult, err error) {
+	return c.GetNextScanFormPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextScanFormPageWithPageSizeWithContext performs the same operation as GetNextScanFormPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextScanFormPageWithPageSizeWithContext(ctx context.Context, collection *ListScanFormsResult, pageSize int) (out *ListScanFormsResult, err error) {
+	if collection.ScanForms == nil || len(collection.ScanForms) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastId := collection.ScanForms[len(collection.ScanForms)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	if err != nil {
+		return
+	}
+	return c.ListScanFormsWithContext(ctx, params)
 }
 
 // GetScanForm retrieves a ScanForm object by ID.

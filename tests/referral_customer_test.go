@@ -110,3 +110,31 @@ func (c *ClientTests) TestReferralCustomerAddCreditCard() {
 	require.Equal(reflect.TypeOf(&easypost.PaymentMethodObject{}), reflect.TypeOf(creditCard))
 	assert.True(strings.HasSuffix(c.fixture.TestCreditCard().Number, creditCard.Last4))
 }
+
+func (c *ClientTests) TestReferralCustomersGetNextPage() {
+	client := c.PartnerClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListReferralCustomers(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextReferralCustomerPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.ReferralCustomers) <= c.fixture.pageSize())
+
+			lastIdOfFirstPage := firstPage.ReferralCustomers[len(firstPage.ReferralCustomers)-1].ID
+			firstIdOfSecondPage := nextPage.ReferralCustomers[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

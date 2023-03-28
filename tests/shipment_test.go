@@ -419,3 +419,31 @@ func (c *ClientTests) TestBuyShipmentWithEndShipper() {
 
 	assert.NotNil(boughtShipment.PostageLabel)
 }
+
+func (c *ClientTests) TestShipmentsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListShipments(
+		&easypost.ListShipmentsOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextShipmentPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Shipments) <= c.fixture.pageSize())
+
+			lastIdOfFirstPage := firstPage.Shipments[len(firstPage.Shipments)-1].ID
+			firstIdOfSecondPage := nextPage.Shipments[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

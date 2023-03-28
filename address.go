@@ -137,25 +137,25 @@ func (c *Client) ListAddressesWithContext(ctx context.Context, opts *ListOptions
 
 // GetNextAddressPage returns the next page of addresses
 func (c *Client) GetNextAddressPage(collection *ListAddressResult) (out *ListAddressResult, err error) {
-	return c.GetNextPageWithContext(context.Background(), collection)
+	return c.GetNextAddressPageWithContext(context.Background(), collection)
 }
 
 // GetNextAddressPageWithPageSize returns the next page of addresses with a specific page size
 func (c *Client) GetNextAddressPageWithPageSize(collection *ListAddressResult, pageSize int) (out *ListAddressResult, err error) {
-	return c.GetNextPageWithContextWithPageSize(context.Background(), collection, pageSize)
+	return c.GetNextAddressPageWithPageSizeWithContext(context.Background(), collection, pageSize)
 }
 
-// GetNextPageWithContext performs the same operation as GetNextAddressPage, but
+// GetNextAddressPageWithContext performs the same operation as GetNextAddressPage, but
 // allows specifying a context that can interrupt the request.
-func (c *Client) GetNextPageWithContext(ctx context.Context, collection *ListAddressResult) (out *ListAddressResult, err error) {
-	return c.GetNextPageWithContextWithPageSize(ctx, collection, 0)
+func (c *Client) GetNextAddressPageWithContext(ctx context.Context, collection *ListAddressResult) (out *ListAddressResult, err error) {
+	return c.GetNextAddressPageWithPageSizeWithContext(ctx, collection, 0)
 }
 
-// GetNextPageWithContextWithPageSize performs the same operation as GetNextAddressPageWithPageSize, but
+// GetNextAddressPageWithPageSizeWithContext performs the same operation as GetNextAddressPageWithPageSize, but
 // allows specifying a context that can interrupt the request.
-func (c *Client) GetNextPageWithContextWithPageSize(ctx context.Context, collection *ListAddressResult, pageSize int) (out *ListAddressResult, err error) {
+func (c *Client) GetNextAddressPageWithPageSizeWithContext(ctx context.Context, collection *ListAddressResult, pageSize int) (out *ListAddressResult, err error) {
 	if collection.Addresses == nil || len(collection.Addresses) == 0 {
-		err = raiseEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	lastId := collection.Addresses[len(collection.Addresses)-1].ID

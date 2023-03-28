@@ -15,7 +15,7 @@ type ListOptions struct {
 // If pageSize is 0, it will use the default page size
 func nextPageParameters(hasMore bool, lastId string, pageSize int) (out *ListOptions, err error) {
 	if !hasMore {
-		err = raiseEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	params := &ListOptions{

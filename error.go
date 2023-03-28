@@ -1,6 +1,9 @@
 package easypost
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // APIError provides data on why an API request failed. It will be the type
 // returned by Client methods when the HTTP API returns an HTTP error code. It
@@ -48,19 +51,4 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Status)
 }
 
-type LocalError struct {
-	// Message is a human-readable error code returned by the API. It may be empty.
-	Message string
-}
-
-func (e *LocalError) Error() string {
-	return e.Message
-}
-
-func raiseLocalError(message string) error {
-	return &LocalError{Message: message}
-}
-
-func raiseEndOfPaginationError() error {
-	return raiseLocalError("There are no more pages to retrieve")
-}
+var EndOfPaginationError = errors.New("there are no more pages to retrieve")

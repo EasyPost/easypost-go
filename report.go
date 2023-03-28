@@ -27,6 +27,7 @@ type Report struct {
 
 // ListReportsOptions is used to specify query parameters for listing Report
 // objects.
+// Deprecated: Use ListOptions instead.
 type ListReportsOptions struct {
 	BeforeID  string `url:"before_id,omitempty"`
 	AfterID   string `url:"after_id,omitempty"`
@@ -38,16 +39,14 @@ type ListReportsOptions struct {
 // ListReportsResult holds the results from the list reports API.
 type ListReportsResult struct {
 	Reports []*Report `json:"reports,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListReportsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Reports field.
-	HasMore bool `json:"has_more,omitempty"`
+	Type    string    `json:"type,omitempty"`
+	PaginatedCollection
 }
 
 // CreateReport generates a new report. Valid Fields for input are StartDate,
 // EndDate and SendEmail. A new Report object is returned. Once the Status is
 // available, the report can be downloaded from the provided URL for 30 seconds.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	c.CreateReport(
 //		"payment_log",
@@ -73,7 +72,46 @@ func (c *Client) ListReports(typ string, opts *ListReportsOptions) (out *ListRep
 // specifying a context that can interrupt the request.
 func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *ListReportsOptions) (out *ListReportsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "reports/"+typ, c.convertOptsToURLValues(opts), &out)
+	// Store the original query parameters for reuse when getting the next page
+	out.Type = typ
 	return
+}
+
+// GetNextReportPage returns the next page of addresses
+func (c *Client) GetNextReportPage(collection *ListReportsResult) (out *ListReportsResult, err error) {
+	return c.GetNextReportPageWithContext(context.Background(), collection)
+}
+
+// GetNextReportPageWithPageSize returns the next page of addresses with a specific page size
+func (c *Client) GetNextReportPageWithPageSize(collection *ListReportsResult, pageSize int) (out *ListReportsResult, err error) {
+	return c.GetNextReportPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextReportPageWithContext performs the same operation as GetNextReportPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextReportPageWithContext(ctx context.Context, collection *ListReportsResult) (out *ListReportsResult, err error) {
+	return c.GetNextReportPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextReportPageWithPageSizeWithContext performs the same operation as GetNextReportPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextReportPageWithPageSizeWithContext(ctx context.Context, collection *ListReportsResult, pageSize int) (out *ListReportsResult, err error) {
+	if collection.Reports == nil || len(collection.Reports) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastId := collection.Reports[len(collection.Reports)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	if err != nil {
+		return
+	}
+	reportParams := &ListReportsOptions{
+		BeforeID: params.BeforeID,
+	}
+	if pageSize > 0 {
+		reportParams.PageSize = pageSize
+	}
+	return c.ListReportsWithContext(ctx, collection.Type, reportParams)
 }
 
 // GetReport fetches a Report object by report type and ID.

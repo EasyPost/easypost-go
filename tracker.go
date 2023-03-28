@@ -92,12 +92,10 @@ type ListTrackersOptions struct {
 
 // ListTrackersResult holds the results from the list trackers API.
 type ListTrackersResult struct {
-	Trackers []*Tracker `json:"trackers,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListTrackersOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Trackers field.
-	HasMore bool `json:"has_more,omitempty"`
+	Trackers      []*Tracker `json:"trackers,omitempty"`
+	TrackingCodes []string   `json:"tracking_codes,omitempty"`
+	Carrier       string     `json:"carrier,omitempty"`
+	PaginatedCollection
 }
 
 // ListTrackersUpdatedOptions specifies options for the list trackers updated
@@ -166,7 +164,7 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	//         "1": { "tracking_code": "EZ1000000002", "carrier": "USPS" }
 	//     }
 	// }
-	// The keys inside of the 'trackers' map (0, 1 in the example) get discarded
+	// The keys inside the 'trackers' map (0, 1 in the example) get discarded
 	// by the API endpoint, so are not important.
 	// This endpoint does not return a response so we return true here
 	return c.CreateTrackerListWithContext(context.Background(), param)
@@ -190,7 +188,49 @@ func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResul
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	err = c.do(ctx, http.MethodGet, "trackers", c.convertOptsToURLValues(opts), &out)
+	// Store the original query parameters for reuse when getting the next page
+	out.TrackingCodes = opts.TrackingCodes
+	out.Carrier = opts.Carrier
 	return
+}
+
+// GetNextTrackerPage returns the next page of addresses
+func (c *Client) GetNextTrackerPage(collection *ListTrackersResult) (out *ListTrackersResult, err error) {
+	return c.GetNextTrackerPageWithContext(context.Background(), collection)
+}
+
+// GetNextTrackerPageWithPageSize returns the next page of addresses with a specific page size
+func (c *Client) GetNextTrackerPageWithPageSize(collection *ListTrackersResult, pageSize int) (out *ListTrackersResult, err error) {
+	return c.GetNextTrackerPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextTrackerPageWithContext performs the same operation as GetNextTrackerPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextTrackerPageWithContext(ctx context.Context, collection *ListTrackersResult) (out *ListTrackersResult, err error) {
+	return c.GetNextTrackerPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextTrackerPageWithPageSizeWithContext performs the same operation as GetNextTrackerPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextTrackerPageWithPageSizeWithContext(ctx context.Context, collection *ListTrackersResult, pageSize int) (out *ListTrackersResult, err error) {
+	if collection.Trackers == nil || len(collection.Trackers) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastId := collection.Trackers[len(collection.Trackers)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	if err != nil {
+		return
+	}
+	trackerParams := &ListTrackersOptions{
+		BeforeID:      params.BeforeID,
+		Carrier:       collection.Carrier,
+		TrackingCodes: collection.TrackingCodes,
+	}
+	if pageSize > 0 {
+		trackerParams.PageSize = pageSize
+	}
+	return c.ListTrackersWithContext(ctx, trackerParams)
 }
 
 // GetTracker retrieves a Tracker object by ID.

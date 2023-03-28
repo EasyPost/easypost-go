@@ -82,3 +82,31 @@ func (c *ClientTests) TestTrackerCreateList() {
 	// This endpoint returns nothing, so we assert the function returns true
 	assert.True(response)
 }
+
+func (c *ClientTests) TestTrackersGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListTrackers(
+		&easypost.ListTrackersOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextTrackerPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Trackers) <= c.fixture.pageSize())
+
+			lastIdOfFirstPage := firstPage.Trackers[len(firstPage.Trackers)-1].ID
+			firstIdOfSecondPage := nextPage.Trackers[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

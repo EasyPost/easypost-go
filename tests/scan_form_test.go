@@ -57,3 +57,31 @@ func (c *ClientTests) TestScanFormAll() {
 		assert.Equal(reflect.TypeOf(&easypost.ScanForm{}), reflect.TypeOf(scanform))
 	}
 }
+
+func (c *ClientTests) TestScanFormsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListScanForms(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextScanFormPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.ScanForms) <= c.fixture.pageSize())
+
+			lastIdOfFirstPage := firstPage.ScanForms[len(firstPage.ScanForms)-1].ID
+			firstIdOfSecondPage := nextPage.ScanForms[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

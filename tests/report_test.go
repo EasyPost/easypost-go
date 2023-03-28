@@ -109,3 +109,32 @@ func (c *ClientTests) TestReportAll() {
 		assert.Equal(reflect.TypeOf(&easypost.Report{}), reflect.TypeOf(report))
 	}
 }
+
+func (c *ClientTests) TestReportsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListReports(
+		c.fixture.ReportType(),
+		&easypost.ListReportsOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextReportPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Reports) <= c.fixture.pageSize())
+
+			lastIdOfFirstPage := firstPage.Reports[len(firstPage.Reports)-1].ID
+			firstIdOfSecondPage := nextPage.Reports[0].ID
+
+			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

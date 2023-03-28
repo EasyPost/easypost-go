@@ -43,12 +43,13 @@ type ListBatchesResult struct {
 	// additional responses can be fetched by updating the ListInsurancesOptions
 	// parameter's AfterID field with the ID of the last item in this object's
 	// Insurances field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 // CreateBatch creates a new batch of shipments. It optionally accepts one or
 // more shipments to add to the new batch. If successful, a new batch object is
 // returned.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateBatch(
 //		&easypost.Shipment{ID: "shp_100"},
@@ -56,7 +57,7 @@ type ListBatchesResult struct {
 //		&easypost.Shipment{ID: "shp_102"},
 //	)
 func (c *Client) CreateBatch(in ...*Shipment) (out *Batch, err error) {
-	return c.CreateBatchWithContext(context.Background(), in ...)
+	return c.CreateBatchWithContext(context.Background(), in...)
 }
 
 // CreateBatchWithContext performs the same operation as CreateBatch, but allows
@@ -69,7 +70,7 @@ func (c *Client) CreateBatchWithContext(ctx context.Context, in ...*Shipment) (o
 
 // CreateAndBuyBatch creates and buys a new batch of shipments in one request.
 func (c *Client) CreateAndBuyBatch(in ...*Shipment) (out *Batch, err error) {
-	return c.CreateAndBuyBatchWithContext(context.Background(), in ...)
+	return c.CreateAndBuyBatchWithContext(context.Background(), in...)
 }
 
 // CreateAndBuyBatchWithContext performs the same operation as
@@ -93,10 +94,12 @@ func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) 
 	return
 }
 
+// TODO: Add support for GetNextPage when the API supports it.
+
 // AddShipmentsToBatch adds shipments to an existing batch, and returns the
 // updated batch object.
 func (c *Client) AddShipmentsToBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
-	return c.AddShipmentsToBatchWithContext(context.Background(), batchID, shipments ...)
+	return c.AddShipmentsToBatchWithContext(context.Background(), batchID, shipments...)
 }
 
 // AddShipmentsToBatchWithContext performs the same operation as
@@ -118,7 +121,7 @@ func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID str
 // RemoveShipmentsFromBatch removes shipments from an existing batch, and
 // returns the updated batch object.
 func (c *Client) RemoveShipmentsFromBatch(batchID string, shipments ...interface{}) (out *Batch, err error) {
-	return c.RemoveShipmentsFromBatchWithContext(context.Background(), batchID, shipments ...)
+	return c.RemoveShipmentsFromBatchWithContext(context.Background(), batchID, shipments...)
 }
 
 // RemoveShipmentsFromBatchWithContext performs the same operation as
