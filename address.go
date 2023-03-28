@@ -148,13 +148,7 @@ func (c *Client) GetNextAddressPageWithPageSize(collection *ListAddressResult, p
 // GetNextPageWithContext performs the same operation as GetNextAddressPage, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextPageWithContext(ctx context.Context, collection *ListAddressResult) (out *ListAddressResult, err error) {
-	if collection.Addresses == nil || len(collection.Addresses) == 0 {
-		err = raiseEndOfPaginationError()
-		return
-	}
-	lastId := collection.Addresses[len(collection.Addresses)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId)
-	return c.ListAddressesWithContext(ctx, params)
+	return c.GetNextPageWithContextWithPageSize(ctx, collection, 0)
 }
 
 // GetNextPageWithContextWithPageSize performs the same operation as GetNextAddressPageWithPageSize, but
@@ -165,7 +159,10 @@ func (c *Client) GetNextPageWithContextWithPageSize(ctx context.Context, collect
 		return
 	}
 	lastId := collection.Addresses[len(collection.Addresses)-1].ID
-	params, err := nextPageParametersWithPageSize(collection.HasMore, lastId, pageSize)
+	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	if err != nil {
+		return
+	}
 	return c.ListAddressesWithContext(ctx, params)
 }
 

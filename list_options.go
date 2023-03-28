@@ -11,18 +11,16 @@ type ListOptions struct {
 	PageSize      int        `url:"page_size,omitempty"`
 }
 
-func nextPageParameters(hasMore bool, lastId string) (out *ListOptions, err error) {
+// nextPageParameters returns the next page of a paginated collection.
+// If pageSize is 0, it will use the default page size
+func nextPageParameters(hasMore bool, lastId string, pageSize int) (out *ListOptions, err error) {
 	if !hasMore {
 		err = raiseEndOfPaginationError()
 		return
 	}
-	return &ListOptions{
+	params := &ListOptions{
 		BeforeID: lastId,
-	}, nil
-}
-
-func nextPageParametersWithPageSize(hasMore bool, lastId string, pageSize int) (out *ListOptions, err error) {
-	params, err := nextPageParameters(hasMore, lastId)
+	}
 	if pageSize > 0 {
 		params.PageSize = pageSize
 	}
