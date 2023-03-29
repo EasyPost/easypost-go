@@ -88,12 +88,12 @@ func (c *Client) GetNextScanFormPageWithContext(ctx context.Context, collection 
 // GetNextScanFormPageWithPageSizeWithContext performs the same operation as GetNextScanFormPageWithPageSize, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextScanFormPageWithPageSizeWithContext(ctx context.Context, collection *ListScanFormsResult, pageSize int) (out *ListScanFormsResult, err error) {
-	if collection.ScanForms == nil || len(collection.ScanForms) == 0 {
+	if len(collection.ScanForms) == 0 {
 		err = EndOfPaginationError
 		return
 	}
-	lastId := collection.ScanForms[len(collection.ScanForms)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	lastID := collection.ScanForms[len(collection.ScanForms)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}

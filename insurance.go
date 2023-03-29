@@ -98,12 +98,12 @@ func (c *Client) GetNextInsurancePageWithContext(ctx context.Context, collection
 // GetNextInsurancePageWithPageSizeWithContext performs the same operation as GetNextInsurancePageWithPageSize, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextInsurancePageWithPageSizeWithContext(ctx context.Context, collection *ListInsurancesResult, pageSize int) (out *ListInsurancesResult, err error) {
-	if collection.Insurances == nil || len(collection.Insurances) == 0 {
+	if len(collection.Insurances) == 0 {
 		err = EndOfPaginationError
 		return
 	}
-	lastId := collection.Insurances[len(collection.Insurances)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	lastID := collection.Insurances[len(collection.Insurances)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}

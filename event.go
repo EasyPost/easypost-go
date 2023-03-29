@@ -136,12 +136,12 @@ func (c *Client) GetNextEventPageWithContext(ctx context.Context, collection *Li
 // GetNextEventPageWithPageSizeWithContext performs the same operation as GetNextEventPageWithPageSize, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextEventPageWithPageSizeWithContext(ctx context.Context, collection *ListEventsResult, pageSize int) (out *ListEventsResult, err error) {
-	if collection.Events == nil || len(collection.Events) == 0 {
+	if len(collection.Events) == 0 {
 		err = EndOfPaginationError
 		return
 	}
-	lastId := collection.Events[len(collection.Events)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	lastID := collection.Events[len(collection.Events)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}

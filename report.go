@@ -96,12 +96,12 @@ func (c *Client) GetNextReportPageWithContext(ctx context.Context, collection *L
 // GetNextReportPageWithPageSizeWithContext performs the same operation as GetNextReportPageWithPageSize, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextReportPageWithPageSizeWithContext(ctx context.Context, collection *ListReportsResult, pageSize int) (out *ListReportsResult, err error) {
-	if collection.Reports == nil || len(collection.Reports) == 0 {
+	if len(collection.Reports) == 0 {
 		err = EndOfPaginationError
 		return
 	}
-	lastId := collection.Reports[len(collection.Reports)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	lastID := collection.Reports[len(collection.Reports)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}

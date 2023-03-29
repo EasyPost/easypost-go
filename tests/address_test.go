@@ -90,10 +90,10 @@ func (c *ClientTests) TestAddressGetNextPage() {
 		if err == nil {
 			assert.True(len(nextPage.Addresses) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := firstPage.Addresses[len(firstPage.Addresses)-1].ID
+			lastIDOfFirstPage := firstPage.Addresses[len(firstPage.Addresses)-1].ID
 			firstIdOfSecondPage := nextPage.Addresses[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {

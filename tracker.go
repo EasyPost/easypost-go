@@ -213,12 +213,12 @@ func (c *Client) GetNextTrackerPageWithContext(ctx context.Context, collection *
 // GetNextTrackerPageWithPageSizeWithContext performs the same operation as GetNextTrackerPageWithPageSize, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextTrackerPageWithPageSizeWithContext(ctx context.Context, collection *ListTrackersResult, pageSize int) (out *ListTrackersResult, err error) {
-	if collection.Trackers == nil || len(collection.Trackers) == 0 {
+	if len(collection.Trackers) == 0 {
 		err = EndOfPaginationError
 		return
 	}
-	lastId := collection.Trackers[len(collection.Trackers)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	lastID := collection.Trackers[len(collection.Trackers)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}

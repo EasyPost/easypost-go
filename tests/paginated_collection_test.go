@@ -18,10 +18,10 @@ func (c *ClientTests) TestGetNextPage() {
 	nextPage, err := client.GetNextAddressPage(addresses)
 	defer func() {
 		if err == nil {
-			lastIdOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
+			lastIDOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
 			firstIdOfSecondPage := nextPage.Addresses[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {
@@ -46,10 +46,10 @@ func (c *ClientTests) TestGetNextPageWithPageSize() {
 		if err == nil {
 			assert.True(len(nextPage.Addresses) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
+			lastIDOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
 			firstIdOfSecondPage := nextPage.Addresses[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {

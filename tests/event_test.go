@@ -147,10 +147,10 @@ func (c *ClientTests) TestEventsGetNextPage() {
 		if err == nil {
 			assert.True(len(nextPage.Events) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := firstPage.Events[len(firstPage.Events)-1].ID
+			lastIDOfFirstPage := firstPage.Events[len(firstPage.Events)-1].ID
 			firstIdOfSecondPage := nextPage.Events[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {

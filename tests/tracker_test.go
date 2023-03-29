@@ -99,10 +99,10 @@ func (c *ClientTests) TestTrackersGetNextPage() {
 		if err == nil {
 			assert.True(len(nextPage.Trackers) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := firstPage.Trackers[len(firstPage.Trackers)-1].ID
+			lastIDOfFirstPage := firstPage.Trackers[len(firstPage.Trackers)-1].ID
 			firstIdOfSecondPage := nextPage.Trackers[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {

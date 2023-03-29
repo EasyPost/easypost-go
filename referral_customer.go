@@ -102,12 +102,12 @@ func (c *Client) GetNextReferralCustomerPageWithContext(ctx context.Context, col
 // GetNextReferralCustomerPageWithPageSizeWithContext performs the same operation as GetNextReferralCustomerPageWithPageSize, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextReferralCustomerPageWithPageSizeWithContext(ctx context.Context, collection *ListReferralCustomersResult, pageSize int) (out *ListReferralCustomersResult, err error) {
-	if collection.ReferralCustomers == nil || len(collection.ReferralCustomers) == 0 {
+	if len(collection.ReferralCustomers) == 0 {
 		err = EndOfPaginationError
 		return
 	}
-	lastId := collection.ReferralCustomers[len(collection.ReferralCustomers)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastId, pageSize)
+	lastID := collection.ReferralCustomers[len(collection.ReferralCustomers)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}

@@ -127,10 +127,10 @@ func (c *ClientTests) TestReportsGetNextPage() {
 		if err == nil {
 			assert.True(len(nextPage.Reports) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := firstPage.Reports[len(firstPage.Reports)-1].ID
+			lastIDOfFirstPage := firstPage.Reports[len(firstPage.Reports)-1].ID
 			firstIdOfSecondPage := nextPage.Reports[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {

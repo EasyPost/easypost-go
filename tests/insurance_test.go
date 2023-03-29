@@ -81,10 +81,10 @@ func (c *ClientTests) TestInsuranceGetNextPage() {
 		if err == nil {
 			assert.True(len(nextPage.Insurances) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := firstPage.Insurances[len(firstPage.Insurances)-1].ID
+			lastIDOfFirstPage := firstPage.Insurances[len(firstPage.Insurances)-1].ID
 			firstIdOfSecondPage := nextPage.Insurances[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {

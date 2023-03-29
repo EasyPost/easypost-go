@@ -13,16 +13,16 @@ type ListOptions struct {
 
 // nextPageParameters returns the next page of a paginated collection.
 // If pageSize is 0, it will use the default page size
-func nextPageParameters(hasMore bool, lastId string, pageSize int) (out *ListOptions, err error) {
+func nextPageParameters(hasMore bool, lastID string, pageSize int) (out *ListOptions, err error) {
 	if !hasMore {
 		err = EndOfPaginationError
 		return
 	}
-	params := &ListOptions{
-		BeforeID: lastId,
+	out = &ListOptions{
+		BeforeID: lastID,
 	}
 	if pageSize > 0 {
-		params.PageSize = pageSize
+		out.PageSize = pageSize
 	}
-	return params, err
+	return
 }

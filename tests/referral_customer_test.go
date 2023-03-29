@@ -127,10 +127,10 @@ func (c *ClientTests) TestReferralCustomersGetNextPage() {
 		if err == nil {
 			assert.True(len(nextPage.ReferralCustomers) <= c.fixture.pageSize())
 
-			lastIdOfFirstPage := firstPage.ReferralCustomers[len(firstPage.ReferralCustomers)-1].ID
+			lastIDOfFirstPage := firstPage.ReferralCustomers[len(firstPage.ReferralCustomers)-1].ID
 			firstIdOfSecondPage := nextPage.ReferralCustomers[0].ID
 
-			assert.NotEqual(lastIdOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
 		}
 	}()
 	if err != nil {
