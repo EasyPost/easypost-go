@@ -20,7 +20,7 @@ func (c *ClientTests) TestRefundCreate() {
 	refund, err := client.CreateRefund(
 		map[string]interface{}{
 			"carrier":        "USPS",
-			"tracking_codes": [1]string {retrievedShipment.TrackingCode},
+			"tracking_codes": [1]string{retrievedShipment.TrackingCode},
 		},
 	)
 	require.NoError(err)
@@ -65,4 +65,32 @@ func (c *ClientTests) TestRefundRetrieve() {
 
 	assert.Equal(reflect.TypeOf(&easypost.Refund{}), reflect.TypeOf(retrievedRefund))
 	assert.Equal(refunds.Refunds[0].ID, retrievedRefund.ID)
+}
+
+func (c *ClientTests) TestRefundsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListRefunds(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextRefundPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Refunds) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Refunds[len(firstPage.Refunds)-1].ID
+			firstIdOfSecondPage := nextPage.Refunds[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
 }

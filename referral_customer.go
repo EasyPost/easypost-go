@@ -27,11 +27,7 @@ type ReferralCustomer struct {
 // ListReferralCustomersResult holds the results from the list referral customers API call.
 type ListReferralCustomersResult struct {
 	ReferralCustomers []*ReferralCustomer `json:"referral_customers,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// ReferralCustomers field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 // CreditCardOptions specifies options for creating or updating a credit card.
@@ -85,6 +81,37 @@ func (c *Client) ListReferralCustomers(opts *ListOptions) (out *ListReferralCust
 func (c *Client) ListReferralCustomersWithContext(ctx context.Context, opts *ListOptions) (out *ListReferralCustomersResult, err error) {
 	err = c.do(ctx, http.MethodGet, "referral_customers", c.convertOptsToURLValues(opts), &out)
 	return
+}
+
+// GetNextReferralCustomerPage returns the next page of referral customers
+func (c *Client) GetNextReferralCustomerPage(collection *ListReferralCustomersResult) (out *ListReferralCustomersResult, err error) {
+	return c.GetNextReferralCustomerPageWithContext(context.Background(), collection)
+}
+
+// GetNextReferralCustomerPageWithPageSize returns the next page of referral customers with a specific page size
+func (c *Client) GetNextReferralCustomerPageWithPageSize(collection *ListReferralCustomersResult, pageSize int) (out *ListReferralCustomersResult, err error) {
+	return c.GetNextReferralCustomerPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextReferralCustomerPageWithContext performs the same operation as GetNextReferralCustomerPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextReferralCustomerPageWithContext(ctx context.Context, collection *ListReferralCustomersResult) (out *ListReferralCustomersResult, err error) {
+	return c.GetNextReferralCustomerPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextReferralCustomerPageWithPageSizeWithContext performs the same operation as GetNextReferralCustomerPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextReferralCustomerPageWithPageSizeWithContext(ctx context.Context, collection *ListReferralCustomersResult, pageSize int) (out *ListReferralCustomersResult, err error) {
+	if len(collection.ReferralCustomers) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastID := collection.ReferralCustomers[len(collection.ReferralCustomers)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	if err != nil {
+		return
+	}
+	return c.ListReferralCustomersWithContext(ctx, params)
 }
 
 // UpdateReferralCustomerEmail updates a ReferralCustomer's email address

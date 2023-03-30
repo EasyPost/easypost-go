@@ -91,12 +91,10 @@ type ListShipmentsOptions struct {
 
 // ListShipmentsResult holds the results from the list shipments API.
 type ListShipmentsResult struct {
-	Shipments []*Shipment `json:"shipments,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListShipmentsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Shipments field.
-	HasMore bool `json:"has_more,omitempty"`
+	Shipments       []*Shipment `json:"shipments,omitempty"`
+	Purchased       *bool       `json:"purchased,omitempty"`
+	IncludeChildren *bool       `json:"include_children,omitempty"`
+	PaginatedCollection
 }
 
 type buyShipmentRequest struct {
@@ -187,7 +185,49 @@ func (c *Client) ListShipments(opts *ListShipmentsOptions) (out *ListShipmentsRe
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "shipments", c.convertOptsToURLValues(opts), &out)
+	// Store the original query parameters for reuse when getting the next page
+	out.Purchased = opts.Purchased
+	out.IncludeChildren = opts.IncludeChildren
 	return
+}
+
+// GetNextShipmentPage returns the next page of shipments
+func (c *Client) GetNextShipmentPage(collection *ListShipmentsResult) (out *ListShipmentsResult, err error) {
+	return c.GetNextShipmentPageWithContext(context.Background(), collection)
+}
+
+// GetNextShipmentPageWithPageSize returns the next page of shipments with a specific page size
+func (c *Client) GetNextShipmentPageWithPageSize(collection *ListShipmentsResult, pageSize int) (out *ListShipmentsResult, err error) {
+	return c.GetNextShipmentPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextShipmentPageWithContext performs the same operation as GetNextShipmentPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextShipmentPageWithContext(ctx context.Context, collection *ListShipmentsResult) (out *ListShipmentsResult, err error) {
+	return c.GetNextShipmentPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextShipmentPageWithPageSizeWithContext performs the same operation as GetNextShipmentPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextShipmentPageWithPageSizeWithContext(ctx context.Context, collection *ListShipmentsResult, pageSize int) (out *ListShipmentsResult, err error) {
+	if len(collection.Shipments) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastID := collection.Shipments[len(collection.Shipments)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	if err != nil {
+		return
+	}
+	shipmentParams := &ListShipmentsOptions{
+		BeforeID:        params.BeforeID,
+		Purchased:       collection.Purchased,
+		IncludeChildren: collection.IncludeChildren,
+	}
+	if pageSize > 0 {
+		shipmentParams.PageSize = pageSize
+	}
+	return c.ListShipmentsWithContext(ctx, shipmentParams)
 }
 
 // GetShipment retrieves a Shipment object by ID.

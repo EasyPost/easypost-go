@@ -47,11 +47,7 @@ type Pickup struct {
 // ListPickupResult holds the results from the list Pickup API.
 type ListPickupResult struct {
 	Pickups []*Pickup `json:"pickups,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Pickups field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 type createPickupRequest struct {
@@ -60,6 +56,7 @@ type createPickupRequest struct {
 
 // CreatePickup creates a new Pickup object, and automatically fetches rates
 // for the given time and location.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreatePickup(
 //		&easypost.Pickup{
@@ -96,9 +93,10 @@ func (c *Client) GetPickupWithContext(ctx context.Context, pickupID string) (out
 }
 
 // BuyPickup purchases and schedules a pickup.
-//	c := easypost.New(MyEasyPostAPIKey)
-//  rate := &PickupRate{Carrier: "UPS", Service: "Same-Day Pickup"}
-//	out, err := c.BuyPickup("pck_1", rate)
+//
+//		c := easypost.New(MyEasyPostAPIKey)
+//	 rate := &PickupRate{Carrier: "UPS", Service: "Same-Day Pickup"}
+//		out, err := c.BuyPickup("pck_1", rate)
 func (c *Client) BuyPickup(pickupID string, rate *PickupRate) (out *Pickup, err error) {
 	return c.BuyPickupWithContext(context.Background(), pickupID, rate)
 }
@@ -152,4 +150,35 @@ func (c *Client) ListPickups(opts *ListOptions) (out *ListPickupResult, err erro
 func (c *Client) ListPickupsWithContext(ctx context.Context, opts *ListOptions) (out *ListPickupResult, err error) {
 	err = c.do(ctx, http.MethodGet, "pickups", c.convertOptsToURLValues(opts), &out)
 	return
+}
+
+// GetNextPickupPage returns the next page of pickups
+func (c *Client) GetNextPickupPage(collection *ListPickupResult) (out *ListPickupResult, err error) {
+	return c.GetNextPickupPageWithContext(context.Background(), collection)
+}
+
+// GetNextPickupPageWithPageSize returns the next page of pickups with a specific page size
+func (c *Client) GetNextPickupPageWithPageSize(collection *ListPickupResult, pageSize int) (out *ListPickupResult, err error) {
+	return c.GetNextPickupPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextPickupPageWithContext performs the same operation as GetNextPickupPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextPickupPageWithContext(ctx context.Context, collection *ListPickupResult) (out *ListPickupResult, err error) {
+	return c.GetNextPickupPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextPickupPageWithPageSizeWithContext performs the same operation as GetNextPickupPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextPickupPageWithPageSizeWithContext(ctx context.Context, collection *ListPickupResult, pageSize int) (out *ListPickupResult, err error) {
+	if len(collection.Pickups) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastID := collection.Pickups[len(collection.Pickups)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	if err != nil {
+		return
+	}
+	return c.ListPickupsWithContext(ctx, params)
 }

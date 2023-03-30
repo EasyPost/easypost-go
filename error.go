@@ -1,10 +1,14 @@
 package easypost
 
-import "fmt"
+import (
+	"errors"
+	"fmt"
+)
 
 // APIError provides data on why an API request failed. It will be the type
 // returned by Client methods when the HTTP API returns an HTTP error code. It
 // will not be returned on network, parsing or context errors.
+//
 //	c := easypost.New(BadEasyPostAPIKey)
 //	out, err := c.GetAPIKeys()
 //	if err, ok := err.(*easypost.APIError); ok {
@@ -46,3 +50,5 @@ func (e *APIError) Error() string {
 	}
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Status)
 }
+
+var EndOfPaginationError = errors.New("there are no more pages to retrieve")

@@ -64,3 +64,31 @@ func (c *ClientTests) TestInsuranceAll() {
 		assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(insurance))
 	}
 }
+
+func (c *ClientTests) TestInsuranceGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListInsurances(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextInsurancePageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Insurances) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Insurances[len(firstPage.Insurances)-1].ID
+			firstIdOfSecondPage := nextPage.Insurances[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

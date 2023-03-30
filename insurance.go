@@ -37,17 +37,14 @@ type createInsuranceRequest struct {
 // ListInsurancesResult holds the results from the list insurances API.
 type ListInsurancesResult struct {
 	Insurances []*Insurance `json:"insurances,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListInsurancesOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Insurances field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 // CreateInsurance creates an insurance object for a shipment purchased outside
 // EasyPost. ToAddress, FromAddress, TrackingCode and Amount fields must be
 // provided. Providing a value in the Carrier field is optional, but can help
 // avoid ambiguity and provide a shorter response time.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateInsurance(
 //		&easypost.Insurance{
@@ -80,6 +77,37 @@ func (c *Client) ListInsurances(opts *ListOptions) (out *ListInsurancesResult, e
 func (c *Client) ListInsurancesWithContext(ctx context.Context, opts *ListOptions) (out *ListInsurancesResult, err error) {
 	err = c.do(ctx, http.MethodGet, "insurances", c.convertOptsToURLValues(opts), &out)
 	return
+}
+
+// GetNextInsurancePage returns the next page of insurance records
+func (c *Client) GetNextInsurancePage(collection *ListInsurancesResult) (out *ListInsurancesResult, err error) {
+	return c.GetNextInsurancePageWithContext(context.Background(), collection)
+}
+
+// GetNextInsurancePageWithPageSize returns the next page of insurance records with a specific page size
+func (c *Client) GetNextInsurancePageWithPageSize(collection *ListInsurancesResult, pageSize int) (out *ListInsurancesResult, err error) {
+	return c.GetNextInsurancePageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextInsurancePageWithContext performs the same operation as GetNextInsurancePage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextInsurancePageWithContext(ctx context.Context, collection *ListInsurancesResult) (out *ListInsurancesResult, err error) {
+	return c.GetNextInsurancePageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextInsurancePageWithPageSizeWithContext performs the same operation as GetNextInsurancePageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextInsurancePageWithPageSizeWithContext(ctx context.Context, collection *ListInsurancesResult, pageSize int) (out *ListInsurancesResult, err error) {
+	if len(collection.Insurances) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastID := collection.Insurances[len(collection.Insurances)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	if err != nil {
+		return
+	}
+	return c.ListInsurancesWithContext(ctx, params)
 }
 
 // GetInsurance returns the Insurance object with the given ID or reference.

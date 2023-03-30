@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `GetNextXPage` functions (e.g. `GetNextShipmentPage`) to retrieve the next page of results for a provided paginated list
+
 ## v2.13.1 (2023-03-22)
 
 - Adds missing `StatusDetail` property to `Tracker` and `TrackingDetail` structs

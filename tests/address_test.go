@@ -74,6 +74,34 @@ func (c *ClientTests) TestAddressAll() {
 	}
 }
 
+func (c *ClientTests) TestAddressGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListAddresses(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextAddressPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Addresses) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Addresses[len(firstPage.Addresses)-1].ID
+			firstIdOfSecondPage := nextPage.Addresses[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}
+
 // We purposefully pass in slightly incorrect data to get the corrected address back once verified.
 func (c *ClientTests) TestAddressCreateVerify() {
 	client := c.TestClient()

@@ -149,3 +149,31 @@ func (c *ClientTests) TestPickupAll() {
 		assert.Equal(reflect.TypeOf(&easypost.Pickup{}), reflect.TypeOf(pickup))
 	}
 }
+
+func (c *ClientTests) TestPickupsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListPickups(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextPickupPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Pickups) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Pickups[len(firstPage.Pickups)-1].ID
+			firstIdOfSecondPage := nextPage.Pickups[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

@@ -130,3 +130,31 @@ func (c *ClientTests) TestEventRetrievePayload() {
 
 	_ = client.DeleteWebhook(webhook.ID)
 }
+
+func (c *ClientTests) TestEventsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListEvents(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextEventPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Events) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Events[len(firstPage.Events)-1].ID
+			firstIdOfSecondPage := nextPage.Events[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}

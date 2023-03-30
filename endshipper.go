@@ -8,11 +8,7 @@ import (
 // ListEndShipperResult holds the results from the list EndShippers API.
 type ListEndShipperResult struct {
 	EndShippers []*Address `json:"endshippers,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListEndShipperOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// EndShippers field.
-	HasMore bool `json:"has_more,omitempty"`
+	HasMore     bool       `json:"has_more,omitempty"`
 }
 
 // CreateEndShipper submits a request to create a new endshipper, and returns the result.
@@ -53,6 +49,8 @@ func (c *Client) ListEndShippersWithContext(ctx context.Context, opts *ListOptio
 	err = c.do(ctx, http.MethodGet, "end_shippers", c.convertOptsToURLValues(opts), &out)
 	return
 }
+
+// TODO: Add support for GetNextPage when the API supports it.
 
 // UpdateEndShippers updates previously created endshipper
 func (c *Client) UpdateEndShippers(in *Address) (out *Address, err error) {

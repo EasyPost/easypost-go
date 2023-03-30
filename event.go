@@ -54,11 +54,7 @@ type EventPayload struct {
 // ListEventsResult holds the results from the list events API.
 type ListEventsResult struct {
 	Events []*Event `json:"events,omitempty"`
-	// HasMore indicates if there are more responses to be fetched. If True,
-	// additional responses can be fetched by updating the ListEventsOptions
-	// parameter's AfterID field with the ID of the last item in this object's
-	// Events field.
-	HasMore bool `json:"has_more,omitempty"`
+	PaginatedCollection
 }
 
 type listEventPayloadsResult struct {
@@ -119,6 +115,37 @@ func (c *Client) ListEvents(opts *ListOptions) (out *ListEventsResult, err error
 func (c *Client) ListEventsWithContext(ctx context.Context, opts *ListOptions) (out *ListEventsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "events", c.convertOptsToURLValues(opts), &out)
 	return
+}
+
+// GetNextEventPage returns the next page of events
+func (c *Client) GetNextEventPage(collection *ListEventsResult) (out *ListEventsResult, err error) {
+	return c.GetNextEventPageWithContext(context.Background(), collection)
+}
+
+// GetNextEventPageWithPageSize returns the next page of events with a specific page size
+func (c *Client) GetNextEventPageWithPageSize(collection *ListEventsResult, pageSize int) (out *ListEventsResult, err error) {
+	return c.GetNextEventPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextEventPageWithContext performs the same operation as GetNextEventPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextEventPageWithContext(ctx context.Context, collection *ListEventsResult) (out *ListEventsResult, err error) {
+	return c.GetNextEventPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextEventPageWithPageSizeWithContext performs the same operation as GetNextEventPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextEventPageWithPageSizeWithContext(ctx context.Context, collection *ListEventsResult, pageSize int) (out *ListEventsResult, err error) {
+	if len(collection.Events) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastID := collection.Events[len(collection.Events)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	if err != nil {
+		return
+	}
+	return c.ListEventsWithContext(ctx, params)
 }
 
 // GetEvent retrieves a previously-created event by its ID.
