@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v2.14.0 (2023-04-04)
 
 - Adds `GetNextXPage` functions (e.g. `GetNextShipmentPage`) to retrieve the next page of results for a provided paginated list
 
