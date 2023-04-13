@@ -1,8 +1,10 @@
 package easypost
 
 import (
+	"encoding/json"
 	"errors"
 	"fmt"
+	"strings"
 )
 
 // APIError provides data on why an API request failed. It will be the type
@@ -22,7 +24,7 @@ type APIError struct {
 	// Code is a machine-readable error code returned by the API. It may be empty.
 	Code string `json:"code,omitempty"`
 	// Message is a human-readable error code returned by the API. It may be empty.
-	Message string `json:"message,omitempty"`
+	Message interface{} `json:"message,omitempty"`
 	// Field may be provided when the error relates to a specific field.
 	Field string `json:"field,omitempty"`
 	// Suggestion may be provided if the API can provide a suggestion to fix
@@ -33,6 +35,43 @@ type APIError struct {
 	Errors []*APIError `json:"errors,omitempty"`
 }
 
+func (e *APIError) UnmarshalJSON(data []byte) error {
+	type alias APIError
+	aux := &struct {
+		Message interface{} `json:"message,omitempty"`
+		*alias
+	}{
+		alias: (*alias)(e),
+	}
+	if err := json.Unmarshal(data, &aux); err != nil {
+		return err
+	}
+
+	// convert message to string
+	messages := collectMessages(aux.Message, []string{})
+	e.Message = strings.Join(messages, ", ")
+
+	return nil
+}
+
+// Recursively traverses a JSON element to extract error messages and returns them as a comma-separated string.
+func collectMessages(data interface{}, messages []string) []string {
+	switch data := data.(type) {
+	case []interface{}: // ["message", 123] or [{"key": "message"}, {"key": "message"}] or [ ["message", "message"], ["message", "message"] ]
+		for _, value := range data {
+			messages = collectMessages(value, messages)
+		}
+	case map[string]interface{}: // {"message": "value"} or {"message": ["value1", "value2"]} or {"message": [{"key": "value"}, {"key": "value"}]
+		for _, value := range data {
+			messages = collectMessages(value, messages)
+		}
+	default:
+		messages = append(messages, fmt.Sprint(data))
+	}
+
+	return messages
+}
+
 type apiErrorResponse struct {
 	Error *APIError `json:"error,omitempty"`
 }
@@ -41,9 +80,9 @@ type apiErrorResponse struct {
 func (e *APIError) Error() string {
 	if e.Message != "" {
 		if e.Code != "" {
-			return e.Code + " " + e.Message
+			return e.Code + " " + e.Message.(string)
 		}
-		return e.Message
+		return e.Message.(string)
 	}
 	if e.Code != "" {
 		return e.Code

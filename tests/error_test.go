@@ -1,8 +1,13 @@
 package easypost_test
 
 import (
+	"encoding/json"
 	"github.com/EasyPost/easypost-go/v2"
 )
+
+type apiErrorResponse struct {
+	Error *easypost.APIError `json:"error,omitempty"`
+}
 
 func (c *ClientTests) TestError() {
 	client := c.TestClient()
@@ -24,4 +29,94 @@ func (c *ClientTests) TestError() {
 	errorString := err.Error()
 
 	assert.Equal("PARAMETER.REQUIRED Missing required parameter.", errorString)
+}
+
+func (c *ClientTests) TestErrorParseArray() {
+	assert := c.Assert()
+
+	fakeErrorResponse := `{
+		"error": {
+			"code": "UNPROCESSABLE_ENTITY",
+			"message": ["Bad format", "Bad format 2"],
+			"errors": []
+		}
+	}`
+
+	buf := []byte(fakeErrorResponse)
+	apiErr := &easypost.APIError{Status: "Status", StatusCode: 404}
+	err := json.Unmarshal(buf, &apiErrorResponse{Error: apiErr})
+	if err != nil {
+		panic(err)
+	}
+
+	errorMessage := apiErr.Message
+
+	assert.Equal("Bad format, Bad format 2", errorMessage)
+}
+
+func (c *ClientTests) TestErrorParseMap() {
+	assert := c.Assert()
+
+	fakeErrorResponse := `{
+		"error": {
+			"code": "UNPROCESSABLE_ENTITY",
+			"message": {
+				"errors": [
+					"Bad format", "Bad format 2"
+				]
+			},
+			"errors": []
+		}
+	}`
+
+	buf := []byte(fakeErrorResponse)
+	apiErr := &easypost.APIError{Status: "Status", StatusCode: 404}
+	err := json.Unmarshal(buf, &apiErrorResponse{Error: apiErr})
+	if err != nil {
+		panic(err)
+	}
+
+	errorMessage := apiErr.Message
+
+	assert.Equal("Bad format, Bad format 2", errorMessage)
+}
+
+func (c *ClientTests) TestErrorParseExtreme() {
+	assert := c.Assert()
+
+	fakeErrorResponse := `{
+		"error": {
+			"code": "UNPROCESSABLE_ENTITY",
+			"message": {
+				"errors": [
+					{
+						"message1": "message1",
+						"errors": ["message2", "message3"],
+						"errors2": {
+							"key": {
+								"key2": "message4"
+							},
+							"key2": "message5"
+						}
+					},
+					"message6",
+					{
+						"message7": "message7"
+					}
+				]
+			},
+			"errors": []
+		}
+	}`
+
+	buf := []byte(fakeErrorResponse)
+	apiErr := &easypost.APIError{Status: "Status", StatusCode: 404}
+	err := json.Unmarshal(buf, &apiErrorResponse{Error: apiErr})
+	if err != nil {
+		panic(err)
+	}
+
+	errorMessage := apiErr.Message
+
+	assert.Equal("message1, message2, message3, message4, message5, message6, message7", errorMessage)
 }
