@@ -95,13 +95,12 @@ func (c *ClientTests) TestErrorParseExtreme() {
 						"errors2": {
 							"key": {
 								"key2": "message4"
-							},
-							"key2": "message5"
+							}
 						}
 					},
-					"message6",
+					"message5",
 					{
-						"message7": "message7"
+						"message6": "message6"
 					}
 				]
 			},
@@ -118,5 +117,5 @@ func (c *ClientTests) TestErrorParseExtreme() {
 
 	errorMessage := apiErr.Message
 
-	assert.Equal("message1, message2, message3, message4, message5, message6, message7", errorMessage)
+	assert.Equal("message1, message2, message3, message4, message5, message6", errorMessage)
 }
