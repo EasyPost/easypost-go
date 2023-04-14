@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- The `Message` attribute of an `APIError` is now an `interface{}` rather than a `string`, due to potential inconsistent data structure from the API response
+  - Behind-the-scenes, the `message` portion of the JSON response is transformed to a concatenated string. Users should be able to safely cast the `Message` attribute to a string when accessing it via `myApiError.Message.(string)`
+
 ## v2.14.0 (2023-04-04)
 
 - Adds `GetNextXPage` functions (e.g. `GetNextShipmentPage`) to retrieve the next page of results for a provided paginated list
