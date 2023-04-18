@@ -11,6 +11,7 @@ import (
 	"net/http"
 	"net/url"
 	"runtime"
+	"strings"
 	"time"
 
 	"github.com/google/go-querystring/query"
@@ -138,6 +139,19 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		URL:    c.baseURL().ResolveReference(&url.URL{Path: path}),
 		Header: make(http.Header, 2),
 	}
+
+	urlParts := strings.Split(path, "?")
+	if len(urlParts) > 1 {
+		req = &http.Request{
+			Method: method,
+			URL: c.baseURL().ResolveReference(&url.URL{
+				Path:     urlParts[0],
+				RawQuery: urlParts[1],
+			}),
+			Header: make(http.Header, 2),
+		}
+	}
+
 	req.Header.Set("User-Agent", c.userAgent())
 	if err := c.setBody(req, in); err != nil {
 		return err

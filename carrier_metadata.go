@@ -78,7 +78,7 @@ func (c *Client) GetCarrierMetadataWithCarriersAndTypes(carriers []string, types
 // request.
 func (c *Client) GetCarrierMetadataWithContext(ctx context.Context, carriers []string, types []string) (out []*CarrierMetadata, err error) {
 	url := "/beta/metadata"
-	if carriers != nil || types != nil {
+	if carriers != nil && types != nil {
 		url = url + "?"
 	}
 	if carriers != nil {

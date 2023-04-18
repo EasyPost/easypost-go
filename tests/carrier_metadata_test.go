@@ -1,6 +1,6 @@
 package easypost_test
 
-func (c *ClientTests) TestGetCarrierMetadata() {
+func (c *ClientTests) TestBetaGetCarrierMetadata() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
@@ -25,7 +25,7 @@ func (c *ClientTests) TestGetCarrierMetadata() {
 	assert.True(fedexFound)
 }
 
-func (c *ClientTests) TestGetCarrierMetadataWithCarriersAndTypes() {
+func (c *ClientTests) TestBetaGetCarrierMetadataWithCarriersAndTypes() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
