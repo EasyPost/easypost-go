@@ -22,7 +22,7 @@ type MetadataServiceLevel struct {
 	HumanReadable string   `json:"human_readable,omitempty"`
 	Description   string   `json:"description,omitempty"`
 	Dimensions    []string `json:"dimensions,omitempty"`
-	MaxWeight     float32  `json:"max_weight,omitempty"`
+	MaxWeight     float64  `json:"max_weight,omitempty"`
 }
 
 // MetadataPredefinedPackage represents an available predefined package of a carrier.
@@ -32,7 +32,7 @@ type MetadataPredefinedPackage struct {
 	HumanReadable string   `json:"human_readable,omitempty"`
 	Description   string   `json:"description,omitempty"`
 	Dimensions    []string `json:"dimensions,omitempty"`
-	MaxWeight     float32  `json:"max_weight,omitempty"`
+	MaxWeight     float64  `json:"max_weight,omitempty"`
 }
 
 // MetadataShipmentOption represents an available shipment option of a carrier.
