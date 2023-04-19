@@ -1,7 +1,8 @@
 # CHANGELOG
 
-## v2.14.1 (2023-04-18)
+## v2.15.0 (2023-04-18)
 
+- Adds `BetaGetCarrierMetadata`, `BetaGetCarrierMetadataWithCarriers`, `BetaGetCarrierMetadataWithTypes`, and `BetaGetCarrierMetadataWithCarriersAndTypes` function
 - The `Message` attribute of an `APIError` is now an `interface{}` rather than a `string`, due to potential inconsistent data structure from the API response
   - Behind-the-scenes, the `message` portion of the JSON response is transformed to a concatenated string. Users should be able to safely cast the `Message` attribute to a string when accessing it via `myApiError.Message.(string)`
 
