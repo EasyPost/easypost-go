@@ -5,18 +5,18 @@ import (
 	"strings"
 )
 
-// CarrierMetadata represents all the metadata for a carrier.
-type CarrierMetadata struct {
+// BetaCarrierMetadata represents all the metadata for a carrier.
+type BetaCarrierMetadata struct {
 	Name               string                       `json:"name,omitempty"`
 	HumanReadable      string                       `json:"human_readable,omitempty"`
-	ServiceLevels      []*MetadataServiceLevel      `json:"service_levels,omitempty"`
-	PredefinedPackages []*MetadataPredefinedPackage `json:"predefined_packages,omitempty"`
-	ShipmentOptions    []*MetadataShipmentOption    `json:"shipment_options,omitempty"`
-	SupportedFeatures  []*MetadataSupportedFeature  `json:"supported_features,omitempty"`
+	ServiceLevels      []*BetaMetadataServiceLevel      `json:"service_levels,omitempty"`
+	PredefinedPackages []*BetaMetadataPredefinedPackage `json:"predefined_packages,omitempty"`
+	ShipmentOptions    []*BetaMetadataShipmentOption    `json:"shipment_options,omitempty"`
+	SupportedFeatures  []*BetaMetadataSupportedFeature  `json:"supported_features,omitempty"`
 }
 
-// MetadataServiceLevel represents an available service level of a carrier.
-type MetadataServiceLevel struct {
+// BetaMetadataServiceLevel represents an available service level of a carrier.
+type BetaMetadataServiceLevel struct {
 	Name          string   `json:"name,omitempty"`
 	Carrier       string   `json:"carrier,omitempty"`
 	HumanReadable string   `json:"human_readable,omitempty"`
@@ -25,8 +25,8 @@ type MetadataServiceLevel struct {
 	MaxWeight     float64  `json:"max_weight,omitempty"`
 }
 
-// MetadataPredefinedPackage represents an available predefined package of a carrier.
-type MetadataPredefinedPackage struct {
+// BetaMetadataPredefinedPackage represents an available predefined package of a carrier.
+type BetaMetadataPredefinedPackage struct {
 	Name          string   `json:"name,omitempty"`
 	Carrier       string   `json:"carrier,omitempty"`
 	HumanReadable string   `json:"human_readable,omitempty"`
@@ -35,8 +35,8 @@ type MetadataPredefinedPackage struct {
 	MaxWeight     float64  `json:"max_weight,omitempty"`
 }
 
-// MetadataShipmentOption represents an available shipment option of a carrier.
-type MetadataShipmentOption struct {
+// BetaMetadataShipmentOption represents an available shipment option of a carrier.
+type BetaMetadataShipmentOption struct {
 	Name          string `json:"name,omitempty"`
 	Carrier       string `json:"carrier,omitempty"`
 	HumanReadable string `json:"human_readable,omitempty"`
@@ -45,38 +45,38 @@ type MetadataShipmentOption struct {
 	Type          string `json:"type,omitempty"`
 }
 
-// MetadataSupportedFeature represents a supported feature of a carrier.
-type MetadataSupportedFeature struct {
+// BetaMetadataSupportedFeature represents a supported feature of a carrier.
+type BetaMetadataSupportedFeature struct {
 	Name        string `json:"name,omitempty"`
 	Carrier     string `json:"carrier,omitempty"`
 	Description string `json:"description,omitempty"`
 	Supported   bool   `json:"supported,omitempty"`
 }
 
-// GetCarrierMetadata retrieves all metadata for all carriers on the EasyPost platform.
-func (c *Client) GetCarrierMetadata() (out []*CarrierMetadata, err error) {
-	return c.GetCarrierMetadataWithContext(context.Background(), nil, nil)
+// BetaGetCarrierMetadata retrieves all metadata for all carriers on the EasyPost platform.
+func (c *Client) BetaGetCarrierMetadata() (out []*BetaCarrierMetadata, err error) {
+	return c.BetaGetCarrierMetadataWithContext(context.Background(), nil, nil)
 }
 
-// GetCarrierMetadataWithCarriers retrieves carrier metadata for a list of carriers.
-func (c *Client) GetCarrierMetadataWithCarriers(carriers []string) (out []*CarrierMetadata, err error) {
-	return c.GetCarrierMetadataWithContext(context.Background(), carriers, nil)
+// BetaGetCarrierMetadataWithCarriers retrieves carrier metadata for a list of carriers.
+func (c *Client) BetaGetCarrierMetadataWithCarriers(carriers []string) (out []*BetaCarrierMetadata, err error) {
+	return c.BetaGetCarrierMetadataWithContext(context.Background(), carriers, nil)
 }
 
-// GetCarrierMetadataWithTypes retrieves carrier metadata for a list of carriers.
-func (c *Client) GetCarrierMetadataWithTypes(types []string) (out []*CarrierMetadata, err error) {
-	return c.GetCarrierMetadataWithContext(context.Background(), nil, types)
+// BetaGetCarrierMetadataWithTypes retrieves carrier metadata for a list of carriers.
+func (c *Client) BetaGetCarrierMetadataWithTypes(types []string) (out []*BetaCarrierMetadata, err error) {
+	return c.BetaGetCarrierMetadataWithContext(context.Background(), nil, types)
 }
 
-// GetCarrierMetadataWithTypes retrieves carrier metadata for a list of carriers and a list of types.
-func (c *Client) GetCarrierMetadataWithCarriersAndTypes(carriers []string, types []string) (out []*CarrierMetadata, err error) {
-	return c.GetCarrierMetadataWithContext(context.Background(), carriers, types)
+// BetaGetCarrierMetadataWithTypes retrieves carrier metadata for a list of carriers and a list of types.
+func (c *Client) BetaGetCarrierMetadataWithCarriersAndTypes(carriers []string, types []string) (out []*BetaCarrierMetadata, err error) {
+	return c.BetaGetCarrierMetadataWithContext(context.Background(), carriers, types)
 }
 
-// GetCarrierMetadataWithContext performs the same operation as
-// GetCarrierMetadata, but allows specifying a context that can interrupt the
+// BetaGetCarrierMetadataWithContext performs the same operation as
+// BetaGetCarrierMetadata, but allows specifying a context that can interrupt the
 // request.
-func (c *Client) GetCarrierMetadataWithContext(ctx context.Context, carriers []string, types []string) (out []*CarrierMetadata, err error) {
+func (c *Client) BetaGetCarrierMetadataWithContext(ctx context.Context, carriers []string, types []string) (out []*BetaCarrierMetadata, err error) {
 	url := "/beta/metadata"
 	if carriers != nil && types != nil {
 		url = url + "?"
@@ -92,8 +92,8 @@ func (c *Client) GetCarrierMetadataWithContext(ctx context.Context, carriers []s
 	}
 
 	res := struct {
-		CarrierMetadata *[]*CarrierMetadata `json:"carriers,omitempty"`
-	}{CarrierMetadata: &out}
+		BetaCarrierMetadata *[]*BetaCarrierMetadata `json:"carriers,omitempty"`
+	}{BetaCarrierMetadata: &out}
 	err = c.get(ctx, url, &res)
 	return
 }
