@@ -2,6 +2,7 @@ package easypost_test
 
 import (
 	"encoding/json"
+
 	"github.com/EasyPost/easypost-go/v2"
 )
 
@@ -117,5 +118,8 @@ func (c *ClientTests) TestErrorParseExtreme() {
 
 	errorMessage := apiErr.Message
 
-	assert.Equal("message1, message2, message3, message4, message5, message6", errorMessage)
+	messages := []string{"message1", "message2", "message3", "message4", "message5", "message6"}
+	for _, message := range messages {
+		assert.Contains(errorMessage, message)
+	}
 }

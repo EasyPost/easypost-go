@@ -11,7 +11,7 @@ import (
 	"strings"
 )
 
-// A PaymentRefund that has the refund details for the refund request.
+// A BetaPaymentRefund that has the refund details for the refund request.
 type BetaPaymentRefund struct {
 	RefundedAmount      int        `json:"refunded_amount,omitempty"`
 	RefundedPaymentLogs []string   `json:"refunded_payment_log,omitempty"`
