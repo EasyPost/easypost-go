@@ -24,6 +24,7 @@ type Order struct {
 	Messages      []*CarrierMessage `json:"messages,omitempty"`
 	IsReturn      bool              `json:"is_return"`
 	Service       string            `json:"service,omitempty"`
+	CustomsInfo   *CustomsInfo      `json:"customs_info,omitempty"`
 }
 
 type createOrderRequest struct {
