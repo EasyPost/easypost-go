@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds missing `CustomsInfo` on the Order struct.
+
 ## v2.15.0 (2023-04-18)
 
 - Adds `BetaGetCarrierMetadata`, `BetaGetCarrierMetadataWithCarriers`, `BetaGetCarrierMetadataWithTypes`, and `BetaGetCarrierMetadataWithCarriersAndTypes` function
