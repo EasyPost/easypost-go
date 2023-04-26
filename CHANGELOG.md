@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v2.16.0 (2023-04-26)
 
-- Adds missing `CustomsInfo` on the Order struct.
+- Adds missing `CustomsInfo` to the Order struct
 
 ## v2.15.0 (2023-04-18)
 
