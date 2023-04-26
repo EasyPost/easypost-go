@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v2.17.0 (2023-04-26)
+
+- Adds `SuppressETD` to `ShipmentOptions`
+
 ## v2.16.0 (2023-04-26)
 
 - Adds missing `CustomsInfo` to the Order struct
