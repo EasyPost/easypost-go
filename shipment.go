@@ -121,6 +121,17 @@ type generateFormRequest struct {
 	Form map[string]interface{} `json:"form,omitempty"`
 }
 
+type EasyPostTimeInTransitData struct {
+	DaysInTransit                 TimeInTransit `json:"days_in_transit,omitempty"`
+	EasyPostEstimatedDeliveryDate string        `json:"easypost_estimated_delivery_date,omitempty"`
+	PlannedShipDate               string        `json:"planned_ship_date,omitempty"`
+}
+
+type EstimatedDeliveryDate struct {
+	EasyPostTimeInTransitData EasyPostTimeInTransitData `json:"easypost_time_in_transit_data,omitempty"`
+	Rate                      SmartRate                 `json:"rate,omitempty"`
+}
+
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
 // Parcel attributes are required. These objects may be fully-specified to
 // create new ones at the same time as creating the Shipment, or they can refer
@@ -450,5 +461,21 @@ func (c *Client) GenerateShipmentFormWithOptionsWithContext(ctx context.Context,
 	formOptions["type"] = formType
 	req := &generateFormRequest{Form: formOptions}
 	err = c.post(ctx, "shipments/"+shipmentID+"/forms", &req, &out)
+	return
+}
+
+// GetShipmentEstimatedDeliveryDate retrieves the estimated delivery date of each Rate via SmartRate.
+func (c *Client) GetShipmentEstimatedDeliveryDate(shipmentID, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
+	return c.GetShipmentEstimatedDeliveryDateWithContext(context.Background(), shipmentID, plannedShipDate)
+}
+
+// GetShipmentEstimatedDeliveryDateWithContext performs the same operation as GetShipmentEstimatedDeliveryDate,
+// but allows specifying a context that can interrupt the request.
+func (c *Client) GetShipmentEstimatedDeliveryDateWithContext(ctx context.Context, shipmentID string, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
+	vals := url.Values{"planned_ship_date": []string{plannedShipDate}}
+	res := struct {
+		EstimatedDeliveryDates *[]*EstimatedDeliveryDate `json:"rates,omitempty"`
+	}{EstimatedDeliveryDates: &out}
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/delivery_date", vals, &res)
 	return
 }

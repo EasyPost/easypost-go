@@ -447,3 +447,19 @@ func (c *ClientTests) TestShipmentsGetNextPage() {
 		return
 	}
 }
+
+// Tests that we retrieve time-in-transit data for each of the Rates of a Shipment.
+func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
+	require.NoError(err)
+
+	rates, err := client.GetShipmentEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
+	require.NoError(err)
+
+	for _, entry := range rates {
+		assert.NotNil(entry.EasyPostTimeInTransitData)
+	}
+}
