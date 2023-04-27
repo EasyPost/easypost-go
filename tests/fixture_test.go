@@ -216,3 +216,7 @@ func (fixture *Fixture) ReferralUser() *easypost.UserOptions {
 func (fixture *Fixture) TestCreditCard() *easypost.CreditCardOptions {
 	return readFixtureData().CreditCards["test"]
 }
+
+func (fixture *Fixture) PlannedShipDate() string {
+	return "2023-04-28"
+}

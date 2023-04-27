@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `GetShipmentEstimatedDeliveryDate` and `GetShipmentEstimatedDeliveryDateWithContext` functions
+
 ## v2.17.0 (2023-04-26)
 
 - Adds `SuppressETD` to `ShipmentOptions`
