@@ -456,7 +456,7 @@ func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	estimatedDeliveryDates, err := client.RetrieveEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
+	estimatedDeliveryDates, err := client.GetEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
 	require.NoError(err)
 
 	for _, entry := range estimatedDeliveryDates {
