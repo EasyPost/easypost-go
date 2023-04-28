@@ -456,10 +456,10 @@ func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	rates, err := client.GetShipmentEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
+	estimatedDeliveryDates, err := client.RetrieveEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
 	require.NoError(err)
 
-	for _, entry := range rates {
+	for _, entry := range estimatedDeliveryDates {
 		assert.NotNil(entry.EasyPostTimeInTransitData)
 	}
 }

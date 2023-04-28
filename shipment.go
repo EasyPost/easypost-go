@@ -464,14 +464,14 @@ func (c *Client) GenerateShipmentFormWithOptionsWithContext(ctx context.Context,
 	return
 }
 
-// GetShipmentEstimatedDeliveryDate retrieves the estimated delivery date of each Rate via SmartRate.
-func (c *Client) GetShipmentEstimatedDeliveryDate(shipmentID, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
-	return c.GetShipmentEstimatedDeliveryDateWithContext(context.Background(), shipmentID, plannedShipDate)
+// RetrieveEstimatedDeliveryDate retrieves the estimated delivery date of each Rate via SmartRate.
+func (c *Client) RetrieveEstimatedDeliveryDate(shipmentID, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
+	return c.RetrieveEstimatedDeliveryDateWithContext(context.Background(), shipmentID, plannedShipDate)
 }
 
-// GetShipmentEstimatedDeliveryDateWithContext performs the same operation as GetShipmentEstimatedDeliveryDate,
+// RetrieveEstimatedDeliveryDateWithContext performs the same operation as RetrieveEstimatedDeliveryDate,
 // but allows specifying a context that can interrupt the request.
-func (c *Client) GetShipmentEstimatedDeliveryDateWithContext(ctx context.Context, shipmentID string, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
+func (c *Client) RetrieveEstimatedDeliveryDateWithContext(ctx context.Context, shipmentID string, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
 	vals := url.Values{"planned_ship_date": []string{plannedShipDate}}
 	res := struct {
 		EstimatedDeliveryDates *[]*EstimatedDeliveryDate `json:"rates,omitempty"`
