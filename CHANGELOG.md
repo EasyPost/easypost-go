@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v2.18.0 (2023-05-02)
 
 - Adds `GetShipmentEstimatedDeliveryDate` and `GetShipmentEstimatedDeliveryDateWithContext` functions
 
