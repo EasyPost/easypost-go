@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Migrates Carrier Metadata to GA
+
 ## v2.18.0 (2023-05-02)
 
 - Adds `GetShipmentEstimatedDeliveryDate` and `GetShipmentEstimatedDeliveryDateWithContext` functions
