@@ -29,7 +29,7 @@ install:
 
 ## lint - Lint the project
 lint:
-	golangci-lint run
+	golangci-lint run -e SA1019
 
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release

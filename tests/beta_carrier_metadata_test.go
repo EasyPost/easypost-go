@@ -1,10 +1,10 @@
 package easypost_test
 
-func (c *ClientTests) TestGetCarrierMetadata() {
+func (c *ClientTests) TestBetaGetCarrierMetadata() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	carrierMetadata, err := client.GetCarrierMetadata()
+	carrierMetadata, err := client.BetaGetCarrierMetadata()
 	require.NoError(err)
 
 	// Assert we get multiple carriers
@@ -25,11 +25,11 @@ func (c *ClientTests) TestGetCarrierMetadata() {
 	assert.True(fedexFound)
 }
 
-func (c *ClientTests) TestGetCarrierMetadataWithCarriersAndTypes() {
+func (c *ClientTests) TestBetaGetCarrierMetadataWithCarriersAndTypes() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	carrierMetadata, err := client.GetCarrierMetadataWithCarriersAndTypes([]string{"usps"}, []string{"service_levels", "predefined_packages"})
+	carrierMetadata, err := client.BetaGetCarrierMetadataWithCarriersAndTypes([]string{"usps"}, []string{"service_levels", "predefined_packages"})
 	require.NoError(err)
 
 	// Assert we get the single carrier we asked for and only the types we asked for
