@@ -6,9 +6,11 @@ import (
 )
 
 // BetaCarrierMetadata represents all the metadata for a carrier.
+//
+// Deprecated: Use CarrierMetadata instead
 type BetaCarrierMetadata struct {
-	Name               string                       `json:"name,omitempty"`
-	HumanReadable      string                       `json:"human_readable,omitempty"`
+	Name               string                           `json:"name,omitempty"`
+	HumanReadable      string                           `json:"human_readable,omitempty"`
 	ServiceLevels      []*BetaMetadataServiceLevel      `json:"service_levels,omitempty"`
 	PredefinedPackages []*BetaMetadataPredefinedPackage `json:"predefined_packages,omitempty"`
 	ShipmentOptions    []*BetaMetadataShipmentOption    `json:"shipment_options,omitempty"`
@@ -16,6 +18,8 @@ type BetaCarrierMetadata struct {
 }
 
 // BetaMetadataServiceLevel represents an available service level of a carrier.
+//
+// Deprecated: Use MetadataServiceLevel instead
 type BetaMetadataServiceLevel struct {
 	Name          string   `json:"name,omitempty"`
 	Carrier       string   `json:"carrier,omitempty"`
@@ -26,6 +30,8 @@ type BetaMetadataServiceLevel struct {
 }
 
 // BetaMetadataPredefinedPackage represents an available predefined package of a carrier.
+//
+// Deprecated: Use MetadataPredefinedPackage instead
 type BetaMetadataPredefinedPackage struct {
 	Name          string   `json:"name,omitempty"`
 	Carrier       string   `json:"carrier,omitempty"`
@@ -36,6 +42,8 @@ type BetaMetadataPredefinedPackage struct {
 }
 
 // BetaMetadataShipmentOption represents an available shipment option of a carrier.
+//
+// Deprecated: Use MetadataShipmentOption instead
 type BetaMetadataShipmentOption struct {
 	Name          string `json:"name,omitempty"`
 	Carrier       string `json:"carrier,omitempty"`
@@ -46,6 +54,8 @@ type BetaMetadataShipmentOption struct {
 }
 
 // BetaMetadataSupportedFeature represents a supported feature of a carrier.
+//
+// Deprecated: Use BetaMetadataSupportedFeature instead
 type BetaMetadataSupportedFeature struct {
 	Name        string `json:"name,omitempty"`
 	Carrier     string `json:"carrier,omitempty"`
@@ -54,21 +64,29 @@ type BetaMetadataSupportedFeature struct {
 }
 
 // BetaGetCarrierMetadata retrieves all metadata for all carriers on the EasyPost platform.
+//
+// Deprecated: Use GetCarrierMetadata instead
 func (c *Client) BetaGetCarrierMetadata() (out []*BetaCarrierMetadata, err error) {
 	return c.BetaGetCarrierMetadataWithContext(context.Background(), nil, nil)
 }
 
 // BetaGetCarrierMetadataWithCarriers retrieves carrier metadata for a list of carriers.
+//
+// Deprecated: Use GetCarrierMetadataWithCarriers instead
 func (c *Client) BetaGetCarrierMetadataWithCarriers(carriers []string) (out []*BetaCarrierMetadata, err error) {
 	return c.BetaGetCarrierMetadataWithContext(context.Background(), carriers, nil)
 }
 
 // BetaGetCarrierMetadataWithTypes retrieves carrier metadata for a list of carriers.
+//
+// Deprecated: Use GetCarrierMetadataWithTypes instead
 func (c *Client) BetaGetCarrierMetadataWithTypes(types []string) (out []*BetaCarrierMetadata, err error) {
 	return c.BetaGetCarrierMetadataWithContext(context.Background(), nil, types)
 }
 
 // BetaGetCarrierMetadataWithTypes retrieves carrier metadata for a list of carriers and a list of types.
+//
+// Deprecated: Use GetCarrierMetadataWithCarriersAndTypes instead
 func (c *Client) BetaGetCarrierMetadataWithCarriersAndTypes(carriers []string, types []string) (out []*BetaCarrierMetadata, err error) {
 	return c.BetaGetCarrierMetadataWithContext(context.Background(), carriers, types)
 }
@@ -76,6 +94,8 @@ func (c *Client) BetaGetCarrierMetadataWithCarriersAndTypes(carriers []string, t
 // BetaGetCarrierMetadataWithContext performs the same operation as
 // BetaGetCarrierMetadata, but allows specifying a context that can interrupt the
 // request.
+//
+// Deprecated: Use GetCarrierMetadataWithContext instead
 func (c *Client) BetaGetCarrierMetadataWithContext(ctx context.Context, carriers []string, types []string) (out []*BetaCarrierMetadata, err error) {
 	url := "/beta/metadata"
 	if carriers != nil && types != nil {
