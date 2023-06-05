@@ -19,8 +19,13 @@ clean:
 coverage: 
 	go clean -testcache && go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
+# TODO: Change branch to master once examples are merged
+## install-style - Download style guides
+install-style:
+	curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/.golangci_go_cl.yml -o .golangci.yml
+
 ## install - Install and vendor dependencies
-install:
+install: | install-style
 	brew install golangci-lint || exit 0
 	git submodule init
 	git submodule update --remote
@@ -48,4 +53,4 @@ test:
 tidy:
 	go mod tidy
 
-.PHONY: help build clean coverage install lint scan test tidy
+.PHONY: help build clean coverage install install-style lint scan test tidy
