@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v2.19.0 (2023-06-06)
 
-- Migrates Carrier Metadata to GA
+- Migrates Carrier Metadata to GA (now available via `GetCarrierMetadata`)
 
 ## v2.18.0 (2023-05-02)
 
