@@ -22,7 +22,7 @@ coverage:
 # TODO: Change branch to master once examples are merged
 ## install-style - Download style guides
 install-style:
-	curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/.golangci_go_cl.yml -o .golangci.yml
+	# curl -LJs https://raw.githubusercontent.com/EasyPost/examples/style_guides/.golangci_go_cl.yml -o .golangci.yml
 
 ## install - Install and vendor dependencies
 install: | install-style
@@ -34,7 +34,7 @@ install: | install-style
 
 ## lint - Lint the project
 lint:
-	golangci-lint run -e SA1019
+	golangci-lint run
 
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
