@@ -3,3 +3,4 @@
 .idea/
 vendor/
 covprofile
+/.golangci.yml

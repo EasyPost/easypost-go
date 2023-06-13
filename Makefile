@@ -20,16 +20,19 @@ coverage:
 	go clean -testcache && go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
 ## install - Install and vendor dependencies
-install:
+install: | update-examples-submodule
 	brew install golangci-lint || exit 0
-	git submodule init
-	git submodule update --remote
 	go mod vendor
 	go build -o $(PROJECT_PATH)
 
+## update-examples-submodule - Update the examples submodule
+update-examples-submodule:
+	git submodule init
+	git submodule update --remote
+
 ## lint - Lint the project
 lint:
-	golangci-lint run -e SA1019
+	golangci-lint run --config examples/style_guides/golang/.golangci.yml
 
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
@@ -48,4 +51,4 @@ test:
 tidy:
 	go mod tidy
 
-.PHONY: help build clean coverage install lint scan test tidy
+.PHONY: help build clean coverage install lint scan test tidy update-examples-submodule
