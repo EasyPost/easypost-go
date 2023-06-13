@@ -51,4 +51,4 @@ test:
 tidy:
 	go mod tidy
 
-.PHONY: help build clean coverage install install-style lint scan test tidy update-examples-submodule
+.PHONY: help build clean coverage install lint scan test tidy update-examples-submodule
