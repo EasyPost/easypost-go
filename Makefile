@@ -25,14 +25,12 @@ install: | update-examples-submodule
 	go mod vendor
 	go build -o $(PROJECT_PATH)
 
-## update-examples-submodule - Update the examples submodule
-update-examples-submodule:
-	git submodule init
-	git submodule update --remote
+## golangci - Lint the project
+golangci:
+	golangci-lint run --config examples/style_guides/golang/.golangci.yml
 
 ## lint - Lint the project
-lint:
-	golangci-lint run --config examples/style_guides/golang/.golangci.yml
+lint: golangci scan
 
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
@@ -51,4 +49,9 @@ test:
 tidy:
 	go mod tidy
 
-.PHONY: help build clean coverage install lint scan test tidy update-examples-submodule
+## update-examples-submodule - Update the examples submodule
+update-examples-submodule:
+	git submodule init
+	git submodule update --remote
+
+.PHONY: help build clean coverage install golangci lint scan test tidy update-examples-submodule
