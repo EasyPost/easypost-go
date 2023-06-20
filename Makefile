@@ -37,7 +37,7 @@ lint: golangci scan
 release:
 	gh release create ${tag}
 
-## gosec - Run gosec to scan for security issues
+## scan - Run gosec to scan for security issues
 scan:
 	gosec -tests --exclude-dir=examples ./...
 
