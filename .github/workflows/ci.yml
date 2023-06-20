@@ -15,11 +15,10 @@ jobs:
       - uses: actions/setup-go@v4
         with:
           go-version: '1.20'
-      - name: Install dependencies
-        run: make install
-        # curl install must occur in the same step as the linter to run properly on CI
       - name: Lint project
+        # curl install must occur in the same step as the linter to run properly on CI
         run: |
+          make install
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
           make lint
   build:
