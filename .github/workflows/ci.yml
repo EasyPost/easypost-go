@@ -12,59 +12,54 @@ jobs:
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
-          go-version: 1.19
+          go-version: '1.20'
       - name: Install dependencies
         run: make install
-        # curl install must occur in the same step as the linter to run properly on CI
+        # curl installs must occur in the same step as the linter to run properly on CI
       - name: Lint project
         run: |
           curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+          curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
           make lint
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: ["1.15", "1.16", "1.17", "1.18", "1.19", "1.20"]
+        go-version: ['1.15', '1.16', '1.17', '1.18', '1.19', '1.20']
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
       - name: use golang ${{ matrix.go-version }}
-        uses: actions/setup-go@v3
+        uses: actions/setup-go@v4
         with:
           go-version: ${{ matrix.go-version }}
       - name: install
         run: make install
       - name: run tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make test
-
   coverage:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
-          go-version: 1.19
+          go-version: '1.19' # TODO: There is a bug in 1.20 that isn't calculating coverage correctly
       - name: Install dependencies
         run: make install
       - name: Analyze coverage
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make coverage
-      - name: Analyze security
-        uses: securego/gosec@master
-        with:
-          args: -tests -exclude-dir=examples ./...
-
   coveralls:
     if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Repository
         uses: actions/checkout@v3
-      - uses: actions/setup-go@v3
+      - uses: actions/setup-go@v4
         with:
-          go-version: 1.19
+          go-version: '1.20'
       - name: Install dependencies
         run: make install
       - name: analyze coverage
