@@ -86,15 +86,15 @@ type ListTrackersOptions struct {
 	StartDateTime *time.Time `url:"start_datetime,omitempty"`
 	EndDateTime   *time.Time `url:"end_datetime,omitempty"`
 	PageSize      int        `url:"page_size,omitempty"`
-	TrackingCodes []string   `url:"tracking_codes,omitempty"`
+	TrackingCode  string     `url:"tracking_code,omitempty"`
 	Carrier       string     `url:"carrier,omitempty"`
 }
 
 // ListTrackersResult holds the results from the list trackers API.
 type ListTrackersResult struct {
-	Trackers      []*Tracker `json:"trackers,omitempty"`
-	TrackingCodes []string   `json:"tracking_codes,omitempty"`
-	Carrier       string     `json:"carrier,omitempty"`
+	Trackers     []*Tracker `json:"trackers,omitempty"`
+	TrackingCode string     `json:"tracking_code,omitempty"`
+	Carrier      string     `json:"carrier,omitempty"`
 	PaginatedCollection
 }
 
@@ -189,7 +189,7 @@ func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResul
 func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	err = c.do(ctx, http.MethodGet, "trackers", c.convertOptsToURLValues(opts), &out)
 	// Store the original query parameters for reuse when getting the next page
-	out.TrackingCodes = opts.TrackingCodes
+	out.TrackingCode = opts.TrackingCode
 	out.Carrier = opts.Carrier
 	return
 }
@@ -223,9 +223,9 @@ func (c *Client) GetNextTrackerPageWithPageSizeWithContext(ctx context.Context, 
 		return
 	}
 	trackerParams := &ListTrackersOptions{
-		BeforeID:      params.BeforeID,
-		Carrier:       collection.Carrier,
-		TrackingCodes: collection.TrackingCodes,
+		BeforeID:     params.BeforeID,
+		Carrier:      collection.Carrier,
+		TrackingCode: collection.TrackingCode,
 	}
 	if pageSize > 0 {
 		trackerParams.PageSize = pageSize
