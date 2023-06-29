@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"time"
 )
 
 // CarrierField provides data for a single field in a carrier account.
@@ -27,8 +26,8 @@ type CarrierAccount struct {
 	ID               string                 `json:"id,omitempty"`
 	Object           string                 `json:"object,omitempty"`
 	Reference        string                 `json:"reference,omitempty"`
-	CreatedAt        *time.Time             `json:"created_at,omitempty"`
-	UpdatedAt        *time.Time             `json:"updated_at,omitempty"`
+	CreatedAt        *DateTime              `json:"created_at,omitempty"`
+	UpdatedAt        *DateTime              `json:"updated_at,omitempty"`
 	Type             string                 `json:"type,omitempty"`
 	Fields           *CarrierFields         `json:"fields,omitempty"`
 	Clone            bool                   `json:"clone,omitempty"`

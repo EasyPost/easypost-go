@@ -2,21 +2,20 @@ package easypost
 
 import (
 	"context"
-	"time"
 )
 
 // A Parcel objects represent a physical container being shipped.
 type Parcel struct {
-	ID                string     `json:"id,omitempty"`
-	Object            string     `json:"object,omitempty"`
-	Mode              string     `json:"mode,omitempty"`
-	CreatedAt         *time.Time `json:"created_at,omitempty"`
-	UpdatedAt         *time.Time `json:"updated_at,omitempty"`
-	Length            float64    `json:"length,omitempty"`
-	Width             float64    `json:"width,omitempty"`
-	Height            float64    `json:"height,omitempty"`
-	PredefinedPackage string     `json:"predefined_package,omitempty"`
-	Weight            float64    `json:"weight,omitempty"`
+	ID                string    `json:"id,omitempty"`
+	Object            string    `json:"object,omitempty"`
+	Mode              string    `json:"mode,omitempty"`
+	CreatedAt         *DateTime `json:"created_at,omitempty"`
+	UpdatedAt         *DateTime `json:"updated_at,omitempty"`
+	Length            float64   `json:"length,omitempty"`
+	Width             float64   `json:"width,omitempty"`
+	Height            float64   `json:"height,omitempty"`
+	PredefinedPackage string    `json:"predefined_package,omitempty"`
+	Weight            float64   `json:"weight,omitempty"`
 }
 
 type createParcelRequest struct {
@@ -24,6 +23,7 @@ type createParcelRequest struct {
 }
 
 // CreateParcel creates a new Parcel object.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateParcel(
 //		&easypost.Parcel{

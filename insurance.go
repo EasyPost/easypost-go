@@ -3,31 +3,30 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"time"
 )
 
 // An Insurance object represents insurance for packages purchased both via the
 // EasyPost API and shipments purchased through third parties and later
 // registered with EasyPost.
 type Insurance struct {
-	ID           string     `json:"id,omitempty"`
-	Object       string     `json:"object,omitempty"`
-	Reference    string     `json:"reference,omitempty"`
-	Mode         string     `json:"mode,omitempty"`
-	CreatedAt    *time.Time `json:"created_at,omitempty"`
-	UpdatedAt    *time.Time `json:"updated_at,omitempty"`
-	Amount       string     `json:"amount,omitempty"`
-	Carrier      string     `json:"carrier,omitempty"`
-	Provider     string     `json:"provider,omitempty"`
-	ProviderID   string     `json:"provider_id,omitempty"`
-	ShipmentID   string     `json:"shipment_id,omitempty"`
-	TrackingCode string     `json:"tracking_code,omitempty"`
-	Status       string     `json:"status,omitempty"`
-	Tracker      *Tracker   `json:"tracker,omitempty"`
-	ToAddress    *Address   `json:"to_address,omitempty"`
-	FromAddress  *Address   `json:"from_address,omitempty"`
-	Fee          *Fee       `json:"fee,omitempty"`
-	Messages     []string   `json:"messages,omitempty"`
+	ID           string    `json:"id,omitempty"`
+	Object       string    `json:"object,omitempty"`
+	Reference    string    `json:"reference,omitempty"`
+	Mode         string    `json:"mode,omitempty"`
+	CreatedAt    *DateTime `json:"created_at,omitempty"`
+	UpdatedAt    *DateTime `json:"updated_at,omitempty"`
+	Amount       string    `json:"amount,omitempty"`
+	Carrier      string    `json:"carrier,omitempty"`
+	Provider     string    `json:"provider,omitempty"`
+	ProviderID   string    `json:"provider_id,omitempty"`
+	ShipmentID   string    `json:"shipment_id,omitempty"`
+	TrackingCode string    `json:"tracking_code,omitempty"`
+	Status       string    `json:"status,omitempty"`
+	Tracker      *Tracker  `json:"tracker,omitempty"`
+	ToAddress    *Address  `json:"to_address,omitempty"`
+	FromAddress  *Address  `json:"from_address,omitempty"`
+	Fee          *Fee      `json:"fee,omitempty"`
+	Messages     []string  `json:"messages,omitempty"`
 }
 
 type createInsuranceRequest struct {

@@ -4,37 +4,36 @@ import (
 	"context"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 // A Form represents a form associated with a Shipment.
 type Form struct {
-	ID                      string     `json:"id,omitempty"`
-	Object                  string     `json:"object,omitempty"`
-	Mode                    string     `json:"mode,omitempty"`
-	CreatedAt               *time.Time `json:"created_at,omitempty"`
-	UpdatedAt               *time.Time `json:"updated_at,omitempty"`
-	FormType                string     `json:"form_type,omitempty"`
-	FormURL                 string     `json:"form_url,omitempty"`
-	SubmittedElectronically bool       `json:"submitted_electronically,omitempty"`
+	ID                      string    `json:"id,omitempty"`
+	Object                  string    `json:"object,omitempty"`
+	Mode                    string    `json:"mode,omitempty"`
+	CreatedAt               *DateTime `json:"created_at,omitempty"`
+	UpdatedAt               *DateTime `json:"updated_at,omitempty"`
+	FormType                string    `json:"form_type,omitempty"`
+	FormURL                 string    `json:"form_url,omitempty"`
+	SubmittedElectronically bool      `json:"submitted_electronically,omitempty"`
 }
 
 // PostageLabel provides details of a shipping label for a purchased shipment.
 type PostageLabel struct {
-	ID              string     `json:"id,omitempty"`
-	Object          string     `json:"object,omitempty"`
-	CreatedAt       *time.Time `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time `json:"updated_at,omitempty"`
-	IntegratedForm  string     `json:"integrated_form,omitempty"`
-	LabelDate       *time.Time `json:"label_date,omitempty"`
-	LabelEPL2URL    string     `json:"label_epl2_url,omitempty"`
-	LabelFileType   string     `json:"label_file_type,omitempty"`
-	LabelPDFURL     string     `json:"label_pdf_url,omitempty"`
-	LabelResolution float64    `json:"label_resolution,omitempty"`
-	LabelSize       string     `json:"label_size,omitempty"`
-	LabelType       string     `json:"label_type,omitempty"`
-	LabelURL        string     `json:"label_url,omitempty"`
-	LabelZPLURL     string     `json:"label_zpl_url,omitempty"`
+	ID              string    `json:"id,omitempty"`
+	Object          string    `json:"object,omitempty"`
+	CreatedAt       *DateTime `json:"created_at,omitempty"`
+	UpdatedAt       *DateTime `json:"updated_at,omitempty"`
+	IntegratedForm  string    `json:"integrated_form,omitempty"`
+	LabelDate       *DateTime `json:"label_date,omitempty"`
+	LabelEPL2URL    string    `json:"label_epl2_url,omitempty"`
+	LabelFileType   string    `json:"label_file_type,omitempty"`
+	LabelPDFURL     string    `json:"label_pdf_url,omitempty"`
+	LabelResolution float64   `json:"label_resolution,omitempty"`
+	LabelSize       string    `json:"label_size,omitempty"`
+	LabelType       string    `json:"label_type,omitempty"`
+	LabelURL        string    `json:"label_url,omitempty"`
+	LabelZPLURL     string    `json:"label_zpl_url,omitempty"`
 }
 
 // A Shipment represents its namesake, and is made up of a "to" and "from"
@@ -45,8 +44,8 @@ type Shipment struct {
 	Object            string            `json:"object,omitempty"`
 	Reference         string            `json:"reference,omitempty"`
 	Mode              string            `json:"mode,omitempty"`
-	CreatedAt         *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt         *time.Time        `json:"updated_at,omitempty"`
+	CreatedAt         *DateTime         `json:"created_at,omitempty"`
+	UpdatedAt         *DateTime         `json:"updated_at,omitempty"`
 	ToAddress         *Address          `json:"to_address,omitempty"`
 	FromAddress       *Address          `json:"from_address,omitempty"`
 	ReturnAddress     *Address          `json:"return_address,omitempty"`
@@ -80,13 +79,13 @@ type Shipment struct {
 // ListShipmentsOptions is used to specify query parameters for listing Shipment
 // objects.
 type ListShipmentsOptions struct {
-	BeforeID        string     `url:"before_id,omitempty"`
-	AfterID         string     `url:"after_id,omitempty"`
-	StartDateTime   *time.Time `url:"start_datetime,omitempty"`
-	EndDateTime     *time.Time `url:"end_datetime,omitempty"`
-	PageSize        int        `url:"page_size,omitempty"`
-	Purchased       *bool      `url:"purchased,omitempty"`
-	IncludeChildren *bool      `url:"include_children,omitempty"`
+	BeforeID        string    `url:"before_id,omitempty"`
+	AfterID         string    `url:"after_id,omitempty"`
+	StartDateTime   *DateTime `url:"start_datetime,omitempty"`
+	EndDateTime     *DateTime `url:"end_datetime,omitempty"`
+	PageSize        int       `url:"page_size,omitempty"`
+	Purchased       *bool     `url:"purchased,omitempty"`
+	IncludeChildren *bool     `url:"include_children,omitempty"`
 }
 
 // ListShipmentsResult holds the results from the list shipments API.

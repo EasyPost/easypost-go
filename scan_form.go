@@ -3,23 +3,22 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"time"
 )
 
 // A ScanForm object represents a document that can be scanned to mark all
 // included tracking codes as "Accepted for Shipment" by the carrier.
 type ScanForm struct {
-	ID            string     `json:"id,omitempty"`
-	Object        string     `json:"object,omitempty"`
-	CreatedAt     *time.Time `json:"created_at,omitempty"`
-	UpdatedAt     *time.Time `json:"updated_at,omitempty"`
-	Status        string     `json:"status,omitempty"`
-	Message       string     `json:"message,omitempty"`
-	Address       *Address   `json:"address,omitempty"`
-	TrackingCodes []string   `json:"tracking_codes,omitempty"`
-	FormURL       string     `json:"form_url,omitempty"`
-	FormFileType  string     `json:"form_file_type,omitempty"`
-	BatchID       string     `json:"batch_id,omitempty"`
+	ID            string    `json:"id,omitempty"`
+	Object        string    `json:"object,omitempty"`
+	CreatedAt     *DateTime `json:"created_at,omitempty"`
+	UpdatedAt     *DateTime `json:"updated_at,omitempty"`
+	Status        string    `json:"status,omitempty"`
+	Message       string    `json:"message,omitempty"`
+	Address       *Address  `json:"address,omitempty"`
+	TrackingCodes []string  `json:"tracking_codes,omitempty"`
+	FormURL       string    `json:"form_url,omitempty"`
+	FormFileType  string    `json:"form_file_type,omitempty"`
+	BatchID       string    `json:"batch_id,omitempty"`
 }
 
 type scanFormRequest struct {

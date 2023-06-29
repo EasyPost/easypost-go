@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"time"
 )
 
 // A Rate contains information on shipping cost and delivery time.
@@ -10,8 +9,8 @@ type Rate struct {
 	ID                     string        `json:"id,omitempty"`
 	Object                 string        `json:"object,omitempty"`
 	Mode                   string        `json:"mode,omitempty"`
-	CreatedAt              *time.Time    `json:"created_at,omitempty"`
-	UpdatedAt              *time.Time    `json:"updated_at,omitempty"`
+	CreatedAt              *DateTime     `json:"created_at,omitempty"`
+	UpdatedAt              *DateTime     `json:"updated_at,omitempty"`
 	Service                string        `json:"service,omitempty"`
 	Carrier                string        `json:"carrier,omitempty"`
 	CarrierAccountID       string        `json:"carrier_account_id,omitempty"`
@@ -23,7 +22,7 @@ type Rate struct {
 	ListRate               string        `json:"list_rate,omitempty"`
 	ListCurrency           string        `json:"list_currency,omitempty"`
 	DeliveryDays           int           `json:"delivery_days,omitempty"`
-	DeliveryDate           *time.Time    `json:"delivery_date,omitempty"`
+	DeliveryDate           *DateTime     `json:"delivery_date,omitempty"`
 	DeliveryDateGuaranteed bool          `json:"delivery_date_guaranteed,omitempty"`
 	EstDeliveryDays        int           `json:"est_delivery_days,omitempty"`
 	BillingType            string        `json:"billing_type,omitempty"`
@@ -35,8 +34,8 @@ type SmartRate struct {
 	ID                     string         `json:"id,omitempty"`
 	Object                 string         `json:"object,omitempty"`
 	Mode                   string         `json:"mode,omitempty"`
-	CreatedAt              *time.Time     `json:"created_at,omitempty"`
-	UpdatedAt              *time.Time     `json:"updated_at,omitempty"`
+	CreatedAt              *DateTime      `json:"created_at,omitempty"`
+	UpdatedAt              *DateTime      `json:"updated_at,omitempty"`
 	Service                string         `json:"service,omitempty"`
 	Carrier                string         `json:"carrier,omitempty"`
 	CarrierAccountID       string         `json:"carrier_account_id,omitempty"`
@@ -48,7 +47,7 @@ type SmartRate struct {
 	ListRate               float64        `json:"list_rate,omitempty"`
 	ListCurrency           string         `json:"list_currency,omitempty"`
 	DeliveryDays           int            `json:"delivery_days,omitempty"`
-	DeliveryDate           *time.Time     `json:"delivery_date,omitempty"`
+	DeliveryDate           *DateTime      `json:"delivery_date,omitempty"`
 	DeliveryDateGuaranteed bool           `json:"delivery_date_guaranteed,omitempty"`
 	EstDeliveryDays        int            `json:"est_delivery_days,omitempty"`
 	TimeInTransit          *TimeInTransit `json:"time_in_transit,omitempty"`
@@ -57,23 +56,23 @@ type SmartRate struct {
 
 // A StatelessRate contains information on shipping cost and delivery time, but does not have an ID (is ephemeral).
 type StatelessRate struct {
-	BillingType            string     `json:"billing_type,omitempty"`
-	Carrier                string     `json:"carrier,omitempty"`
-	CarrierAccountID       string     `json:"carrier_account_id,omitempty"`
-	Currency               string     `json:"currency,omitempty"`
-	DeliveryDate           *time.Time `json:"delivery_date,omitempty"`
-	DeliveryDateGuaranteed bool       `json:"delivery_date_guaranteed,omitempty"`
-	DeliveryDays           int        `json:"delivery_days,omitempty"`
-	EstDeliveryDays        int        `json:"est_delivery_days,omitempty"`
-	ListCurrency           string     `json:"list_currency,omitempty"`
-	ListRate               string     `json:"list_rate,omitempty"`
-	Mode                   string     `json:"mode,omitempty"`
-	Object                 string     `json:"object,omitempty"`
-	Rate                   string     `json:"rate,omitempty"`
-	RetailCurrency         string     `json:"retail_currency,omitempty"`
-	RetailRate             string     `json:"retail_rate,omitempty"`
-	Service                string     `json:"service,omitempty"`
-	ShipmentID             string     `json:"shipment_id,omitempty"`
+	BillingType            string    `json:"billing_type,omitempty"`
+	Carrier                string    `json:"carrier,omitempty"`
+	CarrierAccountID       string    `json:"carrier_account_id,omitempty"`
+	Currency               string    `json:"currency,omitempty"`
+	DeliveryDate           *DateTime `json:"delivery_date,omitempty"`
+	DeliveryDateGuaranteed bool      `json:"delivery_date_guaranteed,omitempty"`
+	DeliveryDays           int       `json:"delivery_days,omitempty"`
+	EstDeliveryDays        int       `json:"est_delivery_days,omitempty"`
+	ListCurrency           string    `json:"list_currency,omitempty"`
+	ListRate               string    `json:"list_rate,omitempty"`
+	Mode                   string    `json:"mode,omitempty"`
+	Object                 string    `json:"object,omitempty"`
+	Rate                   string    `json:"rate,omitempty"`
+	RetailCurrency         string    `json:"retail_currency,omitempty"`
+	RetailRate             string    `json:"retail_rate,omitempty"`
+	Service                string    `json:"service,omitempty"`
+	ShipmentID             string    `json:"shipment_id,omitempty"`
 }
 
 // TimeInTransit provides details on the probability your package will arrive within a certain number of days

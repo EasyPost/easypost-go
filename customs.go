@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"time"
 )
 
 // CustomsInfo objects contain CustomsItem objects and all necessary information
@@ -10,8 +9,8 @@ import (
 type CustomsInfo struct {
 	ID                  string         `json:"id,omitempty"`
 	Object              string         `json:"object,omitempty"`
-	CreatedAt           *time.Time     `json:"created_at,omitempty"`
-	UpdatedAt           *time.Time     `json:"updated_at,omitempty"`
+	CreatedAt           *DateTime      `json:"created_at,omitempty"`
+	UpdatedAt           *DateTime      `json:"updated_at,omitempty"`
 	EELPFC              string         `json:"eel_pfc,omitempty"`
 	ContentsType        string         `json:"contents_type,omitempty"`
 	ContentsExplanation string         `json:"contents_explanation,omitempty"`
@@ -25,18 +24,18 @@ type CustomsInfo struct {
 
 // A CustomsItem object describes goods for international shipment.
 type CustomsItem struct {
-	ID             string     `json:"id,omitempty"`
-	Object         string     `json:"object,omitempty"`
-	CreatedAt      *time.Time `json:"created_at,omitempty"`
-	UpdatedAt      *time.Time `json:"updated_at,omitempty"`
-	Description    string     `json:"description,omitempty"`
-	Quantity       float64    `json:"quantity,omitempty"`
-	Value          float64    `json:"value,omitempty,string"`
-	Weight         float64    `json:"weight,omitempty"`
-	HSTariffNumber string     `json:"hs_tariff_number,omitempty"`
-	Code           string     `json:"code,omitempty"`
-	OriginCountry  string     `json:"origin_country,omitempty"`
-	Currency       string     `json:"currency,omitempty"`
+	ID             string    `json:"id,omitempty"`
+	Object         string    `json:"object,omitempty"`
+	CreatedAt      *DateTime `json:"created_at,omitempty"`
+	UpdatedAt      *DateTime `json:"updated_at,omitempty"`
+	Description    string    `json:"description,omitempty"`
+	Quantity       float64   `json:"quantity,omitempty"`
+	Value          float64   `json:"value,omitempty,string"`
+	Weight         float64   `json:"weight,omitempty"`
+	HSTariffNumber string    `json:"hs_tariff_number,omitempty"`
+	Code           string    `json:"code,omitempty"`
+	OriginCountry  string    `json:"origin_country,omitempty"`
+	Currency       string    `json:"currency,omitempty"`
 }
 
 type createCustomsInfoRequest struct {

@@ -3,7 +3,6 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"time"
 )
 
 // TrackingLocation provides additional information about the location of a
@@ -41,9 +40,9 @@ type TrackingCarrierDetail struct {
 	OriginTrackingLocation      *TrackingLocation `json:"origin_tracking_location,omitempty"`
 	DestinationLocation         string            `json:"destination_location,omitempty"`
 	DestinationTrackingLocation *TrackingLocation `json:"destination_tracking_location,omitempty"`
-	GuaranteedDeliveryDate      *time.Time        `json:"guaranteed_delivery_date,omitempty"`
+	GuaranteedDeliveryDate      *DateTime         `json:"guaranteed_delivery_date,omitempty"`
 	AlternateIdentifier         string            `json:"alternate_identifier,omitempty"`
-	InitialDeliveryAttempt      *time.Time        `json:"initial_delivery_attempt,omitempty"`
+	InitialDeliveryAttempt      *DateTime         `json:"initial_delivery_attempt,omitempty"`
 }
 
 // A Tracker object contains all the tracking information for a package.
@@ -51,14 +50,14 @@ type Tracker struct {
 	ID              string                 `json:"id,omitempty"`
 	Object          string                 `json:"object,omitempty"`
 	Mode            string                 `json:"mode,omitempty"`
-	CreatedAt       *time.Time             `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time             `json:"updated_at,omitempty"`
+	CreatedAt       *DateTime              `json:"created_at,omitempty"`
+	UpdatedAt       *DateTime              `json:"updated_at,omitempty"`
 	TrackingCode    string                 `json:"tracking_code,omitempty"`
 	Status          string                 `json:"status,omitempty"`
 	StatusDetail    string                 `json:"status_detail,omitempty"`
 	SignedBy        string                 `json:"signed_by,omitempty"`
 	Weight          float64                `json:"weight,omitempty"`
-	EstDeliveryDate *time.Time             `json:"est_delivery_date,omitempty"`
+	EstDeliveryDate *DateTime              `json:"est_delivery_date,omitempty"`
 	ShipmentID      string                 `json:"shipment_id,omitempty"`
 	Carrier         string                 `json:"carrier,omitempty"`
 	TrackingDetails []*TrackingDetail      `json:"tracking_details,omitempty"`
@@ -81,13 +80,13 @@ type CreateTrackerOptions struct {
 // ListTrackersOptions is used to specify query parameters for listing Tracker
 // objects.
 type ListTrackersOptions struct {
-	BeforeID      string     `url:"before_id,omitempty"`
-	AfterID       string     `url:"after_id,omitempty"`
-	StartDateTime *time.Time `url:"start_datetime,omitempty"`
-	EndDateTime   *time.Time `url:"end_datetime,omitempty"`
-	PageSize      int        `url:"page_size,omitempty"`
-	TrackingCode  string     `url:"tracking_code,omitempty"`
-	Carrier       string     `url:"carrier,omitempty"`
+	BeforeID      string    `url:"before_id,omitempty"`
+	AfterID       string    `url:"after_id,omitempty"`
+	StartDateTime *DateTime `url:"start_datetime,omitempty"`
+	EndDateTime   *DateTime `url:"end_datetime,omitempty"`
+	PageSize      int       `url:"page_size,omitempty"`
+	TrackingCode  string    `url:"tracking_code,omitempty"`
+	Carrier       string    `url:"carrier,omitempty"`
 }
 
 // ListTrackersResult holds the results from the list trackers API.
@@ -101,12 +100,12 @@ type ListTrackersResult struct {
 // ListTrackersUpdatedOptions specifies options for the list trackers updated
 // API.
 type ListTrackersUpdatedOptions struct {
-	Page                 int        `json:"page,omitempty"`
-	PageSize             int        `json:"page_size,omitempty"`
-	StatusStart          *time.Time `json:"status_start,omitempty"`
-	StatusEnd            *time.Time `json:"status_end,omitempty"`
-	TrackingDetailsStart *time.Time `json:"tracking_details_start,omitempty"`
-	TrackingDetailsEnd   *time.Time `json:"tracking_details_end,omitempty"`
+	Page                 int       `json:"page,omitempty"`
+	PageSize             int       `json:"page_size,omitempty"`
+	StatusStart          *DateTime `json:"status_start,omitempty"`
+	StatusEnd            *DateTime `json:"status_end,omitempty"`
+	TrackingDetailsStart *DateTime `json:"tracking_details_start,omitempty"`
+	TrackingDetailsEnd   *DateTime `json:"tracking_details_end,omitempty"`
 }
 
 func (c *CreateTrackerOptions) toMap() map[string]interface{} {
