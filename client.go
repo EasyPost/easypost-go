@@ -196,7 +196,27 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		res, err = c.client().Do(req)
 	}
 
-	// prepare and execute response hook(s)
+	if err != nil {
+		// prepare and execute response hook(s) for failed requests
+		responseEvent := &ResponseHookEvent{
+			HttpStatus:        0,
+			Method:            req.Method,
+			Url:               req.URL,
+			ResponseBody:      nil,
+			Headers:           nil,
+			RequestTimestamp:  requestTimestamp,
+			ResponseTimestamp: time.Now(),
+			Id:                requestId,
+		}
+		// loop over each response hook and execute it
+		for _, hook := range c.Hooks.ResponseHookEventSubscriptions {
+			hook.Execute(ctx, *responseEvent)
+		}
+
+		return err
+	}
+
+	// prepare and execute response hook(s) for successful requests
 	responseEvent := &ResponseHookEvent{
 		HttpStatus:        res.StatusCode,
 		Method:            req.Method,
@@ -213,9 +233,6 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		hook.Execute(ctx, *responseEvent)
 	}
 
-	if err != nil {
-		return err
-	}
 	defer func() { _ = res.Body.Close() }()
 	if res.StatusCode >= 200 && res.StatusCode <= 299 {
 		if out != nil {
