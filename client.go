@@ -6,6 +6,7 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/google/uuid"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -55,6 +56,8 @@ type Client struct {
 	Timeout int
 	// MockRequests is a list of requests that will be mocked by the client.
 	MockRequests []MockRequest
+	// Hooks is a collection of HookEventSubscriber instances for various hooks available in the client
+	Hooks Hooks
 }
 
 // New returns a new Client with the given API key.
@@ -165,6 +168,23 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	var res *http.Response
 	var err error
 
+	// prepare and execute request hook(s)
+	requestId := uuid.New()
+	requestTimestamp := time.Now()
+	requestEvent := &RequestHookEvent{
+		Method:           req.Method,
+		Url:              req.URL,
+		RequestBody:      req.Body,
+		Headers:          req.Header,
+		RequestTimestamp: requestTimestamp,
+		Id:               requestId,
+	}
+
+	// loop over each request hook and execute it
+	for _, hook := range c.Hooks.RequestHookEventSubscriptions {
+		hook.Execute(ctx, *requestEvent)
+	}
+
 	if len(c.MockRequests) > 0 {
 		// If there are mock requests set, this client will ONLY make mock requests
 		res = c.findMatchingMockRequest(req)
@@ -174,6 +194,23 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	} else {
 		// Otherwise, make a real request
 		res, err = c.client().Do(req)
+	}
+
+	// prepare and execute response hook(s)
+	responseEvent := &ResponseHookEvent{
+		HttpStatus:        res.StatusCode,
+		Method:            req.Method,
+		Url:               req.URL,
+		ResponseBody:      res.Body,
+		Headers:           res.Header,
+		RequestTimestamp:  requestTimestamp,
+		ResponseTimestamp: time.Now(),
+		Id:                requestId,
+	}
+
+	// loop over each response hook and execute it
+	for _, hook := range c.Hooks.ResponseHookEventSubscriptions {
+		hook.Execute(ctx, *responseEvent)
 	}
 
 	if err != nil {
