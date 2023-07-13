@@ -104,6 +104,57 @@ func main() {
 }
 ```
 
+## HTTP Hooks
+
+Users can audit the HTTP requests and responses being made by the library by setting the `Hooks` property of a `Client` with a set of event subscriptions. Available subscriptions include:
+
+- `RequestHookEventSubscriber` - Called before an HTTP request is made. A `RequestHookEvent` object, containing details about the request that will be sent to the server, is passed to the subscription's `RequestHookEventSubscriberCallback`
+    - Modifying any data in the callback will NOT affect the actual request that is sent to the server.
+- `ResponseHookEventSubscriber` - Called after an HTTP request is made. A `ResponseHookEvent` object, containing details about the response that was received from the server, is passed to the subscription's `ResponseHookEventSubscriberCallback`
+    - Modifying any data in the callback will NOT affect the actual response that was received from the server, and will NOT affect the data deserialized into the library's models.
+
+Users can interact with these details in their callbacks as they see fit (e.g. logging).
+
+```go
+func myRequestHookEventSubscriberCallback(ctx context.Context, event easypost.RequestHookEvent) error {
+    // Interact with details about the request here
+    fmt.Printf("Making HTTP call to %s\n", event.URL)
+	return nil
+}
+
+func myResponseHookEventSubscriberCallback(ctx context.Context, event easypost.ResponseHookEvent) error {
+    // Interact with details about the response here
+    fmt.Printf("Received HTTP response with status code %d\n", event.StatusCode)
+    return nil
+}
+
+requestSubscriber := easypost.RequestHookEventSubscriber{
+    Callback: myRequestHookEventSubscriberCallback,
+    HookEventSubscriber: easypost.HookEventSubscriber{
+        ID: "my-request-hook",
+    },
+}
+
+responseSubscriber := easypost.ResponseHookEventSubscriber{
+    Callback: myResponseHookEventSubscriberCallback,
+    HookEventSubscriber: easypost.HookEventSubscriber{
+        ID: "my-response-hook",
+    },
+}
+
+client := easypost.New("EASYPOST_API_KEY")
+
+client.Hooks.AddRequestEventSubscriber(requestSubscriber)
+client.Hooks.AddResponseEventSubscriber(responseSubscriber)
+```
+
+Users can unsubscribe from these events at any time by removing the subscription from the `Hooks` property of a client.
+
+```go
+client.Hooks.RemoveRequestEventSubscriber(requestSubscriber)
+client.Hooks.RemoveResponseEventSubscriber(responseSubscriber)
+```
+
 ## Documentation
 
 API documentation can be found at: <https://easypost.com/docs/api>.
