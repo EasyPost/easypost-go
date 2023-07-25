@@ -1,9 +1,5 @@
 # CHANGELOG
 
-## Next Release
-
-- Adds hooks to introspect the request and response of an API call (see `HTTP Hooks` section of the README for more information)
-
 ## v2.19.0 (2023-06-06)
 
 - Migrates Carrier Metadata to GA (now available via `GetCarrierMetadata`)
