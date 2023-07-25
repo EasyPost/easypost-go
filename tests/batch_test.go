@@ -124,12 +124,12 @@ func (c *ClientTests) TestBatchAddRemoveShipment() {
 	batch, err := client.CreateBatch()
 	require.NoError(err)
 
-	batchWithShipment, err := client.AddShipmentsToBatch(batch.ID, shipment.ID, shipment2.ID)
+	batchWithShipment, err := client.AddShipmentsToBatch(batch.ID, shipment, shipment2)
 	require.NoError(err)
 
 	assert.Equal(2, batchWithShipment.NumShipments)
 
-	batchWithoutShipment, err := client.RemoveShipmentsFromBatch(batch.ID, shipment.ID, shipment2.ID)
+	batchWithoutShipment, err := client.RemoveShipmentsFromBatch(batch.ID, shipment, shipment2)
 	require.NoError(err)
 
 	assert.Equal(0, batchWithoutShipment.NumShipments)
