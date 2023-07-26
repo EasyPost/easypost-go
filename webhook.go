@@ -7,19 +7,17 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"errors"
-	"time"
-
 	"golang.org/x/text/unicode/norm"
 )
 
 // A Webhook represents an EasyPost webhook callback URL.
 type Webhook struct {
-	ID            string     `json:"id,omitempty"`
-	Object        string     `json:"object,omitempty"`
-	Mode          string     `json:"mode,omitempty"`
-	URL           string     `json:"url,omitempty"`
-	DisabledAt    *time.Time `json:"disabled_at,omitempty"`
-	WebhookSecret string     `json:"webhook_secret,omitempty"`
+	ID            string    `json:"id,omitempty"`
+	Object        string    `json:"object,omitempty"`
+	Mode          string    `json:"mode,omitempty"`
+	URL           string    `json:"url,omitempty"`
+	DisabledAt    *DateTime `json:"disabled_at,omitempty"`
+	WebhookSecret string    `json:"webhook_secret,omitempty"`
 }
 
 // CreateUpdateWebhookOptions is used to specify parameters for creating and updating EasyPost webhooks.

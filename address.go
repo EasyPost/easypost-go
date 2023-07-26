@@ -3,7 +3,6 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"time"
 )
 
 // AddressVerificationFieldError provides additional information on address
@@ -44,8 +43,8 @@ type Address struct {
 	Object          string                `json:"object,omitempty"`
 	Reference       string                `json:"reference,omitempty"`
 	Mode            string                `json:"mode,omitempty"`
-	CreatedAt       *time.Time            `json:"created_at,omitempty"`
-	UpdatedAt       *time.Time            `json:"updated_at,omitempty"`
+	CreatedAt       *DateTime             `json:"created_at,omitempty"`
+	UpdatedAt       *DateTime             `json:"updated_at,omitempty"`
 	Street1         string                `json:"street1,omitempty"`
 	Street2         string                `json:"street2,omitempty"`
 	City            string                `json:"city,omitempty"`

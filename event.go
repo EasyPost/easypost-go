@@ -5,7 +5,6 @@ import (
 	"encoding/base64"
 	"encoding/json"
 	"net/http"
-	"time"
 )
 
 // Event objects contain details about changes to EasyPost objects
@@ -14,8 +13,8 @@ type Event struct {
 	UserID             string                 `json:"user_id,omitempty"`
 	Object             string                 `json:"object,omitempty"`
 	Mode               string                 `json:"mode,omitempty"`
-	CreatedAt          *time.Time             `json:"created_at,omitempty"`
-	UpdatedAt          *time.Time             `json:"updated_at,omitempty"`
+	CreatedAt          *DateTime              `json:"created_at,omitempty"`
+	UpdatedAt          *DateTime              `json:"updated_at,omitempty"`
 	Description        string                 `json:"description,omitempty"`
 	PreviousAttributes map[string]interface{} `json:"previous_attributes,omitempty"`
 	// Result will be populated with the relevant object type, i.e.
@@ -35,8 +34,8 @@ type Event struct {
 type EventPayload struct {
 	ID             string            `json:"id,omitempty"`
 	Object         string            `json:"object,omitempty"`
-	CreatedAt      *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt      *time.Time        `json:"updated_at,omitempty"`
+	CreatedAt      *DateTime         `json:"created_at,omitempty"`
+	UpdatedAt      *DateTime         `json:"updated_at,omitempty"`
 	RequestURL     string            `json:"request_url,omitempty"`
 	RequestHeaders map[string]string `json:"request_headers,omitempty"`
 	// RequestBody is the raw request body that was sent to the webhook. This is

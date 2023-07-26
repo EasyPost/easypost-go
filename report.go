@@ -3,26 +3,25 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"time"
 )
 
 // Report represents a CSV-formatted file that is a log of all the objects
 // created within a certain time frame.
 type Report struct {
-	ID                string     `json:"id,omitempty"`
-	Object            string     `json:"object,omitempty"`
-	Mode              string     `json:"mode,omitempty"`
-	CreatedAt         *time.Time `json:"created_at,omitempty"`
-	UpdatedAt         *time.Time `json:"updated_at,omitempty"`
-	Status            string     `json:"status,omitempty"`
-	StartDate         string     `json:"start_date,omitempty"`
-	EndDate           string     `json:"end_date,omitempty"`
-	IncludeChildren   bool       `json:"include_children,omitempty"`
-	URL               string     `json:"url,omitempty"`
-	URLExpiresAt      *time.Time `json:"url_expires_at,omitempty"`
-	SendEmail         bool       `json:"send_email,omitempty"`
-	Columns           []string   `json:"columns,omitempty"`
-	AdditionalColumns []string   `json:"additional_columns,omitempty"`
+	ID                string    `json:"id,omitempty"`
+	Object            string    `json:"object,omitempty"`
+	Mode              string    `json:"mode,omitempty"`
+	CreatedAt         *DateTime `json:"created_at,omitempty"`
+	UpdatedAt         *DateTime `json:"updated_at,omitempty"`
+	Status            string    `json:"status,omitempty"`
+	StartDate         string    `json:"start_date,omitempty"`
+	EndDate           string    `json:"end_date,omitempty"`
+	IncludeChildren   bool      `json:"include_children,omitempty"`
+	URL               string    `json:"url,omitempty"`
+	URLExpiresAt      *DateTime `json:"url_expires_at,omitempty"`
+	SendEmail         bool      `json:"send_email,omitempty"`
+	Columns           []string  `json:"columns,omitempty"`
+	AdditionalColumns []string  `json:"additional_columns,omitempty"`
 }
 
 // ListReportsOptions is used to specify query parameters for listing Report
