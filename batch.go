@@ -4,7 +4,6 @@ import (
 	"context"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 // BatchStatus contains counts of statuses for the shipments in a batch.
@@ -21,8 +20,8 @@ type Batch struct {
 	Object       string       `json:"object,omitempty"`
 	Reference    string       `json:"reference,omitempty"`
 	Mode         string       `json:"mode,omitempty"`
-	CreatedAt    *time.Time   `json:"created_at,omitempty"`
-	UpdatedAt    *time.Time   `json:"updated_at,omitempty"`
+	CreatedAt    *DateTime    `json:"created_at,omitempty"`
+	UpdatedAt    *DateTime    `json:"updated_at,omitempty"`
 	State        string       `json:"state,omitempty"`
 	NumShipments int          `json:"num_shipments,omitempty"`
 	Shipments    []*Shipment  `json:"shipments,omitempty"`

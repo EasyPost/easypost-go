@@ -2,15 +2,14 @@ package easypost
 
 import (
 	"context"
-	"time"
 )
 
 // APIKey represents a single API key.
 type APIKey struct {
-	Object    string     `json:"object,omitempty"`
-	Mode      string     `json:"mode,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	Key       string     `json:"key,omitempty"`
+	Object    string    `json:"object,omitempty"`
+	Mode      string    `json:"mode,omitempty"`
+	CreatedAt *DateTime `json:"created_at,omitempty"`
+	Key       string    `json:"key,omitempty"`
 }
 
 // APIKeys contains information about a list of API keys for the given user and
