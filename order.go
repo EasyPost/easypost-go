@@ -3,7 +3,6 @@ package easypost
 import (
 	"context"
 	"net/url"
-	"time"
 )
 
 // An Order object represents a collection of packages and can be used for
@@ -13,8 +12,8 @@ type Order struct {
 	Object        string            `json:"object,omitempty"`
 	Reference     string            `json:"reference,omitempty"`
 	Mode          string            `json:"mode,omitempty"`
-	CreatedAt     *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt     *time.Time        `json:"updated_at,omitempty"`
+	CreatedAt     *DateTime         `json:"created_at,omitempty"`
+	UpdatedAt     *DateTime         `json:"updated_at,omitempty"`
 	ToAddress     *Address          `json:"to_address,omitempty"`
 	FromAddress   *Address          `json:"from_address,omitempty"`
 	ReturnAddress *Address          `json:"return_address,omitempty"`
@@ -37,6 +36,7 @@ type createOrderRequest struct {
 // CreateOrder creates a new order object. If the `accounts` parameter is given,
 // the provided carrier accounts will be used to limit the returned rates to
 // the given carrier(s).
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateOrder(
 //		&easypost.Order{
@@ -99,6 +99,7 @@ func (c *Client) GetOrderRatesWithContext(ctx context.Context, orderID string) (
 
 // BuyOrder purchases an order. This operation populates the TrackingCode and
 // PostageLabel attributes of each Shipment.
+//
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.Buy("order_1", "FedEx", "FEDEX_GROUND")
 func (c *Client) BuyOrder(orderID, carrier, service string) (out *Order, err error) {

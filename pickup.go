@@ -4,21 +4,20 @@ import (
 	"context"
 	"net/http"
 	"net/url"
-	"time"
 )
 
 // PickupRate contains data about the cost of a pickup.
 type PickupRate struct {
-	ID        string     `json:"id,omitempty"`
-	Object    string     `json:"object,omitempty"`
-	Mode      string     `json:"mode,omitempty"`
-	CreatedAt *time.Time `json:"created_at,omitempty"`
-	UpdatedAt *time.Time `json:"updated_at,omitempty"`
-	Service   string     `json:"service,omitempty"`
-	Carrier   string     `json:"carrier,omitempty"`
-	Rate      string     `json:"rate,omitempty"`
-	Currency  string     `json:"currency,omitempty"`
-	PickupID  string     `json:"pickup_id,omitempty"`
+	ID        string    `json:"id,omitempty"`
+	Object    string    `json:"object,omitempty"`
+	Mode      string    `json:"mode,omitempty"`
+	CreatedAt *DateTime `json:"created_at,omitempty"`
+	UpdatedAt *DateTime `json:"updated_at,omitempty"`
+	Service   string    `json:"service,omitempty"`
+	Carrier   string    `json:"carrier,omitempty"`
+	Rate      string    `json:"rate,omitempty"`
+	Currency  string    `json:"currency,omitempty"`
+	PickupID  string    `json:"pickup_id,omitempty"`
 }
 
 // A Pickup object represents a pickup from a carrier at a customer's residence
@@ -28,11 +27,11 @@ type Pickup struct {
 	Object           string            `json:"object,omitempty"`
 	Reference        string            `json:"reference,omitempty"`
 	Mode             string            `json:"mode,omitempty"`
-	CreatedAt        *time.Time        `json:"created_at,omitempty"`
-	UpdatedAt        *time.Time        `json:"updated_at,omitempty"`
+	CreatedAt        *DateTime         `json:"created_at,omitempty"`
+	UpdatedAt        *DateTime         `json:"updated_at,omitempty"`
 	Status           string            `json:"status,omitempty"`
-	MinDatetime      *time.Time        `json:"min_datetime,omitempty"`
-	MaxDatetime      *time.Time        `json:"max_datetime,omitempty"`
+	MinDatetime      *DateTime         `json:"min_datetime,omitempty"`
+	MaxDatetime      *DateTime         `json:"max_datetime,omitempty"`
 	IsAccountAddress bool              `json:"is_account_address,omitempty"`
 	Instructions     string            `json:"instructions,omitempty"`
 	Messages         []*CarrierMessage `json:"messages,omitempty"`
