@@ -24,17 +24,6 @@ type Report struct {
 	AdditionalColumns []string  `json:"additional_columns,omitempty"`
 }
 
-// ListReportsOptions is used to specify query parameters for listing Report
-// objects.
-// Deprecated: Use ListOptions instead.
-type ListReportsOptions struct {
-	BeforeID  string `url:"before_id,omitempty"`
-	AfterID   string `url:"after_id,omitempty"`
-	StartDate string `url:"start_datetime,omitempty"`
-	EndDate   string `url:"end_datetime,omitempty"`
-	PageSize  int    `url:"page_size,omitempty"`
-}
-
 // ListReportsResult holds the results from the list reports API.
 type ListReportsResult struct {
 	Reports []*Report `json:"reports,omitempty"`
@@ -63,13 +52,13 @@ func (c *Client) CreateReportWithContext(ctx context.Context, typ string, in *Re
 }
 
 // ListReports provides a paginated result of Report objects of the given type.
-func (c *Client) ListReports(typ string, opts *ListReportsOptions) (out *ListReportsResult, err error) {
+func (c *Client) ListReports(typ string, opts *ListOptions) (out *ListReportsResult, err error) {
 	return c.ListReportsWithContext(context.Background(), typ, opts)
 }
 
 // ListReportsWithContext performs the same operation as ListReports, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *ListReportsOptions) (out *ListReportsResult, err error) {
+func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *ListOptions) (out *ListReportsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "reports/"+typ, c.convertOptsToURLValues(opts), &out)
 	// Store the original query parameters for reuse when getting the next page
 	out.Type = typ
@@ -104,7 +93,7 @@ func (c *Client) GetNextReportPageWithPageSizeWithContext(ctx context.Context, c
 	if err != nil {
 		return
 	}
-	reportParams := &ListReportsOptions{
+	reportParams := &ListOptions{
 		BeforeID: params.BeforeID,
 	}
 	if pageSize > 0 {

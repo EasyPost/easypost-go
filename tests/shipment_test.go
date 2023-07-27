@@ -272,32 +272,6 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	assert.Error(err)
 }
 
-func (c *ClientTests) TestShipmentLowestRateDeprecated() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	shipment, err := client.CreateShipment(c.fixture.FullShipment())
-	require.NoError(err)
-
-	// Test lowest rate with no filters
-	lowestRate, err := client.LowestRate(shipment) // nolint:staticcheck
-	require.NoError(err)
-	assert.Equal("First", lowestRate.Service)
-	assert.Equal("5.57", lowestRate.Rate)
-	assert.Equal("USPS", lowestRate.Carrier)
-
-	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
-	lowestRate, err = client.LowestRateWithCarrierAndService(shipment, nil, []string{"Priority"}) // nolint:staticcheck
-	require.NoError(err)
-	assert.Equal("Priority", lowestRate.Service)
-	assert.Equal("7.90", lowestRate.Rate)
-	assert.Equal("USPS", lowestRate.Carrier)
-
-	// Test lowest rate with carrier filter (should error due to bad carrier)
-	lowestRate, err = client.LowestRateWithCarrier(shipment, []string{"BAD_CARRIER"}) // nolint:staticcheck
-	assert.Error(err)
-}
-
 func (c *ClientTests) TestShipmentGenerateForm() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
