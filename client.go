@@ -234,6 +234,8 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	}
 
 	defer func() { _ = res.Body.Close() }()
+
+	// status code is 2xx, no error occurred
 	if res.StatusCode >= 200 && res.StatusCode <= 299 {
 		if out != nil {
 			return json.NewDecoder(res.Body).Decode(out)
@@ -241,11 +243,8 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		return nil
 	}
 
-	buf, _ := ioutil.ReadAll(res.Body)
-	apiErr := &APIError{Status: res.Status, StatusCode: res.StatusCode}
-	if json.Unmarshal(buf, &apiErrorResponse{Error: apiErr}) != nil {
-		apiErr.Message = string(buf)
-	}
+	// status code is not 2xx, an error occurred
+	apiErr := BuildErrorFromResponse(res)
 
 	return apiErr
 }

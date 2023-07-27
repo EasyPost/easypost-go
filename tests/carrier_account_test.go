@@ -46,12 +46,12 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() {
 
 	// We're sending bad data to the API, so we expect an error
 	require.Error(err)
-	assert.Equal(reflect.TypeOf(&easypost.APIError{}), reflect.TypeOf(err))
-	assert.Equal(422, err.(*easypost.APIError).StatusCode)
-	assert.NotEmpty(err.(*easypost.APIError).Errors)
+	assert.Equal(reflect.TypeOf(&easypost.InvalidRequestError{}), reflect.TypeOf(err))
+	assert.Equal(422, err.(*easypost.InvalidRequestError).StatusCode)
+	assert.NotEmpty(err.(*easypost.InvalidRequestError).Errors)
 	// We expect one of the sub-errors to be regarding a missing field
 	errorFound := false
-	for _, err := range err.(*easypost.APIError).Errors {
+	for _, err := range err.(*easypost.InvalidRequestError).Errors {
 		if err.Field == "account_number" && err.Message == "must be present and a string" {
 			errorFound = true
 			break
