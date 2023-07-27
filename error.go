@@ -327,7 +327,7 @@ func BuildErrorFromResponse(response *http.Response) error {
 		return &InternalServerError{APIError: *apiError}
 	case 503:
 		return &ServiceUnavailableError{APIError: *apiError}
-	case 504:
+	case 502, 504:
 		return &GatewayTimeoutError{APIError: *apiError}
 	default:
 		return &UnknownHttpError{APIError: *apiError}
