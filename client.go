@@ -190,7 +190,7 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	}
 
 	// status code is not 2xx, an error occurred
-	apiErr := FromErrorResponse(res)
+	apiErr := BuildErrorFromResponse(res)
 
 	return apiErr
 }

@@ -44,142 +44,142 @@ func (c *ClientTests) TestApiErrorStatusCodes() {
 	}
 
 	res.StatusCode = 0
-	err := easypost.FromErrorResponse(res)
+	err := easypost.BuildErrorFromResponse(res)
 	_, ok := err.(*easypost.ConnectionError)
 	assert.True(ok)
 
 	res.StatusCode = 100
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RetryError)
 	assert.True(ok)
 
 	res.StatusCode = 101
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RetryError)
 	assert.True(ok)
 
 	res.StatusCode = 102
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RetryError)
 	assert.True(ok)
 
 	res.StatusCode = 103
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RetryError)
 	assert.True(ok)
 
 	res.StatusCode = 300
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 301
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 302
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 303
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 304
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 305
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 306
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 307
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 308
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RedirectError)
 	assert.True(ok)
 
 	res.StatusCode = 400
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.BadRequestError)
 	assert.True(ok)
 
 	res.StatusCode = 401
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.UnauthorizedError)
 	assert.True(ok)
 
 	res.StatusCode = 402
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.PaymentError)
 	assert.True(ok)
 
 	res.StatusCode = 403
-	err = easypost.FromErrorResponse(res)
-	_, ok = err.(*easypost.UnauthorizedError)
+	err = easypost.BuildErrorFromResponse(res)
+	_, ok = err.(*easypost.ForbiddenError)
 	assert.True(ok)
 
 	res.StatusCode = 404
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.NotFoundError)
 	assert.True(ok)
 
 	res.StatusCode = 405
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.MethodNotAllowedError)
 	assert.True(ok)
 
 	res.StatusCode = 407
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.ProxyError)
 	assert.True(ok)
 
 	res.StatusCode = 408
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.TimeoutError)
 	assert.True(ok)
 
 	res.StatusCode = 422
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.InvalidRequestError)
 	assert.True(ok)
 
 	res.StatusCode = 429
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.RateLimitError)
 	assert.True(ok)
 
 	res.StatusCode = 500
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.InternalServerError)
 	assert.True(ok)
 
 	res.StatusCode = 503
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.ServiceUnavailableError)
 	assert.True(ok)
 
 	res.StatusCode = 504
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.GatewayTimeoutError)
 	assert.True(ok)
 
 	res.StatusCode = 7000 // unaccounted for status code
-	err = easypost.FromErrorResponse(res)
+	err = easypost.BuildErrorFromResponse(res)
 	_, ok = err.(*easypost.UnknownHttpError)
 	assert.True(ok)
 }
@@ -201,7 +201,7 @@ func (c *ClientTests) TestApiErrorMessageParseArray() {
 		Body:       ioutil.NopCloser(strings.NewReader(fakeErrorResponse)),
 	}
 
-	err := easypost.FromErrorResponse(res)
+	err := easypost.BuildErrorFromResponse(res)
 
 	errorMessage := err.Error()
 	assert.Equal("UNPROCESSABLE_ENTITY Bad format, Bad format 2", errorMessage)
@@ -228,7 +228,7 @@ func (c *ClientTests) TestErrorMessageParseMap() {
 		Body:       ioutil.NopCloser(strings.NewReader(fakeErrorResponse)),
 	}
 
-	err := easypost.FromErrorResponse(res)
+	err := easypost.BuildErrorFromResponse(res)
 
 	errorMessage := err.Error()
 	assert.Equal("UNPROCESSABLE_ENTITY Bad format, Bad format 2", errorMessage)
@@ -267,7 +267,7 @@ func (c *ClientTests) TestErrorMessageParseExtreme() {
 		Body:       ioutil.NopCloser(strings.NewReader(fakeErrorResponse)),
 	}
 
-	err := easypost.FromErrorResponse(res)
+	err := easypost.BuildErrorFromResponse(res)
 
 	errorMessage := err.Error()
 	messages := []string{"message1", "message2", "message3", "message4", "message5", "message6"}

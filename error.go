@@ -30,18 +30,18 @@ type Error struct {
 
 func (e *Error) UnmarshalJSON(data []byte) error {
 	type alias Error
-	aux := &struct {
+	tmpError := &struct {
 		Message interface{} `json:"message,omitempty"`
 		*alias
 	}{
 		alias: (*alias)(e),
 	}
-	if err := json.Unmarshal(data, &aux); err != nil {
+	if err := json.Unmarshal(data, &tmpError); err != nil {
 		return err
 	}
 
 	// convert message to string
-	messages := collectMessages(aux.Message, []string{})
+	messages := collectMessages(tmpError.Message, []string{})
 	e.Message = strings.Join(messages, ", ")
 
 	return nil
@@ -89,53 +89,58 @@ func (e *LibraryError) Error() string {
 
 // Local error types
 
+// LocalError represents an error caused by the EasyPost library itself, such as validation or JSON serialization issues.
 type LocalError struct {
 	LibraryError
 }
 
-type ValidationError struct {
-	LocalError
-}
-
+// EndOfPaginationError is raised when there are no more pages to retrieve.
 var EndOfPaginationError = &LocalError{LibraryError{Message: NoPagesLeftToRetrieve}}
 
+// FilteringError is raised when there is an issue while running a filtering operation.
 type FilteringError struct {
 	LocalError
 }
 
+// InvalidObjectError is raised when an object is invalid.
 type InvalidObjectError struct {
-	ValidationError
-}
-
-type InvalidParameterError struct {
-	ValidationError
-}
-
-type JsonError struct {
 	LocalError
 }
 
+// InvalidParameterError is raised when a parameter is invalid.
+type InvalidParameterError struct {
+	LocalError
+}
+
+// JsonDeserializationError is raised when there is an issue while deserializing JSON.
 type JsonDeserializationError struct {
-	JsonError
+	LocalError
 }
 
+// JsonSerializationError is raised when there is an issue while serializing JSON.
 type JsonSerializationError struct {
-	JsonError
+	LocalError
 }
 
+// JsonNoDataError is raised when there is no data to deserialize.
 type JsonNoDataError struct {
-	JsonError
+	LocalError
 }
 
+// MissingParameterError is raised when a required parameter is missing.
 type MissingParameterError struct {
 	LocalError
 }
 
+// MissingPropertyError is raised when a required property is missing.
 type MissingPropertyError struct {
 	LocalError
 }
 
+// MissingWebhookSignatureError is raised when a webhook does not contain a valid HMAC signature.
 var MissingWebhookSignatureError = &LocalError{LibraryError{Message: MissingWebhookSignature}}
+
+// MismatchWebhookSignatureError is raised when a webhook received did not originate from EasyPost or had a webhook secret mismatch.
 var MismatchWebhookSignatureError = &LocalError{LibraryError{Message: MismatchWebhookSignature}}
 
 // API/HTTP error types
@@ -171,77 +176,99 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Code)
 }
 
+// BadRequestError is raised when the API returns a 400 status code.
 type BadRequestError struct {
 	APIError
 }
 
+// ConnectionError is raised when the API returns a 0 status code.
 type ConnectionError struct {
 	APIError
 }
 
+// GatewayTimeoutError is raised when the API returns a 504 status code.
 type GatewayTimeoutError struct {
 	APIError
 }
 
+// InternalServerError is raised when the API returns a 500 status code.
 type InternalServerError struct {
 	APIError
 }
 
+// InvalidRequestError is raised when the API returns a 422 status code.
 type InvalidRequestError struct {
 	APIError
 }
 
+// MethodNotAllowedError is raised when the API returns a 405 status code.
 type MethodNotAllowedError struct {
 	APIError
 }
 
+// NotFoundError is raised when the API returns a 404 status code.
 type NotFoundError struct {
 	APIError
 }
 
+// PaymentError is raised when the API returns a 402 status code.
 type PaymentError struct {
 	APIError
 }
 
+// ProxyError is raised when the API returns a 407 status code.
 type ProxyError struct {
 	APIError
 }
 
+// RateLimitError is raised when the API returns a 429 status code.
 type RateLimitError struct {
 	APIError
 }
 
+// RedirectError is raised when the API returns a 3xx status code.
 type RedirectError struct {
 	APIError
 }
 
+// RetryError is raised when the API returns a 1xx status code.
 type RetryError struct {
 	APIError
 }
 
+// ServiceUnavailableError is raised when the API returns a 503 status code.
 type ServiceUnavailableError struct {
 	APIError
 }
 
+// SSLError is raised when there is an issue with the SSL certificate.
 type SSLError struct {
 	APIError
 }
 
+// TimeoutError is raised when the API returns a 408 status code.
 type TimeoutError struct {
 	APIError
 }
 
+// UnauthorizedError is raised when the API returns a 401 status code.
 type UnauthorizedError struct {
 	APIError
 }
 
+// ForbiddenError is raised when the API returns a 403 status code.
+type ForbiddenError struct {
+	APIError
+}
+
+// UnknownHttpError is raised when the API returns an unrecognized status code.
 type UnknownHttpError struct {
 	APIError
 }
 
-// FromErrorResponse returns an APIError-based object based on the HTTP response.
+// BuildErrorFromResponse returns an APIError-based object based on the HTTP response.
 // Do not pass a non-error response to this function.
-func FromErrorResponse(response *http.Response) error {
+func BuildErrorFromResponse(response *http.Response) error {
 	// build the base APIError object from the response
 	apiError := &APIError{
 		StatusCode: response.StatusCode,
@@ -249,15 +276,15 @@ func FromErrorResponse(response *http.Response) error {
 
 	// deserialize the response body into a temporary object
 	buf, _ := ioutil.ReadAll(response.Body)
-	aux := &struct {
+	tmpError := &struct {
 		Error *Error `json:"error,omitempty"`
 	}{}
 
-	if json.Unmarshal(buf, &aux) == nil {
+	if json.Unmarshal(buf, &tmpError) == nil {
 		// extract the details from the temporary object (top-level Error class) and store them in the APIError object
-		apiError.Message = aux.Error.Message.(string)
-		apiError.Code = aux.Error.Code
-		apiError.Errors = aux.Error.Errors
+		apiError.Message = tmpError.Error.Message.(string)
+		apiError.Code = tmpError.Error.Code
+		apiError.Errors = tmpError.Error.Errors
 	} else {
 		// could not extract error details from the API response (or API did not return data, i.e. 1xx, 3xx or 5xx)
 		if response.Status == "" {
@@ -278,10 +305,12 @@ func FromErrorResponse(response *http.Response) error {
 		return &RedirectError{APIError: *apiError}
 	case 400:
 		return &BadRequestError{APIError: *apiError}
-	case 401, 403:
+	case 401:
 		return &UnauthorizedError{APIError: *apiError}
 	case 402:
 		return &PaymentError{APIError: *apiError}
+	case 403:
+		return &ForbiddenError{APIError: *apiError}
 	case 404:
 		return &NotFoundError{APIError: *apiError}
 	case 405:
