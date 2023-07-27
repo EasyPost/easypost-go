@@ -395,35 +395,15 @@ func (c *Client) RerateShipmentWithCarbonOffsetWithContext(ctx context.Context, 
 	return
 }
 
-// Deprecated: Use LowestShipmentRate instead.
-// LowestRate gets the lowest rate of a shipment
-func (c *Client) LowestRate(shipment *Shipment) (out Rate, err error) {
-	return c.LowestShipmentRate(shipment)
-}
-
 // LowestShipmentRate gets the lowest rate of a shipment
 func (c *Client) LowestShipmentRate(shipment *Shipment) (out Rate, err error) {
 	return c.LowestShipmentRateWithCarrier(shipment, nil)
-}
-
-// Deprecated: Use LowestShipmentRateWithCarrier instead.
-// LowestRateWithCarrier performs the same operation as LowestRate,
-// but allows specifying a list of carriers for the lowest rate
-func (c *Client) LowestRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
-	return c.LowestShipmentRateWithCarrier(shipment, carriers)
 }
 
 // LowestShipmentRateWithCarrier performs the same operation as LowestShipmentRate,
 // but allows specifying a list of carriers for the lowest rate
 func (c *Client) LowestShipmentRateWithCarrier(shipment *Shipment, carriers []string) (out Rate, err error) {
 	return c.LowestShipmentRateWithCarrierAndService(shipment, carriers, nil)
-}
-
-// Deprecated: Use LowestShipmentRateWithCarrierAndService instead.
-// LowestRateWithCarrierAndService performs the same operation as LowestRate,
-// but allows specifying a list of carriers and service for the lowest rate
-func (c *Client) LowestRateWithCarrierAndService(shipment *Shipment, carriers []string, services []string) (out Rate, err error) {
-	return c.LowestShipmentRateWithCarrierAndService(shipment, carriers, services)
 }
 
 // LowestShipmentRateWithCarrierAndService performs the same operation as LowestShipmentRate,

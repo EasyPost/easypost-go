@@ -28,23 +28,6 @@ func (c *ClientTests) TestWebhookCreate() {
 	require.NoError(err)
 }
 
-func (c *ClientTests) TestWebhookCreateDeprecated() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	webhook, err := client.CreateWebhook(c.fixture.WebhookUrl())
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
-	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
-
-	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
-	require.NoError(err)
-
-	require.NoError(err)
-}
-
 func (c *ClientTests) TestWebhookRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
@@ -115,27 +98,6 @@ func (c *ClientTests) TestWebhookUpdate() {
 	require.NoError(err)
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.CreateUpdateWebhookOptions{})
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
-
-	err = client.DeleteWebhook(updatedWebhook.ID)
-	require.NoError(err)
-}
-
-func (c *ClientTests) TestWebhookEnableDeprecated() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	webhook, err := client.CreateWebhookWithDetails(
-		&easypost.CreateUpdateWebhookOptions{
-			URL:           c.fixture.WebhookUrl(),
-			WebhookSecret: "123",
-		},
-	)
-	require.NoError(err)
-
-	updatedWebhook, err := client.EnableWebhook(webhook.ID) // nolint:staticcheck
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
