@@ -6,7 +6,6 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
-	"errors"
 	"golang.org/x/text/unicode/norm"
 )
 
@@ -138,9 +137,9 @@ func (c *Client) ValidateWebhookWithContext(ctx context.Context, eventBody []byt
 				return &webhookBody, nil
 			}
 		} else {
-			return nil, errors.New("weebhook received did not originate from EasyPost or had a webhook secret mismatch")
+			return nil, MismatchWebhookSignatureError
 		}
 	} else {
-		return nil, errors.New("webhook received does not contain an HMAC signature")
+		return nil, MissingWebhookSignatureError
 	}
 }

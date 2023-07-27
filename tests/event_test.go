@@ -154,7 +154,7 @@ func (c *ClientTests) TestEventsGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		assert.Equal(easypost.NoPagesLeftToRetrieve, err.Error())
 		return
 	}
 }
