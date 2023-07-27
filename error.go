@@ -117,53 +117,6 @@ func newInvalidObjectError(message string) *InvalidObjectError {
 	return &InvalidObjectError{LocalError{LibraryError{Message: message}}}
 }
 
-// InvalidParameterError is raised when a parameter is invalid.
-type InvalidParameterError struct {
-	LocalError
-}
-
-// newInvalidParameterError returns a new InvalidParameterError object with the given message.
-func newInvalidParameterError(parameter string) *InvalidParameterError {
-	message := InvalidParameter + parameter
-	return &InvalidParameterError{LocalError{LibraryError{Message: message}}}
-}
-
-// JsonDeserializationError is raised when there is an issue while deserializing JSON.
-type JsonDeserializationError struct {
-	LocalError
-}
-
-// newJsonDeserializationError returns a new JsonDeserializationError object with the given type.
-func newJsonDeserializationError(toType string) *JsonDeserializationError {
-	message := JsonDeserializationErrorMessage + toType
-	return &JsonDeserializationError{LocalError{LibraryError{Message: message}}}
-}
-
-// JsonSerializationError is raised when there is an issue while serializing JSON.
-type JsonSerializationError struct {
-	LocalError
-}
-
-// newJsonSerializationError returns a new JsonSerializationError object with the given type.
-func newJsonSerializationError(fromType string) *JsonSerializationError {
-	message := JsonSerializationErrorMessage + fromType
-	return &JsonSerializationError{LocalError{LibraryError{Message: message}}}
-}
-
-// JsonNoDataError is raised when there is no data to deserialize.
-var JsonNoDataError = &LocalError{LibraryError{Message: JsonNoDataErrorMessage}}
-
-// MissingParameterError is raised when a required parameter is missing.
-type MissingParameterError struct {
-	LocalError
-}
-
-// newMissingParameterError returns a new MissingParameterError object with the given parameter.
-func newMissingParameterError(parameter string) *MissingParameterError {
-	message := MissingRequiredParameter + parameter
-	return &MissingParameterError{LocalError{LibraryError{Message: message}}}
-}
-
 // MissingPropertyError is raised when a required property is missing.
 type MissingPropertyError struct {
 	LocalError
