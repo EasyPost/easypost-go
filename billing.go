@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"context"
-	"errors"
 )
 
 // DeletePaymentMethod allows you to delete a payment method in your wallet.
@@ -49,7 +48,7 @@ func (c *Client) RetrievePaymentMethodsWithContext(ctx context.Context) (out *Pa
 	err = c.get(ctx, "payment_methods", &out)
 
 	if out.ID == "" {
-		return out, errors.New("billing has not been setup for this user. please add a payment method")
+		return out, NewInvalidObjectError(NoPaymentMethods)
 	}
 
 	return

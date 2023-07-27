@@ -102,9 +102,19 @@ type FilteringError struct {
 	LocalError
 }
 
+// NewFilteringError returns a new FilteringError object with the given message.
+func NewFilteringError(message string) *FilteringError {
+	return &FilteringError{LocalError{LibraryError{Message: message}}}
+}
+
 // InvalidObjectError is raised when an object is invalid.
 type InvalidObjectError struct {
 	LocalError
+}
+
+// NewInvalidObjectError returns a new InvalidObjectError object with the given message.
+func NewInvalidObjectError(message string) *InvalidObjectError {
+	return &InvalidObjectError{LocalError{LibraryError{Message: message}}}
 }
 
 // InvalidParameterError is raised when a parameter is invalid.
@@ -112,9 +122,21 @@ type InvalidParameterError struct {
 	LocalError
 }
 
+// NewInvalidParameterError returns a new InvalidParameterError object with the given message.
+func NewInvalidParameterError(parameter string) *InvalidParameterError {
+	message := InvalidParameter + parameter
+	return &InvalidParameterError{LocalError{LibraryError{Message: message}}}
+}
+
 // JsonDeserializationError is raised when there is an issue while deserializing JSON.
 type JsonDeserializationError struct {
 	LocalError
+}
+
+// NewJsonDeserializationError returns a new JsonDeserializationError object with the given type.
+func NewJsonDeserializationError(toType string) *JsonDeserializationError {
+	message := JsonDeserializationErrorMessage + toType
+	return &JsonDeserializationError{LocalError{LibraryError{Message: message}}}
 }
 
 // JsonSerializationError is raised when there is an issue while serializing JSON.
@@ -122,14 +144,24 @@ type JsonSerializationError struct {
 	LocalError
 }
 
-// JsonNoDataError is raised when there is no data to deserialize.
-type JsonNoDataError struct {
-	LocalError
+// NewJsonSerializationError returns a new JsonSerializationError object with the given type.
+func NewJsonSerializationError(fromType string) *JsonSerializationError {
+	message := JsonSerializationErrorMessage + fromType
+	return &JsonSerializationError{LocalError{LibraryError{Message: message}}}
 }
+
+// JsonNoDataError is raised when there is no data to deserialize.
+var JsonNoDataError = &LocalError{LibraryError{Message: JsonNoDataErrorMessage}}
 
 // MissingParameterError is raised when a required parameter is missing.
 type MissingParameterError struct {
 	LocalError
+}
+
+// NewMissingParameterError returns a new MissingParameterError object with the given parameter.
+func NewMissingParameterError(parameter string) *MissingParameterError {
+	message := MissingRequiredParameter + parameter
+	return &MissingParameterError{LocalError{LibraryError{Message: message}}}
 }
 
 // MissingPropertyError is raised when a required property is missing.
@@ -137,11 +169,27 @@ type MissingPropertyError struct {
 	LocalError
 }
 
+// NewMissingPropertyError returns a new MissingPropertyError object with the given property.
+func NewMissingPropertyError(property string) *MissingPropertyError {
+	message := MissingProperty + property
+	return &MissingPropertyError{LocalError{LibraryError{Message: message}}}
+}
+
 // MissingWebhookSignatureError is raised when a webhook does not contain a valid HMAC signature.
 var MissingWebhookSignatureError = &LocalError{LibraryError{Message: MissingWebhookSignature}}
 
 // MismatchWebhookSignatureError is raised when a webhook received did not originate from EasyPost or had a webhook secret mismatch.
 var MismatchWebhookSignatureError = &LocalError{LibraryError{Message: MismatchWebhookSignature}}
+
+// ExternalApiError represents an error caused by an external API, such as a 3rd party HTTP API (not EasyPost).
+type ExternalApiError struct {
+	LibraryError
+}
+
+// NewExternalApiError returns a new ExternalApiError object with the given message.
+func NewExternalApiError(message string) *ExternalApiError {
+	return &ExternalApiError{LibraryError{Message: message}}
+}
 
 // API/HTTP error types
 

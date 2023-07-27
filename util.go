@@ -1,7 +1,6 @@
 package easypost
 
 import (
-	"errors"
 	"fmt"
 	"strconv"
 	"strings"
@@ -85,7 +84,7 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 
 	// if not rate was ever set (nothing matched the criteria), return an error
 	if (out == SmartRate{}) {
-		return out, errors.New("no rates found")
+		return out, NewFilteringError(NoRatesFoundMatchingFilters)
 	}
 
 	return
@@ -127,7 +126,7 @@ func (c *Client) lowestRate(rates []*MinifiedRate, carriers []string, services [
 
 	// if not rate was ever set (nothing matched the criteria), return an error
 	if (out == MinifiedRate{}) {
-		return out, errors.New("no rates found")
+		return out, NewFilteringError(NoRatesFoundMatchingFilters)
 	}
 
 	return

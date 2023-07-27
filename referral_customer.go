@@ -3,7 +3,6 @@ package easypost
 import (
 	"context"
 	"encoding/json"
-	"errors"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -141,12 +140,17 @@ func (c *Client) AddReferralCustomerCreditCard(referralCustomerApiKey string, cr
 func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, referralCustomerApiKey string, creditCardOptions *CreditCardOptions, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	stripeApiKeyResponse, err := c.retrieveEasypostStripeApiKey(ctx)
 	if err != nil || stripeApiKeyResponse == nil || stripeApiKeyResponse.PublicKey == "" {
-		return nil, errors.New("could not create Stripe token, please try again later")
+		return nil, &InternalServerError{
+			APIError: APIError{
+				Code:       "Could not create Stripe token, please try again later",
+				StatusCode: 0,
+			},
+		}
 	}
 
 	stripeTokenResponse, err := c.createStripeToken(ctx, stripeApiKeyResponse.PublicKey, creditCardOptions)
 	if err != nil || stripeTokenResponse == nil || stripeTokenResponse.Id == "" {
-		return nil, errors.New("could not send card details to Stripe, please try again later")
+		return nil, NewExternalApiError("Could not create Stripe token, please try again later")
 	}
 
 	return c.createEasypostCreditCard(ctx, referralCustomerApiKey, stripeTokenResponse.Id, priority)
