@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v2.20.0 (2023-07-28)
 
 - Adds hooks to introspect the request and response of an API call (see `HTTP Hooks` section of the README for more information)
 
