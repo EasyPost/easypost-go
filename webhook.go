@@ -45,19 +45,6 @@ func (c *Client) composeCreateUpdateWebhookRequest(data *CreateUpdateWebhookOpti
 	}
 }
 
-// CreateWebhook creates a new webhook with the given URL.
-// Deprecated: Use CreateWebhookWithDetails instead.
-func (c *Client) CreateWebhook(u string) (out *Webhook, err error) {
-	return c.CreateWebhookWithContext(context.Background(), u)
-}
-
-// CreateWebhookWithContext performs the same operation as CreateWebhook, but
-// allows specifying a context that can interrupt the request.
-// Deprecated: Use CreateWebhookWithDetailsWithContext instead.
-func (c *Client) CreateWebhookWithContext(ctx context.Context, u string) (out *Webhook, err error) {
-	return c.CreateWebhookWithDetailsWithContext(ctx, &CreateUpdateWebhookOptions{URL: u})
-}
-
 // CreateWebhookWithDetails creates a new webhook with the provided details.
 func (c *Client) CreateWebhookWithDetails(data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
 	return c.CreateWebhookWithDetailsWithContext(context.Background(), data)
@@ -95,19 +82,6 @@ func (c *Client) GetWebhook(webhookID string) (out *Webhook, err error) {
 func (c *Client) GetWebhookWithContext(ctx context.Context, webhookID string) (out *Webhook, err error) {
 	err = c.get(ctx, "webhooks/"+webhookID, &out)
 	return
-}
-
-// Deprecated: Use UpdateWebhook instead.
-// EnableWebhook re-enables a disabled webhook.
-func (c *Client) EnableWebhook(webhookID string) (out *Webhook, err error) {
-	return c.EnableWebhookWithContext(context.Background(), webhookID)
-}
-
-// Deprecated: Use UpdateWebhookWithContext instead.
-// EnableWebhookWithContext performs the same operation as EnableWebhook, but
-// allows specifying a context that can interrupt the request.
-func (c *Client) EnableWebhookWithContext(ctx context.Context, webhookID string) (out *Webhook, err error) {
-	return c.UpdateWebhookWithContext(ctx, webhookID, &CreateUpdateWebhookOptions{})
 }
 
 // UpdateWebhook updates a webhook. Automatically re-enables webhook if it is disabled.

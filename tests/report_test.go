@@ -95,7 +95,7 @@ func (c *ClientTests) TestReportAll() {
 
 	reports, err := client.ListReports(
 		c.fixture.ReportType(),
-		&easypost.ListReportsOptions{
+		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
@@ -116,7 +116,7 @@ func (c *ClientTests) TestReportsGetNextPage() {
 
 	firstPage, err := client.ListReports(
 		c.fixture.ReportType(),
-		&easypost.ListReportsOptions{
+		&easypost.ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
