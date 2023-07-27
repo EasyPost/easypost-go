@@ -143,7 +143,7 @@ func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, r
 		return nil, &InternalServerError{
 			APIError: APIError{
 				Code:       "Could not create Stripe token, please try again later",
-				StatusCode: 0,
+				StatusCode: 500,
 			},
 		}
 	}
