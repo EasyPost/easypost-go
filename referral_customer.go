@@ -150,7 +150,7 @@ func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, r
 
 	stripeTokenResponse, err := c.createStripeToken(ctx, stripeApiKeyResponse.PublicKey, creditCardOptions)
 	if err != nil || stripeTokenResponse == nil || stripeTokenResponse.Id == "" {
-		return nil, NewExternalApiError("Could not create Stripe token, please try again later")
+		return nil, newExternalApiError("Could not create Stripe token, please try again later")
 	}
 
 	return c.createEasypostCreditCard(ctx, referralCustomerApiKey, stripeTokenResponse.Id, priority)

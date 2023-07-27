@@ -102,8 +102,8 @@ type FilteringError struct {
 	LocalError
 }
 
-// NewFilteringError returns a new FilteringError object with the given message.
-func NewFilteringError(message string) *FilteringError {
+// newFilteringError returns a new FilteringError object with the given message.
+func newFilteringError(message string) *FilteringError {
 	return &FilteringError{LocalError{LibraryError{Message: message}}}
 }
 
@@ -112,8 +112,8 @@ type InvalidObjectError struct {
 	LocalError
 }
 
-// NewInvalidObjectError returns a new InvalidObjectError object with the given message.
-func NewInvalidObjectError(message string) *InvalidObjectError {
+// newInvalidObjectError returns a new InvalidObjectError object with the given message.
+func newInvalidObjectError(message string) *InvalidObjectError {
 	return &InvalidObjectError{LocalError{LibraryError{Message: message}}}
 }
 
@@ -122,8 +122,8 @@ type InvalidParameterError struct {
 	LocalError
 }
 
-// NewInvalidParameterError returns a new InvalidParameterError object with the given message.
-func NewInvalidParameterError(parameter string) *InvalidParameterError {
+// newInvalidParameterError returns a new InvalidParameterError object with the given message.
+func newInvalidParameterError(parameter string) *InvalidParameterError {
 	message := InvalidParameter + parameter
 	return &InvalidParameterError{LocalError{LibraryError{Message: message}}}
 }
@@ -133,8 +133,8 @@ type JsonDeserializationError struct {
 	LocalError
 }
 
-// NewJsonDeserializationError returns a new JsonDeserializationError object with the given type.
-func NewJsonDeserializationError(toType string) *JsonDeserializationError {
+// newJsonDeserializationError returns a new JsonDeserializationError object with the given type.
+func newJsonDeserializationError(toType string) *JsonDeserializationError {
 	message := JsonDeserializationErrorMessage + toType
 	return &JsonDeserializationError{LocalError{LibraryError{Message: message}}}
 }
@@ -144,8 +144,8 @@ type JsonSerializationError struct {
 	LocalError
 }
 
-// NewJsonSerializationError returns a new JsonSerializationError object with the given type.
-func NewJsonSerializationError(fromType string) *JsonSerializationError {
+// newJsonSerializationError returns a new JsonSerializationError object with the given type.
+func newJsonSerializationError(fromType string) *JsonSerializationError {
 	message := JsonSerializationErrorMessage + fromType
 	return &JsonSerializationError{LocalError{LibraryError{Message: message}}}
 }
@@ -158,8 +158,8 @@ type MissingParameterError struct {
 	LocalError
 }
 
-// NewMissingParameterError returns a new MissingParameterError object with the given parameter.
-func NewMissingParameterError(parameter string) *MissingParameterError {
+// newMissingParameterError returns a new MissingParameterError object with the given parameter.
+func newMissingParameterError(parameter string) *MissingParameterError {
 	message := MissingRequiredParameter + parameter
 	return &MissingParameterError{LocalError{LibraryError{Message: message}}}
 }
@@ -169,8 +169,8 @@ type MissingPropertyError struct {
 	LocalError
 }
 
-// NewMissingPropertyError returns a new MissingPropertyError object with the given property.
-func NewMissingPropertyError(property string) *MissingPropertyError {
+// newMissingPropertyError returns a new MissingPropertyError object with the given property.
+func newMissingPropertyError(property string) *MissingPropertyError {
 	message := MissingProperty + property
 	return &MissingPropertyError{LocalError{LibraryError{Message: message}}}
 }
@@ -186,8 +186,8 @@ type ExternalApiError struct {
 	LibraryError
 }
 
-// NewExternalApiError returns a new ExternalApiError object with the given message.
-func NewExternalApiError(message string) *ExternalApiError {
+// newExternalApiError returns a new ExternalApiError object with the given message.
+func newExternalApiError(message string) *ExternalApiError {
 	return &ExternalApiError{LibraryError{Message: message}}
 }
 

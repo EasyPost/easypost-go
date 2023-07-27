@@ -48,7 +48,7 @@ func (c *Client) RetrievePaymentMethodsWithContext(ctx context.Context) (out *Pa
 	err = c.get(ctx, "payment_methods", &out)
 
 	if out.ID == "" {
-		return out, NewInvalidObjectError(NoPaymentMethods)
+		return out, newInvalidObjectError(NoPaymentMethods)
 	}
 
 	return

@@ -46,7 +46,7 @@ func (c *Client) getPaymentMethodObjectType(object *PaymentMethodObject) (out Pa
 	} else if strings.HasPrefix(object.ID, "bank_") {
 		out = BankAccountPaymentType
 	} else {
-		return out, NewInvalidObjectError(NoMatchingPaymentMethod)
+		return out, newInvalidObjectError(NoMatchingPaymentMethod)
 	}
 	return
 }
@@ -60,7 +60,7 @@ func (c *Client) getPaymentMethodEndpoint(object *PaymentMethodObject) (out stri
 	case BankAccountPaymentType:
 		out = "bank_accounts"
 	default:
-		return out, NewInvalidObjectError(NoMatchingPaymentMethod)
+		return out, newInvalidObjectError(NoMatchingPaymentMethod)
 	}
 	return
 }
@@ -80,7 +80,7 @@ func (c *Client) getPaymentMethodByPriority(priority PaymentMethodPriority) (out
 	}
 
 	if out == nil {
-		return out, NewInvalidObjectError(PaymentMethodNotSetUp)
+		return out, newInvalidObjectError(PaymentMethodNotSetUp)
 	}
 
 	return out, nil
