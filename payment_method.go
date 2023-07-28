@@ -1,7 +1,6 @@
 package easypost
 
 import (
-	"errors"
 	"strings"
 )
 
@@ -47,7 +46,7 @@ func (c *Client) getPaymentMethodObjectType(object *PaymentMethodObject) (out Pa
 	} else if strings.HasPrefix(object.ID, "bank_") {
 		out = BankAccountPaymentType
 	} else {
-		return out, errors.New("no matching payment method type found")
+		return out, newInvalidObjectError(NoMatchingPaymentMethod)
 	}
 	return
 }
@@ -61,7 +60,7 @@ func (c *Client) getPaymentMethodEndpoint(object *PaymentMethodObject) (out stri
 	case BankAccountPaymentType:
 		out = "bank_accounts"
 	default:
-		return out, errors.New("no matching payment method type found")
+		return out, newInvalidObjectError(NoMatchingPaymentMethod)
 	}
 	return
 }
@@ -81,7 +80,7 @@ func (c *Client) getPaymentMethodByPriority(priority PaymentMethodPriority) (out
 	}
 
 	if out == nil {
-		return out, errors.New("the chosen payment method is not set up yet")
+		return out, newInvalidObjectError(PaymentMethodNotSetUp)
 	}
 
 	return out, nil
