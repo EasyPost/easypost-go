@@ -134,7 +134,7 @@ func (c *Client) setBody(req *http.Request, in interface{}) error {
 
 func (c *Client) do(ctx context.Context, method, path string, in, out interface{}) error {
 	if c.APIKey == "" {
-		return errors.New("no API key provided")
+		return newMissingPropertyError("APIKey")
 	}
 
 	req := &http.Request{

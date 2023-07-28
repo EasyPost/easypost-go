@@ -102,34 +102,19 @@ type FilteringError struct {
 	LocalError
 }
 
+// newFilteringError returns a new FilteringError object with the given message.
+func newFilteringError(message string) *FilteringError {
+	return &FilteringError{LocalError{LibraryError{Message: message}}}
+}
+
 // InvalidObjectError is raised when an object is invalid.
 type InvalidObjectError struct {
 	LocalError
 }
 
-// InvalidParameterError is raised when a parameter is invalid.
-type InvalidParameterError struct {
-	LocalError
-}
-
-// JsonDeserializationError is raised when there is an issue while deserializing JSON.
-type JsonDeserializationError struct {
-	LocalError
-}
-
-// JsonSerializationError is raised when there is an issue while serializing JSON.
-type JsonSerializationError struct {
-	LocalError
-}
-
-// JsonNoDataError is raised when there is no data to deserialize.
-type JsonNoDataError struct {
-	LocalError
-}
-
-// MissingParameterError is raised when a required parameter is missing.
-type MissingParameterError struct {
-	LocalError
+// newInvalidObjectError returns a new InvalidObjectError object with the given message.
+func newInvalidObjectError(message string) *InvalidObjectError {
+	return &InvalidObjectError{LocalError{LibraryError{Message: message}}}
 }
 
 // MissingPropertyError is raised when a required property is missing.
@@ -137,11 +122,27 @@ type MissingPropertyError struct {
 	LocalError
 }
 
+// newMissingPropertyError returns a new MissingPropertyError object with the given property.
+func newMissingPropertyError(property string) *MissingPropertyError {
+	message := MissingProperty + property
+	return &MissingPropertyError{LocalError{LibraryError{Message: message}}}
+}
+
 // MissingWebhookSignatureError is raised when a webhook does not contain a valid HMAC signature.
 var MissingWebhookSignatureError = &LocalError{LibraryError{Message: MissingWebhookSignature}}
 
 // MismatchWebhookSignatureError is raised when a webhook received did not originate from EasyPost or had a webhook secret mismatch.
 var MismatchWebhookSignatureError = &LocalError{LibraryError{Message: MismatchWebhookSignature}}
+
+// ExternalApiError represents an error caused by an external API, such as a 3rd party HTTP API (not EasyPost).
+type ExternalApiError struct {
+	LibraryError
+}
+
+// newExternalApiError returns a new ExternalApiError object with the given message.
+func newExternalApiError(message string) *ExternalApiError {
+	return &ExternalApiError{LibraryError{Message: message}}
+}
 
 // API/HTTP error types
 
