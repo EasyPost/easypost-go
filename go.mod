@@ -5,7 +5,7 @@ go 1.16
 require (
 	github.com/dnaeon/go-vcr v1.2.0
 	github.com/google/go-querystring v1.1.0
-	github.com/google/uuid v1.3.0 // indirect
-	github.com/stretchr/testify v1.7.2
-	golang.org/x/text v0.3.8
+	github.com/google/uuid v1.3.0
+	github.com/stretchr/testify v1.8.4
+	golang.org/x/text v0.11.0
 )
