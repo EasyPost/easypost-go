@@ -1,5 +1,26 @@
 # CHANGELOG
 
+## v3.0.0 (2023-08-03)
+
+- Drop support for Go 1.15
+  - Minimum supported version is now Go 1.16
+- Adds specific error types for API and local errors
+  - All errors inherit the `LibraryError` interface
+    - API errors inherit the `APIError` interface, which inherits the `LibraryError` interface
+    - Local errors inherit the `LocalError` interface, which inherits the `LibraryError` interface
+  - Common error messages are now available as constants for parsing (e.g. regex)
+- All uses of `*time.Time` have been replaced with new `easypost.DateTime` class
+  - `DateTime` is a wrapper around `time.Time` that handles unexpected date formats from the API
+- Previously-marked deprecated functions and structs have been removed:
+  - `ListReportOptions` struct -> use `ListOptions` struct instead
+  - Beta carrier metadata functions -> use non-beta functions instead
+  - `LowestRate` shipment functions -> use `LowestShipmentRate` functions instead
+  - `CreateWebhook` function -> use `CreateWebhookWithDetails` function instead
+  - `EnableWebhook` function -> use `UpdateWebhook` function instead
+- `TrackingCodes` string array on `ListTrackersOptions` struct is now `TrackingCode` single string
+- `AddShipmentsToBatch` and `RemoveShipmentsFromBatch` functions now explicitly accept `Shipment` structs instead of generic `interface{}` types
+  - Functions will no longer accept solely IDs; users will need to provide whole `Shipment` structs
+
 ## v2.20.0 (2023-07-28)
 
 - Adds hooks to introspect the request and response of an API call (see `HTTP Hooks` section of the README for more information)
