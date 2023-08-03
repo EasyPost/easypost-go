@@ -25,7 +25,7 @@ With the transition to `v3`, this library must now be imported as follows:
 
 ```go
 import (
-"github.com/EasyPost/easypost-go/v3"
+    "github.com/EasyPost/easypost-go/v3"
 )
 ```
 
@@ -165,16 +165,16 @@ Instead of passing a slice of strings, you should now pass a single string:
 // Before
 
 codes := []string{"EZ1000000001", "EZ1000000002"}
-trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
-TrackingCodes: codes,
-})
+    trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
+        TrackingCodes: codes,
+    })
 }
 
 // After
 code := "EZ1000000001"
-trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
-TrackingCode: code,
-})
+    trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
+        TrackingCode: code,
+    })
 }
 ```
 
@@ -215,7 +215,7 @@ With the transition to `v2`, this library must now be imported as follows:
 
 ```go
 import (
-"github.com/EasyPost/easypost-go/v2"
+    "github.com/EasyPost/easypost-go/v2"
 )
 ```
 
@@ -240,7 +240,7 @@ overriding the defaults:
 
 ```go
 client := &easypost.Client{
-Timeout: 60000,
+    Timeout: 60000,
 }
 ```
 
