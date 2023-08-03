@@ -13,7 +13,7 @@ import (
 	"testing"
 	"time"
 
-	"github.com/EasyPost/easypost-go/v2"
+	"github.com/EasyPost/easypost-go/v3"
 	"github.com/dnaeon/go-vcr/cassette"
 	"github.com/dnaeon/go-vcr/recorder"
 	"github.com/stretchr/testify/suite"

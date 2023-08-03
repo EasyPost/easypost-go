@@ -1,10 +1,9 @@
 package easypost_test
 
 import (
+	"github.com/EasyPost/easypost-go/v3"
 	"reflect"
 	"strings"
-
-	"github.com/EasyPost/easypost-go/v2"
 )
 
 func (c *ClientTests) TestAddressCreate() {
