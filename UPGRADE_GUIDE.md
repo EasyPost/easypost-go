@@ -2,6 +2,9 @@
 
 Use the following guide to assist in the upgrade process of the `easypost-go` library between major versions.
 
+* [Upgrading from 2.x to 3.0](#upgrading-from-2x-to-30)
+* [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20)
+
 ## Upgrading from 2.x to 3.0
 
 ### 3.0 High Impact Changes
@@ -45,8 +48,7 @@ Some dependencies had minor version bumps.
 
 *Likelihood of Impact: **High***
 
-All uses of `time.Time` in the library (including in parameter and API response structs) have been replaced with a
-new `DateTime` type.
+All uses of `time.Time` in the library (including in parameter and API response structs) have been replaced with a new `DateTime` type.
 
 This type is a wrapper around `time.Time` that handles unexpected datetime formats returned by the API.
 
@@ -131,7 +133,7 @@ Subclasses of `easypost.LibraryError` are grouped into two categories:
 Any error type can be pretty-printed as a string using the `Error()` method:
 
 ```go
-err := client.CreateAddress(&easypost.Address{
+_, err := client.CreateAddress(&easypost.Address{
   Name: "Invalid Address",
 })
 
@@ -149,11 +151,11 @@ Any `easypost.LocalError`-derived error type will have the following properties:
 
 - `Message` - A human-readable message describing the error
 
-Common strings adn templates used to construct error messages are available as constants (e.g. `easypost.NoRatesMatchingFilters`). These can be used to perform regex-based evaluation of error messages.
+Common strings and templates used to construct error messages are available as constants (e.g. `easypost.NoRatesMatchingFilters`). These can be used to perform regex-based evaluation of error messages.
 
 **Note**: An `easypost.LibraryError` and its subclasses represent errors that occur within this library. This is different from `easypost.Error`, which is a struct representing a server-side error returned by a failed API call.
 
-## 3.0 `TrackingCodes` Parameter Renamed
+## 3.0 TrackingCodes Parameter Renamed
 
 *Likelihood of Impact: **Medium***
 
@@ -163,19 +165,14 @@ Instead of passing a slice of strings, you should now pass a single string:
 
 ```go
 // Before
-
-codes := []string{"EZ1000000001", "EZ1000000002"}
-    trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
-        TrackingCodes: codes,
-    })
-}
+trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
+	TrackingCodes: []string{"EZ1000000001", "EZ1000000002"},
+})
 
 // After
-code := "EZ1000000001"
-    trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
-        TrackingCode: code,
-    })
-}
+trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
+	TrackingCode: "EZ1000000001",
+})
 ```
 
 ## 3.0 Add/Remove Shipments to Batch Parameter Change
@@ -193,7 +190,6 @@ batch, err := client.AddShipmentsToBatch("batch_123", shipment1.ID, shipment2.ID
 // After
 batch, err := client.AddShipmentsToBatch("batch_123", shipment1, shipment2)
 ```
-
 
 ## Upgrading from 1.x to 2.0
 
