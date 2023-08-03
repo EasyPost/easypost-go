@@ -235,8 +235,7 @@ All dependencies had minor version bumps.
 
 *Likelihood of Impact: **Medium***
 
-Default timeouts for all HTTP requests are now set to 60 seconds. If you require longer timeouts, you can set them by
-overriding the defaults:
+Default timeouts for all HTTP requests are now set to 60 seconds. If you require longer timeouts, you can set them by overriding the defaults:
 
 ```go
 client := &easypost.Client{
@@ -248,7 +247,4 @@ client := &easypost.Client{
 
 *Likelihood of Impact: **Medium***
 
-The HTTP method used for the `GetShipmentRates` endpoint at the API level has changed from `POST` to `GET` and will only
-retrieve rates for a shipment instead of regenerating them. A new `/rerate` endpoint has been introduced to replace this
-functionality; In this library, you can now call the `RerateShipment` method to regenerate rates. Due to the logic
-change, the `GetShipmentRates` method has been removed since a Shipment inherently already has rates associated.
+The HTTP method used for the `GetShipmentRates` endpoint at the API level has changed from `POST` to `GET` and will only retrieve rates for a shipment instead of regenerating them. A new `/rerate` endpoint has been introduced to replace this functionality; In this library, you can now call the `RerateShipment` method to regenerate rates. Due to the logic change, the `GetShipmentRates` method has been removed since a Shipment inherently already has rates associated.
