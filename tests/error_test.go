@@ -5,7 +5,7 @@ import (
 	"net/http"
 	"strings"
 
-	"github.com/EasyPost/easypost-go/v2"
+	"github.com/EasyPost/easypost-go/v3"
 )
 
 // TestApiError tests that a bad API request returns an InvalidRequestError (a subclass of APIError), and that the

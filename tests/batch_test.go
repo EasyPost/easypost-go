@@ -8,7 +8,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/EasyPost/easypost-go/v2"
+	"github.com/EasyPost/easypost-go/v3"
 )
 
 func (c *ClientTests) TestBatchCreate() {
