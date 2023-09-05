@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v3.0.1 (2023-09-05)
 
 - Fix endpoint for creating a FedEx Smartpost carrier account
 
