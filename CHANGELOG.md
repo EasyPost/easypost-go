@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix endpoint for creating a FedEx Smartpost carrier account
+
 ## v3.0.0 (2023-08-03)
 
 - Drop support for Go 1.15
