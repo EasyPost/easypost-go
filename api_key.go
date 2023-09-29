@@ -31,3 +31,30 @@ func (c *Client) GetAPIKeysWithContext(ctx context.Context) (out *APIKeys, err e
 	err = c.get(ctx, "api_keys", &out)
 	return
 }
+
+// GetAPIKeysForUser returns the list of API keys associated with the given user ID.
+func (c *Client) GetAPIKeysForUser(userID string) (out *APIKeys, err error) {
+	return c.GetAPIKeysForUserWithContext(context.Background(), userID)
+}
+
+// GetAPIKeysForUserWithContext performs the same operation as GetAPIKeysForUser, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) GetAPIKeysForUserWithContext(ctx context.Context, userID string) (out *APIKeys, err error) {
+	keys, err := c.GetAPIKeysWithContext(ctx)
+
+	if err != nil {
+		return nil, err
+	}
+
+	if keys.ID == userID {
+		return keys, nil
+	}
+
+	for _, child := range keys.Children {
+		if child.ID == userID {
+			return child, nil
+		}
+	}
+
+	return nil, newFilteringError(NoUserFoundForId)
+}

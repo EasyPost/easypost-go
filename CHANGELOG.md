@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Add `GetAPIKeysForUser` under API Key service to retrieve API keys for a specific user ID
+
 ## v3.1.0 (2023-09-29)
 
 - Adds `CommercialInvoiceSignature` and `CommercialInvoiceLetterhead` shipment options
