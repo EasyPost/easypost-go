@@ -1,0 +1,114 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/users
+    method: GET
+  response:
+    body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[{"children":[],"created_at":"2023-09-20T18:01:26Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_5f0c48e7a66b42398740b0149b1bb24c","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2023-09-20T18:09:24Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_97f56192c53d490aa7851087b88618a4","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true}],"created_at":"2020-05-07T23:43:48Z","default_carbon_offset":false,"default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"has_elevate_access":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
+      User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"2bb2253a5710a5bbc4e19acba15edcf1"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 565dec3e651736f9f452410800c15608
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb43nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2nuq cac2303bbb
+      - extlb1nuq 003ad9bca0
+      X-Runtime:
+      - "0.088317"
+      X-Version-Label:
+      - easypost-202309292024-b6debc40aa-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/api_keys
+    method: GET
+  response:
+    body: '{"children":[{"children":[],"id":"user_5f0c48e7a66b42398740b0149b1bb24c","keys":[{"active":true,"created_at":"2023-09-20T18:01:26Z","id":"ak_88e217ee1f0c483c80f7ab83de73bb5b","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-09-20T18:01:26Z","id":"ak_62c5b384a6b1422bb0b99f5578ba59ee","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_97f56192c53d490aa7851087b88618a4","keys":[{"active":true,"created_at":"2023-09-20T18:09:24Z","id":"ak_ef2cf7363e65470e9ae62a9f8656adf7","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-09-20T18:09:24Z","id":"ak_e19b18ca12f14ab78c5fdd80e8697bad","key":"REDACTED","mode":"production","object":"ApiKey"}]}],"id":"user_a76997d126dd488f8ad22d52301300b0","keys":[{"active":true,"created_at":"2022-02-24T20:56:44Z","id":"ak_67dc6b8292554e67aa2134f9ca6a314a","key":"REDACTED","mode":"production","object":"ApiKey"},{"active":true,"created_at":"2022-02-24T20:56:47Z","id":"ak_c3114bfc14c24041b04f959a1f364924","key":"REDACTED","mode":"test","object":"ApiKey"}]}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Etag:
+      - W/"bf1b480ef1aea8b91b5612613f393ab6"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 565dec3e651736f9f452410800c15617
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb40nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1nuq cac2303bbb
+      - extlb1nuq 003ad9bca0
+      X-Runtime:
+      - "0.033852"
+      X-Version-Label:
+      - easypost-202309291831-402430765a-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
