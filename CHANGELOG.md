@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v3.2.0 (2023-10-11)
 
 - Add `GetAPIKeysForUser` under API Key service to retrieve API keys for a specific user ID
 
