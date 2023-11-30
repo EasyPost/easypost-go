@@ -59,18 +59,6 @@ func (c *ClientTests) TestBatchAll() {
 	}
 }
 
-func (c *ClientTests) TestBatchCreateAndBuy() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	batch, err := client.CreateAndBuyBatch(c.fixture.OneCallBuyShipment(), c.fixture.OneCallBuyShipment())
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Batch{}), reflect.TypeOf(batch))
-	assert.True(strings.HasPrefix(batch.ID, "batch_"))
-	assert.Equal(2, batch.NumShipments)
-}
-
 func (c *ClientTests) TestBatchBuy() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()

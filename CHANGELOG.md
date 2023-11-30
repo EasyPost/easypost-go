@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next major release
+
+- Removes the undocumented `CreateAndBuy` function from the Batch service. The proper usage is to create a batch first and buy it separately
+
 ## v3.2.0 (2023-10-11)
 
 - Add `GetAPIKeysForUser` under API Key service to retrieve API keys for a specific user ID
