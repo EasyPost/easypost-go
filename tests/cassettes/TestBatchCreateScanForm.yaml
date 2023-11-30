@@ -18,14 +18,12 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:21:53Z","id":"batch_fcdbd9872ef741df98b8ee0785a25a80","label_url":null,"mode":"test","num_shipments":1,"object":"EasyPost::Entity::Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T18:21:53Z"}'
+    body: '{"created_at":"2023-11-30T20:10:23Z","id":"batch_0f1512b0b2ab4b59a008ce06e209c6c1","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2023-11-30T20:10:23Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"a68cd71580f321235ffccd934db0cd1a"
       Expires:
       - "0"
       Pragma:
@@ -41,21 +39,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5641ec7d9989000d8f86
+      - 32e015fa6568ec2fe7896122001b39d7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.034923"
+      - "0.153018"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -69,17 +66,15 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/batches/batch_fcdbd9872ef741df98b8ee0785a25a80/buy
+    url: https://api.easypost.com/v2/batches/batch_0f1512b0b2ab4b59a008ce06e209c6c1/buy
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:21:53Z","id":"batch_fcdbd9872ef741df98b8ee0785a25a80","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"queued_for_purchase","id":"shp_17b468c09cc14fe6987829a88b144fb5","reference":null,"tracking_code":null}],"state":"created","status":{"created":1,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2022-09-21T18:21:53Z"}'
+    body: '{"created_at":"2023-11-30T20:10:23Z","id":"batch_0f1512b0b2ab4b59a008ce06e209c6c1","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"queued_for_purchase","id":"shp_b6dbbede51a441d7aa5aca58d4e39c6e","reference":null,"tracking_code":null}],"state":"created","status":{"created":1,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2023-11-30T20:10:23Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"dc214e86b9a00eced66e632b12167d8e"
       Expires:
       - "0"
       Pragma:
@@ -95,21 +90,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5641ec7d9989000d8fa5
+      - 32e015fa6568ec2fe7896122001b3a2d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb33nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.053702"
+      - "0.080094"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -127,17 +121,15 @@ interactions:
       - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/batches/batch_fcdbd9872ef741df98b8ee0785a25a80/scan_form
+    url: https://api.easypost.com/v2/batches/batch_0f1512b0b2ab4b59a008ce06e209c6c1/scan_form
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:21:53Z","id":"batch_fcdbd9872ef741df98b8ee0785a25a80","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":{"address":null,"batch_id":"batch_fcdbd9872ef741df98b8ee0785a25a80","confirmation":null,"created_at":"2022-09-21T18:21:59Z","form_file_type":null,"form_url":null,"id":"sf_9f422ff68ce64b1c893978f6588cb546","message":null,"object":"ScanForm","status":"creating","tracking_codes":[],"updated_at":"2022-09-21T18:21:59Z"},"shipments":[{"batch_message":null,"batch_status":"postage_purchased","id":"shp_17b468c09cc14fe6987829a88b144fb5","reference":null,"tracking_code":"9400100109361138710060"}],"state":"purchased","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":1,"queued_for_purchase":0},"updated_at":"2022-09-21T18:21:59Z"}'
+    body: '{"created_at":"2023-11-30T20:10:23Z","id":"batch_0f1512b0b2ab4b59a008ce06e209c6c1","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":{"address":null,"batch_id":"batch_0f1512b0b2ab4b59a008ce06e209c6c1","confirmation":null,"created_at":"2023-11-30T20:10:28Z","form_file_type":null,"form_url":null,"id":"sf_f39d531b6e7a4ed79e61f90a4ea03608","message":null,"object":"ScanForm","status":"creating","tracking_codes":[],"updated_at":"2023-11-30T20:10:28Z"},"shipments":[{"batch_message":null,"batch_status":"postage_purchased","id":"shp_b6dbbede51a441d7aa5aca58d4e39c6e","reference":null,"tracking_code":"9400100105442287382941"}],"state":"purchased","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":1,"queued_for_purchase":0},"updated_at":"2023-11-30T20:10:28Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"32d122a9b5165c17eb5c465db1635a29"
       Expires:
       - "0"
       Pragma:
@@ -153,21 +145,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5647ec7d9989000d9299
+      - 32e015fa6568ec34e7896122001b4017
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.153544"
+      - "0.083436"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

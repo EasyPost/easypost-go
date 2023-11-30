@@ -14,14 +14,12 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_787f9f83014f49a4a1da9a5fa5cf33d6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T18:22:52Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2023-11-30T20:11:40Z","end_date":"2022-04-11","id":"shprep_20e852aff80248709caa58c9d8f0896e","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2023-11-30T20:11:40Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"cadb49925379f6bfbdf0f1cd502e16a9"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b567cec7d9989000db09f
+      - 32e015fa6568ec7ce7896122001b801b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.046801"
+      - "0.064065"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -65,17 +62,15 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/reports/shipment/shprep_787f9f83014f49a4a1da9a5fa5cf33d6
+    url: https://api.easypost.com/v2/reports/shipment/shprep_20e852aff80248709caa58c9d8f0896e
     method: GET
   response:
-    body: '{"created_at":"2022-09-21T18:22:52Z","end_date":"2022-04-11","id":"shprep_787f9f83014f49a4a1da9a5fa5cf33d6","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"available","updated_at":"2022-09-21T18:22:52Z","url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/shipment_report/20220921/3ba93fbc34734e65bc812167205801b6.zip?X-Amz-Algorithm=AWS4-HMAC-SHA256\u0026X-Amz-Credential=AKIAY27LO6YQS5SPYTWI%2F20220921%2Fus-west-2%2Fs3%2Faws4_request\u0026X-Amz-Date=20220921T182252Z\u0026X-Amz-Expires=30\u0026X-Amz-SignedHeaders=host\u0026X-Amz-Signature=452d8b682ff93114c40be062f3f53bcda490e1aabe8d3e9d9e59fed680fa31f9","url_expires_at":"2022-09-21T18:23:22Z"}'
+    body: '{"created_at":"2023-11-30T20:11:40Z","end_date":"2022-04-11","id":"shprep_20e852aff80248709caa58c9d8f0896e","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2023-11-30T20:11:40Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"a29cbd5100c2ce7ed1d521728b3709ac"
       Expires:
       - "0"
       Pragma:
@@ -86,28 +81,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b567cec7d9989000db0b6
+      - 32e015fa6568ec7ce7896122001b804f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.034856"
+      - "0.050903"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

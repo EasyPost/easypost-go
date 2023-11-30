@@ -16,20 +16,18 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2022-09-21T18:21:48+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_4184ab4139da11eda31eac1f6b0a0d1e","mode":"test","name":"Jack
+    body: '{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2023-11-30T20:10:18+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7b4886c58fbc11ee9e57ac1f6bc53342","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T18:21:48+00:00","verifications":{},"zip":"94107"}'
+      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:10:18+00:00","verifications":{},"zip":"94107"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"fb6f1d51302395f22aff6c1854d3b1e6"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_4184ab4139da11eda31eac1f6b0a0d1e
+      - /api/v2/addresses/adr_7b4886c58fbc11ee9e57ac1f6bc53342
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -43,21 +41,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b563cec7d9989000d8d1a
+      - 32e015fa6568ec29e7896122001b33ec
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb36nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.040138"
+      - "0.042002"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -71,23 +68,21 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/addresses/adr_4184ab4139da11eda31eac1f6b0a0d1e/verify
+    url: https://api.easypost.com/v2/addresses/adr_7b4886c58fbc11ee9e57ac1f6bc53342/verify
     method: GET
   response:
-    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2022-09-21T18:21:48+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_41ac623939da11eda532ac1f6bc7bdc6","mode":"test","name":"JACK
+    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2023-11-30T20:10:18+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7b673c698fbc11eea61c3cecef1b359e","mode":"test","name":"JACK
       SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2022-09-21T18:21:48+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2023-11-30T20:10:18+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"e8841395dd7f88e4371498a408a926f7"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_41ac623939da11eda532ac1f6bc7bdc6
+      - /api/v2/addresses/adr_7b673c698fbc11eea61c3cecef1b359e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -96,26 +91,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b563cec7d9989000d8d45
+      - 32e015fa6568ec2ae7896122001b3420
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb8nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.049421"
+      - "0.063168"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

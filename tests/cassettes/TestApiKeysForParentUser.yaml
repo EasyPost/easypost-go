@@ -21,8 +21,6 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"2bb2253a5710a5bbc4e19acba15edcf1"
       Expires:
       - "0"
       Pragma:
@@ -33,27 +31,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 565dec3e651736f9f452410800c15608
+      - 32e015fa6568ec2ae7896122001b34fc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb43nuq
+      - bigweb31nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq cac2303bbb
+      - intlb1nuq b3de2c47ef
       - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.088317"
+      - "0.059622"
       X-Version-Label:
-      - easypost-202309292024-b6debc40aa-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -76,8 +72,6 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"bf1b480ef1aea8b91b5612613f393ab6"
       Expires:
       - "0"
       Pragma:
@@ -93,20 +87,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 565dec3e651736f9f452410800c15617
+      - 32e015fa6568ec2be7896122001b3531
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb40nuq
+      - bigweb33nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq cac2303bbb
+      - intlb1nuq b3de2c47ef
       - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.033852"
+      - "0.030922"
       X-Version-Label:
-      - easypost-202309291831-402430765a-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

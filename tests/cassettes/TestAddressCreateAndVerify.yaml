@@ -15,20 +15,17 @@ interactions:
     url: https://api.easypost.com/v2/addresses/create_and_verify
     method: POST
   response:
-    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2022-09-21T18:21:46+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_40a95f8a39da11edadf2ac1f6bc7b362","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":false,"state":"CA","state_tax_id":null,"street1":"417
-      MONTGOMERY ST FL 5","street2":"","updated_at":"2022-09-21T18:21:46+00:00","verifications":{"delivery":{"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"},"errors":[{"code":"E.SECONDARY_INFORMATION.INVALID","field":"street2","message":"Invalid
-      secondary information(Apt/Suite#)","suggestion":null}],"success":true}},"zip":"94104-1129"}}'
+    body: '{"address":{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2023-11-30T20:10:16+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7a8e29dd8fbc11eea5943cecef1b359e","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":false,"state":"CA","state_tax_id":null,"street1":"417
+      MONTGOMERY ST FL 5","street2":"","updated_at":"2023-11-30T20:10:16+00:00","verifications":{"delivery":{"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"},"errors":[],"success":true}},"zip":"94104-1129"}}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"5bd1cefbdc4516f32efe588ac8ddbd5e"
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_40a95f8a39da11edadf2ac1f6bc7b362
+      - /api/v2/addresses/adr_7a8e29dd8fbc11eea5943cecef1b359e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -42,21 +39,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b563aec7d9989000d8c50
+      - 32e015fa6568ec28e7896122001b3277
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb35nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.117256"
+      - "0.054637"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

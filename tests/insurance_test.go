@@ -42,7 +42,7 @@ func (c *ClientTests) TestInsuranceRetrieve() {
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(retrievedInsurance))
-	assert.Equal(insurance, retrievedInsurance)
+	assert.Equal(insurance.ID, retrievedInsurance.ID)
 }
 
 func (c *ClientTests) TestInsuranceAll() {

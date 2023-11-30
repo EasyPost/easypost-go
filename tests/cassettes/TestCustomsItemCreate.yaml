@@ -14,19 +14,17 @@ interactions:
     url: https://api.easypost.com/v2/customs_items
     method: POST
   response:
-    body: '{"code":null,"created_at":"2022-09-21T18:22:11Z","currency":null,"description":"Sweet
-      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_ee14481102e24df8a9fdf2b442f222c4","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T18:22:11Z","value":"23.25","weight":11}'
+    body: '{"code":null,"created_at":"2023-11-30T20:10:45Z","currency":null,"description":"Sweet
+      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_35735bf6818049179b16a610ab2af362","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2023-11-30T20:10:45Z","value":"23.25","weight":11}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"d98637f3e4ee7e8c6e4a9ff104e80c5f"
       Expires:
       - "0"
       Location:
-      - /api/v2/customs_items/cstitem_ee14481102e24df8a9fdf2b442f222c4
+      - /api/v2/customs_items/cstitem_35735bf6818049179b16a610ab2af362
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -35,26 +33,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5653ec7d9989000d9994
+      - 32e015fa6568ec44e7896122001b4e1d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb43nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.029216"
+      - "0.049426"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

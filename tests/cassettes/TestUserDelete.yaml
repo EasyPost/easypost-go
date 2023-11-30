@@ -14,15 +14,13 @@ interactions:
     url: https://api.easypost.com/v2/users
     method: POST
   response:
-    body: '{"api_keys":[],"children":[],"created_at":"2022-09-21T18:23:28Z","id":"user_0d9f31d2ccba4af1826df92beed38103","name":"Test
+    body: '{"api_keys":[{"active":true,"created_at":"2023-11-30T20:12:10Z","id":"ak_ba13234fc6bd43a4b03ec0a819275c5b","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-11-30T20:12:10Z","id":"ak_be10e59e6e564073b3be32cd86e4bcc0","key":"REDACTED","mode":"production","object":"ApiKey"}],"children":[],"created_at":"2023-11-30T20:12:10Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_fea59601143a43538d923e3ff06f4e02","name":"Test
       User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"d1802b9c56bdb07ef0f3ca79daff0012"
       Expires:
       - "0"
       Pragma:
@@ -33,28 +31,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b569fec7d9989000dbf10
+      - 32e015fa6568ec9ae7896122001b9caf
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb7nuq
+      - bigweb34nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.732085"
+      - "0.730316"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -68,7 +63,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/users/user_0d9f31d2ccba4af1826df92beed38103
+    url: https://api.easypost.com/v2/users/user_fea59601143a43538d923e3ff06f4e02
     method: DELETE
   response:
     body: ""
@@ -90,21 +85,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b56a0ec7d9989000dbf6b
+      - 32e015fa6568ec9be7896122001b9dad
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb2nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.137156"
+      - "0.138216"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 204 No Content

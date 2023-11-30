@@ -18,8 +18,6 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"86cc970265a111486b443bf66ef85e91"
       Expires:
       - "0"
       Pragma:
@@ -35,21 +33,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 5548df1763a39855ecd5d9a1001be379
+      - 32e015fa6568ec71e7896122001b75c2
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb41nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb3wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.015790"
+      - "0.021901"
       X-Version-Label:
-      - easypost-202212212300-00650f57d8-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -74,32 +71,37 @@ interactions:
     url: https://api.stripe.com/v1/tokens
     method: POST
   response:
-    body: '{"card":{"address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","cvc_check":"unchecked","dynamic_last4":null,"exp_month":5,"exp_year":2028,"funding":"credit","id":"card_0MHbpCDqT4huGUvdqU4Inrj0","last4":"6170","name":null,"object":"card","tokenization_method":null},"client_ip":"REDACTED","created":1671665750,"id":"tok_0MHbpCDqT4huGUvd41R1qx19","livemode":true,"object":"token","type":"card","used":false}'
+    body: '{"card":{"address_city":null,"address_country":null,"address_line1":null,"address_line1_check":null,"address_line2":null,"address_state":null,"address_zip":null,"address_zip_check":null,"brand":"Visa","country":"US","cvc_check":"unchecked","dynamic_last4":null,"exp_month":5,"exp_year":2028,"funding":"credit","id":"card_0OIGa5DqT4huGUvdR6sWCp3o","last4":"6170","name":null,"object":"card","tokenization_method":null,"wallet":null},"client_ip":"REDACTED","created":1701375089,"id":"tok_0OIGa5DqT4huGUvdUMflIvEo","livemode":true,"object":"token","type":"card","used":false}'
     headers:
       Access-Control-Allow-Credentials:
       - "true"
       Access-Control-Allow-Methods:
-      - GET, POST, HEAD, OPTIONS, DELETE
+      - GET,HEAD,PUT,PATCH,POST,DELETE
       Access-Control-Allow-Origin:
       - '*'
       Access-Control-Expose-Headers:
-      - Request-Id, Stripe-Manage-Version, X-Stripe-External-Auth-Required, X-Stripe-Privileged-Session-Required
+      - Request-Id, Stripe-Manage-Version, Stripe-Should-Retry, X-Stripe-External-Auth-Required,
+        X-Stripe-Privileged-Session-Required
       Access-Control-Max-Age:
       - "300"
       Cache-Control:
       - no-cache, no-store
       Content-Length:
-      - "720"
+      - "738"
+      Content-Security-Policy:
+      - report-uri https://q.stripe.com/csp-report?p=v1%2Ftokens; block-all-mixed-content;
+        default-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none';
+        img-src 'self'; script-src 'self' 'report-sample'; style-src 'self'
       Content-Type:
       - application/json
       Date:
-      - Wed, 21 Dec 2022 23:35:50 GMT
+      - Thu, 30 Nov 2023 20:11:29 GMT
       Idempotency-Key:
-      - 0781885f-11fc-41c7-9084-f469b9325193
+      - f3be9aae-4b69-4601-807a-5161952f5ee6
       Original-Request:
-      - req_9rUsLPc1cnkL35
+      - req_4jBJx9EeL8lLQW
       Request-Id:
-      - req_9rUsLPc1cnkL35
+      - req_4jBJx9EeL8lLQW
       Server:
       - nginx
       Strict-Transport-Security:
@@ -108,11 +110,15 @@ interactions:
       - "false"
       Stripe-Version:
       - "2020-08-27"
+      Vary:
+      - Origin
+      X-Stripe-Routing-Context-Priority-Tier:
+      - livemode-critical
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: '{"credit_card":{"priority":"primary","stripe_object_id":"tok_0MHbpCDqT4huGUvd41R1qx19"}}'
+    body: '{"credit_card":{"priority":"primary","stripe_object_id":"tok_0OIGa5DqT4huGUvdUMflIvEo"}}'
     form: {}
     headers:
       Authorization:
@@ -124,14 +130,12 @@ interactions:
     url: https://api.easypost.com/v2/credit_cards
     method: POST
   response:
-    body: '{"brand":"Visa","disabled_at":null,"exp_month":5,"exp_year":2028,"id":"card_510da7c1d5ba4ec28f8e49a91fdc0ff3","last4":"6170","name":null,"object":"CreditCard"}'
+    body: '{"brand":"Visa","disabled_at":null,"exp_month":5,"exp_year":2028,"id":"card_f15212119c564422aec3f4d94d7a4446","last4":"6170","name":null,"object":"CreditCard"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"f411fab263472c0d42e0f12b67445e27"
       Expires:
       - "0"
       Pragma:
@@ -147,21 +151,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 5548df1763a39856ecd5d9a1001be3bd
+      - 32e015fa6568ec71e7896122001b763f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb11nuq
+      - bigweb40nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb3wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "4.274109"
+      - "2.729122"
       X-Version-Label:
-      - easypost-202212212300-00650f57d8-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

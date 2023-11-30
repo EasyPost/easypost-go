@@ -14,14 +14,20 @@ interactions:
     url: https://api.easypost.com/v2/insurances
     method: GET
   response:
-    body: '{"has_more":false,"insurances":[]}'
+    body: '{"has_more":false,"insurances":[{"amount":"100.00000","created_at":"2023-11-30T20:11:03Z","fee":{"amount":"1.00000","charged":true,"object":"Fee","refunded":false,"type":"InsuranceFee"},"from_address":{"carrier_facility":null,"city":"SAN
+      FRANCISCO","company":null,"country":"US","created_at":"2023-11-30T20:11:03+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_96876a2a8fbc11eebe07ac1f6bc539aa","mode":"test","name":"JACK
+      SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2023-11-30T20:11:03+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"},"id":"ins_c132b5a92b9746b0a8c1d4f255756878","messages":[],"mode":"test","object":"Insurance","provider":"easypost","provider_id":null,"reference":null,"shipment_id":null,"status":"pending","to_address":{"carrier_facility":null,"city":"REDONDO
+      BEACH","company":null,"country":"US","created_at":"2023-11-30T20:11:03+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_968207248fbc11eeaf55ac1f6bc53342","mode":"test","name":"ELIZABETH
+      SWAN","object":"Address","phone":"REDACTED","residential":false,"state":"CA","state_tax_id":null,"street1":"179
+      N HARBOR DR","street2":null,"updated_at":"2023-11-30T20:11:03+00:00","verifications":{"delivery":{"details":{"latitude":33.8436,"longitude":-118.39177,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"90277-2506"},"tracker":{"carrier":"USPS","carrier_detail":null,"created_at":"2023-11-30T20:11:03Z","est_delivery_date":null,"fees":[],"finalized":true,"id":"trk_c46d05e258dd49d3af4412c96ea4cb49","is_return":false,"mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2M0NmQwNWUyNThkZDQ5ZDNhZjQ0MTJjOTZlYTRjYjQ5","shipment_id":null,"signed_by":null,"status":"error","status_detail":null,"tracking_code":"9400100105442287383252","tracking_details":[{"carrier_code":"","datetime":"2023-11-30T20:11:03Z","description":"","message":"In
+      test mode, only test tracking numbers are valid. Test tracking numbers are EZ1000000001,
+      EZ2000000002, ... , EZ7000000007","object":"TrackingDetail","source":"ProcessingError","status":"error","status_detail":null,"tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}}],"updated_at":"2023-11-30T20:11:03Z","weight":null},"tracking_code":"9400100105442287383252","updated_at":"2023-11-30T20:11:03Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"5f1a59bebcbbd5ae61942f9e2d9fb8d8"
       Expires:
       - "0"
       Pragma:
@@ -37,20 +43,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 23d77e0764234e92f48fb35c0029bd24
+      - 32e015fa6568ec57e7896122001b5f98
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq a40ea751fd
-      - extlb2nuq a29e4ad05c
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.023644"
+      - "0.103962"
       X-Version-Label:
-      - easypost-202303281808-a1d6c802f5-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

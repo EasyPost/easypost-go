@@ -159,7 +159,7 @@ func (fixture *Fixture) OneCallBuyShipment() *easypost.Shipment {
 // If you need to re-record cassettes, increment the date below and ensure it is one day in the future,
 // USPS only does "next-day" pickups including Saturday but not Sunday or Holidays.
 func (fixture *Fixture) BasicPickup() *easypost.Pickup {
-	pickupDate := easypost.NewDateTime(2023, time.March, 8, 0, 0, 0, 0, time.UTC)
+	pickupDate := easypost.NewDateTime(2023, time.December, 8, 0, 0, 0, 0, time.UTC)
 
 	pickupData := readFixtureData().Pickups["basic"]
 	pickupData.MinDatetime = &pickupDate
@@ -218,5 +218,5 @@ func (fixture *Fixture) TestCreditCard() *easypost.CreditCardOptions {
 }
 
 func (fixture *Fixture) PlannedShipDate() string {
-	return "2023-04-28"
+	return "2023-12-28"
 }

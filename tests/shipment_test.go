@@ -229,12 +229,12 @@ func (c *ClientTests) TestShipmentInstanceLowestSmartRate() {
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
-	smartrate, err := client.LowestSmartrate(shipment, 2, "percentile_90")
+	smartrate, err := client.LowestSmartrate(shipment, 3, "percentile_90")
 	require.NoError(err)
 
 	// Test lowest smartrate with valid filters
-	assert.Equal("First", smartrate.Service)
-	assert.Equal(5.57, smartrate.Rate)
+	assert.Equal("GroundAdvantage", smartrate.Service)
+	assert.Equal(5.93, smartrate.Rate)
 	assert.Equal("USPS", smartrate.Carrier)
 
 	// Test lowest smartrate with invalid filters (should error due to strict delivery days)
@@ -256,15 +256,15 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	// Test lowest rate with no filters
 	lowestRate, err := client.LowestShipmentRate(shipment)
 	require.NoError(err)
-	assert.Equal("First", lowestRate.Service)
-	assert.Equal("5.57", lowestRate.Rate)
+	assert.Equal("GroundAdvantage", lowestRate.Service)
+	assert.Equal("5.93", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
 	lowestRate, err = client.LowestShipmentRateWithCarrierAndService(shipment, nil, []string{"Priority"})
 	require.NoError(err)
 	assert.Equal("Priority", lowestRate.Service)
-	assert.Equal("7.90", lowestRate.Rate)
+	assert.Equal("6.95", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with carrier filter (should error due to bad carrier)
@@ -296,83 +296,6 @@ func (c *ClientTests) TestShipmentGenerateForm() {
 	form = shipmentWithForm.Forms[0]
 	assert.Equal(formType, form.FormType)
 	assert.NotNil(form.FormURL)
-}
-
-func (c *ClientTests) TestShipmentCreateWithCarbonOffset() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.BasicShipment())
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Shipment{}), reflect.TypeOf(shipment))
-	assert.NotNil(shipment.Rates)
-
-	rate := shipment.Rates[0]
-	assert.NotNil(rate.CarbonOffset)
-}
-
-func (c *ClientTests) TestShipmentBuyWithCarbonOffset() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
-	require.NoError(err)
-
-	lowestRate, err := client.LowestShipmentRate(shipment)
-	require.NoError(err)
-
-	boughtShipment, err := client.BuyShipmentWithCarbonOffset(shipment.ID, &lowestRate, "")
-	require.NoError(err)
-
-	assert.NotNil(boughtShipment.PostageLabel)
-
-	assert.NotNil(boughtShipment.Fees)
-	carbonOffsetExists := false
-	for _, fee := range boughtShipment.Fees {
-		if fee.Type == "CarbonOffsetFee" {
-			carbonOffsetExists = true
-		}
-	}
-	assert.True(carbonOffsetExists)
-}
-
-func (c *ClientTests) TestShipmentOneCallBuyWithCarbonOffset() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	shipment, err := client.CreateShipmentWithCarbonOffset(c.fixture.OneCallBuyShipment())
-	require.NoError(err)
-
-	assert.NotNil(shipment.PostageLabel)
-
-	assert.NotNil(shipment.Fees)
-	carbonOffsetExists := false
-	for _, fee := range shipment.Fees {
-		if fee.Type == "CarbonOffsetFee" {
-			carbonOffsetExists = true
-		}
-	}
-	assert.True(carbonOffsetExists)
-}
-
-func (c *ClientTests) TestShipmentReRateWithCarbonOffset() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
-	require.NoError(err)
-
-	baseRates := shipment.Rates
-
-	newRatesWithCarbon, err := client.RerateShipmentWithCarbonOffset(shipment.ID)
-	require.NoError(err)
-
-	baseRate := baseRates[0]
-	newRateWithCarbon := newRatesWithCarbon[0]
-
-	assert.Nil(baseRate.CarbonOffset)
-	assert.NotNil(newRateWithCarbon.CarbonOffset)
 }
 
 func (c *ClientTests) TestBuyShipmentWithEndShipper() {

@@ -6,27 +6,26 @@ import (
 
 // A Rate contains information on shipping cost and delivery time.
 type Rate struct {
-	ID                     string        `json:"id,omitempty"`
-	Object                 string        `json:"object,omitempty"`
-	Mode                   string        `json:"mode,omitempty"`
-	CreatedAt              *DateTime     `json:"created_at,omitempty"`
-	UpdatedAt              *DateTime     `json:"updated_at,omitempty"`
-	Service                string        `json:"service,omitempty"`
-	Carrier                string        `json:"carrier,omitempty"`
-	CarrierAccountID       string        `json:"carrier_account_id,omitempty"`
-	ShipmentID             string        `json:"shipment_id,omitempty"`
-	Rate                   string        `json:"rate,omitempty"`
-	Currency               string        `json:"currency,omitempty"`
-	RetailRate             string        `json:"retail_rate,omitempty"`
-	RetailCurrency         string        `json:"retail_currency,omitempty"`
-	ListRate               string        `json:"list_rate,omitempty"`
-	ListCurrency           string        `json:"list_currency,omitempty"`
-	DeliveryDays           int           `json:"delivery_days,omitempty"`
-	DeliveryDate           *DateTime     `json:"delivery_date,omitempty"`
-	DeliveryDateGuaranteed bool          `json:"delivery_date_guaranteed,omitempty"`
-	EstDeliveryDays        int           `json:"est_delivery_days,omitempty"`
-	BillingType            string        `json:"billing_type,omitempty"`
-	CarbonOffset           *CarbonOffset `json:"carbon_offset,omitempty"`
+	ID                     string    `json:"id,omitempty"`
+	Object                 string    `json:"object,omitempty"`
+	Mode                   string    `json:"mode,omitempty"`
+	CreatedAt              *DateTime `json:"created_at,omitempty"`
+	UpdatedAt              *DateTime `json:"updated_at,omitempty"`
+	Service                string    `json:"service,omitempty"`
+	Carrier                string    `json:"carrier,omitempty"`
+	CarrierAccountID       string    `json:"carrier_account_id,omitempty"`
+	ShipmentID             string    `json:"shipment_id,omitempty"`
+	Rate                   string    `json:"rate,omitempty"`
+	Currency               string    `json:"currency,omitempty"`
+	RetailRate             string    `json:"retail_rate,omitempty"`
+	RetailCurrency         string    `json:"retail_currency,omitempty"`
+	ListRate               string    `json:"list_rate,omitempty"`
+	ListCurrency           string    `json:"list_currency,omitempty"`
+	DeliveryDays           int       `json:"delivery_days,omitempty"`
+	DeliveryDate           *DateTime `json:"delivery_date,omitempty"`
+	DeliveryDateGuaranteed bool      `json:"delivery_date_guaranteed,omitempty"`
+	EstDeliveryDays        int       `json:"est_delivery_days,omitempty"`
+	BillingType            string    `json:"billing_type,omitempty"`
 }
 
 // A SmartRate contains information on shipping cost and delivery time in addition to time-in-transit details.
