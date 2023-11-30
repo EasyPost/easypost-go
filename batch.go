@@ -67,20 +67,6 @@ func (c *Client) CreateBatchWithContext(ctx context.Context, in ...*Shipment) (o
 	return
 }
 
-// CreateAndBuyBatch creates and buys a new batch of shipments in one request.
-func (c *Client) CreateAndBuyBatch(in ...*Shipment) (out *Batch, err error) {
-	return c.CreateAndBuyBatchWithContext(context.Background(), in...)
-}
-
-// CreateAndBuyBatchWithContext performs the same operation as
-// CreateAndBuyBatch, but allows specifying a context that can interrupt the
-// request.
-func (c *Client) CreateAndBuyBatchWithContext(ctx context.Context, in ...*Shipment) (out *Batch, err error) {
-	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(ctx, "batches/create_and_buy", req, &out)
-	return
-}
-
 // ListBatches provides a paginated result of Insurance objects.
 func (c *Client) ListBatches(opts *ListOptions) (out *ListBatchesResult, err error) {
 	return c.ListBatchesWithContext(context.Background(), opts)
