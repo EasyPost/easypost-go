@@ -14,14 +14,12 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:23:37Z","disabled_at":null,"id":"hook_8250e38239da11eda19e2d2cbbe3114e","mode":"test","object":"Webhook","url":"http://example.com"}'
+    body: '{"created_at":"2023-11-30T20:12:16Z","disabled_at":null,"id":"hook_c17705c68fbc11eeadbe77be192ce5f4","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"6e7f4337c99b0ea9c5014ca40fb93fca"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b56a8ec7d9989000dc2f5
+      - 32e015fa6568ec9fe7896122001ba2bd
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb34nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.149727"
+      - "0.155470"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -65,7 +62,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_8250e38239da11eda19e2d2cbbe3114e
+    url: https://api.easypost.com/v2/webhooks/hook_c17705c68fbc11eeadbe77be192ce5f4
     method: DELETE
   response:
     body: '{}'
@@ -74,8 +71,6 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"44136fa355b3678a1146ad16f7e8649e"
       Expires:
       - "0"
       Pragma:
@@ -86,26 +81,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b56a9ec7d9989000dc326
+      - 32e015fa6568eca0e7896122001ba301
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb1nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.347478"
+      - "0.344210"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

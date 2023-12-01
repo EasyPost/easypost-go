@@ -14,14 +14,12 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:23:42Z","disabled_at":null,"id":"hook_8561340a39da11edbdcd657092bc5a96","mode":"test","object":"Webhook","url":"http://example.com"}'
+    body: '{"created_at":"2023-11-30T20:12:18Z","disabled_at":null,"id":"hook_c28267128fbc11ee91d95f0aec9b2f2b","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"cd56349c8fc5e318ab99e9e28e1f52e3"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b56aeec7d9989000dc568
+      - 32e015fa6568eca1e7896122001ba4c5
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb34nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.185186"
+      - "0.133717"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -67,17 +64,15 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_8561340a39da11edbdcd657092bc5a96
+    url: https://api.easypost.com/v2/webhooks/hook_c28267128fbc11ee91d95f0aec9b2f2b
     method: PATCH
   response:
-    body: '{"created_at":"2022-09-21T18:23:42Z","disabled_at":null,"id":"hook_8561340a39da11edbdcd657092bc5a96","mode":"test","object":"Webhook","url":"http://example.com"}'
+    body: '{"created_at":"2023-11-30T20:12:18Z","disabled_at":null,"id":"hook_c28267128fbc11ee91d95f0aec9b2f2b","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"cd56349c8fc5e318ab99e9e28e1f52e3"
       Expires:
       - "0"
       Pragma:
@@ -93,21 +88,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b56aeec7d9989000dc5ab
+      - 32e015fa6568eca1e7896122001ba50b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb36nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.548741"
+      - "0.424509"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -121,7 +115,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_8561340a39da11edbdcd657092bc5a96
+    url: https://api.easypost.com/v2/webhooks/hook_c28267128fbc11ee91d95f0aec9b2f2b
     method: DELETE
   response:
     body: '{}'
@@ -130,8 +124,6 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"44136fa355b3678a1146ad16f7e8649e"
       Expires:
       - "0"
       Pragma:
@@ -147,21 +139,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b56afec7d9989000dc605
+      - 32e015fa6568eca2e7896122001ba5d3
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb9nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.430999"
+      - "0.348639"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -21,7 +21,7 @@ interactions:
     body: '{"from_address":{"city":"San Francisco","country":"US","email":"REDACTED","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","state":"CA","street1":"388 Townsend
       St","street2":"Apt 20","zip":"94107"},"messages":[{"carrier":"DhlEcs","carrier_account_id":"ca_1fefcb0d0a9f4e5db5e5a1c360958484","message":"Unauthorized.
-      Please check credentials and try again","type":"rate_error"}],"options":{"currency":"USD","date_advance":0,"payment":{"type":"SENDER"}},"parcel":{"height":4,"length":10,"object":"Parcel","weight":15.4,"width":8},"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"list_currency":"USD","list_rate":"8.24","mode":"test","object":"Rate","rate":"8.24","retail_currency":"USD","retail_rate":"10.20","service":"Priority"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"6.07","retail_currency":"USD","retail_rate":"6.07","service":"First"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"list_currency":"USD","list_rate":"31.25","mode":"test","object":"Rate","rate":"31.25","retail_currency":"USD","retail_rate":"35.80","service":"Express"}],"to_address":{"city":"Redondo
+      Please check credentials and try again","type":"rate_error"}],"options":{"currency":"USD","date_advance":0,"payment":{"type":"SENDER"}},"parcel":{"height":4,"length":10,"object":"Parcel","weight":15.4,"width":8},"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"list_currency":"USD","list_rate":"8.24","mode":"test","object":"Rate","rate":"6.95","retail_currency":"USD","retail_rate":"10.20","service":"Priority"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"GroundAdvantage"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"First"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"ParcelSelect"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"list_currency":"USD","list_rate":"31.25","mode":"test","object":"Rate","rate":"31.25","retail_currency":"USD","retail_rate":"35.80","service":"Express"}],"to_address":{"city":"Redondo
       Beach","country":"US","email":"REDACTED","name":"Elizabeth Swan","object":"Address","phone":"REDACTED","state":"CA","street1":"179
       N Harbor Dr","zip":"90277"}}'
     headers:
@@ -29,8 +29,6 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"3968da75efa1ea3c76de74a8388d6049"
       Expires:
       - "0"
       Pragma:
@@ -39,6 +37,8 @@ interactions:
       - strict-origin-when-cross-origin
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - Origin
       X-Backend:
       - easypost
       X-Content-Type-Options:
@@ -46,20 +46,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - e5f2be7263d987a5f3c98cbc000feed2
+      - 32e015fa6568ec3ce7896122001b4663
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb36nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - extlb2nuq 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.527225"
+      - "0.406866"
       X-Version-Label:
-      - easypost-202301311954-88b0b2bbd3-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

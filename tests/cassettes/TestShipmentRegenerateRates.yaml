@@ -21,32 +21,30 @@ interactions:
     method: POST
   response:
     body: '{"batch_id":null,"batch_message":null,"batch_status":null,"buyer_address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2022-09-21T18:23:21+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7956b21839da11edb187ac1f6bc7bdc6","mode":"test","name":"Elizabeth
+      Beach","company":null,"country":"US","created_at":"2023-11-30T20:12:03+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_ba5453d68fbc11ee9412ac1f6bc539aa","mode":"test","name":"Elizabeth
       Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2022-09-21T18:23:21+00:00","verifications":{},"zip":"90277"},"created_at":"2022-09-21T18:23:22Z","customs_info":{"contents_explanation":null,"contents_type":"merchandise","created_at":"2022-09-21T18:23:22Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2022-09-21T18:23:22Z","currency":null,"description":"Sweet
-      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_31ad1d26ba8447edaac2f41f6d0d3192","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2022-09-21T18:23:22Z","value":null,"weight":11}],"customs_signer":"Steve
-      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_f6148719513a40c7bcb99053ea9ed233","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2022-09-21T18:23:22Z"},"fees":[],"forms":[],"from_address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2022-09-21T18:23:21+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7958a3da39da11ed82f0ac1f6bc7b362","mode":"test","name":"Jack
+      N Harbor Dr","street2":null,"updated_at":"2023-11-30T20:12:03+00:00","verifications":{},"zip":"90277"},"created_at":"2023-11-30T20:12:03Z","customs_info":{"contents_explanation":null,"contents_type":"merchandise","created_at":"2023-11-30T20:12:03Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2023-11-30T20:12:03Z","currency":null,"description":"Sweet
+      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_c49dccd7506d46ffb91e7517e9de6806","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2023-11-30T20:12:03Z","value":null,"weight":11}],"customs_signer":"Steve
+      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_2723882b61e743eba5d0c1fee56a48a9","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2023-11-30T20:12:03Z"},"fees":[],"forms":[],"from_address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:12:03+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_ba56d95d8fbc11ee90b4ac1f6bc539ae","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T18:23:21+00:00","verifications":{},"zip":"94107"},"id":"shp_a35124d8397b496497da5578f1b1802a","insurance":null,"is_return":false,"messages":[{"carrier":"DhlEcs","carrier_account_id":"ca_1fefcb0d0a9f4e5db5e5a1c360958484","message":"shipment.customs_info.customs_items.0.value:
-      field required and shipment.customs_info.customs_items.0.code: field required","type":"rate_error"}],"mode":"test","object":"Shipment","options":{"currency":"USD","date_advance":0,"invoice_number":"123","label_format":"PNG","payment":{"type":"SENDER"}},"order_id":null,"parcel":{"created_at":"2022-09-21T18:23:21Z","height":4,"id":"prcl_20664114701845ae9a0d242cb2a320cd","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2022-09-21T18:23:21Z","weight":15.4,"width":8},"postage_label":null,"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_e32405aabc26426ba0c2358b6681144c","list_currency":"USD","list_rate":"29.50","mode":"test","object":"Rate","rate":"29.50","retail_currency":"USD","retail_rate":"33.55","service":"Express","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_ce6fd7267699432282eca0726821305d","list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_544fd5a3eb7d4b2ba8414fe7e4065779","list_currency":"USD","list_rate":"7.90","mode":"test","object":"Rate","rate":"7.90","retail_currency":"USD","retail_rate":"9.45","service":"Priority","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_edc38c940c8141e3893741bc1579d612","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"}],"reference":"123","refund_status":null,"return_address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2022-09-21T18:23:21+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7958a3da39da11ed82f0ac1f6bc7b362","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:12:03+00:00","verifications":{},"zip":"94107"},"id":"shp_ed7ea0dd185842bfab0d3301fb794863","insurance":null,"is_return":false,"messages":[{"carrier":"DhlEcs","carrier_account_id":"ca_1fefcb0d0a9f4e5db5e5a1c360958484","message":"shipment.customs_info.customs_items.0.value:
+      field required and shipment.customs_info.customs_items.0.code: field required","type":"rate_error"}],"mode":"test","object":"Shipment","options":{"currency":"USD","date_advance":0,"invoice_number":"123","label_format":"PNG","payment":{"type":"SENDER"}},"order_id":null,"parcel":{"created_at":"2023-11-30T20:12:03Z","height":4,"id":"prcl_e38b2d76acbe4c87ab1a7a516fe9d06e","length":10,"mode":"test","object":"Parcel","predefined_package":null,"updated_at":"2023-11-30T20:12:03Z","weight":15.4,"width":8},"postage_label":null,"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:03Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_cfd91de286834d89bb5b1c81bd4cab30","list_currency":"USD","list_rate":"8.24","mode":"test","object":"Rate","rate":"6.95","retail_currency":"USD","retail_rate":"10.20","service":"Priority","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:03Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:03Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_79a11eee50e04b0ea184f91812173f9b","list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"GroundAdvantage","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:03Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_4b78061d3aad40728a85855a9ab14170","list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"First","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_97f9c41e6f5f45039a87936fd9dba35b","list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"ParcelSelect","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_4bb8618b6837470e9f4406b6b83eff63","list_currency":"USD","list_rate":"31.25","mode":"test","object":"Rate","rate":"31.25","retail_currency":"USD","retail_rate":"35.80","service":"Express","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"}],"reference":"123","refund_status":null,"return_address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:12:03+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_ba56d95d8fbc11ee90b4ac1f6bc539ae","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2022-09-21T18:23:21+00:00","verifications":{},"zip":"94107"},"scan_form":null,"selected_rate":null,"status":"unknown","to_address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2022-09-21T18:23:21+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7956b21839da11edb187ac1f6bc7bdc6","mode":"test","name":"Elizabeth
+      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:12:03+00:00","verifications":{},"zip":"94107"},"scan_form":null,"selected_rate":null,"status":"unknown","to_address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2023-11-30T20:12:03+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_ba5453d68fbc11ee9412ac1f6bc539aa","mode":"test","name":"Elizabeth
       Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2022-09-21T18:23:21+00:00","verifications":{},"zip":"90277"},"tracker":null,"tracking_code":null,"updated_at":"2022-09-21T18:23:22Z","usps_zone":4}'
+      N Harbor Dr","street2":null,"updated_at":"2023-11-30T20:12:03+00:00","verifications":{},"zip":"90277"},"tracker":null,"tracking_code":null,"updated_at":"2023-11-30T20:12:04Z","usps_zone":4}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"c71da5db3bf2ac99f1bbd5abae5c4ca6"
       Expires:
       - "0"
       Location:
-      - /api/v2/shipments/shp_a35124d8397b496497da5578f1b1802a
+      - /api/v2/shipments/shp_ed7ea0dd185842bfab0d3301fb794863
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -55,52 +53,49 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5699ec7d9989000dbc79
+      - 32e015fa6568ec93e7896122001b9600
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb2wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb1nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.311664"
+      - "0.320444"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
     duration: ""
 - request:
-    body: '{}'
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/shipments/shp_a35124d8397b496497da5578f1b1802a/rerate
+    url: https://api.easypost.com/v2/shipments/shp_ed7ea0dd185842bfab0d3301fb794863/rerate
     method: POST
   response:
-    body: '{"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":5,"est_delivery_days":5,"id":"rate_746d045b087e45b185c39a0b622596ae","list_currency":"USD","list_rate":"7.75","mode":"test","object":"Rate","rate":"7.75","retail_currency":"USD","retail_rate":"7.75","service":"ParcelSelect","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_43f7301676a043f7bc3fa2f4473a278a","list_currency":"USD","list_rate":"7.90","mode":"test","object":"Rate","rate":"7.90","retail_currency":"USD","retail_rate":"9.45","service":"Priority","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_573a881656ad46eab3e9bb6ffc5de722","list_currency":"USD","list_rate":"5.57","mode":"test","object":"Rate","rate":"5.57","retail_currency":"USD","retail_rate":"5.57","service":"First","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2022-09-21T18:23:22Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_821f0173bb454d84b6200f5c46acf5fe","list_currency":"USD","list_rate":"29.50","mode":"test","object":"Rate","rate":"29.50","retail_currency":"USD","retail_rate":"33.55","service":"Express","shipment_id":"shp_a35124d8397b496497da5578f1b1802a","updated_at":"2022-09-21T18:23:22Z"}]}'
+    body: '{"rates":[{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":null,"est_delivery_days":null,"id":"rate_b30bb9bb48e5473a96df5c62de3a7477","list_currency":"USD","list_rate":"31.25","mode":"test","object":"Rate","rate":"31.25","retail_currency":"USD","retail_rate":"35.80","service":"Express","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":2,"est_delivery_days":2,"id":"rate_5e096347e45747648e3accbb26d2056f","list_currency":"USD","list_rate":"8.24","mode":"test","object":"Rate","rate":"6.95","retail_currency":"USD","retail_rate":"10.20","service":"Priority","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_e38ad148b2c74f198cb5500b4c85794b","list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"GroundAdvantage","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_8e446fd6fef54eefabcb54702b544551","list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"First","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"},{"billing_type":"easypost","carrier":"USPS","carrier_account_id":"ca_e606176ddb314afe896733636dba2f3b","created_at":"2023-11-30T20:12:04Z","currency":"USD","delivery_date":null,"delivery_date_guaranteed":false,"delivery_days":3,"est_delivery_days":3,"id":"rate_91bdbe0b1aae47f3bd7349ab9295609b","list_currency":"USD","list_rate":"6.07","mode":"test","object":"Rate","rate":"5.93","retail_currency":"USD","retail_rate":"8.00","service":"ParcelSelect","shipment_id":"shp_ed7ea0dd185842bfab0d3301fb794863","updated_at":"2023-11-30T20:12:04Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"7253fb3aa157b6654836b0aed568a67f"
       Expires:
       - "0"
       Pragma:
@@ -111,26 +106,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b569aec7d9989000dbcae
+      - 32e015fa6568ec94e7896122001b9680
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb3nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.329848"
+      - "0.239688"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

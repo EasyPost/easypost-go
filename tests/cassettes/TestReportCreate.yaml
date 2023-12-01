@@ -14,14 +14,12 @@ interactions:
     url: https://api.easypost.com/v2/reports/shipment
     method: POST
   response:
-    body: '{"created_at":"2022-09-21T18:22:51Z","end_date":"2022-04-11","id":"shprep_3575b1e1b4b049c5b945a40e3e8a9718","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2022-09-21T18:22:51Z","url":null,"url_expires_at":null}'
+    body: '{"created_at":"2023-11-30T20:11:40Z","end_date":"2022-04-11","id":"shprep_1988f761cc694faab4a1c0bbdbaae82f","include_children":false,"mode":"test","object":"ShipmentReport","start_date":"2022-04-11","status":"new","updated_at":"2023-11-30T20:11:40Z","url":null,"url_expires_at":null}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"194853cf630264c840e5df22c3289383"
       Expires:
       - "0"
       Pragma:
@@ -37,21 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b567bec7d9989000db03a
+      - 32e015fa6568ec7ce7896122001b7f99
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb6nuq
+      - bigweb33nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.037827"
+      - "0.046090"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

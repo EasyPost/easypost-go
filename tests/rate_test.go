@@ -42,7 +42,7 @@ func (c *ClientTests) TestBetaStatelessRateGetLowest() {
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(easypost.StatelessRate{}), reflect.TypeOf(lowestRate))
-	assert.Equal("First", lowestRate.Service)
+	assert.Equal("GroundAdvantage", lowestRate.Service)
 }
 
 func (c *ClientTests) TestBetaStatelessRateGetLowestError() {

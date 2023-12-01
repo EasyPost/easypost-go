@@ -29,20 +29,18 @@ func (c *ClientTests) TestInsuranceRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	insurances, err := client.ListInsurances(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
 	require.NoError(err)
 
-	insuranceData := c.fixture.BasicInsurance()
-	insuranceData.TrackingCode = shipment.TrackingCode
-
-	insurance, err := client.CreateInsurance(insuranceData)
-	require.NoError(err)
-
-	retrievedInsurance, err := client.GetInsurance(insurance.ID)
+	retrievedInsurance, err := client.GetInsurance(insurances.Insurances[0].ID)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(retrievedInsurance))
-	assert.Equal(insurance, retrievedInsurance)
+	assert.Equal(insurances.Insurances[0], retrievedInsurance)
 }
 
 func (c *ClientTests) TestInsuranceAll() {

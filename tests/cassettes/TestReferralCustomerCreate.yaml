@@ -14,15 +14,13 @@ interactions:
     url: https://api.easypost.com/v2/referral_customers
     method: POST
   response:
-    body: '{"api_keys":[],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2022-09-21T18:22:46Z","default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"id":"user_28b7d01595654776b14ff62d78730126","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
+    body: '{"api_keys":[{"active":true,"created_at":"2023-11-30T20:11:33Z","id":"ak_89e7388db3d34d0fbf98494aee6a2faf","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-11-30T20:11:33Z","id":"ak_89c16abe451744879b32b0b29c8f6138","key":"REDACTED","mode":"production","object":"ApiKey"}],"balance":"0.00000","cc_fee_rate":"0.0375","children":[],"created_at":"2023-11-30T20:11:33Z","default_carbon_offset":false,"default_insurance_amount":"50.00","email":"REDACTED","has_billing_method":null,"has_elevate_access":false,"id":"user_fcf48eb939304c0ca77009b9c7b61825","insurance_fee_minimum":"0.25","insurance_fee_rate":"0.005","name":"Test
       Referral","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":null,"recharge_threshold":null,"secondary_recharge_amount":null,"verified":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
-      Etag:
-      - W/"07a4508e98c584c4fc6c36ca931190c6"
       Expires:
       - "0"
       Pragma:
@@ -38,21 +36,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 8f5eb2cf632b5675ec7d9989000dad83
+      - 32e015fa6568ec75e7896122001b79a8
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb5nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq 29913d444b
-      - intlb1wdc 29913d444b
-      - extlb4wdc 29913d444b
+      - intlb2nuq b3de2c47ef
+      - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.963089"
+      - "1.064234"
       X-Version-Label:
-      - easypost-202209211654-799b9c9ff9-master
+      - easypost-202311301748-2efb918c5f-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
