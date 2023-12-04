@@ -8,12 +8,9 @@ Use the following guide to assist in the upgrade process of the `easypost-go` li
 
 ## Upgrading from 3.x to 4.0
 
-### 4.0 High Impact Changes
-
-* [Carbon Offset Removed](#40-carbon-offset-removed)
-
 ### 4.0 Low Impact Changes
 
+* [Carbon Offset Removed](#40-carbon-offset-removed)
 * [CreateAndBuy() Batch Function Removed](#40-createandbuy-batch-function-removed)
 
 ### 4.0 Carbon Offset Removed
