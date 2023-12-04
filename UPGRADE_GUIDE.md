@@ -2,10 +2,28 @@
 
 Use the following guide to assist in the upgrade process of the `easypost-go` library between major versions.
 
+* [Upgrading from 3.x to 4.0](#upgrading-from-3x-to-40)
 * [Upgrading from 2.x to 3.0](#upgrading-from-2x-to-30)
 * [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20)
 
+## Upgrading from 3.x to 4.0
+
+### 4.0 Low Impact Changes
+
+* [Carbon Offset Removed](#40-carbon-offset-removed)
+* [CreateAndBuy() Batch Function Removed](#40-createandbuy-batch-function-removed)
+
+### 4.0 Carbon Offset Removed
+
+EasyPost now offers Carbon Neutral shipments by default for free! Because of this, there is no longer a need to specify if you want to offset the carbon footprint of a shipment. The `CarbonOffset` field from `createShipmentRequest`, `buyShipmentRequest`, and `buyShipmentRequest` structs have been removed as a result. This is a high-impact change for those using `EndShippers` as the function interfaces have changed. You will need to inspect the callsites to create and buy shipments to ensure that the EndShipper parameter is being passed in the correct place now that the `CarbonOffset` field has been removed from the structs.
+
+### 4.0 CreateAndBuy Batch Function Removed
+
+The `CreateAndBuy` Batch endpoint has been deprecated and removed from the library. The correct procedure is to first create a batch and then purchase it with two separate API calls.
+
 ## Upgrading from 2.x to 3.0
+
+**NOTICE:** v3 is deprecated.
 
 ### 3.0 High Impact Changes
 
