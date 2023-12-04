@@ -23,6 +23,8 @@ The `CreateAndBuy` Batch endpoint has been deprecated and removed from the libra
 
 ## Upgrading from 2.x to 3.0
 
+**NOTICE:** v3 is deprecated.
+
 ### 3.0 High Impact Changes
 
 * [Importing the Library](#30-importing-the-library)
