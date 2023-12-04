@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next major release
+## v4.0.0 (2023-12-06)
 
 - Removes the undocumented `CreateAndBuy` function from the Batch service. The proper usage is to create a batch first and buy it separately
 - Removed `CarbonOffset` parameter from `createShipmentRequest`, `buyShipmentRequest`, and `buyShipmentRequest` structs as EasyPost now offers Carbon Neutral shipments by default for free
