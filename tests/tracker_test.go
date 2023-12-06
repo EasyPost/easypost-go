@@ -5,7 +5,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/EasyPost/easypost-go/v3"
+	"github.com/EasyPost/easypost-go/v4"
 )
 
 func (c *ClientTests) TestTrackerCreate() {

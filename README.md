@@ -10,13 +10,13 @@ EasyPost, the simple shipping solution. You can sign up for an account at <https
 ## Install
 
 ```bash
-go get -u github.com/EasyPost/easypost-go/v3
+go get -u github.com/EasyPost/easypost-go/v4
 ```
 
 ```go
 // Import the library
 import (
-    "github.com/EasyPost/easypost-go/v3"
+    "github.com/EasyPost/easypost-go/v4"
 )
 ```
 
@@ -32,7 +32,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/EasyPost/easypost-go/v3"
+    "github.com/EasyPost/easypost-go/v4"
 )
 
 func main() {
@@ -159,7 +159,7 @@ client.Hooks.RemoveResponseEventSubscriber(responseSubscriber)
 
 API documentation can be found at: <https://easypost.com/docs/api>.
 
-Library documentation can be found on the web at [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v3).
+Library documentation can be found on the web at [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v4).
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
@@ -232,7 +232,7 @@ make a request that does not match any of the configured mock requests, the requ
 To use the mock client:
 
 ```golang
-import "github.com/EasyPost/easypost-go/v3"
+import "github.com/EasyPost/easypost-go/v4"
 
 // create  a list of mock request-response pairs
 mockRequests := []easypost.MockRequest{

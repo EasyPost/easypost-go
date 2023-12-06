@@ -1,7 +1,7 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v3"
+	"github.com/EasyPost/easypost-go/v4"
 )
 
 func (c *ClientTests) TestStringPointer() {
