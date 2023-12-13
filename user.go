@@ -3,6 +3,7 @@ package easypost
 import (
 	"context"
 	"fmt"
+	"net/http"
 )
 
 // A User contains data about an EasyPost account and child accounts.
@@ -38,6 +39,11 @@ type UserOptions struct {
 
 type userRequest struct {
 	UserOptions *UserOptions `json:"user,omitempty"`
+}
+
+type ListChildUsersResult struct {
+	Children []*User `json:"children,omitempty"`
+	PaginatedCollection
 }
 
 // CreateUser creates a new child user.
@@ -108,6 +114,49 @@ func (c *Client) RetrieveMe() (out *User, err error) {
 func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err error) {
 	err = c.get(ctx, "users", &out)
 	return
+}
+
+// ListChildUsers retrieves a list of child users.
+func (c *Client) ListChildUsers(opts *ListOptions) (out *ListChildUsersResult, err error) {
+	return c.ListChildUsersWithContext(context.Background(), opts)
+}
+
+// ListChildUsersWithContext performs the same operation as ListChildUsers, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) ListChildUsersWithContext(ctx context.Context, opts *ListOptions) (out *ListChildUsersResult, err error) {
+	err = c.do(ctx, http.MethodGet, "/beta/users/children", c.convertOptsToURLValues(opts), &out)
+	return
+}
+
+// GetNextChildUserPage returns the next page of child users.
+func (c *Client) GetNextChildUserPage(collection *ListChildUsersResult) (out *ListChildUsersResult, err error) {
+	return c.GetNextChildUserPageWithContext(context.Background(), collection)
+}
+
+// GetNextChildUserPageWithPageSize returns the next page of child users with a specific page size.
+func (c *Client) GetNextChildUserPageWithPageSize(collection *ListChildUsersResult, pageSize int) (out *ListChildUsersResult, err error) {
+	return c.GetNextChildUserPageWithPageSizeWithContext(context.Background(), collection, pageSize)
+}
+
+// GetNextChildUserPageWithContext performs the same operation as GetNextChildUserPage, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextChildUserPageWithContext(ctx context.Context, collection *ListChildUsersResult) (out *ListChildUsersResult, err error) {
+	return c.GetNextChildUserPageWithPageSizeWithContext(ctx, collection, 0)
+}
+
+// GetNextChildUserPageWithPageSizeWithContext performs the same operation as GetNextChildUserPageWithPageSize, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) GetNextChildUserPageWithPageSizeWithContext(ctx context.Context, collection *ListChildUsersResult, pageSize int) (out *ListChildUsersResult, err error) {
+	if len(collection.Children) == 0 {
+		err = EndOfPaginationError
+		return
+	}
+	lastID := collection.Children[len(collection.Children)-1].ID
+	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	if err != nil {
+		return
+	}
+	return c.ListChildUsersWithContext(ctx, params)
 }
 
 // UpdateBrand updates the user brand.

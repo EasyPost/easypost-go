@@ -50,6 +50,52 @@ func (c *ClientTests) TestUserRetrieveMe() {
 	assert.True(strings.HasPrefix(user.ID, "user_"))
 }
 
+func (c *ClientTests) TestUserAllChildUsers() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	childUsers, err := client.ListChildUsers(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	assert.LessOrEqual(len(childUsers.Children), c.fixture.pageSize())
+	assert.NotNil(childUsers.HasMore)
+	for _, user := range childUsers.Children {
+		assert.Equal(reflect.TypeOf(&easypost.User{}), reflect.TypeOf(user))
+	}
+}
+
+func (c *ClientTests) TestUserGetNextChildUserPage() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListChildUsers(
+		&easypost.ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextChildUserPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Children) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Children[len(firstPage.Children)-1].ID
+			firstIdOfSecondPage := nextPage.Children[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		return
+	}
+}
+
 func (c *ClientTests) TestUserUpdate() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
