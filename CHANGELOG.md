@@ -2,7 +2,7 @@
 
 ## Next Release
 
-- Add beta `ListChildUsers` and `GetNextChildUserPage` functions to `User` service
+- Add `ListChildUsers` and `GetNextChildUserPage` functions to `User` service
 
 ## v4.0.0 (2023-12-06)
 

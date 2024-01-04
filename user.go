@@ -124,7 +124,7 @@ func (c *Client) ListChildUsers(opts *ListOptions) (out *ListChildUsersResult, e
 // ListChildUsersWithContext performs the same operation as ListChildUsers, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) ListChildUsersWithContext(ctx context.Context, opts *ListOptions) (out *ListChildUsersResult, err error) {
-	err = c.do(ctx, http.MethodGet, "/beta/users/children", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "users/children", c.convertOptsToURLValues(opts), &out)
 	return
 }
 
