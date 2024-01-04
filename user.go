@@ -20,6 +20,7 @@ type User struct {
 	RechargeThreshold       string    `json:"recharge_threshold,omitempty"`
 	Children                []*User   `json:"children,omitempty"`
 	APIKeys                 []*APIKey `json:"api_keys,omitempty"`
+	Verified                bool      `json:"verified,omitempty"`
 }
 
 // UserOptions specifies options for creating or updating a user.
