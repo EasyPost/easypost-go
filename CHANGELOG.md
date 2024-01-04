@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Add `ListChildUsers` and `GetNextChildUserPage` functions to `User` service
+
 ## v4.0.0 (2023-12-06)
 
 - Removes the undocumented `CreateAndBuy` function from the Batch service. The proper usage is to create a batch first and buy it separately

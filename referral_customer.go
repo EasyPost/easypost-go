@@ -253,7 +253,7 @@ func (c *Client) BetaRefundByAmountWithContext(ctx context.Context, refundAmount
 	return
 }
 
-// BetaRefundByAmount refunds a payment by paymenbt log ID.
+// BetaRefundByPaymentLog refunds a payment by payment log ID.
 func (c *Client) BetaRefundByPaymentLog(paymentLogId string) (out *BetaPaymentRefund, err error) {
 	return c.BetaRefundByPaymentLogWithContext(context.Background(), paymentLogId)
 }
