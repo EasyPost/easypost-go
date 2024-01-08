@@ -65,6 +65,7 @@ type Address struct {
 // CreateAddressOptions is used to specify verification options for address
 // creation.
 type CreateAddressOptions struct {
+	// TODO: These should be booleans, not strings, like the other libs
 	Verify       []string `json:"verify,omitempty"`
 	VerifyStrict []string `json:"verify_strict,omitempty"`
 }
