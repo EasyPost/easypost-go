@@ -2,8 +2,8 @@
 version: 1
 interactions:
 - request:
-    body: '{"address":{"city":"San Francisco","company":"EasyPost","country":"US","email":"REDACTED","phone":"REDACTED","state":"CA","street1":"417
-      montgomery street","street2":"FL 5","zip":"94104"},"verify":["delivery"]}'
+    body: '{"address":{"city":"Not A City","company":"EasyPost","country":"US","email":"REDACTED","phone":"REDACTED","state":"ZZ","street1":"000
+      unknown street","zip":"00001"},"verify":["delivery"]}'
     form: {}
     headers:
       Authorization:
@@ -15,8 +15,9 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2023-11-30T20:10:16+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7aaa30068fbc11eeace3ac1f6bc539aa","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":false,"state":"CA","state_tax_id":null,"street1":"417
-      MONTGOMERY ST FL 5","street2":"","updated_at":"2023-11-30T20:10:16+00:00","verifications":{"delivery":{"details":{"latitude":37.79342,"longitude":-122.40288,"time_zone":"America/Los_Angeles"},"errors":[],"success":true}},"zip":"94104-1129"}'
+    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2024-01-08T18:27:41+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_9b90cd46ae5311eebbf5ac1f6bc539ae","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
+      unknown street","street2":null,"updated_at":"2024-01-08T18:27:41+00:00","verifications":{"delivery":{"details":{},"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null}],"success":false}},"zip":"00001"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -25,7 +26,7 @@ interactions:
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_7aaa30068fbc11eeace3ac1f6bc539aa
+      - /api/v2/addresses/adr_9b90cd46ae5311eebbf5ac1f6bc539ae
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -34,27 +35,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec28e7896122001b32b4
+      - d1c48c8a659c3e9df40c261200032fe1
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb32nuq
+      - bigweb33nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
+      - intlb2nuq ab82b2e6e9
       - extlb1nuq 003ad9bca0
       X-Runtime:
-      - "0.061657"
+      - "0.046836"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202401051829-4cf193bd35-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

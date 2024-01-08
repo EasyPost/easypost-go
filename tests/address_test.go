@@ -112,28 +112,38 @@ func (c *ClientTests) TestAddressCreateVerify() {
 			Verify: []string{"delivery"},
 		},
 	)
-	require.NoError(err)
 
+	// Does return an address from CreateAddress even if requested verification fails
+	require.NoError(err)
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
-	assert.True(strings.HasPrefix(address.ID, "adr_"))
-	assert.Equal("417 MONTGOMERY ST FL 5", address.Street1)
+	assert.NotNil(address.Verifications.Delivery)
 }
 
 func (c *ClientTests) TestAddressCreateAndVerify() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	address, err := client.CreateAndVerifyAddress(
+	// Creating normally (without specifying "verify") will make the address, perform no verifications
+	address, err := client.CreateAddress(
+		c.fixture.IncorrectAddress(),
+		&easypost.CreateAddressOptions{},
+	)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
+	assert.Nil(address.Verifications.Delivery)
+
+	// Creating with verify would attempt to make the address and perform verifications
+	address, err = client.CreateAndVerifyAddress(
 		c.fixture.IncorrectAddress(),
 		&easypost.CreateAddressOptions{
 			Verify: []string{"delivery"},
 		},
 	)
-	require.NoError(err)
 
-	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
-	assert.True(strings.HasPrefix(address.ID, "adr_"))
-	assert.Equal("417 MONTGOMERY ST FL 5", address.Street1)
+	// Does not return an address from CreateAndVerifyAddress if requested verification fails
+	require.Error(err)
+	assert.Nil(address)
 }
 
 func (c *ClientTests) TestAddressVerify() {
