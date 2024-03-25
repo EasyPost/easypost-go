@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix `DateTime`-type parameters not being included in GET requests
+
 ## v4.1.0 (2024-01-08)
 
 - Add `ListChildUsers` and `GetNextChildUserPage` functions to `User` service
