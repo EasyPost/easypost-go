@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v4.1.1 (2024-03-26)
 
 - Fix `DateTime`-type parameters not being included in GET requests
 
