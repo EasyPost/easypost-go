@@ -62,8 +62,8 @@ func (c *ClientTests) TestDateTimeJSON() {
 	assert.NotNil(minDatetimeString)
 }
 
-// / TestDateTimeParameterInclusion tests that DateTime-type parameters are encoded properly (RFC3339) for use in HTTP payloads
-func (c *ClientTests) TestDateTimeParameterInclusion() {
+// / TestDateTimeUrlQueryStringParameterInclusion tests that DateTime-type parameters are encoded properly (RFC3339) for use in HTTP payloads
+func (c *ClientTests) TestDateTimeUrlQueryStringParameterInclusion() {
 	assert := c.Assert()
 
 	now := time.Now().UTC()
