@@ -1,6 +1,9 @@
 package easypost
 
-import "time"
+import (
+	"net/url"
+	"time"
+)
 
 type DateTime time.Time
 
@@ -93,16 +96,22 @@ func (dt *DateTime) UnmarshalJSON(b []byte) (err error) {
 	return nil
 }
 
-func (dt DateTime) MarshalJSON() ([]byte, error) {
-	return time.Time(dt).MarshalJSON()
+func (dt *DateTime) MarshalJSON() ([]byte, error) {
+	return time.Time(*dt).MarshalJSON()
 }
 
-func (dt DateTime) String() string {
-	return time.Time(dt).String()
+func (dt *DateTime) String() string {
+	return time.Time(*dt).String()
 }
 
-func (dt DateTime) AsTime() time.Time {
-	return time.Time(dt)
+// EncodeValues implements the query.Encoder interface of how to encode the DateTime for a URL query string
+func (dt *DateTime) EncodeValues(key string, values *url.Values) error {
+	values.Set(key, time.Time(*dt).Format(time.RFC3339)) // RFC3339 is the default format for time.Time
+	return nil
+}
+
+func (dt *DateTime) AsTime() time.Time {
+	return time.Time(*dt)
 }
 
 // NewDateTime returns the DateTime corresponding to

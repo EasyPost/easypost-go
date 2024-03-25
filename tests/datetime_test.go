@@ -4,6 +4,8 @@ import (
 	"github.com/EasyPost/easypost-go/v4"
 	"reflect"
 	"time"
+
+	"github.com/google/go-querystring/query"
 )
 
 func (c *ClientTests) TestDateTime() {
@@ -58,4 +60,27 @@ func (c *ClientTests) TestDateTimeJSON() {
 	minDatetimeString := pickup.MinDatetime.String()
 	assert.NotNil(maxDatetimeString)
 	assert.NotNil(minDatetimeString)
+}
+
+// / TestDateTimeUrlQueryStringParameterInclusion tests that DateTime-type parameters are encoded properly (RFC3339) for use in HTTP payloads
+func (c *ClientTests) TestDateTimeUrlQueryStringParameterInclusion() {
+	assert := c.Assert()
+
+	now := time.Now().UTC()
+	past := now.AddDate(0, -4, 0)
+
+	start := easypost.DateTimeFromTime(past)
+	end := easypost.DateTimeFromTime(now)
+
+	options := easypost.ListOptions{
+		StartDateTime: &start,
+		EndDateTime:   &end,
+		PageSize:      100,
+	}
+
+	// This is the internals of the `convertOptsToURLValues` method in the `Client` struct (can't be used directly because it's private)
+	values, _ := query.Values(options)
+
+	assert.Equal(past.Format(time.RFC3339), values.Get("start_datetime"))
+	assert.Equal(now.Format(time.RFC3339), values.Get("end_datetime"))
 }
