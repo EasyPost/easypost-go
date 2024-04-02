@@ -120,3 +120,16 @@ func (c *Client) GetInsuranceWithContext(ctx context.Context, insuranceID string
 	err = c.get(ctx, "insurances/"+insuranceID, &out)
 	return
 }
+
+// RefundInsurance refunds the Insurance object with the given ID.
+func (c *Client) RefundInsurance(insuranceID string) (out *Insurance, err error) {
+	return c.RefundInsuranceWithContext(context.Background(), insuranceID)
+}
+
+// RefundInsuranceWithContext performs the same operation as RefundInsurance, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) RefundInsuranceWithContext(ctx context.Context, insuranceID string) (out *Insurance, err error) {
+	// TODO: remove beta when endpoint is in GA.
+	err = c.post(ctx, "/beta/insurances/"+insuranceID+"/refund", nil, &out)
+	return
+}

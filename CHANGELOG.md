@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `RefundInsurance` function in Insurance service for requesting a refund for a standalone insurance
+
 ## v4.1.1 (2024-03-26)
 
 - Fix `DateTime`-type parameters not being included in GET requests
