@@ -20,11 +20,13 @@ type ShipmentOptions struct {
 	CODAddressID                string    `json:"cod_address_id,omitempty"`
 	CommercialInvoiceSignature  string    `json:"commercial_invoice_signature,omitempty"`
 	CommercialInvoiceLetterhead string    `json:"commercial_invoice_letterhead,omitempty"`
+	ContentDescription          string    `json:"content_description,omitempty"`
 	Currency                    string    `json:"currency,omitempty"`
 	DeliveryConfirmation        string    `json:"delivery_confirmation,omitempty"`
 	DeliveryMaxDatetime         *DateTime `json:"delivery_max_datetime,omitempty"`
 	DutyPayment                 *Payment  `json:"duty_payment,omitempty"`
 	DutyPaymentAccount          string    `json:"duty_payment_account,omitempty"`
+	DropoffMaxDatetime          *DateTime `json:"dropoff_max_datetime,omitempty"`
 	DropoffType                 string    `json:"dropoff_type,omitempty"`
 	DryIce                      bool      `json:"dry_ice,omitempty"`
 	DryIceMedical               bool      `json:"dry_ice_medical,omitempty,string"`
@@ -43,6 +45,7 @@ type ShipmentOptions struct {
 	Machinable                  bool      `json:"machinable,omitempty"`
 	Payment                     *Payment  `json:"payment,omitempty"`
 	PickupMinDatetime           *DateTime `json:"pickup_min_datetime,omitempty"`
+	PickupMaxDatetime           *DateTime `json:"pickup_max_datetime,omitempty"`
 	PrintCustom1                string    `json:"print_custom_1,omitempty"`
 	PrintCustom2                string    `json:"print_custom_2,omitempty"`
 	PrintCustom3                string    `json:"print_custom_3,omitempty"`
