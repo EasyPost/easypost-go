@@ -90,3 +90,20 @@ func (c *ClientTests) TestInsuranceGetNextPage() {
 		return
 	}
 }
+
+func (c *ClientTests) TestInsuranceRefund() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	insuranceData := c.fixture.BasicInsurance()
+	insuranceData.TrackingCode = "EZ1000000001"
+
+	insurance, _ := client.CreateInsurance(insuranceData)
+	refundInsurance, err := client.RefundInsurance(insurance.ID)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(refundInsurance))
+	assert.True(strings.HasPrefix(refundInsurance.ID, "ins_"))
+	assert.Equal("cancelled", refundInsurance.Status)
+	assert.Equal("Insurance was cancelled by the user.", refundInsurance.Messages[0])
+}
