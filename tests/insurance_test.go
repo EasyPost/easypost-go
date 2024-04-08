@@ -105,4 +105,5 @@ func (c *ClientTests) TestInsuranceRefund() {
 	assert.Equal(reflect.TypeOf(&easypost.Insurance{}), reflect.TypeOf(refundInsurance))
 	assert.True(strings.HasPrefix(refundInsurance.ID, "ins_"))
 	assert.Equal("cancelled", refundInsurance.Status)
+	assert.Equal("Insurance was cancelled by the user.", refundInsurance.Messages[0])
 }
