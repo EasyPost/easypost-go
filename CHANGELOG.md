@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- Fix payment method funding and deletion failures due to undetermined payment method type
 - Adds `RefundInsurance` function in Insurance service for requesting a refund for a standalone insurance
 
 ## v4.1.1 (2024-03-26)

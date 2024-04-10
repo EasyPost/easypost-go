@@ -1,9 +1,5 @@
 package easypost
 
-import (
-	"strings"
-)
-
 type PaymentMethodPriority int64
 
 const (
@@ -41,9 +37,9 @@ type PaymentMethodObject struct {
 
 // getPaymentMethodObjectType returns the PaymentMethodType enum of a PaymentMethodObject.
 func (c *Client) getPaymentMethodObjectType(object *PaymentMethodObject) (out PaymentMethodType, err error) {
-	if strings.HasPrefix(object.ID, "card_") {
+	if object.Object == "CreditCard" {
 		out = CreditCardPaymentType
-	} else if strings.HasPrefix(object.ID, "bank_") {
+	} else if object.Object == "BankAccount" {
 		out = BankAccountPaymentType
 	} else {
 		return out, newInvalidObjectError(NoMatchingPaymentMethod)
