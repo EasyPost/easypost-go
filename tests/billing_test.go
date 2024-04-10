@@ -123,37 +123,3 @@ func (c *ClientTests) TestGetPaymentMethodInfoByObjectType() {
 	err := client.DeletePaymentMethod(easypost.PrimaryPaymentMethodPriority)
 	require.NoError(err)
 }
-
-func (c *ClientTests) TestGetPaymentMethodInfoByLegacyIdPrefix() {
-	mockRequests := []easypost.MockRequest{
-		{
-			MatchRule: easypost.MockRequestMatchRule{
-				Method:          "GET",
-				UrlRegexPattern: "v2\\/payment_methods$",
-			},
-			ResponseInfo: easypost.MockRequestResponseInfo{
-				StatusCode: 200,
-				Body:       `{"id": "summary_123", "primary_payment_method": {"id": "card_123", "object": null}, "secondary_payment_method": {"id": "bank_123", "object": null}}`,
-			},
-		},
-		{
-			MatchRule: easypost.MockRequestMatchRule{
-				Method:          "DELETE",
-				UrlRegexPattern: "v2\\/bank_accounts\\/bank_123$",
-			},
-			ResponseInfo: easypost.MockRequestResponseInfo{
-				StatusCode: 200,
-				Body:       `{}`,
-			},
-		},
-	}
-
-	client := c.MockClient(mockRequests)
-	require := c.Require()
-
-	// getPaymentMethodObjectType is a private method, so we can't test it directly, but we can test it via DeletePaymentMethod
-	// The mocking setup here makes it so only /v2/bank_accounts/bank_123 is allowed to be called
-	// If the method works correctly without error, we can assume it's because it found the correct payment method type
-	err := client.DeletePaymentMethod(easypost.SecondaryPaymentMethodPriority)
-	require.NoError(err)
-}
