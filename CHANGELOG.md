@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v4.3.0 (2024-04-15)
+
+- Adds `ContentDescription`, `DropoffMaxDatetime`, and `PickupMaxDatetime` shipment options
+
 ## v4.2.0 (2024-04-10)
 
 - Fix payment method funding and deletion failures due to undetermined payment method type
