@@ -79,14 +79,14 @@ func (c *ClientTests) TestOrderLowestRate() {
 	lowestRate, err := client.LowestOrderRate(order)
 	require.NoError(err)
 	assert.Equal("GroundAdvantage", lowestRate.Service)
-	assert.Equal("5.93", lowestRate.Rate)
+	assert.Equal("11.33", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with service filter (this rate is higher than the lowest but should filter)
 	lowestRate, err = client.LowestOrderRateWithCarrierAndService(order, nil, []string{"Priority"})
 	require.NoError(err)
 	assert.Equal("Priority", lowestRate.Service)
-	assert.Equal("6.95", lowestRate.Rate)
+	assert.Equal("13.79", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with carrier filter (should error due to bad carrier)

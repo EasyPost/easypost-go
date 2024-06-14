@@ -155,6 +155,8 @@ func (c *Client) CreateTrackerWithContext(ctx context.Context, opts *CreateTrack
 
 // CreateTrackerList asynchronously creates multiple trackers.
 // Input a map of maps that contains multiple tracking codes
+//
+// Deprecated: Use the CreateTracker function instead. CreateTrackerList will be removed in a future release.
 func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	// The data structure must look like the following when calling the API:
 	// {
@@ -172,6 +174,8 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 // CreateTrackerListWithContext performs the same operation as
 // CreateTrackerList, but allows specifying a context that can interrupt the
 // request.
+//
+// Deprecated: Use the CreateTracker function instead. CreateTrackerList will be removed in a future release.
 func (c *Client) CreateTrackerListWithContext(ctx context.Context, param map[string]interface{}) (bool, error) {
 	req := map[string]interface{}{"trackers": param}
 	// This endpoint does not return a response, so we return true here
