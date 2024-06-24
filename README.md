@@ -109,9 +109,9 @@ func main() {
 Users can audit the HTTP requests and responses being made by the library by setting the `Hooks` property of a `Client` with a set of event subscriptions. Available subscriptions include:
 
 - `RequestHookEventSubscriber` - Called before an HTTP request is made. A `RequestHookEvent` object, containing details about the request that will be sent to the server, is passed to the subscription's `RequestHookEventSubscriberCallback`
-    - Modifying any data in the callback will NOT affect the actual request that is sent to the server.
+  - Modifying any data in the callback will NOT affect the actual request that is sent to the server.
 - `ResponseHookEventSubscriber` - Called after an HTTP request is made. A `ResponseHookEvent` object, containing details about the response that was received from the server, is passed to the subscription's `ResponseHookEventSubscriberCallback`
-    - Modifying any data in the callback will NOT affect the actual response that was received from the server, and will NOT affect the data deserialized into the library's models.
+  - Modifying any data in the callback will NOT affect the actual response that was received from the server, and will NOT affect the data deserialized into the library's models.
 
 Users can interact with these details in their callbacks as they see fit (e.g. logging).
 
@@ -119,7 +119,7 @@ Users can interact with these details in their callbacks as they see fit (e.g. l
 func myRequestHookEventSubscriberCallback(ctx context.Context, event easypost.RequestHookEvent) error {
     // Interact with details about the request here
     fmt.Printf("Making HTTP call to %s\n", event.URL)
-	return nil
+ return nil
 }
 
 func myResponseHookEventSubscriberCallback(ctx context.Context, event easypost.ResponseHookEvent) error {
@@ -157,7 +157,7 @@ client.Hooks.RemoveResponseEventSubscriber(responseSubscriber)
 
 ## Documentation
 
-API documentation can be found at: <https://easypost.com/docs/api>.
+API documentation can be found at: <https://docs.easypost.com>.
 
 Library documentation can be found on the web at [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v4).
 
