@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v4.3.1 (2024-07-01)
+
+- Adds missing `Readable` and `Logo` fields to `CarrierType` struct
+
 ## v4.3.0 (2024-04-15)
 
 - Adds `ContentDescription`, `DropoffMaxDatetime`, and `PickupMaxDatetime` shipment options
