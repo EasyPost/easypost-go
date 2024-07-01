@@ -42,9 +42,11 @@ type CarrierAccount struct {
 // CarrierType contains information on a supported carrier. It can be used to
 // determine the valid fields for a carrier account.
 type CarrierType struct {
-	Object string         `json:"object,omitempty"`
-	Type   string         `json:"type,omitempty"`
-	Fields *CarrierFields `json:"fields,omitempty"`
+	Object   string         `json:"object,omitempty"`
+	Type     string         `json:"type,omitempty"`
+	Readable string         `json:"readable,omitempty"`
+	Logo     string         `json:"logo,omitempty"`
+	Fields   *CarrierFields `json:"fields,omitempty"`
 }
 
 type carrierAccountRequest struct {
