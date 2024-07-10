@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"carrier_account":{"credentials":{},"test_credentials":{},"type":"DhlEcsAccount"}}'
+    body: '{"ups_oauth_registrations":{"account_number":"123456789","type":"UpsAccount"}}'
     form: {}
     headers:
       Authorization:
@@ -11,12 +11,10 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts
+    url: https://api.easypost.com/v2/ups_oauth_registrations
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{},"id":"ca_1e440e0201754527b0c19d3ccbbb5c1e","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-07-10T23:00:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":null,"fields":{},"id":"ca_3f3a30eaca1a49fa9360967184448e00","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:09Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -37,18 +35,18 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1278f41b62e9003cbcef
+      - 35d2ed5f668f1279f41b62e9003cbd75
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb33nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb4nuq fa152d4755
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.079382"
+      - "0.093533"
       X-Version-Label:
       - easypost-202407102141-c1077ec6f9-master
       X-Xss-Protection:
@@ -64,12 +62,10 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_1e440e0201754527b0c19d3ccbbb5c1e
+    url: https://api.easypost.com/v2/carrier_accounts/ca_3f3a30eaca1a49fa9360967184448e00
     method: GET
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{},"id":"ca_1e440e0201754527b0c19d3ccbbb5c1e","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-07-10T23:00:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":null,"fields":{},"id":"ca_3f3a30eaca1a49fa9360967184448e00","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:09Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -90,18 +86,18 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbd0e
+      - 35d2ed5f668f1279f41b62e9003cbda0
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb34nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb3nuq fa152d4755
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.042087"
+      - "0.043407"
       X-Version-Label:
       - easypost-202407102141-c1077ec6f9-master
       X-Xss-Protection:
@@ -110,7 +106,7 @@ interactions:
     code: 200
     duration: ""
 - request:
-    body: '{"carrier_account":{"description":"My custom description","id":"ca_1e440e0201754527b0c19d3ccbbb5c1e"}}'
+    body: '{"ups_oauth_registrations":{"account_number":"987654321"}}'
     form: {}
     headers:
       Authorization:
@@ -119,12 +115,10 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_1e440e0201754527b0c19d3ccbbb5c1e
+    url: https://api.easypost.com/v2/ups_oauth_registrations/ca_3f3a30eaca1a49fa9360967184448e00
     method: PATCH
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":"My
-      custom description","fields":{},"id":"ca_1e440e0201754527b0c19d3ccbbb5c1e","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-07-10T23:00:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":null,"fields":{},"id":"ca_3f3a30eaca1a49fa9360967184448e00","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:09Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -140,23 +134,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbd2a
+      - 35d2ed5f668f1279f41b62e9003cbdc1
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb35nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq fa152d4755
+      - intlb4nuq fa152d4755
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.094039"
+      - "0.074505"
       X-Version-Label:
       - easypost-202407102141-c1077ec6f9-master
       X-Xss-Protection:
@@ -172,7 +168,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_1e440e0201754527b0c19d3ccbbb5c1e
+    url: https://api.easypost.com/v2/carrier_accounts/ca_3f3a30eaca1a49fa9360967184448e00
     method: DELETE
   response:
     body: '{}'
@@ -191,23 +187,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbd56
+      - 35d2ed5f668f1279f41b62e9003cbde7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb39nuq
+      - bigweb43nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq fa152d4755
+      - intlb4nuq fa152d4755
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.062216"
+      - "0.062747"
       X-Version-Label:
       - easypost-202407102141-c1077ec6f9-master
       X-Xss-Protection:
