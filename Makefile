@@ -19,8 +19,13 @@ clean:
 coverage: 
 	go clean -testcache && go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
+## init-examples-submodule - Initialize the examples submodule
+init-examples-submodule:
+	git submodule init
+	git submodule update
+
 ## install - Install and vendor dependencies
-install: | update-examples-submodule
+install: | init-examples-submodule
 	brew install golangci-lint || exit 0
 	go mod vendor
 	go build -o $(PROJECT_PATH)
