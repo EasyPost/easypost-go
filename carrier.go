@@ -65,7 +65,6 @@ type upsCarrierAccountCreationRequest struct {
 
 // UpsCarrierAccountUpdateParameters contains the parameters needed to update a UPS carrier account.
 type UpsCarrierAccountUpdateParameters struct {
-	// TODO: Add Description and Reference if/when API allows updating them.
 	AccountNumber string `json:"account_number,omitempty"`
 }
 
