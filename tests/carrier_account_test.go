@@ -30,19 +30,18 @@ func (c *ClientTests) TestCarrierAccountCreate() {
 	require.NoError(err)
 }
 
-func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() {
+func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() { // FedExAccount
+	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
-	client := c.ProdClient()
-
-	carrierAccount := c.fixture.BasicCarrierAccount()
-	carrierAccount.Type = "FedexAccount"
+	createParameters := c.fixture.BasicCarrierAccount()
+	createParameters.Type = "FedexAccount"
 	// we need to include data in this interface, otherwise it will be omitted during the API call
-	carrierAccount.RegistrationData = map[string]interface{}{
+	createParameters.RegistrationData = map[string]interface{}{
 		"some": "data",
 	}
 
-	_, err := client.CreateCarrierAccount(carrierAccount)
+	_, err := client.CreateCarrierAccount(createParameters)
 
 	// We're sending bad data to the API, so we expect an error
 	require.Error(err)
@@ -59,6 +58,54 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() {
 	}
 
 	assert.True(errorFound)
+}
+
+func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericCreation() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	createParameters := c.fixture.BasicCarrierAccount()
+	createParameters.Type = "UpsAccount"
+
+	_, err := client.CreateCarrierAccount(createParameters)
+	require.Error(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.InvalidFunctionError{}), reflect.TypeOf(err))
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUps() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	createParameters := &easypost.UpsCarrierAccountCreationParameters{
+		AccountNumber: "123456789",
+		Type:          "UpsAccount",
+	}
+
+	carrierAccount, err := client.CreateUpsCarrierAccount(createParameters)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(carrierAccount))
+	assert.True(strings.HasPrefix(carrierAccount.ID, "ca_"))
+	assert.Equal("UpsAccount", carrierAccount.Type)
+
+	err = client.DeleteCarrierAccount(carrierAccount.ID)
+	require.NoError(err)
+}
+
+func (c *ClientTests) TestCarrierAccountPreventUsersUsingNotUpsAccountForUpsCreation() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	createParameters := &easypost.UpsCarrierAccountCreationParameters{
+		AccountNumber: "123456789",
+		Type:          "NotUpsAccount",
+	}
+
+	_, err := client.CreateUpsCarrierAccount(createParameters)
+	require.Error(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.InvalidFunctionError{}), reflect.TypeOf(err))
 }
 
 func (c *ClientTests) TestCarrierAccountRetrieve() {
@@ -99,14 +146,12 @@ func (c *ClientTests) TestCarrierAccountUpdate() {
 	carrierAccount, err := c.GenerateCarrierAccount()
 	require.NoError(err)
 
-	carrierAccount.Description = testDescription
+	updateParameters := &easypost.CarrierAccount{
+		ID:          carrierAccount.ID,
+		Description: testDescription,
+	}
 
-	updatedCarrierAccount, err := client.UpdateCarrierAccount(
-		&easypost.CarrierAccount{
-			ID:          carrierAccount.ID,
-			Description: testDescription,
-		},
-	)
+	updatedCarrierAccount, err := client.UpdateCarrierAccount(updateParameters)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(updatedCarrierAccount))
@@ -115,6 +160,91 @@ func (c *ClientTests) TestCarrierAccountUpdate() {
 
 	err = client.DeleteCarrierAccount(carrierAccount.ID)
 	require.NoError(err)
+}
+
+func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericUpdate() {
+	id := "ca_123"
+
+	mockRequests := []easypost.MockRequest{
+		{
+			MatchRule: easypost.MockRequestMatchRule{
+				Method:          "GET",
+				UrlRegexPattern: "v2\\/carrier_accounts/" + id + "$",
+			},
+			ResponseInfo: easypost.MockRequestResponseInfo{
+				StatusCode: 200,
+				Body:       `{"id": "` + id + `", "type": "UpsAccount"}`,
+			},
+		},
+	}
+
+	client := c.MockClient(mockRequests)
+	assert, require := c.Assert(), c.Require()
+
+	updateParameters := &easypost.CarrierAccount{
+		ID:          id,
+		Description: "My custom description",
+	}
+
+	_, err := client.UpdateCarrierAccount(updateParameters)
+	require.Error(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.InvalidFunctionError{}), reflect.TypeOf(err))
+}
+
+func (c *ClientTests) TestCarrierAccountUpdateUps() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	createParameters := &easypost.UpsCarrierAccountCreationParameters{
+		AccountNumber: "123456789",
+		Type:          "UpsAccount",
+	}
+
+	carrierAccount, err := client.CreateUpsCarrierAccount(createParameters)
+	require.NoError(err)
+
+	updateParameters := &easypost.UpsCarrierAccountUpdateParameters{
+		AccountNumber: "987654321",
+	}
+
+	updatedCarrierAccount, err := client.UpdateUpsCarrierAccount(carrierAccount.ID, updateParameters)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(updatedCarrierAccount))
+	assert.True(strings.HasPrefix(updatedCarrierAccount.ID, "ca_"))
+
+	err = client.DeleteCarrierAccount(carrierAccount.ID)
+	require.NoError(err)
+}
+
+func (c *ClientTests) TestCarrierAccountPreventUsersUsingNotUpsAccountForUpsUpdate() {
+	id := "ca_123"
+
+	mockRequests := []easypost.MockRequest{
+		{
+			MatchRule: easypost.MockRequestMatchRule{
+				Method:          "GET",
+				UrlRegexPattern: "v2\\/carrier_accounts/" + id + "$",
+			},
+			ResponseInfo: easypost.MockRequestResponseInfo{
+				StatusCode: 200,
+				Body:       `{"id": "` + id + `", "type": "NotUpsAccount"}`,
+			},
+		},
+	}
+
+	client := c.MockClient(mockRequests)
+	assert, require := c.Assert(), c.Require()
+
+	updateParameters := &easypost.UpsCarrierAccountUpdateParameters{
+		AccountNumber: "987654321",
+	}
+
+	_, err := client.UpdateUpsCarrierAccount(id, updateParameters)
+	require.Error(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.InvalidFunctionError{}), reflect.TypeOf(err))
 }
 
 func (c *ClientTests) TestCarrierAccountDelete() {

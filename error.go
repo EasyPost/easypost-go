@@ -144,6 +144,16 @@ func newExternalApiError(message string) *ExternalApiError {
 	return &ExternalApiError{LibraryError{Message: message}}
 }
 
+// InvalidFunctionError is raised when a function call is invalid or not allowed.
+type InvalidFunctionError struct {
+	LocalError
+}
+
+// newInvalidFunctionError returns a new InvalidFunctionError object with the given message.
+func newInvalidFunctionError(message string) *InvalidFunctionError {
+	return &InvalidFunctionError{LocalError{LibraryError{Message: message}}}
+}
+
 // API/HTTP error types
 
 // APIError represents an error that occurred while communicating with the EasyPost API.
