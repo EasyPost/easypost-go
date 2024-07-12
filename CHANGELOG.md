@@ -4,6 +4,9 @@
 
 - Adds new `EstimateDeliveryDateForShipment`, `EstimateDeliveryDateForZipPair`, `RecommendShipDateForShipment` and `RecommendShipDateForZipPair`
   - Existing `GetShipmentEstimatedDeliveryDate` marked as deprecated in favor of `EstimateDeliveryDateForShipment`
+- New `CreateUpsCarrierAccount` and `UpdateUpsCarrierAccount` methods and associated parameter structs, required to use for UPS accounts due to new `/ups_oauth_registrations` endpoint.
+  - Starting `2024-08-05`, UPS accounts will require a new payload to register or update. See [UPS OAuth 2.0 Update](https://support.easypost.com/hc/en-us/articles/26635027512717-UPS-OAuth-2-0-Update) for more details.
+  - Attempting to use the generic `CreateCarrierAccount` and `UpdateCarrierAccount` methods with UPS accounts will throw an `InvalidFunctionError`.
 
 ## v4.3.1 (2024-07-01)
 

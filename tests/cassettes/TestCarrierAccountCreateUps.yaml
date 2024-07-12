@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"carrier_account":{"credentials":{},"test_credentials":{},"type":"DhlEcsAccount"}}'
+    body: '{"ups_oauth_registrations":{"account_number":"123456789","type":"UpsAccount"}}'
     form: {}
     headers:
       Authorization:
@@ -11,12 +11,10 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts
+    url: https://api.easypost.com/v2/ups_oauth_registrations
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:08Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{},"id":"ca_94291c154236418183431f8e0a6396f1","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-07-10T23:00:08Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:08Z","credentials":{},"description":null,"fields":{},"id":"ca_5462da65bdb34ab4ac7c607703c9ecf4","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:08Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -37,18 +35,18 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1278f41b62e9003cbc05
+      - 35d2ed5f668f1278f41b62e9003cbc51
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb36nuq
+      - bigweb42nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb4nuq fa152d4755
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.070008"
+      - "0.220166"
       X-Version-Label:
       - easypost-202407102141-c1077ec6f9-master
       X-Xss-Protection:
@@ -64,7 +62,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_94291c154236418183431f8e0a6396f1
+    url: https://api.easypost.com/v2/carrier_accounts/ca_5462da65bdb34ab4ac7c607703c9ecf4
     method: DELETE
   response:
     body: '{}'
@@ -83,25 +81,23 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1278f41b62e9003cbc29
+      - 35d2ed5f668f1278f41b62e9003cbcb8
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb32nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq fa152d4755
+      - intlb3nuq fa152d4755
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.064514"
+      - "0.060721"
       X-Version-Label:
       - easypost-202407102141-c1077ec6f9-master
       X-Xss-Protection:

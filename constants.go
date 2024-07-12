@@ -1,7 +1,11 @@
 package easypost
 
 func getCarrierAccountTypesWithCustomWorkflows() []string {
-	return []string{"FedexAccount", "UpsAccount", "FedexSmartpostAccount"}
+	return []string{"FedexAccount", "FedexSmartpostAccount"}
+}
+
+func getUpsCarrierAccountTypes() []string {
+	return []string{"UpsAccount", "UpsMailInnovationsAccount", "UpsSurepostAccount"}
 }
 
 var ApiDidNotReturnErrorDetails = "API did not return error details"
