@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds new `EstimateDeliveryDateForShipment`, `EstimateDeliveryDateForZipPair`, `RecommendShipDateForShipment` and `RecommendShipDateForZipPair`
+  - Existing `GetShipmentEstimatedDeliveryDate` marked as deprecated in favor of `EstimateDeliveryDateForShipment`
+
 ## v4.3.1 (2024-07-01)
 
 - Adds missing `Readable` and `Logo` fields to `CarrierType` struct

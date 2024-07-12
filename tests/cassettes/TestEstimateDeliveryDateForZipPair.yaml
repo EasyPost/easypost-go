@@ -1,0 +1,56 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carriers":["USPS"],"from_zip":"94107","planned_ship_date":"2024-07-17","to_zip":"90277"}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/smartrate/deliver_by
+    method: POST
+  response:
+    body: '{"carriers_without_tint_estimates":null,"from_zip":"94107","planned_ship_date":"2024-07-17","results":[{"carrier":"USPS","easypost_time_in_transit_data":{"days_in_transit":{"percentile_50":1,"percentile_75":2,"percentile_85":2,"percentile_90":3,"percentile_95":5,"percentile_97":5,"percentile_99":7},"easypost_estimated_delivery_date":"2024-07-18"},"service":"express"},{"carrier":"USPS","easypost_time_in_transit_data":{"days_in_transit":{"percentile_50":3,"percentile_75":3,"percentile_85":5,"percentile_90":5,"percentile_95":5,"percentile_97":6,"percentile_99":9},"easypost_estimated_delivery_date":"2024-07-19"},"service":"groundadvantage"},{"carrier":"USPS","easypost_time_in_transit_data":{"days_in_transit":{"percentile_50":3,"percentile_75":3,"percentile_85":5,"percentile_90":5,"percentile_95":5,"percentile_97":6,"percentile_99":9},"easypost_estimated_delivery_date":"2024-07-19"},"service":"librarymail"},{"carrier":"USPS","easypost_time_in_transit_data":{"days_in_transit":{"percentile_50":3,"percentile_75":3,"percentile_85":5,"percentile_90":5,"percentile_95":5,"percentile_97":7,"percentile_99":10},"easypost_estimated_delivery_date":"2024-07-20"},"service":"mediamail"},{"carrier":"USPS","easypost_time_in_transit_data":{"days_in_transit":{"percentile_50":3,"percentile_75":3,"percentile_85":5,"percentile_90":5,"percentile_95":5,"percentile_97":6,"percentile_99":8},"easypost_estimated_delivery_date":"2024-07-19"},"service":"priority"}],"saturday_delivery":null,"to_zip":"90277"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 21ac78cf669182f1f3f85b04001051b9
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb33nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb3nuq fa152d4755
+      - extlb2nuq fa152d4755
+      X-Runtime:
+      - "0.068583"
+      X-Version-Label:
+      - easypost-202407121702-a82cfb9ac3-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
