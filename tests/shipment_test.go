@@ -346,7 +346,6 @@ func (c *ClientTests) TestShipmentsGetNextPage() {
 }
 
 // Tests that we retrieve time-in-transit data for each of the Rates of a Shipment.
-// Deprecated: This method is deprecated and will be removed in a future release.
 func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
@@ -354,31 +353,14 @@ func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	rates, err := client.GetShipmentEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
-	require.NoError(err)
-
-	for _, entry := range rates {
-		assert.NotNil(entry.EasyPostTimeInTransitData)
-	}
-}
-
-func (c *ClientTests) TestShipmentEstimateDeliveryDate() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
-	require.NoError(err)
-
-	estimates, err := client.EstimateDeliveryDateForShipment(shipment.ID, &easypost.EstimateDeliveryDateForShipmentParams{
-		PlannedShipDate: c.fixture.PlannedShipDate(),
-	})
+	estimates, err := client.GetShipmentEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
 	require.NoError(err)
 
 	assert.True(len(estimates) > 0)
 	for _, entry := range estimates {
-		assert.NotNil(entry.TimeInTransitDetails.EasyPostEstimatedDeliveryDate)
-		assert.NotNil(entry.TimeInTransitDetails.TimeInTransitPercentiles)
-		assert.NotNil(entry.TimeInTransitDetails.PlannedShipDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EasyPostEstimatedDeliveryDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DaysInTransit)
+		assert.NotNil(entry.EasyPostTimeInTransitData.PlannedShipDate)
 	}
 }
 
@@ -399,7 +381,7 @@ func (c *ClientTests) TestShipmentRecommendShipDate() {
 		assert.NotNil(entry.TimeInTransitDetails.EasyPostRecommendedShipDate)
 		assert.NotNil(entry.TimeInTransitDetails.DeliveryDateConfidence)
 		assert.NotNil(entry.TimeInTransitDetails.EstimatedTransitDays)
-		assert.NotNil(entry.TimeInTransitDetails.TimeInTransitPercentiles)
+		assert.NotNil(entry.TimeInTransitDetails.DaysInTransit)
 		assert.NotNil(entry.TimeInTransitDetails.DesiredDeliveryDate)
 	}
 }

@@ -4,37 +4,30 @@ import (
 	"context"
 )
 
-// TimeInTransitDetailsForDeliveryDate contains the time-in-transit details and estimated delivery date for a specific DeliveryDateForZipPairEstimate or EstimateDeliveryDateForShipmentResult.
-type TimeInTransitDetailsForDeliveryDate struct {
-	PlannedShipDate               *DateTime      `json:"planned_ship_date,omitempty"`
-	EasyPostEstimatedDeliveryDate *DateTime      `json:"easypost_estimated_delivery_date,omitempty"`
-	TimeInTransitPercentiles      *TimeInTransit `json:"days_in_transit,omitempty"`
-}
-
 // DeliveryDateForZipPairEstimate is a single zip-pair-based delivery date estimate for a carrier-service level combination.
 type DeliveryDateForZipPairEstimate struct {
-	Carrier                   string                               `json:"carrier,omitempty"`
-	Service                   string                               `json:"service,omitempty"`
-	EasyPostTimeInTransitData *TimeInTransitDetailsForDeliveryDate `json:"easypost_time_in_transit_data,omitempty"`
+	Carrier                   string                     `json:"carrier,omitempty"`
+	Service                   string                     `json:"service,omitempty"`
+	EasyPostTimeInTransitData *EasyPostTimeInTransitData `json:"easypost_time_in_transit_data,omitempty"`
 }
 
 // EstimateDeliveryDateForZipPairResult is the result of the EstimateDeliveryDateForZipPair method, containing the estimated delivery date of each carrier-service level combination and additional metadata.
 type EstimateDeliveryDateForZipPairResult struct {
 	CarriersWithoutEstimates []string                          `json:"carriers_without_tint_estimates,omitempty"`
-	OriginPostalCode         string                            `json:"from_zip,omitempty"`
-	DestinationPostalCode    string                            `json:"to_zip,omitempty"`
+	FromZip                  string                            `json:"from_zip,omitempty"`
+	ToZip                    string                            `json:"to_zip,omitempty"`
 	SaturdayDelivery         bool                              `json:"saturday_delivery,omitempty"`
 	PlannedShipDate          *DateTime                         `json:"planned_ship_date,omitempty"`
-	Estimates                []*DeliveryDateForZipPairEstimate `json:"results,omitempty"`
+	Results                  []*DeliveryDateForZipPairEstimate `json:"results,omitempty"`
 }
 
 // EstimateDeliveryDateForZipPairParams are used in the EstimateDeliveryDateForZipPair method.
 type EstimateDeliveryDateForZipPairParams struct {
-	OriginPostalCode      string   `json:"from_zip,omitempty"`
-	DestinationPostalCode string   `json:"to_zip,omitempty"`
-	Carriers              []string `json:"carriers,omitempty"`
-	PlannedShipDate       string   `json:"planned_ship_date,omitempty"`
-	SaturdayDelivery      bool     `json:"saturday_delivery,omitempty"`
+	FromZip          string   `json:"from_zip,omitempty"`
+	ToZip            string   `json:"to_zip,omitempty"`
+	Carriers         []string `json:"carriers,omitempty"`
+	PlannedShipDate  string   `json:"planned_ship_date,omitempty"`
+	SaturdayDelivery bool     `json:"saturday_delivery,omitempty"`
 }
 
 // TimeInTransitDetailsForShipDate contains the time-in-transit details and estimated delivery date for a specific ShipDateForZipPairRecommendation or RecommendShipDateForShipmentResult.
@@ -43,7 +36,7 @@ type TimeInTransitDetailsForShipDate struct {
 	EasyPostRecommendedShipDate *DateTime      `json:"ship_on_date,omitempty"`
 	DeliveryDateConfidence      float64        `json:"delivery_date_confidence,omitempty"`
 	EstimatedTransitDays        int            `json:"estimated_transit_days,omitempty"`
-	TimeInTransitPercentiles    *TimeInTransit `json:"days_in_transit,omitempty"`
+	DaysInTransit               *TimeInTransit `json:"days_in_transit,omitempty"`
 }
 
 // ShipDateForZipPairRecommendation is a single zip-pair-based ship date recommendation for a carrier-service level combination.
@@ -56,20 +49,20 @@ type ShipDateForZipPairRecommendation struct {
 // RecommendShipDateForZipPairResult is the result of the RecommendShipDateForZipPair method, containing the recommended ship date of each carrier-service level combination and additional metadata.
 type RecommendShipDateForZipPairResult struct {
 	CarriersWithoutEstimates []string                            `json:"carriers_without_tint_estimates,omitempty"`
-	OriginPostalCode         string                              `json:"from_zip,omitempty"`
-	DestinationPostalCode    string                              `json:"to_zip,omitempty"`
+	FromZip                  string                              `json:"from_zip,omitempty"`
+	ToZip                    string                              `json:"to_zip,omitempty"`
 	SaturdayDelivery         bool                                `json:"saturday_delivery,omitempty"`
 	DesiredDeliveryDate      *DateTime                           `json:"desired_delivery_date,omitempty"`
-	Estimates                []*ShipDateForZipPairRecommendation `json:"results,omitempty"`
+	Results                  []*ShipDateForZipPairRecommendation `json:"results,omitempty"`
 }
 
 // RecommendShipDateForZipPairParams are used in the RecommendShipDateForZipPair method.
 type RecommendShipDateForZipPairParams struct {
-	OriginPostalCode      string   `json:"from_zip,omitempty"`
-	DestinationPostalCode string   `json:"to_zip,omitempty"`
-	Carriers              []string `json:"carriers,omitempty"`
-	DesiredDeliveryDate   string   `json:"desired_delivery_date,omitempty"`
-	SaturdayDelivery      bool     `json:"saturday_delivery,omitempty"`
+	FromZip             string   `json:"from_zip,omitempty"`
+	ToZip               string   `json:"to_zip,omitempty"`
+	Carriers            []string `json:"carriers,omitempty"`
+	DesiredDeliveryDate string   `json:"desired_delivery_date,omitempty"`
+	SaturdayDelivery    bool     `json:"saturday_delivery,omitempty"`
 }
 
 // EstimateDeliveryDateForZipPair retrieves the estimated delivery date of each carrier-service level combination via the Smart Deliver By API, based on a specific ship date and origin-destination postal code pair.
