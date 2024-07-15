@@ -131,11 +131,6 @@ type RecommendShipDateForShipmentResult struct {
 	TimeInTransitDetails *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
 }
 
-// RecommendShipDateForShipmentParams are used in the RecommendShipDateForShipment method.
-type RecommendShipDateForShipmentParams struct {
-	DesiredDeliveryDate string `json:"desired_delivery_date,omitempty"`
-}
-
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
 // Parcel attributes are required. These objects may be fully-specified to
 // create new ones at the same time as creating the Shipment, or they can refer
@@ -412,15 +407,16 @@ func (c *Client) GetShipmentEstimatedDeliveryDateWithContext(ctx context.Context
 }
 
 // RecommendShipDateForShipment retrieves the recommended ship date of each rate for a Shipment via the Precision Shipping API, based on a specific desired delivery date.
-func (c *Client) RecommendShipDateForShipment(shipmentID string, params *RecommendShipDateForShipmentParams) (out []*RecommendShipDateForShipmentResult, err error) {
-	return c.RecommendShipDateForShipmentWithContext(context.Background(), shipmentID, params)
+func (c *Client) RecommendShipDateForShipment(shipmentID string, desiredDeliveryDate string) (out []*RecommendShipDateForShipmentResult, err error) {
+	return c.RecommendShipDateForShipmentWithContext(context.Background(), shipmentID, desiredDeliveryDate)
 }
 
 // RecommendShipDateForShipmentWithContext performs the same operation as RecommendShipDateForShipment, but allows specifying a context that can interrupt the request.
-func (c *Client) RecommendShipDateForShipmentWithContext(ctx context.Context, shipmentID string, params *RecommendShipDateForShipmentParams) (out []*RecommendShipDateForShipmentResult, err error) {
+func (c *Client) RecommendShipDateForShipmentWithContext(ctx context.Context, shipmentID string, desiredDeliveryDate string) (out []*RecommendShipDateForShipmentResult, err error) {
+	vals := url.Values{"desired_delivery_date": []string{desiredDeliveryDate}}
 	res := struct {
 		Results *[]*RecommendShipDateForShipmentResult `json:"rates,omitempty"`
 	}{Results: &out}
-	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/precision_shipping", params, &res)
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/precision_shipping", vals, &res)
 	return
 }

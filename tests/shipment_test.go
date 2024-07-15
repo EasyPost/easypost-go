@@ -371,9 +371,7 @@ func (c *ClientTests) TestShipmentRecommendShipDate() {
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	recommendations, err := client.RecommendShipDateForShipment(shipment.ID, &easypost.RecommendShipDateForShipmentParams{
-		DesiredDeliveryDate: c.fixture.DesiredDeliveryDate(),
-	})
+	recommendations, err := client.RecommendShipDateForShipment(shipment.ID, c.fixture.DesiredDeliveryDate())
 	require.NoError(err)
 
 	assert.True(len(recommendations) > 0)

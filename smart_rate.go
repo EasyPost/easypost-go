@@ -4,11 +4,18 @@ import (
 	"context"
 )
 
+// TimeInTransitDetailsForDeliveryDate contains the time-in-transit details and estimated delivery date for a specific DeliveryDateForZipPairEstimate.
+type TimeInTransitDetailsForDeliveryDate struct {
+	PlannedShipDate               *DateTime      `json:"planned_ship_date,omitempty"`
+	EasyPostEstimatedDeliveryDate *DateTime      `json:"easypost_estimated_delivery_date,omitempty"`
+	DaysInTransit                 *TimeInTransit `json:"days_in_transit,omitempty"`
+}
+
 // DeliveryDateForZipPairEstimate is a single zip-pair-based delivery date estimate for a carrier-service level combination.
 type DeliveryDateForZipPairEstimate struct {
-	Carrier                   string                     `json:"carrier,omitempty"`
-	Service                   string                     `json:"service,omitempty"`
-	EasyPostTimeInTransitData *EasyPostTimeInTransitData `json:"easypost_time_in_transit_data,omitempty"`
+	Carrier              string                               `json:"carrier,omitempty"`
+	Service              string                               `json:"service,omitempty"`
+	TimeInTransitDetails *TimeInTransitDetailsForDeliveryDate `json:"easypost_time_in_transit_data,omitempty"`
 }
 
 // EstimateDeliveryDateForZipPairResult is the result of the EstimateDeliveryDateForZipPair method, containing the estimated delivery date of each carrier-service level combination and additional metadata.
@@ -41,9 +48,9 @@ type TimeInTransitDetailsForShipDate struct {
 
 // ShipDateForZipPairRecommendation is a single zip-pair-based ship date recommendation for a carrier-service level combination.
 type ShipDateForZipPairRecommendation struct {
-	Carrier                   string                           `json:"carrier,omitempty"`
-	Service                   string                           `json:"service,omitempty"`
-	EasyPostTimeInTransitData *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
+	Carrier              string                           `json:"carrier,omitempty"`
+	Service              string                           `json:"service,omitempty"`
+	TimeInTransitDetails *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
 }
 
 // RecommendShipDateForZipPairResult is the result of the RecommendShipDateForZipPair method, containing the recommended ship date of each carrier-service level combination and additional metadata.

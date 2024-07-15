@@ -16,75 +16,10 @@ func (dt *DateTime) UnmarshalJSON(b []byte) (err error) {
 	var t time.Time
 
 	// try to parse
-	// 2006-01-02
-	t, err = time.Parse(`"2006-01-02"`, string(b))
+	asDateTime, err := DateTimeFromString(string(b))
 	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse
-	// 2006-01-02T15:04:05Z
-	t, err = time.Parse(`"2006-01-02T15:04:05Z"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC3339 (default for time.Time)
-	// 2006-01-02T15:04:05Z07:00
-	t, err = time.Parse(`"`+time.RFC3339+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC3339Nano
-	// 2006-01-02T15:04:05.999999999Z07:00
-	t, err = time.Parse(`"`+time.RFC3339Nano+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC1123
-	// Mon, 02 Jan 2006 15:04:05 MST
-	t, err = time.Parse(`"`+time.RFC1123+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC1123Z
-	// Mon, 02 Jan 2006 15:04:05 -0700
-	t, err = time.Parse(`"`+time.RFC1123Z+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC822
-	// 02 Jan 06 15:04 MST
-	t, err = time.Parse(`"`+time.RFC822+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC822Z
-	// 02 Jan 06 15:04 -0700
-	t, err = time.Parse(`"`+time.RFC822Z+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
-	}
-
-	// try to parse as RFC850
-	// Monday, 02-Jan-06 15:04:05 MST
-	t, err = time.Parse(`"`+time.RFC850+`"`, string(b))
-	if err == nil {
-		*dt = DateTime(t)
-		return
+		*dt = asDateTime
+		return nil
 	}
 
 	// last ditch effort, fallback to whatever the JSON marshaller thinks
@@ -140,4 +75,82 @@ func NewDateTime(year int, month time.Month, day, hour, min, sec, nsec int, loc 
 // DateTimeFromTime construct a DateTime from a time.Time
 func DateTimeFromTime(t time.Time) DateTime {
 	return DateTime(t)
+}
+
+func DateTimeFromString(s string) (dt DateTime, err error) {
+	var t time.Time
+
+	// try to parse
+	// 2006-01-02
+	t, err = time.Parse(`"2006-01-02"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse
+	// 2006-01-02T15:04:05Z
+	t, err = time.Parse(`"2006-01-02T15:04:05Z"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC3339 (default for time.Time)
+	// 2006-01-02T15:04:05Z07:00
+	t, err = time.Parse(`"`+time.RFC3339+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC3339Nano
+	// 2006-01-02T15:04:05.999999999Z07:00
+	t, err = time.Parse(`"`+time.RFC3339Nano+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC1123
+	// Mon, 02 Jan 2006 15:04:05 MST
+	t, err = time.Parse(`"`+time.RFC1123+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC1123Z
+	// Mon, 02 Jan 2006 15:04:05 -0700
+	t, err = time.Parse(`"`+time.RFC1123Z+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC822
+	// 02 Jan 06 15:04 MST
+	t, err = time.Parse(`"`+time.RFC822+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC822Z
+	// 02 Jan 06 15:04 -0700
+	t, err = time.Parse(`"`+time.RFC822Z+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse as RFC850
+	// Monday, 02-Jan-06 15:04:05 MST
+	t, err = time.Parse(`"`+time.RFC850+`"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	return
 }
