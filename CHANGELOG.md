@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v4.4.0 (2024-07-15)
 
 - Adds new `EstimateDeliveryDateForZipPair`, `RecommendShipDateForShipment` and `RecommendShipDateForZipPair`
 - New `CreateUpsCarrierAccount` and `UpdateUpsCarrierAccount` methods and associated parameter structs, required to use for UPS accounts due to new `/ups_oauth_registrations` endpoint.
