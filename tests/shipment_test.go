@@ -353,10 +353,33 @@ func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	rates, err := client.GetShipmentEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
+	estimates, err := client.GetShipmentEstimatedDeliveryDate(shipment.ID, c.fixture.PlannedShipDate())
 	require.NoError(err)
 
-	for _, entry := range rates {
-		assert.NotNil(entry.EasyPostTimeInTransitData)
+	assert.True(len(estimates) > 0)
+	for _, entry := range estimates {
+		assert.NotNil(entry.EasyPostTimeInTransitData.EasyPostEstimatedDeliveryDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DaysInTransit)
+		assert.NotNil(entry.EasyPostTimeInTransitData.PlannedShipDate)
+	}
+}
+
+func (c *ClientTests) TestShipmentRecommendShipDate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
+	require.NoError(err)
+
+	recommendations, err := client.RecommendShipDateForShipment(shipment.ID, c.fixture.DesiredDeliveryDate())
+	require.NoError(err)
+
+	assert.True(len(recommendations) > 0)
+	for _, entry := range recommendations {
+		assert.NotNil(entry.EasyPostTimeInTransitData.EasyPostRecommendedShipDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DeliveryDateConfidence)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EstimatedTransitDays)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DaysInTransit)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DesiredDeliveryDate)
 	}
 }

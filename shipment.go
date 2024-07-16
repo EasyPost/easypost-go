@@ -125,6 +125,12 @@ type EstimatedDeliveryDate struct {
 	Rate                      SmartRate                 `json:"rate,omitempty"`
 }
 
+// RecommendShipDateForShipmentResult is the result of the RecommendShipDateForShipment method.
+type RecommendShipDateForShipmentResult struct {
+	Rate                      *SmartRate                       `json:"rate,omitempty"`
+	EasyPostTimeInTransitData *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
+}
+
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
 // Parcel attributes are required. These objects may be fully-specified to
 // create new ones at the same time as creating the Shipment, or they can refer
@@ -385,18 +391,32 @@ func (c *Client) GenerateShipmentFormWithOptionsWithContext(ctx context.Context,
 	return
 }
 
-// GetShipmentEstimatedDeliveryDate retrieves the estimated delivery date of each Rate via SmartRate.
-func (c *Client) GetShipmentEstimatedDeliveryDate(shipmentID, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
+// GetShipmentEstimatedDeliveryDate retrieves the estimated delivery date of each rate for a Shipment via the Delivery Date Estimator API, based on a specific ship date.
+func (c *Client) GetShipmentEstimatedDeliveryDate(shipmentID string, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
 	return c.GetShipmentEstimatedDeliveryDateWithContext(context.Background(), shipmentID, plannedShipDate)
 }
 
-// GetShipmentEstimatedDeliveryDateWithContext performs the same operation as GetShipmentEstimatedDeliveryDate,
-// but allows specifying a context that can interrupt the request.
+// GetShipmentEstimatedDeliveryDateWithContext performs the same operation as EstimateDeliveryDateForShipment, but allows specifying a context that can interrupt the request.
 func (c *Client) GetShipmentEstimatedDeliveryDateWithContext(ctx context.Context, shipmentID string, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
 	vals := url.Values{"planned_ship_date": []string{plannedShipDate}}
 	res := struct {
 		EstimatedDeliveryDates *[]*EstimatedDeliveryDate `json:"rates,omitempty"`
 	}{EstimatedDeliveryDates: &out}
 	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/delivery_date", vals, &res)
+	return
+}
+
+// RecommendShipDateForShipment retrieves the recommended ship date of each rate for a Shipment via the Precision Shipping API, based on a specific desired delivery date.
+func (c *Client) RecommendShipDateForShipment(shipmentID string, desiredDeliveryDate string) (out []*RecommendShipDateForShipmentResult, err error) {
+	return c.RecommendShipDateForShipmentWithContext(context.Background(), shipmentID, desiredDeliveryDate)
+}
+
+// RecommendShipDateForShipmentWithContext performs the same operation as RecommendShipDateForShipment, but allows specifying a context that can interrupt the request.
+func (c *Client) RecommendShipDateForShipmentWithContext(ctx context.Context, shipmentID string, desiredDeliveryDate string) (out []*RecommendShipDateForShipmentResult, err error) {
+	vals := url.Values{"desired_delivery_date": []string{desiredDeliveryDate}}
+	res := struct {
+		Results *[]*RecommendShipDateForShipmentResult `json:"rates,omitempty"`
+	}{Results: &out}
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/precision_shipping", vals, &res)
 	return
 }

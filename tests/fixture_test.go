@@ -218,5 +218,9 @@ func (fixture *Fixture) TestCreditCard() *easypost.CreditCardOptions {
 }
 
 func (fixture *Fixture) PlannedShipDate() string {
-	return "2023-12-28"
+	return "2024-07-17"
+}
+
+func (fixture *Fixture) DesiredDeliveryDate() string {
+	return "2024-07-17"
 }
