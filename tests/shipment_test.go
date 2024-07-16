@@ -376,10 +376,10 @@ func (c *ClientTests) TestShipmentRecommendShipDate() {
 
 	assert.True(len(recommendations) > 0)
 	for _, entry := range recommendations {
-		assert.NotNil(entry.TimeInTransitDetails.EasyPostRecommendedShipDate)
-		assert.NotNil(entry.TimeInTransitDetails.DeliveryDateConfidence)
-		assert.NotNil(entry.TimeInTransitDetails.EstimatedTransitDays)
-		assert.NotNil(entry.TimeInTransitDetails.DaysInTransit)
-		assert.NotNil(entry.TimeInTransitDetails.DesiredDeliveryDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EasyPostRecommendedShipDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DeliveryDateConfidence)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EstimatedTransitDays)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DaysInTransit)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DesiredDeliveryDate)
 	}
 }

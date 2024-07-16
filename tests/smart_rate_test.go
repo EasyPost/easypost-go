@@ -26,8 +26,8 @@ func (c *ClientTests) TestEstimateDeliveryDateForZipPair() {
 	for _, entry := range estimates.Results {
 		assert.NotNil(entry.Carrier)
 		assert.NotNil(entry.Service)
-		assert.NotNil(entry.TimeInTransitDetails.EasyPostEstimatedDeliveryDate)
-		assert.NotNil(entry.TimeInTransitDetails.DaysInTransit)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EasyPostEstimatedDeliveryDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DaysInTransit)
 	}
 }
 
@@ -53,10 +53,10 @@ func (c *ClientTests) TestRecommendShipDateForZipPair() {
 	for _, entry := range recommendations.Results {
 		assert.NotNil(entry.Carrier)
 		assert.NotNil(entry.Service)
-		assert.NotNil(entry.TimeInTransitDetails.EasyPostRecommendedShipDate)
-		assert.NotNil(entry.TimeInTransitDetails.DaysInTransit)
-		assert.NotNil(entry.TimeInTransitDetails.DeliveryDateConfidence)
-		assert.NotNil(entry.TimeInTransitDetails.EstimatedTransitDays)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EasyPostRecommendedShipDate)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DaysInTransit)
+		assert.NotNil(entry.EasyPostTimeInTransitData.DeliveryDateConfidence)
+		assert.NotNil(entry.EasyPostTimeInTransitData.EstimatedTransitDays)
 	}
 
 }

@@ -127,8 +127,8 @@ type EstimatedDeliveryDate struct {
 
 // RecommendShipDateForShipmentResult is the result of the RecommendShipDateForShipment method.
 type RecommendShipDateForShipmentResult struct {
-	Rate                 *SmartRate                       `json:"rate,omitempty"`
-	TimeInTransitDetails *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
+	Rate                      *SmartRate                       `json:"rate,omitempty"`
+	EasyPostTimeInTransitData *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
 }
 
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
