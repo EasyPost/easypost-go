@@ -94,7 +94,7 @@ func (c *Client) ListClaimsWithContext(ctx context.Context, opts *ListClaimsPara
 	return
 }
 
-// GetNextClaimPage returns the next page of shipments
+// GetNextClaimPage returns the next page of claims
 func (c *Client) GetNextClaimPage(collection *ListClaimsResult) (out *ListClaimsResult, err error) {
 	return c.GetNextClaimPageWithContext(context.Background(), collection)
 }
