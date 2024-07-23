@@ -13,24 +13,25 @@ import (
 )
 
 type Fixture struct {
-	Addresses       map[string]*easypost.Address           `json:"addresses,omitempty"`
-	CarrierAccounts map[string]*easypost.CarrierAccount    `json:"carrier_accounts,omitempty"`
-	CarrierStrings  map[string]string                      `json:"carrier_strings,omitempty"`
-	CustomsInfos    map[string]*easypost.CustomsInfo       `json:"customs_infos,omitempty"`
-	CustomsItems    map[string]*easypost.CustomsItem       `json:"customs_items,omitempty"`
-	CreditCards     map[string]*easypost.CreditCardOptions `json:"credit_cards,omitempty"`
-	FormOptions     map[string]map[string]interface{}      `json:"form_options,omitempty"`
-	Insurances      map[string]*easypost.Insurance         `json:"insurances,omitempty"`
-	Orders          map[string]*easypost.Order             `json:"orders,omitempty"`
-	PageSizes       map[string]int                         `json:"page_sizes,omitempty"`
-	Parcels         map[string]*easypost.Parcel            `json:"parcels,omitempty"`
-	Pickups         map[string]*easypost.Pickup            `json:"pickups,omitempty"`
-	ReportTypes     map[string]string                      `json:"report_types,omitempty"`
-	ServiceNames    map[string]map[string]string           `json:"service_names,omitempty"`
-	Shipments       map[string]*easypost.Shipment          `json:"shipments,omitempty"`
-	TaxIdentifiers  map[string]*easypost.TaxIdentifier     `json:"tax_identifiers,omitempty"`
-	Users           map[string]*easypost.UserOptions       `json:"users,omitempty"`
-	WebhookURL      string                                 `json:"webhook_url,omitempty"`
+	Addresses       map[string]*easypost.Address               `json:"addresses,omitempty"`
+	CarrierAccounts map[string]*easypost.CarrierAccount        `json:"carrier_accounts,omitempty"`
+	CarrierStrings  map[string]string                          `json:"carrier_strings,omitempty"`
+	Claims          map[string]*easypost.CreateClaimParameters `json:"claims,omitempty"`
+	CustomsInfos    map[string]*easypost.CustomsInfo           `json:"customs_infos,omitempty"`
+	CustomsItems    map[string]*easypost.CustomsItem           `json:"customs_items,omitempty"`
+	CreditCards     map[string]*easypost.CreditCardOptions     `json:"credit_cards,omitempty"`
+	FormOptions     map[string]map[string]interface{}          `json:"form_options,omitempty"`
+	Insurances      map[string]*easypost.Insurance             `json:"insurances,omitempty"`
+	Orders          map[string]*easypost.Order                 `json:"orders,omitempty"`
+	PageSizes       map[string]int                             `json:"page_sizes,omitempty"`
+	Parcels         map[string]*easypost.Parcel                `json:"parcels,omitempty"`
+	Pickups         map[string]*easypost.Pickup                `json:"pickups,omitempty"`
+	ReportTypes     map[string]string                          `json:"report_types,omitempty"`
+	ServiceNames    map[string]map[string]string               `json:"service_names,omitempty"`
+	Shipments       map[string]*easypost.Shipment              `json:"shipments,omitempty"`
+	TaxIdentifiers  map[string]*easypost.TaxIdentifier         `json:"tax_identifiers,omitempty"`
+	Users           map[string]*easypost.UserOptions           `json:"users,omitempty"`
+	WebhookURL      string                                     `json:"webhook_url,omitempty"`
 }
 
 // Reads fixture data from the fixtures JSON file
@@ -175,6 +176,11 @@ func (fixture *Fixture) BasicCarrierAccount() *easypost.CarrierAccount {
 // This fixture will require you to add a `tracking_code` key with a tracking code from a shipment
 func (fixture *Fixture) BasicInsurance() *easypost.Insurance {
 	return readFixtureData().Insurances["basic"]
+}
+
+// This fixture will require you to add a `tracking_code` key with a tracking code from a shipment and an `amount` key with a float value
+func (fixture *Fixture) BasicClaim() *easypost.CreateClaimParameters {
+	return readFixtureData().Claims["basic"]
 }
 
 func (fixture *Fixture) BasicOrder() *easypost.Order {

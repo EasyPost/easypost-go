@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Add new claim-related functions: `CreateClaim`, `GetClaim`, `ListClaims`, `GetNextClaimPage` and `CancelClaim`
+
 ## v4.4.0 (2024-07-16)
 
 - Adds new `EstimateDeliveryDateForZipPair`, `RecommendShipDateForShipment` and `RecommendShipDateForZipPair`

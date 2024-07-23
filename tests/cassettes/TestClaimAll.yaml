@@ -1,0 +1,62 @@
+---
+version: 1
+interactions:
+- request:
+    body: page_size=5
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/x-www-form-urlencoded
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/claims
+    method: GET
+  response:
+    body: '{"claims":[{"approved_amount":null,"attachments":["https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/c44df5462b774c0c977f87e3b60d2b01.png","https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/80738b455dea42658a66a250c40d9aba.png","https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/ee68a27ae3854ca5bd17f0752fa81ddf.png"],"check_delivery_address":null,"contact_email":"test@example.com","created_at":"2024-07-23T20:28:59","description":"Test
+      description","history":[{"status":"submitted","status_detail":"Claim was created.","timestamp":"2024-07-23T20:28:59"}],"id":"clm_097e5796aa404ad4992781722224dcea","insurance_amount":"100.00","insurance_id":"ins_b004dab680bb4251abe5888de3bc4d07","mode":"test","object":"Claim","payment_method":"easypost_wallet","recipient_name":null,"requested_amount":"100.00","salvage_value":null,"shipment_id":"shp_ec517502568a4cb79d4af314dd16faa1","status":"submitted","status_detail":"Claim
+      was created.","status_timestamp":"2024-07-23T20:28:59","tracking_code":"9400100110368066408089","type":"damage","updated_at":"2024-07-23T20:28:59"},{"approved_amount":null,"attachments":["https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/2170a351b74540d38ad04ba465d6daf9.png","https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/4ae21037c02f4e0f90e3e6bf0511c429.png","https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/c910f338b6c9465f8023780002296673.png"],"check_delivery_address":null,"contact_email":"test@example.com","created_at":"2024-07-23T20:28:57","description":"Test
+      description","history":[{"status":"submitted","status_detail":"Claim was created.","timestamp":"2024-07-23T20:28:57"}],"id":"clm_097e3dc1ade44a61b22c27e85d377fec","insurance_amount":"100.00","insurance_id":"ins_a82753192b544bd79ee19d0c22dabff6","mode":"test","object":"Claim","payment_method":"easypost_wallet","recipient_name":null,"requested_amount":"100.00","salvage_value":null,"shipment_id":"shp_f9de24018a77456e95a1e5efcbb050fb","status":"submitted","status_detail":"Claim
+      was created.","status_timestamp":"2024-07-23T20:28:57","tracking_code":"9400100110368066408065","type":"damage","updated_at":"2024-07-23T20:28:57"},{"approved_amount":null,"attachments":["https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/9d36dfc0ae1b408893c33aa3fb76baeb.png","https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/03390ff136a14600bf90a01aeed7482b.png","https://easypost-files.s3-us-west-2.amazonaws.com/insurance/20240723/1666429034d24286aa46862ec3379c55.png"],"check_delivery_address":null,"contact_email":"test@example.com","created_at":"2024-07-23T20:28:55","description":"Test
+      description","history":[{"status":"submitted","status_detail":"Claim was created.","timestamp":"2024-07-23T20:28:55"}],"id":"clm_097e083764974c80ab79ff8dbad6f337","insurance_amount":"100.00","insurance_id":"ins_98ffb9130f2945ebbeb57051a54aae5b","mode":"test","object":"Claim","payment_method":"easypost_wallet","recipient_name":null,"requested_amount":"100.00","salvage_value":null,"shipment_id":"shp_eceec0522e8244c68ca3ae686e21c244","status":"submitted","status_detail":"Claim
+      was created.","status_timestamp":"2024-07-23T20:28:55","tracking_code":"9400100110368066408058","type":"damage","updated_at":"2024-07-23T20:28:55"}],"has_more":false}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 98f5faea66a015a8f42f248c0023095f
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb36nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4nuq c0f5e722d1
+      - extlb1nuq fa152d4755
+      X-Runtime:
+      - "0.044919"
+      X-Version-Label:
+      - easypost-202407231832-14d334dc13-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

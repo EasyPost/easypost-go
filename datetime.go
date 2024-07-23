@@ -89,6 +89,14 @@ func DateTimeFromString(s string) (dt DateTime, err error) {
 	}
 
 	// try to parse
+	// 2006-01-02T15:04:05
+	t, err = time.Parse(`"2006-01-02T15:04:05"`, s)
+	if err == nil {
+		dt = DateTime(t)
+		return
+	}
+
+	// try to parse
 	// 2006-01-02T15:04:05Z
 	t, err = time.Parse(`"2006-01-02T15:04:05Z"`, s)
 	if err == nil {
