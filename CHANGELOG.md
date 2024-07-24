@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v4.5.0 (2024-07-24)
 
 - Add new claim-related functions: `CreateClaim`, `GetClaim`, `ListClaims`, `GetNextClaimPage` and `CancelClaim`
 
