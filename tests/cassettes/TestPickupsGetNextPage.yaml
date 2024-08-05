@@ -2,39 +2,37 @@
 version: 1
 interactions:
 - request:
-    body: page_size=5
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/pickups
+    url: https://api.easypost.com/v2/pickups?page_size=5
     method: GET
   response:
     body: '{"has_more":true,"pickups":[{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:11:26+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_a3f0c3588fbc11ee830fac1f6bc539ae","mode":"test","name":"Jack
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:30:59+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_4640d604512711efbd2aac1f6bc53342","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:11:26+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-11-30T20:11:26Z","id":"pickup_dab0a398d2884d46834891e18bd419a5","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-12-08T00:00:00Z","messages":[],"min_datetime":"2023-12-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2023-11-30T20:11:26Z","currency":"USD","id":"pickuprate_72f082d6d7664f528769d1b365889125","mode":"test","object":"PickupRate","pickup_id":"pickup_dab0a398d2884d46834891e18bd419a5","rate":"0.00","service":"NextDay","updated_at":"2023-11-30T20:11:26Z"}],"reference":null,"status":"unknown","updated_at":"2023-11-30T20:11:26Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:11:24+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_a2ad2af68fbc11eebe133cecef1b359e","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:30:59+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:30:59Z","id":"pickup_40eee602963642f59da413be2b40b8ee","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:31:00Z","currency":"USD","id":"pickuprate_52f5bd2b542145fe90a6f2dfcca40346","mode":"test","object":"PickupRate","pickup_id":"pickup_40eee602963642f59da413be2b40b8ee","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:31:00Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:30:59Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:30:49+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_40681b02512711ef9a3eac1f6bc539ae","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:11:24+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-11-30T20:11:24Z","id":"pickup_430b88620d1d4802837a6bf2a042bd92","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-12-08T00:00:00Z","messages":[],"min_datetime":"2023-12-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2023-11-30T20:11:24Z","currency":"USD","id":"pickuprate_73bed49706ea4c47bc68743cd8abf56a","mode":"test","object":"PickupRate","pickup_id":"pickup_430b88620d1d4802837a6bf2a042bd92","rate":"0.00","service":"NextDay","updated_at":"2023-11-30T20:11:24Z"}],"reference":null,"status":"unknown","updated_at":"2023-11-30T20:11:24Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:11:21+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_a15ecc7b8fbc11ee849aac1f6bc539aa","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:30:49+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":"WTC64743900","created_at":"2024-08-02T23:30:49Z","id":"pickup_8ff98ceacba6446f8706d192e1c2d609","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:30:50Z","currency":"USD","id":"pickuprate_1a8ed2d8d2b84351bbb289a4263b90ff","mode":"test","object":"PickupRate","pickup_id":"pickup_8ff98ceacba6446f8706d192e1c2d609","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:30:50Z"}],"reference":null,"status":"canceled","updated_at":"2024-08-02T23:30:53Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:30:41+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_3b40ebf0512711efa8993cecef1b359e","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:11:21+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-11-30T20:11:21Z","id":"pickup_613706704f2b409ab7fc55e979416443","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-12-08T00:00:00Z","messages":[],"min_datetime":"2023-12-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2023-11-30T20:11:22Z","currency":"USD","id":"pickuprate_e42498ebe8a84c778378bd9a31c477e3","mode":"test","object":"PickupRate","pickup_id":"pickup_613706704f2b409ab7fc55e979416443","rate":"0.00","service":"NextDay","updated_at":"2023-11-30T20:11:22Z"}],"reference":null,"status":"unknown","updated_at":"2023-11-30T20:11:21Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:11:17+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_9eea7ae48fbc11eeb45fac1f6bc53342","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:30:41+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":"WTC64743910","created_at":"2024-08-02T23:30:41Z","id":"pickup_119e3f71b96448f6b7f6c4e5bb8e67a6","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:30:42Z","currency":"USD","id":"pickuprate_48409b39630a4688a706cddf991c296e","mode":"test","object":"PickupRate","pickup_id":"pickup_119e3f71b96448f6b7f6c4e5bb8e67a6","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:30:42Z"}],"reference":null,"status":"scheduled","updated_at":"2024-08-02T23:30:43Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:30:35+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_37bf31ff512711ef982fac1f6bc539ae","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:11:17+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":"WTC63780364","created_at":"2023-11-30T20:11:17Z","id":"pickup_e24701cdf3dd4d0d85f13f8670e04c7f","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-12-08T00:00:00Z","messages":[],"min_datetime":"2023-12-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2023-11-30T20:11:18Z","currency":"USD","id":"pickuprate_9c8c87ebf3fc4d709872437f1bccdeef","mode":"test","object":"PickupRate","pickup_id":"pickup_e24701cdf3dd4d0d85f13f8670e04c7f","rate":"0.00","service":"NextDay","updated_at":"2023-11-30T20:11:18Z"}],"reference":null,"status":"canceled","updated_at":"2023-11-30T20:11:20Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:11:14+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_9d0233c68fbc11ee81e2ac1f6bc539aa","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:30:35+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:30:35Z","id":"pickup_331173c376d7455894588e1481dbf804","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:30:36Z","currency":"USD","id":"pickuprate_80721c4f86fb4e7786456b0989e8f163","mode":"test","object":"PickupRate","pickup_id":"pickup_331173c376d7455894588e1481dbf804","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:30:36Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:30:35Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:30:28+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_3374334f512711ef977aac1f6bc539ae","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:11:14+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":"WTC63780362","created_at":"2023-11-30T20:11:14Z","id":"pickup_e7506a34aabd488e8f825cfb816088ed","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-12-08T00:00:00Z","messages":[],"min_datetime":"2023-12-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2023-11-30T20:11:15Z","currency":"USD","id":"pickuprate_28a8a38e530f4b5b85cbc3f62871c284","mode":"test","object":"PickupRate","pickup_id":"pickup_e7506a34aabd488e8f825cfb816088ed","rate":"0.00","service":"NextDay","updated_at":"2023-11-30T20:11:15Z"}],"reference":null,"status":"scheduled","updated_at":"2023-11-30T20:11:16Z"}]}'
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:30:28+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:30:28Z","id":"pickup_f3d17fa5314a41389300f9d0f7bc9448","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:30:29Z","currency":"USD","id":"pickuprate_950115db23e647928b49070c78e27e5b","mode":"test","object":"PickupRate","pickup_id":"pickup_f3d17fa5314a41389300f9d0f7bc9448","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:30:29Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:30:28Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -55,59 +53,57 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec6fe7896122001b7426
+      - 4d57346a66ad6c3ef3f6b1a30039a103
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.078650"
+      - "0.127290"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
     code: 200
     duration: ""
 - request:
-    body: before_id=pickup_e7506a34aabd488e8f825cfb816088ed&page_size=5
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/pickups
+    url: https://api.easypost.com/v2/pickups?before_id=pickup_f3d17fa5314a41389300f9d0f7bc9448&page_size=5
     method: GET
   response:
     body: '{"has_more":true,"pickups":[{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-11-30T20:10:46+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_8c6170f48fbc11eeb0383cecef1b359e","mode":"test","name":"Jack
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:15:16+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_13e4f9b5512511ef86adac1f6bc53342","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:10:46+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-11-30T20:10:46Z","id":"pickup_9414b16274fa4f52ba78736996430609","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-12-08T00:00:00Z","messages":[],"min_datetime":"2023-12-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2023-11-30T20:10:48Z","currency":"USD","id":"pickuprate_b78dc388c6d544b68b536a4260921049","mode":"test","object":"PickupRate","pickup_id":"pickup_9414b16274fa4f52ba78736996430609","rate":"0.00","service":"NextDay","updated_at":"2023-11-30T20:10:48Z"}],"reference":null,"status":"unknown","updated_at":"2023-11-30T20:10:46Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-09-20T18:08:33+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_b61372a057e011ee87b73cecef1b359e","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:15:16+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:15:16Z","id":"pickup_5baadc36dc904703b19b4f6a43e4eec3","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:15:16Z","currency":"USD","id":"pickuprate_1836361ef2304dfb94d63482f1b4ba1e","mode":"test","object":"PickupRate","pickup_id":"pickup_5baadc36dc904703b19b4f6a43e4eec3","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:15:16Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:15:16Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:15:14+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_12ac0938512511efb5b43cecef1b359e","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:08:33+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-09-20T18:08:33Z","id":"pickup_14ad033f4574499293b6d9ff4d3829a6","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-03-08T00:00:00Z","messages":[],"min_datetime":"2023-03-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[],"reference":null,"status":"unknown","updated_at":"2023-09-20T18:08:33Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-09-20T18:08:31+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_b4e717ca57e011ee9095ac1f6bc53342","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:15:14+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:15:14Z","id":"pickup_0d80ba82c8214cbba01e22e6f389af4d","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:15:14Z","currency":"USD","id":"pickuprate_fe2e14704c1a4fc187814c789e7f5e73","mode":"test","object":"PickupRate","pickup_id":"pickup_0d80ba82c8214cbba01e22e6f389af4d","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:15:14Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:15:14Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:15:11+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_11327173512511efb606ac1f6bc539aa","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:08:31+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-09-20T18:08:31Z","id":"pickup_5fd427765cb24f1499afa78359d5e62c","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-03-08T00:00:00Z","messages":[],"min_datetime":"2023-03-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[],"reference":null,"status":"unknown","updated_at":"2023-09-20T18:08:31Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-09-20T18:08:29+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_b3f9432357e011ee904aac1f6bc53342","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:15:11+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:15:11Z","id":"pickup_42c37d0d787c42ec9dce4c0218f586e6","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:15:12Z","currency":"USD","id":"pickuprate_6fb529fd7081412faa70c9cc6cf7384b","mode":"test","object":"PickupRate","pickup_id":"pickup_42c37d0d787c42ec9dce4c0218f586e6","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:15:12Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:15:11Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:15:08+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_0f8d46d5512511ef85bdac1f6bc53342","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:08:29+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-09-20T18:08:29Z","id":"pickup_7a52e1331a994ff9aac6644997d751a2","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-03-08T00:00:00Z","messages":[],"min_datetime":"2023-03-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[],"reference":null,"status":"unknown","updated_at":"2023-09-20T18:08:29Z"},{"address":{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-09-20T18:08:28+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_b2e16dad57e011eebf11ac1f6bc539aa","mode":"test","name":"Jack
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:15:08+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:15:08Z","id":"pickup_1d138f63d07f45d499e38761bc67ba38","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:15:10Z","currency":"USD","id":"pickuprate_dbeb915b912f43ceafb57fb576d51eb4","mode":"test","object":"PickupRate","pickup_id":"pickup_1d138f63d07f45d499e38761bc67ba38","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:15:10Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:15:08Z"},{"address":{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T23:15:06+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_0ded8e47512511ef8551ac1f6bc53342","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:08:28+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2023-09-20T18:08:28Z","id":"pickup_c93aecbd50e849afb8b74cb6585f071e","instructions":"Pickup
-      at front door","is_account_address":false,"max_datetime":"2023-03-08T00:00:00Z","messages":[],"min_datetime":"2023-03-08T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[],"reference":null,"status":"unknown","updated_at":"2023-09-20T18:08:28Z"}]}'
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:15:06+00:00","verifications":{},"zip":"94107"},"carrier_accounts":[],"confirmation":null,"created_at":"2024-08-02T23:15:06Z","id":"pickup_aaa342dcd48240418b681c4e06bbe422","instructions":"Pickup
+      at front door","is_account_address":false,"max_datetime":"2024-08-14T00:00:00Z","messages":[],"min_datetime":"2024-08-14T00:00:00Z","mode":"test","object":"Pickup","pickup_rates":[{"carrier":"USPS","created_at":"2024-08-02T23:15:07Z","currency":"USD","id":"pickuprate_0d76d553f840419b9ef961dabe0e7e11","mode":"test","object":"PickupRate","pickup_id":"pickup_aaa342dcd48240418b681c4e06bbe422","rate":"0.00","service":"NextDay","updated_at":"2024-08-02T23:15:07Z"}],"reference":null,"status":"unknown","updated_at":"2024-08-02T23:15:06Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -123,25 +119,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec6fe7896122001b744d
+      - 4d57346a66ad6c3ef3f6b1a30039a12f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb38nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.103569"
+      - "0.128059"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

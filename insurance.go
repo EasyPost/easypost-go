@@ -9,33 +9,33 @@ import (
 // EasyPost API and shipments purchased through third parties and later
 // registered with EasyPost.
 type Insurance struct {
-	ID           string    `json:"id,omitempty"`
-	Object       string    `json:"object,omitempty"`
-	Reference    string    `json:"reference,omitempty"`
-	Mode         string    `json:"mode,omitempty"`
-	CreatedAt    *DateTime `json:"created_at,omitempty"`
-	UpdatedAt    *DateTime `json:"updated_at,omitempty"`
-	Amount       string    `json:"amount,omitempty"`
-	Carrier      string    `json:"carrier,omitempty"`
-	Provider     string    `json:"provider,omitempty"`
-	ProviderID   string    `json:"provider_id,omitempty"`
-	ShipmentID   string    `json:"shipment_id,omitempty"`
-	TrackingCode string    `json:"tracking_code,omitempty"`
-	Status       string    `json:"status,omitempty"`
-	Tracker      *Tracker  `json:"tracker,omitempty"`
-	ToAddress    *Address  `json:"to_address,omitempty"`
-	FromAddress  *Address  `json:"from_address,omitempty"`
-	Fee          *Fee      `json:"fee,omitempty"`
-	Messages     []string  `json:"messages,omitempty"`
+	ID           string    `json:"id,omitempty" url:"id,omitempty"`
+	Object       string    `json:"object,omitempty" url:"object,omitempty"`
+	Reference    string    `json:"reference,omitempty" url:"reference,omitempty"`
+	Mode         string    `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt    *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt    *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Amount       string    `json:"amount,omitempty" url:"amount,omitempty"`
+	Carrier      string    `json:"carrier,omitempty" url:"carrier,omitempty"`
+	Provider     string    `json:"provider,omitempty" url:"provider,omitempty"`
+	ProviderID   string    `json:"provider_id,omitempty" url:"provider_id,omitempty"`
+	ShipmentID   string    `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
+	TrackingCode string    `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
+	Status       string    `json:"status,omitempty" url:"status,omitempty"`
+	Tracker      *Tracker  `json:"tracker,omitempty" url:"tracker,omitempty"`
+	ToAddress    *Address  `json:"to_address,omitempty" url:"to_address,omitempty"`
+	FromAddress  *Address  `json:"from_address,omitempty" url:"from_address,omitempty"`
+	Fee          *Fee      `json:"fee,omitempty" url:"fee,omitempty"`
+	Messages     []string  `json:"messages,omitempty" url:"messages,omitempty"`
 }
 
 type createInsuranceRequest struct {
-	Insurance *Insurance `json:"insurance,omitempty"`
+	Insurance *Insurance `json:"insurance,omitempty" url:"insurance,omitempty"`
 }
 
 // ListInsurancesResult holds the results from the list insurances API.
 type ListInsurancesResult struct {
-	Insurances []*Insurance `json:"insurances,omitempty"`
+	Insurances []*Insurance `json:"insurances,omitempty" url:"insurances,omitempty"`
 	PaginatedCollection
 }
 
@@ -62,7 +62,7 @@ func (c *Client) CreateInsurance(in *Insurance) (out *Insurance, err error) {
 // but allows specifying a context that can interrupt the request.
 func (c *Client) CreateInsuranceWithContext(ctx context.Context, in *Insurance) (out *Insurance, err error) {
 	req := &createInsuranceRequest{Insurance: in}
-	err = c.post(ctx, "insurances", req, &out)
+	err = c.do(ctx, http.MethodPost, "insurances", req, &out)
 	return
 }
 
@@ -74,7 +74,7 @@ func (c *Client) ListInsurances(opts *ListOptions) (out *ListInsurancesResult, e
 // ListInsurancesWithContext performs the same operation as ListInsurances, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListInsurancesWithContext(ctx context.Context, opts *ListOptions) (out *ListInsurancesResult, err error) {
-	err = c.do(ctx, http.MethodGet, "insurances", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "insurances", opts, &out)
 	return
 }
 
@@ -117,7 +117,7 @@ func (c *Client) GetInsurance(insuranceID string) (out *Insurance, err error) {
 // GetInsuranceWithContext performs the same operation as GetInsurance, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetInsuranceWithContext(ctx context.Context, insuranceID string) (out *Insurance, err error) {
-	err = c.get(ctx, "insurances/"+insuranceID, &out)
+	err = c.do(ctx, http.MethodGet, "insurances/"+insuranceID, nil, &out)
 	return
 }
 
@@ -129,6 +129,6 @@ func (c *Client) RefundInsurance(insuranceID string) (out *Insurance, err error)
 // RefundInsuranceWithContext performs the same operation as RefundInsurance, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) RefundInsuranceWithContext(ctx context.Context, insuranceID string) (out *Insurance, err error) {
-	err = c.post(ctx, "insurances/"+insuranceID+"/refund", nil, &out)
+	err = c.do(ctx, http.MethodPost, "insurances/"+insuranceID+"/refund", nil, &out)
 	return
 }

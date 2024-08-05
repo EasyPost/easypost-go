@@ -2,33 +2,31 @@
 version: 1
 interactions:
 - request:
-    body: page_size=5
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/addresses
+    url: https://api.easypost.com/v2/addresses?page_size=5
     method: GET
   response:
-    body: '{"addresses":[{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2023-09-20T18:09:19+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_d1802da757e011ee938f3cecef1b359e","mode":"test","name":"Jack
+    body: '{"addresses":[{"carrier_facility":null,"city":"San Francisco","company":null,"country":"US","created_at":"2024-08-02T22:13:52+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_80052c0c511c11efa31eac1f6bc53342","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:09:19+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2023-09-20T18:09:19+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_d17d8a3857e011ee938e3cecef1b359e","mode":"test","name":"Elizabeth
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T22:13:52+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2024-08-02T22:13:52+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_80025363511c11ef92b23cecef1b359e","mode":"test","name":"Elizabeth
       Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2023-09-20T18:09:19+00:00","verifications":{},"zip":"90277"},{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-09-20T18:09:18+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_d0efc2ca57e011ee93503cecef1b359e","mode":"test","name":"Jack
+      N Harbor Dr","street2":null,"updated_at":"2024-08-02T22:13:52+00:00","verifications":{},"zip":"90277"},{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T22:13:51+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7fb7a1c4511c11efbf8bac1f6bc539ae","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:09:18+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2023-09-20T18:09:18+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_d0eda05557e011ee934f3cecef1b359e","mode":"test","name":"Elizabeth
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T22:13:51+00:00","verifications":{},"zip":"94107"},{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2024-08-02T22:13:51+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7fb5a305511c11ef92a33cecef1b359e","mode":"test","name":"Elizabeth
       Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2023-09-20T18:09:18+00:00","verifications":{},"zip":"90277"},{"carrier_facility":null,"city":"San
-      Francisco","company":null,"country":"US","created_at":"2023-09-20T18:09:17+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_d06ae39b57e011ee93253cecef1b359e","mode":"test","name":"Jack
+      N Harbor Dr","street2":null,"updated_at":"2024-08-02T22:13:51+00:00","verifications":{},"zip":"90277"},{"carrier_facility":null,"city":"San
+      Francisco","company":null,"country":"US","created_at":"2024-08-02T22:13:50+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7f5a15cd511c11ef928f3cecef1b359e","mode":"test","name":"Jack
       Sparrow","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-09-20T18:09:17+00:00","verifications":{},"zip":"94107"}],"has_more":true}'
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T22:13:50+00:00","verifications":{},"zip":"94107"}],"has_more":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -49,20 +47,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec28e7896122001b320c
+      - 4d57346d66ad684cf440b8c700373ccc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb39nuq
+      - bigweb53nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.075065"
+      - "0.038812"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -2,22 +2,32 @@
 version: 1
 interactions:
 - request:
-    body: page_size=5
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/scan_forms
+    url: https://api.easypost.com/v2/scan_forms?page_size=5
     method: GET
   response:
     body: '{"has_more":false,"scan_forms":[{"address":{"carrier_facility":null,"city":"Redondo
-      Beach","company":null,"country":"US","created_at":"2023-11-30T20:10:23+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7e9980198fbc11eea8213cecef1b359e","mode":"test","name":"Elizabeth
+      Beach","company":null,"country":"US","created_at":"2024-07-26T19:59:45+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_9b2d7c0d4b8911efbd50ac1f6bc539ae","mode":"test","name":"Elizabeth
       Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
-      N Harbor Dr","street2":null,"updated_at":"2023-11-30T20:10:23+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_0f1512b0b2ab4b59a008ce06e209c6c1","confirmation":null,"created_at":"2023-11-30T20:10:28Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20231130/e878f8b1185e1c41098852d50aa6e9fa73.pdf","id":"sf_f39d531b6e7a4ed79e61f90a4ea03608","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100105442287382941"],"updated_at":"2023-11-30T20:10:29Z"}]}'
+      N Harbor Dr","street2":null,"updated_at":"2024-07-26T19:59:45+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_37469506f6874d7daa354b28fa17ff47","confirmation":null,"created_at":"2024-07-26T19:59:50Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240726/e8bc5a935c587947beb5693e694718bc8f.pdf","id":"sf_14285f9777db4bbdb9e699e0e1d7d7e1","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100110368067715322"],"updated_at":"2024-07-26T19:59:51Z"},{"address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2024-07-26T20:01:06+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_cb3cdc5b4b8911efba06ac1f6bc539aa","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2024-07-26T20:01:06+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_bdfc1e9b8655465fb41ce276c803f026","confirmation":null,"created_at":"2024-07-26T20:01:07Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240726/e8e46a3a64e3a743c08b6658ddfc522c08.pdf","id":"sf_842e1f04c6a9447c99fb2e643e74e0c7","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100110368067715827"],"updated_at":"2024-07-26T20:01:07Z"},{"address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2024-07-26T20:01:07+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_cc2690a34b8911ef913dac1f6bc539ae","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2024-07-26T20:01:07+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_daa2c519dd424d5692bc1623a03f96d4","confirmation":null,"created_at":"2024-07-26T20:01:09Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240726/e82be25b2f2b274dba896f726682d596f1.pdf","id":"sf_788dd06dd012425098abb50af45e9a27","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100110368067715841"],"updated_at":"2024-07-26T20:01:09Z"},{"address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2024-08-02T22:13:34+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_7581c8ff511c11ef8ed1ac1f6bc539aa","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2024-08-02T22:13:34+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_2a90934d557344889847ef676ce8c64c","confirmation":null,"created_at":"2024-08-02T22:13:35Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240802/e88133764071274c8990f7669e80e1994d.pdf","id":"sf_db55d2c5fa6544ba8dc751d7a7cc176a","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100110368070361905"],"updated_at":"2024-08-02T22:13:35Z"},{"address":{"carrier_facility":null,"city":"Redondo
+      Beach","company":null,"country":"US","created_at":"2024-08-02T22:13:35+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_764d1af2511c11efa0d0ac1f6bc53342","mode":"test","name":"Elizabeth
+      Swan","object":"Address","phone":"REDACTED","residential":null,"state":"CA","state_tax_id":null,"street1":"179
+      N Harbor Dr","street2":null,"updated_at":"2024-08-02T22:13:35+00:00","verifications":{},"zip":"90277"},"batch_id":"batch_29ce79f96fef4fbd8f9a00b1b820e687","confirmation":null,"created_at":"2024-08-02T22:13:36Z","form_file_type":null,"form_url":"https://easypost-files.s3.us-west-2.amazonaws.com/files/scan_form/20240802/e884e3e0907fce4f8198cff348a7fa375b.pdf","id":"sf_f18f5516fe174f64916cb53118d09238","message":null,"object":"ScanForm","status":"created","tracking_codes":["9400100110368070361912"],"updated_at":"2024-08-02T22:13:37Z"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -38,20 +48,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec7de7896122001b80c7
+      - 4d57346d66ad688cf440b8c7003767c6
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb35nuq
+      - bigweb42nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.054873"
+      - "0.098772"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

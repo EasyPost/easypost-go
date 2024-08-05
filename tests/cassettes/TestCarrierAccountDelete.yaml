@@ -14,9 +14,9 @@ interactions:
     url: https://api.easypost.com/v2/carrier_accounts
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2023-11-30T20:10:41Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{},"id":"ca_cde931e15afb4bfe8183e9d048d06907","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2023-11-30T20:10:41Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-08-02T23:14:29Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{},"id":"ca_866e9d339f4a452bb655d6b0f9039362","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-08-02T23:14:29Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -32,25 +32,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec41e7896122001b4b00
+      - 4d57346d66ad6855f440b8c700374272
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb33nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.123025"
+      - "0.066692"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -64,7 +66,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_cde931e15afb4bfe8183e9d048d06907
+    url: https://api.easypost.com/v2/carrier_accounts/ca_866e9d339f4a452bb655d6b0f9039362
     method: DELETE
   response:
     body: '{}'
@@ -88,20 +90,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec41e7896122001b4b29
+      - 4d57346d66ad6855f440b8c700374283
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - bigweb40nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.251348"
+      - "0.062066"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

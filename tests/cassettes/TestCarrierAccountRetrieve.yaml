@@ -14,9 +14,9 @@ interactions:
     url: https://api.easypost.com/v2/carrier_accounts
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2023-11-30T20:10:42Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{},"id":"ca_275c6c00101849278293a39596c02e43","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2023-11-30T20:10:42Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-08-02T23:14:29Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{},"id":"ca_ac85fda41e9143398f3edc3a47c70ec3","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-08-02T23:14:29Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -37,20 +37,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec42e7896122001b4bb3
+      - 4d57346d66ad6855f440b8c700374293
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb33nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.223913"
+      - "0.082987"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -64,12 +64,12 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_275c6c00101849278293a39596c02e43
+    url: https://api.easypost.com/v2/carrier_accounts/ca_ac85fda41e9143398f3edc3a47c70ec3
     method: GET
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2023-11-30T20:10:42Z","credentials":{},"description":"DHL
-      eCommerce Solutions Account","fields":{},"id":"ca_275c6c00101849278293a39596c02e43","logo":null,"object":"CarrierAccount","readable":"DHL
-      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2023-11-30T20:10:42Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-08-02T23:14:29Z","credentials":{},"description":"DHL
+      eCommerce Solutions Account","fields":{},"id":"ca_ac85fda41e9143398f3edc3a47c70ec3","logo":null,"object":"CarrierAccount","readable":"DHL
+      eCommerce Solutions","reference":null,"test_credentials":{},"type":"DhlEcsAccount","updated_at":"2024-08-02T23:14:29Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -90,20 +90,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec42e7896122001b4c18
+      - 4d57346d66ad6855f440b8c7003742a2
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb39nuq
+      - bigweb41nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.033181"
+      - "0.194389"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -117,7 +117,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_275c6c00101849278293a39596c02e43
+    url: https://api.easypost.com/v2/carrier_accounts/ca_ac85fda41e9143398f3edc3a47c70ec3
     method: DELETE
   response:
     body: '{}'
@@ -141,20 +141,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec42e7896122001b4c35
+      - 4d57346d66ad6855f440b8c7003742bc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb36nuq
+      - bigweb35nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.116064"
+      - "0.062623"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

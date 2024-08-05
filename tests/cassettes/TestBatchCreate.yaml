@@ -18,7 +18,7 @@ interactions:
     url: https://api.easypost.com/v2/batches
     method: POST
   response:
-    body: '{"created_at":"2023-11-30T20:10:23Z","id":"batch_a320ba75a86749a68b29a401531c8959","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2023-11-30T20:10:23Z"}'
+    body: '{"created_at":"2024-08-02T23:21:55Z","id":"batch_01edb1594b59418e910b9db30d341928","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"creating","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2024-08-02T23:21:55Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -39,20 +39,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec2ee7896122001b3969
+      - e77710fb66ad6a13f42ea0f000393186
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - bigweb33nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb1nuq fa152d4755
       X-Runtime:
-      - "0.050630"
+      - "0.037794"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

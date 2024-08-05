@@ -7,10 +7,10 @@ import (
 )
 
 type MinifiedRate struct {
-	ID      string `json:"id,omitempty"`
-	Service string `json:"service,omitempty"`
-	Carrier string `json:"carrier,omitempty"`
-	Rate    string `json:"rate,omitempty"`
+	ID      string `json:"id,omitempty" url:"id,omitempty"`
+	Service string `json:"service,omitempty" url:"service,omitempty"`
+	Carrier string `json:"carrier,omitempty" url:"carrier,omitempty"`
+	Rate    string `json:"rate,omitempty" url:"rate,omitempty"`
 }
 
 // StringPtr returns a pointer to a string with the given value.

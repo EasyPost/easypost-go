@@ -8,26 +8,26 @@ import (
 // Report represents a CSV-formatted file that is a log of all the objects
 // created within a certain time frame.
 type Report struct {
-	ID                string    `json:"id,omitempty"`
-	Object            string    `json:"object,omitempty"`
-	Mode              string    `json:"mode,omitempty"`
-	CreatedAt         *DateTime `json:"created_at,omitempty"`
-	UpdatedAt         *DateTime `json:"updated_at,omitempty"`
-	Status            string    `json:"status,omitempty"`
-	StartDate         string    `json:"start_date,omitempty"`
-	EndDate           string    `json:"end_date,omitempty"`
-	IncludeChildren   bool      `json:"include_children,omitempty"`
-	URL               string    `json:"url,omitempty"`
-	URLExpiresAt      *DateTime `json:"url_expires_at,omitempty"`
-	SendEmail         bool      `json:"send_email,omitempty"`
-	Columns           []string  `json:"columns,omitempty"`
-	AdditionalColumns []string  `json:"additional_columns,omitempty"`
+	ID                string    `json:"id,omitempty" url:"id,omitempty"`
+	Object            string    `json:"object,omitempty" url:"object,omitempty"`
+	Mode              string    `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt         *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt         *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Status            string    `json:"status,omitempty" url:"status,omitempty"`
+	StartDate         string    `json:"start_date,omitempty" url:"start_date,omitempty"`
+	EndDate           string    `json:"end_date,omitempty" url:"end_date,omitempty"`
+	IncludeChildren   bool      `json:"include_children,omitempty" url:"include_children,omitempty"`
+	URL               string    `json:"url,omitempty" url:"url,omitempty"`
+	URLExpiresAt      *DateTime `json:"url_expires_at,omitempty" url:"url_expires_at,omitempty"`
+	SendEmail         bool      `json:"send_email,omitempty" url:"send_email,omitempty"`
+	Columns           []string  `json:"columns,omitempty" url:"columns,omitempty"`
+	AdditionalColumns []string  `json:"additional_columns,omitempty" url:"additional_columns,omitempty"`
 }
 
 // ListReportsResult holds the results from the list reports API.
 type ListReportsResult struct {
-	Reports []*Report `json:"reports,omitempty"`
-	Type    string    `json:"type,omitempty"`
+	Reports []*Report `json:"reports,omitempty" url:"reports,omitempty"`
+	Type    string    `json:"type,omitempty" url:"type,omitempty"`
 	PaginatedCollection
 }
 
@@ -47,7 +47,7 @@ func (c *Client) CreateReport(typ string, in *Report) (out *Report, err error) {
 // CreateReportWithContext performs the same operation as CreateReport, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreateReportWithContext(ctx context.Context, typ string, in *Report) (out *Report, err error) {
-	err = c.post(ctx, "reports/"+typ, in, &out)
+	err = c.do(ctx, http.MethodPost, "reports/"+typ, in, &out)
 	return
 }
 
@@ -59,7 +59,7 @@ func (c *Client) ListReports(typ string, opts *ListOptions) (out *ListReportsRes
 // ListReportsWithContext performs the same operation as ListReports, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *ListOptions) (out *ListReportsResult, err error) {
-	err = c.do(ctx, http.MethodGet, "reports/"+typ, c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "reports/"+typ, opts, &out)
 	// Store the original query parameters for reuse when getting the next page
 	out.Type = typ
 	return
@@ -110,6 +110,6 @@ func (c *Client) GetReport(typ, reportID string) (out *Report, err error) {
 // GetReportWithContext performs the same operation as GetReport, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetReportWithContext(ctx context.Context, typ, reportID string) (out *Report, err error) {
-	err = c.get(ctx, "reports/"+typ+"/"+reportID, &out)
+	err = c.do(ctx, http.MethodGet, "reports/"+typ+"/"+reportID, nil, &out)
 	return
 }

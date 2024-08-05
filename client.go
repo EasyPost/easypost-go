@@ -6,16 +6,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
+	"github.com/google/go-querystring/query"
 	"github.com/google/uuid"
 	"io"
 	"io/ioutil"
 	"net/http"
 	"net/url"
 	"runtime"
-	"strings"
 	"time"
-
-	"github.com/google/go-querystring/query"
 )
 
 var apiBaseURL = &url.URL{
@@ -97,26 +95,17 @@ func (c *Client) client() *http.Client {
 	return client
 }
 
-func (c *Client) convertOptsToURLValues(v interface{}) url.Values {
-	values, _ := query.Values(v)
-	return values
-}
+func (c *Client) setParameters(req *http.Request, params interface{}) error {
+	switch req.Method {
+	case http.MethodGet, http.MethodDelete:
+		// Convert interface into query parameters and set as request URL query
+		values, _ := query.Values(params)
+		req.URL.RawQuery = values.Encode()
+		return nil
 
-func (c *Client) setBody(req *http.Request, in interface{}) error {
-	switch in := in.(type) {
-	case url.Values:
-		buf := []byte(in.Encode())
-		req.Body = ioutil.NopCloser(bytes.NewReader(buf))
-		req.GetBody = func() (io.ReadCloser, error) {
-			return ioutil.NopCloser(bytes.NewReader(buf)), nil
-		}
-		req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-		// Setting Content-Length avoids chunked encoding, which the API
-		// server doesn't currently support.
-		req.ContentLength = int64(len(buf))
-	case nil: // nop
-	default:
-		buf, err := json.Marshal(in)
+	case http.MethodPost, http.MethodPut, http.MethodPatch:
+		// Convert interface into JSON and set as request body
+		buf, err := json.Marshal(params)
 		if err != nil {
 			return err
 		}
@@ -128,11 +117,14 @@ func (c *Client) setBody(req *http.Request, in interface{}) error {
 		// Setting Content-Length avoids chunked encoding, which the API
 		// server doesn't currently support.
 		req.ContentLength = int64(len(buf))
+
+		return nil
+	default:
+		return fmt.Errorf("unsupported method: %s", req.Method)
 	}
-	return nil
 }
 
-func (c *Client) do(ctx context.Context, method, path string, in, out interface{}) error {
+func (c *Client) do(ctx context.Context, method, path string, params interface{}, out interface{}) error {
 	if c.APIKey == "" {
 		return newMissingPropertyError("APIKey")
 	}
@@ -143,20 +135,8 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 		Header: make(http.Header, 2),
 	}
 
-	urlParts := strings.Split(path, "?")
-	if len(urlParts) > 1 {
-		req = &http.Request{
-			Method: method,
-			URL: c.baseURL().ResolveReference(&url.URL{
-				Path:     urlParts[0],
-				RawQuery: urlParts[1],
-			}),
-			Header: make(http.Header, 2),
-		}
-	}
-
 	req.Header.Set("User-Agent", c.userAgent())
-	if err := c.setBody(req, in); err != nil {
+	if err := c.setParameters(req, params); err != nil {
 		return err
 	}
 
@@ -247,24 +227,4 @@ func (c *Client) do(ctx context.Context, method, path string, in, out interface{
 	apiErr := BuildErrorFromResponse(res)
 
 	return apiErr
-}
-
-func (c *Client) get(ctx context.Context, path string, out interface{}) error {
-	return c.do(ctx, http.MethodGet, path, nil, out)
-}
-
-func (c *Client) post(ctx context.Context, path string, in, out interface{}) error {
-	return c.do(ctx, http.MethodPost, path, in, out)
-}
-
-func (c *Client) put(ctx context.Context, path string, in, out interface{}) error {
-	return c.do(ctx, http.MethodPut, path, in, out)
-}
-
-func (c *Client) patch(ctx context.Context, path string, in, out interface{}) error {
-	return c.do(ctx, http.MethodPatch, path, in, out)
-}
-
-func (c *Client) del(ctx context.Context, path string) error {
-	return c.do(ctx, http.MethodDelete, path, nil, nil)
 }

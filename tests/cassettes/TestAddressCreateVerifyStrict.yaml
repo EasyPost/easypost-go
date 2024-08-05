@@ -16,9 +16,9 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2024-01-08T18:27:41+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_9ba97ff1ae5311eebc01ac1f6bc539ae","mode":"test","name":"JACK
+    body: '{"carrier_facility":null,"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2024-08-02T23:14:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_f2c9e61b512411efaeed3cecef1b359e","mode":"test","name":"JACK
       SPARROW","object":"Address","phone":"REDACTED","residential":true,"state":"CA","state_tax_id":null,"street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2024-01-08T18:27:41+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2024-08-02T23:14:20+00:00","verifications":{"delivery":{"details":{"latitude":37.77551,"longitude":-122.39697,"time_zone":"America/Los_Angeles"},"errors":[],"success":true},"zip4":{"details":null,"errors":[],"success":true}},"zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -27,7 +27,7 @@ interactions:
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_9ba97ff1ae5311eebc01ac1f6bc539ae
+      - /api/v2/addresses/adr_f2c9e61b512411efaeed3cecef1b359e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -41,20 +41,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - d1c48c8a659c3e9df40c261200033001
+      - 4d57346d66ad684cf440b8c700373d1f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb36nuq
+      - bigweb35nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq ab82b2e6e9
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.053186"
+      - "0.050829"
       X-Version-Label:
-      - easypost-202401051829-4cf193bd35-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

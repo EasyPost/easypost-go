@@ -15,8 +15,8 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2024-01-08T18:27:40+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_9b750f36ae5311ee8f3b3cecef1b359e","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
-      unknown street","street2":null,"updated_at":"2024-01-08T18:27:40+00:00","verifications":{},"zip":"00001"}'
+    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2024-08-02T23:14:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_f2a0d4c2512411efbfedac1f6bc53342","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
+      unknown street","street2":null,"updated_at":"2024-08-02T23:14:20+00:00","verifications":{},"zip":"00001"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -25,7 +25,7 @@ interactions:
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_9b750f36ae5311ee8f3b3cecef1b359e
+      - /api/v2/addresses/adr_f2a0d4c2512411efbfedac1f6bc53342
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -39,20 +39,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - d1c48c8a659c3e9cf40c261200032fae
+      - 4d57346d66ad684cf440b8c700373ceb
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb36nuq
+      - bigweb35nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq ab82b2e6e9
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.037722"
+      - "0.059451"
       X-Version-Label:
-      - easypost-202401051829-4cf193bd35-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -94,20 +94,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - d1c48c8a659c3e9cf40c261200032fc4
+      - 4d57346d66ad684cf440b8c700373cfc
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb34nuq
+      - bigweb42nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq ab82b2e6e9
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.037967"
+      - "0.034481"
       X-Version-Label:
-      - easypost-202401051829-4cf193bd35-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 422 Unprocessable Entity

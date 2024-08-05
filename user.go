@@ -8,42 +8,42 @@ import (
 
 // A User contains data about an EasyPost account and child accounts.
 type User struct {
-	ID                      string    `json:"id,omitempty"`
-	Object                  string    `json:"object,omitempty"`
-	ParentID                string    `json:"parent_id,omitempty"`
-	Name                    string    `json:"name,omitempty"`
-	Email                   string    `json:"email,omitempty"`
-	PhoneNumber             string    `json:"phone_number,omitempty"`
-	Balance                 string    `json:"balance,omitempty"`
-	RechargeAmount          string    `json:"recharge_amount,omitempty"`
-	SecondaryRechargeAmount string    `json:"secondary_recharge_amount,omitempty"`
-	RechargeThreshold       string    `json:"recharge_threshold,omitempty"`
-	Children                []*User   `json:"children,omitempty"`
-	APIKeys                 []*APIKey `json:"api_keys,omitempty"`
-	Verified                bool      `json:"verified,omitempty"`
+	ID                      string    `json:"id,omitempty" url:"id,omitempty"`
+	Object                  string    `json:"object,omitempty" url:"object,omitempty"`
+	ParentID                string    `json:"parent_id,omitempty" url:"parent_id,omitempty"`
+	Name                    string    `json:"name,omitempty" url:"name,omitempty"`
+	Email                   string    `json:"email,omitempty" url:"email,omitempty"`
+	PhoneNumber             string    `json:"phone_number,omitempty" url:"phone_number,omitempty"`
+	Balance                 string    `json:"balance,omitempty" url:"balance,omitempty"`
+	RechargeAmount          string    `json:"recharge_amount,omitempty" url:"recharge_amount,omitempty"`
+	SecondaryRechargeAmount string    `json:"secondary_recharge_amount,omitempty" url:"secondary_recharge_amount,omitempty"`
+	RechargeThreshold       string    `json:"recharge_threshold,omitempty" url:"recharge_threshold,omitempty"`
+	Children                []*User   `json:"children,omitempty" url:"children,omitempty"`
+	APIKeys                 []*APIKey `json:"api_keys,omitempty" url:"api_keys,omitempty"`
+	Verified                bool      `json:"verified,omitempty" url:"verified,omitempty"`
 }
 
 // UserOptions specifies options for creating or updating a user.
 type UserOptions struct {
-	ID                      string  `json:"-"`
-	Email                   *string `json:"email,omitempty"`
-	Password                *string `json:"password,omitempty"`
-	PasswordConfirmation    *string `json:"password_confirmation,omitempty"`
-	CurrentPassword         *string `json:"current_password,omitempty"`
-	Name                    *string `json:"name,omitempty"`
-	Phone                   *string `json:"phone,omitempty"`
-	PhoneNumber             *string `json:"phone_number,omitempty"`
-	RechargeAmount          *string `json:"recharge_amount,omitempty"`
-	SecondaryRechargeAmount *string `json:"secondary_recharge_amount,omitempty"`
-	RechargeThreshold       *string `json:"recharge_threshold,omitempty"`
+	ID                      string  `json:"-"` // IGNORE
+	Email                   *string `json:"email,omitempty" url:"email,omitempty"`
+	Password                *string `json:"password,omitempty" url:"password,omitempty"`
+	PasswordConfirmation    *string `json:"password_confirmation,omitempty" url:"password_confirmation,omitempty"`
+	CurrentPassword         *string `json:"current_password,omitempty" url:"current_password,omitempty"`
+	Name                    *string `json:"name,omitempty" url:"name,omitempty"`
+	Phone                   *string `json:"phone,omitempty" url:"phone,omitempty"`
+	PhoneNumber             *string `json:"phone_number,omitempty" url:"phone_number,omitempty"`
+	RechargeAmount          *string `json:"recharge_amount,omitempty" url:"recharge_amount,omitempty"`
+	SecondaryRechargeAmount *string `json:"secondary_recharge_amount,omitempty" url:"secondary_recharge_amount,omitempty"`
+	RechargeThreshold       *string `json:"recharge_threshold,omitempty" url:"recharge_threshold,omitempty"`
 }
 
 type userRequest struct {
-	UserOptions *UserOptions `json:"user,omitempty"`
+	UserOptions *UserOptions `json:"user,omitempty" url:"user,omitempty"`
 }
 
 type ListChildUsersResult struct {
-	Children []*User `json:"children,omitempty"`
+	Children []*User `json:"children,omitempty" url:"children,omitempty"`
 	PaginatedCollection
 }
 
@@ -59,7 +59,7 @@ func (c *Client) CreateUser(in *UserOptions) (out *User, err error) {
 // CreateUserWithContext performs the same operation as CreateUser, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) CreateUserWithContext(ctx context.Context, in *UserOptions) (out *User, err error) {
-	err = c.post(ctx, "users", &userRequest{UserOptions: in}, &out)
+	err = c.do(ctx, http.MethodPost, "users", &userRequest{UserOptions: in}, &out)
 	return
 }
 
@@ -71,7 +71,7 @@ func (c *Client) GetUser(userID string) (out *User, err error) {
 // GetUserWithContext performs the same operation as GetUser, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetUserWithContext(ctx context.Context, userID string) (out *User, err error) {
-	err = c.get(ctx, "users/"+userID, &out)
+	err = c.do(ctx, http.MethodGet, "users/"+userID, nil, &out)
 	return
 }
 
@@ -90,7 +90,7 @@ func (c *Client) UpdateUserWithContext(ctx context.Context, in *UserOptions) (ou
 	if in.ID != "" {
 		path += "/" + in.ID
 	}
-	err = c.patch(ctx, path, req, &out)
+	err = c.do(ctx, http.MethodPatch, path, req, &out)
 	return
 }
 
@@ -102,7 +102,7 @@ func (c *Client) DeleteUser(userID string) error {
 // DeleteUserWithContext performs the same operation as DeleteUser, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) DeleteUserWithContext(ctx context.Context, userID string) error {
-	return c.del(ctx, "users/"+userID)
+	return c.do(ctx, http.MethodDelete, "users/"+userID, nil, nil)
 }
 
 // RetrieveMe retrieves the current user.
@@ -113,7 +113,7 @@ func (c *Client) RetrieveMe() (out *User, err error) {
 // RetrieveMeWithContext performs the same operation as RetrieveMe, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) RetrieveMeWithContext(ctx context.Context) (out *User, err error) {
-	err = c.get(ctx, "users", &out)
+	err = c.do(ctx, http.MethodGet, "users", nil, &out)
 	return
 }
 
@@ -125,7 +125,7 @@ func (c *Client) ListChildUsers(opts *ListOptions) (out *ListChildUsersResult, e
 // ListChildUsersWithContext performs the same operation as ListChildUsers, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) ListChildUsersWithContext(ctx context.Context, opts *ListOptions) (out *ListChildUsersResult, err error) {
-	err = c.do(ctx, http.MethodGet, "users/children", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "users/children", opts, &out)
 	return
 }
 
@@ -170,6 +170,6 @@ func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out 
 func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
-	err = c.patch(ctx, updateBrandURL, newParams, &out)
+	err = c.do(ctx, http.MethodPatch, updateBrandURL, newParams, &out)
 	return
 }

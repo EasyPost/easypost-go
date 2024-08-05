@@ -2,74 +2,75 @@ package easypost
 
 import (
 	"context"
+	"net/http"
 )
 
 // CarrierField provides data for a single field in a carrier account.
 type CarrierField struct {
-	Visibility string `json:"visibility,omitempty"`
-	Label      string `json:"label,omitempty"`
-	Value      string `json:"value,omitempty"`
+	Visibility string `json:"visibility,omitempty" url:"visibility,omitempty"`
+	Label      string `json:"label,omitempty" url:"label,omitempty"`
+	Value      string `json:"value,omitempty" url:"value,omitempty"`
 }
 
 // CarrierFields contains the data for carrier account fields for production and/or test credentials.
 type CarrierFields struct {
-	Credentials     map[string]*CarrierField `json:"credentials,omitempty"`
-	TestCredentials map[string]*CarrierField `json:"test_credentials,omitempty"`
-	AutoLink        bool                     `json:"auto_link,omitempty"`
-	CustomWorkflow  bool                     `json:"custom_workflow,omitempty"`
+	Credentials     map[string]*CarrierField `json:"credentials,omitempty" url:"credentials,omitempty"`
+	TestCredentials map[string]*CarrierField `json:"test_credentials,omitempty" url:"test_credentials,omitempty"`
+	AutoLink        bool                     `json:"auto_link,omitempty" url:"auto_link,omitempty"`
+	CustomWorkflow  bool                     `json:"custom_workflow,omitempty" url:"custom_workflow,omitempty"`
 }
 
 // CarrierAccount encapsulates credentials and other information related to a carrier account.
 // This struct is also used as a parameter set for creating and updating non-UPS carrier accounts.
 type CarrierAccount struct {
-	ID               string                 `json:"id,omitempty"`
-	Object           string                 `json:"object,omitempty"`
-	Reference        string                 `json:"reference,omitempty"`
-	CreatedAt        *DateTime              `json:"created_at,omitempty"`
-	UpdatedAt        *DateTime              `json:"updated_at,omitempty"`
-	Type             string                 `json:"type,omitempty"`
-	Fields           *CarrierFields         `json:"fields,omitempty"`
-	Clone            bool                   `json:"clone,omitempty"`
-	Description      string                 `json:"description,omitempty"`
-	Readable         string                 `json:"readable,omitempty"`
-	Credentials      map[string]string      `json:"credentials,omitempty"`
-	TestCredentials  map[string]string      `json:"test_credentials,omitempty"`
-	RegistrationData map[string]interface{} `json:"registration_data,omitempty"`
-	BillingType      string                 `json:"billing_type,omitempty"`
+	ID               string                 `json:"id,omitempty" url:"id,omitempty"`
+	Object           string                 `json:"object,omitempty" url:"object,omitempty"`
+	Reference        string                 `json:"reference,omitempty" url:"reference,omitempty"`
+	CreatedAt        *DateTime              `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt        *DateTime              `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Type             string                 `json:"type,omitempty" url:"type,omitempty"`
+	Fields           *CarrierFields         `json:"fields,omitempty" url:"fields,omitempty"`
+	Clone            bool                   `json:"clone,omitempty" url:"clone,omitempty"`
+	Description      string                 `json:"description,omitempty" url:"description,omitempty"`
+	Readable         string                 `json:"readable,omitempty" url:"readable,omitempty"`
+	Credentials      map[string]string      `json:"credentials,omitempty" url:"credentials,omitempty"`
+	TestCredentials  map[string]string      `json:"test_credentials,omitempty" url:"test_credentials,omitempty"`
+	RegistrationData map[string]interface{} `json:"registration_data,omitempty" url:"registration_data,omitempty"`
+	BillingType      string                 `json:"billing_type,omitempty" url:"billing_type,omitempty"`
 }
 
 // CarrierType contains information on a supported carrier. It can be used to determine the valid fields for a carrier account.
 type CarrierType struct {
-	Object   string         `json:"object,omitempty"`
-	Type     string         `json:"type,omitempty"`
-	Readable string         `json:"readable,omitempty"`
-	Logo     string         `json:"logo,omitempty"`
-	Fields   *CarrierFields `json:"fields,omitempty"`
+	Object   string         `json:"object,omitempty" url:"object,omitempty"`
+	Type     string         `json:"type,omitempty" url:"type,omitempty"`
+	Readable string         `json:"readable,omitempty" url:"readable,omitempty"`
+	Logo     string         `json:"logo,omitempty" url:"logo,omitempty"`
+	Fields   *CarrierFields `json:"fields,omitempty" url:"fields,omitempty"`
 }
 
 type carrierAccountRequest struct {
-	Data *CarrierAccount `json:"carrier_account,omitempty"`
+	Data *CarrierAccount `json:"carrier_account,omitempty" url:"carrier_account,omitempty"`
 }
 
 // UpsCarrierAccountCreationParameters contains the parameters needed to create a new UPS carrier account.
 type UpsCarrierAccountCreationParameters struct {
-	Type          string `json:"type,omitempty"`
-	Description   string `json:"description,omitempty"`
-	Reference     string `json:"reference,omitempty"`
-	AccountNumber string `json:"account_number,omitempty"`
+	Type          string `json:"type,omitempty" url:"type,omitempty"`
+	Description   string `json:"description,omitempty" url:"description,omitempty"`
+	Reference     string `json:"reference,omitempty" url:"reference,omitempty"`
+	AccountNumber string `json:"account_number,omitempty" url:"account_number,omitempty"`
 }
 
 type upsCarrierAccountCreationRequest struct {
-	Data *UpsCarrierAccountCreationParameters `json:"ups_oauth_registrations,omitempty"`
+	Data *UpsCarrierAccountCreationParameters `json:"ups_oauth_registrations,omitempty" url:"ups_oauth_registrations,omitempty"`
 }
 
 // UpsCarrierAccountUpdateParameters contains the parameters needed to update a UPS carrier account.
 type UpsCarrierAccountUpdateParameters struct {
-	AccountNumber string `json:"account_number,omitempty"`
+	AccountNumber string `json:"account_number,omitempty" url:"account_number,omitempty"`
 }
 
 type upsCarrierAccountUpdateRequest struct {
-	Data *UpsCarrierAccountUpdateParameters `json:"ups_oauth_registrations,omitempty"`
+	Data *UpsCarrierAccountUpdateParameters `json:"ups_oauth_registrations,omitempty" url:"ups_oauth_registrations,omitempty"`
 }
 
 func (c *Client) selectCarrierAccountCreationEndpoint(typ string) string {
@@ -95,7 +96,7 @@ func (c *Client) GetCarrierTypes() (out []*CarrierType, err error) {
 
 // GetCarrierTypesWithContext performs the same operation as GetCarrierTypes, but allows specifying a context that can interrupt the request.
 func (c *Client) GetCarrierTypesWithContext(ctx context.Context) (out []*CarrierType, err error) {
-	err = c.get(ctx, "carrier_types", &out)
+	err = c.do(ctx, http.MethodGet, "carrier_types", nil, &out)
 	return
 }
 
@@ -132,7 +133,7 @@ func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *Carrie
 
 	req := &carrierAccountRequest{Data: in}
 	endpoint := c.selectCarrierAccountCreationEndpoint(in.Type)
-	err = c.post(ctx, endpoint, req, &out)
+	err = c.do(ctx, http.MethodPost, endpoint, req, &out)
 	return
 }
 
@@ -158,7 +159,7 @@ func (c *Client) CreateUpsCarrierAccountWithContext(ctx context.Context, in *Ups
 	}
 
 	req := &upsCarrierAccountCreationRequest{Data: in}
-	err = c.post(ctx, "ups_oauth_registrations", req, &out)
+	err = c.do(ctx, http.MethodPost, "ups_oauth_registrations", req, &out)
 	return
 }
 
@@ -169,7 +170,7 @@ func (c *Client) ListCarrierAccounts() (out []*CarrierAccount, err error) {
 
 // ListCarrierAccountsWithContext performs the same operation as ListCarrierAccounts, but allows specifying a context that can interrupt the request.
 func (c *Client) ListCarrierAccountsWithContext(ctx context.Context) (out []*CarrierAccount, err error) {
-	err = c.get(ctx, "carrier_accounts", &out)
+	err = c.do(ctx, http.MethodGet, "carrier_accounts", nil, &out)
 	return
 }
 
@@ -180,7 +181,7 @@ func (c *Client) GetCarrierAccount(carrierAccountID string) (out *CarrierAccount
 
 // GetCarrierAccountWithContext performs the same operation as GetCarrierAccount, but allows specifying a context that can interrupt the request.
 func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccountID string) (out *CarrierAccount, err error) {
-	err = c.get(ctx, "carrier_accounts/"+carrierAccountID, &out)
+	err = c.do(ctx, http.MethodGet, "carrier_accounts/"+carrierAccountID, nil, &out)
 	return
 }
 
@@ -218,7 +219,7 @@ func (c *Client) UpdateCarrierAccountWithContext(ctx context.Context, in *Carrie
 	}
 
 	req := &carrierAccountRequest{Data: in}
-	err = c.patch(ctx, "carrier_accounts/"+in.ID, req, &out)
+	err = c.do(ctx, http.MethodPatch, "carrier_accounts/"+in.ID, req, &out)
 	return
 }
 
@@ -249,7 +250,7 @@ func (c *Client) UpdateUpsCarrierAccountWithContext(ctx context.Context, id stri
 	}
 
 	req := &upsCarrierAccountUpdateRequest{Data: in}
-	err = c.patch(ctx, "ups_oauth_registrations/"+id, req, &out)
+	err = c.do(ctx, http.MethodPatch, "ups_oauth_registrations/"+id, req, &out)
 	return
 
 }
@@ -261,5 +262,5 @@ func (c *Client) DeleteCarrierAccount(carrierAccountID string) error {
 
 // DeleteCarrierAccountWithContext performs the same operation as DeleteCarrierAccount, but allows specifying a context that can interrupt the request.
 func (c *Client) DeleteCarrierAccountWithContext(ctx context.Context, carrierAccountID string) error {
-	return c.del(ctx, "carrier_accounts/"+carrierAccountID)
+	return c.do(ctx, http.MethodDelete, "carrier_accounts/"+carrierAccountID, nil, nil)
 }

@@ -2,48 +2,49 @@ package easypost
 
 import (
 	"context"
+	"net/http"
 )
 
 // CustomsInfo objects contain CustomsItem objects and all necessary information
 // for the generation of customs forms required for international shipping.
 type CustomsInfo struct {
-	ID                  string         `json:"id,omitempty"`
-	Object              string         `json:"object,omitempty"`
-	CreatedAt           *DateTime      `json:"created_at,omitempty"`
-	UpdatedAt           *DateTime      `json:"updated_at,omitempty"`
-	EELPFC              string         `json:"eel_pfc,omitempty"`
-	ContentsType        string         `json:"contents_type,omitempty"`
-	ContentsExplanation string         `json:"contents_explanation,omitempty"`
-	CustomsCertify      bool           `json:"customs_certify,omitempty"`
-	CustomsSigner       string         `json:"customs_signer,omitempty"`
-	NonDeliveryOption   string         `json:"non_delivery_option,omitempty"`
-	RestrictionType     string         `json:"restriction_type,omitempty"`
-	CustomsItems        []*CustomsItem `json:"customs_items,omitempty"`
-	Declaration         string         `json:"declaration,omitempty"`
+	ID                  string         `json:"id,omitempty" url:"id,omitempty"`
+	Object              string         `json:"object,omitempty" url:"object,omitempty"`
+	CreatedAt           *DateTime      `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt           *DateTime      `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	EELPFC              string         `json:"eel_pfc,omitempty" url:"eel_pfc,omitempty"`
+	ContentsType        string         `json:"contents_type,omitempty" url:"contents_type,omitempty"`
+	ContentsExplanation string         `json:"contents_explanation,omitempty" url:"contents_explanation,omitempty"`
+	CustomsCertify      bool           `json:"customs_certify,omitempty" url:"customs_certify,omitempty"`
+	CustomsSigner       string         `json:"customs_signer,omitempty" url:"customs_signer,omitempty"`
+	NonDeliveryOption   string         `json:"non_delivery_option,omitempty" url:"non_delivery_option,omitempty"`
+	RestrictionType     string         `json:"restriction_type,omitempty" url:"restriction_type,omitempty"`
+	CustomsItems        []*CustomsItem `json:"customs_items,omitempty" url:"customs_items,omitempty"`
+	Declaration         string         `json:"declaration,omitempty" url:"declaration,omitempty"`
 }
 
 // A CustomsItem object describes goods for international shipment.
 type CustomsItem struct {
-	ID             string    `json:"id,omitempty"`
-	Object         string    `json:"object,omitempty"`
-	CreatedAt      *DateTime `json:"created_at,omitempty"`
-	UpdatedAt      *DateTime `json:"updated_at,omitempty"`
-	Description    string    `json:"description,omitempty"`
-	Quantity       float64   `json:"quantity,omitempty"`
-	Value          float64   `json:"value,omitempty,string"`
-	Weight         float64   `json:"weight,omitempty"`
-	HSTariffNumber string    `json:"hs_tariff_number,omitempty"`
-	Code           string    `json:"code,omitempty"`
-	OriginCountry  string    `json:"origin_country,omitempty"`
-	Currency       string    `json:"currency,omitempty"`
+	ID             string    `json:"id,omitempty" url:"id,omitempty"`
+	Object         string    `json:"object,omitempty" url:"object,omitempty"`
+	CreatedAt      *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt      *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Description    string    `json:"description,omitempty" url:"description,omitempty"`
+	Quantity       float64   `json:"quantity,omitempty" url:"quantity,omitempty"`
+	Value          float64   `json:"value,omitempty,string" url:"value,omitempty"`
+	Weight         float64   `json:"weight,omitempty" url:"weight,omitempty"`
+	HSTariffNumber string    `json:"hs_tariff_number,omitempty" url:"hs_tariff_number,omitempty"`
+	Code           string    `json:"code,omitempty" url:"code,omitempty"`
+	OriginCountry  string    `json:"origin_country,omitempty" url:"origin_country,omitempty"`
+	Currency       string    `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
 type createCustomsInfoRequest struct {
-	CustomsInfo *CustomsInfo `json:"customs_info,omitempty"`
+	CustomsInfo *CustomsInfo `json:"customs_info,omitempty" url:"customs_info,omitempty"`
 }
 
 type createCustomsItemRequest struct {
-	CustomsItem *CustomsItem `json:"customs_item,omitempty"`
+	CustomsItem *CustomsItem `json:"customs_item,omitempty" url:"customs_item,omitempty"`
 }
 
 // CreateCustomsInfo creates a new CustomsInfo object.
@@ -78,7 +79,7 @@ func (c *Client) CreateCustomsInfo(in *CustomsInfo) (out *CustomsInfo, err error
 // request.
 func (c *Client) CreateCustomsInfoWithContext(ctx context.Context, in *CustomsInfo) (out *CustomsInfo, err error) {
 	req := &createCustomsInfoRequest{CustomsInfo: in}
-	err = c.post(ctx, "customs_infos", req, &out)
+	err = c.do(ctx, http.MethodPost, "customs_infos", req, &out)
 	return
 }
 
@@ -90,7 +91,7 @@ func (c *Client) GetCustomsInfo(customsInfoID string) (out *CustomsInfo, err err
 // GetCustomsInfoWithContext performs the same operation as GetCustomsInfo, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetCustomsInfoWithContext(ctx context.Context, customsInfoID string) (out *CustomsInfo, err error) {
-	err = c.get(ctx, "customs_infos/"+customsInfoID, &out)
+	err = c.do(ctx, http.MethodGet, "customs_infos/"+customsInfoID, nil, &out)
 	return
 }
 
@@ -116,7 +117,7 @@ func (c *Client) CreateCustomsItem(in *CustomsItem) (out *CustomsItem, err error
 // request.
 func (c *Client) CreateCustomsItemWithContext(ctx context.Context, in *CustomsItem) (out *CustomsItem, err error) {
 	req := &createCustomsItemRequest{CustomsItem: in}
-	err = c.post(ctx, "customs_items", req, &out)
+	err = c.do(ctx, http.MethodPost, "customs_items", req, &out)
 	return
 }
 
@@ -128,6 +129,6 @@ func (c *Client) GetCustomsItem(customsItemID string) (out *CustomsItem, err err
 // GetCustomsItemWithContext performs the same operation as GetCustomsItem, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetCustomsItemWithContext(ctx context.Context, customsItemID string) (out *CustomsItem, err error) {
-	err = c.get(ctx, "customs_items/"+customsItemID, &out)
+	err = c.do(ctx, http.MethodGet, "customs_items/"+customsItemID, nil, &out)
 	return
 }

@@ -33,7 +33,7 @@ func (c *ClientTests) TestHooks() {
 		easypost.RequestHookEventSubscriber{
 			Callback: func(ctx context.Context, event easypost.RequestHookEvent) error {
 				assert.Equal("GET", event.Method)
-				assert.Equal("https://api.easypost.com/v2/addresses", event.Url.String())
+				assert.Regexp("^https://api.easypost.com/v2/addresses", event.Url.String())
 				pairId = event.Id
 				requestHookCalled = true
 				return nil

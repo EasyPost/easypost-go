@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Update HTTP logic to use query for GET/DELETE requests and body for POST/PUT/PATCH requests
+
 ## v4.5.0 (2024-07-24)
 
 - Add new claim-related functions: `CreateClaim`, `GetClaim`, `ListClaims`, `GetNextClaimPage` and `CancelClaim`

@@ -17,7 +17,7 @@ func UnmarshalJSONObject(data []byte) (interface{}, error) {
 	}
 
 	var obj struct {
-		Object string `json:"object"`
+		Object string `json:"object,omitempty" url:"object,omitempty"`
 	}
 
 	if err := json.Unmarshal(data, &obj); err != nil {

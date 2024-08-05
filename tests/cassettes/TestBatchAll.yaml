@@ -2,19 +2,19 @@
 version: 1
 interactions:
 - request:
-    body: page_size=5
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/batches
+    url: https://api.easypost.com/v2/batches?page_size=5
     method: GET
   response:
-    body: '{"batches":[{"created_at":"2023-11-30T20:10:21Z","id":"batch_f22fb74a118b485ab53ca91d0e8d2c4c","label_url":null,"mode":"test","num_shipments":0,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[],"state":"created","status":{"created":0,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2023-11-30T20:10:22Z"}],"has_more":false}'
+    body: '{"batches":[{"created_at":"2024-07-26T19:34:05Z","id":"batch_dd22fe3b5eb94538a024538460c106c1","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":"USPS
+      does not offer service First for this shipment.","batch_status":"postage_purchase_failed","id":"shp_ce270294181f4397ba2aed5174859d70","reference":null,"tracking_code":null}],"state":"purchase_failed","status":{"created":0,"creation_failed":0,"postage_purchase_failed":1,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2024-07-26T19:34:05Z"},{"created_at":"2024-07-26T19:34:05Z","id":"batch_22a6603d751c460595d85006a91f6547","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"created","id":"shp_b3fadc127a9646cdb1cd6ece1daeba91","reference":null,"tracking_code":null}],"state":"created","status":{"created":1,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2024-07-26T19:34:05Z"},{"created_at":"2024-07-26T19:34:05Z","id":"batch_cd17b7229ae74bf29124c44ba46294c3","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"created","id":"shp_9e12afa98102461bbdeb6759c9162c26","reference":null,"tracking_code":null}],"state":"created","status":{"created":1,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2024-07-26T19:34:06Z"},{"created_at":"2024-07-26T19:34:06Z","id":"batch_d029f4d68d80446db1d23f296c8e9a96","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":"USPS
+      does not offer service First for this shipment.","batch_status":"postage_purchase_failed","id":"shp_d6e63bdbd59644f19bf82d53bf784007","reference":null,"tracking_code":null}],"state":"purchase_failed","status":{"created":0,"creation_failed":0,"postage_purchase_failed":1,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2024-07-26T19:34:06Z"},{"created_at":"2024-07-26T19:34:11Z","id":"batch_b7e57f04d0cd4cb2bef0d3af896ae2eb","label_url":null,"mode":"test","num_shipments":1,"object":"Batch","pickup":null,"reference":null,"scan_form":null,"shipments":[{"batch_message":null,"batch_status":"created","id":"shp_4448c0689d8543268c97523cdc1792c8","reference":null,"tracking_code":null}],"state":"created","status":{"created":1,"creation_failed":0,"postage_purchase_failed":0,"postage_purchased":0,"queued_for_purchase":0},"updated_at":"2024-07-26T19:34:11Z"}],"has_more":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -35,20 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec2ee7896122001b38ce
+      - e77710fd66ad6a28f3f508bf00393ebd
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb41nuq
+      - bigweb53nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb1nuq fa152d4755
       X-Runtime:
-      - "0.062118"
+      - "0.050458"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

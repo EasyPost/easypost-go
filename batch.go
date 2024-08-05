@@ -3,46 +3,45 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"net/url"
 )
 
 // BatchStatus contains counts of statuses for the shipments in a batch.
 type BatchStatus struct {
-	PostagePurchased      int `json:"postage_purchased,omitempty"`
-	PostagePurchaseFailed int `json:"postage_purchase_failed,omitempty"`
-	QueuedForPurchase     int `json:"queued_for_purchase,omitempty"`
-	CreationFailed        int `json:"creation_failed,omitempty"`
+	PostagePurchased      int `json:"postage_purchased,omitempty" url:"postage_purchased,omitempty"`
+	PostagePurchaseFailed int `json:"postage_purchase_failed,omitempty" url:"postage_purchase_failed,omitempty"`
+	QueuedForPurchase     int `json:"queued_for_purchase,omitempty" url:"queued_for_purchase,omitempty"`
+	CreationFailed        int `json:"creation_failed,omitempty" url:"creation_failed,omitempty"`
 }
 
 // Batch represents a batch of shipments.
 type Batch struct {
-	ID           string       `json:"id,omitempty"`
-	Object       string       `json:"object,omitempty"`
-	Reference    string       `json:"reference,omitempty"`
-	Mode         string       `json:"mode,omitempty"`
-	CreatedAt    *DateTime    `json:"created_at,omitempty"`
-	UpdatedAt    *DateTime    `json:"updated_at,omitempty"`
-	State        string       `json:"state,omitempty"`
-	NumShipments int          `json:"num_shipments,omitempty"`
-	Shipments    []*Shipment  `json:"shipments,omitempty"`
-	Status       *BatchStatus `json:"status,omitempty"`
-	LabelURL     string       `json:"label_url,omitempty"`
-	ScanForm     *ScanForm    `json:"scan_form,omitempty"`
-	Pickup       *Pickup      `json:"pickup,omitempty"`
+	ID           string       `json:"id,omitempty" url:"id,omitempty"`
+	Object       string       `json:"object,omitempty" url:"object,omitempty"`
+	Reference    string       `json:"reference,omitempty" url:"reference,omitempty"`
+	Mode         string       `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt    *DateTime    `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt    *DateTime    `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	State        string       `json:"state,omitempty" url:"state,omitempty"`
+	NumShipments int          `json:"num_shipments,omitempty" url:"num_shipments,omitempty"`
+	Shipments    []*Shipment  `json:"shipments,omitempty" url:"shipments,omitempty"`
+	Status       *BatchStatus `json:"status,omitempty" url:"status,omitempty"`
+	LabelURL     string       `json:"label_url,omitempty" url:"label_url,omitempty"`
+	ScanForm     *ScanForm    `json:"scan_form,omitempty" url:"scan_form,omitempty"`
+	Pickup       *Pickup      `json:"pickup,omitempty" url:"pickup,omitempty"`
 }
 
 type batchRequest struct {
-	Batch *Batch `json:"batch,omitempty"`
+	Batch *Batch `json:"batch,omitempty" url:"batch,omitempty"`
 }
 
 // ListBatchesResult holds the results from the list insurances API.
 type ListBatchesResult struct {
-	Batch []*Batch `json:"batches,omitempty"`
+	Batch []*Batch `json:"batches,omitempty" url:"batches,omitempty"`
 	PaginatedCollection
 }
 
 type addRemoveShipmentsRequest struct {
-	Shipments []*Shipment `json:"shipments,omitempty"`
+	Shipments []*Shipment `json:"shipments,omitempty" url:"shipments,omitempty"`
 }
 
 // CreateBatch creates a new batch of shipments. It optionally accepts one or
@@ -63,7 +62,7 @@ func (c *Client) CreateBatch(in ...*Shipment) (out *Batch, err error) {
 // specifying a context that can interrupt the request.
 func (c *Client) CreateBatchWithContext(ctx context.Context, in ...*Shipment) (out *Batch, err error) {
 	req := batchRequest{Batch: &Batch{Shipments: in}}
-	err = c.post(ctx, "batches", req, &out)
+	err = c.do(ctx, http.MethodPost, "batches", req, &out)
 	return
 }
 
@@ -75,7 +74,7 @@ func (c *Client) ListBatches(opts *ListOptions) (out *ListBatchesResult, err err
 // ListBatchesWithContext performs the same operation as ListBatches, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListBatchesWithContext(ctx context.Context, opts *ListOptions) (out *ListBatchesResult, err error) {
-	err = c.do(ctx, http.MethodGet, "batches", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "batches", opts, &out)
 	return
 }
 
@@ -92,7 +91,7 @@ func (c *Client) AddShipmentsToBatch(batchID string, shipments ...*Shipment) (ou
 // request.
 func (c *Client) AddShipmentsToBatchWithContext(ctx context.Context, batchID string, shipments ...*Shipment) (out *Batch, err error) {
 	req := addRemoveShipmentsRequest{Shipments: shipments}
-	err = c.post(ctx, "batches/"+batchID+"/add_shipments", req, &out)
+	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/add_shipments", req, &out)
 	return
 }
 
@@ -107,7 +106,7 @@ func (c *Client) RemoveShipmentsFromBatch(batchID string, shipments ...*Shipment
 // the request.
 func (c *Client) RemoveShipmentsFromBatchWithContext(ctx context.Context, batchID string, shipments ...*Shipment) (out *Batch, err error) {
 	req := addRemoveShipmentsRequest{Shipments: shipments}
-	err = c.post(ctx, "batches/"+batchID+"/remove_shipments", req, &out)
+	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/remove_shipments", req, &out)
 	return
 }
 
@@ -120,7 +119,7 @@ func (c *Client) BuyBatch(batchID string) (out *Batch, err error) {
 // BuyBatchWithContext performs the same operation as BuyBatch, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) BuyBatchWithContext(ctx context.Context, batchID string) (out *Batch, err error) {
-	err = c.post(ctx, "batches/"+batchID+"/buy", nil, &out)
+	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/buy", nil, &out)
 	return
 }
 
@@ -132,7 +131,7 @@ func (c *Client) GetBatch(batchID string) (out *Batch, err error) {
 // GetBatchWithContext performs the same operation as GetBatch, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetBatchWithContext(ctx context.Context, batchID string) (out *Batch, err error) {
-	err = c.get(ctx, "batches/"+batchID, &out)
+	err = c.do(ctx, http.MethodGet, "batches/"+batchID, nil, &out)
 	return
 }
 
@@ -145,8 +144,10 @@ func (c *Client) GetBatchLabels(batchID, format string) (out *Batch, err error) 
 // GetBatchLabelsWithContext performs the same operation as GetBatchLabels, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetBatchLabelsWithContext(ctx context.Context, batchID, format string) (out *Batch, err error) {
-	params := url.Values{"file_format": []string{format}}
-	err = c.post(ctx, "batches/"+batchID+"/label", params, &out)
+	params := struct {
+		FileFormat string `json:"file_format,omitempty" url:"file_format,omitempty"`
+	}{FileFormat: format}
+	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/label", params, &out)
 	return
 }
 
@@ -159,7 +160,9 @@ func (c *Client) CreateBatchScanForms(batchID, format string) (out *Batch, err e
 // CreateBatchScanForms, but allows specifying a context that can interrupt the
 // request.
 func (c *Client) CreateBatchScanFormsWithContext(ctx context.Context, batchID, format string) (out *Batch, err error) {
-	vals := url.Values{"file_format": []string{format}}
-	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/scan_form", vals, &out)
+	params := struct {
+		FileFormat string `json:"file_format,omitempty" url:"file_format,omitempty"`
+	}{FileFormat: format}
+	err = c.do(ctx, http.MethodPost, "batches/"+batchID+"/scan_form", params, &out)
 	return
 }
