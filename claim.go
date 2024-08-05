@@ -54,13 +54,13 @@ type CreateClaimParameters struct {
 
 // ListClaimsParameters is used to specify query parameters for listing claims.
 type ListClaimsParameters struct {
-	BeforeID      string    `url:"before_id,omitempty" url:"before_id,omitempty"`
-	AfterID       string    `url:"after_id,omitempty" url:"after_id,omitempty"`
-	StartDateTime *DateTime `url:"start_datetime,omitempty" url:"start_datetime,omitempty"`
-	EndDateTime   *DateTime `url:"end_datetime,omitempty" url:"end_datetime,omitempty"`
-	PageSize      int       `url:"page_size,omitempty" url:"page_size,omitempty"`
-	Type          string    `url:"type,omitempty" url:"type,omitempty"`
-	Status        string    `url:"status,omitempty" url:"status,omitempty"`
+	BeforeID      string    `json:"before_id,omitempty" url:"before_id,omitempty"`
+	AfterID       string    `json:"after_id,omitempty" url:"after_id,omitempty"`
+	StartDateTime *DateTime `json:"start_datetime,omitempty" url:"start_datetime,omitempty"`
+	EndDateTime   *DateTime `json:"end_datetime,omitempty" url:"end_datetime,omitempty"`
+	PageSize      int       `json:"page_size,omitempty" url:"page_size,omitempty"`
+	Type          string    `json:"type,omitempty" url:"type,omitempty"`
+	Status        string    `json:"status,omitempty" url:"status,omitempty"`
 }
 
 // ListClaimsResult holds the results from the list claims API.

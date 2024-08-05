@@ -77,8 +77,8 @@ func (c *Client) GetCarrierMetadataWithCarriersAndTypes(carriers []string, types
 // GetCarrierMetadataWithContext performs the same operation as GetCarrierMetadata, but allows specifying a context that can interrupt the request.
 func (c *Client) GetCarrierMetadataWithContext(ctx context.Context, carriers []string, types []string) (out []*CarrierMetadata, err error) {
 	params := struct {
-		Carriers string `url:"carriers,omitempty" url:"carriers,omitempty"`
-		Types    string `url:"types,omitempty" url:"types,omitempty"`
+		Carriers string `json:"carriers,omitempty" url:"carriers,omitempty"`
+		Types    string `json:"types,omitempty" url:"types,omitempty"`
 	}{}
 
 	url := "/v2/metadata/carriers"
