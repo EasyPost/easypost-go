@@ -7,8 +7,8 @@ import (
 
 // ListEndShipperResult holds the results from the list EndShippers API.
 type ListEndShipperResult struct {
-	EndShippers []*Address `json:"endshippers,omitempty"`
-	HasMore     bool       `json:"has_more,omitempty"`
+	EndShippers []*Address `json:"endshippers,omitempty" url:"endshippers,omitempty"`
+	HasMore     bool       `json:"has_more,omitempty" url:"has_more,omitempty"`
 }
 
 // CreateEndShipper submits a request to create a new endshipper, and returns the result.
@@ -22,7 +22,7 @@ func (c *Client) CreateEndShipperWithContext(ctx context.Context, in *Address) (
 	wrappedParams := map[string]interface{}{
 		"address": in,
 	}
-	err = c.post(ctx, "end_shippers", wrappedParams, &out)
+	err = c.do(ctx, http.MethodPost, "end_shippers", wrappedParams, &out)
 	return
 }
 
@@ -34,7 +34,7 @@ func (c *Client) GetEndShipper(endshipperID string) (out *Address, err error) {
 // GetEndShipperWithContext performs the same operation as GetEndShipper, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetEndShipperWithContext(ctx context.Context, endshipperID string) (out *Address, err error) {
-	err = c.get(ctx, "end_shippers/"+endshipperID, &out)
+	err = c.do(ctx, http.MethodGet, "end_shippers/"+endshipperID, nil, &out)
 	return
 }
 
@@ -46,7 +46,7 @@ func (c *Client) ListEndShippers(opts *ListOptions) (out *ListEndShipperResult, 
 // ListEndShippersWithContext performs the same operation as ListEndShippers, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListEndShippersWithContext(ctx context.Context, opts *ListOptions) (out *ListEndShipperResult, err error) {
-	err = c.do(ctx, http.MethodGet, "end_shippers", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "end_shippers", opts, &out)
 	return
 }
 

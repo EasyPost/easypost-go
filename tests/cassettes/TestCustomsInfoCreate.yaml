@@ -16,9 +16,9 @@ interactions:
     url: https://api.easypost.com/v2/customs_infos
     method: POST
   response:
-    body: '{"contents_explanation":null,"contents_type":"merchandise","created_at":"2023-11-30T20:10:44Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2023-11-30T20:10:44Z","currency":null,"description":"Sweet
-      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_9aa4f98ef8fc44cfa71a35983afe605c","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2023-11-30T20:10:44Z","value":"23.25","weight":11}],"customs_signer":"Steve
-      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_1da23b28c0564628b9dd88539f0ef024","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2023-11-30T20:10:44Z"}'
+    body: '{"contents_explanation":null,"contents_type":"merchandise","created_at":"2024-08-02T23:14:38Z","customs_certify":true,"customs_items":[{"code":null,"created_at":"2024-08-02T23:14:38Z","currency":null,"description":"Sweet
+      shirts","eccn":null,"hs_tariff_number":"654321","id":"cstitem_3372853612824fc994650e882c274ad2","manufacturer":null,"mode":"test","object":"CustomsItem","origin_country":"US","printed_commodity_identifier":null,"quantity":2,"updated_at":"2024-08-02T23:14:38Z","value":"23.25","weight":11}],"customs_signer":"Steve
+      Brule","declaration":null,"eel_pfc":"NOEEI 30.37(a)","id":"cstinfo_95bd796170a44836968e98d163135536","mode":"test","non_delivery_option":"return","object":"CustomsInfo","restriction_comments":null,"restriction_type":"none","updated_at":"2024-08-02T23:14:38Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -27,7 +27,7 @@ interactions:
       Expires:
       - "0"
       Location:
-      - /api/v2/customs_infos/cstinfo_1da23b28c0564628b9dd88539f0ef024
+      - /api/v2/customs_infos/cstinfo_95bd796170a44836968e98d163135536
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -36,25 +36,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec44e7896122001b4db0
+      - 4d57346d66ad685ef440b8c700374732
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb34nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.048011"
+      - "0.041790"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

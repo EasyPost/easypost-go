@@ -2,19 +2,17 @@
 version: 1
 interactions:
 - request:
-    body: page_size=5
+    body: ""
     form: {}
     headers:
       Authorization:
       - REDACTED
-      Content-Type:
-      - application/x-www-form-urlencoded
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/events
+    url: https://api.easypost.com/v2/events?page_size=5
     method: GET
   response:
-    body: '{"events":[{"created_at":"2023-11-30T20:10:48.715Z","description":"batch.created","id":"evt_8d96aedc8fbc11eeb4cd35bc67845c54","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-11-30T20:10:35.679Z","description":"batch.updated","id":"evt_85d18d168fbc11eeb5093b12b506d7cc","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-11-30T20:10:34.816Z","description":"batch.updated","id":"evt_854e02528fbc11eeafeb1f7470bf2be3","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-11-30T20:10:34.714Z","description":"batch.created","id":"evt_853e57e48fbc11ee8329714fa0a9261d","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2023-11-30T20:10:34.545Z","description":"batch.updated","id":"evt_852499d08fbc11eebb546f4eb254d892","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"}],"has_more":true}'
+    body: '{"events":[{"created_at":"2024-08-02T23:14:42.466Z","description":"batch.created","id":"evt_ffd61954512411efb3fb0f61e66fb597","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2024-08-02T23:14:25.139Z","description":"batch.updated","id":"evt_f5821890512411ef9cbf5d205ddcdc41","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2024-08-02T23:14:25.024Z","description":"batch.created","id":"evt_f5709be2512411efa6f973fa0c1eb1de","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2024-08-02T23:14:24.982Z","description":"batch.updated","id":"evt_f56a2258512411ef92ba25cb3c50e8f0","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"},{"created_at":"2024-08-02T23:14:24.833Z","description":"batch.created","id":"evt_f5537bc0512411ef96fa0d9c733a51d8","mode":"test","object":"Event","status":"pending","user_id":"user_a76997d126dd488f8ad22d52301300b0"}],"has_more":true}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -35,20 +33,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec49e7896122001b52a5
+      - 4d57346d66ad6863f440b8c7003749e6
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb40nuq
+      - bigweb53nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.250713"
+      - "0.217376"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

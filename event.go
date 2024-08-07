@@ -9,14 +9,14 @@ import (
 
 // Event objects contain details about changes to EasyPost objects
 type Event struct {
-	ID                 string                 `json:"id,omitempty"`
-	UserID             string                 `json:"user_id,omitempty"`
-	Object             string                 `json:"object,omitempty"`
-	Mode               string                 `json:"mode,omitempty"`
-	CreatedAt          *DateTime              `json:"created_at,omitempty"`
-	UpdatedAt          *DateTime              `json:"updated_at,omitempty"`
-	Description        string                 `json:"description,omitempty"`
-	PreviousAttributes map[string]interface{} `json:"previous_attributes,omitempty"`
+	ID                 string                 `json:"id,omitempty" url:"id,omitempty"`
+	UserID             string                 `json:"user_id,omitempty" url:"user_id,omitempty"`
+	Object             string                 `json:"object,omitempty" url:"object,omitempty"`
+	Mode               string                 `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt          *DateTime              `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt          *DateTime              `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Description        string                 `json:"description,omitempty" url:"description,omitempty"`
+	PreviousAttributes map[string]interface{} `json:"previous_attributes,omitempty" url:"previous_attributes,omitempty"`
 	// Result will be populated with the relevant object type, i.e.
 	// *Batch, *Insurance, *PaymentLog, *Refund, *Report, *Tracker or *ScanForm.
 	// It will be nil if no 'result' field is present, which is the case for
@@ -24,40 +24,40 @@ type Event struct {
 	// EventPayload type will generally be an instance of *Event with this field
 	// present. Having the field here also enables re-using this type to
 	// implement a webhook handler.
-	Result        interface{} `json:"result,omitempty"`
-	Status        string      `json:"status,omitempty"`
-	PendingURLs   []string    `json:"pending_urls,omitempty"`
-	CompletedURLs []string    `json:"completed_urls,omitempty"`
+	Result        interface{} `json:"result,omitempty" url:"result,omitempty"`
+	Status        string      `json:"status,omitempty" url:"status,omitempty"`
+	PendingURLs   []string    `json:"pending_urls,omitempty" url:"pending_urls,omitempty"`
+	CompletedURLs []string    `json:"completed_urls,omitempty" url:"completed_urls,omitempty"`
 }
 
 // EventPayload represents the result of a webhook call.
 type EventPayload struct {
-	ID             string            `json:"id,omitempty"`
-	Object         string            `json:"object,omitempty"`
-	CreatedAt      *DateTime         `json:"created_at,omitempty"`
-	UpdatedAt      *DateTime         `json:"updated_at,omitempty"`
-	RequestURL     string            `json:"request_url,omitempty"`
-	RequestHeaders map[string]string `json:"request_headers,omitempty"`
+	ID             string            `json:"id,omitempty" url:"id,omitempty"`
+	Object         string            `json:"object,omitempty" url:"object,omitempty"`
+	CreatedAt      *DateTime         `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt      *DateTime         `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	RequestURL     string            `json:"request_url,omitempty" url:"request_url,omitempty"`
+	RequestHeaders map[string]string `json:"request_headers,omitempty" url:"request_headers,omitempty"`
 	// RequestBody is the raw request body that was sent to the webhook. This is
 	// expected to be an Event object. It may either be encoded in the API
 	// response as a string (with JSON delimiters escaped) or as base64. The
 	// UnmarshalJSON method will attempt to convert it to an *Event type, but it
 	// may be set to a default type if decoding to an object fails.
-	RequestBody     interface{}       `json:"request_body,omitempty"`
-	ResponseHeaders map[string]string `json:"response_headers,omitempty"`
-	ResponseBody    string            `json:"response_body,omitempty"`
-	ResponseCode    int               `json:"response_code,omitempty"`
-	TotalTime       int               `json:"total_time,omitempty"`
+	RequestBody     interface{}       `json:"request_body,omitempty" url:"request_body,omitempty"`
+	ResponseHeaders map[string]string `json:"response_headers,omitempty" url:"response_headers,omitempty"`
+	ResponseBody    string            `json:"response_body,omitempty" url:"response_body,omitempty"`
+	ResponseCode    int               `json:"response_code,omitempty" url:"response_code,omitempty"`
+	TotalTime       int               `json:"total_time,omitempty" url:"total_time,omitempty"`
 }
 
 // ListEventsResult holds the results from the list events API.
 type ListEventsResult struct {
-	Events []*Event `json:"events,omitempty"`
+	Events []*Event `json:"events,omitempty" url:"events,omitempty"`
 	PaginatedCollection
 }
 
 type listEventPayloadsResult struct {
-	Payloads *[]*EventPayload `json:"payloads,omitempty"`
+	Payloads *[]*EventPayload `json:"payloads,omitempty" url:"payloads,omitempty"`
 }
 
 // UnmarshalJSON will attempt to convert an event response to an *Event type,
@@ -112,7 +112,7 @@ func (c *Client) ListEvents(opts *ListOptions) (out *ListEventsResult, err error
 // ListEventsWithContext performs the same operation as ListEvents, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListEventsWithContext(ctx context.Context, opts *ListOptions) (out *ListEventsResult, err error) {
-	err = c.do(ctx, http.MethodGet, "events", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "events", opts, &out)
 	return
 }
 
@@ -155,7 +155,7 @@ func (c *Client) GetEvent(eventID string) (out *Event, err error) {
 // GetEventWithContext performs the same operation as GetEvent, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetEventWithContext(ctx context.Context, eventID string) (out *Event, err error) {
-	err = c.get(ctx, "events/"+eventID, &out)
+	err = c.do(ctx, http.MethodGet, "events/"+eventID, nil, &out)
 	return
 }
 
@@ -167,11 +167,7 @@ func (c *Client) ListEventPayloads(eventID string) (out []*EventPayload, err err
 // ListEventPayloadsWithContext performs the same operation as GetEventPayload, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListEventPayloadsWithContext(ctx context.Context, eventID string) (out []*EventPayload, err error) {
-	err = c.get(
-		ctx,
-		"events/"+eventID+"/payloads",
-		&listEventPayloadsResult{Payloads: &out},
-	)
+	err = c.do(ctx, http.MethodGet, "events/"+eventID+"/payloads", nil, &listEventPayloadsResult{Payloads: &out})
 	return
 }
 
@@ -183,6 +179,6 @@ func (c *Client) GetEventPayload(eventID, payloadID string) (out *EventPayload, 
 // GetEventPayloadWithContext performs the same operation as GetEventPayload, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetEventPayloadWithContext(ctx context.Context, eventID, payloadID string) (out *EventPayload, err error) {
-	err = c.get(ctx, "events/"+eventID+"/payloads/"+payloadID, &out)
+	err = c.do(ctx, http.MethodGet, "events/"+eventID+"/payloads/"+payloadID, nil, &out)
 	return
 }

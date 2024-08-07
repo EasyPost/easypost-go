@@ -3,132 +3,131 @@ package easypost
 import (
 	"context"
 	"net/http"
-	"net/url"
 )
 
 // A Form represents a form associated with a Shipment.
 type Form struct {
-	ID                      string    `json:"id,omitempty"`
-	Object                  string    `json:"object,omitempty"`
-	Mode                    string    `json:"mode,omitempty"`
-	CreatedAt               *DateTime `json:"created_at,omitempty"`
-	UpdatedAt               *DateTime `json:"updated_at,omitempty"`
-	FormType                string    `json:"form_type,omitempty"`
-	FormURL                 string    `json:"form_url,omitempty"`
-	SubmittedElectronically bool      `json:"submitted_electronically,omitempty"`
+	ID                      string    `json:"id,omitempty" url:"id,omitempty"`
+	Object                  string    `json:"object,omitempty" url:"object,omitempty"`
+	Mode                    string    `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt               *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt               *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	FormType                string    `json:"form_type,omitempty" url:"form_type,omitempty"`
+	FormURL                 string    `json:"form_url,omitempty" url:"form_url,omitempty"`
+	SubmittedElectronically bool      `json:"submitted_electronically,omitempty" url:"submitted_electronically,omitempty"`
 }
 
 // PostageLabel provides details of a shipping label for a purchased shipment.
 type PostageLabel struct {
-	ID              string    `json:"id,omitempty"`
-	Object          string    `json:"object,omitempty"`
-	CreatedAt       *DateTime `json:"created_at,omitempty"`
-	UpdatedAt       *DateTime `json:"updated_at,omitempty"`
-	IntegratedForm  string    `json:"integrated_form,omitempty"`
-	LabelDate       *DateTime `json:"label_date,omitempty"`
-	LabelEPL2URL    string    `json:"label_epl2_url,omitempty"`
-	LabelFileType   string    `json:"label_file_type,omitempty"`
-	LabelPDFURL     string    `json:"label_pdf_url,omitempty"`
-	LabelResolution float64   `json:"label_resolution,omitempty"`
-	LabelSize       string    `json:"label_size,omitempty"`
-	LabelType       string    `json:"label_type,omitempty"`
-	LabelURL        string    `json:"label_url,omitempty"`
-	LabelZPLURL     string    `json:"label_zpl_url,omitempty"`
+	ID              string    `json:"id,omitempty" url:"id,omitempty"`
+	Object          string    `json:"object,omitempty" url:"object,omitempty"`
+	CreatedAt       *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt       *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	IntegratedForm  string    `json:"integrated_form,omitempty" url:"integrated_form,omitempty"`
+	LabelDate       *DateTime `json:"label_date,omitempty" url:"label_date,omitempty"`
+	LabelEPL2URL    string    `json:"label_epl2_url,omitempty" url:"label_epl2_url,omitempty"`
+	LabelFileType   string    `json:"label_file_type,omitempty" url:"label_file_type,omitempty"`
+	LabelPDFURL     string    `json:"label_pdf_url,omitempty" url:"label_pdf_url,omitempty"`
+	LabelResolution float64   `json:"label_resolution,omitempty" url:"label_resolution,omitempty"`
+	LabelSize       string    `json:"label_size,omitempty" url:"label_size,omitempty"`
+	LabelType       string    `json:"label_type,omitempty" url:"label_type,omitempty"`
+	LabelURL        string    `json:"label_url,omitempty" url:"label_url,omitempty"`
+	LabelZPLURL     string    `json:"label_zpl_url,omitempty" url:"label_zpl_url,omitempty"`
 }
 
 // A Shipment represents its namesake, and is made up of a "to" and "from"
 // addresses, the Parcel being shipped, and any customs forms required for
 // international deliveries.
 type Shipment struct {
-	ID                string            `json:"id,omitempty"`
-	Object            string            `json:"object,omitempty"`
-	Reference         string            `json:"reference,omitempty"`
-	Mode              string            `json:"mode,omitempty"`
-	CreatedAt         *DateTime         `json:"created_at,omitempty"`
-	UpdatedAt         *DateTime         `json:"updated_at,omitempty"`
-	ToAddress         *Address          `json:"to_address,omitempty"`
-	FromAddress       *Address          `json:"from_address,omitempty"`
-	ReturnAddress     *Address          `json:"return_address,omitempty"`
-	BuyerAddress      *Address          `json:"buyer_address,omitempty"`
-	Parcel            *Parcel           `json:"parcel,omitempty"`
-	Carrier           string            `json:"carrier,omitempty"`
-	Service           string            `json:"service,omitempty"`
-	CarrierAccountIDs []string          `json:"carrier_accounts,omitempty"`
-	CustomsInfo       *CustomsInfo      `json:"customs_info,omitempty"`
-	ScanForm          *ScanForm         `json:"scan_form,omitempty"`
-	Forms             []*Form           `json:"forms,omitempty"`
-	Insurance         string            `json:"insurance,omitempty"`
-	Rates             []*Rate           `json:"rates,omitempty"`
-	SelectedRate      *Rate             `json:"selected_rate,omitempty"`
-	PostageLabel      *PostageLabel     `json:"postage_label,omitempty"`
-	Messages          []*CarrierMessage `json:"messages,omitempty"`
-	Options           *ShipmentOptions  `json:"options,omitempty"`
-	IsReturn          bool              `json:"is_return,omitempty"`
-	TrackingCode      string            `json:"tracking_code,omitempty"`
-	USPSZone          int               `json:"usps_zone,omitempty"`
-	Status            string            `json:"status,omitempty"`
-	Tracker           *Tracker          `json:"tracker,omitempty"`
-	Fees              []*Fee            `json:"fees,omitempty"`
-	RefundStatus      string            `json:"refund_status,omitempty"`
-	BatchID           string            `json:"batch_id,omitempty"`
-	BatchStatus       string            `json:"batch_status,omitempty"`
-	BatchMessage      string            `json:"batch_message,omitempty"`
-	TaxIdentifiers    []*TaxIdentifier  `json:"tax_identifiers,omitempty"`
+	ID                string            `json:"id,omitempty" url:"id,omitempty"`
+	Object            string            `json:"object,omitempty" url:"object,omitempty"`
+	Reference         string            `json:"reference,omitempty" url:"reference,omitempty"`
+	Mode              string            `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt         *DateTime         `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt         *DateTime         `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	ToAddress         *Address          `json:"to_address,omitempty" url:"to_address,omitempty"`
+	FromAddress       *Address          `json:"from_address,omitempty" url:"from_address,omitempty"`
+	ReturnAddress     *Address          `json:"return_address,omitempty" url:"return_address,omitempty"`
+	BuyerAddress      *Address          `json:"buyer_address,omitempty" url:"buyer_address,omitempty"`
+	Parcel            *Parcel           `json:"parcel,omitempty" url:"parcel,omitempty"`
+	Carrier           string            `json:"carrier,omitempty" url:"carrier,omitempty"`
+	Service           string            `json:"service,omitempty" url:"service,omitempty"`
+	CarrierAccountIDs []string          `json:"carrier_accounts,omitempty" url:"carrier_accounts,omitempty"`
+	CustomsInfo       *CustomsInfo      `json:"customs_info,omitempty" url:"customs_info,omitempty"`
+	ScanForm          *ScanForm         `json:"scan_form,omitempty" url:"scan_form,omitempty"`
+	Forms             []*Form           `json:"forms,omitempty" url:"forms,omitempty"`
+	Insurance         string            `json:"insurance,omitempty" url:"insurance,omitempty"`
+	Rates             []*Rate           `json:"rates,omitempty" url:"rates,omitempty"`
+	SelectedRate      *Rate             `json:"selected_rate,omitempty" url:"selected_rate,omitempty"`
+	PostageLabel      *PostageLabel     `json:"postage_label,omitempty" url:"postage_label,omitempty"`
+	Messages          []*CarrierMessage `json:"messages,omitempty" url:"messages,omitempty"`
+	Options           *ShipmentOptions  `json:"options,omitempty" url:"options,omitempty"`
+	IsReturn          bool              `json:"is_return,omitempty" url:"is_return,omitempty"`
+	TrackingCode      string            `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
+	USPSZone          int               `json:"usps_zone,omitempty" url:"usps_zone,omitempty"`
+	Status            string            `json:"status,omitempty" url:"status,omitempty"`
+	Tracker           *Tracker          `json:"tracker,omitempty" url:"tracker,omitempty"`
+	Fees              []*Fee            `json:"fees,omitempty" url:"fees,omitempty"`
+	RefundStatus      string            `json:"refund_status,omitempty" url:"refund_status,omitempty"`
+	BatchID           string            `json:"batch_id,omitempty" url:"batch_id,omitempty"`
+	BatchStatus       string            `json:"batch_status,omitempty" url:"batch_status,omitempty"`
+	BatchMessage      string            `json:"batch_message,omitempty" url:"batch_message,omitempty"`
+	TaxIdentifiers    []*TaxIdentifier  `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
 }
 
 // ListShipmentsOptions is used to specify query parameters for listing Shipment
 // objects.
 type ListShipmentsOptions struct {
-	BeforeID        string    `url:"before_id,omitempty"`
-	AfterID         string    `url:"after_id,omitempty"`
-	StartDateTime   *DateTime `url:"start_datetime,omitempty"`
-	EndDateTime     *DateTime `url:"end_datetime,omitempty"`
-	PageSize        int       `url:"page_size,omitempty"`
-	Purchased       *bool     `url:"purchased,omitempty"`
-	IncludeChildren *bool     `url:"include_children,omitempty"`
+	BeforeID        string    `json:"before_id,omitempty" url:"before_id,omitempty"`
+	AfterID         string    `json:"after_id,omitempty" url:"after_id,omitempty"`
+	StartDateTime   *DateTime `json:"start_datetime,omitempty" url:"start_datetime,omitempty"`
+	EndDateTime     *DateTime `json:"end_datetime,omitempty" url:"end_datetime,omitempty"`
+	PageSize        int       `json:"page_size,omitempty" url:"page_size,omitempty"`
+	Purchased       *bool     `json:"purchased,omitempty" url:"purchased,omitempty"`
+	IncludeChildren *bool     `json:"include_children,omitempty" url:"include_children,omitempty"`
 }
 
 // ListShipmentsResult holds the results from the list shipments API.
 type ListShipmentsResult struct {
-	Shipments       []*Shipment `json:"shipments,omitempty"`
-	Purchased       *bool       `json:"purchased,omitempty"`
-	IncludeChildren *bool       `json:"include_children,omitempty"`
+	Shipments       []*Shipment `json:"shipments,omitempty" url:"shipments,omitempty"`
+	Purchased       *bool       `json:"purchased,omitempty" url:"purchased,omitempty"`
+	IncludeChildren *bool       `json:"include_children,omitempty" url:"include_children,omitempty"`
 	PaginatedCollection
 }
 
 type buyShipmentRequest struct {
-	Rate         *Rate  `json:"rate,omitempty"`
-	Insurance    string `json:"insurance,omitempty"`
-	EndShipperID string `json:"end_shipper_id,omitempty"`
+	Rate         *Rate  `json:"rate,omitempty" url:"rate,omitempty"`
+	Insurance    string `json:"insurance,omitempty" url:"insurance,omitempty"`
+	EndShipperID string `json:"end_shipper_id,omitempty" url:"end_shipper_id,omitempty"`
 }
 
 type createShipmentRequest struct {
-	Shipment *Shipment `json:"shipment,omitempty"`
+	Shipment *Shipment `json:"shipment,omitempty" url:"shipment,omitempty"`
 }
 
 type getShipmentRatesResponse struct {
-	Rates *[]*Rate `json:"rates,omitempty"`
+	Rates *[]*Rate `json:"rates,omitempty" url:"rates,omitempty"`
 }
 
 type generateFormRequest struct {
-	Form map[string]interface{} `json:"form,omitempty"`
+	Form map[string]interface{} `json:"form,omitempty" url:"form,omitempty"`
 }
 
 type EasyPostTimeInTransitData struct {
-	DaysInTransit                 TimeInTransit `json:"days_in_transit,omitempty"`
-	EasyPostEstimatedDeliveryDate string        `json:"easypost_estimated_delivery_date,omitempty"`
-	PlannedShipDate               string        `json:"planned_ship_date,omitempty"`
+	DaysInTransit                 TimeInTransit `json:"days_in_transit,omitempty" url:"days_in_transit,omitempty"`
+	EasyPostEstimatedDeliveryDate string        `json:"easypost_estimated_delivery_date,omitempty" url:"easypost_estimated_delivery_date,omitempty"`
+	PlannedShipDate               string        `json:"planned_ship_date,omitempty" url:"planned_ship_date,omitempty"`
 }
 
 type EstimatedDeliveryDate struct {
-	EasyPostTimeInTransitData EasyPostTimeInTransitData `json:"easypost_time_in_transit_data,omitempty"`
-	Rate                      SmartRate                 `json:"rate,omitempty"`
+	EasyPostTimeInTransitData EasyPostTimeInTransitData `json:"easypost_time_in_transit_data,omitempty" url:"easypost_time_in_transit_data,omitempty"`
+	Rate                      SmartRate                 `json:"rate,omitempty" url:"rate,omitempty"`
 }
 
 // RecommendShipDateForShipmentResult is the result of the RecommendShipDateForShipment method.
 type RecommendShipDateForShipmentResult struct {
-	Rate                      *SmartRate                       `json:"rate,omitempty"`
-	EasyPostTimeInTransitData *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty"`
+	Rate                      *SmartRate                       `json:"rate,omitempty" url:"rate,omitempty"`
+	EasyPostTimeInTransitData *TimeInTransitDetailsForShipDate `json:"easypost_time_in_transit_data,omitempty" url:"easypost_time_in_transit_data,omitempty"`
 }
 
 // CreateShipment creates a new Shipment object. The ToAddress, FromAddress and
@@ -169,7 +168,7 @@ func (c *Client) CreateShipment(in *Shipment) (out *Shipment, err error) {
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreateShipmentWithContext(ctx context.Context, in *Shipment) (out *Shipment, err error) {
 	req := &createShipmentRequest{Shipment: in}
-	err = c.post(ctx, "shipments", &req, &out)
+	err = c.do(ctx, http.MethodPost, "shipments", &req, &out)
 	return
 }
 
@@ -181,7 +180,7 @@ func (c *Client) ListShipments(opts *ListShipmentsOptions) (out *ListShipmentsRe
 // ListShipmentsWithContext performs the same operation as ListShipments, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
-	err = c.do(ctx, http.MethodGet, "shipments", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "shipments", opts, &out)
 	// Store the original query parameters for reuse when getting the next page
 	out.Purchased = opts.Purchased
 	out.IncludeChildren = opts.IncludeChildren
@@ -235,12 +234,12 @@ func (c *Client) GetShipment(shipmentID string) (out *Shipment, err error) {
 // GetShipmentWithContext performs the same operation as GetShipment, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetShipmentWithContext(ctx context.Context, shipmentID string) (out *Shipment, err error) {
-	err = c.get(ctx, "shipments/"+shipmentID, &out)
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID, nil, &out)
 	return
 }
 
 func (c *Client) buyShipment(ctx context.Context, shipmentID string, in *buyShipmentRequest) (out *Shipment, err error) {
-	err = c.post(ctx, "shipments/"+shipmentID+"/buy", &in, &out)
+	err = c.do(ctx, http.MethodPost, "shipments/"+shipmentID+"/buy", &in, &out)
 	return
 }
 
@@ -282,8 +281,11 @@ func (c *Client) GetShipmentLabel(shipmentID, format string) (out *Shipment, err
 // GetShipmentLabelWithContext performs the same operation as GetShipmentLabel,
 // but allows specifying a context that can interrupt the request.
 func (c *Client) GetShipmentLabelWithContext(ctx context.Context, shipmentID, format string) (out *Shipment, err error) {
-	vals := url.Values{"file_format": []string{format}}
-	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/label", vals, &out)
+	req := struct {
+		FileFormat string `json:"file_format,omitempty" url:"file_format,omitempty"`
+	}{}
+	req.FileFormat = format
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/label", req, &out)
 	return
 }
 
@@ -296,9 +298,9 @@ func (c *Client) GetShipmentSmartrates(shipmentID string) (out []*SmartRate, err
 // but allows specifying a context that can interrupt the request.
 func (c *Client) GetShipmentSmartratesWithContext(ctx context.Context, shipmentID string) (out []*SmartRate, err error) {
 	res := struct {
-		Smartrates *[]*SmartRate `json:"result,omitempty"`
+		Smartrates *[]*SmartRate `json:"result,omitempty" url:"result,omitempty"`
 	}{Smartrates: &out}
-	err = c.get(ctx, "shipments/"+shipmentID+"/smartrate", &res)
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate", nil, &res)
 	return
 }
 
@@ -313,8 +315,10 @@ func (c *Client) InsureShipment(shipmentID, amount string) (out *Shipment, err e
 // InsureShipmentWithContext performs the same operation as InsureShipment, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) InsureShipmentWithContext(ctx context.Context, shipmentID, amount string) (out *Shipment, err error) {
-	vals := url.Values{"amount": []string{amount}}
-	err = c.post(ctx, "shipments/"+shipmentID+"/insure", vals, &out)
+	params := struct {
+		Amount string `json:"amount,omitempty" url:"amount,omitempty"`
+	}{Amount: amount}
+	err = c.do(ctx, http.MethodPost, "shipments/"+shipmentID+"/insure", params, &out)
 	return
 }
 
@@ -326,7 +330,7 @@ func (c *Client) RefundShipment(shipmentID string) (out *Shipment, err error) {
 // RefundShipmentWithContext performs the same operation as RefundShipment, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) RefundShipmentWithContext(ctx context.Context, shipmentID string) (out *Shipment, err error) {
-	err = c.post(ctx, "shipments/"+shipmentID+"/refund", nil, &out)
+	err = c.do(ctx, http.MethodPost, "shipments/"+shipmentID+"/refund", nil, &out)
 	return
 }
 
@@ -339,7 +343,7 @@ func (c *Client) RerateShipment(shipmentID string) (out []*Rate, err error) {
 // but allows specifying a context that can interrupt the request.
 func (c *Client) RerateShipmentWithContext(ctx context.Context, shipmentID string) (out []*Rate, err error) {
 	res := &getShipmentRatesResponse{Rates: &out}
-	err = c.post(ctx, "shipments/"+shipmentID+"/rerate", nil, &res)
+	err = c.do(ctx, http.MethodPost, "shipments/"+shipmentID+"/rerate", nil, &res)
 	return
 }
 
@@ -387,7 +391,7 @@ func (c *Client) GenerateShipmentFormWithOptions(shipmentID string, formType str
 func (c *Client) GenerateShipmentFormWithOptionsWithContext(ctx context.Context, shipmentID string, formType string, formOptions map[string]interface{}) (out *Shipment, err error) {
 	formOptions["type"] = formType
 	req := &generateFormRequest{Form: formOptions}
-	err = c.post(ctx, "shipments/"+shipmentID+"/forms", &req, &out)
+	err = c.do(ctx, http.MethodPost, "shipments/"+shipmentID+"/forms", &req, &out)
 	return
 }
 
@@ -398,11 +402,13 @@ func (c *Client) GetShipmentEstimatedDeliveryDate(shipmentID string, plannedShip
 
 // GetShipmentEstimatedDeliveryDateWithContext performs the same operation as EstimateDeliveryDateForShipment, but allows specifying a context that can interrupt the request.
 func (c *Client) GetShipmentEstimatedDeliveryDateWithContext(ctx context.Context, shipmentID string, plannedShipDate string) (out []*EstimatedDeliveryDate, err error) {
-	vals := url.Values{"planned_ship_date": []string{plannedShipDate}}
+	params := struct {
+		PlannedShipDate string `json:"planned_ship_date,omitempty" url:"planned_ship_date,omitempty"`
+	}{PlannedShipDate: plannedShipDate}
 	res := struct {
-		EstimatedDeliveryDates *[]*EstimatedDeliveryDate `json:"rates,omitempty"`
+		EstimatedDeliveryDates *[]*EstimatedDeliveryDate `json:"rates,omitempty" url:"rates,omitempty"`
 	}{EstimatedDeliveryDates: &out}
-	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/delivery_date", vals, &res)
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/delivery_date", params, &res)
 	return
 }
 
@@ -413,10 +419,14 @@ func (c *Client) RecommendShipDateForShipment(shipmentID string, desiredDelivery
 
 // RecommendShipDateForShipmentWithContext performs the same operation as RecommendShipDateForShipment, but allows specifying a context that can interrupt the request.
 func (c *Client) RecommendShipDateForShipmentWithContext(ctx context.Context, shipmentID string, desiredDeliveryDate string) (out []*RecommendShipDateForShipmentResult, err error) {
-	vals := url.Values{"desired_delivery_date": []string{desiredDeliveryDate}}
+	params := struct {
+		DesiredDeliveryDate string `json:"desired_delivery_date,omitempty" url:"desired_delivery_date,omitempty"`
+	}{
+		DesiredDeliveryDate: desiredDeliveryDate,
+	}
 	res := struct {
-		Results *[]*RecommendShipDateForShipmentResult `json:"rates,omitempty"`
+		Results *[]*RecommendShipDateForShipmentResult `json:"rates,omitempty" url:"rates,omitempty"`
 	}{Results: &out}
-	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/precision_shipping", vals, &res)
+	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/precision_shipping", params, &res)
 	return
 }

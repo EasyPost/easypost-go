@@ -16,9 +16,62 @@ interactions:
     url: https://api.easypost.com/v2/end_shippers
     method: POST
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2023-11-30T20:10:49+00:00","email":"REDACTED","id":"es_6a7cc5e1959248ec8c5accb02274b17a","mode":"test","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2024-08-02T23:14:42+00:00","email":"REDACTED","id":"es_a69a05d2d26d4bcbaa934461be879c3a","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2023-11-30T20:10:49+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2024-08-02T23:14:42+00:00","zip":"94107-1670"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 4d57346d66ad6862f440b8c700374996
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb34nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
+      X-Runtime:
+      - "0.050980"
+      X-Version-Label:
+      - easypost-202408021936-66687f8918-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/end_shippers/es_a69a05d2d26d4bcbaa934461be879c3a
+    method: GET
+  response:
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2024-08-02T23:14:42+00:00","email":"REDACTED","id":"es_a69a05d2d26d4bcbaa934461be879c3a","mode":"test","name":"JACK
+      SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
+      TOWNSEND ST APT 20","street2":null,"updated_at":"2024-08-02T23:14:42+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -41,73 +94,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec49e7896122001b51fa
+      - 4d57346d66ad6862f440b8c7003749a3
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb32nuq
+      - bigweb43nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.045755"
+      - "0.070723"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
-      X-Xss-Protection:
-      - 1; mode=block
-    status: 201 Created
-    code: 201
-    duration: ""
-- request:
-    body: ""
-    form: {}
-    headers:
-      Authorization:
-      - REDACTED
-      User-Agent:
-      - REDACTED
-    url: https://api.easypost.com/v2/end_shippers/es_6a7cc5e1959248ec8c5accb02274b17a
-    method: GET
-  response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2023-11-30T20:10:49+00:00","email":"REDACTED","id":"es_6a7cc5e1959248ec8c5accb02274b17a","mode":"test","name":"JACK
-      SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":null,"updated_at":"2023-11-30T20:10:49+00:00","zip":"94107-1670"}'
-    headers:
-      Cache-Control:
-      - private, no-cache, no-store
-      Content-Type:
-      - application/json; charset=utf-8
-      Expires:
-      - "0"
-      Pragma:
-      - no-cache
-      Referrer-Policy:
-      - strict-origin-when-cross-origin
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains; preload
-      X-Backend:
-      - easypost
-      X-Content-Type-Options:
-      - nosniff
-      X-Download-Options:
-      - noopen
-      X-Ep-Request-Uuid:
-      - 32e015fa6568ec49e7896122001b522a
-      X-Frame-Options:
-      - SAMEORIGIN
-      X-Node:
-      - bigweb38nuq
-      X-Permitted-Cross-Domain-Policies:
-      - none
-      X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
-      X-Runtime:
-      - "0.029093"
-      X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/ups_oauth_registrations
     method: POST
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":null,"fields":{},"id":"ca_3f3a30eaca1a49fa9360967184448e00","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-08-02T23:14:30Z","credentials":{},"description":null,"fields":{},"id":"ca_0d04aceeb2f1422da13a796b8515a6dd","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-08-02T23:14:30Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -35,20 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbd75
+      - 4d57346d66ad6856f440b8c700374314
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb39nuq
+      - bigweb36nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq fa152d4755
+      - intlb4nuq c0f5e722d1
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.093533"
+      - "0.091988"
       X-Version-Label:
-      - easypost-202407102141-c1077ec6f9-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -62,10 +62,10 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_3f3a30eaca1a49fa9360967184448e00
+    url: https://api.easypost.com/v2/carrier_accounts/ca_0d04aceeb2f1422da13a796b8515a6dd
     method: GET
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":null,"fields":{},"id":"ca_3f3a30eaca1a49fa9360967184448e00","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-08-02T23:14:30Z","credentials":{},"description":null,"fields":{},"id":"ca_0d04aceeb2f1422da13a796b8515a6dd","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-08-02T23:14:30Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -86,20 +86,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbda0
+      - 4d57346d66ad6856f440b8c700374324
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb39nuq
+      - bigweb42nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq fa152d4755
+      - intlb4nuq c0f5e722d1
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.043407"
+      - "0.031241"
       X-Version-Label:
-      - easypost-202407102141-c1077ec6f9-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -115,10 +115,10 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/ups_oauth_registrations/ca_3f3a30eaca1a49fa9360967184448e00
+    url: https://api.easypost.com/v2/ups_oauth_registrations/ca_0d04aceeb2f1422da13a796b8515a6dd
     method: PATCH
   response:
-    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-07-10T23:00:09Z","credentials":{},"description":null,"fields":{},"id":"ca_3f3a30eaca1a49fa9360967184448e00","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-07-10T23:00:09Z"}'
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2024-08-02T23:14:30Z","credentials":{},"description":null,"fields":{},"id":"ca_0d04aceeb2f1422da13a796b8515a6dd","logo":null,"object":"CarrierAccount","readable":"UPS","reference":null,"test_credentials":null,"type":"UpsAccount","updated_at":"2024-08-02T23:14:30Z"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -141,7 +141,7 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbdc1
+      - 4d57346d66ad6856f440b8c70037432d
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
@@ -149,12 +149,12 @@ interactions:
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq fa152d4755
+      - intlb3nuq c0f5e722d1
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.074505"
+      - "0.063195"
       X-Version-Label:
-      - easypost-202407102141-c1077ec6f9-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -168,7 +168,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/carrier_accounts/ca_3f3a30eaca1a49fa9360967184448e00
+    url: https://api.easypost.com/v2/carrier_accounts/ca_0d04aceeb2f1422da13a796b8515a6dd
     method: DELETE
   response:
     body: '{}'
@@ -187,27 +187,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 35d2ed5f668f1279f41b62e9003cbde7
+      - 4d57346d66ad6856f440b8c70037433c
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb43nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq fa152d4755
+      - intlb4nuq c0f5e722d1
       - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.062747"
+      - "0.057748"
       X-Version-Label:
-      - easypost-202407102141-c1077ec6f9-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

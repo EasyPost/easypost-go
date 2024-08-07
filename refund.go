@@ -6,19 +6,19 @@ import (
 )
 
 type Refund struct {
-	ID                 string    `json:"id,omitempty"`
-	Object             string    `json:"object,omitempty"`
-	CreatedAt          *DateTime `json:"created_at,omitempty"`
-	UpdatedAt          *DateTime `json:"updated_at,omitempty"`
-	TrackingCode       string    `json:"tracking_code,omitempty"`
-	ConfirmationNumber string    `json:"confirmation_number,omitempty"`
-	Status             string    `json:"status,omitempty"`
-	Carrier            string    `json:"carrier,omitempty"`
-	ShipmentID         string    `json:"shipment_id,omitempty"`
+	ID                 string    `json:"id,omitempty" url:"id,omitempty"`
+	Object             string    `json:"object,omitempty" url:"object,omitempty"`
+	CreatedAt          *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt          *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	TrackingCode       string    `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
+	ConfirmationNumber string    `json:"confirmation_number,omitempty" url:"confirmation_number,omitempty"`
+	Status             string    `json:"status,omitempty" url:"status,omitempty"`
+	Carrier            string    `json:"carrier,omitempty" url:"carrier,omitempty"`
+	ShipmentID         string    `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
 }
 
 type ListRefundResult struct {
-	Refunds []*Refund `json:"refunds,omitempty"`
+	Refunds []*Refund `json:"refunds,omitempty" url:"refunds,omitempty"`
 	PaginatedCollection
 }
 
@@ -31,7 +31,7 @@ func (c *Client) CreateRefund(in map[string]interface{}) (out []*Refund, err err
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreateRefundWithContext(ctx context.Context, in map[string]interface{}) (out []*Refund, err error) {
 	req := map[string]interface{}{"refund": in}
-	err = c.post(ctx, "refunds", req, &out)
+	err = c.do(ctx, http.MethodPost, "refunds", req, &out)
 	return
 }
 
@@ -43,7 +43,7 @@ func (c *Client) ListRefunds(opts *ListOptions) (out *ListRefundResult, err erro
 // ListRefundsWithContext performs the same operation as ListRefunds, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListRefundsWithContext(ctx context.Context, opts *ListOptions) (out *ListRefundResult, err error) {
-	err = c.do(ctx, http.MethodGet, "refunds", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "refunds", opts, &out)
 	return
 }
 
@@ -86,6 +86,6 @@ func (c *Client) GetRefund(refundID string) (out *Refund, err error) {
 // GetRefundWithContext performs the same operation as GetRefund, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetRefundWithContext(ctx context.Context, refundID string) (out *Refund, err error) {
-	err = c.get(ctx, "refunds/"+refundID, &out)
+	err = c.do(ctx, http.MethodGet, "refunds/"+refundID, nil, &out)
 	return
 }

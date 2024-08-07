@@ -2,35 +2,35 @@ package easypost
 
 import (
 	"context"
-	"net/url"
+	"net/http"
 )
 
 // An Order object represents a collection of packages and can be used for
 // multi-piece Shipments.
 type Order struct {
-	ID            string            `json:"id,omitempty"`
-	Object        string            `json:"object,omitempty"`
-	Reference     string            `json:"reference,omitempty"`
-	Mode          string            `json:"mode,omitempty"`
-	CreatedAt     *DateTime         `json:"created_at,omitempty"`
-	UpdatedAt     *DateTime         `json:"updated_at,omitempty"`
-	ToAddress     *Address          `json:"to_address,omitempty"`
-	FromAddress   *Address          `json:"from_address,omitempty"`
-	ReturnAddress *Address          `json:"return_address,omitempty"`
-	BuyerAddress  *Address          `json:"buyer_address,omitempty"`
-	Shipments     []*Shipment       `json:"shipments,omitempty"`
-	Rates         []*Rate           `json:"rates,omitempty"`
-	Messages      []*CarrierMessage `json:"messages,omitempty"`
-	IsReturn      bool              `json:"is_return"`
-	Service       string            `json:"service,omitempty"`
-	CustomsInfo   *CustomsInfo      `json:"customs_info,omitempty"`
+	ID            string            `json:"id,omitempty" url:"id,omitempty"`
+	Object        string            `json:"object,omitempty" url:"object,omitempty"`
+	Reference     string            `json:"reference,omitempty" url:"reference,omitempty"`
+	Mode          string            `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt     *DateTime         `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt     *DateTime         `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	ToAddress     *Address          `json:"to_address,omitempty" url:"to_address,omitempty"`
+	FromAddress   *Address          `json:"from_address,omitempty" url:"from_address,omitempty"`
+	ReturnAddress *Address          `json:"return_address,omitempty" url:"return_address,omitempty"`
+	BuyerAddress  *Address          `json:"buyer_address,omitempty" url:"buyer_address,omitempty"`
+	Shipments     []*Shipment       `json:"shipments,omitempty" url:"shipments,omitempty"`
+	Rates         []*Rate           `json:"rates,omitempty" url:"rates,omitempty"`
+	Messages      []*CarrierMessage `json:"messages,omitempty" url:"messages,omitempty"`
+	IsReturn      bool              `json:"is_return,omitempty" url:"is_return,omitempty"`
+	Service       string            `json:"service,omitempty" url:"service,omitempty"`
+	CustomsInfo   *CustomsInfo      `json:"customs_info,omitempty" url:"customs_info,omitempty"`
 }
 
 type createOrderRequest struct {
 	Order struct {
 		*Order
-		CarrierAccounts []*CarrierAccount `json:"carrier_accounts,omitempty"`
-	} `json:"order,omitempty"`
+		CarrierAccounts []*CarrierAccount `json:"carrier_accounts,omitempty" url:"carrier_accounts,omitempty"`
+	} `json:"order,omitempty" url:"order,omitempty"`
 }
 
 // CreateOrder creates a new order object. If the `accounts` parameter is given,
@@ -69,7 +69,7 @@ func (c *Client) CreateOrder(in *Order, accounts ...*CarrierAccount) (out *Order
 func (c *Client) CreateOrderWithContext(ctx context.Context, in *Order, accounts ...*CarrierAccount) (out *Order, err error) {
 	var req createOrderRequest
 	req.Order.Order, req.Order.CarrierAccounts = in, accounts
-	err = c.post(ctx, "orders", &req, &out)
+	err = c.do(ctx, http.MethodPost, "orders", &req, &out)
 	return
 }
 
@@ -81,7 +81,7 @@ func (c *Client) GetOrder(orderID string) (out *Order, err error) {
 // GetOrderWithContext performs the same operation as GetOrder, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetOrderWithContext(ctx context.Context, orderID string) (out *Order, err error) {
-	err = c.get(ctx, "orders/"+orderID, &out)
+	err = c.do(ctx, http.MethodGet, "orders/"+orderID, nil, &out)
 	return
 }
 
@@ -93,7 +93,7 @@ func (c *Client) GetOrderRates(orderID string) (out *Order, err error) {
 // GetOrderRatesWithContext performs the same operation as GetOrderRates, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetOrderRatesWithContext(ctx context.Context, orderID string) (out *Order, err error) {
-	err = c.get(ctx, "orders/"+orderID+"/rates", &out)
+	err = c.do(ctx, http.MethodGet, "orders/"+orderID+"/rates", nil, &out)
 	return
 }
 
@@ -109,11 +109,11 @@ func (c *Client) BuyOrder(orderID, carrier, service string) (out *Order, err err
 // BuyOrderWithContext performs the same operation as GBuyOrder, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) BuyOrderWithContext(ctx context.Context, orderID, carrier, service string) (out *Order, err error) {
-	vals := url.Values{
-		"carrier": []string{carrier},
-		"service": []string{service},
-	}
-	err = c.post(ctx, "orders/"+orderID+"/buy", vals, &out)
+	params := struct {
+		Carrier string `json:"carrier,omitempty" url:"carrier,omitempty"`
+		Service string `json:"service,omitempty" url:"service,omitempty"`
+	}{Carrier: carrier, Service: service}
+	err = c.do(ctx, http.MethodPost, "orders/"+orderID+"/buy", params, &out)
 	return
 }
 

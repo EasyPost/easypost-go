@@ -264,7 +264,7 @@ func (c *ClientTests) TestShipmentLowestRate() {
 	lowestRate, err = client.LowestShipmentRateWithCarrierAndService(shipment, nil, []string{"Priority"})
 	require.NoError(err)
 	assert.Equal("Priority", lowestRate.Service)
-	assert.Equal("6.95", lowestRate.Rate)
+	assert.Equal("6.90", lowestRate.Rate)
 	assert.Equal("USPS", lowestRate.Carrier)
 
 	// Test lowest rate with carrier filter (should error due to bad carrier)

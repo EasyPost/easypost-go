@@ -63,7 +63,7 @@ func (c *ClientTests) TestGetNextPageReachEnd() {
 		{
 			MatchRule: easypost.MockRequestMatchRule{
 				Method:          "GET",
-				UrlRegexPattern: "v2\\/addresses$",
+				UrlRegexPattern: "v2\\/addresses",
 			},
 			ResponseInfo: easypost.MockRequestResponseInfo{
 				StatusCode: 200,

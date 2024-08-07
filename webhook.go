@@ -7,32 +7,33 @@ import (
 	"encoding/hex"
 	"encoding/json"
 	"golang.org/x/text/unicode/norm"
+	"net/http"
 )
 
 // A Webhook represents an EasyPost webhook callback URL.
 type Webhook struct {
-	ID            string    `json:"id,omitempty"`
-	Object        string    `json:"object,omitempty"`
-	Mode          string    `json:"mode,omitempty"`
-	URL           string    `json:"url,omitempty"`
-	DisabledAt    *DateTime `json:"disabled_at,omitempty"`
-	WebhookSecret string    `json:"webhook_secret,omitempty"`
+	ID            string    `json:"id,omitempty" url:"id,omitempty"`
+	Object        string    `json:"object,omitempty" url:"object,omitempty"`
+	Mode          string    `json:"mode,omitempty" url:"mode,omitempty"`
+	URL           string    `json:"url,omitempty" url:"url,omitempty"`
+	DisabledAt    *DateTime `json:"disabled_at,omitempty" url:"disabled_at,omitempty"`
+	WebhookSecret string    `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
 }
 
 // CreateUpdateWebhookOptions is used to specify parameters for creating and updating EasyPost webhooks.
 type CreateUpdateWebhookOptions struct {
-	URL           string `json:"url,omitempty"`
-	WebhookSecret string `json:"webhook_secret,omitempty"`
+	URL           string `json:"url,omitempty" url:"url,omitempty"`
+	WebhookSecret string `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
 }
 
 // createUpdateWebhookRequest is the request struct for creating and updating webhooks (internal)
 type createUpdateWebhookRequest struct {
-	Webhook *Webhook `json:"webhook,omitempty"`
+	Webhook *Webhook `json:"webhook,omitempty" url:"webhook,omitempty"`
 }
 
 // listWebhooksResult is the response struct of listing webhooks (internal)
 type listWebhooksResult struct {
-	Webhooks *[]*Webhook `json:"webhooks,omitempty"`
+	Webhooks *[]*Webhook `json:"webhooks,omitempty" url:"webhooks,omitempty"`
 }
 
 func (c *Client) composeCreateUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *createUpdateWebhookRequest {
@@ -54,7 +55,7 @@ func (c *Client) CreateWebhookWithDetails(data *CreateUpdateWebhookOptions) (out
 func (c *Client) CreateWebhookWithDetailsWithContext(ctx context.Context,
 	data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
 	req := c.composeCreateUpdateWebhookRequest(data)
-	err = c.post(ctx, "webhooks", req, &out)
+	err = c.do(ctx, http.MethodPost, "webhooks", req, &out)
 	return
 }
 
@@ -67,7 +68,7 @@ func (c *Client) ListWebhooks() (out []*Webhook, err error) {
 // ListWebhooksWithContext, but allows specifying a context that can interrupt
 // the request.
 func (c *Client) ListWebhooksWithContext(ctx context.Context) (out []*Webhook, err error) {
-	err = c.get(ctx, "webhooks", &listWebhooksResult{Webhooks: &out})
+	err = c.do(ctx, http.MethodGet, "webhooks", nil, &listWebhooksResult{Webhooks: &out})
 	return
 }
 
@@ -79,7 +80,7 @@ func (c *Client) GetWebhook(webhookID string) (out *Webhook, err error) {
 // GetWebhookWithContext performs the same operation as GetWebhook, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) GetWebhookWithContext(ctx context.Context, webhookID string) (out *Webhook, err error) {
-	err = c.get(ctx, "webhooks/"+webhookID, &out)
+	err = c.do(ctx, http.MethodGet, "webhooks/"+webhookID, nil, &out)
 	return
 }
 
@@ -93,7 +94,7 @@ func (c *Client) UpdateWebhook(webhookID string, data *CreateUpdateWebhookOption
 func (c *Client) UpdateWebhookWithContext(ctx context.Context,
 	webhookID string, data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
 	req := c.composeCreateUpdateWebhookRequest(data)
-	err = c.patch(ctx, "webhooks/"+webhookID, req, &out)
+	err = c.do(ctx, http.MethodPatch, "webhooks/"+webhookID, req, &out)
 	return
 }
 
@@ -105,7 +106,7 @@ func (c *Client) DeleteWebhook(webhookID string) error {
 // DeleteWebhookWithContext performs the same operation as DeleteWebhook, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) DeleteWebhookWithContext(ctx context.Context, webhookID string) error {
-	return c.del(ctx, "webhooks/"+webhookID)
+	return c.do(ctx, http.MethodDelete, "webhooks/"+webhookID, nil, nil)
 }
 
 // ValidateWebhook validates a webhook by comparing the HMAC signature header sent from EasyPost to your shared secret.

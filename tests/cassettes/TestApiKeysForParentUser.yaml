@@ -14,6 +14,10 @@ interactions:
   response:
     body: '{"balance":"0.00000","cc_fee_rate":"0.03","children":[{"children":[],"created_at":"2023-09-20T18:01:26Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_5f0c48e7a66b42398740b0149b1bb24c","name":"Test
       User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2023-09-20T18:09:24Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_97f56192c53d490aa7851087b88618a4","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2023-11-30T20:12:09Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_3d8dac28f4ba42729036133637356d40","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2024-07-26T19:35:11Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_f81b29477fec4243a7de2ecc3c4f4907","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2024-07-26T20:01:28Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_181e86f095d64d028676afb1bfdb9774","name":"Test
+      User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true},{"children":[],"created_at":"2024-08-02T22:13:55Z","default_carbon_offset":false,"has_elevate_access":false,"id":"user_03b5468f836c4cb09c017668747a9b7f","name":"Test
       User","object":"User","parent_id":"user_a76997d126dd488f8ad22d52301300b0","phone_number":"REDACTED","verified":true}],"created_at":"2020-05-07T23:43:48Z","default_carbon_offset":false,"default_insurance_amount":null,"email":"REDACTED","has_billing_method":false,"has_elevate_access":false,"id":"user_a76997d126dd488f8ad22d52301300b0","insurance_fee_minimum":"1.00","insurance_fee_rate":"0.01","name":"Test
       User","object":"User","parent_id":null,"phone_number":"REDACTED","price_per_shipment":"0.00000","recharge_amount":"100.00","recharge_threshold":"0.00","secondary_recharge_amount":"100.00","verified":true}'
     headers:
@@ -31,25 +35,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec2ae7896122001b34fc
+      - 4d57346d66ad684df440b8c700373dce
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb31nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.059622"
+      - "0.111906"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
@@ -66,7 +72,7 @@ interactions:
     url: https://api.easypost.com/v2/api_keys
     method: GET
   response:
-    body: '{"children":[{"children":[],"id":"user_5f0c48e7a66b42398740b0149b1bb24c","keys":[{"active":true,"created_at":"2023-09-20T18:01:26Z","id":"ak_88e217ee1f0c483c80f7ab83de73bb5b","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-09-20T18:01:26Z","id":"ak_62c5b384a6b1422bb0b99f5578ba59ee","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_97f56192c53d490aa7851087b88618a4","keys":[{"active":true,"created_at":"2023-09-20T18:09:24Z","id":"ak_ef2cf7363e65470e9ae62a9f8656adf7","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-09-20T18:09:24Z","id":"ak_e19b18ca12f14ab78c5fdd80e8697bad","key":"REDACTED","mode":"production","object":"ApiKey"}]}],"id":"user_a76997d126dd488f8ad22d52301300b0","keys":[{"active":true,"created_at":"2022-02-24T20:56:44Z","id":"ak_67dc6b8292554e67aa2134f9ca6a314a","key":"REDACTED","mode":"production","object":"ApiKey"},{"active":true,"created_at":"2022-02-24T20:56:47Z","id":"ak_c3114bfc14c24041b04f959a1f364924","key":"REDACTED","mode":"test","object":"ApiKey"}]}'
+    body: '{"children":[{"children":[],"id":"user_5f0c48e7a66b42398740b0149b1bb24c","keys":[{"active":true,"created_at":"2023-09-20T18:01:26Z","id":"ak_88e217ee1f0c483c80f7ab83de73bb5b","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-09-20T18:01:26Z","id":"ak_62c5b384a6b1422bb0b99f5578ba59ee","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_97f56192c53d490aa7851087b88618a4","keys":[{"active":true,"created_at":"2023-09-20T18:09:24Z","id":"ak_ef2cf7363e65470e9ae62a9f8656adf7","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-09-20T18:09:24Z","id":"ak_e19b18ca12f14ab78c5fdd80e8697bad","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_3d8dac28f4ba42729036133637356d40","keys":[{"active":true,"created_at":"2023-11-30T20:12:09Z","id":"ak_c08fe7b8ce10424ab6532f57d10c626a","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2023-11-30T20:12:09Z","id":"ak_bb67d66d8bd64d71973873b304677f02","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_f81b29477fec4243a7de2ecc3c4f4907","keys":[{"active":true,"created_at":"2024-07-26T19:35:11Z","id":"ak_e1234571277649c98f2b7f06798741ab","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2024-07-26T19:35:11Z","id":"ak_8283564a55df467e96d06321fb28030e","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_181e86f095d64d028676afb1bfdb9774","keys":[{"active":true,"created_at":"2024-07-26T20:01:28Z","id":"ak_4dda5e5f7c3c4c1996288035a4e155fd","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2024-07-26T20:01:28Z","id":"ak_1721bf1db4754de39b6e7437bde210ce","key":"REDACTED","mode":"production","object":"ApiKey"}]},{"children":[],"id":"user_03b5468f836c4cb09c017668747a9b7f","keys":[{"active":true,"created_at":"2024-08-02T22:13:55Z","id":"ak_695d053db1374b7dacefefa88adcd58d","key":"REDACTED","mode":"test","object":"ApiKey"},{"active":true,"created_at":"2024-08-02T22:13:55Z","id":"ak_a31cad4c3a3c46f89f947e60c9eef529","key":"REDACTED","mode":"production","object":"ApiKey"}]}],"id":"user_a76997d126dd488f8ad22d52301300b0","keys":[{"active":true,"created_at":"2022-02-24T20:56:44Z","id":"ak_67dc6b8292554e67aa2134f9ca6a314a","key":"REDACTED","mode":"production","object":"ApiKey"},{"active":true,"created_at":"2022-02-24T20:56:47Z","id":"ak_c3114bfc14c24041b04f959a1f364924","key":"REDACTED","mode":"test","object":"ApiKey"}]}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -87,20 +93,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec2be7896122001b3531
+      - 4d57346d66ad684df440b8c700373de7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb33nuq
+      - bigweb53nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.030922"
+      - "0.110257"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

@@ -15,23 +15,23 @@ import (
 // This is different from the LibraryError class, which represents exceptions in the EasyPost library, such as bad HTTP status codes or local validation issues.
 type Error struct {
 	// Code is a machine-readable code of the problem encountered.
-	Code string `json:"code,omitempty"`
+	Code string `json:"code,omitempty" url:"code,omitempty"`
 	// Errors may be provided if there are multiple errors, for example if
 	// multiple fields have invalid values.
-	Errors []*Error `json:"errors,omitempty"`
+	Errors []*Error `json:"errors,omitempty" url:"errors,omitempty"`
 	// Field may be provided when the error relates to a specific field.
-	Field string `json:"field,omitempty"`
+	Field string `json:"field,omitempty" url:"field,omitempty"`
 	// Message is a human-readable description of the problem encountered.
-	Message interface{} `json:"message,omitempty"`
+	Message interface{} `json:"message,omitempty" url:"message,omitempty"`
 	// Suggestion may be provided if the API can provide a suggestion to fix
 	// the error.
-	Suggestion string `json:"suggestion,omitempty"`
+	Suggestion string `json:"suggestion,omitempty" url:"suggestion,omitempty"`
 }
 
 func (e *Error) UnmarshalJSON(data []byte) error {
 	type alias Error
 	tmpError := &struct {
-		Message interface{} `json:"message,omitempty"`
+		Message interface{} `json:"message,omitempty" url:"message,omitempty"`
 		*alias
 	}{
 		alias: (*alias)(e),
@@ -170,7 +170,7 @@ type APIError struct {
 	// StatusCode is the HTTP numerical status code of the response.
 	StatusCode int
 	// Errors may be provided if there are details about server-side issues that caused the API request to fail.
-	Errors []*Error `json:"errors,omitempty"`
+	Errors []*Error `json:"errors,omitempty" url:"errors,omitempty"`
 }
 
 // Error provides a pretty printed string of an APIError object based on present data.
@@ -288,7 +288,7 @@ func BuildErrorFromResponse(response *http.Response) error {
 	// deserialize the response body into a temporary object
 	buf, _ := ioutil.ReadAll(response.Body)
 	tmpError := &struct {
-		Error *Error `json:"error,omitempty"`
+		Error *Error `json:"error,omitempty" url:"error,omitempty"`
 	}{}
 
 	if json.Unmarshal(buf, &tmpError) == nil {

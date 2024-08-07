@@ -16,9 +16,9 @@ interactions:
     url: https://api.easypost.com/v2/end_shippers
     method: POST
   response:
-    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2023-11-30T20:10:49+00:00","email":"REDACTED","id":"es_77bd174daffc4b1d949e4b9008f83e33","mode":"test","name":"JACK
+    body: '{"city":"SAN FRANCISCO","company":null,"country":"US","created_at":"2024-08-02T23:14:43+00:00","email":"REDACTED","id":"es_568913e51a7c44f581a33a4986fe95ba","mode":"test","name":"JACK
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2023-11-30T20:10:49+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2024-08-02T23:14:43+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -39,29 +39,29 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec49e7896122001b5244
+      - 4d57346d66ad6862f440b8c7003749b7
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb36nuq
+      - bigweb35nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb1nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb3nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.051436"
+      - "0.047155"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
     code: 201
     duration: ""
 - request:
-    body: '{"address":{"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2023-11-30T20:10:49Z","email":"REDACTED","id":"es_77bd174daffc4b1d949e4b9008f83e33","mode":"test","name":"Captain
+    body: '{"address":{"city":"San Francisco","company":"EasyPost","country":"US","created_at":"2024-08-02T23:14:43Z","email":"REDACTED","id":"es_568913e51a7c44f581a33a4986fe95ba","mode":"test","name":"Captain
       Sparrow","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      Townsend St","street2":"Apt 20","updated_at":"2023-11-30T20:10:49Z","zip":"94107"}}'
+      Townsend St","street2":"Apt 20","updated_at":"2024-08-02T23:14:43Z","zip":"94107"}}'
     form: {}
     headers:
       Authorization:
@@ -70,12 +70,12 @@ interactions:
       - application/json
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/end_shippers/es_77bd174daffc4b1d949e4b9008f83e33
+    url: https://api.easypost.com/v2/end_shippers/es_568913e51a7c44f581a33a4986fe95ba
     method: PUT
   response:
-    body: '{"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2023-11-30T20:10:49+00:00","email":"REDACTED","id":"es_77bd174daffc4b1d949e4b9008f83e33","mode":"test","name":"CAPTAIN
+    body: '{"city":"SAN FRANCISCO","company":"EASYPOST","country":"US","created_at":"2024-08-02T23:14:43+00:00","email":"REDACTED","id":"es_568913e51a7c44f581a33a4986fe95ba","mode":"test","name":"CAPTAIN
       SPARROW","object":"EndShipper","phone":"REDACTED","state":"CA","street1":"388
-      TOWNSEND ST APT 20","street2":"","updated_at":"2023-11-30T20:10:49+00:00","zip":"94107-1670"}'
+      TOWNSEND ST APT 20","street2":"","updated_at":"2024-08-02T23:14:43+00:00","zip":"94107-1670"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -96,20 +96,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 32e015fa6568ec49e7896122001b5276
+      - 4d57346d66ad6863f440b8c7003749ca
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - bigweb33nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb2nuq b3de2c47ef
-      - extlb1nuq 003ad9bca0
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq fa152d4755
       X-Runtime:
-      - "0.051160"
+      - "0.057490"
       X-Version-Label:
-      - easypost-202311301748-2efb918c5f-master
+      - easypost-202408021936-66687f8918-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

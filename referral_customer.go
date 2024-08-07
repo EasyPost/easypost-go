@@ -12,10 +12,10 @@ import (
 
 // A BetaPaymentRefund that has the refund details for the refund request.
 type BetaPaymentRefund struct {
-	RefundedAmount      int        `json:"refunded_amount,omitempty"`
-	RefundedPaymentLogs []string   `json:"refunded_payment_log,omitempty"`
-	PaymentLogId        string     `json:"payment_log_id,omitempty"`
-	Errors              []APIError `json:"errors,omitempty"`
+	RefundedAmount      int        `json:"refunded_amount,omitempty" url:"refunded_amount,omitempty"`
+	RefundedPaymentLogs []string   `json:"refunded_payment_log,omitempty" url:"refunded_payment_log,omitempty"`
+	PaymentLogId        string     `json:"payment_log_id,omitempty" url:"payment_log_id,omitempty"`
+	Errors              []APIError `json:"errors,omitempty" url:"errors,omitempty"`
 }
 
 // A ReferralCustomer contains data about an EasyPost referral customer.
@@ -25,37 +25,37 @@ type ReferralCustomer struct {
 
 // ListReferralCustomersResult holds the results from the list referral customers API call.
 type ListReferralCustomersResult struct {
-	ReferralCustomers []*ReferralCustomer `json:"referral_customers,omitempty"`
+	ReferralCustomers []*ReferralCustomer `json:"referral_customers,omitempty" url:"referral_customers,omitempty"`
 	PaginatedCollection
 }
 
 // CreditCardOptions specifies options for creating or updating a credit card.
 type CreditCardOptions struct {
-	Number   string `json:"number,omitempty"`
-	ExpMonth string `json:"expiration_month,omitempty"`
-	ExpYear  string `json:"expiration_year,omitempty"`
-	Cvc      string `json:"cvc,omitempty"`
+	Number   string `json:"number,omitempty" url:"number,omitempty"`
+	ExpMonth string `json:"expiration_month,omitempty" url:"expiration_month,omitempty"`
+	ExpYear  string `json:"expiration_year,omitempty" url:"expiration_year,omitempty"`
+	Cvc      string `json:"cvc,omitempty" url:"cvc,omitempty"`
 }
 
 type stripeApiKeyResponse struct {
-	PublicKey string `json:"public_key"`
+	PublicKey string `json:"public_key,omitempty" url:"public_key,omitempty"`
 }
 
 type stripeTokenResponse struct {
-	Id string `json:"id"`
+	Id string `json:"id,omitempty" url:"id,omitempty"`
 }
 
 type referralCustomerRequest struct {
-	UserOptions *UserOptions `json:"user,omitempty"`
+	UserOptions *UserOptions `json:"user,omitempty" url:"user,omitempty"`
 }
 
 type creditCardCreateRequest struct {
-	CreditCard *easypostCreditCardCreateOptions `json:"credit_card,omitempty"`
+	CreditCard *easypostCreditCardCreateOptions `json:"credit_card,omitempty" url:"credit_card,omitempty"`
 }
 
 type easypostCreditCardCreateOptions struct {
-	StripeToken string `json:"stripe_object_id"`
-	Priority    string `json:"priority"`
+	StripeToken string `json:"stripe_object_id,omitempty" url:"stripe_object_id,omitempty"`
+	Priority    string `json:"priority,omitempty" url:"priority,omitempty"`
 }
 
 // CreateReferralCustomer creates a new referral customer.
@@ -66,7 +66,7 @@ func (c *Client) CreateReferralCustomer(in *UserOptions) (out *ReferralCustomer,
 // CreateReferralCustomerWithContext performs the same operation as CreateReferralCustomer, but allows
 // specifying a context that can interrupt the request.
 func (c *Client) CreateReferralCustomerWithContext(ctx context.Context, in *UserOptions) (out *ReferralCustomer, err error) {
-	err = c.post(ctx, "referral_customers", &referralCustomerRequest{UserOptions: in}, &out)
+	err = c.do(ctx, http.MethodPost, "referral_customers", &referralCustomerRequest{UserOptions: in}, &out)
 	return
 }
 
@@ -78,7 +78,7 @@ func (c *Client) ListReferralCustomers(opts *ListOptions) (out *ListReferralCust
 // ListReferralCustomersWithContext performs the same operation as ListReferralCustomers, but
 // allows specifying a context that can interrupt the request.
 func (c *Client) ListReferralCustomersWithContext(ctx context.Context, opts *ListOptions) (out *ListReferralCustomersResult, err error) {
-	err = c.do(ctx, http.MethodGet, "referral_customers", c.convertOptsToURLValues(opts), &out)
+	err = c.do(ctx, http.MethodGet, "referral_customers", opts, &out)
 	return
 }
 
@@ -126,7 +126,7 @@ func (c *Client) UpdateReferralCustomerEmailWithContext(ctx context.Context, use
 			Email: &email,
 		},
 	}
-	err = c.put(ctx, "referral_customers/"+userId, req, &out)
+	err = c.do(ctx, http.MethodPut, "referral_customers/"+userId, req, &out)
 	return
 }
 
@@ -157,7 +157,7 @@ func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, r
 }
 
 func (c *Client) retrieveEasypostStripeApiKey(ctx context.Context) (out *stripeApiKeyResponse, err error) {
-	err = c.get(ctx, "partners/stripe_public_key", &out)
+	err = c.do(ctx, http.MethodGet, "partners/stripe_public_key", nil, &out)
 	return
 }
 
@@ -213,7 +213,7 @@ func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerA
 		CreditCard: creditCardOptions,
 	}
 
-	err = client.post(ctx, "credit_cards", creditCardRequest, &out)
+	err = client.do(ctx, http.MethodPost, "credit_cards", creditCardRequest, &out)
 	return
 }
 
@@ -233,7 +233,7 @@ func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCust
 		},
 	}
 
-	err = c.post(ctx, "/beta/referral_customers/payment_method", wrappedParams, out)
+	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/payment_method", wrappedParams, out)
 	return
 }
 
@@ -249,7 +249,7 @@ func (c *Client) BetaRefundByAmountWithContext(ctx context.Context, refundAmount
 		"refund_amount": refundAmount,
 	}
 
-	err = c.post(ctx, "/beta/referral_customers/refunds", params, out)
+	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, out)
 	return
 }
 
@@ -265,6 +265,6 @@ func (c *Client) BetaRefundByPaymentLogWithContext(ctx context.Context, paymentL
 		"payment_log_id": paymentLogId,
 	}
 
-	err = c.post(ctx, "/beta/referral_customers/refunds", params, out)
+	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, out)
 	return
 }
