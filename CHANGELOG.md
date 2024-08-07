@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `Surcharges` property to `Rate` model, including surcharge `category`
+
 ## v5.10.1 (2026-09-29)
 
 - Fixes `ListEndShipperResult` using an incorrect `endshippers` JSON/URL tag instead of `end_shippers`, which prevented the `EndShippers` field from being populated when listing end shippers
@@ -45,7 +49,6 @@
 - Adds `LineItems` to `Shipment` object
 
 ## v5.5.0 (2025-11-24)
-
 - Adds the following functions:
   - `CreateCustomerPortalAccountLink`
   - `CreateEmbeddablesSession`
