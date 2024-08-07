@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `Surcharges` property to `Rate` model
+
 ## v4.5.0 (2024-07-24)
 
 - Add new claim-related functions: `CreateClaim`, `GetClaim`, `ListClaims`, `GetNextClaimPage` and `CancelClaim`
