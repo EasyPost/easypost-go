@@ -7,16 +7,16 @@ import (
 
 // PickupRate contains data about the cost of a pickup.
 type PickupRate struct {
-	ID        string    `json:"id,omitempty" url:"id, omitempty"`
-	Object    string    `json:"object,omitempty" url:"object, omitempty"`
-	Mode      string    `json:"mode,omitempty" url:"mode, omitempty"`
-	CreatedAt *DateTime `json:"created_at,omitempty" url:"created_at, omitempty"`
-	UpdatedAt *DateTime `json:"updated_at,omitempty" url:"updated_at, omitempty"`
-	Service   string    `json:"service,omitempty" url:"service, omitempty"`
-	Carrier   string    `json:"carrier,omitempty" url:"carrier, omitempty"`
-	Rate      string    `json:"rate,omitempty" url:"rate, omitempty"`
-	Currency  string    `json:"currency,omitempty" url:"currency, omitempty"`
-	PickupID  string    `json:"pickup_id,omitempty" url:"pickup_id, omitempty"`
+	ID        string    `json:"id,omitempty" url:"id,omitempty"`
+	Object    string    `json:"object,omitempty" url:"object,omitempty"`
+	Mode      string    `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Service   string    `json:"service,omitempty" url:"service,omitempty"`
+	Carrier   string    `json:"carrier,omitempty" url:"carrier,omitempty"`
+	Rate      string    `json:"rate,omitempty" url:"rate,omitempty"`
+	Currency  string    `json:"currency,omitempty" url:"currency,omitempty"`
+	PickupID  string    `json:"pickup_id,omitempty" url:"pickup_id,omitempty"`
 }
 
 // A Pickup object represents a pickup from a carrier at a customer's residence
