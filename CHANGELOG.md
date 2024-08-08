@@ -3,6 +3,7 @@
 ## Next Release
 
 - Update HTTP logic to use query for GET/DELETE requests and body for POST/PUT/PATCH requests
+- Fix parameters for retrieving next page of child users
 
 ## v4.5.0 (2024-07-24)
 

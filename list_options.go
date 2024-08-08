@@ -24,3 +24,19 @@ func nextPageParameters(hasMore bool, lastID string, pageSize int) (out *ListOpt
 	}
 	return
 }
+
+// nextChildUserPageParameters returns the next page of a paginated collection of child users.
+// If pageSize is 0, it will use the default page size
+func nextChildUserPageParameters(hasMore bool, lastID string, pageSize int) (out *ListOptions, err error) {
+	if !hasMore {
+		err = EndOfPaginationError
+		return
+	}
+	out = &ListOptions{
+		AfterID: lastID,
+	}
+	if pageSize > 0 {
+		out.PageSize = pageSize
+	}
+	return
+}
