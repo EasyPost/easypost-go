@@ -153,7 +153,7 @@ func (c *Client) GetNextChildUserPageWithPageSizeWithContext(ctx context.Context
 		return
 	}
 	lastID := collection.Children[len(collection.Children)-1].ID
-	params, err := nextPageParameters(collection.HasMore, lastID, pageSize)
+	params, err := nextChildUserPageParameters(collection.HasMore, lastID, pageSize)
 	if err != nil {
 		return
 	}
