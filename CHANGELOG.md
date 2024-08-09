@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v4.5.1 (2024-08-09)
 
 - Update HTTP logic to use query for GET/DELETE requests and body for POST/PUT/PATCH requests
 - Fix parameters for retrieving next page of child users
