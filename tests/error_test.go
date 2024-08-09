@@ -1,7 +1,7 @@
 package easypost_test
 
 import (
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 
@@ -40,7 +40,7 @@ func (c *ClientTests) TestApiErrorStatusCodes() {
 
 	res := &http.Response{
 		StatusCode: 0,
-		Body:       ioutil.NopCloser(strings.NewReader("")),
+		Body:       io.NopCloser(strings.NewReader("")),
 	}
 
 	res.StatusCode = 0
@@ -198,7 +198,7 @@ func (c *ClientTests) TestApiErrorMessageParseArray() {
 
 	res := &http.Response{
 		StatusCode: 422,
-		Body:       ioutil.NopCloser(strings.NewReader(fakeErrorResponse)),
+		Body:       io.NopCloser(strings.NewReader(fakeErrorResponse)),
 	}
 
 	err := easypost.BuildErrorFromResponse(res)
@@ -225,7 +225,7 @@ func (c *ClientTests) TestErrorMessageParseMap() {
 
 	res := &http.Response{
 		StatusCode: 422,
-		Body:       ioutil.NopCloser(strings.NewReader(fakeErrorResponse)),
+		Body:       io.NopCloser(strings.NewReader(fakeErrorResponse)),
 	}
 
 	err := easypost.BuildErrorFromResponse(res)
@@ -264,7 +264,7 @@ func (c *ClientTests) TestErrorMessageParseExtreme() {
 
 	res := &http.Response{
 		StatusCode: 422,
-		Body:       ioutil.NopCloser(strings.NewReader(fakeErrorResponse)),
+		Body:       io.NopCloser(strings.NewReader(fakeErrorResponse)),
 	}
 
 	err := easypost.BuildErrorFromResponse(res)
