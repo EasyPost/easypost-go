@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"errors"
 	"reflect"
 	"strings"
 
@@ -13,10 +14,12 @@ func (c *ClientTests) TestBetaReferralAddPaymentMethod() {
 
 	_, err := client.BetaAddPaymentMethod("cus_123", "ba_123", easypost.PrimaryPaymentMethodPriority)
 	require.Error(err)
-	if err, ok := err.(*easypost.APIError); ok {
-		assert.Equal(422, err.StatusCode)
-		assert.Equal("BILLING.INVALID_PAYMENT_GATEWAY_REFERENCE", err.Code)
-		assert.Equal("Invalid Payment Gateway Reference.", err.Message)
+
+	var eperr *easypost.APIError
+	if errors.As(err, &eperr) {
+		assert.Equal(422, eperr.StatusCode)
+		assert.Equal("BILLING.INVALID_PAYMENT_GATEWAY_REFERENCE", eperr.Code)
+		assert.Equal("Invalid Payment Gateway Reference.", eperr.Message)
 	}
 }
 
@@ -26,10 +29,12 @@ func (c *ClientTests) TestBetaReferralRefundByAmount() {
 
 	_, err := client.BetaRefundByAmount(2000)
 	require.Error(err)
-	if err, ok := err.(*easypost.APIError); ok {
-		assert.Equal(422, err.StatusCode)
-		assert.Equal("TRANSACTION.AMOUNT_INVALID", err.Code)
-		assert.Equal("Refund amount is invalid. Please use a valid amount or escalate to finance.", err.Message)
+
+	var eperr *easypost.APIError
+	if errors.As(err, &eperr) {
+		assert.Equal(422, eperr.StatusCode)
+		assert.Equal("TRANSACTION.AMOUNT_INVALID", eperr.Code)
+		assert.Equal("Refund amount is invalid. Please use a valid amount or escalate to finance.", eperr.Message)
 	}
 }
 
@@ -39,10 +44,12 @@ func (c *ClientTests) TestBetaReferralRefundByPaymentLogId() {
 
 	_, err := client.BetaRefundByPaymentLog("paylog_...")
 	require.Error(err)
-	if err, ok := err.(*easypost.APIError); ok {
-		assert.Equal(422, err.StatusCode)
-		assert.Equal("TRANSACTION.DOES_NOT_EXIST", err.Code)
-		assert.Equal("We could not find a transaction with that id.", err.Message)
+
+	var eperr *easypost.APIError
+	if errors.As(err, &eperr) {
+		assert.Equal(422, eperr.StatusCode)
+		assert.Equal("TRANSACTION.DOES_NOT_EXIST", eperr.Code)
+		assert.Equal("We could not find a transaction with that id.", eperr.Message)
 	}
 }
 

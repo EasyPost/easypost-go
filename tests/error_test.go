@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"errors"
 	"io"
 	"net/http"
 	"strings"
@@ -18,13 +19,15 @@ func (c *ClientTests) TestApiError() {
 	_, err := client.CreateShipment(&easypost.Shipment{})
 
 	require.Error(err)
-	if err, ok := err.(*easypost.InvalidRequestError); ok {
-		assert.Equal(422, err.StatusCode)
-		assert.Equal("PARAMETER.REQUIRED", err.Code)
-		assert.Equal("Missing required parameter.", err.Message)
-		assert.Equal(1, len(err.Errors))
 
-		subError := err.Errors[0]
+	var eperr *easypost.InvalidRequestError
+	if errors.As(err, &eperr) {
+		assert.Equal(422, eperr.StatusCode)
+		assert.Equal("PARAMETER.REQUIRED", eperr.Code)
+		assert.Equal("Missing required parameter.", eperr.Message)
+		assert.Equal(1, len(eperr.Errors))
+
+		subError := eperr.Errors[0]
 		assert.Equal("shipment", subError.Field)
 		assert.Equal("cannot be blank", subError.Message)
 	}
