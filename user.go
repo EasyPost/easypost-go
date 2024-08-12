@@ -9,7 +9,6 @@ import (
 // A User contains data about an EasyPost account and child accounts.
 type User struct {
 	ID                      string    `json:"id,omitempty" url:"id,omitempty"`
-	Object                  string    `json:"object,omitempty" url:"object,omitempty"`
 	ParentID                string    `json:"parent_id,omitempty" url:"parent_id,omitempty"`
 	Name                    string    `json:"name,omitempty" url:"name,omitempty"`
 	Email                   string    `json:"email,omitempty" url:"email,omitempty"`
@@ -149,7 +148,7 @@ func (c *Client) GetNextChildUserPageWithContext(ctx context.Context, collection
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextChildUserPageWithPageSizeWithContext(ctx context.Context, collection *ListChildUsersResult, pageSize int) (out *ListChildUsersResult, err error) {
 	if len(collection.Children) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Children[len(collection.Children)-1].ID

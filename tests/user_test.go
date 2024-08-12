@@ -91,7 +91,7 @@ func (c *ClientTests) TestUserGetNextChildUserPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		assert.Equal(err.Error(), easypost.NoPagesLeftToRetrieve)
 		return
 	}
 }

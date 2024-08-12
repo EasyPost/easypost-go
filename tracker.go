@@ -217,7 +217,7 @@ func (c *Client) GetNextTrackerPageWithContext(ctx context.Context, collection *
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextTrackerPageWithPageSizeWithContext(ctx context.Context, collection *ListTrackersResult, pageSize int) (out *ListTrackersResult, err error) {
 	if len(collection.Trackers) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Trackers[len(collection.Trackers)-1].ID

@@ -25,7 +25,7 @@ func (c *ClientTests) TestGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		assert.Equal(err.Error(), easypost.NoPagesLeftToRetrieve)
 		return
 	}
 }
@@ -53,7 +53,7 @@ func (c *ClientTests) TestGetNextPageWithPageSize() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
+		assert.Equal(err.Error(), easypost.NoPagesLeftToRetrieve)
 		return
 	}
 }
@@ -87,7 +87,7 @@ func (c *ClientTests) TestGetNextPageReachEnd() {
 	for {
 		addresses, err = client.GetNextAddressPage(addresses)
 		if err != nil {
-			if err.Error() == easypost.EndOfPaginationError.Error() {
+			if err.Error() == easypost.NoPagesLeftToRetrieve {
 				hitEnd = true
 			} else {
 				require.NoError(err)

@@ -138,9 +138,9 @@ func (c *Client) ValidateWebhookWithContext(ctx context.Context, eventBody []byt
 				return &webhookBody, nil
 			}
 		} else {
-			return nil, MismatchWebhookSignatureError
+			return nil, newMismatchWebhookSignatureError()
 		}
 	} else {
-		return nil, MissingWebhookSignatureError
+		return nil, newMissingWebhookSignatureError()
 	}
 }

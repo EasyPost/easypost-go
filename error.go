@@ -91,15 +91,37 @@ func (e *LibraryError) Error() string {
 
 // LocalError represents an error caused by the EasyPost library itself, such as validation or JSON serialization issues.
 type LocalError struct {
-	LibraryError
+	LibraryError // subtype of LibraryError
+}
+
+// Unwrap returns the underlying LibraryError object.
+func (e *LocalError) Unwrap() error {
+	return &e.LibraryError
 }
 
 // EndOfPaginationError is raised when there are no more pages to retrieve.
-var EndOfPaginationError = &LocalError{LibraryError{Message: NoPagesLeftToRetrieve}}
+type EndOfPaginationError struct {
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *EndOfPaginationError) Unwrap() error {
+	return &e.LibraryError
+}
+
+// newEndOfPaginationError returns a new EndOfPaginationError object.
+func newEndOfPaginationError() *EndOfPaginationError {
+	return &EndOfPaginationError{LocalError{LibraryError{Message: NoPagesLeftToRetrieve}}}
+}
 
 // FilteringError is raised when there is an issue while running a filtering operation.
 type FilteringError struct {
-	LocalError
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *FilteringError) Unwrap() error {
+	return &e.LibraryError
 }
 
 // newFilteringError returns a new FilteringError object with the given message.
@@ -109,7 +131,12 @@ func newFilteringError(message string) *FilteringError {
 
 // InvalidObjectError is raised when an object is invalid.
 type InvalidObjectError struct {
-	LocalError
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *InvalidObjectError) Unwrap() error {
+	return &e.LibraryError
 }
 
 // newInvalidObjectError returns a new InvalidObjectError object with the given message.
@@ -119,7 +146,12 @@ func newInvalidObjectError(message string) *InvalidObjectError {
 
 // MissingPropertyError is raised when a required property is missing.
 type MissingPropertyError struct {
-	LocalError
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *MissingPropertyError) Unwrap() error {
+	return &e.LibraryError
 }
 
 // newMissingPropertyError returns a new MissingPropertyError object with the given property.
@@ -129,14 +161,43 @@ func newMissingPropertyError(property string) *MissingPropertyError {
 }
 
 // MissingWebhookSignatureError is raised when a webhook does not contain a valid HMAC signature.
-var MissingWebhookSignatureError = &LocalError{LibraryError{Message: MissingWebhookSignature}}
+type MissingWebhookSignatureError struct {
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *MissingWebhookSignatureError) Unwrap() error {
+	return &e.LocalError
+}
+
+// newMissingWebhookSignatureError returns a new MissingWebhookSignatureError object.
+func newMissingWebhookSignatureError() *MissingWebhookSignatureError {
+	return &MissingWebhookSignatureError{LocalError{LibraryError{Message: MissingWebhookSignature}}}
+}
 
 // MismatchWebhookSignatureError is raised when a webhook received did not originate from EasyPost or had a webhook secret mismatch.
-var MismatchWebhookSignatureError = &LocalError{LibraryError{Message: MismatchWebhookSignature}}
+type MismatchWebhookSignatureError struct {
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *MismatchWebhookSignatureError) Unwrap() error {
+	return &e.LocalError
+}
+
+// newMismatchWebhookSignatureError returns a new MismatchWebhookSignatureError object.
+func newMismatchWebhookSignatureError() *MismatchWebhookSignatureError {
+	return &MismatchWebhookSignatureError{LocalError{LibraryError{Message: MismatchWebhookSignature}}}
+}
 
 // ExternalApiError represents an error caused by an external API, such as a 3rd party HTTP API (not EasyPost).
 type ExternalApiError struct {
-	LibraryError
+	LibraryError // subtype of LibraryError
+}
+
+// Unwrap returns the underlying LibraryError object.
+func (e *ExternalApiError) Unwrap() error {
+	return &e.LibraryError
 }
 
 // newExternalApiError returns a new ExternalApiError object with the given message.
@@ -146,7 +207,12 @@ func newExternalApiError(message string) *ExternalApiError {
 
 // InvalidFunctionError is raised when a function call is invalid or not allowed.
 type InvalidFunctionError struct {
-	LocalError
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError object.
+func (e *InvalidFunctionError) Unwrap() error {
+	return &e.LocalError
 }
 
 // newInvalidFunctionError returns a new InvalidFunctionError object with the given message.
@@ -164,7 +230,7 @@ func newInvalidFunctionError(message string) *InvalidFunctionError {
 //
 // The information from the top-level Error class is used to generate this error, and any sub-errors are stored in the Errors field.
 type APIError struct {
-	LibraryError
+	LibraryError // subtype of LibraryError
 	// Code is a machine-readable status of the problem encountered.
 	Code string
 	// StatusCode is the HTTP numerical status code of the response.
@@ -187,94 +253,188 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Code)
 }
 
+func (e *APIError) Unwrap() error {
+	return &e.LibraryError
+}
+
 // BadRequestError is raised when the API returns a 400 status code.
 type BadRequestError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *BadRequestError) Unwrap() error {
+	return &e.APIError
 }
 
 // ConnectionError is raised when the API returns a 0 status code.
 type ConnectionError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *ConnectionError) Unwrap() error {
+	return &e.APIError
 }
 
 // GatewayTimeoutError is raised when the API returns a 504 status code.
 type GatewayTimeoutError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *GatewayTimeoutError) Unwrap() error {
+	return &e.APIError
 }
 
 // InternalServerError is raised when the API returns a 500 status code.
 type InternalServerError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *InternalServerError) Unwrap() error {
+	return &e.APIError
 }
 
 // InvalidRequestError is raised when the API returns a 422 status code.
 type InvalidRequestError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *InvalidRequestError) Unwrap() error {
+	return &e.APIError
 }
 
 // MethodNotAllowedError is raised when the API returns a 405 status code.
 type MethodNotAllowedError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *MethodNotAllowedError) Unwrap() error {
+	return &e.APIError
 }
 
 // NotFoundError is raised when the API returns a 404 status code.
 type NotFoundError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *NotFoundError) Unwrap() error {
+	return &e.APIError
 }
 
 // PaymentError is raised when the API returns a 402 status code.
 type PaymentError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *PaymentError) Unwrap() error {
+	return &e.APIError
 }
 
 // ProxyError is raised when the API returns a 407 status code.
 type ProxyError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *ProxyError) Unwrap() error {
+	return &e.APIError
 }
 
 // RateLimitError is raised when the API returns a 429 status code.
 type RateLimitError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *RateLimitError) Unwrap() error {
+	return &e.APIError
 }
 
 // RedirectError is raised when the API returns a 3xx status code.
 type RedirectError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *RedirectError) Unwrap() error {
+	return &e.APIError
 }
 
 // RetryError is raised when the API returns a 1xx status code.
 type RetryError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *RetryError) Unwrap() error {
+	return &e.APIError
 }
 
 // ServiceUnavailableError is raised when the API returns a 503 status code.
 type ServiceUnavailableError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *ServiceUnavailableError) Unwrap() error {
+	return &e.APIError
 }
 
 // SSLError is raised when there is an issue with the SSL certificate.
 type SSLError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *SSLError) Unwrap() error {
+	return &e.APIError
 }
 
 // TimeoutError is raised when the API returns a 408 status code.
 type TimeoutError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *TimeoutError) Unwrap() error {
+	return &e.APIError
 }
 
 // UnauthorizedError is raised when the API returns a 401 status code.
 type UnauthorizedError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *UnauthorizedError) Unwrap() error {
+	return &e.APIError
 }
 
 // ForbiddenError is raised when the API returns a 403 status code.
 type ForbiddenError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *ForbiddenError) Unwrap() error {
+	return &e.APIError
 }
 
 // UnknownHttpError is raised when the API returns an unrecognized status code.
 type UnknownHttpError struct {
-	APIError
+	APIError // subtype of APIError
+}
+
+// Unwrap returns the underlying APIError object.
+func (e *UnknownHttpError) Unwrap() error {
+	return &e.APIError
 }
 
 // BuildErrorFromResponse returns an APIError-based object based on the HTTP response.

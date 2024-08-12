@@ -1,5 +1,14 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix inheritance tree for error types, allowing end-user to properly cast and check for specific error types and sub-types
+  - Some static error variables with non-dynamic error messages (e.g. `easypost.EndOfPaginationError`) have been removed and replaced with proper structs. Users relying on these variables to access the underlying error message should now use the error message directly (e.g. `easypost.NoPagesLeftToRetrieve`)
+    - Affected error variables and migration to static error messages:
+      - `easypost.EndOfPaginationError` -> `easypost.NoPagesLeftToRetrieve`
+      - `easypost.MissingWebhookSignatureError` -> `easypost.MissingWebhookSignature`
+      - `easypost.MismatchWebhookSignatureError` -> `easypost.MismatchWebhookSignature`
+
 ## v4.5.1 (2024-08-09)
 
 - Update HTTP logic to use query for GET/DELETE requests and body for POST/PUT/PATCH requests
