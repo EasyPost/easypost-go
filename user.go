@@ -9,6 +9,7 @@ import (
 // A User contains data about an EasyPost account and child accounts.
 type User struct {
 	ID                      string    `json:"id,omitempty" url:"id,omitempty"`
+	Object                  string    `json:"object,omitempty" url:"object,omitempty"`
 	ParentID                string    `json:"parent_id,omitempty" url:"parent_id,omitempty"`
 	Name                    string    `json:"name,omitempty" url:"name,omitempty"`
 	Email                   string    `json:"email,omitempty" url:"email,omitempty"`
