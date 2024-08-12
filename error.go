@@ -94,7 +94,7 @@ type LocalError struct {
 	LibraryError // subtype of LibraryError
 }
 
-// Unwrap returns the underlying LibraryError object.
+// Unwrap returns the underlying LibraryError error.
 func (e *LocalError) Unwrap() error {
 	return &e.LibraryError
 }
@@ -104,7 +104,7 @@ type EndOfPaginationError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *EndOfPaginationError) Unwrap() error {
 	return &e.LocalError
 }
@@ -119,7 +119,7 @@ type FilteringError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *FilteringError) Unwrap() error {
 	return &e.LocalError
 }
@@ -134,7 +134,7 @@ type InvalidObjectError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *InvalidObjectError) Unwrap() error {
 	return &e.LocalError
 }
@@ -149,7 +149,7 @@ type MissingPropertyError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *MissingPropertyError) Unwrap() error {
 	return &e.LocalError
 }
@@ -165,7 +165,7 @@ type MissingWebhookSignatureError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *MissingWebhookSignatureError) Unwrap() error {
 	return &e.LocalError
 }
@@ -180,7 +180,7 @@ type MismatchWebhookSignatureError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *MismatchWebhookSignatureError) Unwrap() error {
 	return &e.LocalError
 }
@@ -210,7 +210,7 @@ type InvalidFunctionError struct {
 	LocalError // subtype of LocalError
 }
 
-// Unwrap returns the underlying LocalError object.
+// Unwrap returns the underlying LocalError error.
 func (e *InvalidFunctionError) Unwrap() error {
 	return &e.LocalError
 }
@@ -262,7 +262,7 @@ type BadRequestError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *BadRequestError) Unwrap() error {
 	return &e.APIError
 }
@@ -272,7 +272,7 @@ type ConnectionError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *ConnectionError) Unwrap() error {
 	return &e.APIError
 }
@@ -282,7 +282,7 @@ type GatewayTimeoutError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *GatewayTimeoutError) Unwrap() error {
 	return &e.APIError
 }
@@ -292,7 +292,7 @@ type InternalServerError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *InternalServerError) Unwrap() error {
 	return &e.APIError
 }
@@ -302,7 +302,7 @@ type InvalidRequestError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *InvalidRequestError) Unwrap() error {
 	return &e.APIError
 }
@@ -312,7 +312,7 @@ type MethodNotAllowedError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *MethodNotAllowedError) Unwrap() error {
 	return &e.APIError
 }
@@ -322,7 +322,7 @@ type NotFoundError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *NotFoundError) Unwrap() error {
 	return &e.APIError
 }
@@ -332,7 +332,7 @@ type PaymentError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *PaymentError) Unwrap() error {
 	return &e.APIError
 }
@@ -342,7 +342,7 @@ type ProxyError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *ProxyError) Unwrap() error {
 	return &e.APIError
 }
@@ -352,7 +352,7 @@ type RateLimitError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *RateLimitError) Unwrap() error {
 	return &e.APIError
 }
@@ -362,7 +362,7 @@ type RedirectError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *RedirectError) Unwrap() error {
 	return &e.APIError
 }
@@ -372,7 +372,7 @@ type RetryError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *RetryError) Unwrap() error {
 	return &e.APIError
 }
@@ -382,7 +382,7 @@ type ServiceUnavailableError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *ServiceUnavailableError) Unwrap() error {
 	return &e.APIError
 }
@@ -392,7 +392,7 @@ type SSLError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *SSLError) Unwrap() error {
 	return &e.APIError
 }
@@ -402,7 +402,7 @@ type TimeoutError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *TimeoutError) Unwrap() error {
 	return &e.APIError
 }
@@ -412,7 +412,7 @@ type UnauthorizedError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *UnauthorizedError) Unwrap() error {
 	return &e.APIError
 }
@@ -422,7 +422,7 @@ type ForbiddenError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *ForbiddenError) Unwrap() error {
 	return &e.APIError
 }
@@ -432,7 +432,7 @@ type UnknownHttpError struct {
 	APIError // subtype of APIError
 }
 
-// Unwrap returns the underlying APIError object.
+// Unwrap returns the underlying APIError error.
 func (e *UnknownHttpError) Unwrap() error {
 	return &e.APIError
 }
