@@ -106,7 +106,7 @@ type EndOfPaginationError struct {
 
 // Unwrap returns the underlying LocalError object.
 func (e *EndOfPaginationError) Unwrap() error {
-	return &e.LibraryError
+	return &e.LocalError
 }
 
 // newEndOfPaginationError returns a new EndOfPaginationError object.
@@ -121,7 +121,7 @@ type FilteringError struct {
 
 // Unwrap returns the underlying LocalError object.
 func (e *FilteringError) Unwrap() error {
-	return &e.LibraryError
+	return &e.LocalError
 }
 
 // newFilteringError returns a new FilteringError object with the given message.
@@ -136,7 +136,7 @@ type InvalidObjectError struct {
 
 // Unwrap returns the underlying LocalError object.
 func (e *InvalidObjectError) Unwrap() error {
-	return &e.LibraryError
+	return &e.LocalError
 }
 
 // newInvalidObjectError returns a new InvalidObjectError object with the given message.
@@ -151,7 +151,7 @@ type MissingPropertyError struct {
 
 // Unwrap returns the underlying LocalError object.
 func (e *MissingPropertyError) Unwrap() error {
-	return &e.LibraryError
+	return &e.LocalError
 }
 
 // newMissingPropertyError returns a new MissingPropertyError object with the given property.
