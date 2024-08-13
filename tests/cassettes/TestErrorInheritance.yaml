@@ -1,0 +1,51 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"address":{}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/addresses
+    method: POST
+  response:
+    body: '{"error":{"code":"APIKEY.INACTIVE","errors":[],"message":"This api key
+      is no longer active. Please use a different api key or reactivate this key."}}'
+    headers:
+      Content-Type:
+      - application/json; charset=utf-8
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 733d01c366ba5a46f4095f2a0009a299
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb35nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4nuq c0f5e722d1
+      - extlb2nuq b6e1b5034c
+      X-Runtime:
+      - "0.018713"
+      X-Version-Label:
+      - easypost-202408121729-4bd23c0206-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 403 Forbidden
+    code: 403
+    duration: ""

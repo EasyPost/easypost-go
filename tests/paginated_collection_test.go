@@ -87,7 +87,7 @@ func (c *ClientTests) TestGetNextPageReachEnd() {
 	for {
 		addresses, err = client.GetNextAddressPage(addresses)
 		if err != nil {
-			if err.Error() == easypost.EndOfPaginationError.Error() {
+			if err.Error() == easypost.NoPagesLeftToRetrieve {
 				hitEnd = true
 			} else {
 				require.NoError(err)

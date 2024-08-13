@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fix inheritance tree for error types, allowing end-user to properly cast and check for specific error types and sub-types
+
 ## v4.5.1 (2024-08-09)
 
 - Update HTTP logic to use query for GET/DELETE requests and body for POST/PUT/PATCH requests
