@@ -149,7 +149,7 @@ func (c *Client) GetNextChildUserPageWithContext(ctx context.Context, collection
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextChildUserPageWithPageSizeWithContext(ctx context.Context, collection *ListChildUsersResult, pageSize int) (out *ListChildUsersResult, err error) {
 	if len(collection.Children) == 0 {
-		err = newEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	lastID := collection.Children[len(collection.Children)-1].ID

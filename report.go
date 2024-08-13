@@ -85,7 +85,7 @@ func (c *Client) GetNextReportPageWithContext(ctx context.Context, collection *L
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextReportPageWithPageSizeWithContext(ctx context.Context, collection *ListReportsResult, pageSize int) (out *ListReportsResult, err error) {
 	if len(collection.Reports) == 0 {
-		err = newEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	lastID := collection.Reports[len(collection.Reports)-1].ID

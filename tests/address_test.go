@@ -96,7 +96,7 @@ func (c *ClientTests) TestAddressGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.NoPagesLeftToRetrieve)
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
 		return
 	}
 }

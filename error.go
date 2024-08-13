@@ -99,20 +99,25 @@ func (e *LocalError) Unwrap() error {
 	return &e.LibraryError
 }
 
-// EndOfPaginationError is raised when there are no more pages to retrieve.
-type EndOfPaginationError struct {
+// EndOfPaginationErrorType is raised when there are no more pages to retrieve.
+// TODO: This type will be renamed to EndOfPaginationError in a future release to match the other error types once the EndOfPaginationError helper is removed.
+type EndOfPaginationErrorType struct {
 	LocalError // subtype of LocalError
 }
 
 // Unwrap returns the underlying LocalError error.
-func (e *EndOfPaginationError) Unwrap() error {
+func (e *EndOfPaginationErrorType) Unwrap() error {
 	return &e.LocalError
 }
 
-// newEndOfPaginationError returns a new EndOfPaginationError object.
-func newEndOfPaginationError() *EndOfPaginationError {
-	return &EndOfPaginationError{LocalError{LibraryError{Message: NoPagesLeftToRetrieve}}}
+// newEndOfPaginationError returns a new EndOfPaginationErrorType object.
+func newEndOfPaginationError() *EndOfPaginationErrorType {
+	return &EndOfPaginationErrorType{LocalError{LibraryError{Message: NoPagesLeftToRetrieve}}}
 }
+
+// EndOfPaginationError is a singleton instance of EndOfPaginationErrorType.
+// Deprecated: This helper will be removed in a future release. For access to the underlying message, use easypost.NoPagesLeftToRetrieve instead.
+var EndOfPaginationError = newEndOfPaginationError()
 
 // FilteringError is raised when there is an issue while running a filtering operation.
 type FilteringError struct {
@@ -160,35 +165,45 @@ func newMissingPropertyError(property string) *MissingPropertyError {
 	return &MissingPropertyError{LocalError{LibraryError{Message: message}}}
 }
 
-// MissingWebhookSignatureError is raised when a webhook does not contain a valid HMAC signature.
-type MissingWebhookSignatureError struct {
+// MissingWebhookSignatureErrorType is raised when a webhook does not contain a valid HMAC signature.
+// TODO: This type will be renamed to MissingWebhookSignatureError in a future release to match the other error types once the MissingWebhookSignatureError helper is removed.
+type MissingWebhookSignatureErrorType struct {
 	LocalError // subtype of LocalError
 }
 
 // Unwrap returns the underlying LocalError error.
-func (e *MissingWebhookSignatureError) Unwrap() error {
+func (e *MissingWebhookSignatureErrorType) Unwrap() error {
 	return &e.LocalError
 }
 
-// newMissingWebhookSignatureError returns a new MissingWebhookSignatureError object.
-func newMissingWebhookSignatureError() *MissingWebhookSignatureError {
-	return &MissingWebhookSignatureError{LocalError{LibraryError{Message: MissingWebhookSignature}}}
+// newMissingWebhookSignatureError returns a new MissingWebhookSignatureErrorType object.
+func newMissingWebhookSignatureError() *MissingWebhookSignatureErrorType {
+	return &MissingWebhookSignatureErrorType{LocalError{LibraryError{Message: MissingWebhookSignature}}}
+}
+
+// MissingWebhookSignatureError is raised when a webhook does not contain a valid HMAC signature.
+// Deprecated: This helper will be removed in a future release. For access to the underlying message, use easypost.MissingWebhookSignature instead.
+var MissingWebhookSignatureError = newMissingWebhookSignatureError()
+
+// MismatchWebhookSignatureErrorType is raised when a webhook received did not originate from EasyPost or had a webhook secret mismatch.
+// TODO: This type will be renamed to MismatchWebhookSignatureError in a future release to match the other error types once the MismatchWebhookSignatureError helper is removed.
+type MismatchWebhookSignatureErrorType struct {
+	LocalError // subtype of LocalError
+}
+
+// Unwrap returns the underlying LocalError error.
+func (e *MismatchWebhookSignatureErrorType) Unwrap() error {
+	return &e.LocalError
+}
+
+// newMismatchWebhookSignatureError returns a new MismatchWebhookSignatureErrorType object.
+func newMismatchWebhookSignatureError() *MismatchWebhookSignatureErrorType {
+	return &MismatchWebhookSignatureErrorType{LocalError{LibraryError{Message: MismatchWebhookSignature}}}
 }
 
 // MismatchWebhookSignatureError is raised when a webhook received did not originate from EasyPost or had a webhook secret mismatch.
-type MismatchWebhookSignatureError struct {
-	LocalError // subtype of LocalError
-}
-
-// Unwrap returns the underlying LocalError error.
-func (e *MismatchWebhookSignatureError) Unwrap() error {
-	return &e.LocalError
-}
-
-// newMismatchWebhookSignatureError returns a new MismatchWebhookSignatureError object.
-func newMismatchWebhookSignatureError() *MismatchWebhookSignatureError {
-	return &MismatchWebhookSignatureError{LocalError{LibraryError{Message: MismatchWebhookSignature}}}
-}
+// Deprecated: This helper will be removed in a future release. For access to the underlying message, use easypost.MismatchWebhookSignature instead.
+var MismatchWebhookSignatureError = newMismatchWebhookSignatureError()
 
 // ExternalApiError represents an error caused by an external API, such as a 3rd party HTTP API (not EasyPost).
 type ExternalApiError struct {

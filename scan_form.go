@@ -88,7 +88,7 @@ func (c *Client) GetNextScanFormPageWithContext(ctx context.Context, collection 
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextScanFormPageWithPageSizeWithContext(ctx context.Context, collection *ListScanFormsResult, pageSize int) (out *ListScanFormsResult, err error) {
 	if len(collection.ScanForms) == 0 {
-		err = newEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	lastID := collection.ScanForms[len(collection.ScanForms)-1].ID

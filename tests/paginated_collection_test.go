@@ -25,7 +25,7 @@ func (c *ClientTests) TestGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.NoPagesLeftToRetrieve)
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
 		return
 	}
 }
@@ -53,7 +53,7 @@ func (c *ClientTests) TestGetNextPageWithPageSize() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.NoPagesLeftToRetrieve)
+		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
 		return
 	}
 }

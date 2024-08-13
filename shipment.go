@@ -207,7 +207,7 @@ func (c *Client) GetNextShipmentPageWithContext(ctx context.Context, collection 
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextShipmentPageWithPageSizeWithContext(ctx context.Context, collection *ListShipmentsResult, pageSize int) (out *ListShipmentsResult, err error) {
 	if len(collection.Shipments) == 0 {
-		err = newEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	lastID := collection.Shipments[len(collection.Shipments)-1].ID

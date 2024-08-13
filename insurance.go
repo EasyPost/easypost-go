@@ -98,7 +98,7 @@ func (c *Client) GetNextInsurancePageWithContext(ctx context.Context, collection
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextInsurancePageWithPageSizeWithContext(ctx context.Context, collection *ListInsurancesResult, pageSize int) (out *ListInsurancesResult, err error) {
 	if len(collection.Insurances) == 0 {
-		err = newEndOfPaginationError()
+		err = EndOfPaginationError
 		return
 	}
 	lastID := collection.Insurances[len(collection.Insurances)-1].ID
