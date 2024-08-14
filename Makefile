@@ -1,5 +1,5 @@
 PROJECT_NAME := easypost-go
-PROJECT_PATH := $$(go env GOPATH)/bin/$(PROJECT_NAME)
+GO_BIN := $(shell go env GOPATH)/bin
 DIST_PATH := dist
 
 ## help - Display help about make targets for this Makefile
@@ -13,7 +13,7 @@ build:
 ## clean - Clean the project
 clean:
 	rm -rf $(DIST_PATH)
-	rm $(PROJECT_PATH)
+	rm $(GO_BIN)/$(PROJECT_NAME)
 
 ## coverage - Get test coverage and open it in a browser
 coverage: 
@@ -26,16 +26,20 @@ init-examples-submodule:
 
 ## install - Install and vendor dependencies
 install: | init-examples-submodule
-	brew install golangci-lint || exit 0
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO_BIN) v1.59.1
+	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(GO_BIN)
 	go mod vendor
-	go build -o $(PROJECT_PATH)
 
 ## golangci - Lint the project
 golangci:
-	golangci-lint run --config examples/style_guides/golang/.golangci.yml
+	$(GO_BIN)/golangci-lint run --config examples/style_guides/golang/.golangci.yml
 
 ## lint - Lint the project
 lint: golangci scan
+
+## lint-fix - Runs formatting tools against the project
+lint-fix:
+	$(GO_BIN)/golangci-lint run --config examples/style_guides/golang/.golangci.yml --fix
 
 ## release - Cuts a release for the project on GitHub (requires GitHub CLI)
 # tag = The associated tag title of the release
@@ -45,7 +49,7 @@ release:
 
 ## scan - Run gosec to scan for security issues
 scan:
-	gosec -tests --exclude-dir=examples ./...
+	$(GO_BIN)/gosec -tests --exclude-dir=examples ./...
 
 ## test - Test the project
 test:
