@@ -162,7 +162,7 @@ func (c *ClientTests) TestValidateWebhook() {
 	require.NoError(err)
 
 	assert.Equal(webhookBody.Description, "tracker.updated")
-	assert.Equal(webhookBody.Result.(*easypost.Tracker).Weight, 614.4)
+	assert.Equal(webhookBody.Result.(*easypost.Tracker).Weight, 614.4) // Ensure we convert floats properly
 }
 
 func (c *ClientTests) TestValidateWebhookInvalidSecret() {
