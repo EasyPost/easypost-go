@@ -154,16 +154,15 @@ func (c *ClientTests) TestValidateWebhook() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhookSecret := "sécret"
-	expectedHmacSignature := "hmac-sha256-hex=e93977c8ccb20363d51a62b3fe1fc402b7829be1152da9e88cf9e8d07115a46b"
 	headers := map[string]interface{}{
-		"X-Hmac-Signature": expectedHmacSignature,
+		"X-Hmac-Signature": c.fixture.WebhookHmacSignature(),
 	}
 
-	webhookBody, err := client.ValidateWebhook(c.fixture.EventBody(), headers, webhookSecret)
+	webhookBody, err := client.ValidateWebhook(c.fixture.EventBody(), headers, c.fixture.WebhookSecret())
 	require.NoError(err)
 
-	assert.Equal(webhookBody.Description, "batch.created")
+	assert.Equal(webhookBody.Description, "tracker.updated")
+	assert.Equal(webhookBody.Result.(*easypost.Tracker).Weight, 614.4) // Ensure we convert floats properly
 }
 
 func (c *ClientTests) TestValidateWebhookInvalidSecret() {

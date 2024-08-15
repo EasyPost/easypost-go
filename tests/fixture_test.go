@@ -13,25 +13,27 @@ import (
 )
 
 type Fixture struct {
-	Addresses       map[string]*easypost.Address               `json:"addresses,omitempty" url:"addresses,omitempty"`
-	CarrierAccounts map[string]*easypost.CarrierAccount        `json:"carrier_accounts,omitempty" url:"carrier_accounts,omitempty"`
-	CarrierStrings  map[string]string                          `json:"carrier_strings,omitempty" url:"carrier_strings,omitempty"`
-	Claims          map[string]*easypost.CreateClaimParameters `json:"claims,omitempty" url:"claims,omitempty"`
-	CustomsInfos    map[string]*easypost.CustomsInfo           `json:"customs_infos,omitempty" url:"customs_infos,omitempty"`
-	CustomsItems    map[string]*easypost.CustomsItem           `json:"customs_items,omitempty" url:"customs_items,omitempty"`
-	CreditCards     map[string]*easypost.CreditCardOptions     `json:"credit_cards,omitempty" url:"credit_cards,omitempty"`
-	FormOptions     map[string]map[string]interface{}          `json:"form_options,omitempty" url:"form_options,omitempty"`
-	Insurances      map[string]*easypost.Insurance             `json:"insurances,omitempty" url:"insurances,omitempty"`
-	Orders          map[string]*easypost.Order                 `json:"orders,omitempty" url:"orders,omitempty"`
-	PageSizes       map[string]int                             `json:"page_sizes,omitempty" url:"page_sizes,omitempty"`
-	Parcels         map[string]*easypost.Parcel                `json:"parcels,omitempty" url:"parcels,omitempty"`
-	Pickups         map[string]*easypost.Pickup                `json:"pickups,omitempty" url:"pickups,omitempty"`
-	ReportTypes     map[string]string                          `json:"report_types,omitempty" url:"report_types,omitempty"`
-	ServiceNames    map[string]map[string]string               `json:"service_names,omitempty" url:"service_names,omitempty"`
-	Shipments       map[string]*easypost.Shipment              `json:"shipments,omitempty" url:"shipments,omitempty"`
-	TaxIdentifiers  map[string]*easypost.TaxIdentifier         `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
-	Users           map[string]*easypost.UserOptions           `json:"users,omitempty" url:"users,omitempty"`
-	WebhookURL      string                                     `json:"webhook_url,omitempty" url:"webhook_url,omitempty"`
+	Addresses                  map[string]*easypost.Address               `json:"addresses,omitempty" url:"addresses,omitempty"`
+	CarrierAccounts            map[string]*easypost.CarrierAccount        `json:"carrier_accounts,omitempty" url:"carrier_accounts,omitempty"`
+	CarrierStrings             map[string]string                          `json:"carrier_strings,omitempty" url:"carrier_strings,omitempty"`
+	Claims                     map[string]*easypost.CreateClaimParameters `json:"claims,omitempty" url:"claims,omitempty"`
+	CustomsInfos               map[string]*easypost.CustomsInfo           `json:"customs_infos,omitempty" url:"customs_infos,omitempty"`
+	CustomsItems               map[string]*easypost.CustomsItem           `json:"customs_items,omitempty" url:"customs_items,omitempty"`
+	CreditCards                map[string]*easypost.CreditCardOptions     `json:"credit_cards,omitempty" url:"credit_cards,omitempty"`
+	FormOptions                map[string]map[string]interface{}          `json:"form_options,omitempty" url:"form_options,omitempty"`
+	Insurances                 map[string]*easypost.Insurance             `json:"insurances,omitempty" url:"insurances,omitempty"`
+	Orders                     map[string]*easypost.Order                 `json:"orders,omitempty" url:"orders,omitempty"`
+	PageSizes                  map[string]int                             `json:"page_sizes,omitempty" url:"page_sizes,omitempty"`
+	Parcels                    map[string]*easypost.Parcel                `json:"parcels,omitempty" url:"parcels,omitempty"`
+	Pickups                    map[string]*easypost.Pickup                `json:"pickups,omitempty" url:"pickups,omitempty"`
+	ReportTypes                map[string]string                          `json:"report_types,omitempty" url:"report_types,omitempty"`
+	ServiceNames               map[string]map[string]string               `json:"service_names,omitempty" url:"service_names,omitempty"`
+	Shipments                  map[string]*easypost.Shipment              `json:"shipments,omitempty" url:"shipments,omitempty"`
+	TaxIdentifiers             map[string]*easypost.TaxIdentifier         `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
+	Users                      map[string]*easypost.UserOptions           `json:"users,omitempty" url:"users,omitempty"`
+	WebhookHmacSignatureString string                                     `json:"webhook_hmac_signature,omitempty" url:"webhook_hmac_signature,omitempty"`
+	WebhookSecretString        string                                     `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	WebhookURL                 string                                     `json:"webhook_url,omitempty" url:"webhook_url,omitempty"`
 }
 
 // Reads fixture data from the fixtures JSON file
@@ -92,10 +94,6 @@ func (fixture *Fixture) ReportType() string {
 
 func (fixture *Fixture) ReportDate() string {
 	return "2022-04-11"
-}
-
-func (fixture *Fixture) WebhookUrl() string {
-	return readFixtureData().WebhookURL
 }
 
 func (fixture *Fixture) CaAddress1() *easypost.Address {
@@ -209,6 +207,18 @@ func (fixture *Fixture) EventBody() []byte {
 	}
 
 	return eventBody
+}
+
+func (fixture *Fixture) WebhookHmacSignature() string {
+	return readFixtureData().WebhookHmacSignatureString
+}
+
+func (fixture *Fixture) WebhookSecret() string {
+	return readFixtureData().WebhookSecretString
+}
+
+func (fixture *Fixture) WebhookUrl() string {
+	return readFixtureData().WebhookURL
 }
 
 func (fixture *Fixture) RmaFormOptions() map[string]interface{} {
