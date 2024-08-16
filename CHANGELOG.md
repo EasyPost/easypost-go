@@ -1,8 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v4.6.0 (2024-08-16)
 
-- Fix inheritance tree for error types, allowing end-user to properly cast and check for specific error types and sub-types
+- Add improved inheritance tree for error types, allowing end-user to properly cast and check for specific error types and sub-types
 
 ## v4.5.1 (2024-08-09)
 
