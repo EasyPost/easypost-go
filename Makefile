@@ -26,7 +26,7 @@ init-examples-submodule:
 
 ## install - Install and vendor dependencies
 install: | init-examples-submodule
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO_BIN) v1.59.1
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO_BIN) v1.60.1
 	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(GO_BIN)
 	go mod vendor
 

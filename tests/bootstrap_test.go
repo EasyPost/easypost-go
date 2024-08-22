@@ -240,7 +240,7 @@ func (c *ClientTests) checkExpiredCassette() {
 		currentTimestamp := time.Now()
 
 		if currentTimestamp.After(expirationTimestamp) {
-			c.T().Logf(fmt.Sprintf("%s is older than %d days and has expired. Please re-record the cassette", fullCassettePath, expirationDays))
+			c.T().Logf("%s is older than %d days and has expired. Please re-record the cassette", fullCassettePath, expirationDays)
 		}
 	}
 }
