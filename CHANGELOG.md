@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Removes the deprecated `create_list` tracker endpoint function as it is no longer available via API
+
 ## v4.6.0 (2024-08-16)
 
 - Add improved inheritance tree for error types, allowing end-user to properly cast and check for specific error types and sub-types

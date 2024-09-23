@@ -171,17 +171,6 @@ func (c *Client) CreateTrackerList(param map[string]interface{}) (bool, error) {
 	return c.CreateTrackerListWithContext(context.Background(), param)
 }
 
-// CreateTrackerListWithContext performs the same operation as
-// CreateTrackerList, but allows specifying a context that can interrupt the
-// request.
-//
-// Deprecated: Use the CreateTracker function instead. CreateTrackerList will be removed in a future release.
-func (c *Client) CreateTrackerListWithContext(ctx context.Context, param map[string]interface{}) (bool, error) {
-	req := map[string]interface{}{"trackers": param}
-	// This endpoint does not return a response, so we return true here
-	return true, c.do(ctx, http.MethodPost, "trackers/create_list", req, nil)
-}
-
 // ListTrackers provides a paginated result of Tracker objects.
 func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	return c.ListTrackersWithContext(context.Background(), opts)
