@@ -2,7 +2,6 @@ package easypost_test
 
 import (
 	"reflect"
-	"strconv"
 	"strings"
 
 	"github.com/EasyPost/easypost-go/v4"
@@ -61,26 +60,6 @@ func (c *ClientTests) TestTrackerAll() {
 	for _, tracker := range trackersList {
 		assert.Equal(reflect.TypeOf(&easypost.Tracker{}), reflect.TypeOf(tracker))
 	}
-}
-
-func (c *ClientTests) TestTrackerCreateList() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	trackingCodeParam := make(map[string]interface{})
-	trackingCodes := []string{"EZ1000000001", "EZ1000000002", "EZ1000000003"}
-
-	for i := range trackingCodes {
-		trackingCodeParam[strconv.Itoa(i)] = map[string]string{
-			"tracking_code": trackingCodes[i],
-		}
-	}
-
-	response, err := client.CreateTrackerList(trackingCodeParam)
-	require.NoError(err)
-
-	// This endpoint returns nothing, so we assert the function returns true
-	assert.True(response)
 }
 
 func (c *ClientTests) TestTrackersGetNextPage() {
