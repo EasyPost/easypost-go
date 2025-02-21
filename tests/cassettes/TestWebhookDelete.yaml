@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"created_at":"2024-08-02T23:15:50Z","disabled_at":null,"id":"hook_2857966e512511ef889643165883c1ae","mode":"test","object":"Webhook","url":"http://example.com"}'
+    body: '{"created_at":"2025-02-21T00:40:26Z","custom_headers":[],"disabled_at":null,"id":"hook_70da0906efec11ef876e59486f2b0df7","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -35,20 +35,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad68a6f440b8c700377c69
+      - 292b075767b7cb79e58f9e7e0059e62b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       X-Runtime:
-      - "0.178738"
+      - "0.195238"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202502210000-00b5cf2d9e-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -62,7 +62,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_2857966e512511ef889643165883c1ae
+    url: https://api.easypost.com/v2/webhooks/hook_70da0906efec11ef876e59486f2b0df7
     method: DELETE
   response:
     body: '{}'
@@ -86,20 +86,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad68a6f440b8c700377c97
+      - 292b075767b7cb79e58f9e7e0059e66b
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb33nuq
+      - bigweb39nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       X-Runtime:
-      - "0.361654"
+      - "0.351373"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202502210000-00b5cf2d9e-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

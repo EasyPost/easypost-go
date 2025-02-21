@@ -2,6 +2,7 @@
 
 ## Next Release
 
+- Adds `WebhookCustomHeader` type, allowing `custom_headers: []WebhookCustomHeader` to be passed when creating/updating a webhook.
 - Removes the deprecated `create_list` tracker endpoint function as it is no longer available via API
 
 ## v4.6.0 (2024-08-16)

@@ -31,9 +31,7 @@ type Fixture struct {
 	Shipments                  map[string]*easypost.Shipment              `json:"shipments,omitempty" url:"shipments,omitempty"`
 	TaxIdentifiers             map[string]*easypost.TaxIdentifier         `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
 	Users                      map[string]*easypost.UserOptions           `json:"users,omitempty" url:"users,omitempty"`
-	WebhookHmacSignatureString string                                     `json:"webhook_hmac_signature,omitempty" url:"webhook_hmac_signature,omitempty"`
-	WebhookSecretString        string                                     `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
-	WebhookURL                 string                                     `json:"webhook_url,omitempty" url:"webhook_url,omitempty"`
+	Webhooks 				   map[string]interface{}      	  		  	  `json:"webhooks,omitempty" url:"webhooks,omitempty"`
 }
 
 // Reads fixture data from the fixtures JSON file
@@ -210,15 +208,50 @@ func (fixture *Fixture) EventBody() []byte {
 }
 
 func (fixture *Fixture) WebhookHmacSignature() string {
-	return readFixtureData().WebhookHmacSignatureString
+	return readFixtureData().Webhooks["hmac_signature"].(string)
 }
 
 func (fixture *Fixture) WebhookSecret() string {
-	return readFixtureData().WebhookSecretString
+	return readFixtureData().Webhooks["secret"].(string)
 }
 
 func (fixture *Fixture) WebhookUrl() string {
-	return readFixtureData().WebhookURL
+	return readFixtureData().Webhooks["url"].(string)
+}
+
+func (fixture *Fixture) WebhookCustomHeaders() ([]easypost.WebhookCustomHeader, error) {
+	inputCustomHeaders := readFixtureData().Webhooks["custom_headers"]
+
+	var webhookCustomHeaders []easypost.WebhookCustomHeader
+
+	switch customHeaders:= inputCustomHeaders.(type) {
+	case []interface{}:
+		for _, inputCustomHeader := range customHeaders {
+			if headerMap, ok := inputCustomHeader.(map[string]interface{}); !ok {
+				return nil, fmt.Errorf("Error parsing custom header: expected a map[string]interface{}, but got %T", inputCustomHeader)
+			} else {
+				var header easypost.WebhookCustomHeader
+
+				if name, ok := headerMap["name"].(string); !ok {
+					return nil, fmt.Errorf("Error parsing custom header name: Missing 'name' key or 'name' is not a string")
+				} else {
+					header.Name = name
+				}
+
+				if value, ok := headerMap["value"].(string); !ok {
+					return nil, fmt.Errorf("Error parsing custom header value: Missing 'value' key or 'value' is not a string")
+				} else {
+					header.Value = value
+				}
+
+				webhookCustomHeaders = append(webhookCustomHeaders, header)
+			}
+		}
+	default:
+		return nil, fmt.Errorf("Error parsing custom header: expected a []interface{}, but got %T", inputCustomHeaders)
+	}
+
+	return webhookCustomHeaders, nil
 }
 
 func (fixture *Fixture) RmaFormOptions() map[string]interface{} {

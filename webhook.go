@@ -10,6 +10,12 @@ import (
 	"net/http"
 )
 
+// WebhookCustomHeader represents a custom header for an EasyPost webhook.
+type WebhookCustomHeader struct{
+	Name string `json:"name" url:"name"`
+	Value string `json:"value" url:"value"`
+}
+
 // A Webhook represents an EasyPost webhook callback URL.
 type Webhook struct {
 	ID            string    `json:"id,omitempty" url:"id,omitempty"`
@@ -18,12 +24,14 @@ type Webhook struct {
 	URL           string    `json:"url,omitempty" url:"url,omitempty"`
 	DisabledAt    *DateTime `json:"disabled_at,omitempty" url:"disabled_at,omitempty"`
 	WebhookSecret string    `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
 // CreateUpdateWebhookOptions is used to specify parameters for creating and updating EasyPost webhooks.
 type CreateUpdateWebhookOptions struct {
 	URL           string `json:"url,omitempty" url:"url,omitempty"`
 	WebhookSecret string `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
 // createUpdateWebhookRequest is the request struct for creating and updating webhooks (internal)
@@ -41,6 +49,7 @@ func (c *Client) composeCreateUpdateWebhookRequest(data *CreateUpdateWebhookOpti
 		Webhook: &Webhook{
 			URL:           data.URL,
 			WebhookSecret: data.WebhookSecret,
+			CustomHeaders: data.CustomHeaders,
 		},
 	}
 }

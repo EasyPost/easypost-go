@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"created_at":"2024-08-02T23:15:49Z","disabled_at":null,"id":"hook_274cd900512511efab04033dfe68619d","mode":"test","object":"Webhook","url":"http://example.com"}'
+    body: '{"created_at":"2025-02-21T00:40:24Z","custom_headers":[],"disabled_at":null,"id":"hook_70160d6cefec11efaf8515c8a5a5b884","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -30,25 +30,27 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
+      X-Canary:
+      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad68a4f440b8c700377b3f
+      - 292b075767b7cb78e58f9e7e0059e4bf
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb41nuq
+      - bigweb32nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb3nuq 51d74985a2
+      - extlb2nuq 99aac35317
       X-Runtime:
-      - "0.149234"
+      - "0.157100"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202502210000-00b5cf2d9e-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -62,7 +64,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_274cd900512511efab04033dfe68619d
+    url: https://api.easypost.com/v2/webhooks/hook_70160d6cefec11efaf8515c8a5a5b884
     method: DELETE
   response:
     body: '{}'
@@ -86,20 +88,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad68a4f440b8c700377b60
+      - 292b075767b7cb78e58f9e7e0059e4f5
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb40nuq
+      - bigweb57nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb4nuq 51d74985a2
+      - extlb2nuq 99aac35317
       X-Runtime:
-      - "0.338220"
+      - "0.338136"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202502210000-00b5cf2d9e-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK
