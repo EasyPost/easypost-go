@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"webhook":{"url":"http://example.com"}}'
+    body: '{"webhook":{"custom_headers":[{"name":"test","value":"header"}],"url":"http://example.com","webhook_secret":"sécret"}}'
     form: {}
     headers:
       Authorization:
@@ -14,7 +14,7 @@ interactions:
     url: https://api.easypost.com/v2/webhooks
     method: POST
   response:
-    body: '{"created_at":"2025-02-21T00:40:24Z","custom_headers":[],"disabled_at":null,"id":"hook_70160d6cefec11efaf8515c8a5a5b884","mode":"test","object":"Webhook","url":"http://example.com"}'
+    body: '{"created_at":"2025-02-21T17:53:10Z","custom_headers":[{"name":"test","value":"header"}],"disabled_at":null,"id":"hook_b6ac6394f07c11ef920a57a0fb874a2b","mode":"test","object":"Webhook","url":"http://example.com"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -30,27 +30,25 @@ interactions:
       - max-age=31536000; includeSubDomains; preload
       X-Backend:
       - easypost
-      X-Canary:
-      - direct
       X-Content-Type-Options:
       - nosniff
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 292b075767b7cb78e58f9e7e0059e4bf
+      - d32ad07f67b8bd86e57d89ba00571f18
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb32nuq
+      - bigweb40nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq 51d74985a2
-      - extlb2nuq 99aac35317
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
       X-Runtime:
-      - "0.157100"
+      - "0.404680"
       X-Version-Label:
-      - easypost-202502210000-00b5cf2d9e-master
+      - easypost-202502211712-417f1a0f64-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -64,7 +62,7 @@ interactions:
       - REDACTED
       User-Agent:
       - REDACTED
-    url: https://api.easypost.com/v2/webhooks/hook_70160d6cefec11efaf8515c8a5a5b884
+    url: https://api.easypost.com/v2/webhooks/hook_b6ac6394f07c11ef920a57a0fb874a2b
     method: DELETE
   response:
     body: '{}'
@@ -88,20 +86,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 292b075767b7cb78e58f9e7e0059e4f5
+      - d32ad07f67b8bd86e57d89ba00571f8f
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb57nuq
+      - bigweb53nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
       - intlb4nuq 51d74985a2
-      - extlb2nuq 99aac35317
+      - extlb1nuq 99aac35317
       X-Runtime:
-      - "0.338136"
+      - "0.328816"
       X-Version-Label:
-      - easypost-202502210000-00b5cf2d9e-master
+      - easypost-202502211712-417f1a0f64-master
       X-Xss-Protection:
       - 1; mode=block
     status: 200 OK

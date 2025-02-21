@@ -14,6 +14,8 @@ func (c *ClientTests) TestWebhookCreate() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
+			WebhookSecret: c.fixture.WebhookSecret(),
+			CustomHeaders: c.fixture.WebhookCustomHeaders(),
 		},
 	)
 	require.NoError(err)
@@ -21,6 +23,7 @@ func (c *ClientTests) TestWebhookCreate() {
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
 	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
+	assert.Equal(c.fixture.WebhookCustomHeaders(), webhook.CustomHeaders)
 
 	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
 	require.NoError(err)
@@ -97,10 +100,18 @@ func (c *ClientTests) TestWebhookUpdate() {
 	)
 	require.NoError(err)
 
-	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.CreateUpdateWebhookOptions{})
+	updatedWebhook, err := client.UpdateWebhook(
+		webhook.ID,
+		&easypost.CreateUpdateWebhookOptions{
+			WebhookSecret: c.fixture.WebhookSecret(),
+			CustomHeaders: c.fixture.WebhookCustomHeaders(),
+		},
+	)
+
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
+	assert.Equal(c.fixture.WebhookCustomHeaders(), updatedWebhook.CustomHeaders)
 
 	err = client.DeleteWebhook(updatedWebhook.ID)
 	require.NoError(err)
@@ -189,116 +200,4 @@ func (c *ClientTests) TestValidateWebhookMissingSecret() {
 
 	_, err := client.ValidateWebhook(c.fixture.EventBody(), headers, webhookSecret)
 	assert.Error(err)
-}
-
-func (c *ClientTests) TestWebhookCreateWithCustomHeaders() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	customHeaders, err := c.fixture.WebhookCustomHeaders()
-	require.NoError(err)
-
-	webhook, err := client.CreateWebhookWithDetails(
-		&easypost.CreateUpdateWebhookOptions{
-			URL:           c.fixture.WebhookUrl(),
-			CustomHeaders: customHeaders,
-		},
-	)
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
-	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
-	assert.Equal(customHeaders, webhook.CustomHeaders)
-
-	err = client.DeleteWebhook(webhook.ID)
-	require.NoError(err)
-}
-
-func (c *ClientTests) TestWebhookUpdateWithCustomHeaders() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	webhook, err := client.CreateWebhookWithDetails(
-		&easypost.CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
-		},
-	)
-	require.NoError(err)
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
-	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
-
-	customHeaders, err := c.fixture.WebhookCustomHeaders()
-	require.NoError(err)
-
-	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
-		&easypost.CreateUpdateWebhookOptions{
-			CustomHeaders: customHeaders,
-		},
-	)
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
-	assert.Equal(customHeaders, updatedWebhook.CustomHeaders)
-
-	err = client.DeleteWebhook(updatedWebhook.ID)
-	require.NoError(err)
-}
-
-func (c *ClientTests) TestWebhookCreateWithCustomHeadersAndSecret() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	customHeaders, err := c.fixture.WebhookCustomHeaders()
-	require.NoError(err)
-
-	webhook, err := client.CreateWebhookWithDetails(
-		&easypost.CreateUpdateWebhookOptions{
-			URL:           c.fixture.WebhookUrl(),
-			WebhookSecret: c.fixture.WebhookSecret(),
-			CustomHeaders: customHeaders,
-		},
-	)
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
-	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
-	assert.Equal(customHeaders, webhook.CustomHeaders)
-
-	err = client.DeleteWebhook(webhook.ID)
-	require.NoError(err)
-}
-
-func (c *ClientTests) TestWebhookUpdateWithCustomHeadersAndSecret() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	webhook, err := client.CreateWebhookWithDetails(
-		&easypost.CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
-		},
-	)
-	require.NoError(err)
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
-	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
-
-	customHeaders, err := c.fixture.WebhookCustomHeaders()
-	require.NoError(err)
-
-	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
-		&easypost.CreateUpdateWebhookOptions{
-			WebhookSecret: c.fixture.WebhookSecret(),
-			CustomHeaders: customHeaders,
-		},
-	)
-	require.NoError(err)
-
-	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
-	assert.Equal(customHeaders, updatedWebhook.CustomHeaders)
-
-	err = client.DeleteWebhook(updatedWebhook.ID)
-	require.NoError(err)
 }
