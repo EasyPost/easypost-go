@@ -31,9 +31,7 @@ type Fixture struct {
 	Shipments                  map[string]*easypost.Shipment              `json:"shipments,omitempty" url:"shipments,omitempty"`
 	TaxIdentifiers             map[string]*easypost.TaxIdentifier         `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
 	Users                      map[string]*easypost.UserOptions           `json:"users,omitempty" url:"users,omitempty"`
-	WebhookHmacSignatureString string                                     `json:"webhook_hmac_signature,omitempty" url:"webhook_hmac_signature,omitempty"`
-	WebhookSecretString        string                                     `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
-	WebhookURL                 string                                     `json:"webhook_url,omitempty" url:"webhook_url,omitempty"`
+	Webhooks 				   map[string]interface{}      	  		  	  `json:"webhooks,omitempty" url:"webhooks,omitempty"`
 }
 
 // Reads fixture data from the fixtures JSON file
@@ -210,15 +208,29 @@ func (fixture *Fixture) EventBody() []byte {
 }
 
 func (fixture *Fixture) WebhookHmacSignature() string {
-	return readFixtureData().WebhookHmacSignatureString
+	return readFixtureData().Webhooks["hmac_signature"].(string)
 }
 
 func (fixture *Fixture) WebhookSecret() string {
-	return readFixtureData().WebhookSecretString
+	return readFixtureData().Webhooks["secret"].(string)
 }
 
 func (fixture *Fixture) WebhookUrl() string {
-	return readFixtureData().WebhookURL
+	return readFixtureData().Webhooks["url"].(string)
+}
+
+func (fixture *Fixture) WebhookCustomHeaders() []easypost.WebhookCustomHeader {
+	var header easypost.WebhookCustomHeader
+
+	inputCustomHeaders := readFixtureData().Webhooks["custom_headers"]
+	customHeaders := inputCustomHeaders.([]interface{})
+	headerMap := customHeaders[0].(map[string]interface{})
+
+	header.Name = headerMap["name"].(string)
+	header.Value = headerMap["value"].(string)
+	webhookCustomHeaders := []easypost.WebhookCustomHeader{header}
+
+	return webhookCustomHeaders
 }
 
 func (fixture *Fixture) RmaFormOptions() map[string]interface{} {

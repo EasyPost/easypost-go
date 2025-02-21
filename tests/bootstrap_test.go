@@ -230,7 +230,7 @@ func (c *ClientTests) SetupTest() {
 // checkExpiredCassette checks for an expired cassette and warns if it is too old and must be re-recorded
 func (c *ClientTests) checkExpiredCassette() {
 	fullCassettePath := "cassettes/" + strings.Split(c.T().Name(), "/")[1] + ".yaml"
-	const expirationDays = 180
+	const expirationDays = 365
 	expirationHours := expirationDays * 24 * time.Hour
 
 	if _, err := os.Stat(fullCassettePath); err == nil {

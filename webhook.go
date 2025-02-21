@@ -10,6 +10,12 @@ import (
 	"net/http"
 )
 
+// WebhookCustomHeader represents a custom header for an EasyPost webhook.
+type WebhookCustomHeader struct{
+	Name string `json:"name" url:"name"`
+	Value string `json:"value" url:"value"`
+}
+
 // A Webhook represents an EasyPost webhook callback URL.
 type Webhook struct {
 	ID            string    `json:"id,omitempty" url:"id,omitempty"`
@@ -18,17 +24,25 @@ type Webhook struct {
 	URL           string    `json:"url,omitempty" url:"url,omitempty"`
 	DisabledAt    *DateTime `json:"disabled_at,omitempty" url:"disabled_at,omitempty"`
 	WebhookSecret string    `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
 // CreateUpdateWebhookOptions is used to specify parameters for creating and updating EasyPost webhooks.
 type CreateUpdateWebhookOptions struct {
 	URL           string `json:"url,omitempty" url:"url,omitempty"`
 	WebhookSecret string `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
-// createUpdateWebhookRequest is the request struct for creating and updating webhooks (internal)
-type createUpdateWebhookRequest struct {
+// createWebhookRequest is the request struct for creating webhooks (internal)
+type createWebhookRequest struct {
 	Webhook *Webhook `json:"webhook,omitempty" url:"webhook,omitempty"`
+}
+
+// updateWebhookRequest is the request struct for updating webhooks (internal)
+type updateWebhookRequest struct {
+	WebhookSecret string `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
 // listWebhooksResult is the response struct of listing webhooks (internal)
@@ -36,13 +50,21 @@ type listWebhooksResult struct {
 	Webhooks *[]*Webhook `json:"webhooks,omitempty" url:"webhooks,omitempty"`
 }
 
-func (c *Client) composeCreateUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *createUpdateWebhookRequest {
-	return &createUpdateWebhookRequest{
+func (c *Client) composeCreateWebhookRequest(data *CreateUpdateWebhookOptions) *createWebhookRequest {
+	return &createWebhookRequest{
 		Webhook: &Webhook{
 			URL:           data.URL,
 			WebhookSecret: data.WebhookSecret,
+			CustomHeaders: data.CustomHeaders,
 		},
 	}
+}
+
+func(c *Client) composeUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *updateWebhookRequest {
+	return &updateWebhookRequest{
+			WebhookSecret: data.WebhookSecret,
+			CustomHeaders: data.CustomHeaders,
+		}
 }
 
 // CreateWebhookWithDetails creates a new webhook with the provided details.
@@ -54,7 +76,7 @@ func (c *Client) CreateWebhookWithDetails(data *CreateUpdateWebhookOptions) (out
 // allows specifying a context that can interrupt the request.
 func (c *Client) CreateWebhookWithDetailsWithContext(ctx context.Context,
 	data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
-	req := c.composeCreateUpdateWebhookRequest(data)
+	req := c.composeCreateWebhookRequest(data)
 	err = c.do(ctx, http.MethodPost, "webhooks", req, &out)
 	return
 }
@@ -93,7 +115,7 @@ func (c *Client) UpdateWebhook(webhookID string, data *CreateUpdateWebhookOption
 // allows specifying a context that can interrupt the request.
 func (c *Client) UpdateWebhookWithContext(ctx context.Context,
 	webhookID string, data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
-	req := c.composeCreateUpdateWebhookRequest(data)
+	req := c.composeUpdateWebhookRequest(data)
 	err = c.do(ctx, http.MethodPatch, "webhooks/"+webhookID, req, &out)
 	return
 }

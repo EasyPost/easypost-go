@@ -14,6 +14,8 @@ func (c *ClientTests) TestWebhookCreate() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
+			WebhookSecret: c.fixture.WebhookSecret(),
+			CustomHeaders: c.fixture.WebhookCustomHeaders(),
 		},
 	)
 	require.NoError(err)
@@ -21,6 +23,7 @@ func (c *ClientTests) TestWebhookCreate() {
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
 	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
+	assert.Equal(c.fixture.WebhookCustomHeaders(), webhook.CustomHeaders)
 
 	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
 	require.NoError(err)
@@ -97,10 +100,18 @@ func (c *ClientTests) TestWebhookUpdate() {
 	)
 	require.NoError(err)
 
-	updatedWebhook, err := client.UpdateWebhook(webhook.ID, &easypost.CreateUpdateWebhookOptions{})
+	updatedWebhook, err := client.UpdateWebhook(
+		webhook.ID,
+		&easypost.CreateUpdateWebhookOptions{
+			WebhookSecret: c.fixture.WebhookSecret(),
+			CustomHeaders: c.fixture.WebhookCustomHeaders(),
+		},
+	)
+
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&easypost.Webhook{}), reflect.TypeOf(updatedWebhook))
+	assert.Equal(c.fixture.WebhookCustomHeaders(), updatedWebhook.CustomHeaders)
 
 	err = client.DeleteWebhook(updatedWebhook.ID)
 	require.NoError(err)
@@ -113,7 +124,7 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 	webhook, err := client.CreateWebhookWithDetails(
 		&easypost.CreateUpdateWebhookOptions{
 			URL:           c.fixture.WebhookUrl(),
-			WebhookSecret: "123",
+			WebhookSecret: c.fixture.WebhookSecret(),
 		},
 	)
 	require.NoError(err)
@@ -139,7 +150,7 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 
 	updatedWebhook, err := client.UpdateWebhook(webhook.ID,
 		&easypost.CreateUpdateWebhookOptions{
-			WebhookSecret: "123",
+			WebhookSecret: c.fixture.WebhookSecret(),
 		},
 	)
 	require.NoError(err)
@@ -182,7 +193,7 @@ func (c *ClientTests) TestValidateWebhookMissingSecret() {
 	client := c.TestClient()
 	assert := c.Assert()
 
-	webhookSecret := "123"
+	webhookSecret := c.fixture.WebhookSecret()
 	headers := map[string]interface{}{
 		"some-header": "some-value",
 	}
