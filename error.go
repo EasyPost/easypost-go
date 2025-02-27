@@ -3,33 +3,24 @@ package easypost
 import (
 	"encoding/json"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"strings"
 )
 
-// Error represents an Error object returned by the EasyPost API.
-//
-// These are typically informational about why a request failed (server-side validation issues, missing data, etc.).
-//
-// This is different from the LibraryError class, which represents exceptions in the EasyPost library, such as bad HTTP status codes or local validation issues.
-type Error struct {
-	// Code is a machine-readable code of the problem encountered.
-	Code string `json:"code,omitempty" url:"code,omitempty"`
-	// Errors may be provided if there are multiple errors, for example if
-	// multiple fields have invalid values.
-	Errors []*Error `json:"errors,omitempty" url:"errors,omitempty"`
-	// Field may be provided when the error relates to a specific field.
-	Field string `json:"field,omitempty" url:"field,omitempty"`
-	// Message is a human-readable description of the problem encountered.
-	Message interface{} `json:"message,omitempty" url:"message,omitempty"`
-	// Suggestion may be provided if the API can provide a suggestion to fix
-	// the error.
-	Suggestion string `json:"suggestion,omitempty" url:"suggestion,omitempty"`
+// LibraryError is the base type for all errors/exceptions in this EasyPost library.
+type LibraryError struct {
+	// Message is a human-readable error description.
+	Message interface{}
 }
 
-func (e *Error) UnmarshalJSON(data []byte) error {
-	type alias Error
+// Error provides a pretty printed string of a LibraryError object.
+func (e *LibraryError) Error() string {
+	return e.Message.(string)
+}
+
+func (e *LibraryError) UnmarshalJSON(data []byte) error {
+	type alias LibraryError
 	tmpError := &struct {
 		Message interface{} `json:"message,omitempty" url:"message,omitempty"`
 		*alias
@@ -63,28 +54,6 @@ func collectMessages(data interface{}, messages []string) []string {
 	}
 
 	return messages
-}
-
-// Error provides a pretty printed string of an Error object based on present data.
-func (e *Error) Error() string {
-	if e.Message != "" {
-		if e.Code != "" {
-			return e.Code + " " + e.Message.(string)
-		}
-		return e.Message.(string)
-	}
-	return e.Code
-}
-
-// LibraryError is the base type for all errors/exceptions in this EasyPost library.
-type LibraryError struct {
-	// Message is a human-readable error description.
-	Message string
-}
-
-// Error provides a pretty printed string of a LibraryError object.
-func (e *LibraryError) Error() string {
-	return e.Message
 }
 
 // Local error types
@@ -241,26 +210,40 @@ func newInvalidFunctionError(message string) *InvalidFunctionError {
 //
 // This is typically due to a specific HTTP status code, such as 4xx or 5xx.
 //
-// This is different from the Error class, which represents information about what triggered the failed request.
-//
-// The information from the top-level Error class is used to generate this error, and any sub-errors are stored in the Errors field.
+// The information from the top-level `error` key is used to generate this error, and any sub-errors are stored in the Errors field.
 type APIError struct {
 	LibraryError // subtype of LibraryError
 	// Code is a machine-readable status of the problem encountered.
-	Code string
+	Code string `json:"code,omitempty" url:"code,omitempty"`
 	// StatusCode is the HTTP numerical status code of the response.
 	StatusCode int
 	// Errors may be provided if there are details about server-side issues that caused the API request to fail.
-	Errors []*Error `json:"errors,omitempty" url:"errors,omitempty"`
+	Errors interface{} `json:"errors,omitempty" url:"errors,omitempty"`
 }
 
 // Error provides a pretty printed string of an APIError object based on present data.
 func (e *APIError) Error() string {
-	if e.Message != "" {
-		if e.Code != "" {
-			return e.Code + " " + e.Message
+	var message string
+	switch msg := e.Message.(type) {
+	case string:
+		message = msg
+	case []interface{}:
+		var messages []string
+		for _, m := range msg {
+			messages = append(messages, fmt.Sprint(m))
 		}
-		return e.Message
+		message = strings.Join(messages, ", ")
+	case map[string]interface{}:
+		message = extractMessagesFromMap(msg)
+	default:
+		message = fmt.Sprint(msg)
+	}
+
+	if message != "" {
+		if e.Code != "" {
+			return e.Code + " " + message
+		}
+		return message
 	}
 	if e.Code != "" {
 		return e.Code
@@ -268,8 +251,39 @@ func (e *APIError) Error() string {
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Code)
 }
 
+func extractMessagesFromMap(m map[string]interface{}) string {
+	var messages []string
+	for _, v := range m {
+		switch val := v.(type) {
+		case string:
+			messages = append(messages, val)
+		case []interface{}:
+			for _, item := range val {
+				messages = append(messages, fmt.Sprint(item))
+			}
+		case map[string]interface{}:
+			messages = append(messages, extractMessagesFromMap(val))
+		default:
+			messages = append(messages, fmt.Sprint(val))
+		}
+	}
+	return strings.Join(messages, ", ")
+}
+
 func (e *APIError) Unwrap() error {
 	return &e.LibraryError
+}
+
+// FieldError represents a FieldError object returned by the EasyPost API.
+//
+// These are typically informational about why a request failed (server-side validation issues, missing data, etc.).
+type FieldError struct {
+	// Field may be provided when the error relates to a specific field.
+	Field string `json:"field,omitempty" url:"field,omitempty"`
+	// Message is a human-readable description of the problem encountered.
+	Message interface{} `json:"message,omitempty" url:"message,omitempty"`
+	// Suggestion is an occasional insight on how to correct the error
+	Suggestion string `json:"suggestion,omitempty" url:"suggestion,omitempty"`
 }
 
 // BadRequestError is raised when the API returns a 400 status code.
@@ -461,16 +475,48 @@ func BuildErrorFromResponse(response *http.Response) error {
 	}
 
 	// deserialize the response body into a temporary object
-	buf, _ := ioutil.ReadAll(response.Body)
+	buf, _ := io.ReadAll(response.Body)
 	tmpError := &struct {
-		Error *Error `json:"error,omitempty" url:"error,omitempty"`
+		Error *struct {
+			Code    string      `json:"code,omitempty"`
+			Message interface{} `json:"message,omitempty"`
+			Errors  interface{} `json:"errors,omitempty"`
+		} `json:"error,omitempty"`
 	}{}
 
 	if json.Unmarshal(buf, &tmpError) == nil {
 		// extract the details from the temporary object (top-level Error class) and store them in the APIError object
-		apiError.Message = tmpError.Error.Message.(string)
-		apiError.Code = tmpError.Error.Code
-		apiError.Errors = tmpError.Error.Errors
+		if tmpError.Error != nil {
+			apiError.Code = tmpError.Error.Code
+			apiError.Message = tmpError.Error.Message
+			if tmpError.Error.Errors != nil {
+				switch errors := tmpError.Error.Errors.(type) {
+				case []interface{}:
+					var errorList []interface{}
+					for _, err := range errors {
+						switch err := err.(type) {
+						case map[string]interface{}:
+							fieldError := &FieldError{}
+							if field, ok := err["field"].(string); ok {
+								fieldError.Field = field
+							}
+							if message, ok := err["message"].(string); ok {
+								fieldError.Message = message
+							}
+							if suggestion, ok := err["suggestion"].(string); ok {
+								fieldError.Suggestion = suggestion
+							}
+							errorList = append(errorList, fieldError)
+						default:
+							errorList = append(errorList, fmt.Sprint(err))
+						}
+					}
+					apiError.Errors = errorList
+				default:
+					apiError.Errors = errors
+				}
+			}
+		}
 	} else {
 		// could not extract error details from the API response (or API did not return data, i.e. 1xx, 3xx or 5xx)
 		if response.Status == "" {
@@ -478,7 +524,7 @@ func BuildErrorFromResponse(response *http.Response) error {
 		}
 		apiError.Message = response.Status
 		apiError.Code = ApiErrorDetailsParsingError
-		apiError.Errors = []*Error{}
+		apiError.Errors = []*FieldError{}
 	}
 
 	// return the appropriate error type based on the status code

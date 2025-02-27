@@ -1,9 +1,10 @@
 package easypost_test
 
 import (
-	"github.com/EasyPost/easypost-go/v4"
 	"reflect"
 	"strings"
+
+	"github.com/EasyPost/easypost-go/v4"
 )
 
 func (c *ClientTests) TestAddressCreate() {
@@ -116,7 +117,27 @@ func (c *ClientTests) TestAddressCreateVerify() {
 	// Does return an address from CreateAddress even if requested verification fails
 	require.NoError(err)
 	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
-	assert.NotNil(address.Verifications.Delivery)
+
+	// Delivery verification assertions
+	deliveryVerification := address.Verifications.Delivery
+	assert.False(deliveryVerification.Success)
+	assert.Empty(deliveryVerification.Details)
+	deliveryError := deliveryVerification.Errors[0]
+	assert.Equal("E.ADDRESS.NOT_FOUND", deliveryError.Code)
+	assert.Equal("address", deliveryError.Field)
+	assert.Empty(deliveryError.Suggestion)
+	assert.Equal("Address not found", deliveryError.Message)
+
+	// TODO: Once we send booleans instead of strings, the following will populate on the response
+	// ZIP4 verification assertions
+	// zip4Verification := address.Verifications.ZIP4
+	// assert.False(zip4Verification.Success)
+	// assert.Nil(zip4Verification.Details)
+	// zip4Error := zip4Verification.Errors[0]
+	// assert.Equal("E.ADDRESS.NOT_FOUND", zip4Error.Code)
+	// assert.Equal("address", zip4Error.Field)
+	// assert.Nil(zip4Error.Suggestion)
+	// assert.Equal("Address not found", zip4Error.Message)
 }
 
 func (c *ClientTests) TestAddressCreateAndVerify() {
