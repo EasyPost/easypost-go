@@ -227,14 +227,9 @@ func (e *APIError) Error() string {
 	switch msg := e.Message.(type) {
 	case string:
 		message = msg
-	case []interface{}:
-		var messages []string
-		for _, m := range msg {
-			messages = append(messages, fmt.Sprint(m))
-		}
+	case []interface{}, map[string]interface{}:
+		messages := collectMessages(msg, []string{})
 		message = strings.Join(messages, ", ")
-	case map[string]interface{}:
-		message = extractMessagesFromMap(msg)
 	default:
 		message = fmt.Sprint(msg)
 	}
@@ -249,25 +244,6 @@ func (e *APIError) Error() string {
 		return e.Code
 	}
 	return fmt.Sprintf("%d %s", e.StatusCode, e.Code)
-}
-
-func extractMessagesFromMap(m map[string]interface{}) string {
-	var messages []string
-	for _, v := range m {
-		switch val := v.(type) {
-		case string:
-			messages = append(messages, val)
-		case []interface{}:
-			for _, item := range val {
-				messages = append(messages, fmt.Sprint(item))
-			}
-		case map[string]interface{}:
-			messages = append(messages, extractMessagesFromMap(val))
-		default:
-			messages = append(messages, fmt.Sprint(val))
-		}
-	}
-	return strings.Join(messages, ", ")
 }
 
 func (e *APIError) Unwrap() error {
