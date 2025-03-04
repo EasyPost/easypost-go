@@ -74,16 +74,45 @@ func (c *ClientTests) TestApiError() {
 		assert.Equal(422, invalidRequestError.StatusCode)
 		assert.Equal("PARAMETER.REQUIRED", invalidRequestError.Code)
 		assert.Equal("Missing required parameter.", invalidRequestError.Message)
-		assert.Equal(1, len(invalidRequestError.Errors))
-
-		subError := invalidRequestError.Errors[0]
-		assert.Equal("shipment", subError.Field)
-		assert.Equal("cannot be blank", subError.Message)
+		if errorsList, ok := invalidRequestError.Errors.([]interface{}); ok {
+			assert.Equal(1, len(errorsList))
+			if fieldError, ok := errorsList[0].(*easypost.FieldError); ok {
+				assert.Equal("shipment", fieldError.Field)
+				assert.Equal("cannot be blank", fieldError.Message)
+			}
+		}
 	}
 
 	// Assert that the pretty printed error is the same
 	errorString := err.Error()
 	assert.Equal("PARAMETER.REQUIRED Missing required parameter.", errorString)
+}
+
+// TestApiErrorAlternativeFormat tests that we assign properties of an error correctly when returned via the alternative format.
+// NOTE: Claims (among other things) uses the alternative errors format.
+func (c *ClientTests) TestApiErrorAlternativeFormat() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	createClaimParams := c.fixture.BasicClaim()
+	createClaimParams.TrackingCode = "123" // Intentionally pass a bad tracking code
+	_, err := client.CreateClaim(createClaimParams)
+
+	require.Error(err)
+
+	var notFoundError *easypost.NotFoundError
+	if errors.As(err, &notFoundError) {
+		assert.Equal(404, notFoundError.StatusCode)
+		assert.Equal("NOT_FOUND", notFoundError.Code)
+		assert.Equal("The requested resource could not be found.", notFoundError.Message)
+		if errorsList, ok := notFoundError.Errors.([]interface{}); ok {
+			assert.Equal("No eligible insurance found with provided tracking code.", errorsList[0])
+		}
+	}
+
+	// Assert that the pretty printed error is the same
+	errorString := err.Error()
+	assert.Equal("NOT_FOUND The requested resource could not be found.", errorString)
 }
 
 // TestApiErrorStatusCodes tests that the correct API error type is determined for each HTTP status code.

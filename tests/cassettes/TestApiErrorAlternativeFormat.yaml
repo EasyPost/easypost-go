@@ -1,0 +1,59 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"contact_email":"test@example.com","description":"Test description","email_evidence_attachments":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAeUlEQVR42mP8//8/AwAI/AL+4Q7AIAAAAABJRU5ErkJggg=="],"invoice_attachments":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAeUlEQVR42mP8//8/AwAI/AL+4Q7AIAAAAABJRU5ErkJggg=="],"supporting_documentation_attachments":["data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAIAAACQkWg2AAAAeUlEQVR42mP8//8/AwAI/AL+4Q7AIAAAAABJRU5ErkJggg=="],"tracking_code":"123","type":"damage"}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/claims
+    method: POST
+  response:
+    body: '{"error":{"code":"NOT_FOUND","errors":["No eligible insurance found with
+      provided tracking code."],"message":"The requested resource could not be found."}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 170c76b967c0e1a9e7799809003a02b6
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb43nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4nuq 51d74985a2
+      - extlb1nuq 99aac35317
+      X-Runtime:
+      - "0.032280"
+      X-Version-Label:
+      - easypost-202502272156-9473ccb478-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 404 Not Found
+    code: 404
+    duration: ""

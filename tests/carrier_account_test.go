@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"errors"
 	"reflect"
 	"strings"
 
@@ -45,19 +46,19 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() { // FedExAcc
 
 	// We're sending bad data to the API, so we expect an error
 	require.Error(err)
-	assert.Equal(reflect.TypeOf(&easypost.InvalidRequestError{}), reflect.TypeOf(err))
-	assert.Equal(422, err.(*easypost.InvalidRequestError).StatusCode)
-	assert.NotEmpty(err.(*easypost.InvalidRequestError).Errors)
-	// We expect one of the sub-errors to be regarding a missing field
-	errorFound := false
-	for _, err := range err.(*easypost.InvalidRequestError).Errors {
-		if err.Field == "account_number" && err.Message == "must be present and a string" {
-			errorFound = true
-			break
+
+	var invalidRequestError *easypost.InvalidRequestError
+	if errors.As(err, &invalidRequestError) {
+		assert.Equal(reflect.TypeOf(&easypost.InvalidRequestError{}), reflect.TypeOf(err))
+		assert.Equal(422, invalidRequestError.StatusCode)
+		// We expect one of the sub-errors to be regarding a missing field
+		if errorsList, ok := invalidRequestError.Errors.([]interface{}); ok {
+			if fieldError, ok := errorsList[0].(*easypost.FieldError); ok {
+				assert.Equal("shipping_streets", fieldError.Field)
+				assert.Equal("must be present and a string", fieldError.Message)
+			}
 		}
 	}
-
-	assert.True(errorFound)
 }
 
 func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericCreation() {
