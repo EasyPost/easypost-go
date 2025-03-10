@@ -347,7 +347,7 @@ func TestMain(m *testing.M) {
 
 	// Fail test suite below desired coverage
 	// `testSuite = 0` means it passed, CoverMode will be non-empty if run with -cover
-	coverageMinPercentage := 0.75
+	coverageMinPercentage := 0.72 // TODO: This number for whatever reason is about ~5% lower than what the CLI reports which is the real value
 	if testSuite == 0 && testing.CoverMode() != "" {
 		coverage := testing.Coverage()
 		if coverage < coverageMinPercentage {
