@@ -112,7 +112,7 @@ func (c *Client) GetNextClaimPageWithContext(ctx context.Context, collection *Li
 // GetNextClaimPageWithPageSizeWithContext performs the same operation as GetNextClaimPageWithPageSize, but allows specifying a context that can interrupt the request.
 func (c *Client) GetNextClaimPageWithPageSizeWithContext(ctx context.Context, collection *ListClaimsResult, pageSize int) (out *ListClaimsResult, err error) {
 	if len(collection.Claims) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Claims[len(collection.Claims)-1].ID

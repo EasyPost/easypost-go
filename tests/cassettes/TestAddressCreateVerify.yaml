@@ -3,7 +3,7 @@ version: 1
 interactions:
 - request:
     body: '{"address":{"city":"Not A City","company":"EasyPost","country":"US","email":"REDACTED","phone":"REDACTED","state":"ZZ","street1":"000
-      unknown street","zip":"00001"},"verify":["delivery"]}'
+      unknown street","zip":"00001"},"verify":true}'
     form: {}
     headers:
       Authorization:
@@ -15,8 +15,9 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2024-08-02T23:14:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_f2bb149f512411efaf78ac1f6bc539aa","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
-      unknown street","street2":null,"updated_at":"2024-08-02T23:14:20+00:00","verifications":{"delivery":{"details":{},"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2025-03-10T17:15:52+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_52215b77fdd311ef921e3cecef1b359e","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
+      unknown street","street2":null,"updated_at":"2025-03-10T17:15:52+00:00","verifications":{"delivery":{"details":{},"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null}],"success":false},"zip4":{"details":null,"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
       not found","suggestion":null}],"success":false}},"zip":"00001"}'
     headers:
       Cache-Control:
@@ -26,7 +27,7 @@ interactions:
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_f2bb149f512411efaf78ac1f6bc539aa
+      - /api/v2/addresses/adr_52215b77fdd311ef921e3cecef1b359e
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -40,20 +41,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad684cf440b8c700373d0d
+      - 5e8f8c3f67cf1e48e2b8598a005f0491
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb39nuq
+      - bigweb42nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb4nuq 324e75def6
+      - extlb1nuq 99aac35317
       X-Runtime:
-      - "0.059374"
+      - "0.046199"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202503101638-abd43954e2-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created

@@ -149,7 +149,7 @@ func (c *Client) GetNextChildUserPageWithContext(ctx context.Context, collection
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextChildUserPageWithPageSizeWithContext(ctx context.Context, collection *ListChildUsersResult, pageSize int) (out *ListChildUsersResult, err error) {
 	if len(collection.Children) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Children[len(collection.Children)-1].ID
@@ -161,13 +161,13 @@ func (c *Client) GetNextChildUserPageWithPageSizeWithContext(ctx context.Context
 }
 
 // UpdateBrand updates the user brand.
-func (c *Client) UpdateBrand(params map[string]interface{}, userID string) (out *Brand, err error) {
-	return c.UpdateBrandWithContext(context.Background(), params, userID)
+func (c *Client) UpdateBrand(userID string, params map[string]interface{}) (out *Brand, err error) {
+	return c.UpdateBrandWithContext(context.Background(), userID, params)
 }
 
 // UpdateBrandWithContext performs the same operation as UpdateBrand, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) UpdateBrandWithContext(ctx context.Context, params map[string]interface{}, userID string) (out *Brand, err error) {
+func (c *Client) UpdateBrandWithContext(ctx context.Context, userID string, params map[string]interface{}) (out *Brand, err error) {
 	newParams := map[string]interface{}{"brand": params}
 	updateBrandURL := fmt.Sprintf("users/%s/brand", userID)
 	err = c.do(ctx, http.MethodPatch, updateBrandURL, newParams, &out)

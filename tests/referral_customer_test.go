@@ -141,7 +141,11 @@ func (c *ClientTests) TestReferralCustomersGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
-		return
+		var endOfPaginationErr *easypost.EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
 	}
 }

@@ -1,6 +1,8 @@
 package easypost_test
 
 import (
+	"errors"
+
 	"github.com/EasyPost/easypost-go/v4"
 )
 
@@ -25,8 +27,12 @@ func (c *ClientTests) TestGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
-		return
+		var endOfPaginationErr *easypost.EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
 	}
 }
 
@@ -53,8 +59,12 @@ func (c *ClientTests) TestGetNextPageWithPageSize() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
-		return
+		var endOfPaginationErr *easypost.EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
 	}
 }
 
@@ -87,7 +97,8 @@ func (c *ClientTests) TestGetNextPageReachEnd() {
 	for {
 		addresses, err = client.GetNextAddressPage(addresses)
 		if err != nil {
-			if err.Error() == easypost.NoPagesLeftToRetrieve {
+			var endOfPaginationErr *easypost.EndOfPaginationError
+			if errors.As(err, &endOfPaginationErr) {
 				hitEnd = true
 			} else {
 				require.NoError(err)

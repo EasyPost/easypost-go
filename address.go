@@ -65,9 +65,8 @@ type Address struct {
 // CreateAddressOptions is used to specify verification options for address
 // creation.
 type CreateAddressOptions struct {
-	// TODO: These should be booleans, not strings, like the other libs
-	Verify       []string `json:"verify,omitempty" url:"verify,omitempty"`
-	VerifyStrict []string `json:"verify_strict,omitempty" url:"verify_strict,omitempty"`
+	Verify       bool `json:"verify,omitempty" url:"verify,omitempty"`
+	VerifyStrict bool `json:"verify_strict,omitempty" url:"verify_strict,omitempty"`
 }
 
 type createAddressRequest struct {
@@ -151,7 +150,7 @@ func (c *Client) GetNextAddressPageWithContext(ctx context.Context, collection *
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextAddressPageWithPageSizeWithContext(ctx context.Context, collection *ListAddressResult, pageSize int) (out *ListAddressResult, err error) {
 	if len(collection.Addresses) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Addresses[len(collection.Addresses)-1].ID
