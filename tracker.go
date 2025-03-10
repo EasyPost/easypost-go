@@ -86,6 +86,7 @@ type ListTrackersOptions struct {
 	EndDateTime   *DateTime `json:"end_datetime,omitempty" url:"end_datetime,omitempty"`
 	PageSize      int       `json:"page_size,omitempty" url:"page_size,omitempty"`
 	TrackingCode  string    `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
+	TrackingCodes []string  `json:"tracking_codes,omitempty" url:"tracking_codes,omitempty"`
 	Carrier       string    `json:"carrier,omitempty" url:"carrier,omitempty"`
 }
 
