@@ -15,8 +15,8 @@ interactions:
     url: https://api.easypost.com/v2/addresses
     method: POST
   response:
-    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2024-08-02T23:14:20+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_f2a0d4c2512411efbfedac1f6bc53342","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
-      unknown street","street2":null,"updated_at":"2024-08-02T23:14:20+00:00","verifications":{},"zip":"00001"}'
+    body: '{"carrier_facility":null,"city":"Not A City","company":"EasyPost","country":"US","created_at":"2025-03-10T17:15:52+00:00","email":"REDACTED","federal_tax_id":null,"id":"adr_51f597c4fdd311ef9b7eac1f6bc53342","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
+      unknown street","street2":null,"updated_at":"2025-03-10T17:15:52+00:00","verifications":{},"zip":"00001"}'
     headers:
       Cache-Control:
       - private, no-cache, no-store
@@ -25,7 +25,7 @@ interactions:
       Expires:
       - "0"
       Location:
-      - /api/v2/addresses/adr_f2a0d4c2512411efbfedac1f6bc53342
+      - /api/v2/addresses/adr_51f597c4fdd311ef9b7eac1f6bc53342
       Pragma:
       - no-cache
       Referrer-Policy:
@@ -39,20 +39,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad684cf440b8c700373ceb
+      - 5e8f8c3f67cf1e48e2b8598a005f0416
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb35nuq
+      - bigweb38nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb3nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb3nuq 324e75def6
+      - extlb1nuq 99aac35317
       X-Runtime:
-      - "0.059451"
+      - "0.028490"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202503101638-abd43954e2-master
       X-Xss-Protection:
       - 1; mode=block
     status: 201 Created
@@ -60,7 +60,7 @@ interactions:
     duration: ""
 - request:
     body: '{"address":{"city":"Not A City","company":"EasyPost","country":"US","email":"REDACTED","phone":"REDACTED","state":"ZZ","street1":"000
-      unknown street","zip":"00001"},"verify":["delivery"]}'
+      unknown street","zip":"00001"},"verify":true}'
     form: {}
     headers:
       Authorization:
@@ -94,20 +94,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - 4d57346d66ad684cf440b8c700373cfc
+      - 5e8f8c3f67cf1e48e2b8598a005f0434
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - bigweb40nuq
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq c0f5e722d1
-      - extlb2nuq fa152d4755
+      - intlb3nuq 324e75def6
+      - extlb1nuq 99aac35317
       X-Runtime:
-      - "0.034481"
+      - "0.173402"
       X-Version-Label:
-      - easypost-202408021936-66687f8918-master
+      - easypost-202503101638-abd43954e2-master
       X-Xss-Protection:
       - 1; mode=block
     status: 422 Unprocessable Entity

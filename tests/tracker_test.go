@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"errors"
 	"reflect"
 	"strings"
 
@@ -85,7 +86,11 @@ func (c *ClientTests) TestTrackersGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
-		return
+		var endOfPaginationErr *easypost.EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
 	}
 }

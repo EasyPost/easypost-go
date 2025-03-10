@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"errors"
 	"reflect"
 	"strings"
 
@@ -91,8 +92,12 @@ func (c *ClientTests) TestUserGetNextChildUserPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
-		return
+		var endOfPaginationErr *easypost.EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
 	}
 }
 
@@ -128,10 +133,10 @@ func (c *ClientTests) TestUserUpdateBrand() {
 	require.NoError(err)
 
 	brand, err := client.UpdateBrand(
+		user.ID,
 		map[string]interface{}{
 			"color": color,
 		},
-		user.ID,
 	)
 	require.NoError(err)
 

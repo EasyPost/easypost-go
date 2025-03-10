@@ -1,6 +1,7 @@
 package easypost_test
 
 import (
+	"errors"
 	"reflect"
 	"strings"
 
@@ -29,7 +30,7 @@ func (c *ClientTests) TestAddressCreateVerifyStrict() {
 	address, err := client.CreateAddress(
 		c.fixture.CaAddress1(),
 		&easypost.CreateAddressOptions{
-			VerifyStrict: []string{"true"},
+			VerifyStrict: true,
 		},
 	)
 	require.NoError(err)
@@ -97,8 +98,12 @@ func (c *ClientTests) TestAddressGetNextPage() {
 		}
 	}()
 	if err != nil {
-		assert.Equal(err.Error(), easypost.EndOfPaginationError.Error())
-		return
+		var endOfPaginationErr *easypost.EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
 	}
 }
 
@@ -110,7 +115,7 @@ func (c *ClientTests) TestAddressCreateVerify() {
 	address, err := client.CreateAddress(
 		c.fixture.IncorrectAddress(),
 		&easypost.CreateAddressOptions{
-			Verify: []string{"delivery"},
+			Verify: true,
 		},
 	)
 
@@ -128,16 +133,15 @@ func (c *ClientTests) TestAddressCreateVerify() {
 	assert.Empty(deliveryError.Suggestion)
 	assert.Equal("Address not found", deliveryError.Message)
 
-	// TODO: Once we send booleans instead of strings, the following will populate on the response
 	// ZIP4 verification assertions
-	// zip4Verification := address.Verifications.ZIP4
-	// assert.False(zip4Verification.Success)
-	// assert.Nil(zip4Verification.Details)
-	// zip4Error := zip4Verification.Errors[0]
-	// assert.Equal("E.ADDRESS.NOT_FOUND", zip4Error.Code)
-	// assert.Equal("address", zip4Error.Field)
-	// assert.Nil(zip4Error.Suggestion)
-	// assert.Equal("Address not found", zip4Error.Message)
+	zip4Verification := address.Verifications.ZIP4
+	assert.False(zip4Verification.Success)
+	assert.Nil(zip4Verification.Details)
+	zip4Error := zip4Verification.Errors[0]
+	assert.Equal("E.ADDRESS.NOT_FOUND", zip4Error.Code)
+	assert.Equal("address", zip4Error.Field)
+	assert.Equal("", zip4Error.Suggestion)
+	assert.Equal("Address not found", zip4Error.Message)
 }
 
 func (c *ClientTests) TestAddressCreateAndVerify() {
@@ -158,7 +162,7 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 	address, err = client.CreateAndVerifyAddress(
 		c.fixture.IncorrectAddress(),
 		&easypost.CreateAddressOptions{
-			Verify: []string{"delivery"},
+			Verify: true,
 		},
 	)
 
