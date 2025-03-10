@@ -2,7 +2,6 @@ package easypost
 
 import (
 	"io"
-	"io/ioutil"
 	"net/http"
 	"regexp"
 	"strings"
@@ -19,7 +18,7 @@ type MockRequestResponseInfo struct {
 }
 
 func (r *MockRequestResponseInfo) MockBody() io.ReadCloser {
-	return ioutil.NopCloser(strings.NewReader(r.Body))
+	return io.NopCloser(strings.NewReader(r.Body))
 }
 
 type MockRequest struct {
