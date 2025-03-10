@@ -17,7 +17,7 @@ clean:
 
 ## coverage - Get test coverage and open it in a browser
 coverage: 
-	go clean -testcache && go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
+	go clean -testcache && GOEXPERIMENT=nocoverageredesign go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
 ## init-examples-submodule - Initialize the examples submodule
 init-examples-submodule:
