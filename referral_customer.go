@@ -4,7 +4,6 @@ import (
 	"context"
 	"encoding/json"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"strings"
@@ -102,7 +101,7 @@ func (c *Client) GetNextReferralCustomerPageWithContext(ctx context.Context, col
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextReferralCustomerPageWithPageSizeWithContext(ctx context.Context, collection *ListReferralCustomersResult, pageSize int) (out *ListReferralCustomersResult, err error) {
 	if len(collection.ReferralCustomers) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.ReferralCustomers[len(collection.ReferralCustomers)-1].ID
@@ -185,7 +184,7 @@ func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, cre
 		_ = Body.Close()
 	}(resp.Body)
 
-	body, err := ioutil.ReadAll(resp.Body) // deprecated, but we have to keep it for legacy compatibility
+	body, err := io.ReadAll(resp.Body) // deprecated, but we have to keep it for legacy compatibility
 	if err != nil {
 		return nil, err
 	}

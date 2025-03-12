@@ -16,8 +16,8 @@ clean:
 	rm $(GO_BIN)/$(PROJECT_NAME)
 
 ## coverage - Get test coverage and open it in a browser
-coverage: 
-	go clean -testcache && go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
+coverage:
+	go clean -testcache && GOEXPERIMENT=nocoverageredesign go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
 
 ## init-examples-submodule - Initialize the examples submodule
 init-examples-submodule:
@@ -26,7 +26,7 @@ init-examples-submodule:
 
 ## install - Install and vendor dependencies
 install: | init-examples-submodule
-	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO_BIN) v1.60.1
+	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(GO_BIN) v1.64.6
 	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(GO_BIN)
 	go mod vendor
 

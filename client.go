@@ -6,14 +6,14 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/google/go-querystring/query"
-	"github.com/google/uuid"
 	"io"
-	"io/ioutil"
 	"net/http"
 	"net/url"
 	"runtime"
 	"time"
+
+	"github.com/google/go-querystring/query"
+	"github.com/google/uuid"
 )
 
 var apiBaseURL = &url.URL{
@@ -109,9 +109,9 @@ func (c *Client) setParameters(req *http.Request, params interface{}) error {
 		if err != nil {
 			return err
 		}
-		req.Body = ioutil.NopCloser(bytes.NewReader(buf))
+		req.Body = io.NopCloser(bytes.NewReader(buf))
 		req.GetBody = func() (io.ReadCloser, error) {
-			return ioutil.NopCloser(bytes.NewReader(buf)), nil
+			return io.NopCloser(bytes.NewReader(buf)), nil
 		}
 		req.Header.Set("Content-Type", "application/json")
 		// Setting Content-Length avoids chunked encoding, which the API

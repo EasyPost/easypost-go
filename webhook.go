@@ -6,31 +6,32 @@ import (
 	"crypto/sha256"
 	"encoding/hex"
 	"encoding/json"
-	"golang.org/x/text/unicode/norm"
 	"net/http"
+
+	"golang.org/x/text/unicode/norm"
 )
 
 // WebhookCustomHeader represents a custom header for an EasyPost webhook.
-type WebhookCustomHeader struct{
-	Name string `json:"name" url:"name"`
+type WebhookCustomHeader struct {
+	Name  string `json:"name" url:"name"`
 	Value string `json:"value" url:"value"`
 }
 
 // A Webhook represents an EasyPost webhook callback URL.
 type Webhook struct {
-	ID            string    `json:"id,omitempty" url:"id,omitempty"`
-	Object        string    `json:"object,omitempty" url:"object,omitempty"`
-	Mode          string    `json:"mode,omitempty" url:"mode,omitempty"`
-	URL           string    `json:"url,omitempty" url:"url,omitempty"`
-	DisabledAt    *DateTime `json:"disabled_at,omitempty" url:"disabled_at,omitempty"`
-	WebhookSecret string    `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	ID            string                `json:"id,omitempty" url:"id,omitempty"`
+	Object        string                `json:"object,omitempty" url:"object,omitempty"`
+	Mode          string                `json:"mode,omitempty" url:"mode,omitempty"`
+	URL           string                `json:"url,omitempty" url:"url,omitempty"`
+	DisabledAt    *DateTime             `json:"disabled_at,omitempty" url:"disabled_at,omitempty"`
+	WebhookSecret string                `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
 	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
 // CreateUpdateWebhookOptions is used to specify parameters for creating and updating EasyPost webhooks.
 type CreateUpdateWebhookOptions struct {
-	URL           string `json:"url,omitempty" url:"url,omitempty"`
-	WebhookSecret string `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	URL           string                `json:"url,omitempty" url:"url,omitempty"`
+	WebhookSecret string                `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
 	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
@@ -41,7 +42,7 @@ type createWebhookRequest struct {
 
 // updateWebhookRequest is the request struct for updating webhooks (internal)
 type updateWebhookRequest struct {
-	WebhookSecret string `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
+	WebhookSecret string                `json:"webhook_secret,omitempty" url:"webhook_secret,omitempty"`
 	CustomHeaders []WebhookCustomHeader `json:"custom_headers,omitempty" url:"custom_headers,omitempty"`
 }
 
@@ -60,11 +61,11 @@ func (c *Client) composeCreateWebhookRequest(data *CreateUpdateWebhookOptions) *
 	}
 }
 
-func(c *Client) composeUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *updateWebhookRequest {
+func (c *Client) composeUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *updateWebhookRequest {
 	return &updateWebhookRequest{
-			WebhookSecret: data.WebhookSecret,
-			CustomHeaders: data.CustomHeaders,
-		}
+		WebhookSecret: data.WebhookSecret,
+		CustomHeaders: data.CustomHeaders,
+	}
 }
 
 // CreateWebhookWithDetails creates a new webhook with the provided details.
@@ -160,9 +161,9 @@ func (c *Client) ValidateWebhookWithContext(ctx context.Context, eventBody []byt
 				return &webhookBody, nil
 			}
 		} else {
-			return nil, MismatchWebhookSignatureError
+			return nil, newMismatchWebhookSignatureError()
 		}
 	} else {
-		return nil, MissingWebhookSignatureError
+		return nil, newMissingWebhookSignatureError()
 	}
 }

@@ -171,7 +171,7 @@ func (c *Client) GetNextPickupPageWithContext(ctx context.Context, collection *L
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextPickupPageWithPageSizeWithContext(ctx context.Context, collection *ListPickupResult, pageSize int) (out *ListPickupResult, err error) {
 	if len(collection.Pickups) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Pickups[len(collection.Pickups)-1].ID

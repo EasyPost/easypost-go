@@ -86,6 +86,7 @@ type ListTrackersOptions struct {
 	EndDateTime   *DateTime `json:"end_datetime,omitempty" url:"end_datetime,omitempty"`
 	PageSize      int       `json:"page_size,omitempty" url:"page_size,omitempty"`
 	TrackingCode  string    `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
+	TrackingCodes []string  `json:"tracking_codes,omitempty" url:"tracking_codes,omitempty"`
 	Carrier       string    `json:"carrier,omitempty" url:"carrier,omitempty"`
 }
 
@@ -188,7 +189,7 @@ func (c *Client) GetNextTrackerPageWithContext(ctx context.Context, collection *
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextTrackerPageWithPageSizeWithContext(ctx context.Context, collection *ListTrackersResult, pageSize int) (out *ListTrackersResult, err error) {
 	if len(collection.Trackers) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Trackers[len(collection.Trackers)-1].ID

@@ -67,7 +67,7 @@ func (c *Client) GetNextRefundPageWithContext(ctx context.Context, collection *L
 // allows specifying a context that can interrupt the request.
 func (c *Client) GetNextRefundPageWithPageSizeWithContext(ctx context.Context, collection *ListRefundResult, pageSize int) (out *ListRefundResult, err error) {
 	if len(collection.Refunds) == 0 {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	lastID := collection.Refunds[len(collection.Refunds)-1].ID

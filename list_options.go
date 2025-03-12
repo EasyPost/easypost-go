@@ -13,7 +13,7 @@ type ListOptions struct {
 // If pageSize is 0, it will use the default page size
 func nextPageParameters(hasMore bool, lastID string, pageSize int) (out *ListOptions, err error) {
 	if !hasMore {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	out = &ListOptions{
@@ -29,7 +29,7 @@ func nextPageParameters(hasMore bool, lastID string, pageSize int) (out *ListOpt
 // If pageSize is 0, it will use the default page size
 func nextChildUserPageParameters(hasMore bool, lastID string, pageSize int) (out *ListOptions, err error) {
 	if !hasMore {
-		err = EndOfPaginationError
+		err = newEndOfPaginationError()
 		return
 	}
 	out = &ListOptions{

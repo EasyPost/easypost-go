@@ -5,7 +5,7 @@ import (
 	"encoding/json"
 	"flag"
 	"fmt"
-	"io/ioutil"
+	"io"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -183,7 +183,7 @@ func (c *ClientTests) SetupTest() {
 		if _, err := b.ReadFrom(r.Body); err != nil {
 			return false
 		}
-		r.Body = ioutil.NopCloser(&b)
+		r.Body = io.NopCloser(&b)
 		bString := b.String()
 		if bString == "" && i.Body == "" {
 			// short circuit and return true if the body is empty as it should be
