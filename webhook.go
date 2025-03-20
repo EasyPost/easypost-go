@@ -68,14 +68,14 @@ func (c *Client) composeUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *
 	}
 }
 
-// CreateWebhookWithDetails creates a new webhook with the provided details.
-func (c *Client) CreateWebhookWithDetails(data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
-	return c.CreateWebhookWithDetailsWithContext(context.Background(), data)
+// CreateWebhook creates a new webhook with the provided details.
+func (c *Client) CreateWebhook(data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
+	return c.CreateWebhookWithContext(context.Background(), data)
 }
 
-// CreateWebhookWithDetailsWithContext performs the same operation as CreateWebhookWithDetails, but
+// CreateWebhookWithContext performs the same operation as CreateWebhook, but
 // allows specifying a context that can interrupt the request.
-func (c *Client) CreateWebhookWithDetailsWithContext(ctx context.Context,
+func (c *Client) CreateWebhookWithContext(ctx context.Context,
 	data *CreateUpdateWebhookOptions) (out *Webhook, err error) {
 	req := c.composeCreateWebhookRequest(data)
 	err = c.do(ctx, http.MethodPost, "webhooks", req, &out)

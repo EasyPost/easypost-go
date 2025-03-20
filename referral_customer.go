@@ -36,6 +36,13 @@ type CreditCardOptions struct {
 	Cvc      string `json:"cvc,omitempty" url:"cvc,omitempty"`
 }
 
+// MandateData specifies the mandate data needed for adding a bank account from stripe.
+type MandateData struct {
+	IpAddress  string `json:"ip_address,omitempty" url:"ip_address,omitempty"`
+	UserAgent  string `json:"user_agent,omitempty" url:"user_agent,omitempty"`
+	AcceptedAt int64  `json:"accepted_at,omitempty" url:"accepted_at,omitempty"`
+}
+
 type stripeApiKeyResponse struct {
 	PublicKey string `json:"public_key,omitempty" url:"public_key,omitempty"`
 }
@@ -55,6 +62,10 @@ type creditCardCreateRequest struct {
 type easypostCreditCardCreateOptions struct {
 	StripeToken string `json:"stripe_object_id,omitempty" url:"stripe_object_id,omitempty"`
 	Priority    string `json:"priority,omitempty" url:"priority,omitempty"`
+}
+
+type clientSecretResponse struct {
+	ClientSecret string `json:"client_secret,omitempty" url:"client_secret,omitempty"`
 }
 
 // CreateReferralCustomer creates a new referral customer.
@@ -129,7 +140,7 @@ func (c *Client) UpdateReferralCustomerEmailWithContext(ctx context.Context, use
 	return
 }
 
-// AddReferralCustomerCreditCard adds a credit card to a referral customer's account.
+// AddReferralCustomerCreditCard adds a credit card to EasyPost for a ReferralCustomer without needing a Stripe account.
 func (c *Client) AddReferralCustomerCreditCard(referralCustomerApiKey string, creditCardOptions *CreditCardOptions, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	return c.AddReferralCustomerCreditCardWithContext(context.Background(), referralCustomerApiKey, creditCardOptions, priority)
 }
@@ -153,6 +164,53 @@ func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, r
 	}
 
 	return c.createEasypostCreditCard(ctx, referralCustomerApiKey, stripeTokenResponse.Id, priority)
+}
+
+// AddReferralCustomerCreditCardFromStripe adds a credit card to EasyPost for a ReferralCustomer with a payment method ID from Stripe. This function requires the ReferralCustomer User's API key.
+func (c *Client) AddReferralCustomerCreditCardFromStripe(referralCustomerApiKey string, paymentMethodId string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.AddReferralCustomerCreditCardFromStripeWithContext(context.Background(), referralCustomerApiKey, paymentMethodId, priority)
+}
+
+// AddReferralCustomerCreditCardFromStripeWithContext performs the same operation as AddReferralCustomerCreditCardFromStripe, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) AddReferralCustomerCreditCardFromStripeWithContext(ctx context.Context, referralCustomerApiKey string, paymentMethodId string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	client := &Client{
+		APIKey: referralCustomerApiKey,
+		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
+	}
+
+	params := map[string]interface{}{
+		"credit_card": map[string]interface{}{
+			"payment_method_id": paymentMethodId,
+			"priority":          c.GetPaymentEndpointByPrimaryOrSecondary(priority),
+		},
+	}
+
+	err = client.do(ctx, http.MethodPost, "credit_cards", params, &out)
+	return
+}
+
+// AddReferralCustomerBankAccountFromStripe adds a credit card to EasyPost for a ReferralCustomer with a payment method ID from Stripe. This function requires the ReferralCustomer User's API key.
+func (c *Client) AddReferralCustomerBankAccountFromStripe(referralCustomerApiKey string, paymentMethodId string, mandateData *MandateData, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.AddReferralCustomerBankAccountFromStripeWithContext(context.Background(), referralCustomerApiKey, paymentMethodId, mandateData, priority)
+}
+
+// AddReferralCustomerBankAccountFromStripeWithContext performs the same operation as AddReferralCustomerBankAccountFromStripe, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) AddReferralCustomerBankAccountFromStripeWithContext(ctx context.Context, referralCustomerApiKey string, financialConnectionsId string, mandateData *MandateData, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	client := &Client{
+		APIKey: referralCustomerApiKey,
+		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
+	}
+
+	params := map[string]interface{}{
+		"financial_connections_id": financialConnectionsId,
+		"mandata_data":             mandateData,
+		"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(priority),
+	}
+
+	err = client.do(ctx, http.MethodPost, "bank_accounts", params, &out)
+	return
 }
 
 func (c *Client) retrieveEasypostStripeApiKey(ctx context.Context) (out *stripeApiKeyResponse, err error) {
@@ -265,5 +323,47 @@ func (c *Client) BetaRefundByPaymentLogWithContext(ctx context.Context, paymentL
 	}
 
 	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, out)
+	return
+}
+
+// BetaCreateCreditCardClientSecret creates a client secret to use with Stripe when adding a credit card.
+func (c *Client) BetaCreateCreditCardClientSecret() (out *clientSecretResponse, err error) {
+	return c.BetaCreateCreditCardClientSecretWithContext(context.Background())
+}
+
+// BetaCreateCreditCardClientSecretWithContext performs the same operation as BetaCreateCreditCardClientSecret, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaCreateCreditCardClientSecretWithContext(ctx context.Context) (out *clientSecretResponse, err error) {
+	out = &clientSecretResponse{}
+	err = c.do(ctx, http.MethodPost, "/beta/setup_intents", nil, out)
+	return
+}
+
+// BetaCreateBankAccountClientSecret creates a client secret to use with Stripe when adding a bank account.
+func (c *Client) BetaCreateBankAccountClientSecret() (out *clientSecretResponse, err error) {
+	return c.BetaCreateBankAccountClientSecretWithContext(context.Background())
+}
+
+// BetaCreateBankAccountClientSecretWithContext performs the same operation as BetaCreateBankAccountClientSecret, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaCreateBankAccountClientSecretWithContext(ctx context.Context) (out *clientSecretResponse, err error) {
+	out = &clientSecretResponse{}
+	err = c.do(ctx, http.MethodPost, "/beta/financial_connections_sessions", nil, out)
+	return
+}
+
+// BetaCreateBankAccountClientSecretWithReturlUrl creates a client secret to use with Stripe when adding a bank account.
+func (c *Client) BetaCreateBankAccountClientSecretWithReturlUrl(returnUrl string) (out *clientSecretResponse, err error) {
+	return c.BetaCreateBankAccountClientSecretWithReturnUrlWithContext(context.Background(), returnUrl)
+}
+
+// BetaCreateBankAccountClientSecretWithReturnUrlWithContext performs the same operation as BetaCreateBankAccountClientSecretWithReturlUrl, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) BetaCreateBankAccountClientSecretWithReturnUrlWithContext(ctx context.Context, returnUrl string) (out *clientSecretResponse, err error) {
+	out = &clientSecretResponse{}
+	params := map[string]interface{}{
+		"return_url": returnUrl,
+	}
+	err = c.do(ctx, http.MethodPost, "/beta/financial_connections_sessions", params, out)
 	return
 }

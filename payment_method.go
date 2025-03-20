@@ -22,17 +22,18 @@ type PaymentMethod struct {
 }
 
 type PaymentMethodObject struct {
-	BankName        string `json:"bank_name,omitempty" url:"bank_name,omitempty"`     // bank account
-	Brand           string `json:"brand,omitempty" url:"brand,omitempty"`             // credit card
-	Country         string `json:"country,omitempty" url:"country,omitempty"`         // bank account
-	DisabledAt      string `json:"disabled_at,omitempty" url:"disabled_at,omitempty"` // both
-	ExpirationMonth int    `json:"exp_month,omitempty" url:"exp_month,omitempty"`     // credit card
-	ExpirationYear  int    `json:"exp_year,omitempty" url:"exp_year,omitempty"`       // credit card
-	ID              string `json:"id,omitempty" url:"id,omitempty"`                   // both
-	Last4           string `json:"last4,omitempty" url:"last4,omitempty"`             // both
-	Name            string `json:"name,omitempty" url:"name,omitempty"`               // credit card
-	Object          string `json:"object,omitempty" url:"object,omitempty"`           // both
-	Verified        bool   `json:"verified,omitempty" url:"verified,omitempty"`       // bank account
+	BankName                  string `json:"bank_name,omitempty" url:"bank_name,omitempty"`                                     // bank account
+	Brand                     string `json:"brand,omitempty" url:"brand,omitempty"`                                             // credit card
+	Country                   string `json:"country,omitempty" url:"country,omitempty"`                                         // bank account
+	DisabledAt                string `json:"disabled_at,omitempty" url:"disabled_at,omitempty"`                                 // both
+	ExpirationMonth           int    `json:"exp_month,omitempty" url:"exp_month,omitempty"`                                     // credit card
+	ExpirationYear            int    `json:"exp_year,omitempty" url:"exp_year,omitempty"`                                       // credit card
+	ID                        string `json:"id,omitempty" url:"id,omitempty"`                                                   // both
+	Last4                     string `json:"last4,omitempty" url:"last4,omitempty"`                                             // both
+	Name                      string `json:"name,omitempty" url:"name,omitempty"`                                               // credit card
+	Object                    string `json:"object,omitempty" url:"object,omitempty"`                                           // both
+	Verified                  bool   `json:"verified,omitempty" url:"verified,omitempty"`                                       // bank account
+	RequiresMandateCollection bool   `json:"requires_mandate_collection,omitempty" url:"requires_mandate_collection,omitempty"` // both
 }
 
 // getPaymentMethodObjectType returns the PaymentMethodType enum of a PaymentMethodObject.

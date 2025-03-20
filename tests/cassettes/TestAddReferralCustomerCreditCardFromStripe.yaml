@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"credit_card":{"payment_method_id":"pm_0Pn6bQDqT4huGUvd0CjpRerH","priority":"primary"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/credit_cards
+    method: POST
+  response:
+    body: '{"error":{"code":"CREDIT_CARD.NOT_FOUND","errors":[],"message":"Stripe::PaymentMethod
+      does not exist for the specified reference_id"}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - b0beceb167dc5429e2b8ea0f0067fcf0
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb35nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4nuq 284c5d344a
+      - extlb1nuq 99aac35317
+      X-Runtime:
+      - "0.447062"
+      X-Version-Label:
+      - easypost-202503201600-7a0b554315-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 404 Not Found
+    code: 404
+    duration: ""

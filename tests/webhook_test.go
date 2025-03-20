@@ -11,7 +11,7 @@ func (c *ClientTests) TestWebhookCreate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithDetails(
+	webhook, err := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 			WebhookSecret: c.fixture.WebhookSecret(),
@@ -35,7 +35,7 @@ func (c *ClientTests) TestWebhookRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithDetails(
+	webhook, err := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 		},
@@ -71,7 +71,7 @@ func (c *ClientTests) TestWebhookDelete() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithDetails(
+	webhook, err := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 		},
@@ -93,7 +93,7 @@ func (c *ClientTests) TestWebhookUpdate() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithDetails(
+	webhook, err := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 		},
@@ -121,7 +121,7 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithDetails(
+	webhook, err := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL:           c.fixture.WebhookUrl(),
 			WebhookSecret: c.fixture.WebhookSecret(),
@@ -141,7 +141,7 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	webhook, err := client.CreateWebhookWithDetails(
+	webhook, err := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 		},

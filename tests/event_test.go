@@ -54,7 +54,7 @@ func (c *ClientTests) TestEventRetrieveAllPayloads() {
 	assert, require := c.Assert(), c.Require()
 
 	// Create a webhook to receive the event
-	webhook, webhookErr := client.CreateWebhookWithDetails(
+	webhook, webhookErr := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 		},
@@ -97,7 +97,7 @@ func (c *ClientTests) TestEventRetrievePayload() {
 	require := c.Require()
 
 	// Create a webhook to receive the event
-	webhook, webhookErr := client.CreateWebhookWithDetails(
+	webhook, webhookErr := client.CreateWebhook(
 		&easypost.CreateUpdateWebhookOptions{
 			URL: c.fixture.WebhookUrl(),
 		},

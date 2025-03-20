@@ -118,6 +118,45 @@ func (c *ClientTests) TestReferralCustomerAddCreditCard() {
 	assert.True(strings.HasSuffix(c.fixture.TestCreditCard().Number, creditCard.Last4))
 }
 
+func (c *ClientTests) TestAddReferralCustomerCreditCardFromStripe() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	referralAPIKey := c.ReferralAPIKey()
+
+	_, err := client.AddReferralCustomerCreditCardFromStripe(
+		referralAPIKey,
+		c.fixture.BillingData().PaymentMethodID,
+		easypost.PrimaryPaymentMethodPriority,
+	)
+	require.Error(err)
+
+	var apiErr *easypost.APIError
+	if errors.As(err, &apiErr) {
+		assert.Equal("Stripe::PaymentMethod does not exist for the specified reference_id", apiErr.Message)
+	}
+}
+
+func (c *ClientTests) TestAddReferralCustomerBankAccountFromStripe() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	referralAPIKey := c.ReferralAPIKey()
+
+	_, err := client.AddReferralCustomerBankAccountFromStripe(
+		referralAPIKey,
+		c.fixture.BillingData().FinancialConnectionsID,
+		c.fixture.BillingData().MandateData,
+		easypost.PrimaryPaymentMethodPriority,
+	)
+	require.Error(err)
+
+	var apiErr *easypost.APIError
+	if errors.As(err, &apiErr) {
+		assert.Equal("account_holder_name must be present when creating a Financial Connections payment method", apiErr.Message)
+	}
+}
+
 func (c *ClientTests) TestReferralCustomersGetNextPage() {
 	client := c.PartnerClient()
 	assert, require := c.Assert(), c.Require()
@@ -148,4 +187,24 @@ func (c *ClientTests) TestReferralCustomersGetNextPage() {
 		}
 		require.NoError(err)
 	}
+}
+
+func (c *ClientTests) TestBetaCreateCreditCardClientSecret() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	response, err := client.BetaCreateCreditCardClientSecret()
+	require.NoError(err)
+
+	assert.True(strings.HasPrefix(response.ClientSecret, "seti_"))
+}
+
+func (c *ClientTests) TestBetaCreateBankAccountClientSecret() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	response, err := client.BetaCreateBankAccountClientSecret()
+	require.NoError(err)
+
+	assert.True(strings.HasPrefix(response.ClientSecret, "fcsess_client_secret_"))
 }
