@@ -3,6 +3,12 @@
 ## Next Release
 
 - Adds `WebhookCustomHeader` type, allowing `custom_headers: []WebhookCustomHeader` to be passed when creating/updating a webhook.
+- Adds the following functions to assist ReferralCustomers add credit cards and bank accounts:
+  - `AddReferralCustomerCreditCardFromStripe`
+  - `AddReferralCustomerBankAccountFromStripe`
+  - `BetaCreateCreditCardClientSecret`
+  - `BetaCreateBankAccountClientSecret`
+  - `BetaCreateBankAccountClientSecretWithReturlUrl`
 - Adds `TrackingCodes` to tracker list function
 - Fixes error parsing
   - Allows for alternative format of `errors` field (previously we deserialized the `errors` field into a list of `Error` objects; however, sometimes the errors are simply a list of strings. This change makes the `errors` field an `interface`, allowing for either the renamed `FieldError` object or a list of strings. Users will need to check for the type of error returned and handle appropriately)
@@ -13,6 +19,7 @@
   - `EndOfPaginationErrorType` to `EndOfPaginationError`
   - `MissingWebhookSignatureErrorType` to `MissingWebhookSignatureError`
   - `MismatchWebhookSignatureErrorType` to `MismatchWebhookSignatureError`
+- Renames `CreateWebhookWithDetails` to `CreateWebhook`
 - Removes the deprecated `create_list` tracker endpoint function as it is no longer available via API
 
 ## v4.6.0 (2024-08-16)

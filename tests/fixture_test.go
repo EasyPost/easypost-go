@@ -14,6 +14,7 @@ import (
 
 type Fixture struct {
 	Addresses       map[string]*easypost.Address               `json:"addresses,omitempty" url:"addresses,omitempty"`
+	Billing         billingFixture                             `json:"billing,omitempty" url:"billing,omitempty"`
 	CarrierAccounts map[string]*easypost.CarrierAccount        `json:"carrier_accounts,omitempty" url:"carrier_accounts,omitempty"`
 	CarrierStrings  map[string]string                          `json:"carrier_strings,omitempty" url:"carrier_strings,omitempty"`
 	Claims          map[string]*easypost.CreateClaimParameters `json:"claims,omitempty" url:"claims,omitempty"`
@@ -32,6 +33,13 @@ type Fixture struct {
 	TaxIdentifiers  map[string]*easypost.TaxIdentifier         `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
 	Users           map[string]*easypost.UserOptions           `json:"users,omitempty" url:"users,omitempty"`
 	Webhooks        map[string]interface{}                     `json:"webhooks,omitempty" url:"webhooks,omitempty"`
+}
+
+type billingFixture struct {
+	PaymentMethodID        string                `json:"payment_method_id,omitempty" url:"payment_method_id,omitempty"`
+	FinancialConnectionsID string                `json:"financial_connections_id,omitempty" url:"financial_connections_id,omitempty"`
+	MandateData            *easypost.MandateData `json:"mandate_data,omitempty" url:"mandate_data,omitempty"`
+	Priority               string                `json:"priority,omitempty" url:"priority,omitempty"`
 }
 
 // Reads fixture data from the fixtures JSON file
@@ -251,4 +259,8 @@ func (fixture *Fixture) PlannedShipDate() string {
 
 func (fixture *Fixture) DesiredDeliveryDate() string {
 	return "2024-08-14"
+}
+
+func (fixture *Fixture) BillingData() billingFixture {
+	return readFixtureData().Billing
 }

@@ -1,0 +1,57 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"financial_connections_id":"fca_0QAc7sDqT4huGUvdf6BahYa9","mandata_data":{"accepted_at":1722510730,"ip_address":"127.0.0.1","user_agent":"Mozilla/5.0"},"priority":"primary"}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/bank_accounts
+    method: POST
+  response:
+    body: '{"error":{"code":"BANK_ACCOUNT.INVALID_PARAMS","errors":[],"message":"account_holder_name
+      must be present when creating a Financial Connections payment method"}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - b0beceb467dc5541e2b8eb13006941c2
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb42nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4nuq 284c5d344a
+      - extlb1nuq 99aac35317
+      X-Runtime:
+      - "0.031299"
+      X-Version-Label:
+      - easypost-202503201600-7a0b554315-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 422 Unprocessable Entity
+    code: 422
+    duration: ""
