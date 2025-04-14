@@ -8,6 +8,10 @@ func getUpsCarrierAccountTypes() []string {
 	return []string{"UpsAccount", "UpsMailInnovationsAccount", "UpsSurepostAccount"}
 }
 
+func getCarrierAccountTypesWithCustomOauth() []string {
+	return []string{"AmazonShippingAccount"}
+}
+
 var ApiDidNotReturnErrorDetails = "API did not return error details"
 var ApiErrorDetailsParsingError = "RESPONSE.PARSE_ERROR"
 var InvalidParameter = "Invalid parameter: "

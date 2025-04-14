@@ -109,6 +109,39 @@ func (c *ClientTests) TestCarrierAccountPreventUsersUsingNotUpsAccountForUpsCrea
 	assert.Equal(reflect.TypeOf(&easypost.InvalidFunctionError{}), reflect.TypeOf(err))
 }
 
+func (c *ClientTests) TestCarrierAccountCreateOauth() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	createParameters := &easypost.CarrierAccount{
+		Type: "AmazonShippingAccount",
+	}
+
+	carrierAccount, err := client.CreateOauthCarrierAccount(createParameters)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.CarrierAccount{}), reflect.TypeOf(carrierAccount))
+	assert.True(strings.HasPrefix(carrierAccount.ID, "ca_"))
+	assert.Equal("AmazonShippingAccount", carrierAccount.Type)
+
+	err = client.DeleteCarrierAccount(carrierAccount.ID)
+	require.NoError(err)
+}
+
+func (c *ClientTests) TestCarrierAccountPreventUsersUsingNotOauthAccountForOauthCreation() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	createParameters := &easypost.CarrierAccount{
+		Type: "NotOauthAccount",
+	}
+
+	_, err := client.CreateOauthCarrierAccount(createParameters)
+	require.Error(err)
+
+	assert.Equal(reflect.TypeOf(&easypost.InvalidFunctionError{}), reflect.TypeOf(err))
+}
+
 func (c *ClientTests) TestCarrierAccountRetrieve() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
