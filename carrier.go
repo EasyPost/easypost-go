@@ -64,6 +64,10 @@ type upsCarrierAccountCreationRequest struct {
 	Data *UpsCarrierAccountCreationParameters `json:"ups_oauth_registrations,omitempty" url:"ups_oauth_registrations,omitempty"`
 }
 
+type oauthCarrierAccountCreationRequest struct {
+	Data *CarrierAccount `json:"carrier_account_oauth_registrations,omitempty" url:"carrier_account_oauth_registrations,omitempty"`
+}
+
 // UpsCarrierAccountUpdateParameters contains the parameters needed to update a UPS carrier account.
 type UpsCarrierAccountUpdateParameters struct {
 	AccountNumber string `json:"account_number,omitempty" url:"account_number,omitempty"`
@@ -86,6 +90,12 @@ func (c *Client) selectCarrierAccountCreationEndpoint(typ string) string {
 		}
 	}
 
+	for _, carrier := range getCarrierAccountTypesWithCustomOauth() {
+		if typ == carrier {
+			return "carrier_accounts/register_oauth"
+		}
+	}
+
 	return "carrier_accounts"
 }
 
@@ -105,13 +115,19 @@ func (c *Client) GetCarrierTypesWithContext(ctx context.Context) (out []*Carrier
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.CreateCarrierAccount(
 //		&easypost.CarrierAccount{
-//			Type:        "UpsAccount",
-//			Description: "NY Location UPS Account",
-//			Reference:   "my reference",
+//			Type:        "DhlEcsAccount",
+//			Description: "CA Location DHL eCommerce Solutions Account",
 //			Credentials: map[string]string{
-//				"user_id":               "USERID",
-//				"password":              "PASSWORD",
-//				"access_license_number": "ALN",
+//				"client_id":           "123456",
+//				"client_secret":       "123abc",
+//				"distribution_center": "USLAX1",
+//				"pickup_id":           "123456",
+//			},
+//			TestCredentials: map[string]string{
+//				"client_id":           "123456",
+//				"client_secret":       "123abc",
+//				"distribution_center": "USLAX1",
+//				"pickup_id":           "123456",
 //			},
 //		},
 //	)
@@ -128,6 +144,12 @@ func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *Carrie
 	for _, carrier := range getUpsCarrierAccountTypes() {
 		if in.Type == carrier {
 			return nil, newInvalidFunctionError("users must use CreateUpsCarrierAccount to create UPS accounts")
+		}
+	}
+
+	for _, carrier := range getCarrierAccountTypesWithCustomOauth() {
+		if in.Type == carrier {
+			return nil, newInvalidFunctionError("users must use CreateUpsCarrierAccount to create Oauth accounts")
 		}
 	}
 
@@ -163,6 +185,32 @@ func (c *Client) CreateUpsCarrierAccountWithContext(ctx context.Context, in *Ups
 	return
 }
 
+// CreateOauthCarrierAccount creates a new carrier account that uses Oauth. It can only be used with a production API key.
+// Users cannot create non-oauth accounts with this function, must use CreateCarrierAccount. An error will be returned if the user tries to create a non-oauth account with this function.
+func (c *Client) CreateOauthCarrierAccount(in *CarrierAccount) (out *CarrierAccount, err error) {
+	return c.CreateOauthCarrierAccountWithContext(context.Background(), in)
+}
+
+// CreateOauthCarrierAccountWithContext performs the same operation as CreateOauthCarrierAccount, but allows specifying a context that can interrupt the request.
+// Users cannot create non-oauth accounts with this function, must use CreateCarrierAccount. An error will be returned if the user tries to create a non-oauth account with this function.
+func (c *Client) CreateOauthCarrierAccountWithContext(ctx context.Context, in *CarrierAccount) (out *CarrierAccount, err error) {
+	// Users cannot create non-oauth accounts with this function, must use CreateCarrierAccount
+	isOauthAccount := false
+	for _, carrier := range getCarrierAccountTypesWithCustomOauth() {
+		if in.Type == carrier {
+			isOauthAccount = true
+			break
+		}
+	}
+	if !isOauthAccount {
+		return nil, newInvalidFunctionError("users must use CreateCarrierAccount to create non-oauth accounts")
+	}
+
+	req := &oauthCarrierAccountCreationRequest{Data: in}
+	err = c.do(ctx, http.MethodPost, "carrier_accounts/register_oauth", req, &out)
+	return
+}
+
 // ListCarrierAccounts returns a list of all carrier accounts available to the authenticated account.
 func (c *Client) ListCarrierAccounts() (out []*CarrierAccount, err error) {
 	return c.ListCarrierAccountsWithContext(context.Background())
@@ -190,10 +238,10 @@ func (c *Client) GetCarrierAccountWithContext(ctx context.Context, carrierAccoun
 //	c := easypost.New(MyEasyPostAPIKey)
 //	out, err := c.UpdateCarrierAccount(
 //		&easypost.CarrierAccount{
-//			ID: "ca_1001",
-//			Description: "FL Location UPS Account",
+//			ID:          "ca_...",
+//			Description: "FL Location DHL eCommerce Solutions Account",
 //			Credentials: map[string]string{
-//				"account_number": "B2B2B2",
+//				"pickup_id": "abc123",
 //			},
 //		},
 //	)
@@ -252,7 +300,6 @@ func (c *Client) UpdateUpsCarrierAccountWithContext(ctx context.Context, id stri
 	req := &upsCarrierAccountUpdateRequest{Data: in}
 	err = c.do(ctx, http.MethodPatch, "ups_oauth_registrations/"+id, req, &out)
 	return
-
 }
 
 // DeleteCarrierAccount removes the carrier account with the given ID.
