@@ -26,6 +26,7 @@ type TrackingDetail struct {
 	Source           string            `json:"source,omitempty" url:"source,omitempty"`
 	CarrierCode      string            `json:"carrier_code,omitempty" url:"carrier_code,omitempty"`
 	TrackingLocation *TrackingLocation `json:"tracking_location,omitempty" url:"tracking_location,omitempty"`
+	EstDeliveryDate *DateTime          `json:"est_delivery_date,omitempty" url:"est_delivery_date,omitempty"`
 }
 
 // TrackingCarrierDetail provides additional tracking information from the
