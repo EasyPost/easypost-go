@@ -1,6 +1,8 @@
 # CHANGELOG
 
-## Next Release
+## v5.0.0 (2025-04-29)
+
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-4x-to-50) for more details.
 
 - Adds `WebhookCustomHeader` type, allowing `custom_headers: []WebhookCustomHeader` to be passed when creating/updating a webhook.
 - Adds the following functions to assist ReferralCustomers add credit cards and bank accounts:
@@ -67,6 +69,8 @@
 
 ## v4.0.0 (2023-12-06)
 
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-3x-to-40) for more details.
+
 - Removes the undocumented `CreateAndBuy` function from the Batch service. The proper usage is to create a batch first and buy it separately
 - Removed `CarbonOffset` parameter from `createShipmentRequest`, `buyShipmentRequest`, and `buyShipmentRequest` structs as EasyPost now offers Carbon Neutral shipments by default for free
 
@@ -83,6 +87,8 @@
 - Fix endpoint for creating a FedEx Smartpost carrier account
 
 ## v3.0.0 (2023-08-03)
+
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-2x-to-30) for more details.
 
 - Drop support for Go 1.15
   - Minimum supported version is now Go 1.16
@@ -234,7 +240,7 @@
 
 **NOTE: Do not use this release, use v2.0.1 or later due to this release being incorrectly packaged.**
 
-Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-1x-to-20) for more details.
 
 - Bumps minimum Go version from `1.12` to `1.15`
 - Bumps dependencies

@@ -2,22 +2,72 @@
 
 Use the following guide to assist in the upgrade process of the `easypost-go` library between major versions.
 
-* [Upgrading from 3.x to 4.0](#upgrading-from-3x-to-40)
-* [Upgrading from 2.x to 3.0](#upgrading-from-2x-to-30)
-* [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20)
+- [Upgrading from 4.x to 5.0](#upgrading-from-4x-to-50)
+- [Upgrading from 3.x to 4.0](#upgrading-from-3x-to-40)
+- [Upgrading from 2.x to 3.0](#upgrading-from-2x-to-30)
+- [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20)
+
+## Upgrading from 4.x to 5.0
+
+### 5.0 High Impact Changes
+
+- [Error Parsing](#50-error-parsing)
+- [Verify and VerifyStrict Params for Addresses](#50-verify-and-verifystrict-params-for-addresses)
+
+### 5.0 Medium Impact Changes
+
+- [Renamed Functions and Error](#50-renamed-functions-and-errors)
+
+## 5.0 Error Parsing
+
+*Likelihood of Impact: **High***
+
+The `errors` key of an error response can return either a list of `FieldError` objects or a list of strings. The error parsing has been expanded to include both formats. As such, you will now need to check for the format of the `errors` field and handle the errors appropriately for the type that is returned.
+
+We've renamed the `Error` struct to `FieldError` to better match API docs and language.
+
+## 5.0 Verify and VerifyStrict Params for Addresses
+
+*Likelihood of Impact: **High***
+
+The `Verify` and `VerifyStrict` params for addresses now accept booleans instead of lists of strings.
+
+### 5.0 Renamed Functions and Errors
+
+*Likelihood of Impact: **Medium***
+
+The following functions were renamed:
+
+- `CreateWebhookWithDetails` to `CreateWebhook`
+
+The following functions had parameter order changed:
+
+- `UpdateBrand` swaps `ID` and params order
+
+The following errors were renamed:
+
+- `EndOfPaginationErrorType` to `EndOfPaginationError`
+- `MissingWebhookSignatureErrorType` to `MissingWebhookSignatureError`
+- `MismatchWebhookSignatureErrorType` to `MismatchWebhookSignatureError`
 
 ## Upgrading from 3.x to 4.0
 
+**NOTICE:** v4 is deprecated.
+
 ### 4.0 Low Impact Changes
 
-* [Carbon Offset Removed](#40-carbon-offset-removed)
-* [CreateAndBuy() Batch Function Removed](#40-createandbuy-batch-function-removed)
+- [Carbon Offset Removed](#40-carbon-offset-removed)
+- [CreateAndBuy() Batch Function Removed](#40-createandbuy-batch-function-removed)
 
 ### 4.0 Carbon Offset Removed
+
+*Likelihood of Impact: **Low***
 
 EasyPost now offers Carbon Neutral shipments by default for free! Because of this, there is no longer a need to specify if you want to offset the carbon footprint of a shipment. The `CarbonOffset` field from `createShipmentRequest`, `buyShipmentRequest`, and `buyShipmentRequest` structs have been removed as a result. This is a high-impact change for those using `EndShippers` as the function interfaces have changed. You will need to inspect the callsites to create and buy shipments to ensure that the EndShipper parameter is being passed in the correct place now that the `CarbonOffset` field has been removed from the structs.
 
 ### 4.0 CreateAndBuy Batch Function Removed
+
+*Likelihood of Impact: **Low***
 
 The `CreateAndBuy` Batch endpoint has been deprecated and removed from the library. The correct procedure is to first create a batch and then purchase it with two separate API calls.
 
@@ -27,16 +77,16 @@ The `CreateAndBuy` Batch endpoint has been deprecated and removed from the libra
 
 ### 3.0 High Impact Changes
 
-* [Importing the Library](#30-importing-the-library)
-* [Updating Dependencies](#30-updating-dependencies)
-* [New `DateTime` Type](#30-new-datetime-type)
-* [Deprecated Methods and Structs Removed](#30-deprecated-methods-and-structs-removed)
-* [Error Types](#30-error-types)
+- [Importing the Library](#30-importing-the-library)
+- [Updating Dependencies](#30-updating-dependencies)
+- [New `DateTime` Type](#30-new-datetime-type)
+- [Deprecated Methods and Structs Removed](#30-deprecated-methods-and-structs-removed)
+- [Error Types](#30-error-types)
 
 ### 3.0 Medium Impact Changes
 
-* [`TrackingCodes` Parameter Renamed](#30-trackingcodes-parameter-renamed)
-* [Add/Remove Shipments to Batch Parameter Change](#30-addremove-shipments-to-batch-parameter-change)
+- [`TrackingCodes` Parameter Renamed](#30-trackingcodes-parameter-renamed)
+- [Add/Remove Shipments to Batch Parameter Change](#30-addremove-shipments-to-batch-parameter-change)
 
 ## 3.0 Importing the Library
 
@@ -184,12 +234,12 @@ Instead of passing a slice of strings, you should now pass a single string:
 ```go
 // Before
 trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
-	TrackingCodes: []string{"EZ1000000001", "EZ1000000002"},
+ TrackingCodes: []string{"EZ1000000001", "EZ1000000002"},
 })
 
 // After
 trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
-	TrackingCode: "EZ1000000001",
+ TrackingCode: "EZ1000000001",
 })
 ```
 
@@ -211,15 +261,17 @@ batch, err := client.AddShipmentsToBatch("batch_123", shipment1, shipment2)
 
 ## Upgrading from 1.x to 2.0
 
+**NOTICE:** v2 is deprecated.
+
 ### 2.0 High Impact Changes
 
-* [Importing the Library](#20-importing-the-library)
-* [Updating Dependencies](#20-updating-dependencies)
+- [Importing the Library](#20-importing-the-library)
+- [Updating Dependencies](#20-updating-dependencies)
 
 ### 2.0 Medium Impact Changes
 
-* [Default Timeouts for HTTP Requests](#20-default-timeouts-for-http-requests)
-* [Removal of `GetShipmentRates()` Shipment Method](#20-removal-of-getshipmentrates-shipment-method)
+- [Default Timeouts for HTTP Requests](#20-default-timeouts-for-http-requests)
+- [Removal of `GetShipmentRates()` Shipment Method](#20-removal-of-getshipmentrates-shipment-method)
 
 ## 2.0 Importing the Library
 

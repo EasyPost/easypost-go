@@ -3,7 +3,7 @@ package easypost_test
 import (
 	"errors"
 
-	"github.com/EasyPost/easypost-go/v4"
+	"github.com/EasyPost/easypost-go/v5"
 )
 
 func (c *ClientTests) TestGetNextPage() {
