@@ -4,7 +4,7 @@ import (
 	"reflect"
 	"strings"
 
-	"github.com/EasyPost/easypost-go/v4"
+	"github.com/EasyPost/easypost-go/v5"
 )
 
 func (c *ClientTests) TestOrderCreate() {

@@ -6,7 +6,7 @@ import (
 	"strconv"
 	"strings"
 
-	"github.com/EasyPost/easypost-go/v4"
+	"github.com/EasyPost/easypost-go/v5"
 )
 
 func prepareInsuredShipment(client *easypost.Client, shipmentCreateParams *easypost.Shipment, claimAmount float64) *easypost.Shipment {
