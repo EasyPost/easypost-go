@@ -4,6 +4,9 @@ func getCarrierAccountTypesWithCustomWorkflows() []string {
 	return []string{"FedexAccount", "FedexSmartpostAccount"}
 }
 
+// By the nature of Golang and to ensure backwards compatibility, we cannot
+// consolidate this list into the `getCarrierAccountTypesWithCustomOauth` as
+// we've done in the other libraries since the structs differ.
 func getUpsCarrierAccountTypes() []string {
 	return []string{"UpsAccount", "UpsMailInnovationsAccount", "UpsSurepostAccount"}
 }

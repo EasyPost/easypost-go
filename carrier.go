@@ -61,7 +61,7 @@ type UpsCarrierAccountCreationParameters struct {
 }
 
 type upsCarrierAccountCreationRequest struct {
-	Data *UpsCarrierAccountCreationParameters `json:"ups_oauth_registrations,omitempty" url:"ups_oauth_registrations,omitempty"`
+	Data *UpsCarrierAccountCreationParameters `json:"carrier_account_oauth_registrations,omitempty" url:"carrier_account_oauth_registrations,omitempty"`
 }
 
 type oauthCarrierAccountCreationRequest struct {
@@ -74,7 +74,7 @@ type UpsCarrierAccountUpdateParameters struct {
 }
 
 type upsCarrierAccountUpdateRequest struct {
-	Data *UpsCarrierAccountUpdateParameters `json:"ups_oauth_registrations,omitempty" url:"ups_oauth_registrations,omitempty"`
+	Data *UpsCarrierAccountUpdateParameters `json:"carrier_account,omitempty" url:"carrier_account,omitempty"`
 }
 
 func (c *Client) selectCarrierAccountCreationEndpoint(typ string) string {
@@ -86,7 +86,7 @@ func (c *Client) selectCarrierAccountCreationEndpoint(typ string) string {
 
 	for _, carrier := range getUpsCarrierAccountTypes() {
 		if typ == carrier {
-			return "ups_oauth_registrations"
+			return "carrier_accounts/register_oauth"
 		}
 	}
 
@@ -181,7 +181,8 @@ func (c *Client) CreateUpsCarrierAccountWithContext(ctx context.Context, in *Ups
 	}
 
 	req := &upsCarrierAccountCreationRequest{Data: in}
-	err = c.do(ctx, http.MethodPost, "ups_oauth_registrations", req, &out)
+	endpoint := c.selectCarrierAccountCreationEndpoint(in.Type)
+	err = c.do(ctx, http.MethodPost, endpoint, req, &out)
 	return
 }
 
@@ -207,7 +208,8 @@ func (c *Client) CreateOauthCarrierAccountWithContext(ctx context.Context, in *C
 	}
 
 	req := &oauthCarrierAccountCreationRequest{Data: in}
-	err = c.do(ctx, http.MethodPost, "carrier_accounts/register_oauth", req, &out)
+	endpoint := c.selectCarrierAccountCreationEndpoint(in.Type)
+	err = c.do(ctx, http.MethodPost, endpoint, req, &out)
 	return
 }
 
@@ -298,7 +300,7 @@ func (c *Client) UpdateUpsCarrierAccountWithContext(ctx context.Context, id stri
 	}
 
 	req := &upsCarrierAccountUpdateRequest{Data: in}
-	err = c.do(ctx, http.MethodPatch, "ups_oauth_registrations/"+id, req, &out)
+	err = c.do(ctx, http.MethodPatch, "carrier_accounts/"+id, req, &out)
 	return
 }
 
