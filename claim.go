@@ -28,6 +28,7 @@ type Claim struct {
 	InsuranceId          string              `json:"insurance_id,omitempty" url:"insurance_id,omitempty"`
 	PaymentMethod        string              `json:"payment_method,omitempty" url:"payment_method,omitempty"`
 	RecipientName        string              `json:"recipient_name,omitempty" url:"recipient_name,omitempty"`
+	Reference            string              `json:"reference,omitempty" url:"reference,omitempty"`
 	RequestedAmount      string              `json:"requested_amount,omitempty" url:"requested_amount,omitempty"`
 	SalvageValue         string              `json:"salvage_value,omitempty" url:"salvage_value,omitempty"`
 	ShipmentId           string              `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
@@ -50,6 +51,7 @@ type CreateClaimParameters struct {
 	RecipientName                      string   `json:"recipient_name,omitempty" url:"recipient_name,omitempty"`
 	ContactEmail                       string   `json:"contact_email,omitempty" url:"contact_email,omitempty"`
 	PaymentMethod                      string   `json:"payment_method,omitempty" url:"payment_method,omitempty"`
+	Reference                          string   `json:"reference,omitempty" url:"reference,omitempty"`
 }
 
 // ListClaimsParameters is used to specify query parameters for listing claims.
