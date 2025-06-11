@@ -149,7 +149,7 @@ func (c *Client) CreateCarrierAccountWithContext(ctx context.Context, in *Carrie
 
 	for _, carrier := range getCarrierAccountTypesWithCustomOauth() {
 		if in.Type == carrier {
-			return nil, newInvalidFunctionError("users must use CreateUpsCarrierAccount to create Oauth accounts")
+			return nil, newInvalidFunctionError("users must use CreateOauthCarrierAccount to create Oauth accounts")
 		}
 	}
 
