@@ -430,3 +430,26 @@ func (c *Client) RecommendShipDateForShipmentWithContext(ctx context.Context, sh
 	err = c.do(ctx, http.MethodGet, "shipments/"+shipmentID+"/smartrate/precision_shipping", params, &res)
 	return
 }
+
+// CreateAndBuyLumaShipment creates and buys a Shipment using Luma.
+func (c *Client) CreateAndBuyLumaShipment(in *LumaRequest) (out *Shipment, err error) {
+	return c.CreateAndBuyLumaShipmentWithContext(context.Background(), in)
+}
+
+// CreateAndBuyLumaShipmentWithContext performs the same operation as CreateAndBuyLumaShipment, but allows specifying a context that can interrupt the request.
+func (c *Client) CreateAndBuyLumaShipmentWithContext(ctx context.Context, in *LumaRequest) (out *Shipment, err error) {
+	req := &WrappedLumaRequest{Shipment: in}
+	err = c.do(ctx, http.MethodPost, "shipments/luma", &req, &out)
+	return
+}
+
+// BuyLumaShipment buys a Shipment using Luma.
+func (c *Client) BuyLumaShipment(shipmentID string, in *LumaRequest) (out *Shipment, err error) {
+	return c.BuyLumaShipmentWithContext(context.Background(), shipmentID, in)
+}
+
+// BuyLumaShipmentWithContext performs the same operation as BuyLumaShipment, but allows specifying a context that can interrupt the request.
+func (c *Client) BuyLumaShipmentWithContext(ctx context.Context, shipmentID string, in *LumaRequest) (out *Shipment, err error) {
+	err = c.do(ctx, http.MethodPost, "shipments/"+shipmentID+"/luma", in, &out)
+	return
+}

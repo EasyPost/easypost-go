@@ -388,3 +388,39 @@ func (c *ClientTests) TestShipmentRecommendShipDate() {
 		assert.NotNil(entry.EasyPostTimeInTransitData.DesiredDeliveryDate)
 	}
 }
+
+func (c *ClientTests) TestCreateAndBuyLumaShipment() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipmentData := c.fixture.OneCallBuyShipment()
+	shipmentData.Service = ""
+	lumaRequest := easypost.LumaRequest{
+		Shipment:        *shipmentData,
+		RulesetName:     c.fixture.LumaRulesetName(),
+		PlannedShipDate: c.fixture.LumaPlannedShipDate(),
+	}
+
+	shipment, err := client.CreateAndBuyLumaShipment(&lumaRequest)
+	require.NoError(err)
+
+	assert.NotNil(shipment.PostageLabel)
+}
+
+func (c *ClientTests) TestBuyLumaShipment() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
+	require.NoError(err)
+
+	lumaRequest := easypost.LumaRequest{
+		RulesetName:     c.fixture.LumaRulesetName(),
+		PlannedShipDate: c.fixture.LumaPlannedShipDate(),
+	}
+
+	boughtShipment, err := client.BuyLumaShipment(shipment.ID, &lumaRequest)
+	require.NoError(err)
+
+	assert.NotNil(boughtShipment.PostageLabel)
+}

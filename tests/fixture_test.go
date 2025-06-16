@@ -23,6 +23,7 @@ type Fixture struct {
 	CreditCards     map[string]*easypost.CreditCardOptions     `json:"credit_cards,omitempty" url:"credit_cards,omitempty"`
 	FormOptions     map[string]map[string]interface{}          `json:"form_options,omitempty" url:"form_options,omitempty"`
 	Insurances      map[string]*easypost.Insurance             `json:"insurances,omitempty" url:"insurances,omitempty"`
+	Luma            map[string]interface{}                     `json:"luma,omitempty" url:"luma,omitempty"`
 	Orders          map[string]*easypost.Order                 `json:"orders,omitempty" url:"orders,omitempty"`
 	PageSizes       map[string]int                             `json:"page_sizes,omitempty" url:"page_sizes,omitempty"`
 	Parcels         map[string]*easypost.Parcel                `json:"parcels,omitempty" url:"parcels,omitempty"`
@@ -263,4 +264,12 @@ func (fixture *Fixture) DesiredDeliveryDate() string {
 
 func (fixture *Fixture) BillingData() billingFixture {
 	return readFixtureData().Billing
+}
+
+func (fixture *Fixture) LumaRulesetName() string {
+	return readFixtureData().Luma["ruleset_name"].(string)
+}
+
+func (fixture *Fixture) LumaPlannedShipDate() string {
+	return "2025-06-16"
 }

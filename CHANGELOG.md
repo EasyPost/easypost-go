@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the following functions
+  - `CreateAndBuyLumaShipment`
+  - `BuyLumaShipment`
+  - `GetLumaPromise`
+- Corrects error message for Oauth carrier account creation
+
 ## v5.1.0 (2025-05-29)
 
 - Add `Reference` to Claims
