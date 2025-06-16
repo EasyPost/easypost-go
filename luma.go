@@ -40,6 +40,7 @@ type LumaRequest struct {
 	RulesetName     string `json:"ruleset_name,omitempty" url:"ruleset_name,omitempty"`
 	PlannedShipDate string `json:"planned_ship_date,omitempty" url:"planned_ship_date,omitempty"`
 	DeliverByDate   string `json:"deliver_by_date,omitempty" url:"deliver_by_date,omitempty"`
+	PersistLabel    bool   `json:"persist_label,omitempty" url:"persist_label,omitempty"`
 }
 
 // GetLumaPromise retrieves the Luma AI Promise for a given shipment.
