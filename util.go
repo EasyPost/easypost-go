@@ -62,7 +62,7 @@ func (c *Client) lowestSmartRate(rates []*SmartRate, deliveryDays int, deliveryA
 		case "percentile_99":
 			smartrateDeliveryDay = rate.TimeInTransit.Percentile99
 		default:
-			break
+			continue
 		}
 
 		// if this rate's delivery days is greater than the requested delivery days, skip it
