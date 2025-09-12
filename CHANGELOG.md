@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v5.3.0 (2025-09-12)
+
+- Adds `CarrierInsuranceAmount` to `ShipmentOptions`
+
 ## v5.2.1 (2025-09-08)
 
 - Switches a `break` to a `continue` when calling `lowestSmartRate` so that if a rate doesn't match, we move on to the next rate instead of continuing the logic (closes #253)
