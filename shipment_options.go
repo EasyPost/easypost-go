@@ -14,6 +14,7 @@ type ShipmentOptions struct {
 	BillThirdPartyPostalCode    string    `json:"bill_third_party_postal_code,omitempty" url:"bill_third_party_postal_code,omitempty"`
 	ByDrone                     bool      `json:"by_drone,omitempty" url:"by_drone,omitempty"`
 	CarbonNeutral               bool      `json:"carbon_neutral,omitempty" url:"carbon_neutral,omitempty"`
+	CarrierInsuranceAmount      string    `json:"carrier_insurance_amount,omitempty" url:"carrier_insurance_amount,omitempty"`
 	CertifiedMail               bool      `json:"certified_mail,omitempty" url:"certified_mail,omitempty"`
 	CODAmount                   string    `json:"cod_amount,omitempty" url:"cod_amount,omitempty"`
 	CODMethod                   string    `json:"cod_method,omitempty" url:"cod_method,omitempty"`
