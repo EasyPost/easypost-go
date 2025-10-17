@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v5.3.1 (2025-10-16)
+
+- Corrects the type of `CarrierInsuranceAmount` from string to float64
+
 ## v5.3.0 (2025-09-12)
 
 - Adds `CarrierInsuranceAmount` to `ShipmentOptions`
