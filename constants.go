@@ -12,7 +12,7 @@ func getUpsCarrierAccountTypes() []string {
 }
 
 func getCarrierAccountTypesWithCustomOauth() []string {
-	return []string{"AmazonShippingAccount"}
+	return []string{"AmazonShippingAccount", "UspsShipAccount"}
 }
 
 var ApiDidNotReturnErrorDetails = "API did not return error details"
