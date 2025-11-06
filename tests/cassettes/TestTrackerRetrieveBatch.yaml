@@ -1,0 +1,121 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"tracker":{"tracking_code":"EZ1000000001"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/trackers
+    method: POST
+  response:
+    body: '{"carrier":"USPS","carrier_detail":{"alternate_identifier":null,"container_type":null,"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"guaranteed_delivery_date":null,"initial_delivery_attempt":null,"object":"CarrierDetail","origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"},"service":"First-Class
+      Package Service"},"created_at":"2025-11-06T17:30:27Z","delivery_evidence":[],"est_delivery_date":"2025-11-06T17:30:27Z","fees":[{"amount":"0.02000","charged":false,"object":"Fee","refunded":false,"type":"TrackerFee"}],"finalized":true,"id":"trk_db7348be731549abbf312abc3ea1bdd7","is_return":false,"mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2RiNzM0OGJlNzMxNTQ5YWJiZjMxMmFiYzNlYTFiZGQ3","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"status_update","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":null,"datetime":"2025-10-06T17:30:27Z","description":null,"est_delivery_date":null,"message":"Pre-Shipment
+      Info Sent to USPS","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":null,"datetime":"2025-10-07T06:07:27Z","description":null,"est_delivery_date":null,"message":"Shipping
+      Label Created","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"}}],"updated_at":"2025-11-06T17:30:27Z","weight":null}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/trackers/trk_db7348be731549abbf312abc3ea1bdd7
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - a777ff3e690cdb33e2aac704010449a8
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb63nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb3nuq c0061e0a2e
+      - extlb1nuq cbbd141214
+      X-Runtime:
+      - "0.141314"
+      X-Version-Label:
+      - easypost-202511061639-9e7dc69a6b-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: '{"tracking_codes":["EZ1000000001"]}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/trackers/batch
+    method: POST
+  response:
+    body: '{"has_more":false,"trackers":[{"carrier":"USPS","carrier_detail":{"alternate_identifier":null,"container_type":null,"destination_location":"CHARLESTON
+      SC, 29401","destination_tracking_location":null,"est_delivery_date_local":null,"est_delivery_time_local":null,"guaranteed_delivery_date":null,"initial_delivery_attempt":null,"object":"CarrierDetail","origin_location":"HOUSTON
+      TX, 77001","origin_tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"},"service":"First-Class
+      Package Service"},"created_at":"2025-11-06T17:30:27Z","delivery_evidence":[],"est_delivery_date":"2025-11-06T17:30:27Z","fees":[{"amount":"0.02000","charged":true,"object":"Fee","refunded":false,"type":"TrackerFee"}],"id":"trk_db7348be731549abbf312abc3ea1bdd7","mode":"test","object":"Tracker","public_url":"https://track.easypost.com/djE6dHJrX2RiNzM0OGJlNzMxNTQ5YWJiZjMxMmFiYzNlYTFiZGQ3","shipment_id":null,"signed_by":null,"status":"pre_transit","status_detail":"status_update","tracking_code":"EZ1000000001","tracking_details":[{"carrier_code":"","datetime":"2025-10-06T17:30:27Z","description":"","est_delivery_date":null,"message":"Pre-Shipment
+      Info Sent to USPS","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":null,"country":null,"object":"TrackingLocation","state":null,"zip":null}},{"carrier_code":"","datetime":"2025-10-07T06:07:27Z","description":"","est_delivery_date":null,"message":"Shipping
+      Label Created","object":"TrackingDetail","source":"USPS","status":"pre_transit","status_detail":"status_update","tracking_location":{"city":"HOUSTON","country":null,"object":"TrackingLocation","state":"TX","zip":"77063"}}],"updated_at":"2025-11-06T17:30:27Z","weight":null}]}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - a777ff3e690cdb33e2aac704010449f5
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb33nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb3nuq c0061e0a2e
+      - extlb1nuq cbbd141214
+      X-Runtime:
+      - "0.053038"
+      X-Version-Label:
+      - easypost-202511061639-9e7dc69a6b-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
