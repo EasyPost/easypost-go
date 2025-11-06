@@ -94,3 +94,28 @@ func (c *ClientTests) TestTrackersGetNextPage() {
 		require.NoError(err)
 	}
 }
+
+func (c *ClientTests) TestTrackerRetrieveBatch() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	tracker, err := client.CreateTracker(
+		&easypost.CreateTrackerOptions{
+			TrackingCode: "EZ1000000001",
+		},
+	)
+	require.NoError(err)
+
+	trackers, err := client.RetrieveTrackerBatch(
+		&easypost.ListTrackersOptions{
+			TrackingCodes: []string{tracker.TrackingCode},
+		},
+	)
+	require.NoError(err)
+
+	trackersList := trackers.Trackers
+
+	for _, tracker := range trackersList {
+		assert.Equal(reflect.TypeOf(&easypost.Tracker{}), reflect.TypeOf(tracker))
+	}
+}

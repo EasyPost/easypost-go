@@ -26,7 +26,7 @@ type TrackingDetail struct {
 	Source           string            `json:"source,omitempty" url:"source,omitempty"`
 	CarrierCode      string            `json:"carrier_code,omitempty" url:"carrier_code,omitempty"`
 	TrackingLocation *TrackingLocation `json:"tracking_location,omitempty" url:"tracking_location,omitempty"`
-	EstDeliveryDate *DateTime          `json:"est_delivery_date,omitempty" url:"est_delivery_date,omitempty"`
+	EstDeliveryDate  *DateTime         `json:"est_delivery_date,omitempty" url:"est_delivery_date,omitempty"`
 }
 
 // TrackingCarrierDetail provides additional tracking information from the
@@ -218,5 +218,17 @@ func (c *Client) GetTracker(trackerID string) (out *Tracker, err error) {
 // specifying a context that can interrupt the request.
 func (c *Client) GetTrackerWithContext(ctx context.Context, trackerID string) (out *Tracker, err error) {
 	err = c.do(ctx, http.MethodGet, "trackers/"+trackerID, nil, &out)
+	return
+}
+
+// RetrieveTrackerBatch retrieves a batch of Tracker objects.
+func (c *Client) RetrieveTrackerBatch(opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
+	return c.RetrieveTrackerBatchWithContext(context.Background(), opts)
+}
+
+// RetrieveTrackerBatchWithContext performs the same operation as ListTrackers, but
+// allows specifying a context that can interrupt the request.
+func (c *Client) RetrieveTrackerBatchWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
+	err = c.do(ctx, http.MethodPost, "trackers/batch", opts, &out)
 	return
 }
