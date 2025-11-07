@@ -39,7 +39,6 @@ jobs:
       - name: Run coverage report
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make install coverage
   coveralls:
-    if: github.ref == 'refs/heads/master'
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -50,8 +49,6 @@ jobs:
       - name: Run coverage report
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make install coverage
       - name: Install goveralls
-        env:
-          GO111MODULE: off
         run: go get github.com/mattn/goveralls
       - name: Coveralls
         env:
