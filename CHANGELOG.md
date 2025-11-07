@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## Next Release
+## v5.4.0 (2025-11-10)
 
 - Adds support for `UspsShipAccount`
 - Adds `RetrieveTrackerBatch` function
+- Adds `VerifyCarrier` address param
 
 ## v5.3.1 (2025-10-16)
 

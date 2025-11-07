@@ -65,8 +65,9 @@ type Address struct {
 // CreateAddressOptions is used to specify verification options for address
 // creation.
 type CreateAddressOptions struct {
-	Verify       bool `json:"verify,omitempty" url:"verify,omitempty"`
-	VerifyStrict bool `json:"verify_strict,omitempty" url:"verify_strict,omitempty"`
+	Verify        bool   `json:"verify,omitempty" url:"verify,omitempty"`
+	VerifyStrict  bool   `json:"verify_strict,omitempty" url:"verify_strict,omitempty"`
+	VerifyCarrier string `json:"verify_carrier,omitempty" url:"verify_carrier,omitempty"`
 }
 
 type createAddressRequest struct {

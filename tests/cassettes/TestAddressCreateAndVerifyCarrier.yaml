@@ -1,0 +1,62 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"address":{"city":"Not A City","company":"EasyPost","country":"US","email":"REDACTED","phone":"REDACTED","state":"ZZ","street1":"000
+      unknown street","zip":"00001"},"verify_carrier":"UPS"}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/addresses/create_and_verify
+    method: POST
+  response:
+    body: '{"address":{"carrier_facility":null,"city":"NOT A CITY","company":"EASYPOST","country":"US","created_at":"2025-11-07T18:37:21Z","email":"REDACTED","federal_tax_id":null,"id":"adr_cbc2e245bc0811f086cdac1f6bc53342","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
+      UNKNOWN STREET","street2":"","updated_at":"2025-11-07T18:37:21Z","verifications":{"delivery":{"details":{"latitude":null,"longitude":null,"time_zone":null},"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null}],"success":true},"verify_carrier":"ups","zip4":{"details":null,"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null}],"success":true}},"zip":"00001"}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Location:
+      - /api/v2/addresses/adr_cbc2e245bc0811f086cdac1f6bc53342
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - bcd4371f690e3c60e78733e002ae8dbe
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb64nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb3nuq c0061e0a2e
+      - extlb2nuq cbbd141214
+      X-Runtime:
+      - "0.442235"
+      X-Version-Label:
+      - easypost-202511071754-85836cab32-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
