@@ -49,7 +49,7 @@ jobs:
       - name: Run coverage report
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 make install coverage
       - name: Install goveralls
-        run: go get github.com/mattn/goveralls
+        run: go install github.com/mattn/goveralls@latest
       - name: Coveralls
         env:
           COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
