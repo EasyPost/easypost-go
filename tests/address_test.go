@@ -188,3 +188,50 @@ func (c *ClientTests) TestAddressVerify() {
 	assert.True(strings.HasPrefix(verifiedAddress.ID, "adr_"))
 	assert.Equal("388 TOWNSEND ST APT 20", verifiedAddress.Street1)
 }
+
+// We purposefully pass in slightly incorrect data to get the corrected address back once verified.
+func (c *ClientTests) TestAddressCreateVerifyCarrier() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	address, err := client.CreateAddress(
+		c.fixture.IncorrectAddress(),
+		&easypost.CreateAddressOptions{
+			Verify:        true,
+			VerifyCarrier: "UPS",
+		},
+	)
+
+	require.NoError(err)
+	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
+
+	deliveryVerification := address.Verifications.Delivery
+	deliveryError := deliveryVerification.Errors[0]
+	assert.Equal("Address not found", deliveryError.Message)
+	zip4Verification := address.Verifications.ZIP4
+	zip4Error := zip4Verification.Errors[0]
+	assert.Equal("Address not found", zip4Error.Message)
+}
+
+// We purposefully pass in slightly incorrect data to get the corrected address back once verified.
+func (c *ClientTests) TestAddressCreateAndVerifyCarrier() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	address, err := client.CreateAndVerifyAddress(
+		c.fixture.IncorrectAddress(),
+		&easypost.CreateAddressOptions{
+			VerifyCarrier: "UPS",
+		},
+	)
+
+	require.NoError(err)
+	assert.Equal(reflect.TypeOf(&easypost.Address{}), reflect.TypeOf(address))
+
+	deliveryVerification := address.Verifications.Delivery
+	deliveryError := deliveryVerification.Errors[0]
+	assert.Equal("Address not found", deliveryError.Message)
+	zip4Verification := address.Verifications.ZIP4
+	zip4Error := zip4Verification.Errors[0]
+	assert.Equal("Address not found", zip4Error.Message)
+}
