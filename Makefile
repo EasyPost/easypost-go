@@ -60,7 +60,7 @@ scan:
 
 ## test - Test the project
 test:
-	go clean -testcache && go test ./tests -v
+	go clean -testcache && go test ./... -v
 
 ## tidy - Tidies up the vendor directory
 tidy:
