@@ -1,22 +1,18 @@
-package easypost_test
-
-import (
-	"github.com/EasyPost/easypost-go/v5"
-)
+package easypost
 
 func (c *ClientTests) TestCreateEmbeddablesSession() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
 	childUsers, err := client.ListChildUsers(
-		&easypost.ListOptions{
+		&ListOptions{
 			PageSize: c.fixture.pageSize(),
 		},
 	)
 	require.NoError(err)
 
 	session, err := client.CreateEmbeddablesSession(
-		&easypost.EmbeddablesSessionParameters{
+		&EmbeddablesSessionParameters{
 			OriginHost: "https://example.com",
 			UserId:     childUsers.Children[0].ID,
 		},
