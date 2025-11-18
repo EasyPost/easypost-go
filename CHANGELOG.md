@@ -1,5 +1,11 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds the following functions:
+  - `CreateCustomerPortalAccountLink`
+  - `CreateEmbeddablesSession`
+
 ## v5.4.0 (2025-11-10)
 
 - Adds support for `UspsShipAccount`
