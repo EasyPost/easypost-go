@@ -1,0 +1,90 @@
+package easypost
+
+import (
+	"errors"
+	"reflect"
+	"strings"
+)
+
+func (c *ClientTests) TestScanFormCreate() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	require.NoError(err)
+
+	scanform, err := client.CreateScanForm(shipment.ID)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&ScanForm{}), reflect.TypeOf(scanform))
+	assert.True(strings.HasPrefix(scanform.ID, "sf_"))
+}
+
+func (c *ClientTests) TestScanFormRetrieve() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
+	require.NoError(err)
+
+	scanform, err := client.CreateScanForm(shipment.ID)
+	require.NoError(err)
+
+	retrievedScanform, err := client.GetScanForm(scanform.ID)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&ScanForm{}), reflect.TypeOf(retrievedScanform))
+	assert.Equal(scanform, retrievedScanform)
+}
+
+func (c *ClientTests) TestScanFormAll() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	scanforms, err := client.ListScanForms(
+		&ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	scanformsList := scanforms.ScanForms
+
+	assert.LessOrEqual(len(scanformsList), c.fixture.pageSize())
+	assert.NotNil(scanforms.HasMore)
+	for _, scanform := range scanformsList {
+		assert.Equal(reflect.TypeOf(&ScanForm{}), reflect.TypeOf(scanform))
+	}
+}
+
+func (c *ClientTests) TestScanFormsGetNextPage() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListScanForms(
+		&ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextScanFormPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.ScanForms) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.ScanForms[len(firstPage.ScanForms)-1].ID
+			firstIdOfSecondPage := nextPage.ScanForms[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		var endOfPaginationErr *EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
+	}
+}

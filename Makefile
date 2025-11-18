@@ -17,7 +17,14 @@ clean:
 
 ## coverage - Get test coverage and open it in a browser
 coverage:
-	go clean -testcache && GOEXPERIMENT=nocoverageredesign go test ./tests -v -coverprofile=covprofile -coverpkg=./... && go tool cover -html=covprofile
+	go clean -testcache
+	go test -coverprofile=covprofile ./...
+	@statement_cov=$$(go tool cover -func=covprofile | grep total: | awk '{print substr($$NF, 1, length($$NF)-1)}'); \
+	if [ $$(echo "$$statement_cov < 78.0" | bc) -eq 1 ]; then \
+		echo "Tests passed but statement coverage failed with coverage: $$statement_cov"; \
+		exit 1; \
+	fi
+	go tool cover -html=covprofile
 
 ## init-examples-submodule - Initialize the examples submodule
 init-examples-submodule:
@@ -53,7 +60,7 @@ scan:
 
 ## test - Test the project
 test:
-	go clean -testcache && go test ./tests -v
+	go clean -testcache && go test ./... -v
 
 ## tidy - Tidies up the vendor directory
 tidy:

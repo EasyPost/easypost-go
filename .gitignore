@@ -1,6 +1,7 @@
-.env
 .DS_Store
+.env
 .idea/
-vendor/
-covprofile
+*.out
 /.golangci.yml
+covprofile
+vendor/
