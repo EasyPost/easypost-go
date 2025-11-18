@@ -24,6 +24,7 @@ coverage:
 		echo "Tests passed but statement coverage failed with coverage: $$statement_cov"; \
 		exit 1; \
 	fi
+	go tool cover -html=covprofile
 
 ## init-examples-submodule - Initialize the examples submodule
 init-examples-submodule:
