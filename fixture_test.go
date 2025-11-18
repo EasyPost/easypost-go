@@ -43,9 +43,7 @@ type billingFixture struct {
 
 // Reads fixture data from the fixtures JSON file
 func readFixtureData() Fixture {
-	currentDir, _ := os.Getwd()
-	parentDir := filepath.Dir(currentDir)
-	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/client-library-fixtures.json")
+	filePath := "examples/official/fixtures/client-library-fixtures.json"
 
 	/* #nosec */
 	data, err := os.Open(filePath)
