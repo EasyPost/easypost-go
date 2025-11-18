@@ -1,0 +1,163 @@
+package easypost
+
+import (
+	"errors"
+	"reflect"
+	"strings"
+)
+
+func (c *ClientTests) TestUserCreate() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	userName := "Test User"
+
+	user, err := client.CreateUser(
+		&UserOptions{
+			Name: &userName,
+		},
+	)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&User{}), reflect.TypeOf(user))
+	assert.True(strings.HasPrefix(user.ID, "user_"))
+	assert.Equal("Test User", user.Name)
+}
+
+func (c *ClientTests) TestUserRetrieve() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	authenticatedUser, err := client.RetrieveMe()
+	require.NoError(err)
+
+	retrievedUser, err := client.GetUser(authenticatedUser.ID)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&User{}), reflect.TypeOf(retrievedUser))
+	assert.True(strings.HasPrefix(retrievedUser.ID, "user_"))
+}
+
+func (c *ClientTests) TestUserRetrieveMe() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	user, err := client.RetrieveMe()
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&User{}), reflect.TypeOf(user))
+	assert.True(strings.HasPrefix(user.ID, "user_"))
+}
+
+func (c *ClientTests) TestUserAllChildUsers() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	childUsers, err := client.ListChildUsers(
+		&ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	assert.LessOrEqual(len(childUsers.Children), c.fixture.pageSize())
+	assert.NotNil(childUsers.HasMore)
+	for _, user := range childUsers.Children {
+		assert.Equal(reflect.TypeOf(&User{}), reflect.TypeOf(user))
+	}
+}
+
+func (c *ClientTests) TestUserGetNextChildUserPage() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	firstPage, err := client.ListChildUsers(
+		&ListOptions{
+			PageSize: c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+
+	nextPage, err := client.GetNextChildUserPageWithPageSize(firstPage, c.fixture.pageSize())
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Children) <= c.fixture.pageSize())
+
+			lastIDOfFirstPage := firstPage.Children[len(firstPage.Children)-1].ID
+			firstIdOfSecondPage := nextPage.Children[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		var endOfPaginationErr *EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
+	}
+}
+
+func (c *ClientTests) TestUserUpdate() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	user, err := client.RetrieveMe()
+	require.NoError(err)
+
+	test_name := "Test User"
+
+	updatedUser, err := client.UpdateUser(
+		&UserOptions{
+			ID:   user.ID,
+			Name: &test_name,
+		},
+	)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&User{}), reflect.TypeOf(updatedUser))
+	assert.True(strings.HasPrefix(updatedUser.ID, "user_"))
+	assert.Equal(test_name, updatedUser.Name)
+}
+
+func (c *ClientTests) TestUserUpdateBrand() {
+	client := c.ProdClient()
+	assert, require := c.Assert(), c.Require()
+
+	color := "#123456"
+
+	user, err := client.RetrieveMe()
+	require.NoError(err)
+
+	brand, err := client.UpdateBrand(
+		user.ID,
+		map[string]interface{}{
+			"color": color,
+		},
+	)
+	require.NoError(err)
+
+	assert.Equal(reflect.TypeOf(&Brand{}), reflect.TypeOf(brand))
+	assert.True(strings.HasPrefix(brand.ID, "brd_"))
+	assert.Equal(color, brand.Color)
+}
+
+func (c *ClientTests) TestUserDelete() {
+	client := c.ProdClient()
+	require := c.Require()
+
+	userName := "Test User"
+
+	user, err := client.CreateUser(
+		&UserOptions{
+			Name: &userName,
+		},
+	)
+	require.NoError(err)
+
+	err = client.DeleteUser(user.ID)
+	require.NoError(err)
+
+	require.NoError(err)
+}
