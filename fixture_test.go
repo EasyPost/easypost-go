@@ -6,7 +6,6 @@ import (
 	"fmt"
 	"io"
 	"os"
-	"path/filepath"
 	"time"
 )
 
@@ -189,9 +188,7 @@ func (fixture *Fixture) BasicOrder() *Order {
 }
 
 func (fixture *Fixture) EventBody() []byte {
-	currentDir, _ := os.Getwd()
-	parentDir := filepath.Dir(currentDir)
-	filePath := fmt.Sprintf("%s%s", parentDir, "/examples/official/fixtures/event-body.json")
+	filePath := "examples/official/fixtures/event-body.json"
 
 	/* #nosec */
 	data, err := os.Open(filePath)
