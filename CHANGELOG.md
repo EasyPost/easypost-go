@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v5.5.0 (2025-11-24)
 
 - Adds the following functions:
   - `CreateCustomerPortalAccountLink`
