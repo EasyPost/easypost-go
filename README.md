@@ -173,20 +173,20 @@ For additional support, see our [org-wide support policy](https://github.com/Eas
 
 ```bash
 # Install dependencies
-make install
+just install
 
 # Lint project (requires `golangci-lint` to be installed - not included)
-make lint
+just lint
 
 # Run tests
-EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make test
-EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... make coverage
+EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... just test
+EASYPOST_TEST_API_KEY=123... EASYPOST_PROD_API_KEY=123... just coverage
 
 # Run security analysis on the project (requires `gosec` to be installed - not included)
-make scan
+just scan
 
 # Update submodules
-make update-examples-submodule
+just update-examples-submodule
 ```
 
 ### Testing
