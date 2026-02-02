@@ -27,7 +27,7 @@ func (c *ClientTests) TestApiKeysForParentUser() {
 	assert.NotNil(apiKeys)
 }
 
-func (c *ClientTests) TestApiKeysForChildUser() {
+func (c *ClientTests) TestApiKeysRetrieveChildUser() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
@@ -38,4 +38,30 @@ func (c *ClientTests) TestApiKeysForChildUser() {
 
 	assert.Nil(apiKeys)
 	assert.Equal(reflect.TypeOf(&FilteringError{}), reflect.TypeOf(err))
+}
+
+func (c *ClientTests) TestApiKeyLifecycle() {
+	client := c.ReferralClient()
+	assert, require := c.Assert(), c.Require()
+
+	// Create an API key
+	apiKey, err := client.CreateAPIKey("production")
+	require.NoError(err)
+	assert.NotNil(apiKey)
+	assert.Contains(apiKey.ID, "ak_")
+	assert.Equal("production", apiKey.Mode)
+
+	// Disable the API key
+	apiKey, err = client.DisableAPIKey(apiKey.ID)
+	require.NoError(err)
+	assert.False(apiKey.Active)
+
+	// Enable the API key
+	apiKey, err = client.EnableAPIKey(apiKey.ID)
+	require.NoError(err)
+	assert.True(apiKey.Active)
+
+	// Delete the API key
+	err = client.DeleteAPIKey(apiKey.ID)
+	require.NoError(err)
 }
