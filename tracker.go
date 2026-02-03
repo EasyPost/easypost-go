@@ -232,3 +232,14 @@ func (c *Client) RetrieveTrackerBatchWithContext(ctx context.Context, opts *List
 	err = c.do(ctx, http.MethodPost, "trackers/batch", opts, &out)
 	return
 }
+
+// DeleteTracker deletes a Tracker object by ID.
+func (c *Client) DeleteTracker(trackerID string) error {
+	return c.DeleteTrackerWithContext(context.Background(), trackerID)
+}
+
+// DeleteTrackerWithContext performs the same operation as DeleteTracker, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) DeleteTrackerWithContext(ctx context.Context, trackerID string) error {
+	return c.do(ctx, http.MethodDelete, "trackers/"+trackerID, nil, nil)
+}

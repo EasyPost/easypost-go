@@ -117,3 +117,18 @@ func (c *ClientTests) TestTrackerRetrieveBatch() {
 		assert.Equal(reflect.TypeOf(&Tracker{}), reflect.TypeOf(tracker))
 	}
 }
+
+func (c *ClientTests) TestTrackerDelete() {
+	client := c.TestClient()
+	require := c.Require()
+
+	tracker, err := client.CreateTracker(
+		&CreateTrackerOptions{
+			TrackingCode: "EZ1000000001",
+		},
+	)
+	require.NoError(err)
+
+	err = client.DeleteTracker(tracker.ID)
+	require.NoError(err)
+}

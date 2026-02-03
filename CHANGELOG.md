@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Adds `DeleteTracker` function
+
 ## v5.6.0 (2026-02-03)
 
 - Adds the following functions usable by child and referral customer users:
