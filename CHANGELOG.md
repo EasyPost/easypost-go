@@ -8,6 +8,7 @@
   - `EnableAPIKey`
   - `DisableAPIKey`
 - Adds `DeleteTracker` function
+- Adds `LineItems` to `Shipment` object
 
 ## v5.5.0 (2025-11-24)
 

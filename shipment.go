@@ -35,6 +35,11 @@ type PostageLabel struct {
 	LabelZPLURL     string    `json:"label_zpl_url,omitempty" url:"label_zpl_url,omitempty"`
 }
 
+type LineItem struct {
+	TotalLineValue  string `json:"total_line_value,omitempty" url:"total_line_value,omitempty"`
+	ItemDescription string `json:"item_description,omitempty" url:"item_description,omitempty"`
+}
+
 // A Shipment represents its namesake, and is made up of a "to" and "from"
 // addresses, the Parcel being shipped, and any customs forms required for
 // international deliveries.
@@ -73,6 +78,7 @@ type Shipment struct {
 	BatchStatus       string            `json:"batch_status,omitempty" url:"batch_status,omitempty"`
 	BatchMessage      string            `json:"batch_message,omitempty" url:"batch_message,omitempty"`
 	TaxIdentifiers    []*TaxIdentifier  `json:"tax_identifiers,omitempty" url:"tax_identifiers,omitempty"`
+	LineItems         []*LineItem       `json:"line_items,omitempty" url:"line_items,omitempty"`
 }
 
 // ListShipmentsOptions is used to specify query parameters for listing Shipment
