@@ -7,6 +7,7 @@
   - `DeleteAPIKey`
   - `EnableAPIKey`
   - `DisableAPIKey`
+- Adds `DeleteTracker` function
 
 ## v5.5.0 (2025-11-24)
 
