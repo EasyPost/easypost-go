@@ -72,7 +72,7 @@ func (c *ClientTests) TestRegisterFedExAddress() {
 	response, err := client.RegisterFedExAddress(fedexAccountNumber, params)
 	require.NoError(err)
 
-	assert.Nil(response.EmailAddress)
+	assert.Equal("", response.EmailAddress)
 	assert.Contains(response.Options, "SMS")
 	assert.Contains(response.Options, "CALL")
 	assert.Contains(response.Options, "INVOICE")
