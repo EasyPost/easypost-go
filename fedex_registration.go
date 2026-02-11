@@ -4,6 +4,7 @@ import (
 	"context"
 	"fmt"
 	"net/http"
+	"strings"
 
 	"github.com/google/uuid"
 )
@@ -11,9 +12,9 @@ import (
 // FedExAccountValidationResponse represents the response from FedEx account validation endpoints.
 type FedExAccountValidationResponse struct {
 	// If the response contains the following, one must complete pin or invoice validation next
-	EmailAddress *string  `json:"email_address,omitempty" url:"email_address,omitempty"`
+	EmailAddress string   `json:"email_address,omitempty" url:"email_address,omitempty"`
 	Options      []string `json:"options,omitempty" url:"options,omitempty"`
-	PhoneNumber  *string  `json:"phone_number,omitempty" url:"phone_number,omitempty"`
+	PhoneNumber  string   `json:"phone_number,omitempty" url:"phone_number,omitempty"`
 
 	// If the response contains the following, pre-validation has been completed
 	ID          string            `json:"id,omitempty" url:"id,omitempty"`
@@ -152,8 +153,7 @@ func wrapInvoiceValidation(params map[string]interface{}) map[string]interface{}
 // This follows the pattern used in the web UI implementation.
 func ensureNameField(m map[string]interface{}) {
 	if _, exists := m["name"]; !exists || m["name"] == nil {
-		uuidStr := uuid.New().String()
-		uuidStr = uuidStr[:8] + uuidStr[9:13] + uuidStr[14:18] + uuidStr[19:23] + uuidStr[24:]
+		uuidStr := strings.ReplaceAll(uuid.New().String(), "-", "")
 		m["name"] = uuidStr
 	}
 }

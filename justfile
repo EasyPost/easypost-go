@@ -5,7 +5,7 @@ build:
 # Clean the project
 clean:
 	rm -rf dist
-	rm $(go env GOPATH)/bin/easypost-go
+	rm -f $(go env GOPATH)/bin/easypost-go
 
 # Get test coverage and open it in a browser
 coverage:
@@ -22,7 +22,7 @@ init-examples-submodule:
 # Install and vendor dependencies
 install: init-examples-submodule
 	curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.64.6
-	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(go env GOPATH)/bin
+	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.22.11
 	go mod vendor
 
 # Lint the project

@@ -76,7 +76,7 @@ func (c *ClientTests) TestRegisterFedExAddress() {
 	assert.Contains(response.Options, "SMS")
 	assert.Contains(response.Options, "CALL")
 	assert.Contains(response.Options, "INVOICE")
-	assert.Equal("***-***-9721", *response.PhoneNumber)
+	assert.Equal("***-***-9721", response.PhoneNumber)
 }
 
 func (c *ClientTests) TestRequestFedExPin() {
