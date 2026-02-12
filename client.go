@@ -252,6 +252,6 @@ func (c *Client) MakeAPICall(method, endpoint string, params map[string]interfac
 		paramsToUse = values
 	}
 
-	err = c.do(context.TODO(), method, endpoint, paramsToUse, &out)
+	err = c.do(context.Background(), method, endpoint, paramsToUse, &out)
 	return
 }
