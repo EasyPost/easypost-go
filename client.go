@@ -99,7 +99,14 @@ func (c *Client) setParameters(req *http.Request, params interface{}) error {
 	switch req.Method {
 	case http.MethodGet, http.MethodDelete:
 		// Convert interface into query parameters and set as request URL query
-		values, _ := query.Values(params)
+		var values url.Values
+		if urlValues, ok := params.(url.Values); ok {
+			// If params is already url.Values, use it directly
+			values = urlValues
+		} else {
+			// Otherwise, use the query package to convert the struct
+			values, _ = query.Values(params)
+		}
 		req.URL.RawQuery = values.Encode()
 		return nil
 
@@ -227,4 +234,24 @@ func (c *Client) do(ctx context.Context, method, path string, params interface{}
 	apiErr := BuildErrorFromResponse(res)
 
 	return apiErr
+}
+
+// MakeAPICall makes an API call to the EasyPost API.
+//
+// This public, generic interface is useful for making arbitrary API calls to the EasyPost API that
+// are not yet supported by the client library's services. When possible, the service for your use case
+// should be used instead as it provides a more convenient and higher-level interface depending on the endpoint.
+func (c *Client) MakeAPICall(method, endpoint string, params map[string]interface{}) (out map[string]interface{}, err error) {
+	// For GET/DELETE requests, convert map to url.Values since query package doesn't handle maps
+	var paramsToUse interface{} = params
+	if method == http.MethodGet || method == http.MethodDelete {
+		values := url.Values{}
+		for key, value := range params {
+			values.Set(key, fmt.Sprintf("%v", value))
+		}
+		paramsToUse = values
+	}
+
+	err = c.do(context.TODO(), method, endpoint, paramsToUse, &out)
+	return
 }
