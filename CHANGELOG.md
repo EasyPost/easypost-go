@@ -1,5 +1,13 @@
 # CHANGELOG
 
+## v5.7.0 (2026-02-20)
+
+- Adds the following functions:
+  - `RegisterFedExAddress`
+  - `RequestFedExPin`
+  - `ValidateFedExPin`
+  - `SubmitFedExInvoice`
+
 ## v5.6.0 (2026-02-03)
 
 - Adds the following functions usable by child and referral customer users:
