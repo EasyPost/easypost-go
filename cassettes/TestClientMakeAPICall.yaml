@@ -1,0 +1,59 @@
+---
+version: 1
+interactions:
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/addresses?page_size=1
+    method: GET
+  response:
+    body: '{"addresses":[{"carrier_facility":null,"city":"NOT A CITY","company":"EASYPOST","country":"US","created_at":"2025-11-07T18:37:21Z","email":"REDACTED","federal_tax_id":null,"id":"adr_cc165879bc0811f09e4dac1f6bc539aa","mode":"test","name":null,"object":"Address","phone":"REDACTED","residential":null,"state":"ZZ","state_tax_id":null,"street1":"000
+      UNKNOWN STREET","street2":null,"updated_at":"2025-11-07T18:37:21Z","verifications":{"delivery":{"details":{"latitude":null,"longitude":null,"time_zone":null},"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null}],"success":true},"verify_carrier":"ups","zip4":{"details":null,"errors":[{"code":"E.ADDRESS.NOT_FOUND","field":"address","message":"Address
+      not found","suggestion":null}],"success":true}},"zip":"00001"}],"has_more":true}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      X-Backend:
+      - easypost
+      X-Canary:
+      - direct
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - 16819987698e0f3ce787d97e011df32e
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - bigweb43nuq
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb5nuq 0dcc3a6efb
+      - extlb1nuq c01291cd8f
+      X-Runtime:
+      - "0.031333"
+      X-Version-Label:
+      - easypost-202602121702-bfe72e7ac7-master
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

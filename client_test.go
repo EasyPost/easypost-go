@@ -167,3 +167,16 @@ func (c *ClientTests) TestHooksUnsubscribing() {
 	// verify that the hook was not called again
 	assert.Equal(1, requestCallbackCallCount)
 }
+
+func (c *ClientTests) TestClientMakeAPICall() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	response, err := client.MakeAPICall("GET", "addresses", map[string]interface{}{"page_size": 1})
+	require.NoError(err)
+
+	addresses := response["addresses"].([]interface{})
+	assert.Equal(1, len(addresses))
+	firstAddress := addresses[0].(map[string]interface{})
+	assert.Equal("Address", firstAddress["object"])
+}
