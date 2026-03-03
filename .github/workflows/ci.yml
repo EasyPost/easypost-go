@@ -14,8 +14,8 @@ jobs:
       - uses: extractions/setup-just@v3
       - uses: actions/setup-go@v6
         with:
-          go-version: '1.26'
-        # install must occur in the same step as the linter to run properly on CI
+          # TODO: The version of golangci-lint we use is not compatible with Go 1.26+, migrate to new version
+          go-version: '1.25'
       - name: Lint project
         run: just install lint
   build:
