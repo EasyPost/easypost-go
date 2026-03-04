@@ -14,15 +14,15 @@ jobs:
       - uses: extractions/setup-just@v3
       - uses: actions/setup-go@v6
         with:
+          # TODO: The version of golangci-lint we use is not compatible with Go 1.26+, migrate to new version
           go-version: '1.25'
-        # install must occur in the same step as the linter to run properly on CI
       - name: Lint project
         run: just install lint
   build:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        go-version: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24', '1.25']
+        go-version: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24', '1.25', '1.26']
     steps:
       - uses: actions/checkout@v6
       - uses: extractions/setup-just@v3
@@ -38,24 +38,11 @@ jobs:
       - uses: extractions/setup-just@v3
       - uses: actions/setup-go@v6
         with:
-          go-version: '1.25'
-      - name: Run coverage report
+          go-version: '1.26'
+      - name: Run tests
         run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just install coverage
-  coveralls:
-    if: github.ref == 'refs/heads/master'
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v6
-      - uses: extractions/setup-just@v3
-      - uses: actions/setup-go@v6
+      - name: Coverage
+        if: github.ref == 'refs/heads/master'
+        uses: codecov/codecov-action@v5
         with:
-          # NOTE: goveralls is not compatibile with go v1.22+, must remain on v1.21 max
-          go-version: '1.21'
-      - name: Run coverage report
-        run: EASYPOST_TEST_API_KEY=123 EASYPOST_PROD_API_KEY=123 just install coverage
-      - name: Install goveralls
-        run: go install github.com/mattn/goveralls@latest
-      - name: Coveralls
-        env:
-          COVERALLS_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: goveralls -coverprofile=covprofile -service=github
+          token: ${{ secrets.CODECOV_TOKEN }}

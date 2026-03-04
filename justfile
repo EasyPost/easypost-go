@@ -10,9 +10,9 @@ clean:
 # Get test coverage and open it in a browser
 coverage:
     go clean -testcache
-    go test -coverprofile=covprofile ./...
-    bash -c 'statement_cov=$(go tool cover -func=covprofile | grep total: | awk "{print substr(\$NF, 1, length(\$NF)-1)}"); if [ $(echo "$statement_cov < 78.0" | bc) -eq 1 ]; then echo "Tests passed but statement coverage failed with coverage: $statement_cov"; exit 1; fi'
-    go tool cover -html=covprofile
+    go test -coverprofile=cover.out ./...
+    bash -c 'statement_cov=$(go tool cover -func=cover.out | grep total: | awk "{print substr(\$NF, 1, length(\$NF)-1)}"); if [ $(echo "$statement_cov < 78.0" | bc) -eq 1 ]; then echo "Tests passed but statement coverage failed with coverage: $statement_cov"; exit 1; fi'
+    go tool cover -html=cover.out
 
 # Initialize the examples submodule
 init-examples-submodule:
