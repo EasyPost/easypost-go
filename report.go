@@ -61,7 +61,9 @@ func (c *Client) ListReports(typ string, opts *ListOptions) (out *ListReportsRes
 func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *ListOptions) (out *ListReportsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "reports/"+typ, opts, &out)
 	// Store the original query parameters for reuse when getting the next page
-	out.Type = typ
+	if err == nil && out != nil {
+		out.Type = typ
+	}
 	return
 }
 

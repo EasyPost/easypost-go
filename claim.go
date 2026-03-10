@@ -92,7 +92,9 @@ func (c *Client) ListClaims(opts *ListClaimsParameters) (out *ListClaimsResult, 
 func (c *Client) ListClaimsWithContext(ctx context.Context, opts *ListClaimsParameters) (out *ListClaimsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "claims", opts, &out)
 	// Store the original query parameters for reuse when getting the next page
-	out.Parameters = *opts
+	if err == nil && out != nil {
+		out.Parameters = *opts
+	}
 	return
 }
 
