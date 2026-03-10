@@ -165,8 +165,10 @@ func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResul
 func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	err = c.do(ctx, http.MethodGet, "trackers", opts, &out)
 	// Store the original query parameters for reuse when getting the next page
-	out.TrackingCode = opts.TrackingCode
-	out.Carrier = opts.Carrier
+	if err == nil && out != nil {
+		out.TrackingCode = opts.TrackingCode
+		out.Carrier = opts.Carrier
+	}
 	return
 }
 

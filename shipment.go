@@ -188,8 +188,10 @@ func (c *Client) ListShipments(opts *ListShipmentsOptions) (out *ListShipmentsRe
 func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmentsOptions) (out *ListShipmentsResult, err error) {
 	err = c.do(ctx, http.MethodGet, "shipments", opts, &out)
 	// Store the original query parameters for reuse when getting the next page
-	out.Purchased = opts.Purchased
-	out.IncludeChildren = opts.IncludeChildren
+	if err == nil && out != nil {
+		out.Purchased = opts.Purchased
+		out.IncludeChildren = opts.IncludeChildren
+	}
 	return
 }
 

@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v5.8.1 (2026-03-10)
+
+- Fixes the possibility for a panic when listing claims, reports, shipments, or trackers (closes #276)
+
 ## v5.8.0 (2026-02-25)
 
 - Adds generic `MakeAPICall` function
