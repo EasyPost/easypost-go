@@ -82,7 +82,7 @@ func main() {
         os.Exit(1)
     }
 
-    lowestRate, err := client.LowestRate(shipment)
+    lowestRate, err := client.LowestShipmentRate(shipment)
     if err != nil {
         fmt.Fprintln(os.Stderr, "error getting lowest rate:", err)
         os.Exit(1)
