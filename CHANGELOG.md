@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v5.9.0 (2026-06-25)
+
+- Adds `params` to `RequestFedExPin` ensuring users can pass `easypost_details` to the call
+
 ## v5.8.1 (2026-03-10)
 
 - Fixes the possibility for a panic when listing claims, reports, shipments, or trackers (closes #276)
