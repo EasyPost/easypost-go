@@ -43,16 +43,15 @@ func (c *Client) RegisterFedExAddressWithContext(ctx context.Context, fedexAccou
 }
 
 // RequestFedExPin requests a PIN for FedEx account verification.
-func (c *Client) RequestFedExPin(fedexAccountNumber string, pinMethodOption string) (out *FedExRequestPinResponse, err error) {
-	return c.RequestFedExPinWithContext(context.Background(), fedexAccountNumber, pinMethodOption)
+func (c *Client) RequestFedExPin(fedexAccountNumber string, pinMethodOption string, params map[string]interface{}) (out *FedExRequestPinResponse, err error) {
+	return c.RequestFedExPinWithContext(context.Background(), fedexAccountNumber, pinMethodOption, params)
 }
 
 // RequestFedExPinWithContext performs the same operation as RequestFedExPin, but allows specifying a context that can interrupt the request.
-func (c *Client) RequestFedExPinWithContext(ctx context.Context, fedexAccountNumber string, pinMethodOption string) (out *FedExRequestPinResponse, err error) {
-	wrappedParams := map[string]interface{}{
-		"pin_method": map[string]interface{}{
-			"option": pinMethodOption,
-		},
+func (c *Client) RequestFedExPinWithContext(ctx context.Context, fedexAccountNumber string, pinMethodOption string, params map[string]interface{}) (out *FedExRequestPinResponse, err error) {
+	wrappedParams := wrapPinValidation(params)
+	wrappedParams["pin_method"] = map[string]interface{}{
+		"option": pinMethodOption,
 	}
 	endpoint := fmt.Sprintf("fedex_registrations/%s/pin", fedexAccountNumber)
 	err = c.do(ctx, http.MethodPost, endpoint, wrappedParams, &out)

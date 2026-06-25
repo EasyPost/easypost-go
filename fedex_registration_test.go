@@ -86,7 +86,15 @@ func (c *ClientTests) TestRequestFedExPin() {
 
 	fedexAccountNumber := "123456789"
 
-	response, err := client.RequestFedExPin(fedexAccountNumber, "SMS")
+	easypostDetails := map[string]interface{}{
+		"carrier_account_id": "ca_123",
+	}
+
+	params := map[string]interface{}{
+		"easypost_details": easypostDetails,
+	}
+
+	response, err := client.RequestFedExPin(fedexAccountNumber, "SMS", params)
 	require.NoError(err)
 
 	assert.Equal("sent secured Pin", response.Message)
