@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v5.9.1 (2026-09-09)
+
+- Fixes calling `UnmarshalJSON` on `Event` objects in Go 1.27
+
 ## v5.9.0 (2026-06-25)
 
 - Adds `params` to `RequestFedExPin` ensuring users can pass `easypost_details` to the call
