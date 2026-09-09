@@ -1,11 +1,13 @@
 package easypost
 
 import (
+	"encoding/json"
 	"errors"
 	"os"
 	"path/filepath"
 	"reflect"
 	"strings"
+	"testing"
 	"time"
 )
 
@@ -154,5 +156,40 @@ func (c *ClientTests) TestEventsGetNextPage() {
 	if err != nil {
 		assert.Equal(NoPagesLeftToRetrieve, err.Error())
 		return
+	}
+}
+
+func TestEventUnmarshalJSONWithoutResult(t *testing.T) {
+	data := []byte(`{"id":"evt_123","object":"Event","description":"test event"}`)
+
+	var event Event
+	if err := json.Unmarshal(data, &event); err != nil {
+		t.Fatalf("unmarshal event failed: %v", err)
+	}
+
+	if event.ID != "evt_123" {
+		t.Fatalf("unexpected event ID: %s", event.ID)
+	}
+
+	if event.Result != nil {
+		t.Fatalf("expected nil result when result field is absent, got %T", event.Result)
+	}
+}
+
+func TestEventPayloadUnmarshalJSONRequestBodyString(t *testing.T) {
+	data := []byte(`{"id":"payload_123","object":"Payload","request_body":"{\"id\":\"evt_123\",\"object\":\"Event\"}"}`)
+
+	var payload EventPayload
+	if err := json.Unmarshal(data, &payload); err != nil {
+		t.Fatalf("unmarshal event payload failed: %v", err)
+	}
+
+	event, ok := payload.RequestBody.(*Event)
+	if !ok {
+		t.Fatalf("expected request_body to decode into *Event, got %T", payload.RequestBody)
+	}
+
+	if event.ID != "evt_123" {
+		t.Fatalf("unexpected nested event ID: %s", event.ID)
 	}
 }
