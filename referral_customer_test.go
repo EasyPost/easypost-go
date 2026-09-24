@@ -103,19 +103,6 @@ func (c *ClientTests) TestReferralCustomerUpdate() {
 	require.NoError(err)
 }
 
-func (c *ClientTests) TestReferralCustomerAddCreditCard() {
-	client := c.PartnerClient()
-	assert, require := c.Assert(), c.Require()
-
-	referralAPIKey := c.ReferralAPIKey()
-
-	creditCard, err := client.AddReferralCustomerCreditCard(referralAPIKey, c.fixture.TestCreditCard(), PrimaryPaymentMethodPriority)
-	require.NoError(err)
-
-	require.Equal(reflect.TypeOf(&PaymentMethodObject{}), reflect.TypeOf(creditCard))
-	assert.True(strings.HasSuffix(c.fixture.TestCreditCard().Number, creditCard.Last4))
-}
-
 func (c *ClientTests) TestAddReferralCustomerCreditCardFromStripe() {
 	client := c.ReferralClient()
 	assert, require := c.Assert(), c.Require()
@@ -153,6 +140,16 @@ func (c *ClientTests) TestAddReferralCustomerBankAccountFromStripe() {
 	if errors.As(err, &apiErr) {
 		assert.Equal("account_holder_name must be present when creating a Financial Connections payment method", apiErr.Message)
 	}
+}
+
+func (c *ClientTests) TestReferralCustomerRetrieveEasypostStripeApiKey() {
+	client := c.PartnerClient()
+	assert, require := c.Assert(), c.Require()
+
+	publicKey, err := client.RetrieveEasypostStripeApiKey()
+	require.NoError(err)
+
+	assert.True(strings.HasPrefix(publicKey, "pk_"))
 }
 
 func (c *ClientTests) TestReferralCustomersGetNextPage() {
