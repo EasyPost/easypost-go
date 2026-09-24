@@ -2,11 +2,7 @@ package easypost
 
 import (
 	"context"
-	"encoding/json"
-	"io"
 	"net/http"
-	"net/url"
-	"strings"
 )
 
 // A BetaPaymentRefund that has the refund details for the refund request.
@@ -47,21 +43,8 @@ type stripeApiKeyResponse struct {
 	PublicKey string `json:"public_key,omitempty" url:"public_key,omitempty"`
 }
 
-type stripeTokenResponse struct {
-	Id string `json:"id,omitempty" url:"id,omitempty"`
-}
-
 type referralCustomerRequest struct {
 	UserOptions *UserOptions `json:"user,omitempty" url:"user,omitempty"`
-}
-
-type creditCardCreateRequest struct {
-	CreditCard *easypostCreditCardCreateOptions `json:"credit_card,omitempty" url:"credit_card,omitempty"`
-}
-
-type easypostCreditCardCreateOptions struct {
-	StripeToken string `json:"stripe_object_id,omitempty" url:"stripe_object_id,omitempty"`
-	Priority    string `json:"priority,omitempty" url:"priority,omitempty"`
 }
 
 type clientSecretResponse struct {
@@ -140,32 +123,6 @@ func (c *Client) UpdateReferralCustomerEmailWithContext(ctx context.Context, use
 	return
 }
 
-// AddReferralCustomerCreditCard adds a credit card to EasyPost for a ReferralCustomer without needing a Stripe account.
-func (c *Client) AddReferralCustomerCreditCard(referralCustomerApiKey string, creditCardOptions *CreditCardOptions, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	return c.AddReferralCustomerCreditCardWithContext(context.Background(), referralCustomerApiKey, creditCardOptions, priority)
-}
-
-// AddReferralCustomerCreditCardWithContext performs the same operation as AddReferralCustomerCreditCard, but allows
-// specifying a context that can interrupt the request.
-func (c *Client) AddReferralCustomerCreditCardWithContext(ctx context.Context, referralCustomerApiKey string, creditCardOptions *CreditCardOptions, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	stripeApiKeyResponse, err := c.retrieveEasypostStripeApiKey(ctx)
-	if err != nil || stripeApiKeyResponse == nil || stripeApiKeyResponse.PublicKey == "" {
-		return nil, &InternalServerError{
-			APIError: APIError{
-				Code:       "Could not create Stripe token, please try again later",
-				StatusCode: 500,
-			},
-		}
-	}
-
-	stripeTokenResponse, err := c.createStripeToken(ctx, stripeApiKeyResponse.PublicKey, creditCardOptions)
-	if err != nil || stripeTokenResponse == nil || stripeTokenResponse.Id == "" {
-		return nil, newExternalApiError("Could not create Stripe token, please try again later")
-	}
-
-	return c.createEasypostCreditCard(ctx, referralCustomerApiKey, stripeTokenResponse.Id, priority)
-}
-
 // AddReferralCustomerCreditCardFromStripe adds a credit card to EasyPost for a ReferralCustomer with a payment method ID from Stripe. This function requires the ReferralCustomer User's API key.
 func (c *Client) AddReferralCustomerCreditCardFromStripe(referralCustomerApiKey string, paymentMethodId string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	return c.AddReferralCustomerCreditCardFromStripeWithContext(context.Background(), referralCustomerApiKey, paymentMethodId, priority)
@@ -213,64 +170,21 @@ func (c *Client) AddReferralCustomerBankAccountFromStripeWithContext(ctx context
 	return
 }
 
-func (c *Client) retrieveEasypostStripeApiKey(ctx context.Context) (out *stripeApiKeyResponse, err error) {
-	err = c.do(ctx, http.MethodGet, "partners/stripe_public_key", nil, &out)
-	return
+// RetrieveEasypostStripeApiKey retrieves EasyPost's Stripe public API key.
+func (c *Client) RetrieveEasypostStripeApiKey() (out string, err error) {
+	return c.RetrieveEasypostStripeApiKeyWithContext(context.Background())
 }
 
-func (c *Client) createStripeToken(ctx context.Context, stripeApiKey string, creditCardOptions *CreditCardOptions) (out *stripeTokenResponse, err error) {
-	data := url.Values{}
-	data.Set("card[number]", creditCardOptions.Number)
-	data.Set("card[exp_month]", creditCardOptions.ExpMonth)
-	data.Set("card[exp_year]", creditCardOptions.ExpYear)
-	data.Set("card[cvc]", creditCardOptions.Cvc)
-
-	req, err := http.NewRequestWithContext(ctx, http.MethodPost, "https://api.stripe.com/v1/tokens", strings.NewReader(data.Encode()))
+// RetrieveEasypostStripeApiKeyWithContext performs the same operation as RetrieveEasypostStripeApiKey, but allows
+// specifying a context that can interrupt the request.
+func (c *Client) RetrieveEasypostStripeApiKeyWithContext(ctx context.Context) (out string, err error) {
+	response := &stripeApiKeyResponse{}
+	err = c.do(ctx, http.MethodGet, "partners/stripe_public_key", nil, &response)
 	if err != nil {
-		return nil, err
+		return
 	}
 
-	req.Header.Set("Content-Type", "application/x-www-form-urlencoded")
-	req.Header.Add("Authorization", "Bearer "+stripeApiKey)
-
-	resp, err := c.client().Do(req) // use the current client's inner http.Client (configured to record) for the one-off request
-	if err != nil {
-		return nil, err
-	}
-
-	defer func(Body io.ReadCloser) {
-		_ = Body.Close()
-	}(resp.Body)
-
-	body, err := io.ReadAll(resp.Body) // deprecated, but we have to keep it for legacy compatibility
-	if err != nil {
-		return nil, err
-	}
-
-	err = json.Unmarshal(body, &out)
-	if err != nil {
-		return nil, err
-	}
-
-	return
-}
-
-func (c *Client) createEasypostCreditCard(ctx context.Context, referralCustomerApiKey string, stripeToken string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	client := &Client{
-		APIKey: referralCustomerApiKey,
-		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
-	}
-
-	creditCardOptions := &easypostCreditCardCreateOptions{
-		StripeToken: stripeToken,
-		Priority:    c.GetPaymentEndpointByPrimaryOrSecondary(priority),
-	}
-
-	creditCardRequest := &creditCardCreateRequest{
-		CreditCard: creditCardOptions,
-	}
-
-	err = client.do(ctx, http.MethodPost, "credit_cards", creditCardRequest, &out)
+	out = response.PublicKey
 	return
 }
 
