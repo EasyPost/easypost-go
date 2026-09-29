@@ -43,10 +43,12 @@ func (c *ClientTests) TestEndShipperAll() {
 	)
 	require.NoError(err)
 
+	assert.NotEmpty(endshippers.EndShippers)
 	assert.LessOrEqual(len(endshippers.EndShippers), c.fixture.pageSize())
-	assert.NotNil(endshippers.HasMore)
+	assert.True(endshippers.HasMore)
 	for _, endshipper := range endshippers.EndShippers {
 		assert.Equal(reflect.TypeOf(&Address{}), reflect.TypeOf(endshipper))
+		assert.True(strings.HasPrefix(endshipper.ID, "es"))
 	}
 }
 
