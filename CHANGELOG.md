@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v5.10.1 (2026-09-29)
 
 - Fixes `ListEndShipperResult` using an incorrect `endshippers` JSON/URL tag instead of `end_shippers`, which prevented the `EndShippers` field from being populated when listing end shippers
 
