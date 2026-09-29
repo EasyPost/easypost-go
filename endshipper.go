@@ -7,7 +7,7 @@ import (
 
 // ListEndShipperResult holds the results from the list EndShippers API.
 type ListEndShipperResult struct {
-	EndShippers []*Address `json:"endshippers,omitempty" url:"endshippers,omitempty"`
+	EndShippers []*Address `json:"end_shippers,omitempty" url:"end_shippers,omitempty"`
 	HasMore     bool       `json:"has_more,omitempty" url:"has_more,omitempty"`
 }
 

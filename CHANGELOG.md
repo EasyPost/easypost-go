@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes `ListEndShipperResult` using an incorrect `endshippers` JSON/URL tag instead of `end_shippers`, which prevented the `EndShippers` field from being populated when listing end shippers
+
 ## v5.10.0 (2026-09-24)
 
 - Removes the deprecated, unusable `AddReferralCustomerCreditCard` function
