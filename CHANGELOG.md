@@ -2,7 +2,7 @@
 
 ## Next Release
 
-- Adds `Surcharges` property to `Rate` model, including surcharge `category`
+- Adds `Surcharges` property to `Rate` model
 
 ## v5.10.1 (2026-09-29)
 
