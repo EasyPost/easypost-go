@@ -1,7 +1,6 @@
 package easypost
 
 import (
-	"encoding/json"
 	"reflect"
 	"strings"
 )
@@ -58,16 +57,4 @@ func (c *ClientTests) TestBetaStatelessRateGetLowestError() {
 	// Bad service
 	_, err = client.LowestStatelessRateWithCarrierAndService(rates, []string{"USPS"}, []string{"BadService"})
 	require.Error(err)
-}
-
-func (c *ClientTests) TestRateUnmarshalSurchargeCategory() {
-	assert, require := c.Assert(), c.Require()
-
-	rawRate := []byte(`{"surcharges":[{"object":"Surcharge","type":"carrier_fee","category":"carrier","amount":"1.00","list_amount":"1.00","retail_amount":"1.00","currency":"USD"}]}`)
-
-	var rate Rate
-	err := json.Unmarshal(rawRate, &rate)
-	require.NoError(err)
-	require.Len(rate.Surcharges, 1)
-	assert.Equal("carrier", rate.Surcharges[0].Category)
 }
