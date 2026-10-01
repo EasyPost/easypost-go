@@ -27,6 +27,7 @@ type Rate struct {
 	DeliveryDateGuaranteed bool      `json:"delivery_date_guaranteed,omitempty" url:"delivery_date_guaranteed,omitempty"`
 	EstDeliveryDays        int       `json:"est_delivery_days,omitempty" url:"est_delivery_days,omitempty"`
 	BillingType            string    `json:"billing_type,omitempty" url:"billing_type,omitempty"`
+	Surcharges             []*Surcharge `json:"surcharges,omitempty" url:"surcharges,omitempty"`
 }
 
 // A SmartRate contains information on shipping cost and delivery time in addition to time-in-transit details.
@@ -84,6 +85,17 @@ type TimeInTransit struct {
 	Percentile95 int `json:"percentile_95,omitempty" url:"percentile_95,omitempty"`
 	Percentile97 int `json:"percentile_97,omitempty" url:"percentile_97,omitempty"`
 	Percentile99 int `json:"percentile_99,omitempty" url:"percentile_99,omitempty"`
+}
+
+// Surcharge provides a list of surcharges and their details for a rate
+type Surcharge struct {
+	Object       string `json:"object,omitempty" url:"object,omitempty"`
+	Type         string `json:"type,omitempty" url:"type,omitempty"`
+	Category     string `json:"category,omitempty" url:"category,omitempty"`
+	Amount       string `json:"amount,omitempty" url:"amount,omitempty"`
+	ListAmount   string `json:"list_amount,omitempty" url:"list_amount,omitempty"`
+	RetailAmount string `json:"retail_amount,omitempty" url:"retail_amount,omitempty"`
+	Currency     string `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
 type getStatelessRatesResponse struct {
