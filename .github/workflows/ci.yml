@@ -11,6 +11,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: extractions/setup-just@v4
       - uses: actions/setup-go@v7
         with:
@@ -25,6 +27,8 @@ jobs:
         go-version: ['1.16', '1.17', '1.18', '1.19', '1.20', '1.21', '1.22', '1.23', '1.24', '1.25', '1.26', '1.27']
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: extractions/setup-just@v4
       - uses: actions/setup-go@v7
         with:
@@ -35,6 +39,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
+        with:
+          persist-credentials: false
       - uses: extractions/setup-just@v4
       - uses: actions/setup-go@v7
         with:
