@@ -78,21 +78,11 @@ type upsCarrierAccountUpdateRequest struct {
 }
 
 func (c *Client) selectCarrierAccountCreationEndpoint(typ string) string {
-	for _, carrier := range getCarrierAccountTypesWithCustomWorkflows() {
-		if typ == carrier {
-			return "carrier_accounts/register"
-		}
-	}
-
-	for _, carrier := range getUpsCarrierAccountTypes() {
-		if typ == carrier {
-			return "carrier_accounts/register_oauth"
-		}
-	}
-
-	for _, carrier := range getCarrierAccountTypesWithCustomOauth() {
-		if typ == carrier {
-			return "carrier_accounts/register_oauth"
+	for endpoint, carrierAccountTypes := range getCarrierAccountCreateEndpointTypes() {
+		for _, carrierAccountType := range carrierAccountTypes {
+			if typ == carrierAccountType {
+				return endpoint
+			}
 		}
 	}
 

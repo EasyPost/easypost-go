@@ -1,7 +1,26 @@
 package easypost
 
-func getCarrierAccountTypesWithCustomWorkflows() []string {
-	return []string{"FedexAccount", "FedexSmartpostAccount"}
+func getCarrierAccountCreateEndpointTypes() map[string][]string {
+	return map[string][]string{
+		"carrier_accounts/open": {
+			"FedexDefaultAccount",
+			"GofoWalletAccount",
+			"UpsDapAccount",
+			"UniUniWalletAccount",
+			"VehoWalletAccount",
+		},
+		"carrier_accounts/register": {
+			"FedexAccount",
+			"FedexSmartpostAccount",
+		},
+		"carrier_accounts/register_oauth": {
+			"AmazonShippingAccount",
+			"UpsAccount",
+			"UpsMailInnovationsAccount",
+			"UpsSurepostAccount",
+			"UspsShipAccount",
+		},
+	}
 }
 
 // By the nature of Golang and to ensure backwards compatibility, we cannot

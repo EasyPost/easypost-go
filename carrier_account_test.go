@@ -59,6 +59,17 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() { // FedExAcc
 	}
 }
 
+func (c *ClientTests) TestCarrierAccountCreateUrlRouting() {
+	client := c.TestClient()
+	assert := c.Assert()
+
+	for endpoint, carrierAccountTypes := range getCarrierAccountCreateEndpointTypes() {
+		for _, carrierAccountType := range carrierAccountTypes {
+			assert.Equal(endpoint, client.selectCarrierAccountCreationEndpoint(carrierAccountType))
+		}
+	}
+}
+
 func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericCreation() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
