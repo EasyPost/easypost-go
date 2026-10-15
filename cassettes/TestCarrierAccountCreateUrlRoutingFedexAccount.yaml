@@ -1,0 +1,63 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carrier_account":{"registration_data":{"some":"data"},"type":"FedexAccount"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/register
+    method: POST
+  response:
+    body: '{"error":{"code":"GONE","errors":[{"message":"FedEx account registrations
+      must use the multi-factor authentication (MFA) registration workflow. See: https://support.easypost.com/hc/en-us/articles/35262738410253-FedEx-Multi-Factor-Authentication"}],"message":"The
+      requested resource is no longer available at the server and no forwarding address
+      is known."}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - add87ec46ad13f1fe2cbac9b006d8bf4
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - web104azw
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb3azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      X-Runtime:
+      - "0.043728"
+      X-Version-Label:
+      - easypost-202610151955-b13716d895-main
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 410 Gone
+    code: 410
+    duration: ""

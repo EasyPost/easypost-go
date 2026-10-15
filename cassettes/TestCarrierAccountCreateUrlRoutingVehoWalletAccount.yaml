@@ -1,0 +1,116 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carrier_account":{"registration_data":{"some":"data"},"type":"VehoWalletAccount"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/open
+    method: POST
+  response:
+    body: '{"billing_type":"easypost","clone":false,"created_at":"2026-10-15T21:01:21Z","credentials":{},"description":"Veho
+      Account","fields":{},"id":"ca_94bcede781ba46a9a1c50c6b76e3321b","logo":null,"object":"CarrierAccount","readable":"Veho","reference":null,"test_credentials":null,"type":"VehoWalletAccount","updated_at":"2026-10-15T21:01:21Z"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - add87ec46ad13f21e2cbac9b006d9059
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - web121azw
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb4azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      X-Runtime:
+      - "0.124626"
+      X-Version-Label:
+      - easypost-202610151955-b13716d895-main
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/ca_94bcede781ba46a9a1c50c6b76e3321b
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - add87ec46ad13f21e2cbac9b006d90a5
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - web109azw
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      X-Runtime:
+      - "0.070206"
+      X-Version-Label:
+      - easypost-202610151955-b13716d895-main
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""
