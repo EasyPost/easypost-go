@@ -1,7 +1,9 @@
 package easypost
 
 import (
+	"context"
 	"errors"
+	"fmt"
 	"reflect"
 	"strings"
 )
@@ -60,14 +62,76 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() { // FedExAcc
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRouting() {
-	client := c.TestClient()
-	assert := c.Assert()
+	assert, require := c.Assert(), c.Require()
 
-	for endpoint, carrierAccountTypes := range getCarrierAccountCreateEndpointTypes() {
+	for expectedEndpoint, carrierAccountTypes := range getCarrierAccountCreateEndpointTypes() {
 		for _, carrierAccountType := range carrierAccountTypes {
-			assert.Equal(endpoint, client.selectCarrierAccountCreationEndpoint(carrierAccountType))
+			client := c.ProdClient()
+			capturedUrl := ""
+
+			hookID := fmt.Sprintf("route-%s", carrierAccountType)
+			requestSubscriber := RequestHookEventSubscriber{
+				Callback: func(ctx context.Context, event RequestHookEvent) error {
+					if capturedUrl == "" && strings.HasPrefix(event.Url.Path, "/v2/carrier_accounts") {
+						capturedUrl = event.Url.Path
+					}
+					return nil
+				},
+				HookEventSubscriber: HookEventSubscriber{
+					ID: hookID,
+				},
+			}
+			client.Hooks.AddRequestEventSubscriber(requestSubscriber)
+
+			var err error
+			var carrierAccount *CarrierAccount
+			switch expectedEndpoint {
+			case "carrier_accounts/register_oauth":
+				if isUpsCarrierAccountType(carrierAccountType) {
+					carrierAccount, err = client.CreateUpsCarrierAccount(&UpsCarrierAccountCreationParameters{
+						Type:          carrierAccountType,
+						AccountNumber: "123456789",
+					})
+				} else {
+					carrierAccount, err = client.CreateOauthCarrierAccount(&CarrierAccount{
+						Type: carrierAccountType,
+					})
+				}
+			default:
+				carrierAccount, err = client.CreateCarrierAccount(&CarrierAccount{
+					Type: carrierAccountType,
+					RegistrationData: map[string]interface{}{
+						"some": "data",
+					},
+				})
+			}
+
+			var apiError *APIError
+			if errors.As(err, &apiError) {
+				assert.NotEqual(404, apiError.StatusCode)
+				assert.NotEqual(500, apiError.StatusCode)
+			} else if err != nil {
+				require.NoError(err)
+			} else {
+				deleteErr := client.DeleteCarrierAccount(carrierAccount.ID)
+				require.NoError(deleteErr)
+			}
+
+			assert.True(strings.HasSuffix(capturedUrl, expectedEndpoint), capturedUrl)
+
+			client.Hooks.RemoveRequestEventSubscriber(requestSubscriber)
 		}
 	}
+}
+
+func isUpsCarrierAccountType(carrierAccountType string) bool {
+	for _, upsCarrierAccountType := range getUpsCarrierAccountTypes() {
+		if carrierAccountType == upsCarrierAccountType {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericCreation() {
