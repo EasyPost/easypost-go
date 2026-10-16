@@ -1,0 +1,116 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carrier_account_oauth_registrations":{"type":"UspsShipAccount"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/register_oauth
+    method: POST
+  response:
+    body: '{"billing_type":"carrier","clone":false,"created_at":"2026-10-15T21:01:20Z","credentials":{},"description":null,"fields":{},"id":"ca_ecfe61884a344fdb8f513cdb0225d203","logo":null,"object":"CarrierAccount","readable":"Usps
+      Ship","reference":null,"test_credentials":null,"type":"UspsShipAccount","updated_at":"2026-10-15T21:01:20Z"}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - add87ec46ad13f20e2cbac9b006d8fc4
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - web113azw
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      X-Runtime:
+      - "0.115942"
+      X-Version-Label:
+      - easypost-202610151955-b13716d895-main
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 201 Created
+    code: 201
+    duration: ""
+- request:
+    body: ""
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/ca_ecfe61884a344fdb8f513cdb0225d203
+    method: DELETE
+  response:
+    body: '{}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - add87ec46ad13f20e2cbac9b006d9014
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - web113azw
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb2azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      X-Runtime:
+      - "0.084829"
+      X-Version-Label:
+      - easypost-202610151955-b13716d895-main
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 200 OK
+    code: 200
+    duration: ""

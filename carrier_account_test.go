@@ -1,7 +1,9 @@
 package easypost
 
 import (
+	"context"
 	"errors"
+	"fmt"
 	"reflect"
 	"strings"
 )
@@ -57,6 +59,122 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() { // FedExAcc
 			}
 		}
 	}
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingFedexDefaultAccount() {
+	c.testCarrierAccountCreateUrlRouting("FedexDefaultAccount", "carrier_accounts/open")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingGofoWalletAccount() {
+	c.testCarrierAccountCreateUrlRouting("GofoWalletAccount", "carrier_accounts/open")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsDapAccount() {
+	c.testCarrierAccountCreateUrlRouting("UpsDapAccount", "carrier_accounts/open")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUniUniWalletAccount() {
+	c.testCarrierAccountCreateUrlRouting("UniUniWalletAccount", "carrier_accounts/open")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingVehoWalletAccount() {
+	c.testCarrierAccountCreateUrlRouting("VehoWalletAccount", "carrier_accounts/open")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingFedexAccount() {
+	c.testCarrierAccountCreateUrlRouting("FedexAccount", "carrier_accounts/register")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingFedexSmartpostAccount() {
+	c.testCarrierAccountCreateUrlRouting("FedexSmartpostAccount", "carrier_accounts/register")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingAmazonShippingAccount() {
+	c.testCarrierAccountCreateUrlRouting("AmazonShippingAccount", "carrier_accounts/register_oauth")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsAccount() {
+	c.testCarrierAccountCreateUrlRouting("UpsAccount", "carrier_accounts/register_oauth")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsMailInnovationsAccount() {
+	c.testCarrierAccountCreateUrlRouting("UpsMailInnovationsAccount", "carrier_accounts/register_oauth")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsSurepostAccount() {
+	c.testCarrierAccountCreateUrlRouting("UpsSurepostAccount", "carrier_accounts/register_oauth")
+}
+
+func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUspsShipAccount() {
+	c.testCarrierAccountCreateUrlRouting("UspsShipAccount", "carrier_accounts/register_oauth")
+}
+
+func (c *ClientTests) testCarrierAccountCreateUrlRouting(carrierAccountType, expectedEndpoint string) {
+	assert, require := c.Assert(), c.Require()
+
+	client := c.ProdClient()
+	capturedUrl := ""
+
+	hookID := fmt.Sprintf("route-%s", carrierAccountType)
+	requestSubscriber := RequestHookEventSubscriber{
+		Callback: func(ctx context.Context, event RequestHookEvent) error {
+			if capturedUrl == "" && strings.HasPrefix(event.Url.Path, "/v2/carrier_accounts") {
+				capturedUrl = event.Url.Path
+			}
+			return nil
+		},
+		HookEventSubscriber: HookEventSubscriber{
+			ID: hookID,
+		},
+	}
+	client.Hooks.AddRequestEventSubscriber(requestSubscriber)
+
+	var err error
+	var carrierAccount *CarrierAccount
+	switch expectedEndpoint {
+	case "carrier_accounts/register_oauth":
+		if isUpsCarrierAccountType(carrierAccountType) {
+			carrierAccount, err = client.CreateUpsCarrierAccount(&UpsCarrierAccountCreationParameters{
+				Type:          carrierAccountType,
+				AccountNumber: "123456789",
+			})
+		} else {
+			carrierAccount, err = client.CreateOauthCarrierAccount(&CarrierAccount{
+				Type: carrierAccountType,
+			})
+		}
+	default:
+		carrierAccount, err = client.CreateCarrierAccount(&CarrierAccount{
+			Type: carrierAccountType,
+			RegistrationData: map[string]interface{}{
+				"some": "data",
+			},
+		})
+	}
+
+	var apiError *APIError
+	if errors.As(err, &apiError) {
+		// Intentionally no status assertion: this test validates URL routing only.
+	} else if err != nil {
+		require.NoError(err)
+	} else {
+		deleteErr := client.DeleteCarrierAccount(carrierAccount.ID)
+		require.NoError(deleteErr)
+	}
+
+	assert.True(strings.HasSuffix(capturedUrl, expectedEndpoint), capturedUrl)
+
+	client.Hooks.RemoveRequestEventSubscriber(requestSubscriber)
+}
+
+func isUpsCarrierAccountType(carrierAccountType string) bool {
+	for _, upsCarrierAccountType := range getUpsCarrierAccountTypes() {
+		if carrierAccountType == upsCarrierAccountType {
+			return true
+		}
+	}
+
+	return false
 }
 
 func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericCreation() {

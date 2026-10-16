@@ -1,18 +1,62 @@
 package easypost
 
-func getCarrierAccountTypesWithCustomWorkflows() []string {
-	return []string{"FedexAccount", "FedexSmartpostAccount"}
+import "strings"
+
+func getCarrierAccountCreateEndpointTypes() map[string][]string {
+	return map[string][]string{
+		"carrier_accounts/open": {
+			"FedexDefaultAccount",
+			"GofoWalletAccount",
+			"UpsDapAccount",
+			"UniUniWalletAccount",
+			"VehoWalletAccount",
+		},
+		"carrier_accounts/register": {
+			"FedexAccount",
+			"FedexSmartpostAccount",
+		},
+		"carrier_accounts/register_oauth": {
+			"AmazonShippingAccount",
+			"UpsAccount",
+			"UpsMailInnovationsAccount",
+			"UpsSurepostAccount",
+			"UspsShipAccount",
+		},
+	}
+}
+
+func getCarrierAccountTypesForEndpoint(endpoint string) []string {
+	carrierAccountTypes, ok := getCarrierAccountCreateEndpointTypes()[endpoint]
+	if !ok {
+		return []string{}
+	}
+
+	return append([]string(nil), carrierAccountTypes...)
 }
 
 // By the nature of Golang and to ensure backwards compatibility, we cannot
 // consolidate this list into the `getCarrierAccountTypesWithCustomOauth` as
 // we've done in the other libraries since the structs differ.
 func getUpsCarrierAccountTypes() []string {
-	return []string{"UpsAccount", "UpsMailInnovationsAccount", "UpsSurepostAccount"}
+	var upsCarrierAccountTypes []string
+	for _, carrierAccountType := range getCarrierAccountTypesForEndpoint("carrier_accounts/register_oauth") {
+		if strings.HasPrefix(carrierAccountType, "Ups") {
+			upsCarrierAccountTypes = append(upsCarrierAccountTypes, carrierAccountType)
+		}
+	}
+
+	return upsCarrierAccountTypes
 }
 
 func getCarrierAccountTypesWithCustomOauth() []string {
-	return []string{"AmazonShippingAccount", "UspsShipAccount"}
+	var oauthCarrierAccountTypes []string
+	for _, carrierAccountType := range getCarrierAccountTypesForEndpoint("carrier_accounts/register_oauth") {
+		if !strings.HasPrefix(carrierAccountType, "Ups") {
+			oauthCarrierAccountTypes = append(oauthCarrierAccountTypes, carrierAccountType)
+		}
+	}
+
+	return oauthCarrierAccountTypes
 }
 
 var ApiDidNotReturnErrorDetails = "API did not return error details"

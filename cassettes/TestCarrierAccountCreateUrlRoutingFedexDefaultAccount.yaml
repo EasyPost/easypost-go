@@ -1,0 +1,65 @@
+---
+version: 1
+interactions:
+- request:
+    body: '{"carrier_account":{"registration_data":{"some":"data"},"type":"FedexDefaultAccount"}}'
+    form: {}
+    headers:
+      Authorization:
+      - REDACTED
+      Content-Type:
+      - application/json
+      User-Agent:
+      - REDACTED
+    url: https://api.easypost.com/v2/carrier_accounts/open
+    method: POST
+  response:
+    body: '{"error":{"code":"UNPROCESSABLE_ENTITY","errors":[{"field":"name","message":"is
+      missing"},{"field":"street1","message":"is missing"},{"field":"city","message":"is
+      missing"},{"field":"state","message":"is missing"},{"field":"postal_code","message":"is
+      missing"},{"field":"country","message":"is missing"},{"field":"phone","message":"is
+      missing"},{"field":"email","message":"is missing"}],"message":"The request was
+      understood, but cannot be processed."}}'
+    headers:
+      Cache-Control:
+      - private, no-cache, no-store
+      Content-Type:
+      - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
+      Expires:
+      - "0"
+      Pragma:
+      - no-cache
+      Referrer-Policy:
+      - strict-origin-when-cross-origin
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
+      X-Backend:
+      - easypost
+      X-Content-Type-Options:
+      - nosniff
+      X-Download-Options:
+      - noopen
+      X-Ep-Request-Uuid:
+      - add87ec46ad13f1fe2cbac9b006d8c1b
+      X-Frame-Options:
+      - SAMEORIGIN
+      X-Node:
+      - web116azw
+      X-Permitted-Cross-Domain-Policies:
+      - none
+      X-Proxied:
+      - intlb1azw f29267e751
+      - extlb3azw ff4cfe6eb5
+      X-Runtime:
+      - "0.021552"
+      X-Version-Label:
+      - easypost-202610151955-b13716d895-main
+      X-Xss-Protection:
+      - 1; mode=block
+    status: 422 Unprocessable Entity
+    code: 422
+    duration: ""
