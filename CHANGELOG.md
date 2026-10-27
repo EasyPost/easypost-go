@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v5.11.0 (2026-10-27)
 
 - Adds `Surcharges` property to `Rate` model
 - Adds support for `FedexDefaultAccount`, `GofoWalletAccount`, `UpsDapAccount`, `UniUniWalletAccount`, and `VehoWalletAccount` by properly routing carrier-account create requests to the `/carrier_accounts/open` endpoint
