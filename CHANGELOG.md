@@ -5,6 +5,7 @@
 - Adds `ManufacturerProductID` and `StandardizedProductID` to `CustomsItem`
 - Adds `Address` to `TaxIdentifier`
 - Adds `CarrierOptions` to `ShipmentOptions` (e.g. UPS `shipper_type` and `consignee_type`)
+
 ## v5.11.0 (2026-10-27)
 
 - Adds `Surcharges` property to `Rate` model
