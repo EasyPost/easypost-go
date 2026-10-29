@@ -25,20 +25,21 @@ type CustomsInfo struct {
 
 // A CustomsItem object describes goods for international shipment.
 type CustomsItem struct {
-	ID                    string    `json:"id,omitempty" url:"id,omitempty"`
-	Object                string    `json:"object,omitempty" url:"object,omitempty"`
-	CreatedAt             *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
-	UpdatedAt             *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
-	Description           string    `json:"description,omitempty" url:"description,omitempty"`
-	Quantity              float64   `json:"quantity,omitempty" url:"quantity,omitempty"`
-	Value                 float64   `json:"value,omitempty,string" url:"value,omitempty"`
-	Weight                float64   `json:"weight,omitempty" url:"weight,omitempty"`
-	HSTariffNumber        string    `json:"hs_tariff_number,omitempty" url:"hs_tariff_number,omitempty"`
-	Code                  string    `json:"code,omitempty" url:"code,omitempty"`
-	OriginCountry         string    `json:"origin_country,omitempty" url:"origin_country,omitempty"`
-	Currency              string    `json:"currency,omitempty" url:"currency,omitempty"`
-	ManufacturerProductID string    `json:"manufacturer_product_id,omitempty" url:"manufacturer_product_id,omitempty"`
-	StandardizedProductID string    `json:"standardized_product_id,omitempty" url:"standardized_product_id,omitempty"`
+	ID             string    `json:"id,omitempty" url:"id,omitempty"`
+	Object         string    `json:"object,omitempty" url:"object,omitempty"`
+	CreatedAt      *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt      *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Description    string    `json:"description,omitempty" url:"description,omitempty"`
+	Quantity       float64   `json:"quantity,omitempty" url:"quantity,omitempty"`
+	Value          float64   `json:"value,omitempty,string" url:"value,omitempty"`
+	Weight         float64   `json:"weight,omitempty" url:"weight,omitempty"`
+	HSTariffNumber string    `json:"hs_tariff_number,omitempty" url:"hs_tariff_number,omitempty"`
+	Code           string    `json:"code,omitempty" url:"code,omitempty"`
+	OriginCountry  string    `json:"origin_country,omitempty" url:"origin_country,omitempty"`
+	Currency       string    `json:"currency,omitempty" url:"currency,omitempty"`
+
+	ManufacturerProductID string `json:"manufacturer_product_id,omitempty" url:"manufacturer_product_id,omitempty"`
+	StandardizedProductID string `json:"standardized_product_id,omitempty" url:"standardized_product_id,omitempty"`
 }
 
 type createCustomsInfoRequest struct {
