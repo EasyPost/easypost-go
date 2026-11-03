@@ -46,27 +46,35 @@ type TrackingCarrierDetail struct {
 	InitialDeliveryAttempt      *DateTime         `json:"initial_delivery_attempt,omitempty" url:"initial_delivery_attempt,omitempty"`
 }
 
+// DeliveryEvidence provides a proof of delivery image for a tracker. Type is
+// "signature" or "delivery", and Image is a URL that expires after 30 days.
+type DeliveryEvidence struct {
+	Type  string `json:"type,omitempty" url:"type,omitempty"`
+	Image string `json:"image,omitempty" url:"image,omitempty"`
+}
+
 // A Tracker object contains all the tracking information for a package.
 type Tracker struct {
-	ID              string                 `json:"id,omitempty" url:"id,omitempty"`
-	Object          string                 `json:"object,omitempty" url:"object,omitempty"`
-	Mode            string                 `json:"mode,omitempty" url:"mode,omitempty"`
-	CreatedAt       *DateTime              `json:"created_at,omitempty" url:"created_at,omitempty"`
-	UpdatedAt       *DateTime              `json:"updated_at,omitempty" url:"updated_at,omitempty"`
-	TrackingCode    string                 `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
-	Status          string                 `json:"status,omitempty" url:"status,omitempty"`
-	StatusDetail    string                 `json:"status_detail,omitempty" url:"status_detail,omitempty"`
-	SignedBy        string                 `json:"signed_by,omitempty" url:"signed_by,omitempty"`
-	Weight          float64                `json:"weight,omitempty" url:"weight,omitempty"`
-	EstDeliveryDate *DateTime              `json:"est_delivery_date,omitempty" url:"est_delivery_date,omitempty"`
-	ShipmentID      string                 `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
-	Carrier         string                 `json:"carrier,omitempty" url:"carrier,omitempty"`
-	TrackingDetails []*TrackingDetail      `json:"tracking_details,omitempty" url:"tracking_details,omitempty"`
-	CarrierDetail   *TrackingCarrierDetail `json:"carrier_detail,omitempty" url:"carrier_detail,omitempty"`
-	PublicURL       string                 `json:"public_url,omitempty" url:"public_url,omitempty"`
-	Fees            []*Fee                 `json:"fees,omitempty" url:"fees,omitempty"`
-	Finalized       bool                   `json:"finalized,omitempty" url:"finalized,omitempty"`
-	IsReturn        bool                   `json:"is_return,omitempty" url:"is_return,omitempty"`
+	ID               string                 `json:"id,omitempty" url:"id,omitempty"`
+	Object           string                 `json:"object,omitempty" url:"object,omitempty"`
+	Mode             string                 `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt        *DateTime              `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt        *DateTime              `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	TrackingCode     string                 `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
+	Status           string                 `json:"status,omitempty" url:"status,omitempty"`
+	StatusDetail     string                 `json:"status_detail,omitempty" url:"status_detail,omitempty"`
+	SignedBy         string                 `json:"signed_by,omitempty" url:"signed_by,omitempty"`
+	Weight           float64                `json:"weight,omitempty" url:"weight,omitempty"`
+	EstDeliveryDate  *DateTime              `json:"est_delivery_date,omitempty" url:"est_delivery_date,omitempty"`
+	ShipmentID       string                 `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
+	Carrier          string                 `json:"carrier,omitempty" url:"carrier,omitempty"`
+	TrackingDetails  []*TrackingDetail      `json:"tracking_details,omitempty" url:"tracking_details,omitempty"`
+	CarrierDetail    *TrackingCarrierDetail `json:"carrier_detail,omitempty" url:"carrier_detail,omitempty"`
+	PublicURL        string                 `json:"public_url,omitempty" url:"public_url,omitempty"`
+	Fees             []*Fee                 `json:"fees,omitempty" url:"fees,omitempty"`
+	Finalized        bool                   `json:"finalized,omitempty" url:"finalized,omitempty"`
+	IsReturn         bool                   `json:"is_return,omitempty" url:"is_return,omitempty"`
+	DeliveryEvidence []*DeliveryEvidence    `json:"delivery_evidence,omitempty" url:"delivery_evidence,omitempty"`
 }
 
 // CreateTrackerOptions specifies options for creating a new tracker.
