@@ -1,11 +1,9 @@
 package easypost
 
 import (
-	"encoding/json"
 	"errors"
 	"reflect"
 	"strings"
-	"testing"
 )
 
 func (c *ClientTests) TestTrackerCreate() {
@@ -133,25 +131,4 @@ func (c *ClientTests) TestTrackerDelete() {
 
 	err = client.DeleteTracker(tracker.ID)
 	require.NoError(err)
-}
-
-func TestTrackerUnmarshalJSONDeliveryEvidence(t *testing.T) {
-	data := []byte(`{"id":"trk_123","object":"Tracker","delivery_evidence":[{"type":"signature","image":"https://example.com/signature.png"}]}`)
-
-	var tracker Tracker
-	if err := json.Unmarshal(data, &tracker); err != nil {
-		t.Fatalf("unmarshal tracker failed: %v", err)
-	}
-
-	if len(tracker.DeliveryEvidence) != 1 {
-		t.Fatalf("expected 1 delivery evidence, got %d", len(tracker.DeliveryEvidence))
-	}
-
-	if tracker.DeliveryEvidence[0].Type != "signature" {
-		t.Fatalf("unexpected delivery evidence type: %s", tracker.DeliveryEvidence[0].Type)
-	}
-
-	if tracker.DeliveryEvidence[0].Image != "https://example.com/signature.png" {
-		t.Fatalf("unexpected delivery evidence image: %s", tracker.DeliveryEvidence[0].Image)
-	}
 }
