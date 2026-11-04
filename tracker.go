@@ -47,7 +47,8 @@ type TrackingCarrierDetail struct {
 }
 
 // DeliveryEvidence provides a proof of delivery image for a tracker. Type is
-// "signature" or "delivery", and Image is a URL that expires after 30 days.
+// "signature" or "delivery", and Image is a URL to the image. Image URLs aren't
+// guaranteed to remain available, so download and store any image you need to keep.
 type DeliveryEvidence struct {
 	Type  string `json:"type,omitempty" url:"type,omitempty"`
 	Image string `json:"image,omitempty" url:"image,omitempty"`
