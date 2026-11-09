@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## Next Release
+## v5.13.0 (2026-11-09)
 
 - Adds `DeliveryEvidence` property and model to `Tracker` model
 
