@@ -22,7 +22,7 @@ init-examples-submodule:
 # Install and vendor dependencies
 install: init-examples-submodule
 	curl -sSfL https://golangci-lint.run/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.15.0
-	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.22.11
+	curl -sSfL https://raw.githubusercontent.com/securego/gosec/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v2.30.0
 	go mod vendor
 
 # Lint the project
