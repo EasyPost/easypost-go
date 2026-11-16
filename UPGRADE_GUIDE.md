@@ -20,6 +20,8 @@ Use the following guide to assist in the upgrade process of the `easypost-go` li
 
 Exported identifiers now use Go initialisms (e.g. `Id` to `ID`, `Url` to `URL`). JSON and URL tags are unchanged.
 
+`RequestHookEvent`, `ResponseHookEvent` and `MockRequestMatchRule` have no JSON tags, so if you serialize them yourself their keys change too (e.g. `Id` to `ID`, `Url` to `URL`, `HttpStatus` to `HTTPStatus`).
+
 The following types were renamed:
 
 - `ExternalApiError` to `ExternalAPIError`
@@ -60,6 +62,7 @@ The following struct fields were renamed:
 - `ResponseHookEvent.Url` to `ResponseHookEvent.URL`
 - `TaxIdentifier.TaxId` to `TaxIdentifier.TaxID`
 - `TaxIdentifier.TaxIdType` to `TaxIdentifier.TaxIDType`
+
 ## Upgrading from 4.x to 5.0
 
 ### 5.0 High Impact Changes
