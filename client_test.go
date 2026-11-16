@@ -27,14 +27,14 @@ func (c *ClientTests) TestHooks() {
 	requestHookCalled := false
 	responseHookCalled := false
 
-	var pairId uuid.UUID
+	var pairID uuid.UUID
 
 	client.Hooks.AddRequestEventSubscriber(
 		RequestHookEventSubscriber{
 			Callback: func(ctx context.Context, event RequestHookEvent) error {
 				assert.Equal("GET", event.Method)
-				assert.Equal("https://api.easypost.com/v2/addresses?page_size=5", event.Url.String())
-				pairId = event.Id
+				assert.Equal("https://api.easypost.com/v2/addresses?page_size=5", event.URL.String())
+				pairID = event.ID
 				requestHookCalled = true
 				return nil
 			},
@@ -45,9 +45,9 @@ func (c *ClientTests) TestHooks() {
 	client.Hooks.AddResponseEventSubscriber(
 		ResponseHookEventSubscriber{
 			Callback: func(ctx context.Context, event ResponseHookEvent) error {
-				assert.Equal(200, event.HttpStatus)
+				assert.Equal(200, event.HTTPStatus)
 				assert.Equal("GET", event.Method)
-				assert.Equal(pairId, event.Id)
+				assert.Equal(pairID, event.ID)
 				responseHookCalled = true
 				return nil
 			},

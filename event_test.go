@@ -56,7 +56,7 @@ func (c *ClientTests) TestEventRetrieveAllPayloads() {
 	// Create a webhook to receive the event
 	webhook, webhookErr := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
+			URL: c.fixture.WebhookURL(),
 		},
 	)
 	require.NoError(webhookErr)
@@ -99,7 +99,7 @@ func (c *ClientTests) TestEventRetrievePayload() {
 	// Create a webhook to receive the event
 	webhook, webhookErr := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
+			URL: c.fixture.WebhookURL(),
 		},
 	)
 	require.NoError(webhookErr)
@@ -148,9 +148,9 @@ func (c *ClientTests) TestEventsGetNextPage() {
 			assert.True(len(nextPage.Events) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.Events[len(firstPage.Events)-1].ID
-			firstIdOfSecondPage := nextPage.Events[0].ID
+			firstIDOfSecondPage := nextPage.Events[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {

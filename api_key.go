@@ -59,7 +59,7 @@ func (c *Client) GetAPIKeysForUserWithContext(ctx context.Context, userID string
 		}
 	}
 
-	return nil, newFilteringError(NoUserFoundForId)
+	return nil, newFilteringError(NoUserFoundForID)
 }
 
 // CreateAPIKey creates an API key for a child or referral customer user.

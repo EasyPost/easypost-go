@@ -14,9 +14,9 @@ func (c *ClientTests) TestCreateCustomerPortalAccountLink() {
 	accountLink, err := client.CreateCustomerPortalAccountLink(
 		&CustomerPortalAccountLinkParameters{
 			SessionType: "account_onboarding",
-			UserId:      childUsers.Children[0].ID,
-			RefreshUrl:  "https://example.com/refresh",
-			ReturnUrl:   "https://example.com/return",
+			UserID:      childUsers.Children[0].ID,
+			RefreshURL:  "https://example.com/refresh",
+			ReturnURL:   "https://example.com/return",
 		},
 	)
 	require.NoError(err)

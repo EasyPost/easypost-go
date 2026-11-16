@@ -156,15 +156,15 @@ func (c *Client) do(ctx context.Context, method, path string, params interface{}
 	var err error
 
 	// prepare and execute request hook(s)
-	requestId := uuid.New()
+	requestID := uuid.New()
 	requestTimestamp := time.Now()
 	requestEvent := &RequestHookEvent{
 		Method:           req.Method,
-		Url:              req.URL,
+		URL:              req.URL,
 		RequestBody:      req.Body,
 		Headers:          req.Header,
 		RequestTimestamp: requestTimestamp,
-		Id:               requestId,
+		ID:               requestID,
 	}
 
 	// loop over each request hook and execute it
@@ -186,14 +186,14 @@ func (c *Client) do(ctx context.Context, method, path string, params interface{}
 	if err != nil {
 		// prepare and execute response hook(s) for failed requests
 		responseEvent := &ResponseHookEvent{
-			HttpStatus:        0,
+			HTTPStatus:        0,
 			Method:            req.Method,
-			Url:               req.URL,
+			URL:               req.URL,
 			ResponseBody:      nil,
 			Headers:           nil,
 			RequestTimestamp:  requestTimestamp,
 			ResponseTimestamp: time.Now(),
-			Id:                requestId,
+			ID:                requestID,
 		}
 		// loop over each response hook and execute it
 		for _, hook := range c.Hooks.ResponseHookEventSubscriptions {
@@ -205,14 +205,14 @@ func (c *Client) do(ctx context.Context, method, path string, params interface{}
 
 	// prepare and execute response hook(s) for successful requests
 	responseEvent := &ResponseHookEvent{
-		HttpStatus:        res.StatusCode,
+		HTTPStatus:        res.StatusCode,
 		Method:            req.Method,
-		Url:               req.URL,
+		URL:               req.URL,
 		ResponseBody:      res.Body,
 		Headers:           res.Header,
 		RequestTimestamp:  requestTimestamp,
 		ResponseTimestamp: time.Now(),
-		Id:                requestId,
+		ID:                requestID,
 	}
 
 	// loop over each response hook and execute it

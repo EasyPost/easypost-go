@@ -259,7 +259,7 @@ func (c *ClientTests) TestApiErrorStatusCodes() {
 
 	res.StatusCode = 7000 // unaccounted for status code
 	err = BuildErrorFromResponse(res)
-	ok = errors.As(err, new(*UnknownHttpError))
+	ok = errors.As(err, new(*UnknownHTTPError))
 	assert.True(ok)
 }
 

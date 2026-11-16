@@ -42,7 +42,7 @@ type billingFixture struct {
 
 // Reads fixture data from the fixtures JSON file
 func readFixtureData() Fixture {
-	filePath := "examples/official/fixtures/client-library-fixtures.json"
+	filePath := "examples/fixtures/client-library-fixtures.json"
 
 	/* #nosec */
 	data, err := os.Open(filePath)
@@ -188,7 +188,7 @@ func (fixture *Fixture) BasicOrder() *Order {
 }
 
 func (fixture *Fixture) EventBody() []byte {
-	filePath := "examples/official/fixtures/event-body.json"
+	filePath := "examples/fixtures/event-body.json"
 
 	/* #nosec */
 	data, err := os.Open(filePath)
@@ -217,7 +217,7 @@ func (fixture *Fixture) WebhookSecret() string {
 	return readFixtureData().Webhooks["secret"].(string)
 }
 
-func (fixture *Fixture) WebhookUrl() string {
+func (fixture *Fixture) WebhookURL() string {
 	return readFixtureData().Webhooks["url"].(string)
 }
 

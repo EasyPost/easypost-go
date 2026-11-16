@@ -191,7 +191,7 @@ func (c *ClientTests) TestShipmentCreateTaxIdentifier() {
 
 	assert.Equal(reflect.TypeOf(&Shipment{}), reflect.TypeOf(shipment))
 	assert.True(strings.HasPrefix(shipment.ID, "shp_"))
-	assert.Equal("IOSS", shipment.TaxIdentifiers[0].TaxIdType)
+	assert.Equal("IOSS", shipment.TaxIdentifiers[0].TaxIDType)
 }
 
 func (c *ClientTests) TestShipmentCreateWithIds() {
@@ -333,9 +333,9 @@ func (c *ClientTests) TestShipmentsGetNextPage() {
 			assert.True(len(nextPage.Shipments) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.Shipments[len(firstPage.Shipments)-1].ID
-			firstIdOfSecondPage := nextPage.Shipments[0].ID
+			firstIDOfSecondPage := nextPage.Shipments[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {

@@ -84,9 +84,9 @@ func (c *ClientTests) TestUserGetNextChildUserPage() {
 			assert.True(len(nextPage.Children) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.Children[len(firstPage.Children)-1].ID
-			firstIdOfSecondPage := nextPage.Children[0].ID
+			firstIDOfSecondPage := nextPage.Children[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {
@@ -106,19 +106,19 @@ func (c *ClientTests) TestUserUpdate() {
 	user, err := client.RetrieveMe()
 	require.NoError(err)
 
-	test_name := "Test User"
+	testName := "Test User"
 
 	updatedUser, err := client.UpdateUser(
 		&UserOptions{
 			ID:   user.ID,
-			Name: &test_name,
+			Name: &testName,
 		},
 	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&User{}), reflect.TypeOf(updatedUser))
 	assert.True(strings.HasPrefix(updatedUser.ID, "user_"))
-	assert.Equal(test_name, updatedUser.Name)
+	assert.Equal(testName, updatedUser.Name)
 }
 
 func (c *ClientTests) TestUserUpdateBrand() {

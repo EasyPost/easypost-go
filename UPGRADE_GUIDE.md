@@ -2,11 +2,64 @@
 
 Use the following guide to assist in the upgrade process of the `easypost-go` library between major versions.
 
+- [Upgrading from 5.x to 6.0](#upgrading-from-5x-to-60)
 - [Upgrading from 4.x to 5.0](#upgrading-from-4x-to-50)
 - [Upgrading from 3.x to 4.0](#upgrading-from-3x-to-40)
 - [Upgrading from 2.x to 3.0](#upgrading-from-2x-to-30)
 - [Upgrading from 1.x to 2.0](#upgrading-from-1x-to-20)
 
+## Upgrading from 5.x to 6.0
+
+### 6.0 High Impact Changes
+
+- [Renamed Identifiers](#60-renamed-identifiers)
+
+## 6.0 Renamed Identifiers
+
+*Likelihood of Impact: **High***
+
+Exported identifiers now use Go initialisms (e.g. `Id` to `ID`, `Url` to `URL`). JSON and URL tags are unchanged.
+
+The following types were renamed:
+
+- `ExternalApiError` to `ExternalAPIError`
+- `UnknownHttpError` to `UnknownHTTPError`
+
+The following functions were renamed:
+
+- `RetrieveEasypostStripeApiKey` to `RetrieveEasypostStripeAPIKey`
+- `RetrieveEasypostStripeApiKeyWithContext` to `RetrieveEasypostStripeAPIKeyWithContext`
+- `BetaCreateBankAccountClientSecretWithReturlUrl` to `BetaCreateBankAccountClientSecretWithReturnURL` (also fixes the `Returl` typo)
+- `BetaCreateBankAccountClientSecretWithReturnUrlWithContext` to `BetaCreateBankAccountClientSecretWithReturnURLWithContext`
+
+The following variables were renamed:
+
+- `ApiDidNotReturnErrorDetails` to `APIDidNotReturnErrorDetails`
+- `ApiErrorDetailsParsingError` to `APIErrorDetailsParsingError`
+- `JsonDeserializationErrorMessage` to `JSONDeserializationErrorMessage`
+- `JsonNoDataErrorMessage` to `JSONNoDataErrorMessage`
+- `JsonSerializationErrorMessage` to `JSONSerializationErrorMessage`
+- `NoUserFoundForId` to `NoUserFoundForID`
+
+The following struct fields were renamed:
+
+- `BetaPaymentRefund.PaymentLogId` to `BetaPaymentRefund.PaymentLogID`
+- `Claim.InsuranceId` to `Claim.InsuranceID`
+- `Claim.ShipmentId` to `Claim.ShipmentID`
+- `CustomerPortalAccountLinkParameters.UserId` to `CustomerPortalAccountLinkParameters.UserID`
+- `CustomerPortalAccountLinkParameters.RefreshUrl` to `CustomerPortalAccountLinkParameters.RefreshURL`
+- `CustomerPortalAccountLinkParameters.ReturnUrl` to `CustomerPortalAccountLinkParameters.ReturnURL`
+- `EmbeddablesSession.SessionId` to `EmbeddablesSession.SessionID`
+- `EmbeddablesSessionParameters.UserId` to `EmbeddablesSessionParameters.UserID`
+- `MandateData.IpAddress` to `MandateData.IPAddress`
+- `MockRequestMatchRule.UrlRegexPattern` to `MockRequestMatchRule.URLRegexPattern`
+- `RequestHookEvent.Id` to `RequestHookEvent.ID`
+- `RequestHookEvent.Url` to `RequestHookEvent.URL`
+- `ResponseHookEvent.HttpStatus` to `ResponseHookEvent.HTTPStatus`
+- `ResponseHookEvent.Id` to `ResponseHookEvent.ID`
+- `ResponseHookEvent.Url` to `ResponseHookEvent.URL`
+- `TaxIdentifier.TaxId` to `TaxIdentifier.TaxID`
+- `TaxIdentifier.TaxIdType` to `TaxIdentifier.TaxIDType`
 ## Upgrading from 4.x to 5.0
 
 ### 5.0 High Impact Changes

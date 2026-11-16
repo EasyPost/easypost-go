@@ -19,9 +19,9 @@ func (c *ClientTests) TestGetNextPage() {
 	defer func() {
 		if err == nil {
 			lastIDOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
-			firstIdOfSecondPage := nextPage.Addresses[0].ID
+			firstIDOfSecondPage := nextPage.Addresses[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {
@@ -51,9 +51,9 @@ func (c *ClientTests) TestGetNextPageWithPageSize() {
 			assert.True(len(nextPage.Addresses) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := addresses.Addresses[len(addresses.Addresses)-1].ID
-			firstIdOfSecondPage := nextPage.Addresses[0].ID
+			firstIDOfSecondPage := nextPage.Addresses[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {
@@ -71,7 +71,7 @@ func (c *ClientTests) TestGetNextPageReachEnd() {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "GET",
-				UrlRegexPattern: "v2\\/addresses",
+				URLRegexPattern: "v2\\/addresses",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,

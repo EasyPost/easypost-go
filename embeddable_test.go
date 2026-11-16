@@ -14,7 +14,7 @@ func (c *ClientTests) TestCreateEmbeddablesSession() {
 	session, err := client.CreateEmbeddablesSession(
 		&EmbeddablesSessionParameters{
 			OriginHost: "https://example.com",
-			UserId:     childUsers.Children[0].ID,
+			UserID:     childUsers.Children[0].ID,
 		},
 	)
 	require.NoError(err)

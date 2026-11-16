@@ -62,64 +62,64 @@ func (c *ClientTests) TestCarrierAccountCreateWithCustomWorkflow() { // FedExAcc
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingFedexDefaultAccount() {
-	c.testCarrierAccountCreateUrlRouting("FedexDefaultAccount", "carrier_accounts/open")
+	c.testCarrierAccountCreateURLRouting("FedexDefaultAccount", "carrier_accounts/open")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingGofoWalletAccount() {
-	c.testCarrierAccountCreateUrlRouting("GofoWalletAccount", "carrier_accounts/open")
+	c.testCarrierAccountCreateURLRouting("GofoWalletAccount", "carrier_accounts/open")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsDapAccount() {
-	c.testCarrierAccountCreateUrlRouting("UpsDapAccount", "carrier_accounts/open")
+	c.testCarrierAccountCreateURLRouting("UpsDapAccount", "carrier_accounts/open")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUniUniWalletAccount() {
-	c.testCarrierAccountCreateUrlRouting("UniUniWalletAccount", "carrier_accounts/open")
+	c.testCarrierAccountCreateURLRouting("UniUniWalletAccount", "carrier_accounts/open")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingVehoWalletAccount() {
-	c.testCarrierAccountCreateUrlRouting("VehoWalletAccount", "carrier_accounts/open")
+	c.testCarrierAccountCreateURLRouting("VehoWalletAccount", "carrier_accounts/open")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingFedexAccount() {
-	c.testCarrierAccountCreateUrlRouting("FedexAccount", "carrier_accounts/register")
+	c.testCarrierAccountCreateURLRouting("FedexAccount", "carrier_accounts/register")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingFedexSmartpostAccount() {
-	c.testCarrierAccountCreateUrlRouting("FedexSmartpostAccount", "carrier_accounts/register")
+	c.testCarrierAccountCreateURLRouting("FedexSmartpostAccount", "carrier_accounts/register")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingAmazonShippingAccount() {
-	c.testCarrierAccountCreateUrlRouting("AmazonShippingAccount", "carrier_accounts/register_oauth")
+	c.testCarrierAccountCreateURLRouting("AmazonShippingAccount", "carrier_accounts/register_oauth")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsAccount() {
-	c.testCarrierAccountCreateUrlRouting("UpsAccount", "carrier_accounts/register_oauth")
+	c.testCarrierAccountCreateURLRouting("UpsAccount", "carrier_accounts/register_oauth")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsMailInnovationsAccount() {
-	c.testCarrierAccountCreateUrlRouting("UpsMailInnovationsAccount", "carrier_accounts/register_oauth")
+	c.testCarrierAccountCreateURLRouting("UpsMailInnovationsAccount", "carrier_accounts/register_oauth")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUpsSurepostAccount() {
-	c.testCarrierAccountCreateUrlRouting("UpsSurepostAccount", "carrier_accounts/register_oauth")
+	c.testCarrierAccountCreateURLRouting("UpsSurepostAccount", "carrier_accounts/register_oauth")
 }
 
 func (c *ClientTests) TestCarrierAccountCreateUrlRoutingUspsShipAccount() {
-	c.testCarrierAccountCreateUrlRouting("UspsShipAccount", "carrier_accounts/register_oauth")
+	c.testCarrierAccountCreateURLRouting("UspsShipAccount", "carrier_accounts/register_oauth")
 }
 
-func (c *ClientTests) testCarrierAccountCreateUrlRouting(carrierAccountType, expectedEndpoint string) {
+func (c *ClientTests) testCarrierAccountCreateURLRouting(carrierAccountType, expectedEndpoint string) {
 	assert, require := c.Assert(), c.Require()
 
 	client := c.ProdClient()
-	capturedUrl := ""
+	capturedURL := ""
 
 	hookID := fmt.Sprintf("route-%s", carrierAccountType)
 	requestSubscriber := RequestHookEventSubscriber{
 		Callback: func(ctx context.Context, event RequestHookEvent) error {
-			if capturedUrl == "" && strings.HasPrefix(event.Url.Path, "/v2/carrier_accounts") {
-				capturedUrl = event.Url.Path
+			if capturedURL == "" && strings.HasPrefix(event.URL.Path, "/v2/carrier_accounts") {
+				capturedURL = event.URL.Path
 			}
 			return nil
 		},
@@ -162,7 +162,7 @@ func (c *ClientTests) testCarrierAccountCreateUrlRouting(carrierAccountType, exp
 		require.NoError(deleteErr)
 	}
 
-	assert.True(strings.HasSuffix(capturedUrl, expectedEndpoint), capturedUrl)
+	assert.True(strings.HasSuffix(capturedURL, expectedEndpoint), capturedURL)
 
 	client.Hooks.RemoveRequestEventSubscriber(requestSubscriber)
 }
@@ -319,7 +319,7 @@ func (c *ClientTests) TestCarrierAccountPreventUsersUsingUpsAccountForGenericUpd
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "GET",
-				UrlRegexPattern: "v2\\/carrier_accounts/" + id + "$",
+				URLRegexPattern: "v2\\/carrier_accounts/" + id + "$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -375,7 +375,7 @@ func (c *ClientTests) TestCarrierAccountPreventUsersUsingNotUpsAccountForUpsUpda
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "GET",
-				UrlRegexPattern: "v2\\/carrier_accounts/" + id + "$",
+				URLRegexPattern: "v2\\/carrier_accounts/" + id + "$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,

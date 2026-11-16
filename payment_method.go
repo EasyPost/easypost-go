@@ -38,11 +38,12 @@ type PaymentMethodObject struct {
 
 // getPaymentMethodObjectType returns the PaymentMethodType enum of a PaymentMethodObject.
 func (c *Client) getPaymentMethodObjectType(object *PaymentMethodObject) (out PaymentMethodType, err error) {
-	if object.Object == "CreditCard" {
+	switch object.Object {
+	case "CreditCard":
 		out = CreditCardPaymentType
-	} else if object.Object == "BankAccount" {
+	case "BankAccount":
 		out = BankAccountPaymentType
-	} else {
+	default:
 		return out, newInvalidObjectError(NoMatchingPaymentMethod)
 	}
 	return

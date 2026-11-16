@@ -9,7 +9,7 @@ import (
 type BetaPaymentRefund struct {
 	RefundedAmount      int        `json:"refunded_amount,omitempty" url:"refunded_amount,omitempty"`
 	RefundedPaymentLogs []string   `json:"refunded_payment_log,omitempty" url:"refunded_payment_log,omitempty"`
-	PaymentLogId        string     `json:"payment_log_id,omitempty" url:"payment_log_id,omitempty"`
+	PaymentLogID        string     `json:"payment_log_id,omitempty" url:"payment_log_id,omitempty"`
 	Errors              []APIError `json:"errors,omitempty" url:"errors,omitempty"`
 }
 
@@ -34,12 +34,12 @@ type CreditCardOptions struct {
 
 // MandateData specifies the mandate data needed for adding a bank account from stripe.
 type MandateData struct {
-	IpAddress  string `json:"ip_address,omitempty" url:"ip_address,omitempty"`
+	IPAddress  string `json:"ip_address,omitempty" url:"ip_address,omitempty"`
 	UserAgent  string `json:"user_agent,omitempty" url:"user_agent,omitempty"`
 	AcceptedAt int64  `json:"accepted_at,omitempty" url:"accepted_at,omitempty"`
 }
 
-type stripeApiKeyResponse struct {
+type stripeAPIKeyResponse struct {
 	PublicKey string `json:"public_key,omitempty" url:"public_key,omitempty"`
 }
 
@@ -107,38 +107,38 @@ func (c *Client) GetNextReferralCustomerPageWithPageSizeWithContext(ctx context.
 }
 
 // UpdateReferralCustomerEmail updates a ReferralCustomer's email address
-func (c *Client) UpdateReferralCustomerEmail(userId string, email string) (out *ReferralCustomer, err error) {
-	return c.UpdateReferralCustomerEmailWithContext(context.Background(), userId, email)
+func (c *Client) UpdateReferralCustomerEmail(userID string, email string) (out *ReferralCustomer, err error) {
+	return c.UpdateReferralCustomerEmailWithContext(context.Background(), userID, email)
 }
 
 // UpdateReferralCustomerEmailWithContext performs the same operation as UpdateReferralCustomerEmail, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) UpdateReferralCustomerEmailWithContext(ctx context.Context, userId string, email string) (out *ReferralCustomer, err error) {
+func (c *Client) UpdateReferralCustomerEmailWithContext(ctx context.Context, userID string, email string) (out *ReferralCustomer, err error) {
 	req := referralCustomerRequest{
 		UserOptions: &UserOptions{
 			Email: &email,
 		},
 	}
-	err = c.do(ctx, http.MethodPut, "referral_customers/"+userId, req, &out)
+	err = c.do(ctx, http.MethodPut, "referral_customers/"+userID, req, &out)
 	return
 }
 
 // AddReferralCustomerCreditCardFromStripe adds a credit card to EasyPost for a ReferralCustomer with a payment method ID from Stripe. This function requires the ReferralCustomer User's API key.
-func (c *Client) AddReferralCustomerCreditCardFromStripe(referralCustomerApiKey string, paymentMethodId string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	return c.AddReferralCustomerCreditCardFromStripeWithContext(context.Background(), referralCustomerApiKey, paymentMethodId, priority)
+func (c *Client) AddReferralCustomerCreditCardFromStripe(referralCustomerAPIKey string, paymentMethodID string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.AddReferralCustomerCreditCardFromStripeWithContext(context.Background(), referralCustomerAPIKey, paymentMethodID, priority)
 }
 
 // AddReferralCustomerCreditCardFromStripeWithContext performs the same operation as AddReferralCustomerCreditCardFromStripe, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) AddReferralCustomerCreditCardFromStripeWithContext(ctx context.Context, referralCustomerApiKey string, paymentMethodId string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+func (c *Client) AddReferralCustomerCreditCardFromStripeWithContext(ctx context.Context, referralCustomerAPIKey string, paymentMethodID string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	client := &Client{
-		APIKey: referralCustomerApiKey,
+		APIKey: referralCustomerAPIKey,
 		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
 	}
 
 	params := map[string]interface{}{
 		"credit_card": map[string]interface{}{
-			"payment_method_id": paymentMethodId,
+			"payment_method_id": paymentMethodID,
 			"priority":          c.GetPaymentEndpointByPrimaryOrSecondary(priority),
 		},
 	}
@@ -148,20 +148,20 @@ func (c *Client) AddReferralCustomerCreditCardFromStripeWithContext(ctx context.
 }
 
 // AddReferralCustomerBankAccountFromStripe adds a credit card to EasyPost for a ReferralCustomer with a payment method ID from Stripe. This function requires the ReferralCustomer User's API key.
-func (c *Client) AddReferralCustomerBankAccountFromStripe(referralCustomerApiKey string, paymentMethodId string, mandateData *MandateData, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	return c.AddReferralCustomerBankAccountFromStripeWithContext(context.Background(), referralCustomerApiKey, paymentMethodId, mandateData, priority)
+func (c *Client) AddReferralCustomerBankAccountFromStripe(referralCustomerAPIKey string, paymentMethodID string, mandateData *MandateData, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.AddReferralCustomerBankAccountFromStripeWithContext(context.Background(), referralCustomerAPIKey, paymentMethodID, mandateData, priority)
 }
 
 // AddReferralCustomerBankAccountFromStripeWithContext performs the same operation as AddReferralCustomerBankAccountFromStripe, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) AddReferralCustomerBankAccountFromStripeWithContext(ctx context.Context, referralCustomerApiKey string, financialConnectionsId string, mandateData *MandateData, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+func (c *Client) AddReferralCustomerBankAccountFromStripeWithContext(ctx context.Context, referralCustomerAPIKey string, financialConnectionsID string, mandateData *MandateData, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	client := &Client{
-		APIKey: referralCustomerApiKey,
+		APIKey: referralCustomerAPIKey,
 		Client: c.client(), // pass the current client's inner http.Client (configured to record) to the new client
 	}
 
 	params := map[string]interface{}{
-		"financial_connections_id": financialConnectionsId,
+		"financial_connections_id": financialConnectionsID,
 		"mandata_data":             mandateData,
 		"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(priority),
 	}
@@ -170,15 +170,15 @@ func (c *Client) AddReferralCustomerBankAccountFromStripeWithContext(ctx context
 	return
 }
 
-// RetrieveEasypostStripeApiKey retrieves EasyPost's Stripe public API key.
-func (c *Client) RetrieveEasypostStripeApiKey() (out string, err error) {
-	return c.RetrieveEasypostStripeApiKeyWithContext(context.Background())
+// RetrieveEasypostStripeAPIKey retrieves EasyPost's Stripe public API key.
+func (c *Client) RetrieveEasypostStripeAPIKey() (out string, err error) {
+	return c.RetrieveEasypostStripeAPIKeyWithContext(context.Background())
 }
 
-// RetrieveEasypostStripeApiKeyWithContext performs the same operation as RetrieveEasypostStripeApiKey, but allows
+// RetrieveEasypostStripeAPIKeyWithContext performs the same operation as RetrieveEasypostStripeAPIKey, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) RetrieveEasypostStripeApiKeyWithContext(ctx context.Context) (out string, err error) {
-	response := &stripeApiKeyResponse{}
+func (c *Client) RetrieveEasypostStripeAPIKeyWithContext(ctx context.Context) (out string, err error) {
+	response := &stripeAPIKeyResponse{}
 	err = c.do(ctx, http.MethodGet, "partners/stripe_public_key", nil, &response)
 	if err != nil {
 		return
@@ -189,16 +189,16 @@ func (c *Client) RetrieveEasypostStripeApiKeyWithContext(ctx context.Context) (o
 }
 
 // BetaAddPaymentMethod adds Stripe payment method to referral customer.
-func (c *Client) BetaAddPaymentMethod(stripeCustomerId string, paymentMethodReference string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
-	return c.BetaAddPaymentMethodWithContext(context.Background(), stripeCustomerId, paymentMethodReference, priority)
+func (c *Client) BetaAddPaymentMethod(stripeCustomerID string, paymentMethodReference string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+	return c.BetaAddPaymentMethodWithContext(context.Background(), stripeCustomerID, paymentMethodReference, priority)
 }
 
 // BetaAddPaymentMethodWithContext performs the same operation as BetaAddPaymentMethod, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCustomerId string, paymentMethodReference string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
+func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCustomerID string, paymentMethodReference string, priority PaymentMethodPriority) (out *PaymentMethodObject, err error) {
 	wrappedParams := map[string]interface{}{
 		"payment_method": map[string]interface{}{
-			"stripe_customer_id":       stripeCustomerId,
+			"stripe_customer_id":       stripeCustomerID,
 			"payment_method_reference": paymentMethodReference,
 			"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(priority),
 		},
@@ -225,15 +225,15 @@ func (c *Client) BetaRefundByAmountWithContext(ctx context.Context, refundAmount
 }
 
 // BetaRefundByPaymentLog refunds a payment by payment log ID.
-func (c *Client) BetaRefundByPaymentLog(paymentLogId string) (out *BetaPaymentRefund, err error) {
-	return c.BetaRefundByPaymentLogWithContext(context.Background(), paymentLogId)
+func (c *Client) BetaRefundByPaymentLog(paymentLogID string) (out *BetaPaymentRefund, err error) {
+	return c.BetaRefundByPaymentLogWithContext(context.Background(), paymentLogID)
 }
 
 // BetaRefundByPaymentLogWithContext performs the same operation as BetaRefundByPaymentLog, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) BetaRefundByPaymentLogWithContext(ctx context.Context, paymentLogId string) (out *BetaPaymentRefund, err error) {
+func (c *Client) BetaRefundByPaymentLogWithContext(ctx context.Context, paymentLogID string) (out *BetaPaymentRefund, err error) {
 	params := map[string]interface{}{
-		"payment_log_id": paymentLogId,
+		"payment_log_id": paymentLogID,
 	}
 
 	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, out)
@@ -266,17 +266,17 @@ func (c *Client) BetaCreateBankAccountClientSecretWithContext(ctx context.Contex
 	return
 }
 
-// BetaCreateBankAccountClientSecretWithReturlUrl creates a client secret to use with Stripe when adding a bank account.
-func (c *Client) BetaCreateBankAccountClientSecretWithReturlUrl(returnUrl string) (out *clientSecretResponse, err error) {
-	return c.BetaCreateBankAccountClientSecretWithReturnUrlWithContext(context.Background(), returnUrl)
+// BetaCreateBankAccountClientSecretWithReturnURL creates a client secret to use with Stripe when adding a bank account.
+func (c *Client) BetaCreateBankAccountClientSecretWithReturnURL(returnURL string) (out *clientSecretResponse, err error) {
+	return c.BetaCreateBankAccountClientSecretWithReturnURLWithContext(context.Background(), returnURL)
 }
 
-// BetaCreateBankAccountClientSecretWithReturnUrlWithContext performs the same operation as BetaCreateBankAccountClientSecretWithReturlUrl, but allows
+// BetaCreateBankAccountClientSecretWithReturnURLWithContext performs the same operation as BetaCreateBankAccountClientSecretWithReturnURL, but allows
 // specifying a context that can interrupt the request.
-func (c *Client) BetaCreateBankAccountClientSecretWithReturnUrlWithContext(ctx context.Context, returnUrl string) (out *clientSecretResponse, err error) {
+func (c *Client) BetaCreateBankAccountClientSecretWithReturnURLWithContext(ctx context.Context, returnURL string) (out *clientSecretResponse, err error) {
 	out = &clientSecretResponse{}
 	params := map[string]interface{}{
-		"return_url": returnUrl,
+		"return_url": returnURL,
 	}
 	err = c.do(ctx, http.MethodPost, "/beta/financial_connections_sessions", params, out)
 	return

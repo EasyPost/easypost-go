@@ -22,11 +22,11 @@ type HookEventSubscriber struct {
 type RequestHookEvent struct {
 	HookEvent        // implements HookEvent
 	Method           string
-	Url              *url.URL
+	URL              *url.URL
 	RequestBody      io.ReadCloser
 	Headers          map[string][]string
 	RequestTimestamp time.Time
-	Id               uuid.UUID
+	ID               uuid.UUID
 }
 
 // RequestHookEventSubscriberCallback is the type of the callback function executed by an RequestHookEventSubscriber
@@ -49,14 +49,14 @@ func (s RequestHookEventSubscriber) Execute(ctx context.Context, event RequestHo
 // ResponseHookEvent is the data passed to a ResponseHookEventSubscriberCallback function
 type ResponseHookEvent struct {
 	HookEvent         // implements HookEvent
-	HttpStatus        int
+	HTTPStatus        int
 	Method            string
-	Url               *url.URL
+	URL               *url.URL
 	Headers           map[string][]string
 	ResponseBody      io.ReadCloser
 	RequestTimestamp  time.Time
 	ResponseTimestamp time.Time
-	Id                uuid.UUID
+	ID                uuid.UUID
 }
 
 // ResponseHookEventSubscriberCallback is the type of the callback function executed by an ResponseHookEventSubscriber

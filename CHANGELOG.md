@@ -1,7 +1,15 @@
 # CHANGELOG
 
-## v6.0.0
+## Next Release
 
+See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-5x-to-60) for more details.
+
+- BREAKING: Renames exported identifiers to use Go initialisms (e.g. `Id` to `ID`, `Url` to `URL`); JSON and URL tags are unchanged
+  - Types: `ExternalApiError`, `UnknownHttpError`
+  - Functions: `RetrieveEasypostStripeApiKey(WithContext)`, `BetaCreateBankAccountClientSecretWithReturlUrl` to `BetaCreateBankAccountClientSecretWithReturnURL` (fixes the `Returl` typo), `BetaCreateBankAccountClientSecretWithReturnUrlWithContext`
+  - Variables: `ApiDidNotReturnErrorDetails`, `ApiErrorDetailsParsingError`, `JsonDeserializationErrorMessage`, `JsonNoDataErrorMessage`, `JsonSerializationErrorMessage`, `NoUserFoundForId`
+  - Struct fields: `BetaPaymentRefund.PaymentLogId`, `Claim.InsuranceId`, `Claim.ShipmentId`, `CustomerPortalAccountLinkParameters.UserId/RefreshUrl/ReturnUrl`, `EmbeddablesSession.SessionId`, `EmbeddablesSessionParameters.UserId`, `MandateData.IpAddress`, `MockRequestMatchRule.UrlRegexPattern`, `RequestHookEvent.Id/Url`, `ResponseHookEvent.HttpStatus/Id/Url`, `TaxIdentifier.TaxId/TaxIdType`
+- Upgrades golangci-lint to v2
 - Changes `ShipmentOptions.Machinable` from `bool` to `*bool` so an explicit `false` is sent; callers use `easypost.BoolPtr(...)`. Previously `false` was dropped and USPS rated the parcel as machinable (closes #297, thanks @pcbeingused333)
 
 ## v5.13.0 (2026-11-09)

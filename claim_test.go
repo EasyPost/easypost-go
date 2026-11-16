@@ -108,9 +108,9 @@ func (c *ClientTests) TestClaimGetNextPage() {
 			assert.True(len(nextPage.Claims) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.Claims[len(firstPage.Claims)-1].ID
-			firstIdOfSecondPage := nextPage.Claims[0].ID
+			firstIDOfSecondPage := nextPage.Claims[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {

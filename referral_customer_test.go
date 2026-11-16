@@ -146,7 +146,7 @@ func (c *ClientTests) TestReferralCustomerRetrieveEasypostStripeApiKey() {
 	client := c.PartnerClient()
 	assert, require := c.Assert(), c.Require()
 
-	publicKey, err := client.RetrieveEasypostStripeApiKey()
+	publicKey, err := client.RetrieveEasypostStripeAPIKey()
 	require.NoError(err)
 
 	assert.True(strings.HasPrefix(publicKey, "pk_"))
@@ -169,9 +169,9 @@ func (c *ClientTests) TestReferralCustomersGetNextPage() {
 			assert.True(len(nextPage.ReferralCustomers) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.ReferralCustomers[len(firstPage.ReferralCustomers)-1].ID
-			firstIdOfSecondPage := nextPage.ReferralCustomers[0].ID
+			firstIDOfSecondPage := nextPage.ReferralCustomers[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {
