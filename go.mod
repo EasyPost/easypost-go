@@ -1,4 +1,4 @@
-module github.com/EasyPost/easypost-go/v5
+module github.com/EasyPost/easypost-go/v6
 
 go 1.16
 

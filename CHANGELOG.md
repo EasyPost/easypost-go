@@ -1,9 +1,10 @@
 # CHANGELOG
 
-## Next Release
+## v6.0.0 (2026-11-17)
 
 See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-5x-to-60) for more details.
 
+- BREAKING: The module path is now `github.com/EasyPost/easypost-go/v6`; update your imports and `go get github.com/EasyPost/easypost-go/v6`
 - BREAKING: Renames exported identifiers to use Go initialisms (e.g. `Id` to `ID`, `Url` to `URL`); JSON and URL tags are unchanged
   - Types: `ExternalApiError`, `UnknownHttpError`
   - Functions: `RetrieveEasypostStripeApiKey(WithContext)`, `BetaCreateBankAccountClientSecretWithReturlUrl` to `BetaCreateBankAccountClientSecretWithReturnURL` (fixes the `Returl` typo), `BetaCreateBankAccountClientSecretWithReturnUrlWithContext`
