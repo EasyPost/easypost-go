@@ -47,7 +47,11 @@ type ShipmentOptions struct {
 	LabelDate                   *DateTime              `json:"label_date,omitempty" url:"label_date,omitempty"`
 	LabelFormat                 string                 `json:"label_format,omitempty" url:"label_format,omitempty"`
 	LabelSize                   string                 `json:"label_size,omitempty" url:"label_size,omitempty"`
-	Machinable                  bool                   `json:"machinable,omitempty" url:"machinable,omitempty"`
+	// Machinable is a pointer so callers can send false. Users shipping
+	// non-machinable letters or flats must set it to false; omitting the field
+	// lets USPS default to machinable and return the wrong rate. nil means use
+	// the API default.
+	Machinable                  *bool                  `json:"machinable,omitempty" url:"machinable,omitempty"`
 	Payment                     *Payment               `json:"payment,omitempty" url:"payment,omitempty"`
 	PickupMinDatetime           *DateTime              `json:"pickup_min_datetime,omitempty" url:"pickup_min_datetime,omitempty"`
 	PickupMaxDatetime           *DateTime              `json:"pickup_max_datetime,omitempty" url:"pickup_max_datetime,omitempty"`
