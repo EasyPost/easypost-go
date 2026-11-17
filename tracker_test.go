@@ -138,9 +138,9 @@ func (c *ClientTests) TestTrackersGetNextPageWithTrackingCodes() {
 			}
 
 			lastIDOfFirstPage := firstPage.Trackers[len(firstPage.Trackers)-1].ID
-			firstIdOfSecondPage := nextPage.Trackers[0].ID
+			firstIDOfSecondPage := nextPage.Trackers[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {
