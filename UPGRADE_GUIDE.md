@@ -12,12 +12,34 @@ Use the following guide to assist in the upgrade process of the `easypost-go` li
 
 ### 6.0 High Impact Changes
 
+- [Importing the Library](#60-importing-the-library)
 - [Renamed Identifiers](#60-renamed-identifiers)
 - [Stateless Rates Return the Full Response](#60-stateless-rates-return-the-full-response)
 
 ### 6.0 Medium Impact Changes
 
 - [`TrackingCode` Removed from `ListTrackersOptions`](#60-trackingcode-removed-from-listtrackersoptions)
+- [`ShipmentOptions.Machinable` Is Now a Pointer](#60-shipmentoptionsmachinable-is-now-a-pointer)
+
+## 6.0 Importing the Library
+
+*Likelihood of Impact: **High***
+
+With the transition to `v6`, this library must now be imported as follows:
+
+```go
+// Before
+import (
+    "github.com/EasyPost/easypost-go/v5"
+)
+
+// After
+import (
+    "github.com/EasyPost/easypost-go/v6"
+)
+```
+
+Install it with `go get -u github.com/EasyPost/easypost-go/v6`.
 
 ## 6.0 Renamed Identifiers
 
@@ -68,6 +90,16 @@ The following struct fields were renamed:
 - `TaxIdentifier.TaxId` to `TaxIdentifier.TaxID`
 - `TaxIdentifier.TaxIdType` to `TaxIdentifier.TaxIDType`
 
+```go
+// Before
+claim.ShipmentId
+key, err := client.RetrieveEasypostStripeApiKey()
+
+// After
+claim.ShipmentID
+key, err := client.RetrieveEasypostStripeAPIKey()
+```
+
 ## 6.0 Stateless Rates Return the Full Response
 
 *Likelihood of Impact: **High***
@@ -100,6 +132,24 @@ trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
 trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
 	TrackingCodes: []string{"EZ1000000001"},
 })
+```
+
+## 6.0 ShipmentOptions.Machinable Is Now a Pointer
+
+*Likelihood of Impact: **Medium***
+
+`ShipmentOptions.Machinable` changed from `bool` to `*bool` so an explicit `false` is sent to the API. Previously `false` was dropped, so USPS rated the parcel as machinable. Leave the field `nil` to omit it.
+
+```go
+// Before
+options := &easypost.ShipmentOptions{
+	Machinable: false,
+}
+
+// After
+options := &easypost.ShipmentOptions{
+	Machinable: easypost.BoolPtr(false),
+}
 ```
 
 ## Upgrading from 4.x to 5.0
