@@ -32,7 +32,7 @@ func (c *ClientTests) TestDateTime() {
 }
 
 func (c *ClientTests) TestDateTimeJSON() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())

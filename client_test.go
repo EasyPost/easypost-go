@@ -22,7 +22,7 @@ func (c *ClientTests) TestCreateClient() {
 func (c *ClientTests) TestHooks() {
 	assert, require := c.Assert(), c.Require()
 
-	client := c.TestClient()
+	client := c.testClient()
 
 	requestHookCalled := false
 	responseHookCalled := false
@@ -76,7 +76,7 @@ func (c *ClientTests) TestHooks() {
 func (c *ClientTests) TestMultipleHooks() {
 	assert, require := c.Assert(), c.Require()
 
-	client := c.TestClient()
+	client := c.testClient()
 
 	requestHook1Called := false
 	requestHook2Called := false
@@ -121,7 +121,7 @@ func (c *ClientTests) TestMultipleHooks() {
 func (c *ClientTests) TestHooksUnsubscribing() {
 	assert, require := c.Assert(), c.Require()
 
-	client := c.TestClient()
+	client := c.testClient()
 
 	requestCallbackCallCount := 0
 	hookName := "hook_1"
@@ -169,7 +169,7 @@ func (c *ClientTests) TestHooksUnsubscribing() {
 }
 
 func (c *ClientTests) TestClientMakeAPICall() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	response, err := client.MakeAPICall("GET", "addresses", map[string]interface{}{"page_size": 1})

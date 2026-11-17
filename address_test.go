@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestAddressCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
@@ -22,7 +22,7 @@ func (c *ClientTests) TestAddressCreate() {
 }
 
 func (c *ClientTests) TestAddressCreateVerifyStrict() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
@@ -39,7 +39,7 @@ func (c *ClientTests) TestAddressCreateVerifyStrict() {
 }
 
 func (c *ClientTests) TestAddressRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
@@ -56,7 +56,7 @@ func (c *ClientTests) TestAddressRetrieve() {
 }
 
 func (c *ClientTests) TestAddressAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	addresses, err := client.ListAddresses(
@@ -74,7 +74,7 @@ func (c *ClientTests) TestAddressAll() {
 }
 
 func (c *ClientTests) TestAddressGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListAddresses(
@@ -107,7 +107,7 @@ func (c *ClientTests) TestAddressGetNextPage() {
 
 // We purposefully pass in slightly incorrect data to get the corrected address back once verified.
 func (c *ClientTests) TestAddressCreateVerify() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
@@ -143,7 +143,7 @@ func (c *ClientTests) TestAddressCreateVerify() {
 }
 
 func (c *ClientTests) TestAddressCreateAndVerify() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	// Creating normally (without specifying "verify") will make the address, perform no verifications
@@ -170,7 +170,7 @@ func (c *ClientTests) TestAddressCreateAndVerify() {
 }
 
 func (c *ClientTests) TestAddressVerify() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
@@ -189,7 +189,7 @@ func (c *ClientTests) TestAddressVerify() {
 
 // We purposefully pass in slightly incorrect data to get the corrected address back once verified.
 func (c *ClientTests) TestAddressCreateVerifyCarrier() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAddress(
@@ -213,7 +213,7 @@ func (c *ClientTests) TestAddressCreateVerifyCarrier() {
 
 // We purposefully pass in slightly incorrect data to get the corrected address back once verified.
 func (c *ClientTests) TestAddressCreateAndVerifyCarrier() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	address, err := client.CreateAndVerifyAddress(

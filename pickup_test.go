@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestPickupCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -25,7 +25,7 @@ func (c *ClientTests) TestPickupCreate() {
 }
 
 func (c *ClientTests) TestPickupRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -45,7 +45,7 @@ func (c *ClientTests) TestPickupRetrieve() {
 }
 
 func (c *ClientTests) TestPickupBuy() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -73,7 +73,7 @@ func (c *ClientTests) TestPickupBuy() {
 }
 
 func (c *ClientTests) TestPickupCancel() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -103,7 +103,7 @@ func (c *ClientTests) TestPickupCancel() {
 }
 
 func (c *ClientTests) TestPickupLowestRate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -132,7 +132,7 @@ func (c *ClientTests) TestPickupLowestRate() {
 }
 
 func (c *ClientTests) TestPickupAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	pickups, err := client.ListPickups(
@@ -150,7 +150,7 @@ func (c *ClientTests) TestPickupAll() {
 }
 
 func (c *ClientTests) TestPickupsGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListPickups(

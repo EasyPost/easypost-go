@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestShipmentCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.FullShipment())
@@ -22,7 +22,7 @@ func (c *ClientTests) TestShipmentCreate() {
 }
 
 func (c *ClientTests) TestShipmentRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.FullShipment())
@@ -36,7 +36,7 @@ func (c *ClientTests) TestShipmentRetrieve() {
 }
 
 func (c *ClientTests) TestShipmentAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipments, err := client.ListShipments(
@@ -56,7 +56,7 @@ func (c *ClientTests) TestShipmentAll() {
 }
 
 func (c *ClientTests) TestShipmentBuy() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.FullShipment())
@@ -72,7 +72,7 @@ func (c *ClientTests) TestShipmentBuy() {
 }
 
 func (c *ClientTests) TestShipmentRegenerateRates() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.FullShipment())
@@ -88,7 +88,7 @@ func (c *ClientTests) TestShipmentRegenerateRates() {
 }
 
 func (c *ClientTests) TestShipmentConvertLabel() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -103,7 +103,7 @@ func (c *ClientTests) TestShipmentConvertLabel() {
 // If the shipment was purchased with a USPS rate, it must have had its insurance set to `0` when bought
 // so that USPS doesn't automatically insure it. So we could manually insure it here.
 func (c *ClientTests) TestShipmentInsure() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipmentData := c.fixture.OneCallBuyShipment()
@@ -123,7 +123,7 @@ func (c *ClientTests) TestShipmentInsure() {
 // follow a flow of created -> delivered to cycle through tracking events in test mode - as such anything older
 // than a few seconds in test mode may not be refundable.
 func (c *ClientTests) TestShipmentRefund() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -136,7 +136,7 @@ func (c *ClientTests) TestShipmentRefund() {
 }
 
 func (c *ClientTests) TestShipmentSmartrate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
@@ -158,7 +158,7 @@ func (c *ClientTests) TestShipmentSmartrate() {
 }
 
 func (c *ClientTests) TestShipmentCreateEmptyObjects() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipmentData := c.fixture.BasicShipment()
@@ -180,7 +180,7 @@ func (c *ClientTests) TestShipmentCreateEmptyObjects() {
 }
 
 func (c *ClientTests) TestShipmentCreateTaxIdentifier() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipmentData := c.fixture.BasicShipment()
@@ -195,7 +195,7 @@ func (c *ClientTests) TestShipmentCreateTaxIdentifier() {
 }
 
 func (c *ClientTests) TestShipmentCreateWithIds() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	fromAddress, err := client.CreateAddress(c.fixture.CaAddress1(), nil)
@@ -223,7 +223,7 @@ func (c *ClientTests) TestShipmentCreateWithIds() {
 }
 
 func (c *ClientTests) TestShipmentInstanceLowestSmartRate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
@@ -246,7 +246,7 @@ func (c *ClientTests) TestShipmentInstanceLowestSmartRate() {
 }
 
 func (c *ClientTests) TestShipmentLowestRate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.FullShipment())
@@ -272,7 +272,7 @@ func (c *ClientTests) TestShipmentLowestRate() {
 }
 
 func (c *ClientTests) TestShipmentGenerateForm() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -298,7 +298,7 @@ func (c *ClientTests) TestShipmentGenerateForm() {
 }
 
 func (c *ClientTests) TestBuyShipmentWithEndShipper() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	endShipper, err := client.CreateEndShipper(c.fixture.CaAddress1())
@@ -317,7 +317,7 @@ func (c *ClientTests) TestBuyShipmentWithEndShipper() {
 }
 
 func (c *ClientTests) TestShipmentsGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListShipments(
@@ -350,7 +350,7 @@ func (c *ClientTests) TestShipmentsGetNextPage() {
 
 // Tests that we retrieve time-in-transit data for each of the Rates of a Shipment.
 func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
@@ -368,7 +368,7 @@ func (c *ClientTests) TestShipmentGetShipmentEstimatedDeliveryDate() {
 }
 
 func (c *ClientTests) TestShipmentRecommendShipDate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
@@ -388,7 +388,7 @@ func (c *ClientTests) TestShipmentRecommendShipDate() {
 }
 
 func (c *ClientTests) TestCreateAndBuyLumaShipment() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipmentData := c.fixture.OneCallBuyShipment()
@@ -406,7 +406,7 @@ func (c *ClientTests) TestCreateAndBuyLumaShipment() {
 }
 
 func (c *ClientTests) TestBuyLumaShipment() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())

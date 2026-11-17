@@ -26,7 +26,7 @@ func prepareInsuredShipment(client *Client, shipmentCreateParams *Shipment, clai
 }
 
 func (c *ClientTests) TestClaimCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	claimAmount := 100.0
@@ -49,7 +49,7 @@ func (c *ClientTests) TestClaimCreate() {
 }
 
 func (c *ClientTests) TestClaimRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	claimAmount := 100.0
@@ -72,7 +72,7 @@ func (c *ClientTests) TestClaimRetrieve() {
 }
 
 func (c *ClientTests) TestClaimAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	listClaimsParams := &ListClaimsParameters{
@@ -92,7 +92,7 @@ func (c *ClientTests) TestClaimAll() {
 }
 
 func (c *ClientTests) TestClaimGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	listClaimsParams := &ListClaimsParameters{
@@ -124,7 +124,7 @@ func (c *ClientTests) TestClaimGetNextPage() {
 }
 
 func (c *ClientTests) TestClaimCancel() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	claimAmount := 100.0

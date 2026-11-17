@@ -3,7 +3,7 @@ package easypost
 func (c *ClientTests) TestClientTimeout() {
 	timeout1 := 1000
 	timeout2 := 10
-	tempClient := c.TestClient()
+	tempClient := c.testClient()
 	// set the timeout as part of the client initialization
 	client := &Client{
 		APIKey:  tempClient.APIKey,

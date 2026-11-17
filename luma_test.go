@@ -1,7 +1,7 @@
 package easypost
 
 func (c *ClientTests) TestGetLumaPromise() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipmentData := c.fixture.BasicShipment()

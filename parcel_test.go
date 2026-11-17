@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestParcelCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
@@ -18,7 +18,7 @@ func (c *ClientTests) TestParcelCreate() {
 }
 
 func (c *ClientTests) TestParcelRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	parcel, err := client.CreateParcel(c.fixture.BasicParcel())
