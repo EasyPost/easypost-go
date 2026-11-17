@@ -13,6 +13,7 @@ Use the following guide to assist in the upgrade process of the `easypost-go` li
 ### 6.0 High Impact Changes
 
 - [Importing the Library](#60-importing-the-library)
+- [Updating Dependencies](#60-updating-dependencies)
 - [Renamed Identifiers](#60-renamed-identifiers)
 - [Stateless Rates Return the Full Response](#60-stateless-rates-return-the-full-response)
 
@@ -40,6 +41,18 @@ import (
 ```
 
 Install it with `go get -u github.com/EasyPost/easypost-go/v6`.
+
+## 6.0 Updating Dependencies
+
+*Likelihood of Impact: **High***
+
+**Go 1.23 Required**
+
+easypost-go now requires Go 1.23 or greater.
+
+**Dependencies**
+
+The test-only dependency `testify` was bumped from v1.8.2 to v1.11.1.
 
 ## 6.0 Renamed Identifiers
 
