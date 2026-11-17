@@ -204,7 +204,7 @@ func (c *Client) BetaAddPaymentMethodWithContext(ctx context.Context, stripeCust
 		},
 	}
 
-	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/payment_method", wrappedParams, out)
+	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/payment_method", wrappedParams, &out)
 	return
 }
 

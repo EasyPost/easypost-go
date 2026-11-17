@@ -12,6 +12,7 @@ See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-5x-to-60) for more detai
 - Upgrades golangci-lint to v2
 - Changes `ShipmentOptions.Machinable` from `bool` to `*bool` so an explicit `false` is sent; callers use `easypost.BoolPtr(...)`. Previously `false` was dropped and USPS rated the parcel as machinable (closes #297, thanks @pcbeingused333)
 - Fixes `BetaRefundByAmount` and `BetaRefundByPaymentLog` failing to decode a successful response
+- Fixes `BetaAddPaymentMethod` failing to decode a successful response
 - Fixes `AddReferralCustomerBankAccountFromStripe` sending `mandata_data` instead of `mandate_data`
 
 ## v5.13.0 (2026-11-09)
