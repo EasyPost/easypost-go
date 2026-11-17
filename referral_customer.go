@@ -162,7 +162,7 @@ func (c *Client) AddReferralCustomerBankAccountFromStripeWithContext(ctx context
 
 	params := map[string]interface{}{
 		"financial_connections_id": financialConnectionsID,
-		"mandata_data":             mandateData,
+		"mandate_data":             mandateData,
 		"priority":                 c.GetPaymentEndpointByPrimaryOrSecondary(priority),
 	}
 
@@ -220,7 +220,7 @@ func (c *Client) BetaRefundByAmountWithContext(ctx context.Context, refundAmount
 		"refund_amount": refundAmount,
 	}
 
-	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, out)
+	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, &out)
 	return
 }
 
@@ -236,7 +236,7 @@ func (c *Client) BetaRefundByPaymentLogWithContext(ctx context.Context, paymentL
 		"payment_log_id": paymentLogID,
 	}
 
-	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, out)
+	err = c.do(ctx, http.MethodPost, "/beta/referral_customers/refunds", params, &out)
 	return
 }
 
