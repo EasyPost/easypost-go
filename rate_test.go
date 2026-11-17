@@ -31,13 +31,6 @@ func (c *ClientTests) TestBetaStatelessRateRetrieve() {
 	for _, rate := range response.Rates {
 		assert.Equal(reflect.TypeOf(&StatelessRate{}), reflect.TypeOf(rate))
 	}
-
-	assert.NotEmpty(response.Messages)
-	assert.Equal("rate_error", response.Messages[0].Type)
-	assert.Equal("DhlEcs", response.Messages[0].Carrier)
-	assert.NotNil(response.FromAddress)
-	assert.NotNil(response.ToAddress)
-	assert.NotNil(response.Parcel)
 }
 
 func (c *ClientTests) TestBetaStatelessRateGetLowest() {

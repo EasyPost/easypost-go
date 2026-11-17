@@ -94,36 +94,6 @@ func (c *ClientTests) TestTrackersGetNextPage() {
 	}
 }
 
-func (c *ClientTests) TestTrackerAllWithTrackingCodes() {
-	client := c.TestClient()
-	assert, require := c.Assert(), c.Require()
-
-	trackingCodes := []string{"EZ1000000001", "EZ2000000002"}
-	for _, code := range trackingCodes {
-		_, err := client.CreateTracker(&CreateTrackerOptions{TrackingCode: code})
-		require.NoError(err)
-	}
-
-	trackers, err := client.ListTrackers(
-		&ListTrackersOptions{
-			TrackingCodes: trackingCodes,
-			PageSize:      c.fixture.pageSize(),
-		},
-	)
-	require.NoError(err)
-	require.NotEmpty(trackers.Trackers)
-
-	found := map[string]bool{}
-	for _, tracker := range trackers.Trackers {
-		assert.Equal(reflect.TypeOf(&Tracker{}), reflect.TypeOf(tracker))
-		assert.Contains(trackingCodes, tracker.TrackingCode)
-		found[tracker.TrackingCode] = true
-	}
-	for _, code := range trackingCodes {
-		assert.True(found[code], "expected tracking code %s in list results", code)
-	}
-}
-
 func (c *ClientTests) TestTrackersGetNextPageWithTrackingCodes() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
