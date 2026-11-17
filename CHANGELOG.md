@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## v6.0.0
+
+- Changes `ShipmentOptions.Machinable` from `bool` to `*bool` so an explicit `false` is sent; callers use `easypost.BoolPtr(...)`. Previously `false` was dropped and USPS rated the parcel as machinable (closes #297, thanks @pcbeingused333)
+
 ## v5.13.0 (2026-11-09)
 
 - Adds `DeliveryEvidence` property and model to `Tracker` model
