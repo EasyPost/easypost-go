@@ -4,6 +4,7 @@ import (
 	"errors"
 	"reflect"
 	"strings"
+	"time"
 )
 
 func (c *ClientTests) TestTrackerCreate() {
@@ -133,15 +134,24 @@ func (c *ClientTests) TestTrackersGetNextPageWithTrackingCodes() {
 		require.NoError(err)
 	}
 
+	// Wide fixed window so the cassette URL is stable on replay and still
+	// includes the test trackers created earlier in this test.
+	start := NewDateTime(2020, time.January, 1, 0, 0, 0, 0, time.UTC)
+	end := NewDateTime(2030, time.January, 1, 0, 0, 0, 0, time.UTC)
+
 	firstPage, err := client.ListTrackers(
 		&ListTrackersOptions{
 			TrackingCodes: trackingCodes,
+			StartDateTime: &start,
+			EndDateTime:   &end,
 			PageSize:      1,
 		},
 	)
 	require.NoError(err)
 	require.NotEmpty(firstPage.Trackers)
 	assert.Equal(trackingCodes, firstPage.TrackingCodes)
+	assert.Equal(&start, firstPage.StartDateTime)
+	assert.Equal(&end, firstPage.EndDateTime)
 	for _, tracker := range firstPage.Trackers {
 		assert.Contains(trackingCodes, tracker.TrackingCode)
 	}
@@ -151,6 +161,8 @@ func (c *ClientTests) TestTrackersGetNextPageWithTrackingCodes() {
 		if err == nil {
 			assert.True(len(nextPage.Trackers) <= 1)
 			assert.Equal(trackingCodes, nextPage.TrackingCodes)
+			assert.Equal(&start, nextPage.StartDateTime)
+			assert.Equal(&end, nextPage.EndDateTime)
 			for _, tracker := range nextPage.Trackers {
 				assert.Contains(trackingCodes, tracker.TrackingCode)
 			}
