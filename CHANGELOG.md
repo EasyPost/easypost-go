@@ -16,6 +16,7 @@ See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-5x-to-60) for more detai
 - Fixes `AddReferralCustomerBankAccountFromStripe` sending `mandata_data` instead of `mandate_data`
 - Breaking: `BetaGetStatelessRates` and `BetaGetStatelessRatesWithContext` now return the full response (`*GetStatelessRatesResult`) rather than only the `rates` key, so rating errors and other fields are available. Read rates from the `Rates` field.
 - Breaking: Removes the singular `TrackingCode` parameter from `ListTrackersOptions`. Use `TrackingCodes` to filter the tracker list by one or more tracking codes, or `GetTracker` to retrieve a single tracker by ID.
+- Breaking: Removes `TrackingCode` from `ListTrackersResult`. `GetNextTrackerPage` now carries `TrackingCodes`, `StartDateTime`, and `EndDateTime` forward.
 
 ## v5.13.0 (2026-11-09)
 
