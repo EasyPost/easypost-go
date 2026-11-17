@@ -23,20 +23,24 @@ func (c *ClientTests) TestBetaStatelessRateRetrieve() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	rates, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
+	response, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	assert.Equal(reflect.TypeOf([]*StatelessRate{}), reflect.TypeOf(rates))
+	assert.Equal(reflect.TypeOf(&GetStatelessRatesResult{}), reflect.TypeOf(response))
+	assert.NotEmpty(response.Rates)
+	for _, rate := range response.Rates {
+		assert.Equal(reflect.TypeOf(&StatelessRate{}), reflect.TypeOf(rate))
+	}
 }
 
 func (c *ClientTests) TestBetaStatelessRateGetLowest() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
 
-	rates, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
+	response, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
 	require.NoError(err)
 
-	lowestRate, err := client.LowestStatelessRate(rates)
+	lowestRate, err := client.LowestStatelessRate(response.Rates)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(StatelessRate{}), reflect.TypeOf(lowestRate))
@@ -47,14 +51,14 @@ func (c *ClientTests) TestBetaStatelessRateGetLowestError() {
 	client := c.TestClient()
 	require := c.Require()
 
-	rates, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
+	response, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
 	require.NoError(err)
 
 	// Bad carrier
-	_, err = client.LowestStatelessRateWithCarrier(rates, []string{"BadCarrier"})
+	_, err = client.LowestStatelessRateWithCarrier(response.Rates, []string{"BadCarrier"})
 	require.Error(err)
 
 	// Bad service
-	_, err = client.LowestStatelessRateWithCarrierAndService(rates, []string{"USPS"}, []string{"BadService"})
+	_, err = client.LowestStatelessRateWithCarrierAndService(response.Rates, []string{"USPS"}, []string{"BadService"})
 	require.Error(err)
 }
