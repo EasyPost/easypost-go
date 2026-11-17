@@ -54,6 +54,14 @@ easypost-go now requires Go 1.20 or greater.
 
 `golang.org/x/text` was bumped from v0.11.0 to v0.22.0 and `github.com/google/go-querystring` from v1.1.0 to v1.2.0. These are runtime dependencies, so your module will resolve to at least these versions.
 
+**Known Issue**
+
+`govulncheck` reports [GO-2026-5970](https://pkg.go.dev/vuln/GO-2026-5970) (CVE-2026-56852), an infinite loop in `golang.org/x/text` on invalid UTF-8, as reachable through `ValidateWebhook` and `ValidateWebhookWithContext`. Those functions only normalize your own webhook secret, so the risk is low. The fixed `golang.org/x/text` releases require Go 1.25, which is above this library's minimum. If you're on Go 1.25 or later, you can require `golang.org/x/text` v0.41.0 or later in your own module, which also clears GO-2026-6629:
+
+```bash
+go get golang.org/x/text@v0.41.0
+```
+
 ## 6.0 Renamed Identifiers
 
 *Likelihood of Impact: **High***
