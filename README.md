@@ -3,7 +3,7 @@
 [![CI](https://github.com/EasyPost/easypost-go/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-go/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/EasyPost/easypost-go/graph/badge.svg?token=BW6X4DO2FT)](https://codecov.io/gh/EasyPost/easypost-go)
 [![GitHub version](https://badge.fury.io/gh/EasyPost%2Feasypost-go.svg)](https://badge.fury.io/gh/EasyPost%2Feasypost-go)
-[![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go)
+[![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go/v6?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go/v6)
 
 EasyPost, the simple shipping solution. You can sign up for an account at <https://easypost.com>.
 

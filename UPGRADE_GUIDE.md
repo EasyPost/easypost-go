@@ -147,11 +147,13 @@ trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
 })
 ```
 
+`TrackingCodes` is now sent as `tracking_codes[]=...` instead of `tracking_codes=...`, which fixes filtering by more than one tracking code. Update any mocks (such as `MockRequestMatchRule.URLRegexPattern`) or recorded requests that match the old query string.
+
 ## 6.0 ShipmentOptions.Machinable Is Now a Pointer
 
 *Likelihood of Impact: **Medium***
 
-`ShipmentOptions.Machinable` changed from `bool` to `*bool` so an explicit `false` is sent to the API. Previously `false` was dropped, so USPS rated the parcel as machinable. Leave the field `nil` to omit it.
+`ShipmentOptions.Machinable` changed from `bool` to `*bool` so an explicit `false` is sent to the API. Previously `false` was dropped, so the carrier default applied, which on most USPS paths rated the parcel as machinable. Leave the field `nil` to omit it.
 
 ```go
 // Before
@@ -166,6 +168,8 @@ options := &easypost.ShipmentOptions{
 ```
 
 ## Upgrading from 4.x to 5.0
+
+**NOTICE:** v5 is deprecated.
 
 ### 5.0 High Impact Changes
 
