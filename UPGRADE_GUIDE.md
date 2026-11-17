@@ -13,6 +13,11 @@ Use the following guide to assist in the upgrade process of the `easypost-go` li
 ### 6.0 High Impact Changes
 
 - [Renamed Identifiers](#60-renamed-identifiers)
+- [Stateless Rates Return the Full Response](#60-stateless-rates-return-the-full-response)
+
+### 6.0 Medium Impact Changes
+
+- [`TrackingCode` Removed from `ListTrackersOptions`](#60-trackingcode-removed-from-listtrackersoptions)
 
 ## 6.0 Renamed Identifiers
 
@@ -62,6 +67,40 @@ The following struct fields were renamed:
 - `ResponseHookEvent.Url` to `ResponseHookEvent.URL`
 - `TaxIdentifier.TaxId` to `TaxIdentifier.TaxID`
 - `TaxIdentifier.TaxIdType` to `TaxIdentifier.TaxIDType`
+
+## 6.0 Stateless Rates Return the Full Response
+
+*Likelihood of Impact: **High***
+
+`BetaGetStatelessRates` and `BetaGetStatelessRatesWithContext` now return the full response instead of only the `rates` key, so rating errors and other fields are available.
+
+```go
+// Before
+rates, err := client.BetaGetStatelessRates(shipment)
+
+// After
+res, err := client.BetaGetStatelessRates(shipment)
+rates := res.Rates
+// Check res.Messages for rating errors
+```
+
+## 6.0 TrackingCode Removed from ListTrackersOptions
+
+*Likelihood of Impact: **Medium***
+
+The singular `TrackingCode` parameter has been removed from `ListTrackersOptions` and `ListTrackersResult`. This reverses the [3.0 rename](#30-trackingcodes-parameter-renamed). Use `TrackingCodes` to filter by one or more tracking codes. `GetNextTrackerPage` carries `TrackingCodes`, `StartDateTime`, and `EndDateTime` forward.
+
+```go
+// Before
+trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
+	TrackingCode: "EZ1000000001",
+})
+
+// After
+trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
+	TrackingCodes: []string{"EZ1000000001"},
+})
+```
 
 ## Upgrading from 4.x to 5.0
 

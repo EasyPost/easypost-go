@@ -7,26 +7,26 @@ import (
 
 // A Rate contains information on shipping cost and delivery time.
 type Rate struct {
-	ID                     string    `json:"id,omitempty" url:"id,omitempty"`
-	Object                 string    `json:"object,omitempty" url:"object,omitempty"`
-	Mode                   string    `json:"mode,omitempty" url:"mode,omitempty"`
-	CreatedAt              *DateTime `json:"created_at,omitempty" url:"created_at,omitempty"`
-	UpdatedAt              *DateTime `json:"updated_at,omitempty" url:"updated_at,omitempty"`
-	Service                string    `json:"service,omitempty" url:"service,omitempty"`
-	Carrier                string    `json:"carrier,omitempty" url:"carrier,omitempty"`
-	CarrierAccountID       string    `json:"carrier_account_id,omitempty" url:"carrier_account_id,omitempty"`
-	ShipmentID             string    `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
-	Rate                   string    `json:"rate,omitempty" url:"rate,omitempty"`
-	Currency               string    `json:"currency,omitempty" url:"currency,omitempty"`
-	RetailRate             string    `json:"retail_rate,omitempty" url:"retail_rate,omitempty"`
-	RetailCurrency         string    `json:"retail_currency,omitempty" url:"retail_currency,omitempty"`
-	ListRate               string    `json:"list_rate,omitempty" url:"list_rate,omitempty"`
-	ListCurrency           string    `json:"list_currency,omitempty" url:"list_currency,omitempty"`
-	DeliveryDays           int       `json:"delivery_days,omitempty" url:"delivery_days,omitempty"`
-	DeliveryDate           *DateTime `json:"delivery_date,omitempty" url:"delivery_date,omitempty"`
-	DeliveryDateGuaranteed bool      `json:"delivery_date_guaranteed,omitempty" url:"delivery_date_guaranteed,omitempty"`
-	EstDeliveryDays        int       `json:"est_delivery_days,omitempty" url:"est_delivery_days,omitempty"`
-	BillingType            string    `json:"billing_type,omitempty" url:"billing_type,omitempty"`
+	ID                     string       `json:"id,omitempty" url:"id,omitempty"`
+	Object                 string       `json:"object,omitempty" url:"object,omitempty"`
+	Mode                   string       `json:"mode,omitempty" url:"mode,omitempty"`
+	CreatedAt              *DateTime    `json:"created_at,omitempty" url:"created_at,omitempty"`
+	UpdatedAt              *DateTime    `json:"updated_at,omitempty" url:"updated_at,omitempty"`
+	Service                string       `json:"service,omitempty" url:"service,omitempty"`
+	Carrier                string       `json:"carrier,omitempty" url:"carrier,omitempty"`
+	CarrierAccountID       string       `json:"carrier_account_id,omitempty" url:"carrier_account_id,omitempty"`
+	ShipmentID             string       `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
+	Rate                   string       `json:"rate,omitempty" url:"rate,omitempty"`
+	Currency               string       `json:"currency,omitempty" url:"currency,omitempty"`
+	RetailRate             string       `json:"retail_rate,omitempty" url:"retail_rate,omitempty"`
+	RetailCurrency         string       `json:"retail_currency,omitempty" url:"retail_currency,omitempty"`
+	ListRate               string       `json:"list_rate,omitempty" url:"list_rate,omitempty"`
+	ListCurrency           string       `json:"list_currency,omitempty" url:"list_currency,omitempty"`
+	DeliveryDays           int          `json:"delivery_days,omitempty" url:"delivery_days,omitempty"`
+	DeliveryDate           *DateTime    `json:"delivery_date,omitempty" url:"delivery_date,omitempty"`
+	DeliveryDateGuaranteed bool         `json:"delivery_date_guaranteed,omitempty" url:"delivery_date_guaranteed,omitempty"`
+	EstDeliveryDays        int          `json:"est_delivery_days,omitempty" url:"est_delivery_days,omitempty"`
+	BillingType            string       `json:"billing_type,omitempty" url:"billing_type,omitempty"`
 	Surcharges             []*Surcharge `json:"surcharges,omitempty" url:"surcharges,omitempty"`
 }
 
@@ -98,8 +98,15 @@ type Surcharge struct {
 	Currency     string `json:"currency,omitempty" url:"currency,omitempty"`
 }
 
-type getStatelessRatesResponse struct {
-	Rates *[]*StatelessRate `json:"rates,omitempty" url:"rates,omitempty"`
+// GetStatelessRatesResult is the full response from the beta stateless rates
+// endpoint, including rates and any rating errors in Messages.
+type GetStatelessRatesResult struct {
+	FromAddress *Address          `json:"from_address,omitempty" url:"from_address,omitempty"`
+	ToAddress   *Address          `json:"to_address,omitempty" url:"to_address,omitempty"`
+	Parcel      *Parcel           `json:"parcel,omitempty" url:"parcel,omitempty"`
+	Options     *ShipmentOptions  `json:"options,omitempty" url:"options,omitempty"`
+	Messages    []*CarrierMessage `json:"messages,omitempty" url:"messages,omitempty"`
+	Rates       []*StatelessRate  `json:"rates,omitempty" url:"rates,omitempty"`
 }
 
 // GetRate retrieves a previously-created rate by its ID.
@@ -114,17 +121,17 @@ func (c *Client) GetRateWithContext(ctx context.Context, rateID string) (out *Ra
 	return
 }
 
-// BetaGetStatelessRates fetches a list of stateless rates.
-func (c *Client) BetaGetStatelessRates(in *Shipment) (out []*StatelessRate, err error) {
+// BetaGetStatelessRates fetches a stateless rates response, including any
+// rating errors in the Messages field. Read rates from the Rates field.
+func (c *Client) BetaGetStatelessRates(in *Shipment) (out *GetStatelessRatesResult, err error) {
 	return c.BetaGetStatelessRatesWithContext(context.Background(), in)
 }
 
 // BetaGetStatelessRatesWithContext performs the same operation as BetaGetStatelessRates,
 // but allows specifying a context that can interrupt the request.
-func (c *Client) BetaGetStatelessRatesWithContext(ctx context.Context, in *Shipment) (out []*StatelessRate, err error) {
+func (c *Client) BetaGetStatelessRatesWithContext(ctx context.Context, in *Shipment) (out *GetStatelessRatesResult, err error) {
 	req := &createShipmentRequest{Shipment: in}
-	res := &getStatelessRatesResponse{Rates: &out}
-	err = c.do(ctx, http.MethodPost, "/beta/rates", &req, &res)
+	err = c.do(ctx, http.MethodPost, "/beta/rates", &req, &out)
 	return
 }
 

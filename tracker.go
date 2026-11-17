@@ -95,16 +95,17 @@ type ListTrackersOptions struct {
 	StartDateTime *DateTime `json:"start_datetime,omitempty" url:"start_datetime,omitempty"`
 	EndDateTime   *DateTime `json:"end_datetime,omitempty" url:"end_datetime,omitempty"`
 	PageSize      int       `json:"page_size,omitempty" url:"page_size,omitempty"`
-	TrackingCode  string    `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
-	TrackingCodes []string  `json:"tracking_codes,omitempty" url:"tracking_codes,omitempty"`
+	TrackingCodes []string  `json:"tracking_codes,omitempty" url:"tracking_codes,brackets,omitempty"`
 	Carrier       string    `json:"carrier,omitempty" url:"carrier,omitempty"`
 }
 
 // ListTrackersResult holds the results from the list trackers API.
 type ListTrackersResult struct {
-	Trackers     []*Tracker `json:"trackers,omitempty" url:"trackers,omitempty"`
-	TrackingCode string     `json:"tracking_code,omitempty" url:"tracking_code,omitempty"`
-	Carrier      string     `json:"carrier,omitempty" url:"carrier,omitempty"`
+	Trackers      []*Tracker `json:"trackers,omitempty" url:"trackers,omitempty"`
+	Carrier       string     `json:"carrier,omitempty" url:"carrier,omitempty"`
+	TrackingCodes []string   `json:"-"`
+	StartDateTime *DateTime  `json:"-"`
+	EndDateTime   *DateTime  `json:"-"`
 	PaginatedCollection
 }
 
@@ -174,9 +175,11 @@ func (c *Client) ListTrackers(opts *ListTrackersOptions) (out *ListTrackersResul
 func (c *Client) ListTrackersWithContext(ctx context.Context, opts *ListTrackersOptions) (out *ListTrackersResult, err error) {
 	err = c.do(ctx, http.MethodGet, "trackers", opts, &out)
 	// Store the original query parameters for reuse when getting the next page
-	if err == nil && out != nil {
-		out.TrackingCode = opts.TrackingCode
+	if err == nil && out != nil && opts != nil {
 		out.Carrier = opts.Carrier
+		out.TrackingCodes = opts.TrackingCodes
+		out.StartDateTime = opts.StartDateTime
+		out.EndDateTime = opts.EndDateTime
 	}
 	return
 }
@@ -210,9 +213,11 @@ func (c *Client) GetNextTrackerPageWithPageSizeWithContext(ctx context.Context, 
 		return
 	}
 	trackerParams := &ListTrackersOptions{
-		BeforeID:     params.BeforeID,
-		Carrier:      collection.Carrier,
-		TrackingCode: collection.TrackingCode,
+		BeforeID:      params.BeforeID,
+		Carrier:       collection.Carrier,
+		TrackingCodes: collection.TrackingCodes,
+		StartDateTime: collection.StartDateTime,
+		EndDateTime:   collection.EndDateTime,
 	}
 	if pageSize > 0 {
 		trackerParams.PageSize = pageSize
