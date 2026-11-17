@@ -74,9 +74,9 @@ func (c *ClientTests) TestScanFormsGetNextPage() {
 			assert.True(len(nextPage.ScanForms) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.ScanForms[len(firstPage.ScanForms)-1].ID
-			firstIdOfSecondPage := nextPage.ScanForms[0].ID
+			firstIDOfSecondPage := nextPage.ScanForms[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {

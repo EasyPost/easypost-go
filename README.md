@@ -240,7 +240,7 @@ mockRequests := []easypost.MockRequest{
         MatchRule: easypost.MockRequestMatchRule{
             // HTTP method and regex pattern for the URL must both pass for the request to match
             Method:          "POST",
-            UrlRegexPattern: "v2\\/bank_accounts\\/\\S*\\/charges$",
+            URLRegexPattern: "v2\\/bank_accounts\\/\\S*\\/charges$",
         },
         ResponseInfo: easypost.MockRequestResponseInfo{
             // HTTP status code and body to return when this request is matched

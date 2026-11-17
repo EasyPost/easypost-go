@@ -25,13 +25,13 @@ type Claim struct {
 	Description          string              `json:"description,omitempty" url:"description,omitempty"`
 	History              []ClaimHistoryEntry `json:"history,omitempty" url:"history,omitempty"`
 	InsuranceAmount      string              `json:"insurance_amount,omitempty" url:"insurance_amount,omitempty"`
-	InsuranceId          string              `json:"insurance_id,omitempty" url:"insurance_id,omitempty"`
+	InsuranceID          string              `json:"insurance_id,omitempty" url:"insurance_id,omitempty"`
 	PaymentMethod        string              `json:"payment_method,omitempty" url:"payment_method,omitempty"`
 	RecipientName        string              `json:"recipient_name,omitempty" url:"recipient_name,omitempty"`
 	Reference            string              `json:"reference,omitempty" url:"reference,omitempty"`
 	RequestedAmount      string              `json:"requested_amount,omitempty" url:"requested_amount,omitempty"`
 	SalvageValue         string              `json:"salvage_value,omitempty" url:"salvage_value,omitempty"`
-	ShipmentId           string              `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
+	ShipmentID           string              `json:"shipment_id,omitempty" url:"shipment_id,omitempty"`
 	Status               string              `json:"status,omitempty" url:"status,omitempty"`
 	StatusDetail         string              `json:"status_detail,omitempty" url:"status_detail,omitempty"`
 	StatusTimestamp      string              `json:"status_timestamp,omitempty" url:"status_timestamp,omitempty"`

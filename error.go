@@ -159,19 +159,19 @@ func newMismatchWebhookSignatureError() *MismatchWebhookSignatureError {
 	return &MismatchWebhookSignatureError{LocalError{LibraryError{Message: MismatchWebhookSignature}}}
 }
 
-// ExternalApiError represents an error caused by an external API, such as a 3rd party HTTP API (not EasyPost).
-type ExternalApiError struct {
+// ExternalAPIError represents an error caused by an external API, such as a 3rd party HTTP API (not EasyPost).
+type ExternalAPIError struct {
 	LibraryError // subtype of LibraryError
 }
 
 // Unwrap returns the underlying LibraryError object.
-func (e *ExternalApiError) Unwrap() error {
+func (e *ExternalAPIError) Unwrap() error {
 	return &e.LibraryError
 }
 
-// newExternalApiError returns a new ExternalApiError object with the given message.
-func newExternalApiError(message string) *ExternalApiError {
-	return &ExternalApiError{LibraryError{Message: message}}
+// newExternalAPIError returns a new ExternalAPIError object with the given message.
+func newExternalAPIError(message string) *ExternalAPIError {
+	return &ExternalAPIError{LibraryError{Message: message}}
 }
 
 // InvalidFunctionError is raised when a function call is invalid or not allowed.
@@ -417,13 +417,13 @@ func (e *ForbiddenError) Unwrap() error {
 	return &e.APIError
 }
 
-// UnknownHttpError is raised when the API returns an unrecognized status code.
-type UnknownHttpError struct {
+// UnknownHTTPError is raised when the API returns an unrecognized status code.
+type UnknownHTTPError struct {
 	APIError // subtype of APIError
 }
 
 // Unwrap returns the underlying APIError error.
-func (e *UnknownHttpError) Unwrap() error {
+func (e *UnknownHTTPError) Unwrap() error {
 	return &e.APIError
 }
 
@@ -481,10 +481,10 @@ func BuildErrorFromResponse(response *http.Response) error {
 	} else {
 		// could not extract error details from the API response (or API did not return data, i.e. 1xx, 3xx or 5xx)
 		if response.Status == "" {
-			response.Status = ApiDidNotReturnErrorDetails
+			response.Status = APIDidNotReturnErrorDetails
 		}
 		apiError.Message = response.Status
-		apiError.Code = ApiErrorDetailsParsingError
+		apiError.Code = APIErrorDetailsParsingError
 		apiError.Errors = []*FieldError{}
 	}
 
@@ -523,6 +523,6 @@ func BuildErrorFromResponse(response *http.Response) error {
 	case 502, 504:
 		return &GatewayTimeoutError{APIError: *apiError}
 	default:
-		return &UnknownHttpError{APIError: *apiError}
+		return &UnknownHTTPError{APIError: *apiError}
 	}
 }

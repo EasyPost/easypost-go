@@ -5,7 +5,7 @@ func GetFedExRegistrationMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "POST",
-				UrlRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/address$",
+				URLRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/address$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -15,7 +15,7 @@ func GetFedExRegistrationMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "POST",
-				UrlRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/pin$",
+				URLRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/pin$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -25,7 +25,7 @@ func GetFedExRegistrationMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "POST",
-				UrlRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/pin\\/validate$",
+				URLRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/pin\\/validate$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -35,7 +35,7 @@ func GetFedExRegistrationMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "POST",
-				UrlRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/invoice$",
+				URLRegexPattern: "v2\\/fedex_registrations\\/\\S*\\/invoice$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,

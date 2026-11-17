@@ -166,9 +166,9 @@ func (c *ClientTests) TestPickupsGetNextPage() {
 			assert.True(len(nextPage.Pickups) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.Pickups[len(firstPage.Pickups)-1].ID
-			firstIdOfSecondPage := nextPage.Pickups[0].ID
+			firstIDOfSecondPage := nextPage.Pickups[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {

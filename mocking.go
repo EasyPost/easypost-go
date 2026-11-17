@@ -9,7 +9,7 @@ import (
 
 type MockRequestMatchRule struct {
 	Method          string
-	UrlRegexPattern string
+	URLRegexPattern string
 }
 
 type MockRequestResponseInfo struct {
@@ -41,7 +41,7 @@ func (c *Client) findMatchingMockRequest(req *http.Request) *http.Response {
 	for _, mockReq := range c.MockRequests {
 		url := req.URL.String()
 		methodMatch := mockReq.MatchRule.Method == "" || mockReq.MatchRule.Method == req.Method
-		urlMatch, _ := regexp.MatchString(mockReq.MatchRule.UrlRegexPattern, url)
+		urlMatch, _ := regexp.MatchString(mockReq.MatchRule.URLRegexPattern, url)
 		if methodMatch && urlMatch {
 			return mockReq.ResponseInfo.AsResponse()
 		}

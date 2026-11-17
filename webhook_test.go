@@ -11,7 +11,7 @@ func (c *ClientTests) TestWebhookCreate() {
 
 	webhook, err := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL:           c.fixture.WebhookUrl(),
+			URL:           c.fixture.WebhookURL(),
 			WebhookSecret: c.fixture.WebhookSecret(),
 			CustomHeaders: c.fixture.WebhookCustomHeaders(),
 		},
@@ -20,7 +20,7 @@ func (c *ClientTests) TestWebhookCreate() {
 
 	assert.Equal(reflect.TypeOf(&Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
+	assert.Equal(c.fixture.WebhookURL(), webhook.URL)
 	assert.Equal(c.fixture.WebhookCustomHeaders(), webhook.CustomHeaders)
 
 	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
@@ -35,7 +35,7 @@ func (c *ClientTests) TestWebhookRetrieve() {
 
 	webhook, err := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
+			URL: c.fixture.WebhookURL(),
 		},
 	)
 	require.NoError(err)
@@ -71,14 +71,14 @@ func (c *ClientTests) TestWebhookDelete() {
 
 	webhook, err := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
+			URL: c.fixture.WebhookURL(),
 		},
 	)
 	require.NoError(err)
 
 	assert.Equal(reflect.TypeOf(&Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
+	assert.Equal(c.fixture.WebhookURL(), webhook.URL)
 
 	err = client.DeleteWebhook(webhook.ID)
 	require.NoError(err)
@@ -93,7 +93,7 @@ func (c *ClientTests) TestWebhookUpdate() {
 
 	webhook, err := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
+			URL: c.fixture.WebhookURL(),
 		},
 	)
 	require.NoError(err)
@@ -121,7 +121,7 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 
 	webhook, err := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL:           c.fixture.WebhookUrl(),
+			URL:           c.fixture.WebhookURL(),
 			WebhookSecret: c.fixture.WebhookSecret(),
 		},
 	)
@@ -129,7 +129,7 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 
 	assert.Equal(reflect.TypeOf(&Webhook{}), reflect.TypeOf(webhook))
 	assert.True(strings.HasPrefix(webhook.ID, "hook_"))
-	assert.Equal(c.fixture.WebhookUrl(), webhook.URL)
+	assert.Equal(c.fixture.WebhookURL(), webhook.URL)
 
 	err = client.DeleteWebhook(webhook.ID) // we are deleting the webhook here, so we don't keep sending events to a dead webhook.
 	require.NoError(err)
@@ -141,7 +141,7 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 
 	webhook, err := client.CreateWebhook(
 		&CreateUpdateWebhookOptions{
-			URL: c.fixture.WebhookUrl(),
+			URL: c.fixture.WebhookURL(),
 		},
 	)
 	require.NoError(err)

@@ -31,9 +31,9 @@ func (c *ClientTests) TestApiKeysRetrieveChildUser() {
 	client := c.ProdClient()
 	assert, require := c.Assert(), c.Require()
 
-	fakeChildUserId := "user_123456789"
+	fakeChildUserID := "user_123456789"
 
-	apiKeys, err := client.GetAPIKeysForUser(fakeChildUserId)
+	apiKeys, err := client.GetAPIKeysForUser(fakeChildUserID)
 	require.Error(err)
 
 	assert.Nil(apiKeys)

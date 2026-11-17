@@ -51,8 +51,8 @@ func contains(elements []string, target string) bool {
 	return false
 }
 
-// applyCensorsToJsonList applies the censors to a JSON list.
-func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCensor map[string]interface{}) []interface{} {
+// applyCensorsToJSONList applies the censors to a JSON list.
+func (c *ClientTests) applyCensorsToJSONList(list []interface{}, elementsToCensor map[string]interface{}) []interface{} {
 	if len(list) == 0 {
 		// short circuit and return the list if it is empty
 		return list
@@ -64,14 +64,14 @@ func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCenso
 			continue
 		}
 
-		// nolint:gosimple
+		// nolint:staticcheck
 		switch value.(type) {
 		case map[string]interface{}:
 			// value is a dictionary
-			list[index] = c.applyCensorsToJsonDictionary(value.(map[string]interface{}), elementsToCensor)
+			list[index] = c.applyCensorsToJSONDictionary(value.(map[string]interface{}), elementsToCensor)
 		case []map[string]interface{}:
 			// value is a list of dictionaries
-			list[index] = c.applyCensorsToJsonList(value.([]interface{}), elementsToCensor)
+			list[index] = c.applyCensorsToJSONList(value.([]interface{}), elementsToCensor)
 		default:
 			// value is a single value or a normal list, nothing to censor
 		}
@@ -80,8 +80,8 @@ func (c *ClientTests) applyCensorsToJsonList(list []interface{}, elementsToCenso
 	return list
 }
 
-// applyCensorsToJsonDictionary applies the censors to a JSON dictionary.
-func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interface{}, elementsToCensor map[string]interface{}) map[string]interface{} {
+// applyCensorsToJSONDictionary applies the censors to a JSON dictionary.
+func (c *ClientTests) applyCensorsToJSONDictionary(dictionary map[string]interface{}, elementsToCensor map[string]interface{}) map[string]interface{} {
 	if len(dictionary) == 0 {
 		// short circuit and return the dictionary if it is empty
 		return dictionary
@@ -104,14 +104,14 @@ func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interfa
 			dictionary[key] = elementsToCensor[key]
 		} else {
 			// element doesn't need to be censored
-			// nolint:gosimple
+			// nolint:staticcheck
 			switch value.(type) {
 			case map[string]interface{}:
 				// value is a dictionary
-				dictionary[key] = c.applyCensorsToJsonDictionary(value.(map[string]interface{}), elementsToCensor)
+				dictionary[key] = c.applyCensorsToJSONDictionary(value.(map[string]interface{}), elementsToCensor)
 			case []interface{}:
 				// value is a list
-				dictionary[key] = c.applyCensorsToJsonList(value.([]interface{}), elementsToCensor)
+				dictionary[key] = c.applyCensorsToJSONList(value.([]interface{}), elementsToCensor)
 			default:
 				// value is a single value, nothing to censor
 			}
@@ -121,8 +121,8 @@ func (c *ClientTests) applyCensorsToJsonDictionary(dictionary map[string]interfa
 	return dictionary
 }
 
-// censorJsonData censors data in cassette files before they persist to disk
-func (c *ClientTests) censorJsonData(data string, elementsToCensor map[string]interface{}) string {
+// censorJSONData censors data in cassette files before they persist to disk
+func (c *ClientTests) censorJSONData(data string, elementsToCensor map[string]interface{}) string {
 	var jsonMap map[string]interface{}
 	mapErr := json.Unmarshal([]byte(data), &jsonMap)
 	if mapErr != nil {
@@ -137,13 +137,13 @@ func (c *ClientTests) censorJsonData(data string, elementsToCensor map[string]in
 		}
 
 		// data is a JSON list
-		censoredList := c.applyCensorsToJsonList(jsonList, elementsToCensor)
+		censoredList := c.applyCensorsToJSONList(jsonList, elementsToCensor)
 		censoredListBytes, _ := json.Marshal(censoredList)
 		return string(censoredListBytes)
 	}
 
 	// data is a JSON dictionary
-	censoredDictionary := c.applyCensorsToJsonDictionary(jsonMap, elementsToCensor)
+	censoredDictionary := c.applyCensorsToJSONDictionary(jsonMap, elementsToCensor)
 	censoredDictionaryBytes, _ := json.Marshal(censoredDictionary)
 	return string(censoredDictionaryBytes)
 }
@@ -189,7 +189,7 @@ func (c *ClientTests) SetupTest() {
 			return true
 		}
 		// run the request body through the same censors before comparing to the recording
-		bStringCensored := c.censorJsonData(bString, responseBodyElementsToCensor)
+		bStringCensored := c.censorJSONData(bString, responseBodyElementsToCensor)
 		return cassette.DefaultMatcher(r, i) && (bStringCensored == i.Body)
 	})
 
@@ -208,12 +208,12 @@ func (c *ClientTests) SetupTest() {
 
 		// Censor request data
 		var requestBody = i.Request.Body
-		var censoredRequestBody = c.censorJsonData(requestBody, responseBodyElementsToCensor)
+		var censoredRequestBody = c.censorJSONData(requestBody, responseBodyElementsToCensor)
 		i.Request.Body = censoredRequestBody
 
 		// Censor response data
 		var responseBody = i.Response.Body
-		var censoredResponseBody = c.censorJsonData(responseBody, responseBodyElementsToCensor)
+		var censoredResponseBody = c.censorJSONData(responseBody, responseBodyElementsToCensor)
 		i.Response.Body = censoredResponseBody
 
 		return nil

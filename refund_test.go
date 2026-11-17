@@ -83,9 +83,9 @@ func (c *ClientTests) TestRefundsGetNextPage() {
 			assert.True(len(nextPage.Refunds) <= c.fixture.pageSize())
 
 			lastIDOfFirstPage := firstPage.Refunds[len(firstPage.Refunds)-1].ID
-			firstIdOfSecondPage := nextPage.Refunds[0].ID
+			firstIDOfSecondPage := nextPage.Refunds[0].ID
 
-			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+			assert.NotEqual(lastIDOfFirstPage, firstIDOfSecondPage)
 		}
 	}()
 	if err != nil {

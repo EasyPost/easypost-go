@@ -16,9 +16,9 @@ type CustomerPortalAccountLink struct {
 // CustomerPortalAccountLinkParameters is used to specify parameters for creating an AccountLink.
 type CustomerPortalAccountLinkParameters struct {
 	SessionType string                 `json:"session_type,omitempty" url:"session_type,omitempty"`
-	UserId      string                 `json:"user_id,omitempty" url:"user_id,omitempty"`
-	RefreshUrl  string                 `json:"refresh_url,omitempty" url:"refresh_url,omitempty"`
-	ReturnUrl   string                 `json:"return_url,omitempty" url:"return_url,omitempty"`
+	UserID      string                 `json:"user_id,omitempty" url:"user_id,omitempty"`
+	RefreshURL  string                 `json:"refresh_url,omitempty" url:"refresh_url,omitempty"`
+	ReturnURL   string                 `json:"return_url,omitempty" url:"return_url,omitempty"`
 	Metadata    map[string]interface{} `json:"metadata,omitempty" url:"metadata,omitempty"`
 }
 

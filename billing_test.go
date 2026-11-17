@@ -5,7 +5,7 @@ func GetBillingMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "POST",
-				UrlRegexPattern: "v2\\/bank_accounts\\/\\S*\\/charges$",
+				URLRegexPattern: "v2\\/bank_accounts\\/\\S*\\/charges$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -15,7 +15,7 @@ func GetBillingMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "POST",
-				UrlRegexPattern: "v2\\/credit_cards\\/\\S*\\/charges$",
+				URLRegexPattern: "v2\\/credit_cards\\/\\S*\\/charges$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -25,7 +25,7 @@ func GetBillingMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "DELETE",
-				UrlRegexPattern: "v2\\/bank_accounts\\/\\S*$",
+				URLRegexPattern: "v2\\/bank_accounts\\/\\S*$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -35,7 +35,7 @@ func GetBillingMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "DELETE",
-				UrlRegexPattern: "v2\\/credit_cards\\/\\S*$",
+				URLRegexPattern: "v2\\/credit_cards\\/\\S*$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -45,7 +45,7 @@ func GetBillingMockRequests() []MockRequest {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "GET",
-				UrlRegexPattern: "v2\\/payment_methods$",
+				URLRegexPattern: "v2\\/payment_methods$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -93,7 +93,7 @@ func (c *ClientTests) TestGetPaymentMethodInfoByObjectType() {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "GET",
-				UrlRegexPattern: "v2\\/payment_methods$",
+				URLRegexPattern: "v2\\/payment_methods$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,
@@ -103,7 +103,7 @@ func (c *ClientTests) TestGetPaymentMethodInfoByObjectType() {
 		{
 			MatchRule: MockRequestMatchRule{
 				Method:          "DELETE",
-				UrlRegexPattern: "v2\\/credit_cards\\/pm_123$",
+				URLRegexPattern: "v2\\/credit_cards\\/pm_123$",
 			},
 			ResponseInfo: MockRequestResponseInfo{
 				StatusCode: 200,

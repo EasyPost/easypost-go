@@ -2,7 +2,7 @@
 version: 1
 interactions:
 - request:
-    body: '{"financial_connections_id":"fca_0QAc7sDqT4huGUvdf6BahYa9","mandata_data":{"accepted_at":1722510730,"ip_address":"127.0.0.1","user_agent":"Mozilla/5.0"},"priority":"primary"}'
+    body: '{"financial_connections_id":"fca_0QAc7sDqT4huGUvdf6BahYa9","mandate_data":{"accepted_at":1722510730,"ip_address":"127.0.0.1","user_agent":"Mozilla/5.0"},"priority":"primary"}'
     form: {}
     headers:
       Authorization:
@@ -21,6 +21,8 @@ interactions:
       - private, no-cache, no-store
       Content-Type:
       - application/json; charset=utf-8
+      Easypost-Api-Version:
+      - "2015-01-01"
       Expires:
       - "0"
       Pragma:
@@ -29,6 +31,8 @@ interactions:
       - strict-origin-when-cross-origin
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains; preload
+      Vary:
+      - EasyPost-Api-Version
       X-Backend:
       - easypost
       X-Content-Type-Options:
@@ -36,20 +40,20 @@ interactions:
       X-Download-Options:
       - noopen
       X-Ep-Request-Uuid:
-      - b0beceb467dc5541e2b8eb13006941c2
+      - 36224eff6afc8b48e2b96e1202bcbd03
       X-Frame-Options:
       - SAMEORIGIN
       X-Node:
-      - bigweb42nuq
+      - web116azw
       X-Permitted-Cross-Domain-Policies:
       - none
       X-Proxied:
-      - intlb4nuq 284c5d344a
-      - extlb1nuq 99aac35317
+      - intlb4azw f29267e751
+      - extlb3azw ff4cfe6eb5
       X-Runtime:
-      - "0.031299"
+      - "0.037336"
       X-Version-Label:
-      - easypost-202503201600-7a0b554315-master
+      - easypost-202611162354-6e0555b3b2-main
       X-Xss-Protection:
       - 1; mode=block
     status: 422 Unprocessable Entity
