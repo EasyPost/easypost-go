@@ -52,7 +52,7 @@ easypost-go now requires Go 1.23 or greater.
 
 **Dependencies**
 
-`golang.org/x/text` was bumped from v0.11.0 to v0.28.0 and `github.com/google/go-querystring` from v1.1.0 to v1.2.0.
+`golang.org/x/text` was bumped from v0.11.0 to v0.28.0 and `github.com/google/go-querystring` from v1.1.0 to v1.2.0. These are runtime dependencies, so your module will resolve to at least these versions.
 
 ## 6.0 Renamed Identifiers
 
