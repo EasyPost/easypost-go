@@ -1,13 +1,13 @@
 module github.com/EasyPost/easypost-go/v6
 
-go 1.23.0
+go 1.20
 
 require (
 	github.com/dnaeon/go-vcr v1.2.0
 	github.com/google/go-querystring v1.2.0
 	github.com/google/uuid v1.6.0
 	github.com/stretchr/testify v1.12.1
-	golang.org/x/text v0.28.0
+	golang.org/x/text v0.22.0
 )
 
 require (

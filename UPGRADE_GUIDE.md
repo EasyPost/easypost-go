@@ -46,13 +46,13 @@ Install it with `go get -u github.com/EasyPost/easypost-go/v6`.
 
 *Likelihood of Impact: **High***
 
-**Go 1.23 Required**
+**Go 1.20 Required**
 
-easypost-go now requires Go 1.23 or greater.
+easypost-go now requires Go 1.20 or greater.
 
 **Dependencies**
 
-`golang.org/x/text` was bumped from v0.11.0 to v0.28.0 and `github.com/google/go-querystring` from v1.1.0 to v1.2.0. These are runtime dependencies, so your module will resolve to at least these versions.
+`golang.org/x/text` was bumped from v0.11.0 to v0.22.0 and `github.com/google/go-querystring` from v1.1.0 to v1.2.0. These are runtime dependencies, so your module will resolve to at least these versions.
 
 ## 6.0 Renamed Identifiers
 
