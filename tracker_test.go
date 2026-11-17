@@ -93,6 +93,84 @@ func (c *ClientTests) TestTrackersGetNextPage() {
 	}
 }
 
+func (c *ClientTests) TestTrackerAllWithTrackingCodes() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	trackingCodes := []string{"EZ1000000001", "EZ2000000002"}
+	for _, code := range trackingCodes {
+		_, err := client.CreateTracker(&CreateTrackerOptions{TrackingCode: code})
+		require.NoError(err)
+	}
+
+	trackers, err := client.ListTrackers(
+		&ListTrackersOptions{
+			TrackingCodes: trackingCodes,
+			PageSize:      c.fixture.pageSize(),
+		},
+	)
+	require.NoError(err)
+	require.NotEmpty(trackers.Trackers)
+
+	found := map[string]bool{}
+	for _, tracker := range trackers.Trackers {
+		assert.Equal(reflect.TypeOf(&Tracker{}), reflect.TypeOf(tracker))
+		assert.Contains(trackingCodes, tracker.TrackingCode)
+		found[tracker.TrackingCode] = true
+	}
+	for _, code := range trackingCodes {
+		assert.True(found[code], "expected tracking code %s in list results", code)
+	}
+}
+
+func (c *ClientTests) TestTrackersGetNextPageWithTrackingCodes() {
+	client := c.TestClient()
+	assert, require := c.Assert(), c.Require()
+
+	trackingCodes := []string{"EZ1000000001", "EZ2000000002"}
+	for _, code := range trackingCodes {
+		_, err := client.CreateTracker(&CreateTrackerOptions{TrackingCode: code})
+		require.NoError(err)
+	}
+
+	firstPage, err := client.ListTrackers(
+		&ListTrackersOptions{
+			TrackingCodes: trackingCodes,
+			PageSize:      1,
+		},
+	)
+	require.NoError(err)
+	require.NotEmpty(firstPage.Trackers)
+	assert.Equal(trackingCodes, firstPage.TrackingCodes)
+	for _, tracker := range firstPage.Trackers {
+		assert.Contains(trackingCodes, tracker.TrackingCode)
+	}
+
+	nextPage, err := client.GetNextTrackerPageWithPageSize(firstPage, 1)
+	defer func() {
+		if err == nil {
+			assert.True(len(nextPage.Trackers) <= 1)
+			assert.Equal(trackingCodes, nextPage.TrackingCodes)
+			for _, tracker := range nextPage.Trackers {
+				assert.Contains(trackingCodes, tracker.TrackingCode)
+			}
+
+			lastIDOfFirstPage := firstPage.Trackers[len(firstPage.Trackers)-1].ID
+			firstIdOfSecondPage := nextPage.Trackers[0].ID
+
+			assert.NotEqual(lastIDOfFirstPage, firstIdOfSecondPage)
+		}
+	}()
+	if err != nil {
+		var endOfPaginationErr *EndOfPaginationError
+		if errors.As(err, &endOfPaginationErr) {
+			assert.Equal(err.Error(), endOfPaginationErr.Error())
+			return
+		}
+		require.NoError(err)
+	}
+}
+
 func (c *ClientTests) TestTrackerRetrieveBatch() {
 	client := c.TestClient()
 	assert, require := c.Assert(), c.Require()
