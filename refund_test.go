@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestRefundCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -29,7 +29,7 @@ func (c *ClientTests) TestRefundCreate() {
 }
 
 func (c *ClientTests) TestRefundAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	refunds, err := client.ListRefunds(
@@ -49,7 +49,7 @@ func (c *ClientTests) TestRefundAll() {
 }
 
 func (c *ClientTests) TestRefundRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	refunds, err := client.ListRefunds(
@@ -67,7 +67,7 @@ func (c *ClientTests) TestRefundRetrieve() {
 }
 
 func (c *ClientTests) TestRefundsGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListRefunds(

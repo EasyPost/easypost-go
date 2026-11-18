@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestTrackerCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	tracker, err := client.CreateTracker(
@@ -23,7 +23,7 @@ func (c *ClientTests) TestTrackerCreate() {
 }
 
 func (c *ClientTests) TestTrackerRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	tracker, err := client.CreateTracker(
@@ -42,7 +42,7 @@ func (c *ClientTests) TestTrackerRetrieve() {
 }
 
 func (c *ClientTests) TestTrackerAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	trackers, err := client.ListTrackers(
@@ -62,7 +62,7 @@ func (c *ClientTests) TestTrackerAll() {
 }
 
 func (c *ClientTests) TestTrackersGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListTrackers(
@@ -94,7 +94,7 @@ func (c *ClientTests) TestTrackersGetNextPage() {
 }
 
 func (c *ClientTests) TestTrackerRetrieveBatch() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	tracker, err := client.CreateTracker(
@@ -119,7 +119,7 @@ func (c *ClientTests) TestTrackerRetrieveBatch() {
 }
 
 func (c *ClientTests) TestTrackerDelete() {
-	client := c.TestClient()
+	client := c.testClient()
 	require := c.Require()
 
 	tracker, err := client.CreateTracker(

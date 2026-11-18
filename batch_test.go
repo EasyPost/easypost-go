@@ -10,7 +10,7 @@ import (
 )
 
 func (c *ClientTests) TestBatchCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	batch, err := client.CreateBatch(
@@ -24,7 +24,7 @@ func (c *ClientTests) TestBatchCreate() {
 }
 
 func (c *ClientTests) TestBatchRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	batch, err := client.CreateBatch(
@@ -40,7 +40,7 @@ func (c *ClientTests) TestBatchRetrieve() {
 }
 
 func (c *ClientTests) TestBatchAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	batches, err := client.ListBatches(
@@ -58,7 +58,7 @@ func (c *ClientTests) TestBatchAll() {
 }
 
 func (c *ClientTests) TestBatchBuy() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	batch, err := client.CreateBatch(
@@ -74,7 +74,7 @@ func (c *ClientTests) TestBatchBuy() {
 }
 
 func (c *ClientTests) TestBatchCreateScanForm() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	batch, err := client.CreateBatch(
@@ -99,7 +99,7 @@ func (c *ClientTests) TestBatchCreateScanForm() {
 }
 
 func (c *ClientTests) TestBatchAddRemoveShipment() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -122,7 +122,7 @@ func (c *ClientTests) TestBatchAddRemoveShipment() {
 }
 
 func (c *ClientTests) TestBatchLabel() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	batch, err := client.CreateBatch(

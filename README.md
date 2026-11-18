@@ -3,20 +3,20 @@
 [![CI](https://github.com/EasyPost/easypost-go/workflows/CI/badge.svg)](https://github.com/EasyPost/easypost-go/actions?query=workflow%3ACI)
 [![codecov](https://codecov.io/gh/EasyPost/easypost-go/graph/badge.svg?token=BW6X4DO2FT)](https://codecov.io/gh/EasyPost/easypost-go)
 [![GitHub version](https://badge.fury.io/gh/EasyPost%2Feasypost-go.svg)](https://badge.fury.io/gh/EasyPost%2Feasypost-go)
-[![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go)
+[![GoDoc](https://godoc.org/github.com/EasyPost/easypost-go/v6?status.svg)](https://pkg.go.dev/github.com/EasyPost/easypost-go/v6)
 
 EasyPost, the simple shipping solution. You can sign up for an account at <https://easypost.com>.
 
 ## Install
 
 ```bash
-go get -u github.com/EasyPost/easypost-go/v5
+go get -u github.com/EasyPost/easypost-go/v6
 ```
 
 ```go
 // Import the library
 import (
-    "github.com/EasyPost/easypost-go/v5"
+    "github.com/EasyPost/easypost-go/v6"
 )
 ```
 
@@ -32,7 +32,7 @@ import (
     "fmt"
     "os"
 
-    "github.com/EasyPost/easypost-go/v5"
+    "github.com/EasyPost/easypost-go/v6"
 )
 
 func main() {
@@ -159,7 +159,7 @@ client.Hooks.RemoveResponseEventSubscriber(responseSubscriber)
 
 API documentation can be found at: <https://docs.easypost.com>.
 
-Library documentation can be found on the web at [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v5).
+Library documentation can be found on the web at [GoDoc](https://pkg.go.dev/github.com/EasyPost/easypost-go/v6).
 
 Upgrading major versions of this project? Refer to the [Upgrade Guide](UPGRADE_GUIDE.md).
 
@@ -232,7 +232,7 @@ make a request that does not match any of the configured mock requests, the requ
 To use the mock client:
 
 ```golang
-import "github.com/EasyPost/easypost-go/v5"
+import "github.com/EasyPost/easypost-go/v6"
 
 // create  a list of mock request-response pairs
 mockRequests := []easypost.MockRequest{

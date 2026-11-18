@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestInsuranceCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -25,7 +25,7 @@ func (c *ClientTests) TestInsuranceCreate() {
 }
 
 func (c *ClientTests) TestInsuranceRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	insurances, err := client.ListInsurances(
@@ -43,7 +43,7 @@ func (c *ClientTests) TestInsuranceRetrieve() {
 }
 
 func (c *ClientTests) TestInsuranceAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	insurances, err := client.ListInsurances(
@@ -63,7 +63,7 @@ func (c *ClientTests) TestInsuranceAll() {
 }
 
 func (c *ClientTests) TestInsuranceGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListInsurances(
@@ -95,7 +95,7 @@ func (c *ClientTests) TestInsuranceGetNextPage() {
 }
 
 func (c *ClientTests) TestInsuranceRefund() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	insuranceData := c.fixture.BasicInsurance()

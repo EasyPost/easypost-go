@@ -12,7 +12,7 @@ import (
 )
 
 func (c *ClientTests) TestEventAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	events, err := client.ListEvents(
@@ -32,7 +32,7 @@ func (c *ClientTests) TestEventAll() {
 }
 
 func (c *ClientTests) TestEventRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	events, err := client.ListEvents(
@@ -50,7 +50,7 @@ func (c *ClientTests) TestEventRetrieve() {
 }
 
 func (c *ClientTests) TestEventRetrieveAllPayloads() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	// Create a webhook to receive the event
@@ -93,7 +93,7 @@ func (c *ClientTests) TestEventRetrieveAllPayloads() {
 }
 
 func (c *ClientTests) TestEventRetrievePayload() {
-	client := c.TestClient()
+	client := c.testClient()
 	require := c.Require()
 
 	// Create a webhook to receive the event
@@ -132,7 +132,7 @@ func (c *ClientTests) TestEventRetrievePayload() {
 }
 
 func (c *ClientTests) TestEventsGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListEvents(

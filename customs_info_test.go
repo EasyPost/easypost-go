@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestCustomsInfoCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	customsInfo, err := client.CreateCustomsInfo(c.fixture.BasicCustomsInfo())
@@ -18,7 +18,7 @@ func (c *ClientTests) TestCustomsInfoCreate() {
 }
 
 func (c *ClientTests) TestCustomsInfoRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	customsInfo, err := client.CreateCustomsInfo(c.fixture.BasicCustomsInfo())

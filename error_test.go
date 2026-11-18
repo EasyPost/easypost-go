@@ -10,7 +10,7 @@ import (
 func (c *ClientTests) TestErrorInheritance() {
 	assert, require := c.Assert(), c.Require()
 
-	client := c.TestClient()
+	client := c.testClient()
 	client.APIKey = "not-a-real-key" // Invalid API key will result in 403 Forbidden error
 
 	_, err := client.CreateAddress(
@@ -59,7 +59,7 @@ func (c *ClientTests) TestErrorInheritance() {
 // TestApiError tests that a bad API request returns an InvalidRequestError (a subclass of APIError), and that the
 // error is parsed and pretty-printed correctly.
 func (c *ClientTests) TestApiError() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	// Create a bad shipment so we can work with errors
@@ -89,7 +89,7 @@ func (c *ClientTests) TestApiError() {
 // TestApiErrorAlternativeFormat tests that we assign properties of an error correctly when returned via the alternative format.
 // NOTE: Claims (among other things) uses the alternative errors format.
 func (c *ClientTests) TestApiErrorAlternativeFormat() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	createClaimParams := c.fixture.BasicClaim()

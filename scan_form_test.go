@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestScanFormCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -21,7 +21,7 @@ func (c *ClientTests) TestScanFormCreate() {
 }
 
 func (c *ClientTests) TestScanFormRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.OneCallBuyShipment())
@@ -38,7 +38,7 @@ func (c *ClientTests) TestScanFormRetrieve() {
 }
 
 func (c *ClientTests) TestScanFormAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	scanforms, err := client.ListScanForms(
@@ -58,7 +58,7 @@ func (c *ClientTests) TestScanFormAll() {
 }
 
 func (c *ClientTests) TestScanFormsGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListScanForms(

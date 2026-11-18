@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestCustomsItemCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	customsItem, err := client.CreateCustomsItem(c.fixture.BasicCustomsItem())
@@ -18,7 +18,7 @@ func (c *ClientTests) TestCustomsItemCreate() {
 }
 
 func (c *ClientTests) TestCustomsItemRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	customsItem, err := client.CreateCustomsItem(c.fixture.BasicCustomsItem())

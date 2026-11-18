@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestRateRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	shipment, err := client.CreateShipment(c.fixture.BasicShipment())
@@ -20,7 +20,7 @@ func (c *ClientTests) TestRateRetrieve() {
 }
 
 func (c *ClientTests) TestBetaStatelessRateRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	response, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
@@ -34,7 +34,7 @@ func (c *ClientTests) TestBetaStatelessRateRetrieve() {
 }
 
 func (c *ClientTests) TestBetaStatelessRateGetLowest() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	response, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())
@@ -48,7 +48,7 @@ func (c *ClientTests) TestBetaStatelessRateGetLowest() {
 }
 
 func (c *ClientTests) TestBetaStatelessRateGetLowestError() {
-	client := c.TestClient()
+	client := c.testClient()
 	require := c.Require()
 
 	response, err := client.BetaGetStatelessRates(c.fixture.BasicShipment())

@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestOrderCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
@@ -18,7 +18,7 @@ func (c *ClientTests) TestOrderCreate() {
 }
 
 func (c *ClientTests) TestOrderRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
@@ -32,7 +32,7 @@ func (c *ClientTests) TestOrderRetrieve() {
 }
 
 func (c *ClientTests) TestOrderGetRates() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
@@ -50,7 +50,7 @@ func (c *ClientTests) TestOrderGetRates() {
 }
 
 func (c *ClientTests) TestOrderBuyRate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())
@@ -67,7 +67,7 @@ func (c *ClientTests) TestOrderBuyRate() {
 }
 
 func (c *ClientTests) TestOrderLowestRate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	order, err := client.CreateOrder(c.fixture.BasicOrder())

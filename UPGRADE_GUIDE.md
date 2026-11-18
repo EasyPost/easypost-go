@@ -12,12 +12,55 @@ Use the following guide to assist in the upgrade process of the `easypost-go` li
 
 ### 6.0 High Impact Changes
 
+- [Importing the Library](#60-importing-the-library)
+- [Updating Dependencies](#60-updating-dependencies)
 - [Renamed Identifiers](#60-renamed-identifiers)
 - [Stateless Rates Return the Full Response](#60-stateless-rates-return-the-full-response)
 
 ### 6.0 Medium Impact Changes
 
 - [`TrackingCode` Removed from `ListTrackersOptions`](#60-trackingcode-removed-from-listtrackersoptions)
+- [`ShipmentOptions.Machinable` Is Now a Pointer](#60-shipmentoptionsmachinable-is-now-a-pointer)
+
+## 6.0 Importing the Library
+
+*Likelihood of Impact: **High***
+
+With the transition to `v6`, this library must now be imported as follows:
+
+```go
+// Before
+import (
+    "github.com/EasyPost/easypost-go/v5"
+)
+
+// After
+import (
+    "github.com/EasyPost/easypost-go/v6"
+)
+```
+
+Install it with `go get -u github.com/EasyPost/easypost-go/v6`.
+
+## 6.0 Updating Dependencies
+
+*Likelihood of Impact: **High***
+
+**Go 1.20 Required**
+
+easypost-go now requires Go 1.20 or greater.
+
+**Dependencies**
+
+`golang.org/x/text` was bumped from v0.11.0 to v0.22.0 and `github.com/google/go-querystring` from v1.1.0 to v1.2.0. These are runtime dependencies, so your module will resolve to at least these versions.
+
+**Known Issue**
+
+`govulncheck` reports [GO-2026-5970](https://pkg.go.dev/vuln/GO-2026-5970) (CVE-2026-56852), an infinite loop in `golang.org/x/text` on invalid UTF-8, as reachable through `ValidateWebhook` and `ValidateWebhookWithContext`. Those functions only normalize your own webhook secret, so the risk is low. The fixed `golang.org/x/text` releases require Go 1.25, which is above this library's minimum. If you're on Go 1.25 or later, you can require `golang.org/x/text` v0.41.0 or later in your own module, which also clears GO-2026-6629:
+
+```bash
+go get golang.org/x/text@v0.41.0
+```
 
 ## 6.0 Renamed Identifiers
 
@@ -68,6 +111,16 @@ The following struct fields were renamed:
 - `TaxIdentifier.TaxId` to `TaxIdentifier.TaxID`
 - `TaxIdentifier.TaxIdType` to `TaxIdentifier.TaxIDType`
 
+```go
+// Before
+claim.ShipmentId
+key, err := client.RetrieveEasypostStripeApiKey()
+
+// After
+claim.ShipmentID
+key, err := client.RetrieveEasypostStripeAPIKey()
+```
+
 ## 6.0 Stateless Rates Return the Full Response
 
 *Likelihood of Impact: **High***
@@ -102,7 +155,29 @@ trackers, err := client.ListTrackers(&easypost.ListTrackersOptions{
 })
 ```
 
+`TrackingCodes` is now sent as `tracking_codes[]=...` instead of `tracking_codes=...`, which fixes filtering by more than one tracking code. Update any mocks (such as `MockRequestMatchRule.URLRegexPattern`) or recorded requests that match the old query string.
+
+## 6.0 ShipmentOptions.Machinable Is Now a Pointer
+
+*Likelihood of Impact: **Medium***
+
+`ShipmentOptions.Machinable` changed from `bool` to `*bool` so an explicit `false` is sent to the API. Previously `false` was dropped, so the carrier default applied, which on most USPS paths rated the parcel as machinable. Leave the field `nil` to omit it.
+
+```go
+// Before
+options := &easypost.ShipmentOptions{
+	Machinable: false,
+}
+
+// After
+options := &easypost.ShipmentOptions{
+	Machinable: easypost.BoolPtr(false),
+}
+```
+
 ## Upgrading from 4.x to 5.0
+
+**NOTICE:** v5 is deprecated.
 
 ### 5.0 High Impact Changes
 

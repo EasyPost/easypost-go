@@ -1,7 +1,7 @@
 package easypost
 
 func (c *ClientTests) TestEstimateDeliveryDateForZipPair() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	carrier := c.fixture.USPS()
@@ -28,7 +28,7 @@ func (c *ClientTests) TestEstimateDeliveryDateForZipPair() {
 }
 
 func (c *ClientTests) TestRecommendShipDateForZipPair() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	carrier := c.fixture.USPS()

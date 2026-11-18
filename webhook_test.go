@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestWebhookCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhook, err := client.CreateWebhook(
@@ -30,7 +30,7 @@ func (c *ClientTests) TestWebhookCreate() {
 }
 
 func (c *ClientTests) TestWebhookRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhook, err := client.CreateWebhook(
@@ -53,7 +53,7 @@ func (c *ClientTests) TestWebhookRetrieve() {
 }
 
 func (c *ClientTests) TestWebhookAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhooks, err := client.ListWebhooks()
@@ -66,7 +66,7 @@ func (c *ClientTests) TestWebhookAll() {
 }
 
 func (c *ClientTests) TestWebhookDelete() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhook, err := client.CreateWebhook(
@@ -88,7 +88,7 @@ func (c *ClientTests) TestWebhookDelete() {
 }
 
 func (c *ClientTests) TestWebhookUpdate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhook, err := client.CreateWebhook(
@@ -116,7 +116,7 @@ func (c *ClientTests) TestWebhookUpdate() {
 }
 
 func (c *ClientTests) TestWebhookCreateWithSecret() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhook, err := client.CreateWebhook(
@@ -136,7 +136,7 @@ func (c *ClientTests) TestWebhookCreateWithSecret() {
 }
 
 func (c *ClientTests) TestWebhookUpdateWithSecret() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	webhook, err := client.CreateWebhook(
@@ -160,7 +160,7 @@ func (c *ClientTests) TestWebhookUpdateWithSecret() {
 }
 
 func (c *ClientTests) TestValidateWebhook() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	headers := map[string]interface{}{
@@ -175,7 +175,7 @@ func (c *ClientTests) TestValidateWebhook() {
 }
 
 func (c *ClientTests) TestValidateWebhookInvalidSecret() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert := c.Assert()
 
 	webhookSecret := "invalid_secret"
@@ -188,7 +188,7 @@ func (c *ClientTests) TestValidateWebhookInvalidSecret() {
 }
 
 func (c *ClientTests) TestValidateWebhookMissingSecret() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert := c.Assert()
 
 	webhookSecret := c.fixture.WebhookSecret()

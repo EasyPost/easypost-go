@@ -249,8 +249,8 @@ func (c *ClientTests) TearDownTest() {
 	_ = c.recorder.Stop()
 }
 
-// TestClient sets up the test mode client object to be used in the test
-func (c *ClientTests) TestClient() *Client {
+// testClient sets up the test mode client object to be used in the test
+func (c *ClientTests) testClient() *Client {
 	return &Client{
 		APIKey: TestAPIKey,
 		Client: &http.Client{Transport: c.recorder},

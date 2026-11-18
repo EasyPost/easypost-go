@@ -1,3 +1,3 @@
 package easypost
 
-const Version = "5.13.0"
+const Version = "6.0.0"

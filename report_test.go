@@ -7,7 +7,7 @@ import (
 )
 
 func (c *ClientTests) TestReportCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
@@ -24,7 +24,7 @@ func (c *ClientTests) TestReportCreate() {
 }
 
 func (c *ClientTests) TestReportCustomColumnsCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
@@ -46,7 +46,7 @@ func (c *ClientTests) TestReportCustomColumnsCreate() {
 }
 
 func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
@@ -68,7 +68,7 @@ func (c *ClientTests) TestReportCustomAdditionalColumnsCreate() {
 }
 
 func (c *ClientTests) TestReportRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	report, err := client.CreateReport(
@@ -89,7 +89,7 @@ func (c *ClientTests) TestReportRetrieve() {
 }
 
 func (c *ClientTests) TestReportAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	reports, err := client.ListReports(
@@ -110,7 +110,7 @@ func (c *ClientTests) TestReportAll() {
 }
 
 func (c *ClientTests) TestReportsGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	firstPage, err := client.ListReports(

@@ -1,7 +1,7 @@
 package easypost
 
 func (c *ClientTests) TestGetCarrierMetadata() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	carrierMetadata, err := client.GetCarrierMetadata()
@@ -26,7 +26,7 @@ func (c *ClientTests) TestGetCarrierMetadata() {
 }
 
 func (c *ClientTests) TestGetCarrierMetadataWithCarriersAndTypes() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	carrierMetadata, err := client.GetCarrierMetadataWithCarriersAndTypes([]string{"usps"}, []string{"service_levels", "predefined_packages"})

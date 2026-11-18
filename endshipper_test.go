@@ -6,7 +6,7 @@ import (
 )
 
 func (c *ClientTests) TestEndShipperCreate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	endshipper, err := client.CreateEndShipper(c.fixture.CaAddress1())
@@ -18,7 +18,7 @@ func (c *ClientTests) TestEndShipperCreate() {
 }
 
 func (c *ClientTests) TestEndShipperRetrieve() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	endshipper, err := client.CreateEndShipper(c.fixture.CaAddress1())
@@ -33,7 +33,7 @@ func (c *ClientTests) TestEndShipperRetrieve() {
 }
 
 func (c *ClientTests) TestEndShipperAll() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	endshippers, err := client.ListEndShippers(
@@ -53,7 +53,7 @@ func (c *ClientTests) TestEndShipperAll() {
 }
 
 func (c *ClientTests) TestEndShipperUpdate() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	endshipper, err := client.CreateEndShipper(c.fixture.CaAddress1())

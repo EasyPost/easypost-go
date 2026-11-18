@@ -1,16 +1,21 @@
 # CHANGELOG
 
-## Next Release
+## v6.0.0 (2026-11-17)
 
 See our [Upgrade Guide](UPGRADE_GUIDE.md#upgrading-from-5x-to-60) for more details.
 
+- BREAKING: The module path is now `github.com/EasyPost/easypost-go/v6`; update your imports and `go get github.com/EasyPost/easypost-go/v6`
+- BREAKING: Drops support for Go 1.16 through 1.19
+  - Minimum supported version is now Go 1.20
+- Bumps dependencies: `golang.org/x/text` v0.11.0 to v0.22.0 and `github.com/google/go-querystring` v1.1.0 to v1.2.0
+  - Known issue: `govulncheck` reports [GO-2026-5970](https://pkg.go.dev/vuln/GO-2026-5970) (CVE-2026-56852, an infinite loop in `golang.org/x/text` on invalid UTF-8) as reachable through `ValidateWebhook`/`ValidateWebhookWithContext`, which normalizes your own webhook secret. The risk is low. The fix needs Go 1.25, so it isn't included here; on Go 1.25 or later you can require `golang.org/x/text` v0.41.0 or later in your own module, which also clears GO-2026-6629
 - BREAKING: Renames exported identifiers to use Go initialisms (e.g. `Id` to `ID`, `Url` to `URL`); JSON and URL tags are unchanged
   - Types: `ExternalApiError`, `UnknownHttpError`
   - Functions: `RetrieveEasypostStripeApiKey(WithContext)`, `BetaCreateBankAccountClientSecretWithReturlUrl` to `BetaCreateBankAccountClientSecretWithReturnURL` (fixes the `Returl` typo), `BetaCreateBankAccountClientSecretWithReturnUrlWithContext`
   - Variables: `ApiDidNotReturnErrorDetails`, `ApiErrorDetailsParsingError`, `JsonDeserializationErrorMessage`, `JsonNoDataErrorMessage`, `JsonSerializationErrorMessage`, `NoUserFoundForId`
   - Struct fields: `BetaPaymentRefund.PaymentLogId`, `Claim.InsuranceId`, `Claim.ShipmentId`, `CustomerPortalAccountLinkParameters.UserId/RefreshUrl/ReturnUrl`, `EmbeddablesSession.SessionId`, `EmbeddablesSessionParameters.UserId`, `MandateData.IpAddress`, `MockRequestMatchRule.UrlRegexPattern`, `RequestHookEvent.Id/Url`, `ResponseHookEvent.HttpStatus/Id/Url`, `TaxIdentifier.TaxId/TaxIdType`
 - Upgrades golangci-lint to v2
-- Changes `ShipmentOptions.Machinable` from `bool` to `*bool` so an explicit `false` is sent; callers use `easypost.BoolPtr(...)`. Previously `false` was dropped and USPS rated the parcel as machinable (closes #297, thanks @pcbeingused333)
+- BREAKING: Changes `ShipmentOptions.Machinable` from `bool` to `*bool` so an explicit `false` is sent; callers use `easypost.BoolPtr(...)`. Previously `false` was dropped and most USPS paths rated the parcel as machinable (closes #297, thanks @pcbeingused333)
 - Fixes `BetaRefundByAmount` and `BetaRefundByPaymentLog` failing to decode a successful response
 - Fixes `BetaAddPaymentMethod` failing to decode a successful response
 - Fixes `AddReferralCustomerBankAccountFromStripe` sending `mandata_data` instead of `mandate_data`

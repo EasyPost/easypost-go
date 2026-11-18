@@ -5,7 +5,7 @@ import (
 )
 
 func (c *ClientTests) TestGetNextPage() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	addresses, err := client.ListAddresses(
@@ -35,7 +35,7 @@ func (c *ClientTests) TestGetNextPage() {
 }
 
 func (c *ClientTests) TestGetNextPageWithPageSize() {
-	client := c.TestClient()
+	client := c.testClient()
 	assert, require := c.Assert(), c.Require()
 
 	addresses, err := client.ListAddresses(
