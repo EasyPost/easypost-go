@@ -2,9 +2,13 @@ package easypost
 
 import (
 	"errors"
+	"net/http"
 	"reflect"
 	"strconv"
 	"strings"
+	"testing"
+
+	"github.com/stretchr/testify/require"
 )
 
 func prepareInsuredShipment(client *Client, shipmentCreateParams *Shipment, claimAmount float64) *Shipment {
@@ -69,6 +73,30 @@ func (c *ClientTests) TestClaimRetrieve() {
 
 	assert.Equal(reflect.TypeOf(&Claim{}), reflect.TypeOf(retrievedClaim))
 	assert.Equal(claim.ID, retrievedClaim.ID)
+}
+
+func TestListClaimsWithoutOptions(t *testing.T) {
+	client := New("test")
+	client.MockRequests = []MockRequest{
+		{
+			MatchRule: MockRequestMatchRule{
+				Method:          http.MethodGet,
+				URLRegexPattern: `/claims$`,
+			},
+			ResponseInfo: MockRequestResponseInfo{
+				StatusCode: http.StatusOK,
+				Body:       `{"claims":[{"id":"clm_test"}],"has_more":true}`,
+			},
+		},
+	}
+
+	result, err := client.ListClaims(nil)
+	require.NoError(t, err)
+	require.NotNil(t, result)
+	require.Len(t, result.Claims, 1)
+	require.Equal(t, "clm_test", result.Claims[0].ID)
+	require.True(t, result.HasMore)
+	require.Zero(t, result.Parameters)
 }
 
 func (c *ClientTests) TestClaimAll() {
