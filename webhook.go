@@ -62,6 +62,9 @@ func (c *Client) composeCreateWebhookRequest(data *CreateUpdateWebhookOptions) *
 }
 
 func (c *Client) composeUpdateWebhookRequest(data *CreateUpdateWebhookOptions) *updateWebhookRequest {
+	if data == nil {
+		return &updateWebhookRequest{}
+	}
 	return &updateWebhookRequest{
 		WebhookSecret: data.WebhookSecret,
 		CustomHeaders: data.CustomHeaders,
