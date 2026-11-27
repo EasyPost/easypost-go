@@ -98,6 +98,8 @@ type ListShipmentsResult struct {
 	Shipments       []*Shipment `json:"shipments,omitempty" url:"shipments,omitempty"`
 	Purchased       *bool       `json:"purchased,omitempty" url:"purchased,omitempty"`
 	IncludeChildren *bool       `json:"include_children,omitempty" url:"include_children,omitempty"`
+	StartDateTime   *DateTime   `json:"-"`
+	EndDateTime     *DateTime   `json:"-"`
 	PaginatedCollection
 }
 
@@ -191,6 +193,8 @@ func (c *Client) ListShipmentsWithContext(ctx context.Context, opts *ListShipmen
 	if err == nil && out != nil && opts != nil {
 		out.Purchased = opts.Purchased
 		out.IncludeChildren = opts.IncludeChildren
+		out.StartDateTime = opts.StartDateTime
+		out.EndDateTime = opts.EndDateTime
 	}
 	return
 }
@@ -227,6 +231,8 @@ func (c *Client) GetNextShipmentPageWithPageSizeWithContext(ctx context.Context,
 		BeforeID:        params.BeforeID,
 		Purchased:       collection.Purchased,
 		IncludeChildren: collection.IncludeChildren,
+		StartDateTime:   collection.StartDateTime,
+		EndDateTime:     collection.EndDateTime,
 	}
 	if pageSize > 0 {
 		shipmentParams.PageSize = pageSize

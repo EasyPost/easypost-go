@@ -28,6 +28,9 @@ type Report struct {
 type ListReportsResult struct {
 	Reports []*Report `json:"reports,omitempty" url:"reports,omitempty"`
 	Type    string    `json:"type,omitempty" url:"type,omitempty"`
+	// StartDateTime and EndDateTime keep the date filters for the next page
+	StartDateTime *DateTime `json:"-"`
+	EndDateTime   *DateTime `json:"-"`
 	PaginatedCollection
 }
 
@@ -63,6 +66,10 @@ func (c *Client) ListReportsWithContext(ctx context.Context, typ string, opts *L
 	// Store the original query parameters for reuse when getting the next page
 	if err == nil && out != nil {
 		out.Type = typ
+		if opts != nil {
+			out.StartDateTime = opts.StartDateTime
+			out.EndDateTime = opts.EndDateTime
+		}
 	}
 	return
 }
@@ -96,7 +103,9 @@ func (c *Client) GetNextReportPageWithPageSizeWithContext(ctx context.Context, c
 		return
 	}
 	reportParams := &ListOptions{
-		BeforeID: params.BeforeID,
+		BeforeID:      params.BeforeID,
+		StartDateTime: collection.StartDateTime,
+		EndDateTime:   collection.EndDateTime,
 	}
 	if pageSize > 0 {
 		reportParams.PageSize = pageSize

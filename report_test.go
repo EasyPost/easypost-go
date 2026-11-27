@@ -1,9 +1,12 @@
 package easypost
 
 import (
+	"context"
 	"errors"
+	"net/url"
 	"reflect"
 	"strings"
+	"time"
 )
 
 func (c *ClientTests) TestReportCreate() {
@@ -86,6 +89,41 @@ func (c *ClientTests) TestReportRetrieve() {
 	assert.Equal(reflect.TypeOf(&Report{}), reflect.TypeOf(retrievedReport))
 	assert.Equal(report.StartDate, retrievedReport.StartDate)
 	assert.Equal(report.EndDate, retrievedReport.EndDate)
+}
+
+func (c *ClientTests) TestReportGetNextPageKeepsDateFilters() {
+	assert, require := c.Assert(), c.Require()
+
+	client := New("not-a-real-key")
+	client.MockRequests = []MockRequest{{
+		MatchRule:    MockRequestMatchRule{Method: "GET", URLRegexPattern: "v2/reports/shipment"},
+		ResponseInfo: MockRequestResponseInfo{StatusCode: 200, Body: `{"reports":[{"id":"shprep_1"}],"has_more":true}`},
+	}}
+	var query url.Values
+	client.Hooks.AddRequestEventSubscriber(RequestHookEventSubscriber{
+		Callback: func(_ context.Context, event RequestHookEvent) error {
+			query = event.URL.Query()
+			return nil
+		},
+	})
+
+	start := NewDateTime(2024, time.January, 1, 0, 0, 0, 0, time.UTC)
+	end := NewDateTime(2024, time.February, 1, 0, 0, 0, 0, time.UTC)
+	firstPage, err := client.ListReports("shipment", &ListOptions{StartDateTime: &start, EndDateTime: &end})
+	require.NoError(err)
+
+	secondPage, err := client.GetNextReportPage(firstPage)
+	require.NoError(err)
+	assert.Equal("shprep_1", query.Get("before_id"))
+	assert.Equal("2024-01-01T00:00:00Z", query.Get("start_datetime"))
+	assert.Equal("2024-02-01T00:00:00Z", query.Get("end_datetime"))
+
+	// The filters must still be there for the page after that
+	query = nil
+	_, err = client.GetNextReportPage(secondPage)
+	require.NoError(err)
+	assert.Equal("2024-01-01T00:00:00Z", query.Get("start_datetime"))
+	assert.Equal("2024-02-01T00:00:00Z", query.Get("end_datetime"))
 }
 
 func (c *ClientTests) TestReportAll() {

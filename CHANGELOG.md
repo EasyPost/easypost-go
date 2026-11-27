@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## Next Release
+
+- Fixes `GetNextShipmentPage` and `GetNextReportPage` dropping the `StartDateTime` and `EndDateTime` filters of the original list call
+
 ## v6.0.1 (2026-11-25)
 
 - Fixes `ListClaims` and `ListShipments` panicking with a nil pointer dereference when called with `nil` options (thanks @pcbeingused333)
